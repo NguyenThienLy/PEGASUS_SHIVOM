@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@zeit/next-sass": "^1.0.1",
+    "express": "^4.16.4",
+    "next": "^8.0.3",
+    "node-sass": "^4.11.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-router-dom": "^4.3.1",
@@ -10,10 +14,13 @@
     "request-promise": "^4.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts start src",
+    "build": "react-scripts build src",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "next": "next src",
+    "serve": "node src/server.js",
+    "export": "next build src && next export src"
   },
   "eslintConfig": {
     "extends": "react-app"
