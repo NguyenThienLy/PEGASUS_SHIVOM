@@ -1,0 +1,42 @@
+.body{
+    max-width: 100%;
+}
+
+.navbar{
+    text-transform: uppercase;
+    font-weight: bold;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin-bottom: 2em;
+    position: fixed;
+    top: 0px;
+    /* overflow: hidden; */
+    background-color: #fff;
+    width: 100%;
+    
+}
+.navbar-brand{
+    margin-left: 3em;
+    flex:1;
+    font-size:30px;
+
+}
+
+.nav-link{
+    color:#29424E !important;
+
+}
+
+.active{    
+    color:#FE4343 !important;
+
+}
+.accountWrap{
+    justify-content: flex-end;
+    flex:1;
+}
+
+.mainMenu {
+    display: flex !important;
+    justify-content: center !important;
+    flex:3;
+}
