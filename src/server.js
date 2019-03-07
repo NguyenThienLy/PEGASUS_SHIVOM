@@ -24,11 +24,12 @@ class Server {
     
     async handleRequest() {
         this.server.get('/', (req, res) => {
-            this.app.render(req, res, '/')
+            this.app.render(req, res, '/home/home')
         })
-        this.server.get('/home', (req, res) => {
+        this.server.get('/:postId', (req, res) => {
             this.app.render(req, res, '/home')
         })
+        
     }
     async initServer() {
         this.server.listen(this.port, (err) => {
