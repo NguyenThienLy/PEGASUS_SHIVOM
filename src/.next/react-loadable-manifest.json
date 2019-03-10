@@ -17,8 +17,50 @@
   ],
   "undefined": [
     {
-      "id": 2,
+      "id": 3,
       "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 4,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 6,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 7,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
+  "./searchResult.scss": [
+    {
+      "id": "./pages/searchResult/searchResult.scss",
+      "name": "./pages/searchResult/searchResult.scss",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
+  "./contact.scss": [
+    {
+      "id": "./pages/contact/contact.scss",
+      "name": "./pages/contact/contact.scss",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
+  "./home.scss": [
+    {
+      "id": "./pages/home/home.scss",
+      "name": "./pages/home/home.scss",
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     }

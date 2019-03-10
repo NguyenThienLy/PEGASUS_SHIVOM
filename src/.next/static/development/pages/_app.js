@@ -30002,8 +30002,8 @@ var books = function books() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "../node_modules/redux/es/redux.js");
-/* harmony import */ var guid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! guid */ "../node_modules/guid/guid.js");
-/* harmony import */ var guid__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(guid__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var guid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! guid */ "../node_modules/guid/guid.js");
+/* harmony import */ var guid__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(guid__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "../node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _book__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./book */ "./reducers/book.js");

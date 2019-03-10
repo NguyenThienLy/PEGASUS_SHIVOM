@@ -1,13 +1,12 @@
 import * as React from 'react'
 import 'isomorphic-unfetch'
 import { connect } from 'react-redux'
-
-import Head from 'next/head'
-
 import { Header } from '../../components'
+import Head from 'next/head'
+import Link from 'next/link'
+import './searchResult.scss'
 
-import './home.scss'
-class Home extends React.Component {
+ class SearchResult extends React.Component {
     constructor(props) {
         super(props)
     }
@@ -17,13 +16,14 @@ class Home extends React.Component {
         }
     }
     render() {
-        
+  
         return (
             <div>
                 <Head>
-                    <title>Trang chủ</title>
+                    <title>Kết quả tìm kiếm</title>
                 </Head>
                 <Header/>
+            
             </div>
         )
     }
@@ -33,5 +33,5 @@ const mapStateToProps = (state) => {
     return state;
   };
   
-  export default connect(mapStateToProps)(Home);
+  export default connect(mapStateToProps)(SearchResult);
 

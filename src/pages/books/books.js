@@ -1,12 +1,12 @@
 import * as React from 'react'
-
+import 'isomorphic-unfetch'
+import { connect } from 'react-redux'
 import { Header } from '../../components'
-
 import Head from 'next/head'
+import Link from 'next/link'
+import './books.scss'
 
-import './contact.scss'
-
-export default class Contact extends React.Component {
+ class Books extends React.Component {
     constructor(props) {
         super(props)
     }
@@ -16,15 +16,21 @@ export default class Contact extends React.Component {
         }
     }
     render() {
+  
         return (
             <div>
                 <Head>
-                    <title>Liên hệ</title>
-                    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                    <title>Danh sách sách</title>
                 </Head>
-                <Header />
-                <div>Liên hệ</div>
+                <Header/>
             </div>
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return state;
+  };
+  
+  export default connect(mapStateToProps)(Books);
+
