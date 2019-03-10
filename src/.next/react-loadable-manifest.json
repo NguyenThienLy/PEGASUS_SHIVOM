@@ -7,52 +7,38 @@
       "publicPath": "static/chunks/0.js"
     }
   ],
-  "./header.scss": [
+  "./../../assets/bootstrap4/bootstrap.min.scss": [
     {
-      "id": "./components/header/header.scss",
-      "name": "./components/header/header.scss",
+      "id": "./assets/bootstrap4/bootstrap.min.scss",
+      "name": "./assets/bootstrap4/bootstrap.min.scss",
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     }
   ],
   "undefined": [
     {
+      "id": 5,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 2,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
       "id": 3,
       "name": null,
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 4,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 6,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 7,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
     }
   ],
-  "./searchResult.scss": [
+  "./header.scss": [
     {
-      "id": "./pages/searchResult/searchResult.scss",
-      "name": "./pages/searchResult/searchResult.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    }
-  ],
-  "./contact.scss": [
-    {
-      "id": "./pages/contact/contact.scss",
-      "name": "./pages/contact/contact.scss",
+      "id": "./components/header/header.scss",
+      "name": "./components/header/header.scss",
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     }

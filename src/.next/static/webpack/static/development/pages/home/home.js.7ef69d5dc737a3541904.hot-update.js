@@ -55,7 +55,19 @@ function (_React$Component) {
   Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_3__["default"])(Home, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_7__["createElement"]("div", null, react__WEBPACK_IMPORTED_MODULE_7__["createElement"](next_server_head__WEBPACK_IMPORTED_MODULE_10___default.a, null, react__WEBPACK_IMPORTED_MODULE_7__["createElement"]("title", null, "Trang ch\u1EE7")), react__WEBPACK_IMPORTED_MODULE_7__["createElement"](_components__WEBPACK_IMPORTED_MODULE_11__["Header"], null));
+      return react__WEBPACK_IMPORTED_MODULE_7__["createElement"]("div", null, react__WEBPACK_IMPORTED_MODULE_7__["createElement"](next_server_head__WEBPACK_IMPORTED_MODULE_10___default.a, null, react__WEBPACK_IMPORTED_MODULE_7__["createElement"]("title", null, "Trang ch\u1EE7"), react__WEBPACK_IMPORTED_MODULE_7__["createElement"]("script", {
+        src: "https://code.jquery.com/jquery-3.2.1.slim.min.js",
+        integrity: "sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN",
+        crossorigin: "anonymous"
+      }), react__WEBPACK_IMPORTED_MODULE_7__["createElement"]("script", {
+        src: "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js",
+        integrity: "sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q",
+        crossorigin: "anonymous"
+      }), react__WEBPACK_IMPORTED_MODULE_7__["createElement"]("script", {
+        src: "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js",
+        integrity: "sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl",
+        crossorigin: "anonymous"
+      })), react__WEBPACK_IMPORTED_MODULE_7__["createElement"](_components__WEBPACK_IMPORTED_MODULE_11__["Header"], null));
     }
   }], [{
     key: "getInitialProps",
@@ -99,4 +111,4 @@ var mapStateToProps = function mapStateToProps(state) {
 /***/ })
 
 })
-//# sourceMappingURL=home.js.541478f1d334f1db90b2.hot-update.js.map
+//# sourceMappingURL=home.js.7ef69d5dc737a3541904.hot-update.js.map
