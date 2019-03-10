@@ -1,9 +1,7 @@
 import * as React from 'react'
-import './../../assets/bootstrap4/bootstrap.min.css'
-// import './../../assets/bootstrap4/bootstrap.min.js'
-import './header.css'
+import './../../assets/bootstrap4/bootstrap.min.scss'
 
-
+import './header.scss'
 
 export class Header extends React.Component {
     constructor(props) {
