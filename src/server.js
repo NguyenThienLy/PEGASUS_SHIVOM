@@ -26,9 +26,6 @@ class Server {
         this.server.get('/', (req, res) => {
             this.app.render(req, res, '/home/home')
         })
-        this.server.get('/contact', (req, res) => {
-            this.app.render(req, res, '/contact/contact')
-        })
         this.server.get('/bai-viet', (req, res) => {
             this.app.render(req, res, '/posts/posts')
         })

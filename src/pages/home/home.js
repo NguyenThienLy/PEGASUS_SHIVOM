@@ -7,13 +7,18 @@ import Head from 'next/head'
 import { Header } from '../../components'
 
 import './home.scss'
+
+
+import { crudApi } from '../../services'
 class Home extends React.Component {
     constructor(props) {
         super(props)
     }
     static async  getInitialProps({ req, query }) {
+        const res = await crudApi.getList()
+        console.log("posts : ", res.results.objects.rows)
         return {
-
+            
         }
     }
     render() {
