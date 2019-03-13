@@ -27189,6 +27189,7 @@ function () {
       /*#__PURE__*/
       _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(id) {
         var option,
+            url,
             options,
             _args3 = arguments;
         return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
@@ -27196,16 +27197,22 @@ function () {
             switch (_context3.prev = _context3.next) {
               case 0:
                 option = _args3.length > 1 && _args3[1] !== undefined ? _args3[1] : {};
+                url = new url__WEBPACK_IMPORTED_MODULE_8__["URL"](this.baseUrl(id));
+                url.search = new url__WEBPACK_IMPORTED_MODULE_8__["URLSearchParams"](this._paserQuery(option.query));
                 options = {
-                  method: "GET"
+                  method: "GET",
+                  headers: lodash__WEBPACK_IMPORTED_MODULE_7__["merge"]({
+                    'User-Agent': 'Request-Promise',
+                    'Content-Type': "Application/json"
+                  }, option.headers)
                 };
-                _context3.next = 4;
-                return this.exec(this.baseUrl(id), options);
+                _context3.next = 6;
+                return this.exec(url.href, options);
 
-              case 4:
+              case 6:
                 return _context3.abrupt("return", _context3.sent);
 
-              case 5:
+              case 7:
               case "end":
                 return _context3.stop();
             }
