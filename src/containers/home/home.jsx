@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Header } from '../../components'
+import { Header, Footer } from '../../components'
 
 
 export class Home extends React.Component {
@@ -28,6 +28,7 @@ export class Home extends React.Component {
             <div>
                 <Header {...this.props} {...this.state}/>
                 <h1>Hello </h1>
+                <Footer />
             </div>
         )
     }

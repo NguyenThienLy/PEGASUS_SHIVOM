@@ -1,10 +1,12 @@
 import * as React from 'react'
 import 'isomorphic-unfetch'
 import { connect } from 'react-redux'
-import { Header } from '../../components'
+import { Header, Headline } from '../../components'
 import Head from 'next/head'
 import Link from 'next/link'
 import './profile.scss'
+
+import { Info } from './components/info/info'
 
  class Profile extends React.Component {
     constructor(props) {
@@ -12,7 +14,7 @@ import './profile.scss'
     }
     static async  getInitialProps({ req, query }) {
         return {
-            postId: req.params.postId
+            
         }
     }
     render() {
@@ -23,6 +25,18 @@ import './profile.scss'
                     <title>Trang cá nhân</title>
                 </Head>
                 <Header/>
+                <div style={
+                    {
+                        height: "30px"
+                    }
+                }></div>
+                <Info />
+                <div style={
+                    {
+                        height: "20px"
+                    }
+                }></div>
+                <Headline title="BÀI VIẾT REVIEW"/>
             </div>
         )
     }
