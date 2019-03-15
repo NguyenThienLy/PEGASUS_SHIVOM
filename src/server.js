@@ -44,6 +44,9 @@ class Server {
         this.server.get('/lien-he', (req, res) => {
             this.app.render(req, res, '/contact/contact')
         })
+        this.server.get('/profile', (req, res) => {
+            this.app.render(req, res, '/profile/profile')
+        })
 
     }
     async initServer() {

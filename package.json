@@ -15,6 +15,7 @@
     "net": "^1.0.2",
     "next": "^8.0.3",
     "node-sass": "^4.11.0",
+    "nodemon": "^1.18.10",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-redux": "^6.0.1",
@@ -33,7 +34,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "next": "next src",
-    "server": "node src/server.js",
+    "server": "nodemon src/server.js",
     "export": "next build src && next export src"
   },
   "eslintConfig": {
