@@ -1,0 +1,28 @@
+.rectangle-slide{
+	width: 50px;
+	height: 5px;
+	background-color: rgba(167, 165, 165, 0.4);
+	margin: 0 15px;
+}
+
+.slide__btn{
+	display: flex;
+	justify-content: center;
+}
+
+.btn-active{
+	background-color: rgba(255, 255, 255, 0.7) !important;
+	width: 70px;
+}
+.slide-img{
+	margin-bottom: -30px;
+	display: block;
+}
+
+.slide-img img{
+	width: 30%;
+}
+
+.slide-acvite {
+	display: block !important;
+}

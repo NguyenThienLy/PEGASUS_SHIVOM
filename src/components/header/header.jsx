@@ -32,46 +32,28 @@ export class Header extends React.Component {
                             <a href="#" className="nav-link">Thể loại</a>
                         </li>
                         <li className="nav-item">
-                            <a href="#" className="nav-link">Tác giả</a>
-                        </li>
-                        <li className="nav-item">
-                            <a href="#" className="nav-link">Reviewer</a>
-                        </li>
-                        <li className="nav-item">
                             <a href="#" className="nav-link">Liên hệ</a>
-                        </li>
-                        <li className="nav-item dropdown">
-                            <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                ria-haspopup="true" aria-expanded="false">Xem thêm</a>
-                            <div className="dropdown-menu">
-                                <a href="#" className="dropdown-item">Nổi bật</a>
-                                <a href="#" className="dropdown-item">Bảng xếp hạng</a>
-                            </div>
                         </li>
                     </ul>
 
                     <div className="accountWrap justify-content-end">
 
                         <ul className="navbar-nav">
-                            <li className="nav-item dropdown">
+                            {/* <li className="nav-item dropdown">
                                 <a href="#" className="nav-link dropdown-toggle" role="button" data-toggle="dropdown"
                                     aria-expanded="false" aria-haspopup="true">Vi</a>
                                 <div className="dropdown-menu">
                                     <a href="#" className="dropdown-item">Tiếng Anh</a>
                                 </div>
-                            </li>
+                            </li> */}
                             <li className="nav-item">
                                 <a href="#" className="nav-link">Đăng nhập</a>
                             </li>
-                            <li className="nav-item">
-                                <a href="#" className="nav-link">Đăng ký</a>
-                            </li>
-
-
                         </ul>
                     </div>
                     </div>
             </nav>
+            <div className="space-header"></div>
         </div>
         )
     }
