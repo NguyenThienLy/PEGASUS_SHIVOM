@@ -1,6 +1,9 @@
-.body{
+@import '../../default.scss';
+
+body {
     max-width: 100%;
 }
+
 .headerWrap{
     background-color: #fff;
 }
@@ -14,12 +17,13 @@
     background-color: #fff;
     width: 100%;
     z-index: 2;
+
 }
 .navbar-brand{
     margin-left: 3em;
     flex:1;
     font-size:30px;
-    font-family: Roboto;
+    font-family: Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     font-weight: bold;
 
 }
@@ -28,21 +32,24 @@
     color:#29424E !important;
     font-weight: 400;
     font-style: normal;
+    font-family:"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    // font-weight: bold;
+    font-weight: 700;
 
 }
 .nav-link:hover{
-    color:#FE4343 !important;
+    color: $main-color !important;
     font-size: 18px;
 
 }
 
 .active{    
-    color:#FE4343 !important;
+    color:$main-color !important;
 
 }
 .accountWrap{
     justify-content: flex-end;
-    flex:1;
+    // flex:1.5;
 }
 
 .mainMenu {
@@ -53,4 +60,16 @@
 
 .space-header{
     height: 100px;
+}
+
+.find{
+    display: flex;
+}
+.find input:focus{
+    outline: none;
+}
+.find input{
+    border-radius: 20px;
+    border: 2px solid #58B1E1;
+    padding-left: 20px;
 }
