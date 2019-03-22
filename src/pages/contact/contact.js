@@ -23,7 +23,7 @@ export default class Contact extends React.Component {
                     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                 </Head>
                 <Header />
-                <div>Liên hệ</div>
+                
             </div>
         )
     }

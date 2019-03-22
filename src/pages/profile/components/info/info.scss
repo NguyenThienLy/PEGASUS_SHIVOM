@@ -10,7 +10,8 @@
         .maxim  {
             height: 130px;
             p {
-                font-style: italic
+                font-style: italic;
+                font-family: "Segoe UI"
             }
         }
         .description {
@@ -57,6 +58,7 @@
                      height: 30px;
                      object-fit: cover;
                      img {
+                         border-radius: 50px;
                          height: 100%;
                          width: 100%;
                      }
