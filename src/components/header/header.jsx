@@ -21,7 +21,7 @@ export class Header extends React.Component {
                 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossOrigin="anonymous"></link>
 
                 <nav className="navbar navbar-expand-lg navbar-light navbar-default navbar-fixed-top">
-                    <a className="name navbar-brand">Book Review</a>
+                    <a className="name navbar-brand">Books Feelings</a>
                     <button className="navbar-toggler fix-top" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                         aria-label="Toggle navigation">

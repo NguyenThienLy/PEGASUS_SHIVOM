@@ -46,7 +46,7 @@ export class Slide extends React.Component {
         return (
             <div>
              
-            <div className="slide" onLoad={() => {setTimeout(this.showSlide, 1000)}}>
+            <div className="slide" onLoad={() => {setTimeout(this.showSlide, 2000)}}>
                 <div className="slide-img">
                     <img  id="single-img-slide" src={this.state.img[this.state.currentSlide]} />
                 </div>

@@ -4,12 +4,13 @@ import './index.css';
 import App from './App';
 import { Home } from './containers'
 import * as serviceWorker from './serviceWorker';
-
+import {NotFound} from './containers'
 
 import './assets/css/default.css'
 
 
 ReactDOM.render(<Home/>, document.getElementById('root'));
+// ReactDOM.render(<NotFound/>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
