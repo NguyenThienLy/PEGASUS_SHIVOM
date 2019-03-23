@@ -30,9 +30,6 @@ export class Home extends React.Component {
                 
                 <div>
                     <div className="container">
-                    <PostGeneral/>
-                     <PostGeneral/>
-                    <Slide/>
                     </div>
                     
                 </div>
