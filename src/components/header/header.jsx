@@ -45,12 +45,14 @@ export class Header extends React.Component {
                                     </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link href="/profile">
+                                    <Link href="/sach">
                                         <a href="#" className="nav-link">Thể loại</a>
                                     </Link>
                                 </li>
                                 <li className="nav-item">
+                                <Link href="/profile">
                                     <a href="#" className="nav-link">Tác giả</a>
+                                    </Link>
                                 </li>
                                 <li className="nav-item">
                                     <a href="#" className="nav-link">Reviewer</a>
