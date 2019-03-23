@@ -25,6 +25,7 @@ body {
     font-size:30px;
     font-family: Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     font-weight: bold;
+    color: $main-color !important;
 
 }
 
@@ -70,6 +71,6 @@ body {
 }
 .find input{
     border-radius: 20px;
-    border: 2px solid #58B1E1;
+    border: 2px solid $main-color;
     padding-left: 20px;
 }
