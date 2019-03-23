@@ -1,0 +1,48 @@
+@import '../../default.scss';
+
+.content{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.content:not(#pegasus){
+    font-size: 1.5em;
+    color: $font-color;
+}
+#pegasus{
+    color: $font-note-color;
+    font-size: 0.5em;   
+}
+.content div{
+    flex:1;
+}
+img{
+    height: 40vh;
+    margin-top: 15vh;
+    margin-bottom: 30px;
+}
+.btns{
+    display: flex;
+    justify-content: center;
+}
+
+.btns button{
+    flex: 1;
+    margin: 20px 20px !important;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #24404D;
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 2px 2px 5px rgb(187, 185, 185);
+}
+.btns button:focus{ 
+    outline: none;
+}
+.btns button:hover{
+    background-color: #fff;
+    color: #24404D;
+}
