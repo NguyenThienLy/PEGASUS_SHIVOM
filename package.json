@@ -33,6 +33,7 @@
   "scripts": {
     "start": "nodemon src/server.js",
     "next": "next src",
+    "build":"next build src",
     "server": "nodemon src/server.js",
     "export": "next build src && next export src"
   },
