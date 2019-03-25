@@ -7,10 +7,14 @@ export class Headline extends React.Component {
     }
 
     render() {
-        
+        const { title, switchPage = false} = this.props
         return (
             <div className="headline">
-                <div className="headline-title">{this.props.title}</div>
+                <div className="headline-title">{title}</div>
+                {switchPage?<div className="headline-switch">
+                    <div id="prev">&lt;</div>
+                    <div id="next">&gt;</div>
+                </div>:null}
             </div>
         )
     }

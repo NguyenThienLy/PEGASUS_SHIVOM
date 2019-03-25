@@ -39,6 +39,7 @@ class Profile extends React.Component {
                   
                 </Head>
                 <Header />
+                <div className="profile-main">
                 <div style={
                     {
                         height: "30px"
@@ -52,6 +53,7 @@ class Profile extends React.Component {
                 }></div>
                 <Headline title="BÀI VIẾT REVIEW" />
                 {this.state.showEditor?<Editor handleClose={this.handleClose} />:null}
+                </div>
             </div>
         )
     }

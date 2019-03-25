@@ -50,7 +50,7 @@ body {
 }
 .nav-link:hover{
     color: $main-color !important;
-    font-size: 18px;
+    // font-size: 18px;
 
 }
 
@@ -80,7 +80,13 @@ body {
     outline: none;
 }
 .find input{
+
+    width: 200px;
     border-radius: 20px;
     border: 2px solid $main-color;
     padding-left: 20px;
+    background-color: white;
+    background-image: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-512.png);
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
 }

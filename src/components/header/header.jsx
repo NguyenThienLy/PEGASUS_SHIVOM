@@ -33,24 +33,32 @@ export class Header extends React.Component {
                     <div className="navWrap collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto mainMenu">
                             <li className="nav-item current">
-                                <a href="#" className="nav-link active">Trang chủ</a>
+                                <Link href="/">
+                                    <a className="nav-link active">Trang chủ</a>
+                                </Link>
                             </li>
                             <li className="nav-item">
-                                <a href="#" className="nav-link">Bài viết</a>
+                                <Link href="/bai-viet">
+                                    <a className="nav-link">Bài viết</a>
+                                </Link>
                             </li>
                             <li className="nav-item">
-                                <a href="#" className="nav-link">Thể loại</a>
+                                <Link href="/sach">
+                                    <a href="#" className="nav-link">Thể loại</a>
+                                </Link>
                             </li>
                             <li className="nav-item">
-                                <a href="#" className="nav-link">Liên hệ</a>
+                                <Link href="/profile">
+                                    <a href="#" className="nav-link">Tác giả</a>
+                                </Link>
                             </li>
                         </ul>
 
                         <div className="accountWrap justify-content-end">
                             <ul className="navbar-nav">
                                 <li className="nav-item find">
-                                    <input type="text" id="key-find" placeholder="Nhập từ khóa"/>
-                                    <a href="#" className="nav-link"><i class="fas fa-search"></i></a>
+                                    <input type="text" id="key-find" placeholder="Nhập từ khóa" />
+                                    {/* <a href="#" className="nav-link"><i class="fas fa-search"></i></a> */}
                                 </li>
                                 <li className="nav-item">
                                     <a href="#" className="nav-link">Đăng nhập</a>
