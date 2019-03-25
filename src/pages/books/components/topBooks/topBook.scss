@@ -1,0 +1,31 @@
+$main-color:#58B1E1;
+.top-book {
+    margin-right: 30px;
+    .top-book-select {
+        
+        height: 50px;
+        padding-top: 12px;
+        border-bottom: solid 4px $main-color;
+        display: flex;
+        justify-content: space-between;
+        span {
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        span:hover {
+            color: $main-color
+        }
+    }
+    .top-books {
+        margin-top: 18px;
+        .top-books-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            
+        }
+        
+    }
+
+}

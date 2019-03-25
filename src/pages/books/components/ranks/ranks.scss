@@ -14,7 +14,7 @@ $main-color:#58B1E1;
     }
     .list {
         margin-top: 12px;
-        max-height: calc(100% - 200px) !important;
+        max-height: calc(100vh - 200px) !important;
         // overflow: auto;
         .rank-book-item {
             margin-bottom: 6px;

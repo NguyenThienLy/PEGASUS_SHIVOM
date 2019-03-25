@@ -1,8 +1,7 @@
 import * as React from 'react'
 
-import { Header, Footer } from '../../components'
-
-
+import { Header, PostGeneral } from '../../components'
+import { Slide } from '../../components'
 export class Home extends React.Component {
     constructor(props) {
         super(props)
@@ -27,8 +26,13 @@ export class Home extends React.Component {
         return (
             <div>
                 <Header {...this.props} {...this.state}/>
-                <h1>Hello </h1>
-                <Footer />
+                {/* <h1>Hello </h1> */}
+                
+                <div>
+                    <div className="container">
+                    </div>
+                    
+                </div>
             </div>
         )
     }

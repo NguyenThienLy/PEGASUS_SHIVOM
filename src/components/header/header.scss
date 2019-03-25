@@ -1,4 +1,6 @@
-.body{
+@import '../../default.scss';
+
+body {
     max-width: 100%;
 }
 .headerWrap {
@@ -12,41 +14,79 @@
     // font-family: 'Roboto', sans-serif;
 }
 
+.headerWrap{
+    background-color: #fff;
+}
+
 .navbar{
     text-transform: uppercase;
-    font-weight: bold;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     margin-bottom: 2em;
     position: fixed;
     top: 0px;
-    /* overflow: hidden; */
     background-color: #fff;
     width: 100%;
-    
+    z-index: 2;
+
 }
 .navbar-brand{
     margin-left: 3em;
     flex:1;
     font-size:30px;
+    font-family: Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-weight: bold;
+    color: $main-color !important;
 
 }
 
 .nav-link{
     color:#29424E !important;
+    font-weight: 400;
+    font-style: normal;
+    font-family:"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    // font-weight: bold;
+    font-weight: 700;
+
+}
+.nav-link:hover{
+    color: $main-color !important;
+    // font-size: 18px;
 
 }
 
 .active{    
-    color:#FE4343 !important;
+    color:$main-color !important;
 
 }
 .accountWrap{
     justify-content: flex-end;
-    flex:1;
+    // flex:1.5;
 }
 
 .mainMenu {
     display: flex !important;
     justify-content: center !important;
     flex:3;
+}
+
+.space-header{
+    height: 100px;
+}
+
+.find{
+    display: flex;
+}
+.find input:focus{
+    outline: none;
+}
+.find input{
+
+    width: 200px;
+    border-radius: 20px;
+    border: 2px solid $main-color;
+    padding-left: 20px;
+    background-color: white;
+    background-image: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-512.png);
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
 }
