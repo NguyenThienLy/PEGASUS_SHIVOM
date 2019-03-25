@@ -32,9 +32,6 @@
   },
   "scripts": {
     "start": "nodemon src/server.js",
-    "build": "react-scripts build src",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "next": "next src",
     "server": "nodemon src/server.js",
     "export": "next build src && next export src"
