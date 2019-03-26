@@ -2,6 +2,11 @@ const express = require('express')
 const next = require('next')
 const path = require('path')
 
+// import { firebaseAuthentication } from './authentication/index'
+
+const firebaseAuthentication = require('./authentication/firebase')
+
+
 class Server {
     constructor() {
         this.dev = process.env.NODE_ENV === "production" ? false : true
@@ -12,7 +17,7 @@ class Server {
         this.initStatisFolder()
         this.init()
     }
-    async initStatisFolder(){
+    async initStatisFolder() {
         this.server.use(
             express.static(path.join(__dirname, "./assets"), { maxAge: 31557600000 })
         )
@@ -22,14 +27,28 @@ class Server {
         this.app.prepare().then(() => {
             this.handleRequest()
             this.server.get('*', (req, res) => {
+
                 return this.handle(req, res)
-            }) 
+            })
             this.initServer()
         })
     }
 
+    async authenticated(req, res, next) {
+        console.log("vo day")
+        const isLogin = await firebaseAuthentication.authenticated
+        req.isLogin = isLogin
+        if (isLogin === undefined) {
+            return this.authenticated(req, res, next)
+        } else {
+            next()
+        }
+    }
+
+
     async handleRequest() {
         this.server.get('/', (req, res) => {
+            console.log("req: ", req.isLogin)
             this.app.render(req, res, '/home/home')
         })
         this.server.get('/bai-viet', (req, res) => {
@@ -52,6 +71,9 @@ class Server {
         })
         this.server.get('/profile', (req, res) => {
             this.app.render(req, res, '/profile/profile')
+        })
+        this.server.get('/login', (req, res) => {
+            this.app.render(req, res, '/login/login')
         })
         this.server.get('*', (req, res) => {
             this.app.render(req, res, '/_error/_error')

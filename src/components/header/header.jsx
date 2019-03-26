@@ -33,9 +33,9 @@ export class Header extends React.Component {
                     <div className="navWrap collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto mainMenu">
                             <li className="nav-item current">
-                                <Link href="/">
-                                    <a className="nav-link active">Trang chủ</a>
-                                </Link>
+                              
+                                    <a href="/" className="nav-link active">Trang chủ</a>
+                             
                             </li>
                             <li className="nav-item">
                                 <Link href="/bai-viet">
