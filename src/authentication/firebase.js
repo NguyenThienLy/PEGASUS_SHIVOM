@@ -3,12 +3,12 @@ const firebase = require("firebase")
 class FirebaseAuthentication {
     constructor() {
         this.config = {
-            apiKey: "AIzaSyCaIxMarog1k6pHiID5LkSjFCYj3U3NNsQ",
-            authDomain: "mcommerce-dashboard.firebaseapp.com",
-            databaseURL: "https://mcommerce-dashboard.firebaseio.com",
-            projectId: "mcommerce-dashboard",
-            storageBucket: "mcommerce-dashboard.appspot.com",
-            messagingSenderId: "501335675666"
+            apiKey: "AIzaSyA1CFGNgJRIHA9KTtRoV51zg9G3P7cVwZ0",
+            authDomain: "zzzz-73e20.firebaseapp.com",
+            databaseURL: "https://zzzz-73e20.firebaseio.com",
+            projectId: "zzzz-73e20",
+            storageBucket: "zzzz-73e20.appspot.com",
+            messagingSenderId: "997412526528"
         }
         if (!firebase.apps.length) {
             firebase.initializeApp(this.config)
@@ -109,5 +109,7 @@ class FirebaseAuthentication {
         }
     }
 }
+
+
 
 module.exports = new FirebaseAuthentication()
