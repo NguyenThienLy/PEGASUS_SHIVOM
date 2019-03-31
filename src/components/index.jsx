@@ -5,7 +5,9 @@ import {PostGeneral} from './post-general/post-general'
 import { Headline } from './headline/headline'
 import { Editor } from './editor/editor'
 import { BookItem } from './bookItem/bookItem'
+import {FollowedReviewerItem} from './followed-reviewer-item/followed-reviewer-item'
+import {SavedBookItem} from './savedBookItem/savedBookItem'
 
 export {
-    Header, Footer, Slide, PostGeneral, Headline, Editor, BookItem
+    Header, Footer, Slide, PostGeneral, Headline, Editor, BookItem, FollowedReviewerItem, SavedBookItem
 }
