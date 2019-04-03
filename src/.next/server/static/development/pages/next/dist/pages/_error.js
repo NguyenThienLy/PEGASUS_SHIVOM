@@ -646,7 +646,7 @@ var styles = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/mac/Documents/Pegasus/review_ui/node_modules/next/dist/pages/_error.js */"../node_modules/next/dist/pages/_error.js");
+module.exports = __webpack_require__(/*! D:\WEB\PEGASUS\P01_REVIEW_BOOK\review_ui_ver3\review_ui\node_modules\next\dist\pages\_error.js */"../node_modules/next/dist/pages/_error.js");
 
 
 /***/ }),

@@ -7,7 +7,7 @@
       "publicPath": "static/chunks/0.js"
     }
   ],
-  "./../../assets/bootstrap4/bootstrap.min.scss": [
+  "../../assets/bootstrap4/bootstrap.min.scss": [
     {
       "id": "./assets/bootstrap4/bootstrap.min.scss",
       "name": "./assets/bootstrap4/bootstrap.min.scss",
@@ -33,6 +33,44 @@
       "name": null,
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 5,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 6,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 7,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 8,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 9,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
+  "./slide.scss": [
+    {
+      "id": "./components/slide/slide.scss",
+      "name": "./components/slide/slide.scss",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
     }
   ],
   "./header.scss": [
@@ -43,10 +81,42 @@
       "publicPath": "static/chunks/styles.js"
     }
   ],
+  "./item-followed-person.scss": [
+    {
+      "id": "./components/item-followed-person/item-followed-person.scss",
+      "name": "./components/item-followed-person/item-followed-person.scss",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
+  "./post-general.scss": [
+    {
+      "id": "./components/post-general/post-general.scss",
+      "name": "./components/post-general/post-general.scss",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
+  "./headline-custom.scss": [
+    {
+      "id": "./components/headline-custom/headline-custom.scss",
+      "name": "./components/headline-custom/headline-custom.scss",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
   "./home.scss": [
     {
       "id": "./pages/home/home.scss",
       "name": "./pages/home/home.scss",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
+  "./item-saved-book.scss": [
+    {
+      "id": "./components/item-saved-book/item-saved-book.scss",
+      "name": "./components/item-saved-book/item-saved-book.scss",
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     }
