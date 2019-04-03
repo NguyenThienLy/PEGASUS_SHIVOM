@@ -1,6 +1,6 @@
 const express = require('express')
 const next = require('next')
-
+const path = require('path')
 
 class Server {
     constructor() {
@@ -9,7 +9,13 @@ class Server {
         this.handle = this.app.getRequestHandler()
         this.port = process.env.PORT || 3000
         this.server = express()
+        this.initStatisFolder()
         this.init()
+    }
+    async initStatisFolder(){
+        this.server.use(
+            express.static(path.join(__dirname, "./assets"), { maxAge: 31557600000 })
+        )
     }
 
     async init() {
@@ -17,7 +23,7 @@ class Server {
             this.handleRequest()
             this.server.get('*', (req, res) => {
                 return this.handle(req, res)
-            })
+            }) 
             this.initServer()
         })
     }
@@ -43,6 +49,12 @@ class Server {
         })
         this.server.get('/lien-he', (req, res) => {
             this.app.render(req, res, '/contact/contact')
+        })
+        this.server.get('/profile', (req, res) => {
+            this.app.render(req, res, '/profile/profile')
+        })
+        this.server.get('*', (req, res) => {
+            this.app.render(req, res, '/_error/_error')
         })
 
     }

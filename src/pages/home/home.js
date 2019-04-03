@@ -17,10 +17,8 @@ class Home extends React.Component {
         super(props)
     }
     static async  getInitialProps({ req, query }) {
-        const res = await crudApi.getList()
-        console.log("posts : ", res.results.objects.rows)
         return {
-            
+
         }
     }
     render() {
@@ -35,7 +33,11 @@ class Home extends React.Component {
                         crossOrigin="anonymous"></script>
                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
                         crossOrigin="anonymous"></script>
-                         
+                    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />    
+                    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                    <link href="../app.scss" rel="stylesheet" />
+                    
+
                 </Head>
                 <Header />
             </div>

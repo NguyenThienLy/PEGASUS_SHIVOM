@@ -2,6 +2,10 @@ import * as React from 'react'
 import './../../assets/bootstrap4/bootstrap.min.scss'
 import './header.scss'
 
+import Link from 'next/link'
+
+import Head from 'next/head'
+
 export class Header extends React.Component {
     constructor(props) {
         super(props)
@@ -15,7 +19,6 @@ export class Header extends React.Component {
     // }
 
     render() {
-        console.log("props của header: ", this.props)
         return (
             <div className="headerWrap">
                 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossOrigin="anonymous"></link>
@@ -30,24 +33,32 @@ export class Header extends React.Component {
                     <div className="navWrap collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto mainMenu">
                             <li className="nav-item current">
-                                <a href="#" className="nav-link active">Trang chủ</a>
+                                <Link href="/">
+                                    <a className="nav-link active">Trang chủ</a>
+                                </Link>
                             </li>
                             <li className="nav-item">
-                                <a href="#" className="nav-link">Bài viết</a>
+                                <Link href="/bai-viet">
+                                    <a className="nav-link">Bài viết</a>
+                                </Link>
                             </li>
                             <li className="nav-item">
-                                <a href="#" className="nav-link">Thể loại</a>
+                                <Link href="/sach">
+                                    <a href="#" className="nav-link">Thể loại</a>
+                                </Link>
                             </li>
                             <li className="nav-item">
-                                <a href="#" className="nav-link">Liên hệ</a>
+                                <Link href="/profile">
+                                    <a href="#" className="nav-link">Tác giả</a>
+                                </Link>
                             </li>
                         </ul>
 
                         <div className="accountWrap justify-content-end">
                             <ul className="navbar-nav">
                                 <li className="nav-item find">
-                                    <input type="text" id="key-find" placeholder="Nhập từ khóa"/>
-                                    <a href="#" className="nav-link"><i class="fas fa-search"></i></a>
+                                    <input type="text" id="key-find" placeholder="Nhập từ khóa" />
+                                    {/* <a href="#" className="nav-link"><i class="fas fa-search"></i></a> */}
                                 </li>
                                 <li className="nav-item">
                                     <a href="#" className="nav-link">Đăng nhập</a>
