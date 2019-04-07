@@ -1,3 +1,5 @@
+@import '../../default.scss';
+
 .wrap {
     display: flex;
     margin-top: 20px;
@@ -15,7 +17,7 @@
 }
 
 .imgPost img:hover {
-    width: 92%;
+    box-shadow: 0px 5px 2px rgb(92, 91, 91);
     background-color: rgba(116, 109, 109, 0.5);
 }
 
@@ -43,7 +45,7 @@
     color: #58B1E1;
 }
 .content-top__title a:hover{
-    color: #FE4343;
+    color: $color-hover;
 }
 .content-top__time-detail{
     color: rgb(189, 188, 187);
