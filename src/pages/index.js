@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 
-import { Header } from '../components'
+import { Header, Footer } from '../components'
 
 import Head from 'next/head'
 
@@ -22,7 +22,7 @@ class Home extends React.Component {
                     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                 </Head>
                 <Header/>
-                
+                <Footer/>
             </div>
         )
     }
