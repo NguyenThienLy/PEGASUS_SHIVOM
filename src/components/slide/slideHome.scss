@@ -1,0 +1,97 @@
+@import "../../default.scss";
+
+#slide-home-wrap {
+  display: flex;
+  max-height: 70vh;
+  #active {
+    flex: 2;
+    #img-wrap {
+      position: relative;
+      overflow: hidden;
+      margin-right: 10px;
+      img {
+        width: 100%;
+        height: 300px;
+        transition: transform 2s ease-out;
+        transform: scale(1.4);
+      }
+    }
+    div {
+      .name {
+        margin-top: 10px;
+        font-weight: bold;
+        font-style: italic;
+        text-align: center;
+        color: rgb(187, 183, 183);
+        // .author {
+        // }
+        // .bookName {
+        //   //   color: $sub-main-color;
+        // }
+        i {
+          color: rgb(156, 154, 154);
+          margin: 0px 10px;
+        }
+      }
+      .quote {
+        text-align: center;
+        blockquote {
+          display: block;
+          padding: 0px 20px;
+          font-size: 1.2em !important;
+          font-style: italic;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  #slides-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    // justify-content: space-around;
+    height: 455px;
+    overflow: auto;
+    div {
+      display: flex;
+      margin: 0px 5px 5px;
+      flex: 1;
+      .img-wrap {
+        img {
+          width: 100%;
+        }
+      }
+      div {
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        .quote {
+          margin-top: 0px;
+          text-align: justify;
+          a {
+            text-decoration: none;
+            color: $main-color;
+            font-weight: bold;
+            &:hover {
+              color: $color-hover;
+            }
+          }
+        }
+        .author a {
+          text-decoration: none;
+          color: rgb(114, 114, 114);
+          font-size: 0.9em;
+          &:hover {
+            color: rgb(46, 45, 45);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #slide-home-wrap {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,22 @@
+#post-item-wrap {
+  display: flex;
+  .img {
+    flex: 1;
+    text-align: center;
+    margin: 10px;
+    img {
+      width: 100%;
+    }
+  }
+  .content {
+    flex: 2;
+    .title {
+      font-weight: bold;
+      color: #555555;
+    }
+    .time {
+      color: rgb(177, 177, 177);
+      font-size: 0.8em;
+    }
+  }
+}

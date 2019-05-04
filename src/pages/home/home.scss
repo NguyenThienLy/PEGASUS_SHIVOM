@@ -1,4 +1,37 @@
+.content-home-wrap {
+  display: flex;
+  .left,
+  .right {
+    margin-top: 20px;
+  }
+  .left {
+    flex: 2;
+    margin-right: 10px;
+    .headline-stand-out {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      border-bottom: 4px solid #f9c100;
+      height: 40px;
+      .title {
+        background-color: #f9c100;
+        padding: 5px 20px 0px 34px;
+        color: #fff;
+      }
+      .tab {
+        button {
+          margin-bottom: 0px !important;
+        }
+      }
+    }
+  }
+  .right {
+    flex: 1;
+  }
+}
 
-.home {
-    border: solid 1px black;
+@media only screen and(max-width: 600px) {
+  .content-home-wrap {
+    flex-direction: column;
+  }
 }

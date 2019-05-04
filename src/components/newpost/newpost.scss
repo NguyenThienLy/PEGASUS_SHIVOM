@@ -1,0 +1,17 @@
+#new-post-wrap {
+  .post {
+    display: flex;
+  }
+  .left,
+  .right {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #new-post-wrap {
+    .post {
+    }
+  }
+}
