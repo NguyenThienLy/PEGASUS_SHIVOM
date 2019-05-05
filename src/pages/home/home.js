@@ -11,12 +11,16 @@ import './home.scss'
 import '../../assets/bootstrap4/bootstrap.min.scss'
 
 
-import { crudApi } from '../../services'
+import { crudApi, api } from '../../services'
 class Home extends React.Component {
     constructor(props) {
         super(props)
     }
     static async  getInitialProps({ req, query }) {
+        const bookCategory = await api.bookCategory.getList({ query: { fields: ["$all"]}})
+        console.log("book category: ", bookCategory)
+        const create = await api.bookCategory.delete("d0c57cdd-2aa7-4a8f-a567-5d1b76c3bcef")
+        console.log("book category: ", create)
         return {
 
         }
