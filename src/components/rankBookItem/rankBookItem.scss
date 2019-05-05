@@ -6,6 +6,12 @@
     flex: 1;
     a img {
       width: 100%;
+      overflow: hidden;
+      transition: transform 2s ease-out;
+      &:hover {
+        transform: scale(1.1);
+        box-shadow: 2px 2px 2px rgb(204, 203, 203);
+      }
     }
   }
   .content {

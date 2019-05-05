@@ -92,6 +92,8 @@ class Home extends React.Component {
           name: "Kỹ năng"
         }
       ],
+      AllTypeId: -1, //loại bài viết nổi bật là "Tất cả"
+      currentIdTypeStandOut: -1,
       newPost: [
         {
           _id: 1,
@@ -127,13 +129,13 @@ class Home extends React.Component {
         }
       ],
       firstStandOutTypeBook: 1,
-      secondStandOutTypeBook: 2,
+      secondStandOutTypeBook: 4,
       thirdStandOutTypeBook: 3,
       standOutPosts: [
         {
           _id: 1,
           img: "/img/slide0.jpg",
-          title: "Cuốn sách giúp tôi hướng về phía mặt trời",
+          title: "Cuốn sách giúp tôi hướng về phía mặt trời 1",
           book: "Trước bình minh luôn là đêm tối",
           type: 1,
           time: "8:00 23/01/2019",
@@ -167,7 +169,7 @@ class Home extends React.Component {
         {
           _id: 4,
           img: "/img/slide3.jpg",
-          title: "Cuốn sách giúp tôi hướng về phía mặt trời",
+          title: "Cuốn sách giúp tôi hướng về phía mặt trời 2",
           book: "Trước bình minh luôn là đêm tối",
           type: 1,
           time: "8:00 23/01/2019",
@@ -232,6 +234,16 @@ class Home extends React.Component {
     return {};
   }
 
+  onToggleMenuStandoutPost = () => {
+    const toggle = document.getElementById("menu-tab-small-screen");
+    toggle.classList.toggle("menu-tab-small-screen-show");
+  }
+  onChangeTypePostStandOut = (typeID) => {
+    this.setState({ currentIdTypeStandOut: typeID });
+    const tabs = document.getElementsByClassName("tab-stand-out-type");
+
+
+  }
   render() {
     return (
       <div>
@@ -269,41 +281,63 @@ class Home extends React.Component {
             <div className="left">
               {/* <Headline title="Bài viết nổi bật" /> */}
               <div className="headline-stand-out headline-stand-out-posts">
-                <div className="title">Bài viết nổi bật</div>
+                <div className="title">
+                  Bài viết nổi bật
+                </div>
+                <span id="type-stand-out">{this.state.currentIdTypeStandOut == this.state.AllTypeId && "Tất cả" || (this.state.typeBook.filter((item) => item.id == this.state.currentIdTypeStandOut)[0].name)}</span>
                 <div className="tab">
-                  <button className="btn m-2 btn-sm">Tất cả</button>
-                  {this.state.typeBook.map((item, index) => {
-                    if (index < 3) {
-                      return (
-                        <button className="btn m-2 btn-sm">{item.name}</button>
-                      );
-                    }
-                  })}
-                  <button
-                    class="btn m-2 btn-sm dropdown-toggle"
-                    type="button"
-                    id="dropdownMenu2"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    Thêm
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                  <div className="tab-wide-screen">
+                    <button className="tab-stand-out-type btn m-2 btn-sm" onClick={() => { this.onChangeTypePostStandOut(this.state.AllTypeId) }}>Tất cả</button>
                     {this.state.typeBook.map((item, index) => {
-                      if (index >= 3) {
+                      if (index < 3) {
                         return (
-                          <button class="dropdown-item" type="button">
+                          <button className="tab-stand-out-type btn m-2 btn-sm" onClick={() => { this.onChangeTypePostStandOut(item.id) }}>
                             {item.name}
                           </button>
                         );
                       }
                     })}
+                    <button
+                      class="btn m-2 btn-sm dropdown-toggle tab-stand-out-type"
+                      type="button"
+                      id="dropdownMenu2"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      Thêm
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                      {this.state.typeBook.map((item, index) => {
+                        if (index >= 3) {
+                          return (
+                            <button class="dropdown-item" type="button" onClick={() => { this.onChangeTypePostStandOut(item.id) }}>
+                              {item.name}
+                            </button>
+                          );
+                        }
+                      })}
+                    </div>
+                  </div>
+                  <div className="tab-small-screen" onClick={() => { this.onToggleMenuStandoutPost() }}>
+                    <i class="fas fa-ellipsis-h" />
+
                   </div>
                 </div>
               </div>
+              <div id="menu-tab-small-screen">
+                <ul className="tab-stand-out-type" onClick={() => { this.onChangeTypePostStandOut(this.state.AllTypeId) }}>Tất cả</ul>
+                {
+                  this.state.typeBook.map((item, index) => {
+                    return (
+                      <ul className="tab-stand-out-type" onClick={() => { this.onChangeTypePostStandOut(item.id) }}>{item.name}</ul>
+                    )
+                  })
+                }
+
+              </div>
               <StandOutPost
-                posts={this.state.standOutPosts}
+                posts={this.state.currentIdTypeStandOut == this.state.AllTypeId && this.state.standOutPosts || (this.state.standOutPosts.filter((item) => item.type == this.state.currentIdTypeStandOut))}
                 typeBook={this.state.typeBook}
               />
               {/* Bài viết nổi bật theo loại 1 */}
@@ -317,7 +351,7 @@ class Home extends React.Component {
                 </div>
               </div>
               <StandOutPost2Column
-                posts={this.state.standOutPosts}
+                posts={this.state.standOutPosts.filter((item, index) => item.type == this.state.firstStandOutTypeBook)}
                 typeBook={this.state.typeBook}
               />
               {/* //Bài viết nổi bật theo loại 1 */}
@@ -333,7 +367,7 @@ class Home extends React.Component {
                 </div>
               </div>
               <StandOutPost
-                posts={this.state.standOutPosts}
+                posts={this.state.standOutPosts.filter((item) => item.type == this.state.secondStandOutTypeBook)}
                 typeBook={this.state.typeBook}
               />
               {/* //Bài viết theo loại 2 */}
@@ -349,7 +383,7 @@ class Home extends React.Component {
                 </div>
               </div>
               <StandOutPost2Column
-                posts={this.state.standOutPosts}
+                posts={this.state.standOutPosts.filter((item) => item.type == this.state.thirdStandOutTypeBook)}
                 typeBook={this.state.typeBook}
               />
               {/* //Bài viết nổi bật theo loại 3 */}
