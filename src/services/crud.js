@@ -5,8 +5,8 @@ import * as _ from 'lodash'
 import { URL, URLSearchParams } from 'url'
 
 export class CrudApi {
-    constructor(subpath) {
-        this.subpath = subpath
+    constructor(path) {
+        this.path = path
     }
     _paserQuery(query = {}) {
         let parsedQuery = _.merge({}, query)
@@ -36,9 +36,9 @@ export class CrudApi {
         }
         return parsedQuery;
     }
-    baseUrl(path = "") {
-        //return `${environment.production.host}/api/${environment.production.version}/${this.subpath}/${path}`
-        return "https://pntravel.herokuapp.com/api/v1/post"
+    baseUrl(subpath = "") {
+        return `${environment.host}/api/${environment.version}/${this.path}/${subpath}`
+        //return "https://pntravel.herokuapp.com/api/v1/post"
     }
     async exec(url, options) {
         try {
@@ -57,7 +57,9 @@ export class CrudApi {
                 'Content-Type':"Application/json"
             }, option.headers)
         }
-        return await this.exec(url.href, options)
+        const res = await this.exec(url.href, options)
+        return res.results.objects.rows
+
     }
     async getItem(id, option = {}) {
         const url = new URL(this.baseUrl(id))
@@ -69,26 +71,55 @@ export class CrudApi {
                 'Content-Type':"Application/json"
             }, option.headers)
         }
-        return await this.exec(url.href, options)
+        const res = await this.exec(url.href, options)
+        return res.result.object
     }
-    async delete() {
-
+    async delete(id, option = {}) {
+        const url = new URL(this.baseUrl(id))
+        url.search = new URLSearchParams(this._paserQuery(option.query))
+        const options = {
+            method: "DELETE",
+            headers: _.merge({
+                'User-Agent': 'Request-Promise',
+                'Content-Type':"Application/json"
+            }, option.headers)
+        }
+        const res = await this.exec(url.href, options)
+        return res.result.object
+    }
+   
+    async update(id, body, option = {}) {
+        const url = new URL(this.baseUrl(id))
+        url.search = new URLSearchParams(this._paserQuery(option.query))
+        const options = {
+            method: "PUT",
+            headers: _.merge({
+                'User-Agent': 'Request-Promise',
+                'Content-Type':"Application/json"
+            }, option.headers),
+            body: JSON.stringify(body)
+        }
+        const res = await this.exec(url.href, options)
+        return res.result.object
+    }
+    async create(body, option = {}) {
+        const url = new URL(this.baseUrl())
+        url.search = new URLSearchParams(this._paserQuery(option.query))
+        const options = {
+            method: "POST",
+            headers: _.merge({
+                'User-Agent': 'Request-Promise',
+                'Content-Type':"Application/json"
+            }, option.headers),
+            body: JSON.stringify(body)
+        }
+        const res = await this.exec(url.href, options)
+        return res.result.object
     }
     async deleteAll() {
 
     }
-    async update() {
-
-    }
-    async test() {
-        const options = {
-            uri: "https://pntravel.herokuapp.com/api/v1/post",
-            method: "GET"
-        }
-        const res = await Request(options)
-        console.log("res: ", res)
-        return res
-    }
+    
 
 
 }
