@@ -21,6 +21,11 @@
   }
   .right {
     flex: 1;
+    #rank-book-home {
+      #rank {
+        // position: sticky;
+      }
+    }
   }
 }
 

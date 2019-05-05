@@ -1,0 +1,41 @@
+@import "../../default.scss";
+#rank-item-wrap {
+  display: flex;
+  margin: 10px auto;
+  .img {
+    flex: 1;
+    a img {
+      width: 100%;
+    }
+  }
+  .content {
+    flex: 2;
+    margin-left: 20px;
+    .book-name {
+      a {
+        color: #555555;
+        font-weight: bold;
+        text-decoration: none;
+        &:hover {
+          color: $color-hover;
+        }
+      }
+    }
+    .rating-star {
+      text-decoration: none;
+      i {
+        color: #f9c100;
+        margin: 0px 2px;
+      }
+      span {
+        color: rgb(233, 227, 227);
+        font-size: 0.8em;
+        margin-left: 10px;
+      }
+    }
+
+    .author {
+      color: rgb(168, 159, 159);
+    }
+  }
+}
