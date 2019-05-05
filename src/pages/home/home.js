@@ -4,7 +4,14 @@ import { connect } from "react-redux";
 
 import Head from "next/head";
 
-import { Header, Headline, NewPost, StandOutPost } from "../../components";
+import {
+  Header,
+  Headline,
+  NewPost,
+  StandOutPost,
+  StandOutPost2Column,
+  RankBooks
+} from "../../components";
 import { Slide } from "../../components";
 import "./home.scss";
 
@@ -119,6 +126,9 @@ class Home extends React.Component {
           time: "8:00 23/01/2019"
         }
       ],
+      firstStandOutTypeBook: 1,
+      secondStandOutTypeBook: 2,
+      thirdStandOutTypeBook: 3,
       standOutPosts: [
         {
           _id: 1,
@@ -164,6 +174,49 @@ class Home extends React.Component {
           decription: "Cuốn sách gối đầu của tôi, một cuốn sách đáng đọc",
           love: 3,
           author: "Nguyễn An Vy"
+        }
+      ],
+      rankBooks: [
+        {
+          id: 1,
+          bookName: "Tâm hồn cao thượng",
+          img: "/img/rankBook.jpg",
+          rating: 2,
+          numberReview: 111,
+          bookAuthor: "Edmondo De Amicis",
+          translater: "Hà Mai Anh"
+        },
+        {
+          id: 2,
+          bookName: "Tâm hồn cao thượng",
+          rating: 2,
+          numberReview: 111,
+          bookAuthor: "Edmondo De Amicis",
+          translater: "Hà Mai Anh"
+        },
+        {
+          id: 3,
+          bookName: "Tâm hồn cao thượng",
+          rating: 2,
+          numberReview: 111,
+          bookAuthor: "Edmondo De Amicis",
+          translater: "Hà Mai Anh"
+        },
+        {
+          id: 4,
+          bookName: "Tâm hồn cao thượng",
+          rating: 2,
+          numberReview: 111,
+          bookAuthor: "Edmondo De Amicis",
+          translater: "Hà Mai Anh"
+        },
+        {
+          id: 5,
+          bookName: "Tâm hồn cao thượng",
+          rating: 2,
+          numberReview: 111,
+          bookAuthor: "Edmondo De Amicis",
+          translater: "Hà Mai Anh"
         }
       ]
     };
@@ -246,16 +299,62 @@ class Home extends React.Component {
                 posts={this.state.standOutPosts}
                 typeBook={this.state.typeBook}
               />
+              {/* Bài viết nổi bật theo loại 1 */}
+              <div className="headline-stand-out headline-stand-out-first">
+                <div className="title">
+                  {
+                    this.state.typeBook.filter(
+                      item => item.id == this.state.firstStandOutTypeBook
+                    )[0].name
+                  }
+                </div>
+              </div>
+              <StandOutPost2Column
+                posts={this.state.standOutPosts}
+                typeBook={this.state.typeBook}
+              />
+              {/* //Bài viết nổi bật theo loại 1 */}
+
               {/* Bài viết theo loại 2 */}
+              <div className="headline-stand-out headline-stand-out-second">
+                <div className="title">
+                  {
+                    this.state.typeBook.filter(
+                      item => item.id == this.state.secondStandOutTypeBook
+                    )[0].name
+                  }
+                </div>
+              </div>
               <StandOutPost
                 posts={this.state.standOutPosts}
                 typeBook={this.state.typeBook}
               />
               {/* //Bài viết theo loại 2 */}
+
+              {/* Bài viết nổi bật theo loại 3 */}
+              <div className="headline-stand-out headline-stand-out-third">
+                <div className="title">
+                  {
+                    this.state.typeBook.filter(
+                      item => item.id == this.state.thirdStandOutTypeBook
+                    )[0].name
+                  }
+                </div>
+              </div>
+              <StandOutPost2Column
+                posts={this.state.standOutPosts}
+                typeBook={this.state.typeBook}
+              />
+              {/* //Bài viết nổi bật theo loại 3 */}
             </div>
-            {/* Bài viết mới nhất */}
             <div className="right">
+              {/* Bài viết mới nhất */}
               <NewPost posts={this.state.newPost} />
+              {/* Bảng xếp hạng */}
+              <div className="headline-stand-out headline-stand-out-rating">
+                <div className="title">Bảng xếp hạng</div>
+                <RankBooks rankBooks={this.state.rankBooks} />
+              </div>
             </div>
           </div>
         </div>

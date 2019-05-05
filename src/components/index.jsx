@@ -18,5 +18,9 @@ export * from './new-post-item/new-post-item'
 export * from './stand-out-posts/stand-out-posts'
 export * from './post-item/post-item'
 export * from './stand-out-posts-2-column/stand-out-posts-2-column'
+export * from './rankBookItem/rankBookItem'
+export * from './rankBooks/rankBooks'
+// export * from
+// export * from
 // export * from
 // export * from
