@@ -17,7 +17,7 @@ import "./home.scss";
 
 import "../../assets/bootstrap4/bootstrap.min.scss";
 
-import { crudApi, api } from "../../services";
+import { crudApi } from "../../services";
 import SlideHome from "../../components/slide/slideHome";
 
 class Home extends React.Component {
@@ -276,20 +276,10 @@ class Home extends React.Component {
       ]
     };
   }
+
   static async getInitialProps({ req, query }) {
-    const bookCategory = await api.bookCategory.getList({
-      query: { fields: ["$all"] }
-    });
-    console.log("book category: ", bookCategory);
-    const create = await api.bookCategory.delete(
-      "d0c57cdd-2aa7-4a8f-a567-5d1b76c3bcef"
-    );
-    console.log("book category: ", create);
     return {};
   }
-  // static async getInitialProps({ req, query }) {
-  //   return {};
-  // }
 
   onToggleMenuStandoutPost = () => {
     const toggle = document.getElementById("menu-tab-small-screen");
