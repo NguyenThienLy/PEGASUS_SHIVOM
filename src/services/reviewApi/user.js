@@ -1,7 +1,7 @@
 import { CrudApi } from '../crud'
 
-export class BookApi extends CrudApi {
+export class UserApi extends CrudApi {
     constructor(){
-        super("book")
+        super("user")
     }
 }
