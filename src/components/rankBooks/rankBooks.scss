@@ -1,0 +1,68 @@
+@import "../../default.scss";
+
+#rank-books-wrap {
+  display: flex;
+  flex-direction: column;
+  #first-book-wrap {
+    margin-top: 10px;
+    .img {
+      overflow: hidden;
+      text-align: center;
+
+      a {
+        img {
+          width: 50%;
+          overflow: hidden;
+          transition: transform 2s ease-out;
+          &:hover {
+            transform: scale(1.2);
+          }
+        }
+      }
+    }
+
+    .book-name {
+      text-align: center;
+      margin-bottom: 10px;
+      a {
+        text-decoration: none;
+        color: $main-color;
+        font-weight: bold;
+      }
+      a:hover {
+        color: $color-hover;
+      }
+    }
+    .rating,
+    .author {
+      margin-left: 50px;
+    }
+    .rating {
+      display: flex;
+      justify-content: space-between;
+      .rating-star {
+        text-decoration: none;
+        i {
+          color: #f9c100;
+          margin: 0px 2px;
+        }
+        span {
+          color: rgb(233, 227, 227);
+          font-size: 0.8em;
+          margin-left: 10px;
+        }
+      }
+      .number-rating {
+        text-decoration: none;
+        background-color: $main-color;
+        color: #fff;
+        padding: 2px 5px;
+        border-bottom-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+    }
+    .author {
+      color: rgb(168, 159, 159);
+    }
+  }
+}
