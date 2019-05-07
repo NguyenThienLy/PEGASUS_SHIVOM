@@ -83,10 +83,17 @@
   }
 }
 
+button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 @media only screen and(max-width: 600px) {
   .content-home-wrap {
     flex-direction: column;
   }
+}
+@media only screen and(max-width: 1120px) {
   .left {
     .headline-stand-out {
       .tab {

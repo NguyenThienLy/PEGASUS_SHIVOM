@@ -1,7 +1,7 @@
 @import "../../default.scss";
 #stand-out-post-2-column-empty {
   text-align: center;
-  margin: 30px auto;
+  margin: 10px auto 10px auto;
   span {
     text-align: center;
 
@@ -13,6 +13,7 @@
   .left,
   .right {
     flex: 1;
+    margin-top: 10px;
   }
   .left,
   .right {

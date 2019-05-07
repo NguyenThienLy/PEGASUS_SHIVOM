@@ -8,7 +8,7 @@ export class PostItem extends Component {
             <div id="post-item-wrap">
                 <div className="img"><img src={post.img} alt="" /></div>
                 <div className="content">
-                    <div className="title">{post.title}</div>
+                    <div className="title"><a href="#">{post.title}</a></div>
                     <div className="time">{post.time}</div>
                 </div>
             </div>

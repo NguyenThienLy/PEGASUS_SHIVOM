@@ -8,9 +8,10 @@ export class StandOutPost2Column extends Component {
         const { posts } = this.props;
         return (
             <div>
-                <div id="stand-out-post-2-column-empty">
-                    {posts.length == 0 && "Không có bài viết nào"}
-                </div>
+                {posts.length == 0 && (<div id="stand-out-post-2-column-empty">
+                    "Không có bài viết nào"
+                </div>)}
+
                 {
                     posts.length > 0 && (
                         <div id="stand-out-post-2-column">

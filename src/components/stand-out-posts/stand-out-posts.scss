@@ -7,6 +7,7 @@
   .stand-out-post {
     display: flex;
     .active {
+      margin-top: 10px;
       display: flex;
       flex-direction: column;
 
@@ -74,7 +75,8 @@
       }
     }
     .post {
-      //   overflow: auto;
+      overflow: auto;
+      height: 455px;
     }
     .empty {
       text-align: center;

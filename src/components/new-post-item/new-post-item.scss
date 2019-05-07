@@ -1,3 +1,5 @@
+@import "../../default.scss";
+
 .post-item-wrap {
   display: flex;
   flex-direction: column;
@@ -33,5 +35,9 @@
     text-decoration: none;
     font-weight: bold;
     color: #555555;
+    &:hover {
+      color: $color-hover;
+      cursor: pointer;
+    }
   }
 }
