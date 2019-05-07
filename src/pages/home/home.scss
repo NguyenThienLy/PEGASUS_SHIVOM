@@ -90,7 +90,7 @@ button:focus {
 
 @media only screen and(max-width: 600px) {
   .content-home-wrap {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 }
 @media only screen and(max-width: 1120px) {
