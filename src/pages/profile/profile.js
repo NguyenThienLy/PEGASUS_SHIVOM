@@ -1,7 +1,7 @@
 import * as React from 'react'
 import 'isomorphic-unfetch'
 import { connect } from 'react-redux'
-import { Header, Headline } from '../../components'
+import { Header, Headline, Footer } from '../../components'
 import Head from 'next/head'
 import Link from 'next/link'
 import './profile.scss'
@@ -54,6 +54,7 @@ class Profile extends React.Component {
                 <Headline title="BÀI VIẾT REVIEW" />
                 {this.state.showEditor?<Editor handleClose={this.handleClose} />:null}
                 </div>
+                <Footer/>
             </div>
         )
     }

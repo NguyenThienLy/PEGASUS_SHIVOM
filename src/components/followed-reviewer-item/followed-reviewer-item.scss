@@ -1,0 +1,54 @@
+@import '../../default.scss';
+
+#followed-person--wrap{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#followed-person--img img{
+    width: 25vh;
+    height: 25vh;
+    border-radius: 50%;
+} 
+
+#followed-person--img img:hover{
+    box-shadow: 1px 3px 3px rgb(95, 95, 95);
+} 
+
+#followed-person--name{
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+#followed-person--name a{
+    text-decoration: none;
+    color: $main-color;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+#followed-person--name a:hover{
+    color:$color-hover;
+}
+
+#followed-person--fan {
+    color: $font-note-color;
+}
+
+#followed-person--btn{
+    // border-radius: 10%;
+    color: #fff;
+    background-color: $main-color;
+    box-shadow: 0px 2px 2px rgb(109, 106, 106);
+    font-weight: bold;
+    margin-top: 3px;
+}
+#followed-person--btn:focus{
+    outline: none;
+}
+#followed-person--btn:hover{
+    background-color: $color-hover;
+    color: #fff;
+}

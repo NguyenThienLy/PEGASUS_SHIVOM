@@ -1,0 +1,50 @@
+@import '../../default.scss';
+
+#wrap-small-book{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    // width: 200px;
+    // height: 200px;
+    margin: 30px 30px 10px;
+}
+#wrap-small-book *{
+    flex: 1;
+}
+#img-small-book{
+    flex: 2 !important;
+}
+#img-small-book a img{
+    // height: 100%;
+    width: 25vh;
+    height: auto;
+    box-shadow: 0px 2px 3px rgb(146, 144, 144);
+}
+#img-small-book a img:hover{
+    box-shadow: 0px 5px 3px rgb(146, 144, 144);
+}
+#title-small-book{
+    margin-top: 10px;
+}
+#title-small-book a{
+    font-weight: bold;
+    font-size: 1.3em;
+    color: $font-color;
+    text-decoration: none;
+}
+#title-small-book a:hover{
+    color: $main-color;
+    text-decoration: none;
+}
+#author-small-book span{
+    color: $font-note-color;
+}
+#small-book-rating i{
+    color: rgb(233, 236, 24);
+    margin: auto 2px;
+}
+#small-book-rating i:hover{
+    color: rgb(243, 199, 4);
+    
+}

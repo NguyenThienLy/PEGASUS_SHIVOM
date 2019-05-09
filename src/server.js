@@ -36,7 +36,6 @@ class Server {
 
     async handleRequest() {
         this.server.get('/', (req, res) => {
-            console.log("reload home: ")
             this.app.render(req, res, '/index')
         })
         this.server.get('/bai-viet', (req, res) => {
@@ -46,7 +45,6 @@ class Server {
             this.app.render(req, res, '/post/post')
         })
         this.server.get('/sach', (req, res) => {
-            console.log("reload sach")
             this.app.render(req, res, '/books/books')
         })
         this.server.get('/sach/:bookId', (req, res) => {
@@ -59,7 +57,6 @@ class Server {
             this.app.render(req, res, '/contact/contact')
         })
         this.server.get('/profile', (req, res) => {
-            console.log("reload profile")
             this.app.render(req, res, '/profile/profile')
         })
         this.server.get('/login', (req, res) => {

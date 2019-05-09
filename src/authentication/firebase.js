@@ -45,6 +45,9 @@ class FirebaseAuthentication {
             }
         })
     }
+    get user(){
+        return this.currentUser
+    }
     async getIdToken() {
         try {
             const idToken = await firebase.auth().currentUser.getIdToken(/* forceRefresh */ true)

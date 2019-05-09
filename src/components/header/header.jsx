@@ -3,20 +3,43 @@ import './../../assets/bootstrap4/bootstrap.min.scss'
 import './header.scss'
 
 import Link from 'next/link'
+import Router from 'next/router'
 
 import Head from 'next/head'
+
+
+const firebaseAuthentication = require('../../authentication/firebase')
 
 export class Header extends React.Component {
     constructor(props) {
         super(props)
-        // this.openFindInput = this.openFindInput.bind(this);
+        this.state = {
+            user: null
+        }
+    }
+    async logout() {
+
+        const isSignOutSuccess = await firebaseAuthentication.signOut()
+        if(isSignOutSuccess){
+            Router.push('/login')
+        } else {
+            alert("Đăng xuất không thành công")
+        }
     }
 
-    // openFindInput(){
-    //     var input = document.getElementById('key-find');
-    //     input.style.display= "block";
-    //     input.focus();
-    // }
+    async componentWillMount() {
+        const isLogin = await firebaseAuthentication.authenticated
+        if (isLogin) {
+            const user = firebaseAuthentication.currentUser
+            this.setState({
+                user: {
+                    displayName: user.displayName,
+                    email: user.email,
+                    photoURL: user.photoURL
+                }
+            })
+        }
+    }
 
     render() {
         return (
@@ -61,7 +84,14 @@ export class Header extends React.Component {
                                     {/* <a href="#" className="nav-link"><i class="fas fa-search"></i></a> */}
                                 </li>
                                 <li className="nav-item">
-                                    <a href="#" className="nav-link">Đăng nhập</a>
+                                    {!this.state.user ?
+                                        <Link href="/login">
+                                            <a href="#" className="nav-link">Đăng nhập</a>
+                                        </Link>
+                                        : <div>
+                                            <a onClick={this.logout} href="#" className="nav-link">{this.state.user.displayName}</a>
+                                        </div>
+                                    }
                                 </li>
                             </ul>
                         </div>
