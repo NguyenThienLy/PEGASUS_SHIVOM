@@ -20,6 +20,7 @@ export * from './post-item/post-item'
 export * from './stand-out-posts-2-column/stand-out-posts-2-column'
 export * from './rankBookItem/rankBookItem'
 export * from './rankBooks/rankBooks'
+export * from './loading/loading'
 // export * from
 // export * from
 // export * from

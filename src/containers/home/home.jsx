@@ -30,6 +30,7 @@ export class Home extends React.Component {
                 
                 <div>
                     <div className="container">
+                    <h1>Trang chủ</h1>
                     </div>
                     
                 </div>
