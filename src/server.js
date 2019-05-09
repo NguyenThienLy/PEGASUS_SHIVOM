@@ -2,9 +2,6 @@ const express = require('express')
 const next = require('next')
 const path = require('path')
 
-// import { firebaseAuthentication } from './authentication/index'
-
-const firebaseAuthentication = require('./authentication/firebase')
 
 
 class Server {
@@ -34,16 +31,7 @@ class Server {
         })
     }
 
-    async authenticated(req, res, next) {
-        console.log("vo day")
-        const isLogin = await firebaseAuthentication.authenticated
-        req.isLogin = isLogin
-        if (isLogin === undefined) {
-            return this.authenticated(req, res, next)
-        } else {
-            next()
-        }
-    }
+    
 
 
     async handleRequest() {

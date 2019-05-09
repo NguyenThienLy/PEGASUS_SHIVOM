@@ -69,10 +69,16 @@ class FirebaseAuthentication {
 
     }
     async signInWithFacebook() {
+        try {
         const result = await firebase.auth().signInWithPopup(this.facebookProvider)
         this.googleToken = result.credential.accessToken
         this.user = result.user
         console.log(this.user)
+        return true
+        } catch(err) {
+            console.log("err: ", err)
+            return false
+        }
 
     }
     async createUserByEmailAndPassword(email, password) {

@@ -29,10 +29,10 @@ class Home extends React.Component {
 
     }
     async componentDidMount() {
-        const isLogin = await firebaseAuthentication.authenticated
-        if (isLogin === false) {
-            Router.push("/login")
-        }
+        // const isLogin = await firebaseAuthentication.authenticated
+        // if (isLogin === false) {
+        //     Router.push("/login")
+        // }
     }
     async logout() {
         await firebaseAuthentication.signOut()

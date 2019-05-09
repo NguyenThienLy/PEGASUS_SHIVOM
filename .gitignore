@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 /src/.next
+/src/out
 
 # testing
 /coverage
