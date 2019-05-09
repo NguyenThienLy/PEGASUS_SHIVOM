@@ -39,7 +39,6 @@ class Login extends React.Component {
     }
     async login() {
         const isLogin = await firebaseAuthentication.signInWithGoogle()
-        console.log("is login: ", isLogin)
         if (isLogin) {
             Router.push('/')
         }
@@ -63,7 +62,6 @@ class Login extends React.Component {
             email: this.refs.email.value,
             password: this.refs.password.value
         }
-        console.log("body: ", body)
     }
 
     async loginWithFacebook() {
@@ -84,7 +82,6 @@ class Login extends React.Component {
     }
 
     render() {
-        console.log("login props: ", this.props)
         return (
             <div>
                 <Head>

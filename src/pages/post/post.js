@@ -13,9 +13,9 @@ import './post.scss'
         super(props)
     }
     static async  getInitialProps({ req, query }) {
-        console.log("req: ", req.params.postId)
+       
         return {
-            postId: req.params.postId
+           
         }
     }
     render() {

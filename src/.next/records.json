@@ -1,0 +1,951 @@
+{
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/app.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/_error/_error.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/post/post.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/contact/contact.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/profile/profile.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/login/login.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/home/home.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/books/books.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/book/components/info/info.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/profile/components/info/info.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/searchResult/searchResult.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!assets/bootstrap4/bootstrap.min.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/profile/components/editor/editor.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/book/components/reviews/reviews.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/books/components/ranks/ranks.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/books/components/topBooks/topBook.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/books/components/newestBooks/newestBook.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/posts/posts.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/book/book.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/slide/slide.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/post-item/post-item.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/stand-out-posts/stand-out-posts.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/stand-out-posts-2-column/stand-out-posts-2-column.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/rankBooks/rankBooks.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/new-post-item/new-post-item.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/savedBookItem/savedBookItem.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/newpost/newpost.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/post-general/post-general.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/bookItem/bookItem.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/editor/editor.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/rankBookItem/rankBookItem.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/footer/footer.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/loading/loading.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/header/header.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/headline/headline.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/item-saved-book/item-saved-book.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/headline-custom/headline-custom.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/followed-reviewer-item/followed-reviewer-item.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/item-followed-person/item-followed-person.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!modals/error/error.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!modals/warning/warning.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/slide/slideHome.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!modals/base/baseModal.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!modals/success/success.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "modules": {
+    "byIdentifier": {
+      "multi ../node_modules/next/dist/client/next": 0,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/app.scss 0": 1,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/_error/_error.scss 0": 2,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!assets/bootstrap4/bootstrap.min.scss 0": 3,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/footer/footer.scss 0": 4,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/header/header.scss 0": 5,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/slide/slide.scss 0": 6,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/post-general/post-general.scss 0": 7,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/item-saved-book/item-saved-book.scss 0": 8,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/item-followed-person/item-followed-person.scss 0": 9,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/headline-custom/headline-custom.scss 0": 10,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/headline/headline.scss 0": 11,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/editor/editor.scss 0": 12,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!modals/base/baseModal.scss 0": 13,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!modals/success/success.scss 0": 14,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!modals/error/error.scss 0": 15,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!modals/warning/warning.scss 0": 16,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/bookItem/bookItem.scss 0": 17,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/followed-reviewer-item/followed-reviewer-item.scss 0": 18,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/savedBookItem/savedBookItem.scss 0": 19,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/slide/slideHome.scss 0": 20,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/newpost/newpost.scss 0": 21,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/new-post-item/new-post-item.scss 0": 22,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/post-item/post-item.scss 0": 23,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/stand-out-posts/stand-out-posts.scss 0": 24,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/stand-out-posts-2-column/stand-out-posts-2-column.scss 0": 25,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/rankBookItem/rankBookItem.scss 0": 26,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/rankBooks/rankBooks.scss 0": 27,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!components/loading/loading.scss 0": 28,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/book/book.scss 0": 29,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/book/components/info/info.scss 0": 30,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/book/components/reviews/reviews.scss 0": 31,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/books/books.scss 0": 32,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/books/components/ranks/ranks.scss 0": 33,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/books/components/topBooks/topBook.scss 0": 34,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/books/components/newestBooks/newestBook.scss 0": 35,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/contact/contact.scss 0": 36,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/home/home.scss 0": 37,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/login/login.scss 0": 38,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/login/login.scss 1": 39,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/post/post.scss 0": 40,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/posts/posts.scss 0": 41,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/profile/components/editor/editor.scss 0": 42,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/profile/components/info/info.scss 0": 43,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/profile/profile.scss 0": 44,
+      "css ../node_modules/css-loader/index.js??ref--5-1!../node_modules/sass-loader/lib/loader.js??ref--5-2!pages/searchResult/searchResult.scss 0": 45
+    },
+    "usedIds": {
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 3,
+      "4": 4,
+      "5": 5,
+      "6": 6,
+      "7": 7,
+      "8": 8,
+      "9": 9,
+      "10": 10,
+      "11": 11,
+      "12": 12,
+      "13": 13,
+      "14": 14,
+      "15": 15,
+      "16": 16,
+      "17": 17,
+      "18": 18,
+      "19": 19,
+      "20": 20,
+      "21": 21,
+      "22": 22,
+      "23": 23,
+      "24": 24,
+      "25": 25,
+      "26": 26,
+      "27": 27,
+      "28": 28,
+      "29": 29,
+      "30": 30,
+      "31": 31,
+      "32": 32,
+      "33": 33,
+      "34": 34,
+      "35": 35,
+      "36": 36,
+      "37": 37,
+      "38": 38,
+      "39": 39,
+      "40": 40,
+      "41": 41,
+      "42": 42,
+      "43": 43,
+      "44": 44,
+      "45": 45
+    }
+  },
+  "chunks": {
+    "byName": {
+      "commons": 0,
+      "static/runtime/webpack.js": 1,
+      "styles": 2,
+      "static/runtime/main.js": 3,
+      "static/wjpwNQZRwDEbcVBd67vXw/pages/_app.js": 4,
+      "static/wjpwNQZRwDEbcVBd67vXw/pages/_error.js": 5,
+      "static/wjpwNQZRwDEbcVBd67vXw/pages/_error/_error.js": 6,
+      "static/wjpwNQZRwDEbcVBd67vXw/pages/book/book.js": 7,
+      "static/wjpwNQZRwDEbcVBd67vXw/pages/book/components/info/info.js": 8,
+      "static/wjpwNQZRwDEbcVBd67vXw/pages/book/components/reviews/reviews.js": 9,
+      "static/wjpwNQZRwDEbcVBd67vXw/pages/books/books.js": 10,
+      "static/wjpwNQZRwDEbcVBd67vXw/pages/books/books.routes.js": 11,
+      "static/wjpwNQZRwDEbcVBd67vXw/pages/books/components/newestBooks/newestBook.js": 12,
+      "static/wjpwNQZRwDEbcVBd67vXw/pages/books/components/ranks/ranks.js": 13,
+      "static/wjpwNQZRwDEbcVBd67vXw/pages/books/components/topBooks/topBook.js": 14,
+      "static/wjpwNQZRwDEbcVBd67vXw/pages/contact/contact.js": 15,
+      "static/wjpwNQZRwDEbcVBd67vXw/pages/home/home.js": 16,
+      "static/wjpwNQZRwDEbcVBd67vXw/pages/index.js": 17,
+      "static/wjpwNQZRwDEbcVBd67vXw/pages/login/login.js": 18,
+      "static/wjpwNQZRwDEbcVBd67vXw/pages/post/components/test.js": 19,
+      "static/wjpwNQZRwDEbcVBd67vXw/pages/post/post.js": 20,
+      "static/wjpwNQZRwDEbcVBd67vXw/pages/posts/posts.js": 21,
+      "static/wjpwNQZRwDEbcVBd67vXw/pages/profile/components/editor/editor.js": 22,
+      "static/wjpwNQZRwDEbcVBd67vXw/pages/profile/components/info/info.js": 23,
+      "static/wjpwNQZRwDEbcVBd67vXw/pages/profile/profile.js": 24,
+      "static/wjpwNQZRwDEbcVBd67vXw/pages/searchResult/searchResult.js": 25,
+      "static/C45vgN~_cGcvTzwu_UNI5/pages/_app.js": 26,
+      "static/C45vgN~_cGcvTzwu_UNI5/pages/_error.js": 27,
+      "static/C45vgN~_cGcvTzwu_UNI5/pages/_error/_error.js": 28,
+      "static/C45vgN~_cGcvTzwu_UNI5/pages/book/book.js": 29,
+      "static/C45vgN~_cGcvTzwu_UNI5/pages/book/components/info/info.js": 30,
+      "static/C45vgN~_cGcvTzwu_UNI5/pages/book/components/reviews/reviews.js": 31,
+      "static/C45vgN~_cGcvTzwu_UNI5/pages/books/books.js": 32,
+      "static/C45vgN~_cGcvTzwu_UNI5/pages/books/books.routes.js": 33,
+      "static/C45vgN~_cGcvTzwu_UNI5/pages/books/components/newestBooks/newestBook.js": 34,
+      "static/C45vgN~_cGcvTzwu_UNI5/pages/books/components/ranks/ranks.js": 35,
+      "static/C45vgN~_cGcvTzwu_UNI5/pages/books/components/topBooks/topBook.js": 36,
+      "static/C45vgN~_cGcvTzwu_UNI5/pages/contact/contact.js": 37,
+      "static/C45vgN~_cGcvTzwu_UNI5/pages/home/home.js": 38,
+      "static/C45vgN~_cGcvTzwu_UNI5/pages/index.js": 39,
+      "static/C45vgN~_cGcvTzwu_UNI5/pages/login/login.js": 40,
+      "static/C45vgN~_cGcvTzwu_UNI5/pages/post/components/test.js": 41,
+      "static/C45vgN~_cGcvTzwu_UNI5/pages/post/post.js": 42,
+      "static/C45vgN~_cGcvTzwu_UNI5/pages/posts/posts.js": 43,
+      "static/C45vgN~_cGcvTzwu_UNI5/pages/profile/components/editor/editor.js": 44,
+      "static/C45vgN~_cGcvTzwu_UNI5/pages/profile/components/info/info.js": 45,
+      "static/C45vgN~_cGcvTzwu_UNI5/pages/profile/profile.js": 46,
+      "static/C45vgN~_cGcvTzwu_UNI5/pages/searchResult/searchResult.js": 47,
+      "static/4D5PmwXrCtpnRQ4KtGETU/pages/_app.js": 4,
+      "static/4D5PmwXrCtpnRQ4KtGETU/pages/_error.js": 5,
+      "static/4D5PmwXrCtpnRQ4KtGETU/pages/_error/_error.js": 6,
+      "static/4D5PmwXrCtpnRQ4KtGETU/pages/book/book.js": 7,
+      "static/4D5PmwXrCtpnRQ4KtGETU/pages/book/components/info/info.js": 8,
+      "static/4D5PmwXrCtpnRQ4KtGETU/pages/book/components/reviews/reviews.js": 9,
+      "static/4D5PmwXrCtpnRQ4KtGETU/pages/books/books.js": 10,
+      "static/4D5PmwXrCtpnRQ4KtGETU/pages/books/books.routes.js": 11,
+      "static/4D5PmwXrCtpnRQ4KtGETU/pages/books/components/newestBooks/newestBook.js": 12,
+      "static/4D5PmwXrCtpnRQ4KtGETU/pages/books/components/ranks/ranks.js": 13,
+      "static/4D5PmwXrCtpnRQ4KtGETU/pages/books/components/topBooks/topBook.js": 14,
+      "static/4D5PmwXrCtpnRQ4KtGETU/pages/contact/contact.js": 15,
+      "static/4D5PmwXrCtpnRQ4KtGETU/pages/home/home.js": 16,
+      "static/4D5PmwXrCtpnRQ4KtGETU/pages/index.js": 17,
+      "static/4D5PmwXrCtpnRQ4KtGETU/pages/login/login.js": 18,
+      "static/4D5PmwXrCtpnRQ4KtGETU/pages/post/components/test.js": 19,
+      "static/4D5PmwXrCtpnRQ4KtGETU/pages/post/post.js": 20,
+      "static/4D5PmwXrCtpnRQ4KtGETU/pages/posts/posts.js": 21,
+      "static/4D5PmwXrCtpnRQ4KtGETU/pages/profile/components/editor/editor.js": 22,
+      "static/4D5PmwXrCtpnRQ4KtGETU/pages/profile/components/info/info.js": 23,
+      "static/4D5PmwXrCtpnRQ4KtGETU/pages/profile/profile.js": 24,
+      "static/4D5PmwXrCtpnRQ4KtGETU/pages/searchResult/searchResult.js": 25
+    },
+    "bySource": {},
+    "usedIds": [
+      0,
+      1,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      2,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ]
+  }
+}

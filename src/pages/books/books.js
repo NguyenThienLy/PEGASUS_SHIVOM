@@ -35,7 +35,6 @@ class Books extends React.Component {
         this.setState({ nestedPath: path })
     }
     render() {
-        console.log("this.props history: ", this.props)
         return (
             <div>
                 <Head>
