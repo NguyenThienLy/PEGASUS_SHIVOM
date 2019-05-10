@@ -17,7 +17,7 @@ import "./home.scss";
 
 import "../../assets/bootstrap4/bootstrap.min.scss";
 
-import { crudApi } from "../../services";
+import { api } from "../../services";
 import SlideHome from "../../components/slide/slideHome";
 
 class Home extends React.Component {
@@ -224,6 +224,7 @@ class Home extends React.Component {
           author: "Nguyễn An Vy"
         }
       ],
+
       rankBooks: [
         {
           id: 1,
@@ -277,7 +278,18 @@ class Home extends React.Component {
     };
   }
 
+  async componentDidMount() {
+    const result = await api.post.getList({
+      query: { fields: ["$all", { postReactions: ["userId"] }] }
+    });
+    console.log("posts", result);
+  }
+
   static async getInitialProps({ req, query }) {
+    const result = await api.post.getList({
+      query: { fields: ["$all", { postReactions: ["$all"] }] }
+    });
+    console.log("result", result);
     return {};
   }
 
