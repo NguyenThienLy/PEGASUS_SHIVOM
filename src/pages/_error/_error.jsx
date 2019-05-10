@@ -1,5 +1,6 @@
 import * as React from 'react'
 import './_error.scss'
+import Link from 'next/link'
 
 export default class NotFound extends React.Component {
     constructor(pros) {
@@ -16,14 +17,18 @@ export default class NotFound extends React.Component {
                     <div>
                         <span>Xin lỗi, trang bạn yêu cầu hiện không tìm thấy</span>
                         <div className="btns">
-                            <button type="button">Trang chủ</button>
+                            <Link href="/">
+                                <button type="button">Trang chủ</button>
+                            </Link>
+                            <Link href="/lien-he" >
                             <button type="button">Liên hệ</button>
-                        </div>
+                            </Link>
                     </div>
-                    <span id="pegasus">Designed by Pegasus</span>
                 </div>
-                
+                <span id="pegasus">Designed by Pegasus</span>
             </div>
+                
+            </div >
         )
     }
 }
