@@ -1,125 +1,152 @@
-import 'isomorphic-unfetch' 
-import { environment } from '../environments'
-import * as _ from 'lodash'
+import "isomorphic-unfetch";
+import { environment } from "../environments";
+import * as _ from "lodash";
 
-import { URL, URLSearchParams } from 'url'
+// import { URL, URLSearchParams } from "url";
 
 export class CrudApi {
-    constructor(path) {
-        this.path = path
+  constructor(path) {
+    this.path = path;
+  }
+  _paserQuery(query = {}) {
+    let parsedQuery = _.merge({}, query);
+    if (query.filter) {
+      parsedQuery.filter = JSON.stringify(query.filter);
     }
-    _paserQuery(query = {}) {
-        let parsedQuery = _.merge({}, query)
-        if (query.filter) {
-            parsedQuery.filter = JSON.stringify(query.filter);
-        }
-        if (query.order) {
-            parsedQuery.order = JSON.stringify(query.order);
-        }
-        if (query.scopes) {
-            parsedQuery.scopes = JSON.stringify(query.scopes);
-        }
-        if (query.fields) {
-            parsedQuery.fields = JSON.stringify(query.fields);
-        }
-        if (query.items) {
-            parsedQuery.items = JSON.stringify(query.items);
-        }
-        if (query.populates) {
-            parsedQuery.populates = JSON.stringify(query.populates)
-        }
-        if(query.limit) {
-            parsedQuery.limit = JSON.stringify(query.limit)
-        }
-        if(query.offset){
-            parsedQuery.offset = JSON.stringify(query.offset)
-        }
-        return parsedQuery;
+    if (query.order) {
+      parsedQuery.order = JSON.stringify(query.order);
     }
-    baseUrl(subpath = "") {
-        return `${environment.host}/api/${environment.version}/${this.path}/${subpath}`
-        //return "https://pntravel.herokuapp.com/api/v1/post"
+    if (query.scopes) {
+      parsedQuery.scopes = JSON.stringify(query.scopes);
     }
-    async exec(url, options) {
-        try {
-            return await fetch(url, options).then(result => { return result.json() })
-        } catch (err) {
-            console.log("Request err: ", err)
-        }
+    if (query.fields) {
+      parsedQuery.fields = JSON.stringify(query.fields);
     }
-    async getList(option = {}) {
-        const url = new URL(this.baseUrl())
-        url.search = new URLSearchParams(this._paserQuery(option.query))
-        const options = {
-            method: "GET",
-            headers: _.merge({
-                'User-Agent': 'Request-Promise',
-                'Content-Type':"Application/json"
-            }, option.headers)
-        }
-        const res = await this.exec(url.href, options)
-        return res.results.objects.rows
+    if (query.items) {
+      parsedQuery.items = JSON.stringify(query.items);
+    }
+    if (query.populates) {
+      parsedQuery.populates = JSON.stringify(query.populates);
+    }
+    if (query.limit) {
+      parsedQuery.limit = JSON.stringify(query.limit);
+    }
+    if (query.offset) {
+      parsedQuery.offset = JSON.stringify(query.offset);
+    }
+    return parsedQuery;
+  }
+  baseUrl(subpath = "") {
+    return `${environment.host}/api/${environment.version}/${
+      this.path
+    }/${subpath}`;
+    //return "https://pntravel.herokuapp.com/api/v1/post"
+  }
+  _serialize(obj) {
+    const keys = Object.keys(obj);
+    let query = "?";
+    for (const key of keys) {
+      query += `${key}=${JSON.stringify(obj[key])}&`;
+    }
+    return query;
+  }
+  async exec(url, options) {
+    try {
+      return await fetch(url, options).then(result => {
+        return result.json();
+      });
+    } catch (err) {
+      console.log("Request err: ", err);
+    }
+  }
+  async getList(option = {}) {
+    let url = this.baseUrl();
+    const query = this._serialize(option.query);
+    url += `${query}`;
+    const options = {
+      method: "GET",
+      headers: _.merge(
+        {
+          "User-Agent": "Request-Promise",
+          "Content-Type": "Application/json"
+        },
+        option.headers
+      )
+    };
+    console.log("url.href: ", url);
+    const res = await this.exec(url, options);
+    return res.results.objects.rows;
+  }
+  async getItem(id, option = {}) {
+    let url = this.baseUrl();
+    const query = this._serialize(option.query);
+    url += `${query}`;
+    const options = {
+      method: "GET",
+      headers: _.merge(
+        {
+          "User-Agent": "Request-Promise",
+          "Content-Type": "Application/json"
+        },
+        option.headers
+      )
+    };
+    const res = await this.exec(url.href, options);
+    return res.result.object;
+  }
+  async delete(id, option = {}) {
+    let url = this.baseUrl();
+    const query = this._serialize(option.query);
+    url += `${query}`;
+    const options = {
+      method: "DELETE",
+      headers: _.merge(
+        {
+          "User-Agent": "Request-Promise",
+          "Content-Type": "Application/json"
+        },
+        option.headers
+      )
+    };
+    const res = await this.exec(url.href, options);
+    return res.result.object;
+  }
 
-    }
-    async getItem(id, option = {}) {
-        const url = new URL(this.baseUrl(id))
-        url.search = new URLSearchParams(this._paserQuery(option.query))
-        const options = {
-            method: "GET",
-            headers: _.merge({
-                'User-Agent': 'Request-Promise',
-                'Content-Type':"Application/json"
-            }, option.headers)
-        }
-        const res = await this.exec(url.href, options)
-        return res.result.object
-    }
-    async delete(id, option = {}) {
-        const url = new URL(this.baseUrl(id))
-        url.search = new URLSearchParams(this._paserQuery(option.query))
-        const options = {
-            method: "DELETE",
-            headers: _.merge({
-                'User-Agent': 'Request-Promise',
-                'Content-Type':"Application/json"
-            }, option.headers)
-        }
-        const res = await this.exec(url.href, options)
-        return res.result.object
-    }
-   
-    async update(id, body, option = {}) {
-        const url = new URL(this.baseUrl(id))
-        url.search = new URLSearchParams(this._paserQuery(option.query))
-        const options = {
-            method: "PUT",
-            headers: _.merge({
-                'User-Agent': 'Request-Promise',
-                'Content-Type':"Application/json"
-            }, option.headers),
-            body: JSON.stringify(body)
-        }
-        const res = await this.exec(url.href, options)
-        return res.result.object
-    }
-    async create(body, option = {}) {
-        const url = new URL(this.baseUrl())
-        url.search = new URLSearchParams(this._paserQuery(option.query))
-        const options = {
-            method: "POST",
-            headers: _.merge({
-                'User-Agent': 'Request-Promise',
-                'Content-Type':"Application/json"
-            }, option.headers),
-            body: JSON.stringify(body)
-        }
-        const res = await this.exec(url.href, options)
-        return res.result.object
-    }
-    async deleteAll() {
-
-    }
-    
-
-
+  async update(id, body, option = {}) {
+    let url = this.baseUrl();
+    const query = this._serialize(option.query);
+    url += `${query}`;
+    const options = {
+      method: "PUT",
+      headers: _.merge(
+        {
+          "User-Agent": "Request-Promise",
+          "Content-Type": "Application/json"
+        },
+        option.headers
+      ),
+      body: JSON.stringify(body)
+    };
+    const res = await this.exec(url.href, options);
+    return res.result.object;
+  }
+  async create(body, option = {}) {
+    let url = this.baseUrl();
+    const query = this._serialize(option.query);
+    url += `${query}`;
+    const options = {
+      method: "POST",
+      headers: _.merge(
+        {
+          "User-Agent": "Request-Promise",
+          "Content-Type": "Application/json"
+        },
+        option.headers
+      ),
+      body: JSON.stringify(body)
+    };
+    const res = await this.exec(url.href, options);
+    return res.result.object;
+  }
+  async deleteAll() {}
 }
