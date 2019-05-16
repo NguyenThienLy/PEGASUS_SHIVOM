@@ -1,9 +1,7 @@
 
 
 const initUserState = {
-    _id: "1",
-    name: "Vũ Hoài Nam",
-    isLogin: false
+    
 }
 
 const userAction = {
@@ -14,10 +12,11 @@ const userAction = {
 const user = (state = initUserState,  action) => {
     switch (action.type) {
         case userAction.LOGIN:
-            state.isLogin = true
+            state = action.payload
             break
         case userAction.LOGOUT:
-            state.isLogin = false
+            state = {}
+            break
     }
     return state
 }

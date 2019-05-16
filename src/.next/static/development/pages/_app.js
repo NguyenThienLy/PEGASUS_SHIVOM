@@ -30010,14 +30010,53 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "../node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _book__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./book */ "./reducers/book.js");
+/* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./user */ "./reducers/user.js");
+
 
 
 
 
 var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  books: _book__WEBPACK_IMPORTED_MODULE_3__["default"]
+  books: _book__WEBPACK_IMPORTED_MODULE_3__["default"],
+  user: _user__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);
+
+/***/ }),
+
+/***/ "./reducers/user.js":
+/*!**************************!*\
+  !*** ./reducers/user.js ***!
+  \**************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var initUserState = {};
+var userAction = {
+  LOGIN: "LOGIN",
+  LOGOUT: "LOGOUT"
+};
+
+var user = function user() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initUserState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case userAction.LOGIN:
+      state = action.payload;
+      break;
+
+    case userAction.LOGOUT:
+      state = {};
+      break;
+  }
+
+  return state;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (user);
 
 /***/ }),
 

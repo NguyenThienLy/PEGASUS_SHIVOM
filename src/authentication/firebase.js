@@ -27,8 +27,8 @@ class FirebaseAuthentication {
         })
 
     }
-   
-    
+
+
     get authenticated() {
         return new Promise((resolve, reject) => {
             if (this.isAuthenticated == undefined) {
@@ -40,7 +40,7 @@ class FirebaseAuthentication {
             }
         })
     }
-    get user(){
+    get user() {
         return this.currentUser
     }
     async getIdToken() {
@@ -65,11 +65,11 @@ class FirebaseAuthentication {
     }
     async signInWithFacebook() {
         try {
-        const result = await firebase.auth().signInWithPopup(this.facebookProvider)
-        this.googleToken = result.credential.accessToken
-        this.user = result.user
-        return true
-        } catch(err) {
+            const result = await firebase.auth().signInWithPopup(this.facebookProvider)
+            this.googleToken = result.credential.accessToken
+            this.user = result.user
+            return true
+        } catch (err) {
             console.log("err: ", err)
             return false
         }
@@ -77,7 +77,10 @@ class FirebaseAuthentication {
     }
     async createUserByEmailAndPassword(email, password) {
         try {
+
             const result = await firebase.auth().createUserWithEmailAndPassword(email, password)
+            console.log("result: ", result)
+            this.user = result.user
             return true
         } catch (error) {
             console.log(error)
@@ -88,7 +91,6 @@ class FirebaseAuthentication {
     async signInWithEmailAndPassword(email, password) {
         try {
             const result = await firebase.auth().signInWithEmailAndPassword(email, password)
-            this.isAuthenticated = true
             this.user = result.user
             //await this.getIdToken()
             return true

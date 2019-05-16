@@ -21,7 +21,7 @@ import './posts.scss'
                 <Head>
                     <title>Danh sách bài viết</title>
                 </Head>
-                <Header/>
+                <Header {...this.props}/>
             </div>
         )
     }

@@ -25,7 +25,7 @@ import './post.scss'
                 <Head>
                     <title>Bài review</title>
                 </Head>
-                <Header/>
+                <Header {...this.props}/>
             </div>
         )
     }

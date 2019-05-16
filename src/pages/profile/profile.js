@@ -38,7 +38,7 @@ class Profile extends React.Component {
                         crossorigin="anonymous"></link>
                   
                 </Head>
-                <Header />
+                <Header {...this.props}/>
                 <div className="profile-main">
                 <div style={
                     {
