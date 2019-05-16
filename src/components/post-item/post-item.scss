@@ -1,31 +1,36 @@
 @import "../../default.scss";
 
 #post-item-wrap {
-  display: flex;
-  .img {
-    flex: 1;
-    text-align: center;
-    margin: 10px;
-    img {
-      width: 100%;
-    }
-  }
-  .content {
-    flex: 2;
-    .title {
-      a {
-        text-decoration: none;
-        font-weight: bold;
-        color: #555555;
-      }
-      a:hover {
-        color: $color-hover;
-        cursor: pointer;
-      }
-    }
-    .time {
-      color: rgb(177, 177, 177);
-      font-size: 0.8em;
-    }
-  }
+	display: flex;
+	.img {
+		flex: 1;
+		text-align: center;
+		margin: 10px;
+		overflow: hidden;
+		img {
+			width: 100%;
+			transition: all 2s ease-out;
+			&:hover {
+				transform: scale(1.2);
+			}
+		}
+	}
+	.content {
+		flex: 2;
+		.title {
+			a {
+				text-decoration: none;
+				font-weight: bold;
+				color: #555555;
+			}
+			a:hover {
+				color: $color-hover;
+				cursor: pointer;
+			}
+		}
+		.time {
+			color: rgb(177, 177, 177);
+			font-size: 0.8em;
+		}
+	}
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './newpost.scss'
-import { Headline } from "../../components";
-import { NewPostItem } from "../../components"
+import { Headline } from "../../../../components";
+import { NewPostItem } from "../new-post-item/new-post-item"
 import './newpost.scss'
 
 

@@ -1,0 +1,21 @@
+@import "../../../../default.scss";
+
+#new-post-wrap {
+	.post {
+		display: flex;
+		height: 455px;
+	}
+	.left,
+	.right {
+		margin-top: 10px;
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	#new-post-wrap {
+		.post {
+		}
+	}
+}
