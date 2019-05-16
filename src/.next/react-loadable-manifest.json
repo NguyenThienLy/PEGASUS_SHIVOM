@@ -7,7 +7,7 @@
       "publicPath": "static/chunks/0.js"
     }
   ],
-  "./../../assets/bootstrap4/bootstrap.min.scss": [
+  "../../assets/bootstrap4/bootstrap.min.scss": [
     {
       "id": "./assets/bootstrap4/bootstrap.min.scss",
       "name": "./assets/bootstrap4/bootstrap.min.scss",
@@ -27,6 +27,12 @@
     {
       "id": "./components/editor/editor.scss",
       "name": "./components/editor/editor.scss",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": "./pages/profile/components/editor/editor.scss",
+      "name": "./pages/profile/components/editor/editor.scss",
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     }
@@ -215,13 +221,15 @@
       "publicPath": "static/chunks/styles.js"
     }
   ],
-  "undefined": [
+  "./_error.scss": [
     {
-      "id": 8,
-      "name": null,
+      "id": "./pages/_error/_error.scss",
+      "name": "./pages/_error/_error.scss",
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
-    },
+    }
+  ],
+  "undefined": [
     {
       "id": 15,
       "name": null,
@@ -379,7 +387,13 @@
       "publicPath": "static/chunks/styles.js"
     },
     {
-      "id": 37,
+      "id": 8,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 33,
       "name": null,
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
@@ -391,19 +405,19 @@
       "publicPath": "static/chunks/styles.js"
     },
     {
-      "id": 35,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
       "id": 34,
       "name": null,
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     },
     {
-      "id": 38,
+      "id": 35,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 31,
       "name": null,
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
@@ -417,42 +431,26 @@
       "publicPath": "static/chunks/styles.js"
     }
   ],
-  "./books.scss": [
-    {
-      "id": "./pages/books/books.scss",
-      "name": "./pages/books/books.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    }
-  ],
-  "./newestBook.scss": [
-    {
-      "id": "./pages/books/components/newestBooks/newestBook.scss",
-      "name": "./pages/books/components/newestBooks/newestBook.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    }
-  ],
-  "./ranks.scss": [
-    {
-      "id": "./pages/books/components/ranks/ranks.scss",
-      "name": "./pages/books/components/ranks/ranks.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    }
-  ],
-  "./topBook.scss": [
-    {
-      "id": "./pages/books/components/topBooks/topBook.scss",
-      "name": "./pages/books/components/topBooks/topBook.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    }
-  ],
   "./home.scss": [
     {
       "id": "./pages/home/home.scss",
       "name": "./pages/home/home.scss",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
+  "./info.scss": [
+    {
+      "id": "./pages/profile/components/info/info.scss",
+      "name": "./pages/profile/components/info/info.scss",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
+  "./profile.scss": [
+    {
+      "id": "./pages/profile/profile.scss",
+      "name": "./pages/profile/profile.scss",
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     }

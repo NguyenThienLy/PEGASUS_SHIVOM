@@ -37,7 +37,7 @@ export default class Contact extends React.Component {
                         crossorigin="anonymous"></link>
 
                 </Head>
-                <Header />
+                <Header {...this.props}/>
                 <div className="contact">
                     {/* <div><h1 className="text-center contact-title">Liên hệ với chúng tôi</h1></div> */}
                     <div className="contact-container">
