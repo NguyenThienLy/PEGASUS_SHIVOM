@@ -314,7 +314,8 @@ class Home extends React.Component {
             src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossOrigin="anonymous"
-          /> */}
+		  /> */}
+					<link href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat" rel="stylesheet" />
 					<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
 					<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 					<link href="../app.scss" rel="stylesheet" />
