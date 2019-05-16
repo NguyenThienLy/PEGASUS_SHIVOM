@@ -18,21 +18,17 @@ class FirebaseAuthentication {
         this.facebookProvider = new firebase.auth.FacebookAuthProvider()
         this.currentUser = firebase.auth().currentUser
         firebase.auth().onAuthStateChanged(user => {
-            console.log("user: ", user)
             if (user) {
                 this.currentUser = user
                 this.isAuthenticated = true
-                console.log("user: ", user)
-                console.log("authe: ", this.isAuthenticated)
             } else {
-                console.log("false: ")
                 this.isAuthenticated = false
             }
         })
 
     }
-   
-    
+
+
     get authenticated() {
         return new Promise((resolve, reject) => {
             if (this.isAuthenticated == undefined) {
@@ -40,21 +36,18 @@ class FirebaseAuthentication {
                     this.authenticated.then(resolve)
                 }, 200)
             } else {
-                console.log("is auth: ", this.isAuthenticated)
                 resolve(this.isAuthenticated);
             }
         })
     }
-    get user(){
+    get user() {
         return this.currentUser
     }
     async getIdToken() {
         try {
             const idToken = await firebase.auth().currentUser.getIdToken(/* forceRefresh */ true)
-            console.log("Firebase id token:", idToken)
             return idToken
         } catch (error) {
-            console.log("Get token error: ", error)
             return undefined
         }
     }
@@ -63,7 +56,6 @@ class FirebaseAuthentication {
             const result = await firebase.auth().signInWithPopup(this.googleProvider)
             this.googleToken = result.credential.accessToken
             this.user = result.user
-            console.log(this.user)
             await this.getIdToken()
             return true
         } catch (error) {
@@ -73,12 +65,11 @@ class FirebaseAuthentication {
     }
     async signInWithFacebook() {
         try {
-        const result = await firebase.auth().signInWithPopup(this.facebookProvider)
-        this.googleToken = result.credential.accessToken
-        this.user = result.user
-        console.log(this.user)
-        return true
-        } catch(err) {
+            const result = await firebase.auth().signInWithPopup(this.facebookProvider)
+            this.googleToken = result.credential.accessToken
+            this.user = result.user
+            return true
+        } catch (err) {
             console.log("err: ", err)
             return false
         }
@@ -86,7 +77,10 @@ class FirebaseAuthentication {
     }
     async createUserByEmailAndPassword(email, password) {
         try {
+
             const result = await firebase.auth().createUserWithEmailAndPassword(email, password)
+            console.log("result: ", result)
+            this.user = result.user
             return true
         } catch (error) {
             console.log(error)
@@ -97,7 +91,6 @@ class FirebaseAuthentication {
     async signInWithEmailAndPassword(email, password) {
         try {
             const result = await firebase.auth().signInWithEmailAndPassword(email, password)
-            this.isAuthenticated = true
             this.user = result.user
             //await this.getIdToken()
             return true

@@ -21,6 +21,7 @@ class Login extends React.Component {
         }
         this.login = this.login.bind(this)
         this.onSignUpClick = this.onSignUpClick.bind(this)
+        this.onSignInClick = this.onSignInClick.bind(this)
         // this.showLoading = this.showLoading.bind(this)
     }
     static async  getInitialProps({ req, query }) {
@@ -38,12 +39,7 @@ class Login extends React.Component {
         }
     }
     async login() {
-        const isLogin = await firebaseAuthentication.signInWithGoogle()
-        console.log("is login: ", isLogin)
-        if (isLogin) {
-            Router.push('/')
-        }
-        // this.props.dispatch({ type: "LOGIN"})
+        
     }
     onOpenSignInClick() {
         const container = document.getElementById('container');
@@ -53,10 +49,25 @@ class Login extends React.Component {
         const container = document.getElementById('container');
         container.classList.add("right-panel-active");
     }
-    onSignInClick() {
-
+    async onSignInClick(event) {
+        event.preventDefault()
+        const body = {
+            name: this.refs.name.value,
+            email: this.refs.emailLogin.value,
+            password: this.refs.passwordLogin.value
+        }
+        try {
+            const isLogin = await firebaseAuthentication.signInWithEmailAndPassword(body.email, body.password)
+            if(isLogin){
+                Router.push('/')
+               } else {
+                   alert("Đăng nhập không thành công")
+               }
+        } catch (err) {
+            alert("Đăng nhập không thành công")
+        }
     }
-    onSignUpClick(event) {
+    async onSignUpClick(event) {
         event.preventDefault()
         const body = {
             name: this.refs.name.value,
@@ -64,12 +75,26 @@ class Login extends React.Component {
             password: this.refs.password.value
         }
         console.log("body: ", body)
+        try {
+            const isLogin = await firebaseAuthentication.createUserByEmailAndPassword(body.email, body.password)
+            if(isLogin){
+                Router.push('/')
+               } else {
+                   alert("Đăng nhập không thành công")
+               }
+        } catch (err) {
+            alert("Đăng nhập không thành công")
+        }
     }
 
     async loginWithFacebook() {
         try {
             const isLogin = await firebaseAuthentication.signInWithFacebook()
-            Router.push('/')
+            if(isLogin){
+             Router.push('/')
+            } else {
+                alert("Đăng nhập không thành công")
+            }
         } catch (err) {
             alert("Đăng nhập không thành công")
         }
@@ -77,14 +102,17 @@ class Login extends React.Component {
     async loginWithGoogle() {
         try {
             const isLogin = await firebaseAuthentication.signInWithGoogle()
-            Router.push('/')
+            if(isLogin){
+                Router.push('/')
+               } else {
+                   alert("Đăng nhập không thành công")
+               }
         } catch (err) {
             alert("Đăng nhập không thành công")
         }
     }
 
     render() {
-        console.log("login props: ", this.props)
         return (
             <div>
                 <Head>

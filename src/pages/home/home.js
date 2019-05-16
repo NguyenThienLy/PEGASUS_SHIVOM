@@ -331,7 +331,7 @@ class Home extends React.Component {
           />
           <link href="../app.scss" rel="stylesheet" />
         </Head>
-        <Header />
+        <Header {...this.props}/>
         <div className="home-main">
           <SlideHome slides={this.state.slides} />
           <div className="content-home-wrap">

@@ -7,6 +7,8 @@ import Router from 'next/router'
 
 import Head from 'next/head'
 
+import { action } from '../../actions'
+
 
 const firebaseAuthentication = require('../../authentication/firebase')
 
@@ -20,7 +22,7 @@ export class Header extends React.Component {
     async logout() {
 
         const isSignOutSuccess = await firebaseAuthentication.signOut()
-        if(isSignOutSuccess){
+        if (isSignOutSuccess) {
             Router.push('/login')
         } else {
             alert("Đăng xuất không thành công")
@@ -28,14 +30,27 @@ export class Header extends React.Component {
     }
 
     async componentWillMount() {
-        const isLogin = await firebaseAuthentication.authenticated
-        if (isLogin) {
-            const user = firebaseAuthentication.currentUser
+        console.log("this.props: ", this.props)
+        if (!this.props.user.email) {
+            const isLogin = await firebaseAuthentication.authenticated
+            if (isLogin) {
+                const user = firebaseAuthentication.currentUser
+                this.props.dispatch(action.user.login(user))
+                console.log("user: ", user)
+                this.setState({
+                    user: {
+                        displayName: user.displayName,
+                        email: user.email,
+                        photoURL: user.photoURL
+                    }
+                })
+            }
+        } else {
             this.setState({
                 user: {
-                    displayName: user.displayName,
-                    email: user.email,
-                    photoURL: user.photoURL
+                    displayName: this.props.user.displayName,
+                    email: this.props.user.email,
+                    photoURL: this.props.user.photoURL
                 }
             })
         }
@@ -67,12 +82,12 @@ export class Header extends React.Component {
                             </li>
                             <li className="nav-item">
                                 <Link href="/sach">
-                                    <a href="#" className="nav-link">Thể loại</a>
+                                    <a href="/" className="nav-link">Thể loại</a>
                                 </Link>
                             </li>
                             <li className="nav-item">
                                 <Link href="/profile">
-                                    <a href="#" className="nav-link">Tác giả</a>
+                                    <a href="/" className="nav-link">Tác giả</a>
                                 </Link>
                             </li>
                         </ul>
@@ -89,7 +104,7 @@ export class Header extends React.Component {
                                             <a href="#" className="nav-link">Đăng nhập</a>
                                         </Link>
                                         : <div>
-                                            <a onClick={this.logout} href="#" className="nav-link">{this.state.user.displayName}</a>
+                                            <a onClick={this.logout} href="#" className="nav-link">{this.state.user.displayName || this.state.user.email}</a>
                                         </div>
                                     }
                                 </li>

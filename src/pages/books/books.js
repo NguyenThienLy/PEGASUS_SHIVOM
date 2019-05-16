@@ -35,7 +35,6 @@ class Books extends React.Component {
         this.setState({ nestedPath: path })
     }
     render() {
-        console.log("this.props history: ", this.props)
         return (
             <div>
                 <Head>
@@ -45,7 +44,7 @@ class Books extends React.Component {
                     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
                         crossorigin="anonymous"></link>
                 </Head>
-                <Header />
+                <Header {...this.props}/>
                 {/* <ul className="nav">
                     {
                         booksRoutes.map((prop, key) => {
