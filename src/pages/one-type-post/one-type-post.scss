@@ -1,0 +1,18 @@
+@import "../../default.scss";
+
+.one-type-posts-wrap {
+	display: flex;
+	justify-content: center;
+	div {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.one-type-posts-wrap {
+		flex-direction: column;
+		div {
+		}
+	}
+}
