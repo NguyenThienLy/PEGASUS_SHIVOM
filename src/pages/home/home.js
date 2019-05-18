@@ -278,20 +278,20 @@ class Home extends React.Component {
     };
   }
 
-  async componentDidMount() {
-    const result = await api.post.getList({
-      query: { fields: ["$all", { postReactions: ["userId"] }] }
-    });
-    console.log("posts", result);
-  }
+  // async componentDidMount() {
+  //   const result = await api.post.getList({
+  //     query: { fields: ["$all", { postReactions: ["userId"] }] }
+  //   });
+  //   console.log("posts", result);
+  // }
 
-  static async getInitialProps({ req, query }) {
-    const result = await api.post.getList({
-      query: { fields: ["$all", { postReactions: ["$all"] }] }
-    });
-    console.log("result", result);
-    return {};
-  }
+  // static async getInitialProps({ req, query }) {
+  //   const result = await api.post.getList({
+  //     query: { fields: ["$all", { postReactions: ["$all"] }] }
+  //   });
+  //   console.log("result", result);
+  //   return {};
+  // }
 
   onToggleMenuStandoutPost = () => {
     const toggle = document.getElementById("menu-tab-small-screen");
@@ -332,6 +332,7 @@ class Home extends React.Component {
           <link href="../app.scss" rel="stylesheet" />
         </Head>
         <Header {...this.props}/>
+        
         <div className="home-main">
           <SlideHome slides={this.state.slides} />
           <div className="content-home-wrap">
