@@ -114,26 +114,35 @@ export class Header extends React.Component {
             //     </nav>
             //     <div className="space-header"></div>
             // </div>
-            
+
             <div className="header" id="header-id">
-                <div className="first-floor" id="first-floor-id">   
-                    <div> 
+                <div className="first-floor" id="first-floor-id">
+                    <div>
                         {/* <a href="https://cuongsach.com" className="logo">
                             <img src="./logo.jpeg" alt="Cuồng Sách logo">
                         </a>   */}
-                        <div className="page-title"><b>Cuồng sách.</b></div>         
-                    </div>         
-                        
+                        <div className="page-title"><b>Cuồng sách.</b></div>
+                    </div>
+
                     <div className="function-group">
                         <div className="function-group-item search-box">
-                            <input className="search-txt" type="text" name="search-box" placeholder="Tìm kiếm..."/>
+                            <input className="search-txt" type="text" name="search-box" placeholder="Tìm kiếm..." />
                             <a className="search-icon" href="#">
                                 <i class="fas fa-search"></i>
-                            </a> 
-                            
+                            </a>
+
                         </div>
                         <button className="function-group-item sign-in-button" id="login-button">
-                            <a href="#">Sign in</a>
+                            {/* <a href="#"> */}
+                                {!this.state.user ?
+                                    <Link href="/login">
+                                        <a href="#" className="nav-link">Đăng nhập</a>
+                                    </Link>
+                                    : <div>
+                                        <a onClick={this.logout} href="#">{this.state.user.displayName || this.state.user.email}</a>
+                                    </div>
+                                }
+                            {/* </a> */}
                         </button>
                     </div>
                 </div>
@@ -142,7 +151,7 @@ export class Header extends React.Component {
                     <nav className="navbar">
                         <ul className="nav-links">
                             <li className="nav-item"><a href="#" className="active">trang chủ</a></li>
-                            <li className="nav-item"><a href="#">thể loại</a>                        
+                            <li className="nav-item"><a href="#">thể loại</a>
                                 <div className="drop-down-1">
                                     <ul>
                                         <li className="drop-down-item"><a href="#" >Văn học kinh điển</a></li>
@@ -153,7 +162,7 @@ export class Header extends React.Component {
                                         <li className="drop-down-item"><a href="#">Graphic novel</a></li>
                                         <li className="drop-down-item"><a href="#">Tội phạm</a></li>
                                         <li className="drop-down-item"><a href="#">Trinh thám</a></li>
-                                    </ul>                        
+                                    </ul>
                                     <ul>
                                         <li className="drop-down-item"><a href="#">Kinh dị (Horror)</a></li>
                                         <li className="drop-down-item"><a href="#">Kinh dị (Thriller)</a></li>
@@ -163,7 +172,7 @@ export class Header extends React.Component {
                                         <li className="drop-down-item"><a href="#">Triết học</a></li>
                                         <li className="drop-down-item"><a href="#">Tâm lý học</a></li>
                                         <li className="drop-down-item"><a href="#">Lịch sử</a></li>
-                                        
+
                                     </ul>
                                     <ul>
                                         <li className="drop-down-item"><a href="#">Lịch sử giã tưởng</a></li>
@@ -172,7 +181,7 @@ export class Header extends React.Component {
                                         <li className="drop-down-item"><a href="#">Khoa học viễn tưởng</a></li>
                                         <li className="drop-down-item"><a href="#">Huyền bí</a></li>
                                         <li className="drop-down-item"><a href="#">Siêu linh</a></li>
-                                        <li className="drop-down-item"><a href="#">Paranomal</a></li>                            
+                                        <li className="drop-down-item"><a href="#">Paranomal</a></li>
                                     </ul>
                                     <ul>
                                         <li className="drop-down-item"><a href="#">Nghệ thuật</a></li>
@@ -205,9 +214,9 @@ export class Header extends React.Component {
                         </ul>
                     </nav>
                 </div>
-               
-            </div> 
-    
+
+            </div>
+
         )
     }
 }

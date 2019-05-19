@@ -12,8 +12,8 @@ export class Footer extends React.Component {
     }
 
     render() {
-        console.log("A: ", this.props.a)
         return (
+            <div className="footer">
             <div className="footer-wrapper">
                 <div className="content-list">
                     <a href="#" className="content-items">About Us</a>
@@ -26,6 +26,7 @@ export class Footer extends React.Component {
                     <h5>cuongsach.com 2019© All rights reserved. Powered by Pegasus Tech</h5>
                 </div>
                 
+            </div>
             </div>
         )
     }
