@@ -63,6 +63,7 @@ class OneTypePost extends Component {
         };
     }
     render() {
+        const typeBook = "Truyện ngắn";
         return (
             <div>
                 <Head>
@@ -84,7 +85,12 @@ class OneTypePost extends Component {
                 </Head>
                 <Header />
                 <div className="container">
-                    <Headline title={this.state.typeBook} />
+                    <div className="name-type-wrap">
+                        <div className="img">
+                            <img src="/img/type-book.jpg" alt={this.state.typeBook} />
+                        </div>
+                        <div className="name-type-book"><div>{typeBook}</div></div>
+                    </div>
                     <div className="one-type-posts-wrap">
                         <div>
                             {
