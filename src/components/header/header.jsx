@@ -134,14 +134,14 @@ export class Header extends React.Component {
                         </div>
                         <button className="function-group-item sign-in-button" id="login-button">
                             {/* <a href="#"> */}
-                                {!this.state.user ?
-                                    <Link href="/login">
-                                        <a href="#" className="nav-link">Đăng nhập</a>
-                                    </Link>
-                                    : <div>
-                                        <a onClick={this.logout} href="#">{this.state.user.displayName || this.state.user.email}</a>
-                                    </div>
-                                }
+                            {!this.state.user ?
+                                <Link href="/login">
+                                    <a href="#" className="nav-link">Đăng nhập</a>
+                                </Link>
+                                : <div>
+                                    <a onClick={this.logout} href="#">{this.state.user.displayName || this.state.user.email}</a>
+                                </div>
+                            }
                             {/* </a> */}
                         </button>
                     </div>
@@ -150,11 +150,18 @@ export class Header extends React.Component {
                 <div className="second-floor">
                     <nav className="navbar">
                         <ul className="nav-links">
-                            <li className="nav-item"><a href="#" className="active">trang chủ</a></li>
+                            <Link href="/">
+                                <li className="nav-item"><a href="#" className="active">trang chủ</a></li>
+                            </Link>
+
                             <li className="nav-item"><a href="#">thể loại</a>
+
                                 <div className="drop-down-1">
                                     <ul>
-                                        <li className="drop-down-item"><a href="#" >Văn học kinh điển</a></li>
+                                        <Link href="/the-loai/van-hoc-kinh-dien">
+                                            <li className="drop-down-item"><a href="#" >Văn học kinh điển</a></li>
+                                        </Link>
+
                                         <li className="drop-down-item"><a href="#">Văn học đương đại</a></li>
                                         <li className="drop-down-item"><a href="#">Văn học nữ giới</a></li>
                                         <li className="drop-down-item"><a href="#">Lãng mạn</a></li>
@@ -194,8 +201,10 @@ export class Header extends React.Component {
                                     </ul>
                                 </div>
                             </li>
-                            <li className="nav-item"><a href="#">sách hay</a>
-                                {/* <div className="drop-down-1">
+                            <Link href="/">
+                                <li className="nav-item"><a href="#">sách hay</a>
+
+                                    {/* <div className="drop-down-1">
                                         <ul>
                                             <li className="drop-down-item"><a href="#" >Văn học kinh điển</a></li>
                                             <li className="drop-down-item"><a href="#">Văn học đương đại</a></li>
@@ -207,15 +216,22 @@ export class Header extends React.Component {
                                             <li className="drop-down-item"><a href="#">Trinh thám</a></li>
                                         </ul>
                                     </div>  */}
-                            </li>
-                            <li className="nav-item"><a href="#">góc mọt sách</a></li>
-                            <li className="nav-item"><a href="#">góc sáng tác</a></li>
-                            <li className="nav-item"><a href="#">cộng đồng</a></li>
+                                </li>
+                            </Link>
+                            <Link href="/">
+                                <li className="nav-item"><a href="#">góc mọt sách</a></li>
+                            </Link>
+                            <Link href="/">
+                                <li className="nav-item"><a href="#">góc sáng tác</a></li>
+                            </Link>
+                            <Link href="/">
+                                <li className="nav-item"><a href="#">cộng đồng</a></li>
+                            </Link>
                         </ul>
                     </nav>
                 </div>
 
-            </div>
+            </div >
 
         )
     }

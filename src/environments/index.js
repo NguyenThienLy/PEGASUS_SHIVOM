@@ -1,4 +1,4 @@
 export const environment = {
-    host: "http://localhost:4000",
+    host: "http://peaceful-fortress-14232.herokuapp.com",
     version: "v1"
 }

@@ -3,6 +3,7 @@ import './one-type-post.scss';
 import { PostItem2, Headline } from '../../components/';
 import { Header } from '../../components/header/header';
 import Head from 'next/head';
+import { connect } from 'react-redux';
 
 class OneTypePost extends Component {
     state = {};
@@ -62,6 +63,11 @@ class OneTypePost extends Component {
             typeBook: 'Truyện ngắn'
         };
     }
+    static getInitialProps(){
+        return {
+
+        }
+    }
     render() {
         const typeBook = "Truyện ngắn";
         return (
@@ -83,7 +89,7 @@ class OneTypePost extends Component {
                     />
                     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"></link>
                 </Head>
-                <Header />
+                <Header {...this.props}/>
                 <div className="container">
                     <div className="name-type-wrap">
                         <div className="img">
@@ -133,4 +139,8 @@ class OneTypePost extends Component {
     }
 }
 
-export default OneTypePost;
+const mapStateToProps = (state) => {
+	return state;
+};
+
+export default connect(mapStateToProps)(OneTypePost);

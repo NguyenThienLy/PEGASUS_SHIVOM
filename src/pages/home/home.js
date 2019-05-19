@@ -8,18 +8,21 @@ import {
   NewPost,
   StandOutPost,
   StandOutPost2Column,
-  RankBooks,
-	Footer,
+ 
 	SlideHome
-} from "../../components";
-import { Slide } from "../../components";
+} from "./components";
 import "./home.scss";
 
 import '../../assets/bootstrap4/bootstrap.min.scss';
 
 import { api } from '../../services';
-import { Header } from '../../components/header/header';
-import {Headline} from '../../components/headline/headline';
+import {
+  RankBooks,
+  Footer,
+  Headline,
+  Header,
+  Slide
+} from '../../components'
 
 class Home extends React.Component {
 	constructor(props) {
@@ -280,18 +283,26 @@ class Home extends React.Component {
 	}
 
   async componentDidMount() {
+    try {
     const result = await api.post.getList({
       query: { fields: ["$all", { postReactions: ["userId"] }] }
     });
     console.log("posts", result);
+    } catch(err){
+
+    }
   }
 
   static async getInitialProps({ req, query }) {
+    try {
     const result = await api.post.getList({
       query: { fields: ["$all", { postReactions: ["$all"] }] }
     });
     console.log("result", result);
     return {};
+    } catch(err){
+
+    }
   }
 
   onToggleMenuStandoutPost = () => {
