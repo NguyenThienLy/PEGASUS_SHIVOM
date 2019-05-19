@@ -40,7 +40,7 @@ class FirebaseAuthentication {
             }
         })
     }
-    get user() {
+    get getUser() {
         return this.currentUser
     }
     async getIdToken() {

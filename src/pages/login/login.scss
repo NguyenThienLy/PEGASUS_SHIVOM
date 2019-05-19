@@ -38,14 +38,14 @@ span {
 	font-size: 12px;
 }
 
-a {
+.__login-a {
 	color: #333;
 	font-size: 14px;
 	text-decoration: none;
 	margin: 15px 0;
 }
 
-button {
+.__login-button {
 	border-radius: 20px;
 	border: 1px solid #6FD6FF;
 	background-color: #6FD6FF;
@@ -58,15 +58,15 @@ button {
 	transition: transform 80ms ease-in;
 }
 
-button:active {
+.__login-button:active {
 	transform: scale(0.95);
 }
 
-button:focus {
+.__login-button:focus {
 	outline: none;
 }
 
-button.ghost {
+.ghost {
 	background-color: transparent;
 	border-color: #FFFFFF;
 }
@@ -82,7 +82,7 @@ form {
 	text-align: center;
 }
 
-input {
+.__login-input {
 	background-color: #eee;
 	border: none;
 	padding: 12px 15px;
@@ -215,7 +215,7 @@ input {
 	margin: 20px 0;
 }
 
-.social-container a {
+.social-container > a {
 	border: 1px solid #DDDDDD;
 	border-radius: 50%;
 	display: inline-flex;

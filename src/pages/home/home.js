@@ -10,7 +10,8 @@ import {
   NewPost,
   StandOutPost,
   StandOutPost2Column,
-  RankBooks
+  RankBooks,
+  Footer
 } from "../../components";
 import { Slide } from "../../components";
 import "./home.scss";
@@ -278,20 +279,20 @@ class Home extends React.Component {
     };
   }
 
-  async componentDidMount() {
-    const result = await api.post.getList({
-      query: { fields: ["$all", { postReactions: ["userId"] }] }
-    });
-    console.log("posts", result);
-  }
+  // async componentDidMount() {
+  //   const result = await api.post.getList({
+  //     query: { fields: ["$all", { postReactions: ["userId"] }] }
+  //   });
+  //   console.log("posts", result);
+  // }
 
-  static async getInitialProps({ req, query }) {
-    const result = await api.post.getList({
-      query: { fields: ["$all", { postReactions: ["$all"] }] }
-    });
-    console.log("result", result);
-    return {};
-  }
+  // static async getInitialProps({ req, query }) {
+  //   const result = await api.post.getList({
+  //     query: { fields: ["$all", { postReactions: ["$all"] }] }
+  //   });
+  //   console.log("result", result);
+  //   return {};
+  // }
 
   onToggleMenuStandoutPost = () => {
     const toggle = document.getElementById("menu-tab-small-screen");
@@ -306,6 +307,7 @@ class Home extends React.Component {
       <div>
         <Head>
           <title>Trang chủ</title>
+          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"/>
           <script
             src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -332,6 +334,7 @@ class Home extends React.Component {
           <link href="../app.scss" rel="stylesheet" />
         </Head>
         <Header {...this.props}/>
+        
         <div className="home-main">
           <SlideHome slides={this.state.slides} />
           <div className="content-home-wrap">
@@ -509,6 +512,7 @@ class Home extends React.Component {
             </div>
           </div>
         </div>
+        <Footer/>
       </div>
     );
   }
