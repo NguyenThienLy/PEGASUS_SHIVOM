@@ -1,8 +1,8 @@
-import * as React from "react";
-import "isomorphic-unfetch";
-import { connect } from "react-redux";
+import * as React from 'react';
+import 'isomorphic-unfetch';
+import { connect } from 'react-redux';
 
-import Head from "next/head";
+import Head from 'next/head';
 
 import {
   Header,
@@ -16,268 +16,269 @@ import {
 import { Slide } from "../../components";
 import "./home.scss";
 
-import "../../assets/bootstrap4/bootstrap.min.scss";
+import '../../assets/bootstrap4/bootstrap.min.scss';
 
-import { api } from "../../services";
-import SlideHome from "../../components/slide/slideHome";
+import { api } from '../../services';
+import { RankBooks } from '../../components/rankBooks/rankBooks';
+import { Header } from '../../components/header/header';
 
 class Home extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      slides: [
-        {
-          img: "/img/slide0.jpg",
-          author: "Tạ Minh Tuấn",
-          book: "Trước bình minh luôn là đêm tối",
-          type: 1,
-          quote:
-            "Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên"
-        },
-        {
-          img: "/img/slide1.jpg",
-          author: "Tạ Minh Tuấn",
-          book: "Trước bình minh luôn là đêm tối",
-          type: 1,
-          quote:
-            "Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên"
-        },
-        {
-          img: "/img/slide2.jpg",
-          author: "Tạ Minh Tuấn",
-          book: "Trước bình minh luôn là đêm tối",
-          type: 1,
-          quote:
-            "Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên"
-        },
-        {
-          img: "/img/slide3.jpg",
-          author: "Tạ Minh Tuấn",
-          book: "Trước bình minh luôn là đêm tối",
-          type: 1,
-          quote:
-            "Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên"
-        },
-        {
-          img: "/img/slide4.jpg",
-          author: "Tạ Minh Tuấn",
-          book: "Trước bình minh luôn là đêm tối",
-          type: 1,
-          quote:
-            "Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên"
-        },
-        {
-          img: "/img/slide0.jpg",
-          author: "Tạ Minh Tuấn",
-          book: "Trước bình minh luôn là đêm tối",
-          type: 1,
-          quote:
-            "Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên"
-        }
-      ],
+	constructor(props) {
+		super(props);
+		this.state = {
+			slides: [
+				{
+					img: '/img/slide0.jpg',
+					author: 'Tạ Minh Tuấn',
+					book: 'Trước bình minh luôn là đêm tối',
+					type: 1,
+					quote:
+						'Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên'
+				},
+				{
+					img: '/img/slide1.jpg',
+					author: 'Tạ Minh Tuấn',
+					book: 'Trước bình minh luôn là đêm tối',
+					type: 1,
+					quote:
+						'Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên'
+				},
+				{
+					img: '/img/slide2.jpg',
+					author: 'Tạ Minh Tuấn',
+					book: 'Trước bình minh luôn là đêm tối',
+					type: 1,
+					quote:
+						'Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên'
+				},
+				{
+					img: '/img/slide3.jpg',
+					author: 'Tạ Minh Tuấn',
+					book: 'Trước bình minh luôn là đêm tối',
+					type: 1,
+					quote:
+						'Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên'
+				},
+				{
+					img: '/img/slide4.jpg',
+					author: 'Tạ Minh Tuấn',
+					book: 'Trước bình minh luôn là đêm tối',
+					type: 1,
+					quote:
+						'Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên'
+				},
+				{
+					img: '/img/slide0.jpg',
+					author: 'Tạ Minh Tuấn',
+					book: 'Trước bình minh luôn là đêm tối',
+					type: 1,
+					quote:
+						'Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên'
+				}
+			],
 
-      typeBook: [
-        {
-          id: 1,
-          name: "Truyện ngắn"
-        },
-        {
-          id: 2,
-          name: "Văn học"
-        },
-        {
-          id: 3,
-          name: "Hồi ký"
-        },
-        {
-          id: 4,
-          name: "Kỹ năng"
-        }
-      ],
-      AllTypeId: -1, //loại bài viết nổi bật là "Tất cả"
-      currentIdTypeStandOut: -1,
-      newPost: [
-        {
-          _id: 1,
-          img: "/img/slide0.jpg",
-          title: "Cuốn sách giúp tôi hướng về phía mặt trời",
-          book: "Trước bình minh luôn là đêm tối",
-          type: 1,
-          time: "8:00 23/01/2019"
-        },
-        {
-          _id: 2,
-          img: "/img/slide1.jpg",
-          title: "Cuốn sách giúp tôi hướng về phía mặt trời",
-          book: "Trước bình minh luôn là đêm tối",
-          type: 2,
-          time: "8:00 23/01/2019"
-        },
-        {
-          _id: 3,
-          img: "/img/slide2.jpg",
-          title: "Cuốn sách giúp tôi hướng về phía mặt trời",
-          book: "Trước bình minh luôn là đêm tối",
-          type: 3,
-          time: "8:00 23/01/2019"
-        },
-        {
-          _id: 4,
-          img: "/img/slide3.jpg",
-          title: "Cuốn sách giúp tôi hướng về phía mặt trời",
-          book: "Trước bình minh luôn là đêm tối",
-          type: 1,
-          time: "8:00 23/01/2019"
-        }
-      ],
-      firstStandOutTypeBook: 1,
-      secondStandOutTypeBook: 2,
-      thirdStandOutTypeBook: 3,
-      standOutPosts: [
-        {
-          _id: 1,
-          img: "/img/slide0.jpg",
-          title: "Cuốn sách giúp tôi hướng về phía mặt trời 1",
-          book: "Trước bình minh luôn là đêm tối",
-          type: 1,
-          time: "8:00 23/01/2019",
-          decription:
-            "Ai cũng cần động lực để giúp bản thân làm những điều mình cần làm. Cuốn sách này giúp tôi nhận ra nhiều điều nên đây là cuốn sách gối đầu của tôi",
-          love: 3,
-          author: "Nguyễn An Vy"
-        },
-        {
-          _id: 2,
-          img: "/img/slide1.jpg",
-          title: "Cuốn sách giúp tôi hướng về phía mặt trời",
-          book: "Trước bình minh luôn là đêm tối",
-          type: 2,
-          time: "8:00 23/01/2019",
-          decription: "Cuốn sách gối đầu của tôi, một cuốn sách đáng đọc",
-          love: 3,
-          author: "Nguyễn An Vy"
-        },
-        {
-          _id: 3,
-          img: "/img/slide2.jpg",
-          title: "Cuốn sách giúp tôi hướng về phía mặt trời",
-          book: "Trước bình minh luôn là đêm tối",
-          type: 3,
-          time: "8:00 23/01/2019",
-          decription: "Cuốn sách gối đầu của tôi, một cuốn sách đáng đọc",
-          love: 3,
-          author: "Nguyễn An Vy"
-        },
-        {
-          _id: 4,
-          img: "/img/slide3.jpg",
-          title: "Cuốn sách giúp tôi hướng về phía mặt trời 2",
-          book: "Trước bình minh luôn là đêm tối",
-          type: 1,
-          time: "8:00 23/01/2019",
-          decription: "Cuốn sách gối đầu của tôi, một cuốn sách đáng đọc",
-          love: 3,
-          author: "Nguyễn An Vy"
-        },
-        {
-          _id: 1,
-          img: "/img/slide0.jpg",
-          title: "Cuốn sách giúp tôi hướng về phía mặt trời 1",
-          book: "Trước bình minh luôn là đêm tối",
-          type: 1,
-          time: "8:00 23/01/2019",
-          decription:
-            "Ai cũng cần động lực để giúp bản thân làm những điều mình cần làm. Cuốn sách này giúp tôi nhận ra nhiều điều nên đây là cuốn sách gối đầu của tôi",
-          love: 3,
-          author: "Nguyễn An Vy"
-        },
-        {
-          _id: 2,
-          img: "/img/slide1.jpg",
-          title: "Cuốn sách giúp tôi hướng về phía mặt trời",
-          book: "Trước bình minh luôn là đêm tối",
-          type: 2,
-          time: "8:00 23/01/2019",
-          decription: "Cuốn sách gối đầu của tôi, một cuốn sách đáng đọc",
-          love: 3,
-          author: "Nguyễn An Vy"
-        },
-        {
-          _id: 3,
-          img: "/img/slide2.jpg",
-          title: "Cuốn sách giúp tôi hướng về phía mặt trời",
-          book: "Trước bình minh luôn là đêm tối",
-          type: 3,
-          time: "8:00 23/01/2019",
-          decription: "Cuốn sách gối đầu của tôi, một cuốn sách đáng đọc",
-          love: 3,
-          author: "Nguyễn An Vy"
-        },
-        {
-          _id: 4,
-          img: "/img/slide3.jpg",
-          title: "Cuốn sách giúp tôi hướng về phía mặt trời 2",
-          book: "Trước bình minh luôn là đêm tối",
-          type: 1,
-          time: "8:00 23/01/2019",
-          decription: "Cuốn sách gối đầu của tôi, một cuốn sách đáng đọc",
-          love: 3,
-          author: "Nguyễn An Vy"
-        }
-      ],
+			typeBook: [
+				{
+					id: 1,
+					name: 'Truyện ngắn'
+				},
+				{
+					id: 2,
+					name: 'Văn học'
+				},
+				{
+					id: 3,
+					name: 'Hồi ký'
+				},
+				{
+					id: 4,
+					name: 'Kỹ năng'
+				}
+			],
+			AllTypeId: -1, //loại bài viết nổi bật là "Tất cả"
+			currentIdTypeStandOut: -1,
+			newPost: [
+				{
+					_id: 1,
+					img: '/img/slide0.jpg',
+					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
+					book: 'Trước bình minh luôn là đêm tối',
+					type: 1,
+					time: '8:00 23/01/2019'
+				},
+				{
+					_id: 2,
+					img: '/img/slide1.jpg',
+					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
+					book: 'Trước bình minh luôn là đêm tối',
+					type: 2,
+					time: '8:00 23/01/2019'
+				},
+				{
+					_id: 3,
+					img: '/img/slide2.jpg',
+					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
+					book: 'Trước bình minh luôn là đêm tối',
+					type: 3,
+					time: '8:00 23/01/2019'
+				},
+				{
+					_id: 4,
+					img: '/img/slide3.jpg',
+					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
+					book: 'Trước bình minh luôn là đêm tối',
+					type: 1,
+					time: '8:00 23/01/2019'
+				}
+			],
+			firstStandOutTypeBook: 1,
+			secondStandOutTypeBook: 2,
+			thirdStandOutTypeBook: 3,
+			standOutPosts: [
+				{
+					_id: 1,
+					img: '/img/slide0.jpg',
+					title: 'Cuốn sách giúp tôi hướng về phía mặt trời 1',
+					book: 'Trước bình minh luôn là đêm tối',
+					type: 1,
+					time: '8:00 23/01/2019',
+					decription:
+						'Ai cũng cần động lực để giúp bản thân làm những điều mình cần làm. Cuốn sách này giúp tôi nhận ra nhiều điều nên đây là cuốn sách gối đầu của tôi',
+					love: 3,
+					author: 'Nguyễn An Vy'
+				},
+				{
+					_id: 2,
+					img: '/img/slide1.jpg',
+					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
+					book: 'Trước bình minh luôn là đêm tối',
+					type: 2,
+					time: '8:00 23/01/2019',
+					decription: 'Cuốn sách gối đầu của tôi, một cuốn sách đáng đọc',
+					love: 3,
+					author: 'Nguyễn An Vy'
+				},
+				{
+					_id: 3,
+					img: '/img/slide2.jpg',
+					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
+					book: 'Trước bình minh luôn là đêm tối',
+					type: 3,
+					time: '8:00 23/01/2019',
+					decription: 'Cuốn sách gối đầu của tôi, một cuốn sách đáng đọc',
+					love: 3,
+					author: 'Nguyễn An Vy'
+				},
+				{
+					_id: 4,
+					img: '/img/slide3.jpg',
+					title: 'Cuốn sách giúp tôi hướng về phía mặt trời 2',
+					book: 'Trước bình minh luôn là đêm tối',
+					type: 1,
+					time: '8:00 23/01/2019',
+					decription: 'Cuốn sách gối đầu của tôi, một cuốn sách đáng đọc',
+					love: 3,
+					author: 'Nguyễn An Vy'
+				},
+				{
+					_id: 1,
+					img: '/img/slide0.jpg',
+					title: 'Cuốn sách giúp tôi hướng về phía mặt trời 1',
+					book: 'Trước bình minh luôn là đêm tối',
+					type: 1,
+					time: '8:00 23/01/2019',
+					decription:
+						'Ai cũng cần động lực để giúp bản thân làm những điều mình cần làm. Cuốn sách này giúp tôi nhận ra nhiều điều nên đây là cuốn sách gối đầu của tôi',
+					love: 3,
+					author: 'Nguyễn An Vy'
+				},
+				{
+					_id: 2,
+					img: '/img/slide1.jpg',
+					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
+					book: 'Trước bình minh luôn là đêm tối',
+					type: 2,
+					time: '8:00 23/01/2019',
+					decription: 'Cuốn sách gối đầu của tôi, một cuốn sách đáng đọc',
+					love: 3,
+					author: 'Nguyễn An Vy'
+				},
+				{
+					_id: 3,
+					img: '/img/slide2.jpg',
+					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
+					book: 'Trước bình minh luôn là đêm tối',
+					type: 3,
+					time: '8:00 23/01/2019',
+					decription: 'Cuốn sách gối đầu của tôi, một cuốn sách đáng đọc',
+					love: 3,
+					author: 'Nguyễn An Vy'
+				},
+				{
+					_id: 4,
+					img: '/img/slide3.jpg',
+					title: 'Cuốn sách giúp tôi hướng về phía mặt trời 2',
+					book: 'Trước bình minh luôn là đêm tối',
+					type: 1,
+					time: '8:00 23/01/2019',
+					decription: 'Cuốn sách gối đầu của tôi, một cuốn sách đáng đọc',
+					love: 3,
+					author: 'Nguyễn An Vy'
+				}
+			],
 
-      rankBooks: [
-        {
-          id: 1,
-          bookName: "Tâm hồn cao thượng",
-          img: "/img/rankBook.jpg",
-          rating: 2,
-          numberReview: 111,
-          bookAuthor: "Edmondo De Amicis",
-          translater: "Hà Mai Anh"
-        },
-        {
-          id: 2,
-          bookName: "Tâm hồn cao thượng",
-          img: "/img/rankBook.jpg",
-          rating: 2,
-          numberReview: 111,
-          bookAuthor: "Edmondo De Amicis",
-          translater: "Hà Mai Anh"
-        },
-        {
-          id: 3,
-          bookName: "Tâm hồn cao thượng",
-          img: "/img/rankBook.jpg",
+			rankBooks: [
+				{
+					id: 1,
+					bookName: 'Tâm hồn cao thượng',
+					img: '/img/rankBook.jpg',
+					rating: 2,
+					numberReview: 111,
+					bookAuthor: 'Edmondo De Amicis',
+					translater: 'Hà Mai Anh'
+				},
+				{
+					id: 2,
+					bookName: 'Tâm hồn cao thượng',
+					img: '/img/rankBook.jpg',
+					rating: 2,
+					numberReview: 111,
+					bookAuthor: 'Edmondo De Amicis',
+					translater: 'Hà Mai Anh'
+				},
+				{
+					id: 3,
+					bookName: 'Tâm hồn cao thượng',
+					img: '/img/rankBook.jpg',
 
-          rating: 2,
-          numberReview: 111,
-          bookAuthor: "Edmondo De Amicis",
-          translater: "Hà Mai Anh"
-        },
-        {
-          id: 4,
-          bookName: "Tâm hồn cao thượng",
-          img: "/img/rankBook.jpg",
+					rating: 2,
+					numberReview: 111,
+					bookAuthor: 'Edmondo De Amicis',
+					translater: 'Hà Mai Anh'
+				},
+				{
+					id: 4,
+					bookName: 'Tâm hồn cao thượng',
+					img: '/img/rankBook.jpg',
 
-          rating: 2,
-          numberReview: 111,
-          bookAuthor: "Edmondo De Amicis",
-          translater: "Hà Mai Anh"
-        },
-        {
-          id: 5,
-          bookName: "Tâm hồn cao thượng",
-          img: "/img/rankBook.jpg",
+					rating: 2,
+					numberReview: 111,
+					bookAuthor: 'Edmondo De Amicis',
+					translater: 'Hà Mai Anh'
+				},
+				{
+					id: 5,
+					bookName: 'Tâm hồn cao thượng',
+					img: '/img/rankBook.jpg',
 
-          rating: 2,
-          numberReview: 111,
-          bookAuthor: "Edmondo De Amicis",
-          translater: "Hà Mai Anh"
-        }
-      ]
-    };
-  }
+					rating: 2,
+					numberReview: 111,
+					bookAuthor: 'Edmondo De Amicis',
+					translater: 'Hà Mai Anh'
+				}
+			]
+		};
+	}
 
   // async componentDidMount() {
   //   const result = await api.post.getList({
@@ -461,23 +462,23 @@ class Home extends React.Component {
               />
               {/* //Bài viết nổi bật theo loại 1 */}
 
-              {/* Bài viết theo loại 2 */}
-              <div className="headline-stand-out headline-stand-out-second">
-                <div className="title">
-                  {
-                    this.state.typeBook.filter(
-                      item => item.id == this.state.secondStandOutTypeBook
-                    )[0].name
-                  }
-                </div>
-              </div>
-              <StandOutPost
-                posts={this.state.standOutPosts.filter(
-                  item => item.type == this.state.secondStandOutTypeBook
-                )}
-                typeBook={this.state.typeBook}
-              />
-              {/* //Bài viết theo loại 2 */}
+							{/* Bài viết theo loại 2 */}
+							<div className="headline-stand-out headline-stand-out-second">
+								<div className="title">
+									{
+										this.state.typeBook.filter(
+											(item) => item.id == this.state.secondStandOutTypeBook
+										)[0].name
+									}
+								</div>
+							</div>
+							<StandOutPost
+								posts={this.state.standOutPosts.filter(
+									(item) => item.type == this.state.secondStandOutTypeBook
+								)}
+								typeBook={this.state.typeBook}
+							/>
+							{/* //Bài viết theo loại 2 */}
 
               {/* Bài viết nổi bật theo loại 3 */}
               <div className="headline-stand-out headline-stand-out-third">
@@ -518,8 +519,8 @@ class Home extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return state;
+const mapStateToProps = (state) => {
+	return state;
 };
 
 export default connect(mapStateToProps)(Home);

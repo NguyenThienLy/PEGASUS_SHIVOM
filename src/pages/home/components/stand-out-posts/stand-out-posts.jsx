@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { PostItem } from '../post-item/post-item'
+import { PostItem } from '../../../../components/post-item/post-item'
 import './stand-out-posts.scss'
 
 export class StandOutPost extends Component {

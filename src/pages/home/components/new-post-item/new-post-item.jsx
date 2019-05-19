@@ -11,7 +11,7 @@ export class NewPostItem extends Component {
                     <a href="#">
                         <img src={post.img} alt="" />
                     </a>
-                    <div className="book"><a href="">{post.book.substring(0, 20)}...</a></div>
+                    <div className="book"><a href="">{post.book.substring(0, 15)}...</a></div>
                 </div>
                 <div className="title"><a href="">{post.title}</a></div>
             </div>);

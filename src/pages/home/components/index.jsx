@@ -1,0 +1,5 @@
+export * from './new-post-item/new-post-item'
+export * from './newpost/newpost'
+export * from './stand-out-posts/stand-out-posts'
+export * from './stand-out-posts-2-column/stand-out-posts-2-column'
+export * from './slideHome/slideHome'

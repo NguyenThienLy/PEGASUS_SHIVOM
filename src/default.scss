@@ -4,3 +4,12 @@ $font-color: #29424e;
 $font-note-color: rgb(187, 184, 184);
 $color-hover: #e37f2b;
 $font-size-title-item: 1.2em;
+$font-title: 'Montserrat', sans-serif;
+$font-body: 'Merriweather', serif;
+
+* body {
+	font-family: $font-body;
+	.title {
+		font-family: $font-title;
+	}
+}
