@@ -3,6 +3,53 @@
 body {
   font-family: "Segoe UI"; }
 
+* body {
+  font-family: "Merriweather", serif; }
+  * body .title {
+    font-family: "Montserrat", sans-serif; }
+
+.container .name-type-wrap {
+  position: relative; }
+  .container .name-type-wrap .img {
+    overflow: hidden;
+    max-width: 100%;
+    height: 250px; }
+    .container .name-type-wrap .img img {
+      overflow: hidden;
+      width: 100%;
+      transition: transform 20s cubic-bezier(0.075, 0.82, 0.165, 1); }
+      .container .name-type-wrap .img img:hover {
+        transform: scale(1.1); }
+  .container .name-type-wrap .name-type-book {
+    text-align: right; }
+    .container .name-type-wrap .name-type-book:hover {
+      cursor: pointer; }
+    .container .name-type-wrap .name-type-book div {
+      background-image: -webkit-linear-gradient(bottom, #fffdfd, rgba(0, 0, 0, 0));
+      width: 100%;
+      bottom: 0;
+      padding: 50px 100px 40px 20px;
+      position: absolute;
+      font-size: 4em;
+      color: #555555;
+      font-weight: bold;
+      text-shadow: 0 3px 6px rgba(255, 255, 255, 0.7); }
+
+.container .one-type-posts-wrap {
+  display: flex;
+  justify-content: center; }
+  .container .one-type-posts-wrap div {
+    display: flex;
+    flex-direction: column; }
+
+@media only screen and (max-width: 600px) {
+  .container .name-type-wrap .name-type-book {
+    text-align: center; }
+    .container .name-type-wrap .name-type-book div {
+      font-size: 2em; }
+  .container .one-type-posts-wrap {
+    flex-direction: column; } }
+
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors

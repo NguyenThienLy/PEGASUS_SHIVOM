@@ -5,13 +5,12 @@ import { connect } from 'react-redux';
 import Head from 'next/head';
 
 import {
-  Header,
-  Headline,
   NewPost,
   StandOutPost,
   StandOutPost2Column,
   RankBooks,
-  Footer
+	Footer,
+	SlideHome
 } from "../../components";
 import { Slide } from "../../components";
 import "./home.scss";
@@ -19,8 +18,8 @@ import "./home.scss";
 import '../../assets/bootstrap4/bootstrap.min.scss';
 
 import { api } from '../../services';
-import { RankBooks } from '../../components/rankBooks/rankBooks';
 import { Header } from '../../components/header/header';
+import {Headline} from '../../components/headline/headline';
 
 class Home extends React.Component {
 	constructor(props) {
@@ -280,20 +279,20 @@ class Home extends React.Component {
 		};
 	}
 
-  // async componentDidMount() {
-  //   const result = await api.post.getList({
-  //     query: { fields: ["$all", { postReactions: ["userId"] }] }
-  //   });
-  //   console.log("posts", result);
-  // }
+  async componentDidMount() {
+    const result = await api.post.getList({
+      query: { fields: ["$all", { postReactions: ["userId"] }] }
+    });
+    console.log("posts", result);
+  }
 
-  // static async getInitialProps({ req, query }) {
-  //   const result = await api.post.getList({
-  //     query: { fields: ["$all", { postReactions: ["$all"] }] }
-  //   });
-  //   console.log("result", result);
-  //   return {};
-  // }
+  static async getInitialProps({ req, query }) {
+    const result = await api.post.getList({
+      query: { fields: ["$all", { postReactions: ["$all"] }] }
+    });
+    console.log("result", result);
+    return {};
+  }
 
   onToggleMenuStandoutPost = () => {
     const toggle = document.getElementById("menu-tab-small-screen");
