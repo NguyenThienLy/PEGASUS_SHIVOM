@@ -9,16 +9,16 @@ import {
   StandOutPost,
   StandOutPost2Column,
   RankBooks,
-	Footer,
 	SlideHome
 } from "../../components";
-import { Slide } from "../../components";
+// import { Slide } from "../../components";
 import "./home.scss";
 
 import '../../assets/bootstrap4/bootstrap.min.scss';
 
 import { api } from '../../services';
 import { Header } from '../../components/header/header';
+import { Footer } from '../../components/footer/footer';
 import {Headline} from '../../components/headline/headline';
 
 class Home extends React.Component {
@@ -333,13 +333,13 @@ class Home extends React.Component {
           />
           <link href="../app.scss" rel="stylesheet" />
         </Head>
-        <Header {...this.props}/>
+        {/* <Header {...this.props}/> */}
         
         <div className="home-main">
           <SlideHome slides={this.state.slides} />
           <div className="content-home-wrap">
             <div className="left">
-              {/* <Headline title="Bài viết nổi bật" /> */}
+              <Headline title="Bài viết nổi bật" />
               <div className="headline-stand-out headline-stand-out-posts">
                 <div className="title">Bài viết nổi bật</div>
                 <span id="type-stand-out">
