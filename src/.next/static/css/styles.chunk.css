@@ -49,15 +49,15 @@ body {
   * body .title {
     font-family: "Montserrat", sans-serif; }
 
-#new-post-wrap .post {
-  display: flex;
-  height: 455px; }
-
-#new-post-wrap .left,
-#new-post-wrap .right {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column; }
+#new-post-wrap {
+  overflow: auto; }
+  #new-post-wrap .post {
+    display: flex; }
+  #new-post-wrap .left,
+  #new-post-wrap .right {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column; }
 
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
@@ -7784,7 +7784,7 @@ a.text-dark:focus, a.text-dark:hover {
   width: 100%;
   justify-content: space-between; }
   .headline .headline-title {
-    height: 35px;
+    height: 24px;
     width: 200px;
     text-align: center;
     color: #fff;
@@ -9313,10 +9313,13 @@ button {
     #slide-home-wrap #active #img-wrap {
       position: relative;
       overflow: hidden;
-      margin-right: 10px; }
+      margin-right: 10px;
+      width: 100%;
+      height: 300px;
+      object-fit: contain; }
       #slide-home-wrap #active #img-wrap img {
         width: 100%;
-        height: 300px;
+        height: 100%;
         transition: transform 2s ease-out;
         transform: scale(1.4); }
     #slide-home-wrap #active div .name {
@@ -9411,7 +9414,7 @@ button {
   display: flex;
   justify-content: space-between;
   font-weight: bold;
-  height: 30px; }
+  height: 38px; }
   .headline-stand-out .title {
     padding: 5px 20px 0px 20px;
     color: #fff;
@@ -9455,6 +9458,48 @@ button:focus {
       font-size: 2em; }
   .left .menu-tab-small-screen-show {
     display: block !important; } }
+
+* body {
+  font-family: "Merriweather", serif; }
+  * body .title {
+    font-family: "Montserrat", sans-serif; }
+
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  height: 100vh; }
+  .error #pegasus {
+    color: #bbb8b8;
+    font-size: 0.5em; }
+  .error div {
+    flex: 1; }
+  .error img {
+    height: 40vh;
+    margin-top: 15vh;
+    margin-bottom: 30px; }
+  .error .btns {
+    display: flex;
+    justify-content: center; }
+  .error .btns button {
+    flex: 1;
+    margin: 20px 20px !important;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #24404D;
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 2px 2px 5px #bbb9b9; }
+  .error .btns button:focus {
+    outline: none; }
+  .error .btns button:hover {
+    background-color: #fff;
+    color: #24404D; }
+
+.error:not(#pegasus) {
+  font-size: 1.5em;
+  color: #29424e; }
 
 
 /*# sourceMappingURL=styles.chunk.css.map*/
