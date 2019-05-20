@@ -1,13 +1,13 @@
 import * as React from 'react'
-
 import './header.scss'
-
 import Link from 'next/link'
 import Router from 'next/router'
-
 import Head from 'next/head'
+import * as _ from "lodash"
 
 import { action } from '../../actions'
+import { api } from '../../services'
+
 
 
 const firebaseAuthentication = require('../../authentication/firebase')
@@ -16,7 +16,9 @@ export class Header extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            user: null
+            user: null,
+            categories: [[], []]
+
         }
     }
     async logout() {
@@ -30,7 +32,6 @@ export class Header extends React.Component {
     }
 
     async componentWillMount() {
-        console.log("this.props: ", this.props)
         if (!this.props.user.email) {
             const isLogin = await firebaseAuthentication.authenticated
             if (isLogin) {
@@ -55,65 +56,19 @@ export class Header extends React.Component {
             })
         }
     }
+    async componentDidMount() {
+        try {
+            const categories = await api.bookCategory.getList({ query: { fields: ["name"], limit: 50 } })
+
+            let categoriesChunked = _.chunk(categories, 8)
+            this.setState({ categories: categoriesChunked })
+        } catch (err) {
+            console.log("err: ", err)
+        }
+    }
 
     render() {
         return (
-            // <div className="headerWrap">
-            //     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossOrigin="anonymous"></link>
-
-            //     <nav className="navbar navbar-expand-lg navbar-light navbar-default navbar-fixed-top">
-            //         <a className="name navbar-brand">Books Feelings</a>
-            //         <button className="navbar-toggler fix-top" type="button" data-toggle="collapse"
-            //             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            //             aria-label="Toggle navigation">
-            //             <span className="navbar-toggler-icon"></span>
-            //         </button>
-            //         <div className="navWrap collapse navbar-collapse" id="navbarSupportedContent">
-            //             <ul className="navbar-nav mr-auto mainMenu">
-            //                 <li className="nav-item current">
-            //                     <Link href="/">
-            //                         <a href="/" className="nav-link active">Trang chủ</a>
-            //                     </Link>
-            //                 </li>
-            //                 <li className="nav-item">
-            //                     <Link href="/bai-viet">
-            //                         <a className="nav-link">Bài viết</a>
-            //                     </Link>
-            //                 </li>
-            //                 <li className="nav-item">
-            //                     <Link href="/sach">
-            //                         <a href="/" className="nav-link">Thể loại</a>
-            //                     </Link>
-            //                 </li>
-            //                 <li className="nav-item">
-            //                     <Link href="/profile">
-            //                         <a href="/" className="nav-link">Tác giả</a>
-            //                     </Link>
-            //                 </li>
-            //             </ul>
-
-            //             <div className="accountWrap justify-content-end">
-            //                 <ul className="navbar-nav">
-            //                     <li className="nav-item find">
-            //                         <input type="text" id="key-find" placeholder="Nhập từ khóa" />
-            //                         {/* <a href="#" className="nav-link"><i className="fas fa-search"></i></a> */}
-            //                     </li>
-            //                     <li className="nav-item">
-            //                         {!this.state.user ?
-            //                             <Link href="/login">
-            //                                 <a href="#" className="nav-link">Đăng nhập</a>
-            //                             </Link>
-            //                             : <div>
-            //                                 <a onClick={this.logout} href="#" className="nav-link">{this.state.user.displayName || this.state.user.email}</a>
-            //                             </div>
-            //                         }
-            //                     </li>
-            //                 </ul>
-            //             </div>
-            //         </div>
-            //     </nav>
-            //     <div className="space-header"></div>
-            // </div>
 
             <div className="header" id="header-id">
                 <div className="first-floor" id="first-floor-id">
@@ -134,14 +89,14 @@ export class Header extends React.Component {
                         </div>
                         <button className="function-group-item sign-in-button" id="login-button">
                             {/* <a href="#"> */}
-                                {!this.state.user ?
-                                    <Link href="/login">
-                                        <a href="#" className="nav-link">Đăng nhập</a>
-                                    </Link>
-                                    : <div>
-                                        <a onClick={this.logout} href="#">{this.state.user.displayName || this.state.user.email}</a>
-                                    </div>
-                                }
+                            {!this.state.user ?
+                                <Link href="/login">
+                                    <a href="#" className="nav-link">Đăng nhập</a>
+                                </Link>
+                                : <div>
+                                    <a onClick={this.logout} href="#">{this.state.user.displayName || this.state.user.email}</a>
+                                </div>
+                            }
                             {/* </a> */}
                         </button>
                     </div>
@@ -150,11 +105,33 @@ export class Header extends React.Component {
                 <div className="second-floor">
                     <nav className="navbar">
                         <ul className="nav-links">
-                            <li className="nav-item"><a href="#" className="active">trang chủ</a></li>
+                            <Link href="/">
+                                <li className="nav-item"><a href="#" className="active">trang chủ</a></li>
+                            </Link>
+
                             <li className="nav-item"><a href="#">thể loại</a>
+
                                 <div className="drop-down-1">
-                                    <ul>
-                                        <li className="drop-down-item"><a href="#" >Văn học kinh điển</a></li>
+                                    {this.state.categories.map((arrayChild) => {
+
+                                        return (
+                                            <ul>
+                                                {arrayChild.map(category => {
+                                                    return (
+                                                        <Link href="/the-loai/van-hoc-kinh-dien">
+                                                            <li className="drop-down-item"><a href="#" >{category.name}</a></li>
+                                                        </Link>
+                                                    )
+
+                                                })}
+                                            </ul>
+                                        )
+                                    })}
+                                    {/* < ul >
+                                        <Link href="/the-loai/van-hoc-kinh-dien">
+                                            <li className="drop-down-item"><a href="#" >Văn học kinh điển</a></li>
+                                        </Link>
+
                                         <li className="drop-down-item"><a href="#">Văn học đương đại</a></li>
                                         <li className="drop-down-item"><a href="#">Văn học nữ giới</a></li>
                                         <li className="drop-down-item"><a href="#">Lãng mạn</a></li>
@@ -191,11 +168,13 @@ export class Header extends React.Component {
                                         <li className="drop-down-item"><a href="#">Kinh doanh</a></li>
                                         <li className="drop-down-item"><a href="#">Kỹ năng</a></li>
                                         <li className="drop-down-item"><a href="#">Du lịch</a></li>
-                                    </ul>
+                                    </ul> */}
                                 </div>
                             </li>
-                            <li className="nav-item"><a href="#">sách hay</a>
-                                {/* <div className="drop-down-1">
+                            <Link href="/">
+                                <li className="nav-item"><a href="#">sách hay</a>
+
+                                    {/* <div className="drop-down-1">
                                         <ul>
                                             <li className="drop-down-item"><a href="#" >Văn học kinh điển</a></li>
                                             <li className="drop-down-item"><a href="#">Văn học đương đại</a></li>
@@ -207,15 +186,22 @@ export class Header extends React.Component {
                                             <li className="drop-down-item"><a href="#">Trinh thám</a></li>
                                         </ul>
                                     </div>  */}
-                            </li>
-                            <li className="nav-item"><a href="#">góc mọt sách</a></li>
-                            <li className="nav-item"><a href="#">góc sáng tác</a></li>
-                            <li className="nav-item"><a href="#">cộng đồng</a></li>
+                                </li>
+                            </Link>
+                            <Link href="/">
+                                <li className="nav-item"><a href="#">góc mọt sách</a></li>
+                            </Link>
+                            <Link href="/">
+                                <li className="nav-item"><a href="#">góc sáng tác</a></li>
+                            </Link>
+                            <Link href="/">
+                                <li className="nav-item"><a href="#">cộng đồng</a></li>
+                            </Link>
                         </ul>
                     </nav>
                 </div>
 
-            </div>
+            </div >
 
         )
     }

@@ -54,7 +54,7 @@ class Server {
 		this.server.get('/login', (req, res) => {
 			this.app.render(req, res, '/login/login');
 		});
-		this.server.get('/ten-the-loai', (req, res) => {
+		this.server.get('/the-loai/:slug', (req, res) => {
 			this.app.render(req, res, '/one-type-post/one-type-post');
 		});
 		this.server.get('*', (req, res) => {

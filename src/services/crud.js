@@ -61,7 +61,7 @@ export class CrudApi {
   }
   async getList(option = {}) {
     let url = this.baseUrl();
-    const query = this._serialize(option.query);
+    const query = this._serialize(option.query || {});
     url += `${query}`;
     const options = {
       method: "GET",
@@ -70,16 +70,15 @@ export class CrudApi {
           "User-Agent": "Request-Promise",
           "Content-Type": "Application/json"
         },
-        option.headers
+        option.headers || {}
       )
     };
-    console.log("url.href: ", url);
     const res = await this.exec(url, options);
     return res.results.objects.rows;
   }
   async getItem(id, option = {}) {
     let url = this.baseUrl();
-    const query = this._serialize(option.query);
+    const query = this._serialize(option.query || {});
     url += `${query}`;
     const options = {
       method: "GET",
@@ -88,7 +87,7 @@ export class CrudApi {
           "User-Agent": "Request-Promise",
           "Content-Type": "Application/json"
         },
-        option.headers
+        option.headers || {}
       )
     };
     const res = await this.exec(url.href, options);
@@ -96,7 +95,7 @@ export class CrudApi {
   }
   async delete(id, option = {}) {
     let url = this.baseUrl();
-    const query = this._serialize(option.query);
+    const query = this._serialize(option.query || {});
     url += `${query}`;
     const options = {
       method: "DELETE",
@@ -105,7 +104,7 @@ export class CrudApi {
           "User-Agent": "Request-Promise",
           "Content-Type": "Application/json"
         },
-        option.headers
+        option.headers || {}
       )
     };
     const res = await this.exec(url.href, options);
@@ -114,7 +113,7 @@ export class CrudApi {
 
   async update(id, body, option = {}) {
     let url = this.baseUrl();
-    const query = this._serialize(option.query);
+    const query = this._serialize(option.query || {});
     url += `${query}`;
     const options = {
       method: "PUT",
@@ -123,7 +122,7 @@ export class CrudApi {
           "User-Agent": "Request-Promise",
           "Content-Type": "Application/json"
         },
-        option.headers
+        option.headers || {}
       ),
       body: JSON.stringify(body)
     };
@@ -132,7 +131,7 @@ export class CrudApi {
   }
   async create(body, option = {}) {
     let url = this.baseUrl();
-    const query = this._serialize(option.query);
+    const query = this._serialize(option.query || {});
     url += `${query}`;
     const options = {
       method: "POST",
@@ -141,7 +140,7 @@ export class CrudApi {
           "User-Agent": "Request-Promise",
           "Content-Type": "Application/json"
         },
-        option.headers
+        option.headers || {}
       ),
       body: JSON.stringify(body)
     };

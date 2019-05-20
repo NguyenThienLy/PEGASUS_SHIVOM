@@ -3,28 +3,23 @@ import 'isomorphic-unfetch';
 import { connect } from 'react-redux';
 
 import Head from 'next/head';
+import * as moment from 'moment';
+import * as _ from 'lodash';
 
-import {
-  NewPost,
-  StandOutPost,
-  StandOutPost2Column,
-  RankBooks,
-	SlideHome
-} from "../../components";
-// import { Slide } from "../../components";
-import "./home.scss";
+import { NewPost, StandOutPost, StandOutPost2Column, SlideHome } from './components';
+import './home.scss';
 
 import '../../assets/bootstrap4/bootstrap.min.scss';
 
 import { api } from '../../services';
-import { Header } from '../../components/header/header';
-import { Footer } from '../../components/footer/footer';
-import {Headline} from '../../components/headline/headline';
+import { RankBooks, Footer, Headline, Header, Slide, Loading } from '../../components';
 
 class Home extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			categories: [],
+			posts: [],
 			slides: [
 				{
 					img: '/img/slide0.jpg',
@@ -279,190 +274,220 @@ class Home extends React.Component {
 		};
 	}
 
-  async componentDidMount() {
-    const result = await api.post.getList({
-      query: { fields: ["$all", { postReactions: ["userId"] }] }
-    });
-    console.log("posts", result);
-  }
+	async componentDidMount() {
+		try {
+			const posts = await api.post.getList({
+				query: {
+					fields: [
+						'$all',
+						{ user: [ 'firstName', 'lastName' ], book: [ '$all', { category: [ '$all' ] } ] }
+					],
+					limit: 100
+				}
+			});
+			let categories = posts.map((post) => {
+				return post.book.category;
+			});
+			categories = _.unionBy(categories, '_id');
+			console.log('categories : ', categories);
+			this.setState({
+				categories: categories,
+				posts: posts
+			});
+			// const categories = await api.bookCategory.getList({ query: {
+			// 	fields: ["$all"]
+			// }})
+			// this.setState({ categories: categories })
+			// for(const categoryIndex in categories){
+			// 	const posts = await api.bookCategory.getPosts(categories[categoryIndex]._id, { query: {
+			// 		fields: ["$all"]
+			// 	}})
+			// 	categories[categoryIndex].posts = posts
+			// 	this.setState({ categories: categories })
+			// }
+		} catch (err) {
+			console.log('err: ', err);
+		}
+	}
 
-  static async getInitialProps({ req, query }) {
-    const result = await api.post.getList({
-      query: { fields: ["$all", { postReactions: ["$all"] }] }
-    });
-    console.log("result", result);
-    return {};
-  }
+	static async getInitialProps({ req, query }) {
+		return {};
+	}
 
-  onToggleMenuStandoutPost = () => {
-    const toggle = document.getElementById("menu-tab-small-screen");
-    toggle.classList.toggle("menu-tab-small-screen-show");
-  };
-  onChangeTypePostStandOut = typeID => {
-    this.setState({ currentIdTypeStandOut: typeID });
-    const tabs = document.getElementsByClassName("tab-stand-out-type");
-  };
-  render() {
-    return (
-      <div>
-        <Head>
-          <title>Trang chủ</title>
-          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"/>
-          <script
-            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossOrigin="anonymous"
-          />
-          <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossOrigin="anonymous"
-          />
-          {/* <script
+	onToggleMenuStandoutPost = () => {
+		const toggle = document.getElementById('menu-tab-small-screen');
+		toggle.classList.toggle('menu-tab-small-screen-show');
+	};
+	onChangeTypePostStandOut = (typeID) => {
+		this.setState({ currentIdTypeStandOut: typeID });
+		const tabs = document.getElementsByClassName('tab-stand-out-type');
+	};
+	render() {
+		return (
+			<div>
+				<Head>
+					<title>Trang chủ</title>
+					<link
+						rel="stylesheet"
+						href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+						integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+						crossorigin="anonymous"
+					/>
+					<script
+						src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+						integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+						crossOrigin="anonymous"
+					/>
+					<script
+						src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+						integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+						crossOrigin="anonymous"
+					/>
+					{/* <script
             src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossOrigin="anonymous"
           /> */}
-          <link
-            href="https://fonts.googleapis.com/css?family=Roboto"
-            rel="stylesheet"
-          />
-          <meta
-            name="viewport"
-            content="initial-scale=1.0, width=device-width"
-          />
-          <link href="../app.scss" rel="stylesheet" />
-        </Head>
-        {/* <Header {...this.props}/> */}
-        
-        <div className="home-main">
-          <SlideHome slides={this.state.slides} />
-          <div className="content-home-wrap">
-            <div className="left">
-              <Headline title="Bài viết nổi bật" />
-              <div className="headline-stand-out headline-stand-out-posts">
-                <div className="title">Bài viết nổi bật</div>
-                <span id="type-stand-out">
-                  {(this.state.currentIdTypeStandOut == this.state.AllTypeId &&
-                    "Tất cả") ||
-                    this.state.typeBook.filter(
-                      item => item.id == this.state.currentIdTypeStandOut
-                    )[0].name}
-                </span>
-                <div className="tab">
-                  <div className="tab-wide-screen">
-                    <button
-                      className="tab-stand-out-type btn m-2 btn-sm"
-                      onClick={() => {
-                        this.onChangeTypePostStandOut(this.state.AllTypeId);
-                      }}
-                    >
-                      Tất cả
-                    </button>
-                    {this.state.typeBook.map((item, index) => {
-                      if (index < 2) {
-                        return (
-                          <button
-                            className="tab-stand-out-type btn m-2 btn-sm"
-                            onClick={() => {
-                              this.onChangeTypePostStandOut(item.id);
-                            }}
-                          >
-                            {item.name}
-                          </button>
-                        );
-                      }
-                    })}
-                    <button
-                      class="btn m-2 btn-sm dropdown-toggle tab-stand-out-type"
-                      type="button"
-                      id="dropdownMenu2"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      Thêm
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                      {this.state.typeBook.map((item, index) => {
-                        if (index >= 2) {
-                          return (
-                            <button
-                              class="dropdown-item"
-                              type="button"
-                              onClick={() => {
-                                this.onChangeTypePostStandOut(item.id);
-                              }}
-                            >
-                              {item.name}
-                            </button>
-                          );
-                        }
-                      })}
-                    </div>
-                  </div>
-                  <div
-                    className="tab-small-screen"
-                    onClick={() => {
-                      this.onToggleMenuStandoutPost();
-                    }}
-                  >
-                    <i class="fas fa-ellipsis-h" />
-                  </div>
-                </div>
-              </div>
-              <div id="menu-tab-small-screen">
-                <ul
-                  className="tab-stand-out-type"
-                  onClick={() => {
-                    this.onChangeTypePostStandOut(this.state.AllTypeId);
-                  }}
-                >
-                  Tất cả
-                </ul>
-                {this.state.typeBook.map((item, index) => {
-                  return (
-                    <ul
-                      className="tab-stand-out-type"
-                      onClick={() => {
-                        this.onChangeTypePostStandOut(item.id);
-                      }}
-                    >
-                      {item.name}
-                    </ul>
-                  );
-                })}
-              </div>
-              <StandOutPost
-                posts={
-                  (this.state.currentIdTypeStandOut == this.state.AllTypeId &&
-                    this.state.standOutPosts) ||
-                  this.state.standOutPosts.filter(
-                    item => item.type == this.state.currentIdTypeStandOut
-                  )
-                }
-                typeBook={this.state.typeBook}
-              />
-              {/* Bài viết nổi bật theo loại 1 */}
-              <div className="headline-stand-out headline-stand-out-first">
-                <div className="title">
-                  {
-                    this.state.typeBook.filter(
-                      item => item.id == this.state.firstStandOutTypeBook
-                    )[0].name
-                  }
-                </div>
-              </div>
-              <StandOutPost2Column
-                posts={this.state.standOutPosts.filter(
-                  (item, index) => item.type == this.state.firstStandOutTypeBook
-                )}
-                typeBook={this.state.typeBook}
-              />
-              {/* //Bài viết nổi bật theo loại 1 */}
+					<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+					<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+					<link href="../app.scss" rel="stylesheet" />
+				</Head>
+				<Header {...this.props} />
+				{this.state.posts.length > 0 ? (
+					<div className="home-main">
+						<SlideHome slides={this.state.slides} />
+						<div className="content-home-wrap">
+							<div className="left">
+								{/* <Headline title="Bài viết nổi bật" /> */}
+								<div className="headline-stand-out headline-stand-out-posts">
+									<div className="title">Bài viết nổi bật</div>
+									<span id="type-stand-out">
+										{(this.state.currentIdTypeStandOut == this.state.AllTypeId && 'Tất cả') ||
+											this.state.typeBook.filter(
+												(item) => item.id == this.state.currentIdTypeStandOut
+											)[0].name}
+									</span>
+									<div className="tab">
+										<div className="tab-wide-screen">
+											<button
+												className="tab-stand-out-type btn m-2 btn-sm"
+												onClick={() => {
+													this.onChangeTypePostStandOut(this.state.AllTypeId);
+												}}
+											>
+												Tất cả
+											</button>
+											{this.state.typeBook.map((item, index) => {
+												if (index < 2) {
+													return (
+														<button
+															className="tab-stand-out-type btn m-2 btn-sm"
+															onClick={() => {
+																this.onChangeTypePostStandOut(item.id);
+															}}
+														>
+															{item.name}
+														</button>
+													);
+												}
+											})}
+											<button
+												class="btn m-2 btn-sm dropdown-toggle tab-stand-out-type"
+												type="button"
+												id="dropdownMenu2"
+												data-toggle="dropdown"
+												aria-haspopup="true"
+												aria-expanded="false"
+											>
+												Thêm
+											</button>
+											<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+												{this.state.typeBook.map((item, index) => {
+													if (index >= 2) {
+														return (
+															<button
+																class="dropdown-item"
+																type="button"
+																onClick={() => {
+																	this.onChangeTypePostStandOut(item.id);
+																}}
+															>
+																{item.name}
+															</button>
+														);
+													}
+												})}
+											</div>
+										</div>
+										<div
+											className="tab-small-screen"
+											onClick={() => {
+												this.onToggleMenuStandoutPost();
+											}}
+										>
+											<i class="fas fa-ellipsis-h" />
+										</div>
+									</div>
+								</div>
+								<div id="menu-tab-small-screen">
+									<ul
+										className="tab-stand-out-type"
+										onClick={() => {
+											this.onChangeTypePostStandOut(this.state.AllTypeId);
+										}}
+									>
+										Tất cả
+									</ul>
+									{this.state.typeBook.map((item, index) => {
+										return (
+											<ul
+												className="tab-stand-out-type"
+												onClick={() => {
+													this.onChangeTypePostStandOut(item.id);
+												}}
+											>
+												{item.name}
+											</ul>
+										);
+									})}
+								</div>
+								<StandOutPost
+									posts={
+										(this.state.currentIdTypeStandOut == this.state.AllTypeId &&
+											this.state.standOutPosts) ||
+										this.state.standOutPosts.filter(
+											(item) => item.type == this.state.currentIdTypeStandOut
+										)
+									}
+									typeBook={this.state.typeBook}
+								/>
+								<div
+									style={{
+										height: '30px'
+									}}
+								/>
+								{/* Bài viết nổi bật theo loại 1 */}
+								<div>
+									{this.state.categories.map((category) => {
+										return (
+											<div>
+												<div className="headline-stand-out headline-stand-out-first">
+													<div className="title">{category.name}</div>
+												</div>
+												<StandOutPost2Column
+													posts={this.state.posts.filter(
+														(item, index) => item.book.category._id == category._id
+													)}
+													typeBook={this.state.typeBook}
+												/>
+											</div>
+										);
+									})}
+								</div>
+								{/* //Bài viết nổi bật theo loại 1 */}
 
-							{/* Bài viết theo loại 2 */}
-							<div className="headline-stand-out headline-stand-out-second">
+								{/* Bài viết theo loại 2 */}
+								{/* <div className="headline-stand-out headline-stand-out-second">
 								<div className="title">
 									{
 										this.state.typeBook.filter(
@@ -476,46 +501,49 @@ class Home extends React.Component {
 									(item) => item.type == this.state.secondStandOutTypeBook
 								)}
 								typeBook={this.state.typeBook}
-							/>
-							{/* //Bài viết theo loại 2 */}
+							/> */}
+								{/* //Bài viết theo loại 2 */}
 
-              {/* Bài viết nổi bật theo loại 3 */}
-              <div className="headline-stand-out headline-stand-out-third">
-                <div className="title">
-                  {
-                    this.state.typeBook.filter(
-                      item => item.id == this.state.thirdStandOutTypeBook
-                    )[0].name
-                  }
-                </div>
-              </div>
-              <StandOutPost2Column
-                posts={this.state.standOutPosts.filter(
-                  item => item.type == this.state.thirdStandOutTypeBook
-                )}
-                typeBook={this.state.typeBook}
-              />
-              {/* //Bài viết nổi bật theo loại 3 */}
-            </div>
-            <div className="right">
-              {/* Bài viết mới nhất */}
-              <NewPost posts={this.state.newPost} />
-              {/* Bảng xếp hạng */}
-              <div id="rank-book-home">
-                <div className="headline-stand-out headline-stand-out-rating">
-                  <div className="title">Bảng xếp hạng</div>
-                </div>
-                <div id="rank">
-                  <RankBooks rankBooks={this.state.rankBooks} />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <Footer/>
-      </div>
-    );
-  }
+								{/* Bài viết nổi bật theo loại 3 */}
+								{/* <div className="headline-stand-out headline-stand-out-third">
+								<div className="title">
+									{
+										this.state.typeBook.filter(
+											item => item.id == this.state.thirdStandOutTypeBook
+										)[0].name
+									}
+								</div>
+							</div> */}
+								{/* <StandOutPost2Column
+								posts={this.state.standOutPosts.filter(
+									item => item.type == this.state.thirdStandOutTypeBook
+								)}
+								typeBook={this.state.typeBook}
+							/> */}
+								{/* //Bài viết nổi bật theo loại 3 */}
+							</div>
+							<div className="right">
+								{/* Bài viết mới nhất */}
+								<NewPost posts={this.state.posts.slice(0, 8)} />
+								{/* Bảng xếp hạng */}
+								<div id="rank-book-home">
+									<div className="headline-stand-out headline-stand-out-rating">
+										<div className="title">Bảng xếp hạng</div>
+									</div>
+									<div id="rank">
+										<RankBooks rankBooks={this.state.rankBooks} />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				) : (
+					<Loading />
+				)}
+				<Footer />
+			</div>
+		);
+	}
 }
 
 const mapStateToProps = (state) => {
