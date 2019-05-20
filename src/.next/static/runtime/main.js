@@ -8595,7 +8595,7 @@ function connect(options) {
       error.name = err.name;
       error.stack = err.stack; // __NEXT_DIST_DIR is provided by webpack
 
-      source_map_support_1.rewriteStacktrace(error, "/Users/mac/Documents/Pegasus/review_ui/src/.next");
+      source_map_support_1.rewriteStacktrace(error, "D:\\WEB\\PEGASUS\\P01_REVIEW_BOOK\\review_ui_ver3\\review_ui\\src\\.next");
       return error;
     }
   };
@@ -19113,7 +19113,7 @@ module.exports = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/mac/Documents/Pegasus/review_ui/node_modules/next/dist/client/next-dev */"../node_modules/next/dist/client/next-dev.js");
+module.exports = __webpack_require__(/*! D:\WEB\PEGASUS\P01_REVIEW_BOOK\review_ui_ver3\review_ui\node_modules\next\dist\client\next-dev */"../node_modules/next/dist/client/next-dev.js");
 
 
 /***/ }),

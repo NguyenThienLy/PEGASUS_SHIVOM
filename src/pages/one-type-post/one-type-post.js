@@ -95,7 +95,7 @@ class OneTypePost extends Component {
 					/>
 				</Head>
 				<Header {...this.props} />
-				<div className="container">
+				<div className="container one-type-post-page-wrap">
 					<div className="name-type-wrap">
 						<div className="img">
 							<img src="/img/type-book.jpg" alt={this.state.typeBook} />

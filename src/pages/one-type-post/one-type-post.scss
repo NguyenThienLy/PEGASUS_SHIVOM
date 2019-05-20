@@ -1,5 +1,6 @@
 @import "../../default.scss";
-.container {
+.one-type-post-page-wrap {
+	margin-top: 150px;
 	.name-type-wrap {
 		position: relative;
 		.img {
@@ -17,7 +18,7 @@
 			}
 		}
 		.name-type-book {
-			text-align: right;
+			// text-align: right;
 			&:hover {
 				cursor: pointer;
 			}
@@ -25,7 +26,8 @@
 				background-image: -webkit-linear-gradient(bottom, rgb(255, 253, 253), rgba(0, 0, 0, 0));
 				width: 100%;
 				bottom: 0;
-				padding: 50px 100px 40px 20px;
+				// margin-right: 30px;
+				padding: 50px 0px 40px 20px;
 				position: absolute;
 				font-size: 4em;
 				color: #555555;
@@ -45,7 +47,7 @@
 	}
 }
 @media only screen and (max-width: 600px) {
-	.container {
+	.one-type-post-page-wrap {
 		.name-type-wrap {
 			.name-type-book {
 				text-align: center;
