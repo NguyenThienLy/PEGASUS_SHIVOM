@@ -496,7 +496,7 @@ class Home extends React.Component {
 											<StandOutPost2Column
 												posts={this.state.posts.filter(
 													(item, index) => item.book.category._id == category._id
-												)}
+												).slice(0,8)}
 												typeBook={this.state.typeBook}
 											/>
 										</div>

@@ -29,7 +29,7 @@ export class StandOutPost2Column extends Component {
                                                     <div className="author-time">
                                                         <div className="author"><a href="#">{posts[0].user.firstName} {posts[0].user.lastName}</a></div>
                                                         <div className="time">{moment(posts[0].createdAt).format("DD/MM/YYYY HH:mm")}</div>
-                                                        <div className="love">{posts[0].love} <i class="fab fa-gratipay"></i></div>
+                                                        <div className="love">{posts[0].reaction} <i class="fab fa-gratipay"></i></div>
                                                     </div>
                                                     <div className="decription">{posts[0].description ? posts[0].description.substring(0, 100) + "..." : ""}</div>
                                                 </div>
@@ -55,7 +55,7 @@ export class StandOutPost2Column extends Component {
                                                     <div className="author-time">
                                                         <div className="author"><a href="#">{posts[1].user.firstName} {posts[1].user.lastName}</a></div>
                                                         <div className="time">{moment(posts[1].createdAt).format("DD/MM/YYYY HH:mm")}</div>
-                                                        <div className="love">{posts[1].love} <i class="fab fa-gratipay"></i></div>
+                                                        <div className="love">{posts[1].reaction} <i class="fab fa-gratipay"></i></div>
                                                     </div>
                                                     <div className="decription">{posts[1].description ? posts[1].description.substring(0, 100) + "..." : ""}</div>
                                                 </div>
