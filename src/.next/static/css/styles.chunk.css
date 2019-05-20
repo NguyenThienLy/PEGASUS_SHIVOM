@@ -9459,47 +9459,5 @@ button:focus {
   .left .menu-tab-small-screen-show {
     display: block !important; } }
 
-* body {
-  font-family: "Merriweather", serif; }
-  * body .title {
-    font-family: "Montserrat", sans-serif; }
-
-.error {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-direction: column;
-  height: 100vh; }
-  .error #pegasus {
-    color: #bbb8b8;
-    font-size: 0.5em; }
-  .error div {
-    flex: 1; }
-  .error img {
-    height: 40vh;
-    margin-top: 15vh;
-    margin-bottom: 30px; }
-  .error .btns {
-    display: flex;
-    justify-content: center; }
-  .error .btns button {
-    flex: 1;
-    margin: 20px 20px !important;
-    border-radius: 10px;
-    padding: 10px;
-    background-color: #24404D;
-    color: #fff;
-    font-weight: bold;
-    box-shadow: 2px 2px 5px #bbb9b9; }
-  .error .btns button:focus {
-    outline: none; }
-  .error .btns button:hover {
-    background-color: #fff;
-    color: #24404D; }
-
-.error:not(#pegasus) {
-  font-size: 1.5em;
-  color: #29424e; }
-
 
 /*# sourceMappingURL=styles.chunk.css.map*/
