@@ -305,17 +305,7 @@ class Home extends React.Component {
 				categories: categories,
 				posts: posts
 			})
-			// const categories = await api.bookCategory.getList({ query: {
-			// 	fields: ["$all"]
-			// }})
-			// this.setState({ categories: categories })
-			// for(const categoryIndex in categories){
-			// 	const posts = await api.bookCategory.getPosts(categories[categoryIndex]._id, { query: {
-			// 		fields: ["$all"]
-			// 	}})
-			// 	categories[categoryIndex].posts = posts
-			// 	this.setState({ categories: categories })
-			// }
+			
 
 		} catch (err) {
 			console.log("err: ", err)

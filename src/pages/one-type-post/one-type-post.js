@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import './one-type-post.scss';
-import { PostItem2, Headline } from '../../components/';
+import { PostItem2, Headline, Loading } from '../../components/';
 import { Header } from '../../components/header/header';
 import Head from 'next/head';
 import { connect } from 'react-redux';
+import { api } from '../../services';
 
 class OneTypePost extends Component {
     state = {};
     constructor(props) {
         super(props);
         this.state = {
+            users: null,
             posts: [
                 {
                     _id: 1,
@@ -63,9 +65,40 @@ class OneTypePost extends Component {
             typeBook: 'Truyện ngắn'
         };
     }
-    static getInitialProps(){
-        return {
+    static async  getInitialProps({ req, query }) {
+        const slug = req.params.slug
+        const categories = await api.bookCategory.getList({
+            query: {
+                fields: ["$all"],
+                filter: { slug }
+            }
+        })
+        const posts = await api.bookCategory.getPosts(categories[0]._id, {
+            query: {
+                fields: ["$all"]
+            }
+        })
 
+
+        return {
+            category: categories[0],
+            posts
+        }
+    }
+    async componentDidMount() {
+
+        try {
+            const users = await api.user.getList({
+                query: {
+                    fields: ["firstName", "lastName", "_id"],
+                    filter: { _id: { $in: this.props.posts.map(post => { return post.userId }) } }
+                }
+            })
+            console.log("user: ", users)
+            this.setState({ users })
+            this.forceUpdate()
+        } catch (err) {
+            console.log("erd: ", err)
         }
     }
     render() {
@@ -73,7 +106,7 @@ class OneTypePost extends Component {
         return (
             <div>
                 <Head>
-                    <title>Tên thể loại</title>
+                    <title>{this.props.category.name}</title>
                     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                     <link href="../app.scss" rel="stylesheet" />
                     <link href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat" rel="stylesheet" />
@@ -89,58 +122,59 @@ class OneTypePost extends Component {
                     />
                     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"></link>
                 </Head>
-                <Header {...this.props}/>
-                <div className="container">
-                    <div className="name-type-wrap">
-                        <div className="img">
-                            <img src="/img/type-book.jpg" alt={this.state.typeBook} />
+                <Header {...this.props} />
+                {this.state.users ?
+                    <div className="container">
+                        <div className="name-type-wrap">
+                            <div className="img">
+                                <img src="/img/type-book.jpg" alt={this.props.category.name} />
+                            </div>
+                            <div className="name-type-book"><div>{this.props.category.name}</div></div>
                         </div>
-                        <div className="name-type-book"><div>{typeBook}</div></div>
-                    </div>
-                    <div className="one-type-posts-wrap">
-                        <div>
-                            {
-                                this.state.posts.map((item, index) => {
-                                    if (index % 3 == 0) {
-                                        return (
-                                            <PostItem2 post={item} />
-                                        )
-                                    }
-                                })
-                            }
-                        </div>
-                        <div>
-                            {
-                                this.state.posts.map((item, index) => {
-                                    if (index % 3 == 1) {
-                                        return (
-                                            <PostItem2 post={item} />
-                                        )
-                                    }
-                                })
-                            }
-                        </div>
-                        <div>
-                            {
-                                this.state.posts.map((item, index) => {
-                                    if (index % 3 == 2) {
-                                        return (
-                                            <PostItem2 post={item} />
-                                        )
-                                    }
-                                })
-                            }
-                        </div>
+                        <div className="one-type-posts-wrap">
+                            <div>
+                                {
+                                    this.props.posts.map((item, index) => {
+                                        if (index % 3 == 0) {
+                                            return (
+                                                <PostItem2 post={item} users={this.state.users} />
+                                            )
+                                        }
+                                    })
+                                }
+                            </div>
+                            <div>
+                                {
+                                    this.props.posts.map((item, index) => {
+                                        if (index % 3 == 1) {
+                                            return (
+                                                <PostItem2 post={item} users={this.state.users} />
+                                            )
+                                        }
+                                    })
+                                }
+                            </div>
+                            <div>
+                                {
+                                    this.props.posts.map((item, index) => {
+                                        if (index % 3 == 2) {
+                                            return (
+                                                <PostItem2 post={item} users={this.state.users} />
+                                            )
+                                        }
+                                    })
+                                }
+                            </div>
 
-                    </div>
-                </div>
+                        </div>
+                    </div> : <Loading />}
             </div>
         );
     }
 }
 
 const mapStateToProps = (state) => {
-	return state;
+    return state;
 };
 
 export default connect(mapStateToProps)(OneTypePost);

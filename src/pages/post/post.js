@@ -1,21 +1,26 @@
 import * as React from 'react'
 import 'isomorphic-unfetch'
-import { connect } from 'react-redux'
-
-
-import { Header } from '../../components'
 import Head from 'next/head'
 import Link from 'next/link'
 import './post.scss'
+
+import { connect } from 'react-redux'
+import { api } from '../../services'
+import { Header } from '../../components'
+
+
 
  class Post extends React.Component {
     constructor(props) {
         super(props)
     }
     static async  getInitialProps({ req, query }) {
-       
+        console.log("req: ", req.params)
+        const slug = req.params.postId
+        const posts =  await api.post.getList({ query: { fields: ["$all"], filter: { slug: slug } }} )
+        console.log("post :", posts)
         return {
-           
+           post: posts[0]
         }
     }
     render() {
@@ -23,9 +28,13 @@ import './post.scss'
         return (
             <div>
                 <Head>
-                    <title>Bài review</title>
+                    <title>{this.props.post.title}</title>
+                    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous" />
                 </Head>
                 <Header {...this.props}/>
+                <div className="post-body">
+                    <p>{this.props.post.content}</p>
+                </div>
             </div>
         )
     }

@@ -58,7 +58,7 @@ export class Header extends React.Component {
     }
     async componentDidMount() {
         try {
-            const categories = await api.bookCategory.getList({ query: { fields: ["name"], limit: 50 } })
+            const categories = await api.bookCategory.getList({ query: { fields: ["name","slug"], limit: 50 } })
 
             let categoriesChunked = _.chunk(categories, 8)
             this.setState({ categories: categoriesChunked })
@@ -118,7 +118,7 @@ export class Header extends React.Component {
                                             <ul>
                                                 {arrayChild.map(category => {
                                                     return (
-                                                        <Link href="/the-loai/van-hoc-kinh-dien">
+                                                        <Link href={`/the-loai/${category.slug}`}>
                                                             <li className="drop-down-item"><a href="#" >{category.name}</a></li>
                                                         </Link>
                                                     )
