@@ -1,0 +1,128 @@
+@import '../../default.scss';
+.post-item-3-wrap {
+	$size-avata: 40px;
+	$margin-left: 15%;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	box-shadow: -0.5px -0.5px 6px rgba(0, 0, 0, 0.05);
+	margin-bottom: 20px;
+	&:hover {
+		box-shadow: -0.7px -0.7px 6px rgba(0, 0, 0, 0.15);
+	}
+	.first-line {
+		margin-left: $margin-left;
+		margin-bottom: 10px;
+		padding-top: 15px;
+		.infor-author {
+			background-color: #fff;
+			display: flex;
+			.img {
+				margin-bottom: 10px;
+				img {
+					width: $size-avata;
+					height: $size-avata;
+					border-radius: 50%;
+				}
+			}
+			.right-column {
+				.author {
+					display: flex;
+					text-align: center;
+					.name a {
+						text-decoration: none;
+						font-weight: bold;
+						color: #505050;
+						font-size: 0.7em;
+						padding-left: 10px;
+					}
+					.follow {
+						margin-left: 10px;
+						padding: 3px 10px;
+						border-radius: 10px;
+						box-shadow: 0 3px 6px rgba(68, 65, 65, 0.3);
+						font-size: 0.6em;
+						text-align: center;
+						color: #888888;
+						border: 0.4px solid #888888;
+						height: 1.5em;
+						&:hover {
+							box-shadow: 0 3px 6px rgba(68, 65, 65, 0.4);
+							cursor: pointer;
+						}
+					}
+				}
+				.time {
+					font-size: 12px;
+					margin-left: 15px;
+					color: rgba(0, 0, 0, 0.54);
+				}
+			}
+		}
+	}
+	.img {
+		margin-bottom: 15px;
+		text-align: center;
+		img {
+			width: 70%;
+			height: 200px;
+			border-radius: 2px;
+		}
+	}
+	// div:not(.first-line) {
+	// 	margin-left: $margin-left;
+	// }
+	.title {
+		margin-left: $margin-left;
+		font-weight: bold;
+		font-size: 1.1em;
+		a {
+			color: #505050;
+			text-decoration: none;
+			&:hover {
+				color: $color-hover;
+			}
+		}
+	}
+
+	.postReactions {
+		margin-left: $margin-left;
+		padding-left: 20px;
+		font-size: 0.7em;
+		color: rgb(126, 125, 125);
+
+		i {
+			color: red;
+			margin-right: 10px;
+		}
+	}
+	.description {
+		margin-left: $margin-left;
+		margin-right: $margin-left;
+		padding: 0px 10px;
+		margin-top: 10px;
+	}
+
+	.content {
+		margin-left: $margin-left;
+		margin-right: $margin-left;
+		padding: 0px 20px;
+		color: rgba(0, 0, 0, 0.5);
+		transition: 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+	}
+	.read-more,
+	.shorten {
+		margin-left: $margin-left;
+		margin-right: $margin-left;
+		padding-bottom: 20px;
+		text-align: right;
+		color: rgb(40, 151, 224);
+		&:hover {
+			color: $color-hover;
+			cursor: pointer;
+		}
+	}
+	.shorten {
+		display: none;
+	}
+}

@@ -1,5 +1,36 @@
+@import "../../default.scss";
+
 .profile-main {
-    width: 85%;
-    margin-left: auto;
-    margin-right: auto
+	margin-top: 100px;
+	width: 85%;
+	margin-left: auto;
+	margin-right: auto;
+	.write-post {
+		position: relative;
+		margin: 30px 15%;
+		box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+		input {
+			height: 70px;
+			width: 100%;
+			border: 0.3px solid rgba(0, 0, 0, 0.05);
+		}
+		.placeholder {
+			#write-post {
+			}
+			div {
+				position: absolute;
+				bottom: 6px;
+				padding: 18px 20px;
+				font-size: 0.9em;
+				color: rgb(163, 161, 161);
+				i {
+					font-size: 2em;
+					margin-right: 15px;
+				}
+			}
+		}
+		&:hover {
+			box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+		}
+	}
 }
