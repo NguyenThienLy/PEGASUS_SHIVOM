@@ -1,4 +1,5 @@
 import { CrudApi } from '../crud'
+import * as _ from 'lodash'
 
 export class BookCategoryApi extends CrudApi {
     constructor(){
