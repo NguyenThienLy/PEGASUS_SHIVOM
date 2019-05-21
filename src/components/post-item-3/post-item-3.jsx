@@ -69,7 +69,6 @@ export class PostItem3 extends Component {
     }
     render() {
         const { post, author } = this.props;
-        console.log("post: " + post);
         return (
             <div className="post-item-3-wrap">
                 <div className="first-line">

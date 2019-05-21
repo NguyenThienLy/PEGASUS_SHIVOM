@@ -9156,6 +9156,7 @@ button {
   .post-item-3-wrap .postReactions {
     margin-left: 15%;
     padding-left: 20px;
+    margin-top: 5px;
     font-size: 0.7em;
     color: #7e7d7d; }
     .post-item-3-wrap .postReactions i {
@@ -9275,32 +9276,29 @@ button {
     margin-right: auto;
     padding: 10px 10px 10px 10px; } }
 
+* body {
+  font-family: "Merriweather", serif; }
+  * body .title {
+    font-family: "Montserrat", sans-serif; }
+
 .editor-title {
   float: left;
-  width: 100%; }
+  width: 100%;
+  font-family: "Merriweather", serif; }
   .editor-title input {
+    font-size: 1.2em;
+    font-weight: bold;
     float: left;
-    width: calc(100% - 150px);
-    border-bottom: dashed #58B1E1;
+    width: calc(100% - 50px);
+    border-bottom: dashed #58b1e1;
     border-top: none;
     border-right: none;
     border-left: none;
     height: 50px;
-    font-size: 40px; }
+    font-family: "Montserrat", sans-serif !important;
+    padding-left: 20px; }
   .editor-title input:focus {
     outline: none; }
-  .editor-title .public-button {
-    padding: 10px 0;
-    position: absolute;
-    right: 0px; }
-    .editor-title .public-button button {
-      width: 150px;
-      height: 40px;
-      border: solid 3px #369bd2;
-      background-color: #369bd2;
-      color: #fff;
-      font-weight: 600;
-      border-radius: 3px; }
 
 .editor-main {
   max-height: 600px;
@@ -9316,6 +9314,7 @@ button {
       .editor-main .editor-post-basic .editor-description textarea {
         height: 197px;
         width: 100%;
+        padding-left: 30px;
         float: left;
         border-left: none;
         border-top: none;
@@ -9341,11 +9340,32 @@ button {
         object-fit: cover;
         border-radius: 8px;
         height: 200px;
-        border: solid  #58B1E1; }
+        margin-right: 10px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); }
         .editor-main .editor-post-basic .editor-thumbnail .image img {
           width: 100%;
           height: 100%;
           border-radius: 4px; }
+
+.ckEditor {
+  padding-bottom: 70px; }
+
+.public-button {
+  padding: 10px 0;
+  position: absolute;
+  right: 30px;
+  bottom: 0px; }
+  .public-button button {
+    width: 150px;
+    height: 40px;
+    border: solid 3px #369bd2;
+    background-color: #369bd2;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 3px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); }
+    .public-button button:hover {
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); }
 
 * body {
   font-family: "Merriweather", serif; }
