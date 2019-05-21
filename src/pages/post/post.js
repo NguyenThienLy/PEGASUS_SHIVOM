@@ -15,10 +15,8 @@ import { Header } from '../../components'
         super(props)
     }
     static async  getInitialProps({ req, query }) {
-        console.log("req: ", req.params)
         const slug = req.params.postId
         const posts =  await api.post.getList({ query: { fields: ["$all"], filter: { slug: slug } }} )
-        console.log("post :", posts)
         return {
            post: posts[0]
         }

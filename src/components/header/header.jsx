@@ -57,8 +57,35 @@ export class Header extends React.Component {
         }
     }
     async componentDidMount() {
+        const s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.innerHTML = `
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function() {
+    var currentScrollPos = window.pageYOffset;
+      if (prevScrollpos > currentScrollPos) {
+        document.getElementById("header-id").style.top = "0px";
+        //document.getElementById("header-id").style.position = "fixed";
+        document.getElementById("header-id").style.boxShadow = "none";
+      } else {
+        document.getElementById("header-id").style.top = "-67px";
+        document.getElementById("header-id").style.boxShadow = "rgba(0, 0, 0, 0.16) 0px 0px 3px 0px, rgba(0, 0, 0, 0.12) 0px 1px 7px 0px";
+      }
+      prevScrollpos = currentScrollPos;
+    }
+    `;
+        document.body.appendChild(s);
+
+
+        // rgba(0, 0, 0, 0.16) 0px 0px 3px 0px, rgba(0, 0, 0, 0.12) 0px 1px 7px 0px
+
+
+
+
+
         try {
-            const categories = await api.bookCategory.getList({ query: { fields: ["name","slug"], limit: 50 } })
+            const categories = await api.bookCategory.getList({ query: { fields: ["name", "slug"], limit: 50 } })
 
             let categoriesChunked = _.chunk(categories, 8)
             this.setState({ categories: categoriesChunked })
@@ -66,6 +93,7 @@ export class Header extends React.Component {
             console.log("err: ", err)
         }
     }
+
 
     render() {
         return (

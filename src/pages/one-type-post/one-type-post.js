@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './one-type-post.scss';
-import { PostItem2, Headline, Loading } from '../../components/';
+import { PostItem2, Headline, Loading, Footer } from '../../components/';
 import { Header } from '../../components/header/header';
 import Head from 'next/head';
 import { connect } from 'react-redux';
@@ -168,6 +168,7 @@ class OneTypePost extends Component {
 
                         </div>
                     </div> : <Loading />}
+                    <Footer/>
             </div>
         );
     }
