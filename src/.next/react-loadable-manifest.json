@@ -7,23 +7,17 @@
       "publicPath": "static/chunks/0.js"
     }
   ],
-  "./baseModal.scss": [
+  "./success.scss": [
     {
-      "id": "./modals/base/baseModal.scss",
-      "name": "./modals/base/baseModal.scss",
+      "id": "./modals/success/success.scss",
+      "name": "./modals/success/success.scss",
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     }
   ],
   "undefined": [
     {
-      "id": 17,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 15,
+      "id": 21,
       "name": null,
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
@@ -47,7 +41,7 @@
       "publicPath": "static/chunks/styles.js"
     },
     {
-      "id": 1,
+      "id": 17,
       "name": null,
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
@@ -89,7 +83,7 @@
       "publicPath": "static/chunks/styles.js"
     },
     {
-      "id": 21,
+      "id": 1,
       "name": null,
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
@@ -179,7 +173,43 @@
       "publicPath": "static/chunks/styles.js"
     },
     {
+      "id": 15,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 35,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 36,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 31,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 38,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
       "id": 30,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 39,
       "name": null,
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
@@ -191,7 +221,31 @@
       "publicPath": "static/chunks/styles.js"
     },
     {
-      "id": 31,
+      "id": 40,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 43,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 41,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 42,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 33,
       "name": null,
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
@@ -269,18 +323,18 @@
       "publicPath": "static/chunks/styles.js"
     }
   ],
-  "./../../assets/bootstrap4/bootstrap.min.scss": [
+  "./baseModal.scss": [
     {
-      "id": "./assets/bootstrap4/bootstrap.min.scss",
-      "name": "./assets/bootstrap4/bootstrap.min.scss",
+      "id": "./modals/base/baseModal.scss",
+      "name": "./modals/base/baseModal.scss",
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     }
   ],
-  "./success.scss": [
+  "./../../assets/bootstrap4/bootstrap.min.scss": [
     {
-      "id": "./modals/success/success.scss",
-      "name": "./modals/success/success.scss",
+      "id": "./assets/bootstrap4/bootstrap.min.scss",
+      "name": "./assets/bootstrap4/bootstrap.min.scss",
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     }
@@ -365,10 +419,74 @@
       "publicPath": "static/chunks/styles.js"
     }
   ],
+  "./_error.scss": [
+    {
+      "id": "./pages/_error/_error.scss",
+      "name": "./pages/_error/_error.scss",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
   "./app.scss": [
     {
       "id": "./pages/app.scss",
       "name": "./pages/app.scss",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
+  "./new-post-item.scss": [
+    {
+      "id": "./pages/home/components/new-post-item/new-post-item.scss",
+      "name": "./pages/home/components/new-post-item/new-post-item.scss",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
+  "./newpost.scss": [
+    {
+      "id": "./pages/home/components/newpost/newpost.scss",
+      "name": "./pages/home/components/newpost/newpost.scss",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
+  "./slideHome.scss": [
+    {
+      "id": "./pages/home/components/slideHome/slideHome.scss",
+      "name": "./pages/home/components/slideHome/slideHome.scss",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
+  "./stand-out-posts-2-column.scss": [
+    {
+      "id": "./pages/home/components/stand-out-posts-2-column/stand-out-posts-2-column.scss",
+      "name": "./pages/home/components/stand-out-posts-2-column/stand-out-posts-2-column.scss",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
+  "./stand-out-posts.scss": [
+    {
+      "id": "./pages/home/components/stand-out-posts/stand-out-posts.scss",
+      "name": "./pages/home/components/stand-out-posts/stand-out-posts.scss",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
+  "./home.scss": [
+    {
+      "id": "./pages/home/home.scss",
+      "name": "./pages/home/home.scss",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
+  "./login.scss": [
+    {
+      "id": "./pages/login/login.scss",
+      "name": "./pages/login/login.scss",
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     }

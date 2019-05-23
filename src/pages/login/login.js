@@ -123,7 +123,7 @@ class Login extends React.Component {
                     />
                 </Head>
                 {this.state.showLoading ? <Loading /> :
-                    <div className="login-main">
+                    <div className="__login-main">
                         <div class="container" id="container">
                             <div class="form-container sign-up-container">
                                 <form action="#">
