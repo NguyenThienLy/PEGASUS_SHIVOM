@@ -1,37 +1,47 @@
 @import '../../default.scss';
+@import url('https://fonts.googleapis.com/css?family=Merriweather:400,700&subset=vietnamese');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
 .footer {
-    margin-top: 30px;
-    width: 70%;
+    font-family: 'Montserrat', sans-serif;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 20px;
 }
 .footer-wrapper{
     bottom: 0px;
-    width: 100%;
-    height: 100%;
-    background-image:linear-gradient(to right,#6FD6FF, #BFF098); ;
+    // width: 100%;
+    // height: 100%;
+    // background-image:linear-gradient(to right,#6FD6FF, #BFF098); ;
     // padding: 0 9%;
+    background: #F9F8F5;
+    opacity: 0.7;
 }
 .content-list{
-    height: 35px;
+    text-transform: uppercase;
+    height: 25px;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    // flex-wrap: wrap;
+ 
+    justify-content: space-between;
     font-size: 13px;
+    width: 30vw;
+    margin: auto;
+
     a{
         display: block;
-        margin: 7px 7px 0 0;
-        color: #FFFFFF;
+        margin: 2px 20px 0 0;
+        color: rgba(0,0,0,0.84);
     }
 }
 
 .footer-copyright{
-    height: 28px;
-    padding-top: 7px;
+    height: 22px;
+    
     text-align: center;
     h5{
-        color: #FFFFFF;  
+        color: rgba(0,0,0,0.84);
         font-size: 12px;
+        font-weight: 800;
     }
 }
