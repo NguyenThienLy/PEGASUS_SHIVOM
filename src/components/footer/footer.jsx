@@ -23,7 +23,7 @@ export class Footer extends React.Component {
                     <a href="#" className="content-items">Help</a>                    
                 </div>
                 <div className="footer-copyright">
-                    <h5>cuongsach.com 2019© All rights reserved. Powered by Pegasus Tech</h5>
+                    <h5>cuongsach.com 2019 © Pegasus Tech</h5>
                 </div>
                 
             </div>
