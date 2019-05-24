@@ -1,13 +1,12 @@
 import { CrudApi } from '../crud'
-import * as _ from 'lodash'
 
-export class BookCategoryApi extends CrudApi {
-    constructor() {
-        super("bookCategory")
+export class SearchApi extends CrudApi {
+    constructor(){
+        super("search")
     }
-    async getPosts(id, option = {}) {
-        let url = this.baseUrl(`${id}/posts`);
-        const query = this._serialize(option.query || {});
+    async search(params, option = {}) {
+        let url = this.baseUrl("search");
+        const query = this._serialize(params || {});
         url += `${query}`;
         const options = {
             method: "GET",
@@ -20,6 +19,6 @@ export class BookCategoryApi extends CrudApi {
             )
         };
         const res = await this.exec(url, options);
-        return res.results.objects.rows;
+        return res.result.object
     }
 }

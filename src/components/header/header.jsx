@@ -17,8 +17,8 @@ export class Header extends React.Component {
         super(props)
         this.state = {
             user: null,
-            categories: [[], []]
-
+            categories: [[], []],
+            search: null
         }
     }
     async logout() {
@@ -61,29 +61,21 @@ export class Header extends React.Component {
         s.type = 'text/javascript';
         s.async = true;
         s.innerHTML = `
-    var prevScrollpos = window.pageYOffset;
-    window.onscroll = function() {
-    var currentScrollPos = window.pageYOffset;
-      if (prevScrollpos > currentScrollPos) {
-        document.getElementById("header-id").style.top = "0px";
-        //document.getElementById("header-id").style.position = "fixed";
-        document.getElementById("header-id").style.boxShadow = "none";
-      } else {
-        document.getElementById("header-id").style.top = "-67px";
-        document.getElementById("header-id").style.boxShadow = "rgba(0, 0, 0, 0.16) 0px 0px 3px 0px, rgba(0, 0, 0, 0.12) 0px 1px 7px 0px";
-      }
-      prevScrollpos = currentScrollPos;
-    }
-    `;
+            var prevScrollpos = window.pageYOffset;
+            window.onscroll = function() {
+            var currentScrollPos = window.pageYOffset;
+            if (prevScrollpos > currentScrollPos) {
+                document.getElementById("header-id").style.top = "0px";
+                //document.getElementById("header-id").style.position = "fixed";
+                document.getElementById("header-id").style.boxShadow = "none";
+            } else {
+                document.getElementById("header-id").style.top = "-67px";
+                document.getElementById("header-id").style.boxShadow = "rgba(0, 0, 0, 0.16) 0px 0px 3px 0px, rgba(0, 0, 0, 0.12) 0px 1px 7px 0px";
+            }
+            prevScrollpos = currentScrollPos;
+            }
+        `;
         document.body.appendChild(s);
-
-
-        // rgba(0, 0, 0, 0.16) 0px 0px 3px 0px, rgba(0, 0, 0, 0.12) 0px 1px 7px 0px
-
-
-
-
-
         try {
             const categories = await api.bookCategory.getList({ query: { fields: ["name", "slug"], limit: 50 } })
 
@@ -92,6 +84,13 @@ export class Header extends React.Component {
         } catch (err) {
             console.log("err: ", err)
         }
+    }
+    onSearch = async () => {
+        const query = this.refs.search.value
+        this.setState({ search: query })
+    }
+    onSearchKeyPress = async (event) => {
+        Router.push(`/tim-kiem?search=${this.state.search}`)       
     }
 
 
@@ -109,14 +108,14 @@ export class Header extends React.Component {
 
                     <div className="function-group">
                         <div className="function-group-item search-box">
-                            <input className="search-txt" type="text" name="search-box" placeholder="Tìm kiếm..." />
+
+                            <input className="search-txt" type="text" name="search-box" placeholder="Tìm kiếm..." ref="search" onChange={this.onSearch} onKeyPress={this.onSearchKeyPress} />
                             <a className="search-icon" href="#">
                                 <i class="fas fa-search"></i>
                             </a>
 
                         </div>
                         <button className="function-group-item sign-in-button" id="login-button">
-                            {/* <a href="#"> */}
                             {!this.state.user ?
                                 <Link href="/login">
                                     <a href="#" className="nav-link">Đăng nhập</a>
@@ -125,7 +124,6 @@ export class Header extends React.Component {
                                     <a onClick={this.logout} href="#">{this.state.user.displayName || this.state.user.email}</a>
                                 </div>
                             }
-                            {/* </a> */}
                         </button>
                     </div>
                 </div>
