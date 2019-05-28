@@ -14,7 +14,7 @@ class Profile extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			showEditor: true,
+			showEditor: false,
 			user: {
 				_id: '1',
 				firebaseUid: '',
@@ -99,14 +99,17 @@ class Profile extends React.Component {
 		this.setState({ showEditor: true });
 	}
 
-	createPost = () => {
-		const title = document.getElementById('title-new-post').value;
-		const desciption = document.getElementById('desciption-new-post').value;
+	createPost = () => {};
 
-		//TODO: get content
-		const content = 'content demo';
-		// console.log('title demo: ', title);
-	};
+	// createPost = (title, desciption, content, thumb) => {
+	// 	const title = document.getElementById('title-new-post').value;
+	// 	const desciption = document.getElementById('desciption-new-post').value;
+
+	// 	//TODO: get content
+	// 	const content = 'content demo';
+
+	// 	// console.log('title demo: ', title);
+	// };
 
 	render() {
 		return (
@@ -140,7 +143,7 @@ class Profile extends React.Component {
 						<div />
 					)}
 					{this.state.showEditor ? (
-						<Editor handleClose={this.handleClose} createPost={() => this.createPost()} />
+						<Editor handleClose={this.handleClose} createPost={this.createPost} />
 					) : null}
 					<div className="posts-wrap">
 						{this.state.postsFromUser.map((item, index) => {

@@ -1,6 +1,6 @@
 @import '../../default.scss';
 .post-item-3-wrap {
-	$size-avata: 40px;
+	$size-avata: 50px;
 	$margin-left: 15%;
 	display: flex;
 	justify-content: center;
@@ -17,8 +17,14 @@
 		.infor-author {
 			background-color: #fff;
 			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			height: 50px;
 			.img {
 				margin-bottom: 10px;
+				width: $size-avata;
+				height: $size-avata;
+				margin: 10px 0px;
 				img {
 					width: $size-avata;
 					height: $size-avata;
@@ -61,19 +67,21 @@
 		}
 	}
 	.img {
-		margin-bottom: 15px;
 		text-align: center;
-		img {
-			width: 70%;
-			height: 200px;
-			border-radius: 2px;
-		}
+		background-repeat: no-repeat;
+		height: 220px;
+		background-size: cover;
+		background-position: center;
+		border-radius: 2px;
+		width: 70%;
+		margin: 15px auto;
 	}
 	// div:not(.first-line) {
 	// 	margin-left: $margin-left;
 	// }
 	.title {
 		margin-left: $margin-left;
+		margin-right: $margin-left;
 		font-weight: bold;
 		font-size: 1.1em;
 		a {
@@ -125,5 +133,13 @@
 	}
 	.shorten {
 		display: none;
+	}
+}
+
+@media only creen and(max-width: 600px) {
+	.post-item-3-wrap {
+		.img {
+			height: 140px;
+		}
 	}
 }

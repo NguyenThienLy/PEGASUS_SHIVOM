@@ -11,6 +11,15 @@ export class Editor extends React.Component {
         }
     }
 
+    // onChange = (content) => {
+    //     console.log("new content: ", content.editor.getData());
+    //     this.setState({content})
+    // }
+    // createPost(){
+
+    //     this.props.createPost(title, description, content, thumb)
+    // }
+
     render() {
         return (
             <BaseModal show={true} handleClose={this.props.handleClose} style={{ height: "90%", width: "1000px" }}>

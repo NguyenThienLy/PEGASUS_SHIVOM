@@ -1,47 +1,6 @@
 import React, { Component } from 'react';
 import './post-item-3.scss'
 
-
-
-// const user = {
-//     _id: '1',
-//     firebaseUid: '',
-//     firebaseUserInfo: '',
-//     username: 'Minh Nhi',
-//     firstName: 'Trần',
-//     lastName: 'Minh Nhi',
-//     email: 'tmnhi@gmail.com',
-//     description: 'Là một người thích đọc sách',
-//     birthday: '23/02/1998',
-//     quote: 'Nếu giấc mơ của bạn không làm bạn sợ, rõ ràng giấc mơ đó chưa đủ lớn',
-//     job: '',
-//     score: 12,
-//     influenceScore: 1,
-//     avatar: '/img/avata-demo.jpg',
-//     cover: '',
-//     role: 'guest'
-// };
-
-
-// {
-//     _id: 1,
-//     title: 'Hãy hướng về phía mặt trời',
-//     slug: '',
-//     description:
-//         'Ai cũng cần động lực để giúp bản thân làm những điều mình cần làm. Cuốn sách này giúp tôi nhận ra nhiều điều trong cuộc sống',
-//     postTemplate: '',
-//     content: '...',
-//     thumb:
-//         'http://dinhvankiem.com/demo/e-reading/wp-content/uploads/2016/05/book-759873_1920-370x218.jpg',
-//     images:
-//         'http://dinhvankiem.com/demo/e-reading/wp-content/uploads/2016/05/book-759873_1920-370x218.jpg',
-//     userId: '',
-//     bookId: '',
-//     createAt: '10:34 12/03/2019',
-//     book: 'Trước bình minh là đêm tối',
-//     postReactions: 4
-// }
-
 export class PostItem3 extends Component {
     constructor(props) {
         super(props);
@@ -85,8 +44,8 @@ export class PostItem3 extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="img">
-                    <img src={post.images} alt="" />
+                <div className="img" style={{ backgroundImage: "url(" + post.images + ")" }}>
+                    {/* <img src={post.images} alt="" /> */}
                 </div>
                 <div className="title"><a href="">{post.title}</a></div>
                 <div className="postReactions"><i className="fab fa-gratipay"></i>{post.postReactions} lượt thích</div>
