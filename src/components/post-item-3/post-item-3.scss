@@ -43,7 +43,6 @@
 						padding-left: 10px;
 					}
 					.follow {
-						margin-left: 10px;
 						padding: 3px 10px;
 						border-radius: 10px;
 						box-shadow: 0 3px 6px rgba(68, 65, 65, 0.3);
@@ -52,6 +51,8 @@
 						color: #888888;
 						border: 0.4px solid #888888;
 						height: 1.5em;
+						width: 60;
+						margin-left: 15px;
 						&:hover {
 							box-shadow: 0 3px 6px rgba(68, 65, 65, 0.4);
 							cursor: pointer;
@@ -79,32 +80,54 @@
 	// div:not(.first-line) {
 	// 	margin-left: $margin-left;
 	// }
-	.title {
-		margin-left: $margin-left;
-		margin-right: $margin-left;
-		font-weight: bold;
-		font-size: 1.1em;
+	.title-react-line {
+		display: flex;
+		justify-content: space-between;
+		.title {
+			margin-left: $margin-left;
+			font-weight: bold;
+			font-size: 1.1em;
+			a {
+				color: #505050;
+				text-decoration: none;
+				&:hover {
+					color: $color-hover;
+				}
+			}
+		}
+		.postReactions {
+			margin-left: $margin-left;
+			margin-right: $margin-left;
+			padding-left: 20px;
+			margin-top: 5px;
+			font-size: 0.7em;
+			color: rgb(126, 125, 125);
+
+			i {
+				color: red;
+				margin-right: 10px;
+			}
+		}
+	}
+	.name-book {
+		margin: 1px $margin-left 10px;
 		a {
-			color: #505050;
 			text-decoration: none;
+			color: #7a7979;
+			padding: 5px 10px;
+			border-radius: 20px;
+			border: 1.4px solid #6b6b6b7a;
+			font-size: 0.65em;
 			&:hover {
 				color: $color-hover;
+			}
+			i {
+				margin-right: 5px;
+				font-size: 1.3em;
 			}
 		}
 	}
 
-	.postReactions {
-		margin-left: $margin-left;
-		padding-left: 20px;
-		margin-top: 5px;
-		font-size: 0.7em;
-		color: rgb(126, 125, 125);
-
-		i {
-			color: red;
-			margin-right: 10px;
-		}
-	}
 	.description {
 		margin-left: $margin-left;
 		margin-right: $margin-left;

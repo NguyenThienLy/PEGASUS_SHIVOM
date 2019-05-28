@@ -3,10 +3,8 @@ import 'isomorphic-unfetch';
 import { connect } from 'react-redux';
 import { Header, Headline, Footer, PostItem3 } from '../../components';
 import Head from 'next/head';
-import Link from 'next/link';
 import './profile.scss';
 
-import { Info } from './components/info/info';
 import { Editor } from './components/editor/editor';
 import Information from './components/information/information';
 
@@ -15,6 +13,22 @@ class Profile extends React.Component {
 		super(props);
 		this.state = {
 			showEditor: false,
+			tabs: [
+				{
+					id: 0,
+					name: "Trang cá nhân"
+				},
+				{
+					id: 1,
+					name: "Theo dõi"
+				},
+				{
+					id: 2,
+					name: "Đã lưu"
+				}
+			],
+			activeTab: 0,
+			savedTabId: 2,
 			user: {
 				_id: '1',
 				firebaseUid: '',
@@ -69,6 +83,7 @@ class Profile extends React.Component {
 					description:
 						'Cuộc sống là một cuốn nhật ký và bạn chính là chủ nhân. Hãy viêt sao để nó trở thành cuốn nhật ký đáng đọc.',
 					postReactions: 4,
+					bookId: '',
 					book: 'Trước bình minh là đêm tối',
 					content: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 
@@ -99,7 +114,7 @@ class Profile extends React.Component {
 		this.setState({ showEditor: true });
 	}
 
-	createPost = () => {};
+	createPost = () => { };
 
 	// createPost = (title, desciption, content, thumb) => {
 	// 	const title = document.getElementById('title-new-post').value;
@@ -110,6 +125,19 @@ class Profile extends React.Component {
 
 	// 	// console.log('title demo: ', title);
 	// };
+	changeActiveTab = (id) => {
+		this.setState({ activeTab: id })
+		if (id == this.state.savedTabId) {
+			const dropdown = document.getElementById("tab-saved-section");
+			dropdown.style.height = "58px";
+			dropdown.style.opacity = "1";
+		}
+		else {
+			const dropdown = document.getElementById("tab-saved-section");
+			dropdown.style.height = "0px";
+			dropdown.style.opacity = "0";
+		}
+	}
 
 	render() {
 		return (
@@ -126,22 +154,53 @@ class Profile extends React.Component {
 					/>
 				</Head>
 				<Header {...this.props} />
-				<Headline title="BÀI VIẾT REVIEW" />
 
-				<div className="container profile-main">
+				<div className="my-container profile-main">
 					<Information user={this.state.user} />
 					{this.state.isHomeUser ? (
-						<div className="write-post" onClick={() => this.openEditor()}>
-							<input type="text" name="" id="write-post" placeholder="" />
-							<div className="placeholder">
-								<div>
-									<i class="fas fa-pen-fancy" /> Hãy chia sẽ cảm nhận về sách tại đây
+						<div className="user-tools">
+							<div className="menu-home-user">
+								<div className="tab-signs-wrap">
+									<div className="tabs-signs">
+										{
+											this.state.tabs.map((item) => {
+												return (
+													<div className={item.id == this.state.activeTab ? "tab-sign tab-active" : "tab-sign"}>
+														<i class="fas fa-map-signs"></i>
+													</div>
+												)
+											})
+										}
+									</div>
+								</div>
+								<div className="tabs">
+									{
+										this.state.tabs.map((item) => {
+											return (
+												<div className={item.id == this.state.activeTab ? "tab tab-active" : "tab"}>
+													<div className="tab" onClick={() => this.changeActiveTab(item.id)}>{item.name}</div>
+												</div>
+											)
+										})
+									}
+								</div>
+								<div id="tab-saved-section">
+									<div className="tab-child">Sách</div>
+									<div className="tab-child">Bài viết</div>
+								</div>
+							</div>
+							<div className="write-post" onClick={() => this.openEditor()}>
+								<input type="text" name="" id="write-post" placeholder="" />
+								<div className="placeholder">
+									<div>
+										<i class="fas fa-pen-fancy" /> Hãy chia sẽ cảm nhận về sách tại đây
+								</div>
 								</div>
 							</div>
 						</div>
 					) : (
-						<div />
-					)}
+							<div />
+						)}
 					{this.state.showEditor ? (
 						<Editor handleClose={this.handleClose} createPost={this.createPost} />
 					) : null}
@@ -162,21 +221,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(Profile);
-
-{
-	/* 
-					<div
-						style={{
-							height: '30px'
-						}}
-					/>
-					<Info />
-					<div
-						style={{
-							height: '20px'
-						}}
-					/>
-					<Headline title="BÀI VIẾT REVIEW" />
-					{this.state.showEditor ? <Editor handleClose={this.handleClose} /> : null}
-				</div> */
-}

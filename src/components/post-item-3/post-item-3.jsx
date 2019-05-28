@@ -43,12 +43,17 @@ export class PostItem3 extends Component {
                             <div className="time">{post.createAt}</div>
                         </div>
                     </div>
+
                 </div>
                 <div className="img" style={{ backgroundImage: "url(" + post.images + ")" }}>
                     {/* <img src={post.images} alt="" /> */}
                 </div>
-                <div className="title"><a href="">{post.title}</a></div>
-                <div className="postReactions"><i className="fab fa-gratipay"></i>{post.postReactions} lượt thích</div>
+                <div className="title-react-line">
+
+                    <div className="title"><a href="">{post.title}</a></div>
+                    <div className="postReactions"><i className="fab fa-gratipay"></i>{post.postReactions} lượt thích</div>
+                </div>
+                <div className="name-book"><a href={"/book/" + post.bookId}>{post.book}</a></div>
                 <div className="description">{post.description}</div>
                 <div className="content" id={post.id + "content-post"}>{post.content.substring(0, 300)}...</div>
                 <div className="read-more" id={post.id + "read-more-post-btn"} onClick={() => this.readMoreContent()}>Xem thêm</div>

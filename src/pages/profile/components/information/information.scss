@@ -23,7 +23,8 @@
 				font-size: 1em;
 			}
 			.follow {
-				margin-left: 10px;
+				margin: 5px auto 10px;
+				width: 100px;
 				padding: 3px 10px;
 				border-radius: 10px;
 				box-shadow: 0 3px 6px rgba(68, 65, 65, 0.3);
@@ -88,6 +89,17 @@
 			display: flex;
 			justify-content: center;
 			flex-direction: column;
+		}
+		.infor-detail {
+			margin-left: 0px;
+			.description {
+				color: #888888;
+				padding-left: 0px;
+				text-align: center;
+			}
+			.quote-wrap {
+				margin-left: 0px;
+			}
 		}
 	}
 }

@@ -1,4 +1,4 @@
-$main-color: #6FD6FF;
+$main-color: #6fd6ff;
 $sub-main-color: #6a9cb6;
 $font-color: #29424e;
 $font-note-color: rgb(187, 184, 184);
@@ -12,4 +12,9 @@ $font-body: 'Merriweather', serif;
 	.title {
 		font-family: $font-title;
 	}
+}
+
+.my-container {
+	max-width: 1180px;
+	margin: 0px auto;
 }
