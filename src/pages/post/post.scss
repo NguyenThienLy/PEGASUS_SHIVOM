@@ -1,6 +1,134 @@
-.post-body {
-    width: 70%;
+@import "../../default.scss";
+
+@import url('https://fonts.googleapis.com/css?family=Merriweather:400,700&subset=vietnamese');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+@mixin e($element){
+    &__#{$element} {
+        @content;
+    }
+}
+//block modifier
+@mixin m($modifier){
+    &--#{$modifier} {
+        @content;
+    }
+}
+
+.post-body { 
+    width: 75%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 150px;
+    margin-top: 170px;
+
+    //css for body content
+    @include e('content') {
+        width: 70%;
+
+        //this is css for post title
+        .post-title{
+            @include e('h1') {
+                margin-bottom: 0px;
+                font-size: 42px;
+                color: rgba(0,0,0,0.84);
+            }
+        }
+        //css for book infomation (title, author, genre and average point)
+        .book-info{
+            margin-top: 5px;
+            margin-bottom: 22px;
+
+            @include e('h2'){
+                color: rgba(0,0,0,0.54);
+                margin-bottom: 0px;
+                font-size: 26px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            @include e('title') {
+                color: rgba(0,0,0,0.54);     
+            }
+            @include e('author') {
+                color: rgba(0,0,0,0.54);
+            }
+            @include e('average-point') {
+                font-size: 18px;
+                font-style: italic;
+            }
+            @include e('book-genre'){
+                font-size: 12px;
+                color: rgba(0,0,0,0.54);
+                a {
+                    color: rgba(0,0,0,0.54);
+                }
+            }
+                
+        }
+        //css for reviewer information 
+        .reviewer-info{
+            margin: 2px 0 22px 0;
+            display: inline-grid;
+            grid-template-columns: 90px auto;
+            grid-template-rows: auto;
+            grid-template-areas: 
+                "avatar username follow" 
+                "avatar givenpoint givenpoint";
+            @include e('avatar'){
+                grid-area: avatar;
+                @include m('style'){
+                    border: 3px solid #6FD6FF;
+                    border-radius: 999px;
+                    height: 70px;
+                }
+            }
+            @include e('username'){
+                font-size: 16px;
+                grid-area: username;
+                display: flex;
+                align-items: flex-end;
+                a {
+                    color: rgba(0,0,0,0.84);
+                }
+                
+            }
+            @include e('follow'){
+                grid-area: follow;
+                display: flex;
+                align-items: flex-end;
+                margin-left: auto;
+                @include e('button'){
+                    background: none;
+                    border: 1px solid rgba(0,0,0,0.54);
+                    border-radius: 999px;
+                    font-size: 12px;
+                }
+            }
+            @include e('given-point'){
+                display: flex;
+                align-items: center;
+                grid-area: givenpoint;
+                color: rgba(0,0,0,0.54);
+                font-size:14px;
+                font-style: italic;
+            }
+
+        }
+    }    
 }
+
+
+//block element
+
+
+//// Rewriting our previous example with our brand new mixins
+// .menu {
+//     ...
+
+//     @include e('item') {
+//         ...
+//     }
+
+//     @include m('fixed') {
+//         ...
+//     }
+// }

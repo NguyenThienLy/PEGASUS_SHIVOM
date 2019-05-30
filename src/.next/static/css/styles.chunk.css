@@ -4,6 +4,8 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,800);
 @import url(https://fonts.googleapis.com/css?family=Merriweather:400,700&subset=vietnamese);
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,800);
+@import url(https://fonts.googleapis.com/css?family=Merriweather:400,700&subset=vietnamese);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,800);
 body {
   font-family: "Segoe UI"; }
 
@@ -62,6 +64,128 @@ body {
     margin-top: 10px;
     display: flex;
     flex-direction: column; }
+
+* body {
+  font-family: "Merriweather", serif; }
+  * body .title {
+    font-family: "Montserrat", sans-serif; }
+
+.container .name-type-wrap {
+  position: relative; }
+  .container .name-type-wrap .img {
+    overflow: hidden;
+    max-width: 100%;
+    height: 250px; }
+    .container .name-type-wrap .img img {
+      overflow: hidden;
+      width: 100%;
+      transition: transform 20s cubic-bezier(0.075, 0.82, 0.165, 1); }
+      .container .name-type-wrap .img img:hover {
+        transform: scale(1.1); }
+  .container .name-type-wrap .name-type-book {
+    text-align: right; }
+    .container .name-type-wrap .name-type-book:hover {
+      cursor: pointer; }
+    .container .name-type-wrap .name-type-book div {
+      background-image: -webkit-linear-gradient(bottom, #fffdfd, rgba(0, 0, 0, 0));
+      width: 100%;
+      bottom: 0;
+      padding: 50px 100px 40px 20px;
+      position: absolute;
+      font-size: 4em;
+      color: #555555;
+      font-weight: bold;
+      text-shadow: 0 3px 6px rgba(255, 255, 255, 0.7); }
+
+.container .one-type-posts-wrap {
+  display: flex;
+  justify-content: center; }
+  .container .one-type-posts-wrap div {
+    display: flex;
+    flex-direction: column; }
+
+@media only screen and (max-width: 600px) {
+  .container .name-type-wrap .name-type-book {
+    text-align: center; }
+    .container .name-type-wrap .name-type-book div {
+      font-size: 2em; }
+  .container .one-type-posts-wrap {
+    flex-direction: column; } }
+
+* body {
+  font-family: "Merriweather", serif; }
+  * body .title {
+    font-family: "Montserrat", sans-serif; }
+
+.post-body {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 170px; }
+  .post-body__content {
+    width: 70%; }
+    .post-body__content .post-title__h1 {
+      margin-bottom: 0px;
+      font-size: 42px;
+      color: rgba(0, 0, 0, 0.84); }
+    .post-body__content .book-info {
+      margin-top: 5px;
+      margin-bottom: 22px; }
+      .post-body__content .book-info__h2 {
+        color: rgba(0, 0, 0, 0.54);
+        margin-bottom: 0px;
+        font-size: 26px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center; }
+      .post-body__content .book-info__title {
+        color: rgba(0, 0, 0, 0.54); }
+      .post-body__content .book-info__author {
+        color: rgba(0, 0, 0, 0.54); }
+      .post-body__content .book-info__average-point {
+        font-size: 18px;
+        font-style: italic; }
+      .post-body__content .book-info__book-genre {
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.54); }
+        .post-body__content .book-info__book-genre a {
+          color: rgba(0, 0, 0, 0.54); }
+    .post-body__content .reviewer-info {
+      margin: 2px 0 22px 0;
+      display: inline-grid;
+      grid-template-columns: 90px auto;
+      grid-template-rows: auto;
+      grid-template-areas: "avatar username follow"  "avatar givenpoint givenpoint"; }
+      .post-body__content .reviewer-info__avatar {
+        grid-area: avatar; }
+        .post-body__content .reviewer-info__avatar--style {
+          border: 3px solid #6FD6FF;
+          border-radius: 999px;
+          height: 70px; }
+      .post-body__content .reviewer-info__username {
+        font-size: 16px;
+        grid-area: username;
+        display: flex;
+        align-items: flex-end; }
+        .post-body__content .reviewer-info__username a {
+          color: rgba(0, 0, 0, 0.84); }
+      .post-body__content .reviewer-info__follow {
+        grid-area: follow;
+        display: flex;
+        align-items: flex-end;
+        margin-left: auto; }
+        .post-body__content .reviewer-info__follow__button {
+          background: none;
+          border: 1px solid rgba(0, 0, 0, 0.54);
+          border-radius: 999px;
+          font-size: 12px; }
+      .post-body__content .reviewer-info__given-point {
+        display: flex;
+        align-items: center;
+        grid-area: givenpoint;
+        color: rgba(0, 0, 0, 0.54);
+        font-size: 14px;
+        font-style: italic; }
 
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
@@ -7396,10 +7520,6 @@ a.text-dark:focus, a.text-dark:hover {
   * body .title {
     font-family: "Montserrat", sans-serif; }
 
-/* box-shadow: 0 1px 3px -2px rgba(0,0,0,0.07); */
-* {
-  box-sizing: content-box; }
-
 .header {
   background-color: #fff;
   position: fixed;
@@ -7415,116 +7535,116 @@ a.text-dark:focus, a.text-dark:hover {
     align-items: center;
     margin: 0 15vw;
     justify-content: space-between; }
-  .header .logo {
-    display: inline-block; }
-  .header .page-title {
-    color: rgba(0, 0, 0, 0.84);
-    font-size: 29px;
-    font-family: 'Merriweather', serif; }
-  .header .function-group {
-    display: flex; }
-  .header .function-group-item {
-    display: inline-block;
-    padding: 10px 15px; }
-  .header .search-box {
-    background: #ffffff;
-    height: 20px;
-    border-radius: 40px;
-    padding: 10px;
-    margin: 7px 20px; }
-  .header .search-icon {
-    color: rgba(0, 0, 0, 0.54);
-    background: #ffffff;
-    justify-content: center;
-    align-items: center;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    transition: 1s;
-    border-radius: 50%; }
-  .header .search-txt {
-    border: none;
-    background: none;
-    float: left;
-    color: #000000;
-    outline: none;
-    font-size: 14px;
-    transition: 1s;
-    width: 0; }
-  .header .search-box:hover > .search-txt {
-    width: 180px;
-    padding: 0 6px; }
-  .header .search-box:hover > .search-icon {
-    background: none; }
-  .header .search-box:hover {
-    border: 0.5px solid #6FD6FF; }
-  .header .sign-in-button {
-    font-family: 'Merriweather', serif;
-    border: none;
-    background: none; }
-  .header .sign-in-button a {
-    font-size: 14px;
-    color: #6FD6FF;
-    text-decoration: none; }
-  .header .sign-in-button:hover {
-    color: #91d0e9; }
+    .header .first-floor__logo {
+      display: inline-block; }
+    .header .first-floor__page-title {
+      color: rgba(0, 0, 0, 0.84);
+      font-size: 29px;
+      font-family: 'Merriweather', serif; }
+    .header .first-floor .function-group {
+      display: flex; }
+      .header .first-floor .function-group__item {
+        display: inline-block;
+        padding: 10px 15px; }
+    .header .first-floor .search-box {
+      box-sizing: content-box;
+      background: #ffffff;
+      height: 20px;
+      border-radius: 40px;
+      padding: 10px;
+      margin: 7px 20px; }
+      .header .first-floor .search-box__search-icon {
+        color: rgba(0, 0, 0, 0.54);
+        background: #ffffff;
+        justify-content: center;
+        align-items: center;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        transition: 1s;
+        border-radius: 50%; }
+      .header .first-floor .search-box__search-txt {
+        border: none;
+        background: none;
+        float: left;
+        color: #000000;
+        outline: none;
+        font-size: 14px;
+        transition: 1s;
+        width: 0; }
+      .header .first-floor .search-box:hover {
+        border: 0.5px solid #6FD6FF; }
+      .header .first-floor .search-box:hover > .search-box__search-txt {
+        width: 180px;
+        padding: 0 6px; }
+      .header .first-floor .search-box:hover > .search-box__search-icon {
+        background: none; }
+    .header .first-floor .sign-in-button {
+      font-family: 'Merriweather', serif;
+      border: none;
+      background: none; }
+      .header .first-floor .sign-in-button a {
+        font-size: 14px;
+        color: #6FD6FF;
+        text-decoration: none; }
+      .header .first-floor .sign-in-button:hover > a {
+        color: #91d0e9; }
   .header .second-floor {
     display: flex;
     font-size: 15px; }
-  .header .navbar {
-    display: flex;
-    width: 100%;
-    padding: 0;
-    justify-content: center; }
-  .header .navbar .nav-links {
-    display: flex;
-    width: 70vw;
-    margin: 0;
-    padding-left: 0;
-    justify-content: space-between; }
-  .header .navbar .nav-links .nav-item {
-    list-style: none;
-    text-transform: uppercase;
-    padding-left: 0px;
-    padding: 15px 0px;
-    white-space: nowrap; }
-  .header .nav-item {
-    cursor: pointer; }
-  .header .nav-item a {
-    color: rgba(0, 0, 0, 0.54);
-    text-decoration: none; }
-  .header .navbar a.active {
-    color: rgba(0, 0, 0, 0.84); }
-  .header .nav-item:hover > a {
-    color: #6FD6FF; }
-  .header .nav-item:hover > .drop-down-1 {
-    top: 25px;
-    display: flex; }
-  .header .drop-down-1 {
-    list-style: none;
-    position: absolute;
-    top: -1000px;
-    display: none;
-    flex-direction: row;
-    padding: 13px;
-    margin-top: 15px;
-    background: #ffffff;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px 0px, rgba(0, 0, 0, 0.12) 0px 1px 7px 0px;
-    transition: 0.5s; }
-  .header .drop-down-1 ul {
-    padding: 0 30px; }
-  .header .drop-down-1 li {
-    list-style: none;
-    margin: 8px 0;
-    text-transform: none; }
-  .header .drop-down-1 li a {
-    color: rgba(0, 0, 0, 0.84);
-    text-transform: none; }
-  .header .drop-down-item:hover > a {
-    color: #6FD6FF; }
-  .header .drop-down-item:hover > .drop-down-1 {
-    top: 100px;
-    display: flex; }
+    .header .second-floor .navbar {
+      display: flex;
+      width: 100%;
+      padding: 0;
+      justify-content: center; }
+      .header .second-floor .navbar .active {
+        color: rgba(0, 0, 0, 0.84); }
+      .header .second-floor .navbar .nav-links {
+        display: flex;
+        width: 70vw;
+        margin: 0;
+        padding-left: 0;
+        justify-content: space-between; }
+        .header .second-floor .navbar .nav-links .nav-item {
+          list-style: none;
+          text-transform: uppercase;
+          padding-left: 0px;
+          padding: 15px 0px;
+          white-space: nowrap;
+          cursor: pointer; }
+          .header .second-floor .navbar .nav-links .nav-item .nav-item--style {
+            color: rgba(0, 0, 0, 0.54);
+            text-decoration: none; }
+          .header .second-floor .navbar .nav-links .nav-item:hover > .nav-item--style {
+            color: #6FD6FF; }
+          .header .second-floor .navbar .nav-links .nav-item:hover > .drop-down-1 {
+            top: 25px;
+            display: flex; }
+    .header .second-floor .drop-down-1 {
+      list-style: none;
+      position: absolute;
+      top: -1000px;
+      display: none;
+      flex-direction: row;
+      padding: 13px;
+      margin-top: 15px;
+      background: #ffffff;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px 0px, rgba(0, 0, 0, 0.12) 0px 1px 7px 0px;
+      transition: 0.5s; }
+      .header .second-floor .drop-down-1 ul {
+        padding: 0 30px; }
+      .header .second-floor .drop-down-1 li {
+        list-style: none;
+        margin: 8px 0;
+        text-transform: none; }
+        .header .second-floor .drop-down-1 li a {
+          color: rgba(0, 0, 0, 0.84);
+          text-transform: none; }
+    .header .second-floor .drop-down-item:hover > a {
+      color: #6FD6FF; }
+    .header .second-floor .drop-down-item:hover > .drop-down-1 {
+      top: 100px;
+      display: flex; }
 
 .rectangle-slide {
   width: 50px;
@@ -9105,7 +9225,7 @@ button {
       display: flex;
       border-radius: 40px;
       background: none;
-      height: 15px;
+      height: 35px;
       border-radius: 40px;
       padding: 10px 20px; }
       .search-page .search-content .search-box .search-txt {
@@ -9127,7 +9247,7 @@ button {
     display: flex;
     margin-bottom: 0px;
     margin-top: 10px;
-    height: 15px;
+    height: 35px;
     font-size: 15px;
     padding: 10px 20px;
     justify-content: flex-start;
@@ -9155,8 +9275,7 @@ button {
     .search-page .search-result-container .search-result-top {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding-left: 20px; }
+      justify-content: space-between; }
       .search-page .search-result-container .search-result-top .search-result-top-title {
         font-size: 20px; }
       .search-page .search-result-container .search-result-top .search-result-top-items {
