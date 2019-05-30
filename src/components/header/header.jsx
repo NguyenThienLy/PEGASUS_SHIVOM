@@ -100,22 +100,22 @@ export class Header extends React.Component {
             <div className="header" id="header-id">
                 <div className="first-floor" id="first-floor-id">
                     <div>
-                        {/* <a href="https://cuongsach.com" className="logo">
+                        {/* <a href="https://cuongsach.com" className="first-floor__logo">
                             <img src="./logo.jpeg" alt="Cuồng Sách logo">
                         </a>   */}
-                        <div className="page-title"><b>Cuồng sách.</b></div>
+                        <div className="first-floor__page-title"><b>Cuồng sách.</b></div>
                     </div>
 
                     <div className="function-group">
-                        <div className="function-group-item search-box">
+                        <div className="function-group__item search-box">
 
-                            <input className="search-txt" type="text" name="search-box" placeholder="Tìm kiếm..." ref="search" onChange={this.onSearch} onKeyPress={this.onSearchKeyPress} />
-                            <a className="search-icon" href="#">
+                            <input className="search-box__search-txt" type="text" name="search-box" placeholder="Tìm kiếm..." ref="search" onChange={this.onSearch} onKeyPress={this.onSearchKeyPress} />
+                            <a className="search-box__search-icon" href="#">
                                 <i class="fas fa-search"></i>
                             </a>
 
                         </div>
-                        <button className="function-group-item sign-in-button" id="login-button">
+                        <button className="function-group__item sign-in-button" id="login-button">
                             {!this.state.user ?
                                 <Link href="/login">
                                     <a href="#" className="nav-link">Đăng nhập</a>
@@ -132,10 +132,10 @@ export class Header extends React.Component {
                     <nav className="navbar">
                         <ul className="nav-links">
                             <Link href="/">
-                                <li className="nav-item"><a href="#" className="active">trang chủ</a></li>
+                                <li className="nav-item"><a href="#" className="active nav-item--style">trang chủ</a></li>
                             </Link>
 
-                            <li className="nav-item"><a href="#">thể loại</a>
+                            <li className="nav-item"><a href="#" className="nav-item--style">thể loại</a>
 
                                 <div className="drop-down-1">
                                     {this.state.categories.map((arrayChild) => {
@@ -198,7 +198,7 @@ export class Header extends React.Component {
                                 </div>
                             </li>
                             <Link href="/">
-                                <li className="nav-item"><a href="#">sách hay</a>
+                                <li className="nav-item"><a href="#" className="nav-item--style">sách hay</a>
 
                                     {/* <div className="drop-down-1">
                                         <ul>
@@ -215,13 +215,13 @@ export class Header extends React.Component {
                                 </li>
                             </Link>
                             <Link href="/">
-                                <li className="nav-item"><a href="#">góc mọt sách</a></li>
+                                <li className="nav-item"><a href="#" className="nav-item--style">góc mọt sách</a></li>
                             </Link>
                             <Link href="/">
-                                <li className="nav-item"><a href="#">góc sáng tác</a></li>
+                                <li className="nav-item"><a href="#" className="nav-item--style">góc sáng tác</a></li>
                             </Link>
                             <Link href="/">
-                                <li className="nav-item"><a href="#">cộng đồng</a></li>
+                                <li className="nav-item"><a href="#" className="nav-item--style">cộng đồng</a></li>
                             </Link>
                         </ul>
                     </nav>
