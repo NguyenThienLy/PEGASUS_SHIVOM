@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import './reviews.scss'
+import { CloudImage } from '../../../../components';
 
 export class Reviews extends React.Component {
     constructor(props) {
@@ -14,7 +15,7 @@ export class Reviews extends React.Component {
                 <div className="reviews-row">
                     <div className="review-item">
                         <div className="img-wrapper">
-                            <img src="https://bizweb.dktcdn.net/100/197/269/products/lam-ra-lam-choi-ra-choi.jpg?v=1549868667403" />
+                            <CloudImage src="https://bizweb.dktcdn.net/100/197/269/products/lam-ra-lam-choi-ra-choi.jpg?v=1549868667403" />
                         </div>
                         <div className="review-info">
                             <h4>Cuốn sách hay về marketing</h4>
@@ -26,7 +27,7 @@ export class Reviews extends React.Component {
                     </div>
                     <div className="review-item">
                         <div className="img-wrapper">
-                            <img src="https://bizweb.dktcdn.net/100/197/269/products/com-bo-tam-ly-hoc.jpg?v=1550046079353" />
+                            <CloudImage src="https://bizweb.dktcdn.net/100/197/269/products/com-bo-tam-ly-hoc.jpg?v=1550046079353" />
                         </div>
                         <div className="review-info">
                             <h4>Cuốn sách hay về marketing</h4>
@@ -41,7 +42,7 @@ export class Reviews extends React.Component {
                 <div className="reviews-row">
                     <div className="review-item">
                         <div className="img-wrapper">
-                            <img src="https://bizweb.dktcdn.net/100/197/269/products/combo-sketchnote.png?v=1552291129710" />
+                            <CloudImage src="https://bizweb.dktcdn.net/100/197/269/products/combo-sketchnote.png?v=1552291129710" />
                         </div>
                         <div className="review-info">
                             <h4>Cuốn sách hay về marketing</h4>
@@ -53,7 +54,7 @@ export class Reviews extends React.Component {
                     </div>
                     <div className="review-item">
                         <div className="img-wrapper">
-                            <img src="https://bizweb.dktcdn.net/100/197/269/products/dai-tieu-thu-crazy-rich-asians-2-bia-truoc.png?v=1552028974110" />
+                            <CloudImage src="https://bizweb.dktcdn.net/100/197/269/products/dai-tieu-thu-crazy-rich-asians-2-bia-truoc.png?v=1552028974110" />
                         </div>
                         <div className="review-info">
                             <h4>Cuốn sách hay về marketing</h4>

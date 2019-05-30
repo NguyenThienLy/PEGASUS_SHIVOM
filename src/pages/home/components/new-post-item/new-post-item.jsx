@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './new-post-item.scss'
 import Link from 'next/link'
+import { CloudImage } from '../../../../components';
 
 
 export class NewPostItem extends Component {
@@ -11,7 +12,7 @@ export class NewPostItem extends Component {
             <div className="post-item-wrap">
                 <div className="img">
                     <a href="#">
-                        <img src={post.thumb} alt="" />
+                        <CloudImage src={post.thumb} alt="" />
                     </a>
                     <div className="book">
                         <Link href={`/bai-viet/${post.slug}`}>

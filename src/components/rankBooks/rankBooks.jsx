@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './rankBooks.scss'
 import { RankBookItem } from '../../components/rankBookItem/rankBookItem'
 import { BookItem } from '../bookItem/bookItem';
+import { CloudImage } from '..';
 
 export class RankBooks extends Component {
     constructor(props) {
@@ -15,7 +16,7 @@ export class RankBooks extends Component {
         return (
             <div id="rank-books-wrap">
                 <div id="first-book-wrap">
-                    <div className="img"><a href="#"><img src={book.img} alt={book.bookName} /></a></div>
+                    <div className="img"><a href="#"><CloudImage src={book.img} alt={book.bookName} /></a></div>
                     <div className="book-name"><a href="#">{book.bookName}</a></div>
                     <div className="rating">
                         <a href="#" className="rating-star">

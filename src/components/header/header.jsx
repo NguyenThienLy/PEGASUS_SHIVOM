@@ -110,7 +110,7 @@ export class Header extends React.Component {
                         <div className="function-group-item search-box">
 
                             <input className="search-txt" type="text" name="search-box" placeholder="Tìm kiếm..." ref="search" onChange={this.onSearch} onKeyPress={this.onSearchKeyPress} />
-                            <a className="search-icon" href="#">
+                            <a className="search-icon" href="#" aria-label="Search book and reviewer">
                                 <i class="fas fa-search"></i>
                             </a>
 
@@ -118,7 +118,7 @@ export class Header extends React.Component {
                         <button className="function-group-item sign-in-button" id="login-button">
                             {!this.state.user ?
                                 <Link href="/login">
-                                    <a href="#" className="nav-link">Đăng nhập</a>
+                                    <a href="#" className="nav-link btn-sign-in">Đăng nhập</a>
                                 </Link>
                                 : <div>
                                     <a onClick={this.logout} href="#">{this.state.user.displayName || this.state.user.email}</a>

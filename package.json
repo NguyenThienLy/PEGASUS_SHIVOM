@@ -37,13 +37,15 @@
     "tls": "0.0.1"
   },
   "scripts": {
-    "start": "nodemon src/server.js",
+ 
     "next": "next src",
     "build": "next build src",
     "server": "nodemon src/server.js",
     "export": "next build src && next export src",
     "babel": "src/server.js",
-    "g": "node devHelper/templates/index"
+    "g": "node devHelper/templates/index",
+    "prod_start": "NODE_ENV=production node src/server.js",
+    "start":"next build src && NODE_ENV=production node src/server.js"
   },
   "eslintConfig": {
     "extends": "react-app"

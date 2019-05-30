@@ -1,5 +1,6 @@
 import * as React from 'react'
 import './followed-reviewer-item.scss'
+import { CloudImage } from '..';
 
 export class FollowedReviewerItem extends React.Component {
     constructor(props) {
@@ -11,7 +12,7 @@ export class FollowedReviewerItem extends React.Component {
         return (
             <div id="followed-person--wrap">
                 <div id="followed-person--img">
-                    <a href="#"><img src={imgurl} alt={name}/></a>
+                    <a href="#"><CloudImage src={imgurl} alt={name}/></a>
                 </div>
                 <div id="followed-person--name"><a href="#">{name}</a></div>
                 <div id="followed-person--fan">{numberFan} người theo dõi</div>

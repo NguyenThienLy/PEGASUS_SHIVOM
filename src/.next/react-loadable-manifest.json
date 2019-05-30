@@ -1,482 +1,4338 @@
 {
-  "./noop": [
+  "./src/api/Query": [
     {
-      "id": "../node_modules/next/dist/client/noop.js",
-      "name": "../node_modules/next/dist/client/noop.js",
-      "file": "static/chunks/0.js",
-      "publicPath": "static/chunks/0.js"
+      "id": "+17w",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/api/Query.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
     }
   ],
-  "../../assets/bootstrap4/bootstrap.min.scss": [
+  "./_set-collection-from": [
     {
-      "id": "./assets/bootstrap4/bootstrap.min.scss",
-      "name": "./assets/bootstrap4/bootstrap.min.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    }
-  ],
-  "./bookItem.scss": [
-    {
-      "id": "./components/bookItem/bookItem.scss",
-      "name": "./components/bookItem/bookItem.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    }
-  ],
-  "./editor.scss": [
-    {
-      "id": "./components/editor/editor.scss",
-      "name": "./components/editor/editor.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    }
-  ],
-  "./followed-reviewer-item.scss": [
-    {
-      "id": "./components/followed-reviewer-item/followed-reviewer-item.scss",
-      "name": "./components/followed-reviewer-item/followed-reviewer-item.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    }
-  ],
-  "./footer.scss": [
-    {
-      "id": "./components/footer/footer.scss",
-      "name": "./components/footer/footer.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    }
-  ],
-  "./header.scss": [
-    {
-      "id": "./components/header/header.scss",
-      "name": "./components/header/header.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    }
-  ],
-  "./headline-custom.scss": [
-    {
-      "id": "./components/headline-custom/headline-custom.scss",
-      "name": "./components/headline-custom/headline-custom.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    }
-  ],
-  "./headline.scss": [
-    {
-      "id": "./components/headline/headline.scss",
-      "name": "./components/headline/headline.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    }
-  ],
-  "./item-followed-person.scss": [
-    {
-      "id": "./components/item-followed-person/item-followed-person.scss",
-      "name": "./components/item-followed-person/item-followed-person.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    }
-  ],
-  "./item-saved-book.scss": [
-    {
-      "id": "./components/item-saved-book/item-saved-book.scss",
-      "name": "./components/item-saved-book/item-saved-book.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    }
-  ],
-  "./loading.scss": [
-    {
-      "id": "./components/loading/loading.scss",
-      "name": "./components/loading/loading.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    }
-  ],
-  "./post-general.scss": [
-    {
-      "id": "./components/post-general/post-general.scss",
-      "name": "./components/post-general/post-general.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    }
-  ],
-  "./post-item-2.scss": [
-    {
-      "id": "./components/post-item-2/post-item-2.scss",
-      "name": "./components/post-item-2/post-item-2.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    }
-  ],
-  "./post-item.scss": [
-    {
-      "id": "./components/post-item/post-item.scss",
-      "name": "./components/post-item/post-item.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    }
-  ],
-  "./rankBookItem.scss": [
-    {
-      "id": "./components/rankBookItem/rankBookItem.scss",
-      "name": "./components/rankBookItem/rankBookItem.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    }
-  ],
-  "./rankBooks.scss": [
-    {
-      "id": "./components/rankBooks/rankBooks.scss",
-      "name": "./components/rankBooks/rankBooks.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "id": "+9rI",
+      "name": "../node_modules/core-js/library/modules/_set-collection-from.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
     }
   ],
   "./savedBookItem.scss": [
     {
-      "id": "./components/savedBookItem/savedBookItem.scss",
+      "id": "+GMA",
       "name": "./components/savedBookItem/savedBookItem.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
     }
   ],
-  "./slide.scss": [
+  "./et.js": [
     {
-      "id": "./components/slide/slide.scss",
-      "name": "./components/slide/slide.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "id": "+JHh",
+      "name": "../node_modules/moment/locale/et.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./tl-ph.js": [
+    {
+      "id": "+Ls2",
+      "name": "../node_modules/moment/locale/tl-ph.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "core-js/library/fn/array/is-array": [
+    {
+      "id": "+QYX",
+      "name": "../node_modules/core-js/library/fn/array/is-array.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "isomorphic-unfetch": [
+    {
+      "id": "+TSP",
+      "name": "../node_modules/isomorphic-unfetch/browser.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_to-absolute-index": [
+    {
+      "id": "+eav",
+      "name": "../node_modules/core-js/library/modules/_to-absolute-index.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_classof": [
+    {
+      "id": "/1nD",
+      "name": "../node_modules/core-js/library/modules/_classof.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./with-router": [
+    {
+      "id": "/3ze",
+      "name": "../node_modules/next/dist/client/with-router.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_export": [
+    {
+      "id": "/6KZ",
+      "name": "../node_modules/core-js/library/modules/_export.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./fi.js": [
+    {
+      "id": "/BTK",
+      "name": "../node_modules/moment/locale/fi.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_object-keys": [
+    {
+      "id": "/Lgp",
+      "name": "../node_modules/core-js/library/modules/_object-keys.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_fails": [
+    {
+      "id": "/Vl9",
+      "name": "../node_modules/core-js/library/modules/_fails.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_array-species-create": [
+    {
+      "id": "/YX7",
+      "name": "../node_modules/core-js/library/modules/_array-species-create.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./zh-cn.js": [
+    {
+      "id": "/cTU",
+      "name": "../node_modules/moment/locale/zh-cn.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./util/Tree": [
+    {
+      "id": "/m8K",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/util/Tree.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./rankBookItem.scss": [
+    {
+      "id": "/wLT",
+      "name": "./components/rankBookItem/rankBookItem.scss",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@firebase/polyfill": [
+    {
+      "id": "/zIX",
+      "name": "../node_modules/@firebase/polyfill/dist/esm/index.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./zh-tw.js": [
+    {
+      "id": "0+Cr",
+      "name": "../node_modules/moment/locale/zh-tw.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./dist/lib/head": [
+    {
+      "id": "0EY2",
+      "name": "../node_modules/next-server/dist/lib/head.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./operation/Merge": [
+    {
+      "id": "0EYq",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/operation/Merge.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_object-gopd": [
+    {
+      "id": "0HwX",
+      "name": "../node_modules/core-js/library/modules/_object-gopd.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_wks": [
+    {
+      "id": "0Sp3",
+      "name": "../node_modules/core-js/library/modules/_wks.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./cs.js": [
+    {
+      "id": "0V88",
+      "name": "../node_modules/moment/locale/cs.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../modules/core.is-iterable": [
+    {
+      "id": "0XBy",
+      "name": "../node_modules/core-js/library/modules/core.is-iterable.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./hash": [
+    {
+      "id": "0gug",
+      "name": "../node_modules/@firebase/util/dist/cjs/src/hash.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@babel/runtime-corejs2/helpers/esm/toConsumableArray": [
+    {
+      "id": "0tNF",
+      "name": "../node_modules/@babel/runtime-corejs2/helpers/esm/toConsumableArray.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../core/util/NextPushId": [
+    {
+      "id": "0uKi",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/util/NextPushId.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./hi.js": [
+    {
+      "id": "0vPu",
+      "name": "../node_modules/moment/locale/hi.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./ViewProcessor": [
+    {
+      "id": "0xBO",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/view/ViewProcessor.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./operation/Operation": [
+    {
+      "id": "10JR",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/operation/Operation.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../../modules/es6.array.is-array": [
+    {
+      "id": "1lGj",
+      "name": "../node_modules/core-js/library/modules/es6.array.is-array.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@babel/runtime-corejs2/core-js/object/keys": [
+    {
+      "id": "1qCV",
+      "name": "../node_modules/@babel/runtime-corejs2/core-js/object/keys.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./SnapshotHolder": [
+    {
+      "id": "1sqT",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/SnapshotHolder.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./filter/IndexedFilter": [
+    {
+      "id": "2HgT",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/view/filter/IndexedFilter.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../../modules/es6.array.from": [
+    {
+      "id": "2agv",
+      "name": "../node_modules/core-js/library/modules/es6.array.from.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../util/SortedMap": [
+    {
+      "id": "2hkI",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/util/SortedMap.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./en-au.js": [
+    {
+      "id": "2tm8",
+      "name": "../node_modules/moment/locale/en-au.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./Event": [
+    {
+      "id": "2v19",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/view/Event.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./ro.js": [
+    {
+      "id": "2xJO",
+      "name": "../node_modules/moment/locale/ro.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "core-js/library/fn/json/stringify": [
+    {
+      "id": "3Hfq",
+      "name": "../node_modules/core-js/library/fn/json/stringify.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
     }
   ],
   "./baseModal.scss": [
     {
-      "id": "./modals/base/baseModal.scss",
+      "id": "3M8T",
       "name": "./modals/base/baseModal.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
     }
   ],
-  "./error.scss": [
+  "../../modules/es6.object.get-prototype-of": [
     {
-      "id": "./modals/error/error.scss",
-      "name": "./modals/error/error.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "id": "3cwG",
+      "name": "../node_modules/core-js/library/modules/es6.object.get-prototype-of.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
     }
   ],
-  "./success.scss": [
+  "@babel/runtime-corejs2/helpers/possibleConstructorReturn": [
     {
-      "id": "./modals/success/success.scss",
-      "name": "./modals/success/success.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "id": "3esu",
+      "name": "../node_modules/@babel/runtime-corejs2/helpers/possibleConstructorReturn.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
     }
   ],
-  "./warning.scss": [
+  "./_global": [
     {
-      "id": "./modals/warning/warning.scss",
-      "name": "./modals/warning/warning.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "id": "41F1",
+      "name": "../node_modules/core-js/library/modules/_global.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
     }
   ],
-  "./_error.scss": [
+  "../realtime/WebSocketConnection": [
     {
-      "id": "./pages/_error/_error.scss",
-      "name": "./pages/_error/_error.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "id": "42m1",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/realtime/WebSocketConnection.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../Node": [
+    {
+      "id": "4LOF",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/snap/Node.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@firebase/auth": [
+    {
+      "id": "4VNX",
+      "name": "../node_modules/@firebase/auth/dist/auth.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../../modules/es7.symbol.async-iterator": [
+    {
+      "id": "4Xtu",
+      "name": "../node_modules/core-js/library/modules/es7.symbol.async-iterator.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./nb.js": [
+    {
+      "id": "4dXb",
+      "name": "../node_modules/moment/locale/nb.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "next-server/dist/lib/mitt": [
+    {
+      "id": "4j9R",
+      "name": "../node_modules/next-server/dist/lib/mitt.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./my.js": [
+    {
+      "id": "4lZK",
+      "name": "../node_modules/moment/locale/my.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../core/Repo": [
+    {
+      "id": "57F5",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/Repo.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_redefine": [
+    {
+      "id": "5BpW",
+      "name": "../node_modules/core-js/library/modules/_redefine.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./../../../../../../process/browser.js": [
+    {
+      "id": "5IsQ",
+      "name": "../node_modules/process/browser.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "next/link": [
+    {
+      "id": "5dyF",
+      "name": "../node_modules/next/link.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_html": [
+    {
+      "id": "5gKE",
+      "name": "../node_modules/core-js/library/modules/_html.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_perform": [
+    {
+      "id": "5tTa",
+      "name": "../node_modules/core-js/library/modules/_perform.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_shared": [
+    {
+      "id": "67sl",
+      "name": "../node_modules/core-js/library/modules/_shared.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./sd.js": [
+    {
+      "id": "6Huv",
+      "name": "../node_modules/moment/locale/sd.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./bn.js": [
+    {
+      "id": "6K5y",
+      "name": "../node_modules/moment/locale/bn.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./ar-ma.js": [
+    {
+      "id": "6Nbo",
+      "name": "../node_modules/moment/locale/ar-ma.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../core-js/object/create": [
+    {
+      "id": "6Ndq",
+      "name": "../node_modules/@babel/runtime-corejs2/core-js/object/create.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./src/jwt": [
+    {
+      "id": "6RZz",
+      "name": "../node_modules/@firebase/util/dist/cjs/src/jwt.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "core-js/library/fn/promise": [
+    {
+      "id": "6oba",
+      "name": "../node_modules/core-js/library/fn/promise.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./tet.js": [
+    {
+      "id": "6ucV",
+      "name": "../node_modules/moment/locale/tet.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_iobject": [
+    {
+      "id": "6wgB",
+      "name": "../node_modules/core-js/library/modules/_iobject.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./runtime": [
+    {
+      "id": "77hJ",
+      "name": "../node_modules/@babel/runtime-corejs2/node_modules/regenerator-runtime/runtime.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./snap": [
+    {
+      "id": "78gz",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/snap/snap.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./gl.js": [
+    {
+      "id": "794S",
+      "name": "../node_modules/moment/locale/gl.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./SparseSnapshotTree": [
+    {
+      "id": "7CQo",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/SparseSnapshotTree.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./header.scss": [
+    {
+      "id": "7TdG",
+      "name": "./components/header/header.scss",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../realtime/Constants": [
+    {
+      "id": "7Tgk",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/realtime/Constants.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../../core-js/is-iterable": [
+    {
+      "id": "7X5e",
+      "name": "../node_modules/@babel/runtime-corejs2/core-js/is-iterable.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./de-at.js": [
+    {
+      "id": "7epm",
+      "name": "../node_modules/moment/locale/de-at.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../core-js/reflect/construct": [
+    {
+      "id": "7mTa",
+      "name": "../node_modules/@babel/runtime-corejs2/core-js/reflect/construct.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "core-js/library/fn/is-iterable": [
+    {
+      "id": "8/po",
+      "name": "../node_modules/core-js/library/fn/is-iterable.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./src/api/Reference": [
+    {
+      "id": "85TZ",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/api/Reference.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../../core-js/array/from": [
+    {
+      "id": "8ET1",
+      "name": "../node_modules/@babel/runtime-corejs2/core-js/array/from.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./mn.js": [
+    {
+      "id": "8J7P",
+      "name": "../node_modules/moment/locale/mn.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./StatsCollection": [
+    {
+      "id": "8WqO",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/stats/StatsCollection.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_ctx": [
+    {
+      "id": "8Xl/",
+      "name": "../node_modules/core-js/library/modules/_ctx.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@babel/runtime-corejs2/helpers/getPrototypeOf": [
+    {
+      "id": "8m4E",
+      "name": "../node_modules/@babel/runtime-corejs2/helpers/getPrototypeOf.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./es-do.js": [
+    {
+      "id": "8wa+",
+      "name": "../node_modules/moment/locale/es-do.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../../components/header/header": [
+    {
+      "id": "9/y9",
+      "name": "./components/header/header.jsx",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./TransportManager": [
+    {
+      "id": "93lX",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/realtime/TransportManager.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./dist/client/link": [
+    {
+      "id": "9CGT",
+      "name": "../node_modules/next/dist/client/link.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./sq.js": [
+    {
+      "id": "9o/V",
+      "name": "../node_modules/moment/locale/sq.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./cjs/react-dom.production.min.js": [
+    {
+      "id": "9t1y",
+      "name": "../node_modules/react-dom/cjs/react-dom.production.min.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "lodash": [
+    {
+      "id": "9va6",
+      "name": "../node_modules/lodash/lodash.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_an-object": [
+    {
+      "id": "ADe/",
+      "name": "../node_modules/core-js/library/modules/_an-object.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./cjs/react-is.production.min.js": [
+    {
+      "id": "AEPX",
+      "name": "../node_modules/next/node_modules/react-is/cjs/react-is.production.min.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "core-js/library/fn/object/assign": [
+    {
+      "id": "AFnJ",
+      "name": "../node_modules/core-js/library/fn/object/assign.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./util/OnlineMonitor": [
+    {
+      "id": "AO7V",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/util/OnlineMonitor.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./operation/AckUserWrite": [
+    {
+      "id": "AUHZ",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/operation/AckUserWrite.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./sv.js": [
+    {
+      "id": "AVN5",
+      "name": "../node_modules/moment/locale/sv.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../core/PersistentConnection": [
+    {
+      "id": "AqpN",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/PersistentConnection.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./TransactionResult": [
+    {
+      "id": "B4Oz",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/api/TransactionResult.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_collection-to-json": [
+    {
+      "id": "BGbK",
+      "name": "../node_modules/core-js/library/modules/_collection-to-json.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./src/shims/find": [
+    {
+      "id": "BO53",
+      "name": "../node_modules/@firebase/polyfill/dist/esm/src/shims/find.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./gd.js": [
+    {
+      "id": "BWwv",
+      "name": "../node_modules/moment/locale/gd.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./src/deepCopy": [
+    {
+      "id": "BZYk",
+      "name": "../node_modules/@firebase/util/dist/cjs/src/deepCopy.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./cjs/react.production.min.js": [
+    {
+      "id": "BdB7",
+      "name": "../node_modules/react/cjs/react.production.min.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../../modules/es6.object.assign": [
+    {
+      "id": "CAwg",
+      "name": "../node_modules/core-js/library/modules/es6.object.assign.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "unfetch": [
+    {
+      "id": "CJ1a",
+      "name": "../node_modules/isomorphic-unfetch/node_modules/unfetch/dist/unfetch.mjs",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./sr.js": [
+    {
+      "id": "CZE8",
+      "name": "../node_modules/moment/locale/sr.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./src/api/onDisconnect": [
+    {
+      "id": "Cb7U",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/api/onDisconnect.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./item-followed-person.scss": [
+    {
+      "id": "Cbti",
+      "name": "./components/item-followed-person/item-followed-person.scss",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./mr.js": [
+    {
+      "id": "Cla+",
+      "name": "../node_modules/moment/locale/mr.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../core/view/EventRegistration": [
+    {
+      "id": "CldR",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/view/EventRegistration.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_iter-detect": [
+    {
+      "id": "Clx3",
+      "name": "../node_modules/core-js/library/modules/_iter-detect.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./es6.array.iterator": [
+    {
+      "id": "Cs9m",
+      "name": "../node_modules/core-js/library/modules/es6.array.iterator.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./Repo_transaction": [
+    {
+      "id": "D5aL",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/Repo_transaction.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
     }
   ],
   "undefined": [
     {
-      "id": 15,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "id": "D9WN",
+      "name": "../node_modules/moment/locale sync recursive ^\\.\\/.*$",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
     },
     {
       "id": 8,
       "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 16,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
     },
     {
       "id": 9,
       "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 17,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 18,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 10,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 19,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 4,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 20,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 1,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 21,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 11,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 22,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 5,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
     },
     {
       "id": 23,
       "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
     },
     {
-      "id": 12,
+      "id": 15,
       "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 24,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 6,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 25,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 13,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 26,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 3,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 27,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
     },
     {
       "id": 14,
       "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
     },
     {
-      "id": 28,
+      "id": 13,
       "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
     },
     {
-      "id": 7,
+      "id": 22,
       "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    },
+    {
+      "id": 27,
+      "name": null,
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
     },
     {
       "id": 29,
       "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
     },
     {
-      "id": 30,
+      "id": 12,
       "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
     },
     {
-      "id": 31,
+      "id": 3,
       "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
     },
     {
-      "id": 38,
+      "id": 26,
       "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    },
+    {
+      "id": 4,
+      "name": null,
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    },
+    {
+      "id": 5,
+      "name": null,
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    },
+    {
+      "id": 6,
+      "name": null,
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    },
+    {
+      "id": 11,
+      "name": null,
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    },
+    {
+      "id": 10,
+      "name": null,
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    },
+    {
+      "id": 21,
+      "name": null,
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    },
+    {
+      "id": 20,
+      "name": null,
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    },
+    {
+      "id": 19,
+      "name": null,
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    },
+    {
+      "id": 18,
+      "name": null,
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    },
+    {
+      "id": 17,
+      "name": null,
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    },
+    {
+      "id": 25,
+      "name": null,
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    },
+    {
+      "id": 24,
+      "name": null,
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    },
+    {
+      "id": 28,
+      "name": null,
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    },
+    {
+      "id": 16,
+      "name": null,
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    },
+    {
+      "id": 7,
+      "name": null,
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
     },
     {
       "id": 40,
       "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
     },
     {
-      "id": 37,
+      "id": 2,
       "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
     },
     {
-      "id": 34,
+      "id": 52,
       "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
     },
     {
-      "id": 36,
+      "id": 30,
       "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
     },
     {
-      "id": 35,
+      "id": 51,
       "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    },
+    {
+      "id": 31,
+      "name": null,
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    },
+    {
+      "id": 50,
+      "name": null,
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    },
+    {
+      "id": 32,
+      "name": null,
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    },
+    {
+      "id": 49,
+      "name": null,
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
     },
     {
       "id": 33,
       "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    },
+    {
+      "id": 48,
+      "name": null,
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    },
+    {
+      "id": 34,
+      "name": null,
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    },
+    {
+      "id": 47,
+      "name": null,
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    },
+    {
+      "id": 35,
+      "name": null,
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    },
+    {
+      "id": 46,
+      "name": null,
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    },
+    {
+      "id": 36,
+      "name": null,
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    },
+    {
+      "id": 37,
+      "name": null,
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    },
+    {
+      "id": 53,
+      "name": null,
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    },
+    {
+      "id": 38,
+      "name": null,
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    },
+    {
+      "id": 45,
+      "name": null,
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    },
+    {
+      "id": 39,
+      "name": null,
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    },
+    {
+      "id": 44,
+      "name": null,
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    },
+    {
+      "id": 1,
+      "name": null,
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    },
+    {
+      "id": 43,
+      "name": null,
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    },
+    {
+      "id": 41,
+      "name": null,
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    },
+    {
+      "id": 42,
+      "name": null,
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    },
+    {
+      "id": 54,
+      "name": null,
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
     }
   ],
-  "./app.scss": [
+  "./de.js": [
     {
-      "id": "./pages/app.scss",
-      "name": "./pages/app.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "id": "DPpk",
+      "name": "../node_modules/moment/locale/de.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../../modules/es6.object.set-prototype-of": [
+    {
+      "id": "E6Ca",
+      "name": "../node_modules/core-js/library/modules/es6.object.set-prototype-of.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./Index": [
+    {
+      "id": "E82x",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/snap/indexes/Index.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./x-pseudo.js": [
+    {
+      "id": "ESkz",
+      "name": "../node_modules/moment/locale/x-pseudo.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./ko.js": [
+    {
+      "id": "EpfC",
+      "name": "../node_modules/moment/locale/ko.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_create-property": [
+    {
+      "id": "ErhN",
+      "name": "../node_modules/core-js/library/modules/_create-property.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../../modules/es6.object.keys": [
+    {
+      "id": "F+l/",
+      "name": "../node_modules/core-js/library/modules/es6.object.keys.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../core/snap/indexes/PathIndex": [
+    {
+      "id": "F4Pf",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/snap/indexes/PathIndex.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../../assets/bootstrap4/bootstrap.min.scss": [
+    {
+      "id": "F88s",
+      "name": "./assets/bootstrap4/bootstrap.min.scss",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./filter/RangedFilter": [
+    {
+      "id": "F8O7",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/view/filter/RangedFilter.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./shallow-equals": [
+    {
+      "id": "FBS7",
+      "name": "../node_modules/next-server/dist/lib/router/shallow-equals.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./hu.js": [
+    {
+      "id": "FI+y",
+      "name": "../node_modules/moment/locale/hu.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./../../../next/node_modules/webpack/buildin/module.js": [
+    {
+      "id": "FtQO",
+      "name": "../node_modules/next/node_modules/webpack/buildin/module.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./ku.js": [
+    {
+      "id": "FvgC",
+      "name": "../node_modules/moment/locale/ku.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./dv.js": [
+    {
+      "id": "FyKI",
+      "name": "../node_modules/moment/locale/dv.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_object-create": [
+    {
+      "id": "G+Zn",
+      "name": "../node_modules/core-js/library/modules/_object-create.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_object-gpo": [
+    {
+      "id": "GCLZ",
+      "name": "../node_modules/core-js/library/modules/_object-gpo.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./WriteTree": [
+    {
+      "id": "Gg7c",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/WriteTree.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./eo.js": [
+    {
+      "id": "GjBA",
+      "name": "../node_modules/moment/locale/eo.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./footer.scss": [
+    {
+      "id": "Glu0",
+      "name": "./components/footer/footer.scss",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./app": [
+    {
+      "id": "GnuQ",
+      "name": "../node_modules/firebase/app/index.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./src/core/RepoManager": [
+    {
+      "id": "Gqpw",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/RepoManager.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./it.js": [
+    {
+      "id": "GyEJ",
+      "name": "../node_modules/moment/locale/it.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "core-js/library/fn/object/create": [
+    {
+      "id": "GyeN",
+      "name": "../node_modules/core-js/library/fn/object/create.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./is.js": [
+    {
+      "id": "H+sD",
+      "name": "../node_modules/moment/locale/is.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "next-server/dist/lib/router/router": [
+    {
+      "id": "H09g",
+      "name": "../node_modules/next-server/dist/lib/router/router.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_a-function": [
+    {
+      "id": "HD3J",
+      "name": "../node_modules/core-js/library/modules/_a-function.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./cy.js": [
+    {
+      "id": "HTX9",
+      "name": "../node_modules/moment/locale/cy.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_to-primitive": [
+    {
+      "id": "HbTz",
+      "name": "../node_modules/core-js/library/modules/_to-primitive.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./src/errors": [
+    {
+      "id": "HozW",
+      "name": "../node_modules/@firebase/util/dist/cjs/src/errors.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./MemoryStorage": [
+    {
+      "id": "HtLK",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/storage/MemoryStorage.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./src/environment": [
+    {
+      "id": "HyWK",
+      "name": "../node_modules/@firebase/util/dist/cjs/src/environment.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../../modules/es6.object.define-property": [
+    {
+      "id": "IH2s",
+      "name": "../node_modules/core-js/library/modules/es6.object.define-property.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./en-SG.js": [
+    {
+      "id": "IIgg",
+      "name": "../node_modules/moment/locale/en-SG.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./lo.js": [
+    {
+      "id": "IKWk",
+      "name": "../node_modules/moment/locale/lo.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "object-assign": [
+    {
+      "id": "IL7q",
+      "name": "../node_modules/object-assign/index.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_redefine-all": [
+    {
+      "id": "IUx0",
+      "name": "../node_modules/core-js/library/modules/_redefine-all.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../modules/es6.set": [
+    {
+      "id": "IXD+",
+      "name": "../node_modules/core-js/library/modules/es6.set.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./followed-reviewer-item.scss": [
+    {
+      "id": "IYgW",
+      "name": "./components/followed-reviewer-item/followed-reviewer-item.scss",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@babel/runtime-corejs2/helpers/createClass": [
+    {
+      "id": "J/q3",
+      "name": "../node_modules/@babel/runtime-corejs2/helpers/createClass.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./src/api/DataSnapshot": [
+    {
+      "id": "JGOn",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/api/DataSnapshot.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./bs.js": [
+    {
+      "id": "JNFb",
+      "name": "../node_modules/moment/locale/bs.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@babel/runtime-corejs2/core-js/json/stringify": [
+    {
+      "id": "JYC+",
+      "name": "../node_modules/@babel/runtime-corejs2/core-js/json/stringify.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_is-array": [
+    {
+      "id": "Jh4J",
+      "name": "../node_modules/core-js/library/modules/_is-array.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./fo.js": [
+    {
+      "id": "K/JZ",
+      "name": "../node_modules/moment/locale/fo.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./src/core/util/util": [
+    {
+      "id": "K7aj",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/util/util.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@babel/runtime-corejs2/helpers/classCallCheck": [
+    {
+      "id": "KBEF",
+      "name": "../node_modules/@babel/runtime-corejs2/helpers/classCallCheck.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "next-server/dist/lib/head-manager-context": [
+    {
+      "id": "KBoY",
+      "name": "../node_modules/next-server/dist/lib/head-manager-context.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "core-js/library/fn/symbol": [
+    {
+      "id": "KELd",
+      "name": "../node_modules/core-js/library/fn/symbol/index.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_string-at": [
+    {
+      "id": "Kdq7",
+      "name": "../node_modules/core-js/library/modules/_string-at.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./id.js": [
+    {
+      "id": "KxDR",
+      "name": "../node_modules/moment/locale/id.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../modules/es7.promise.try": [
+    {
+      "id": "L7yD",
+      "name": "../node_modules/core-js/library/modules/es7.promise.try.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./operation/Overwrite": [
+    {
+      "id": "LJmR",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/operation/Overwrite.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "core-js/library/fn/object/set-prototype-of": [
+    {
+      "id": "LPDj",
+      "name": "../node_modules/core-js/library/fn/object/set-prototype-of.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@babel/runtime-corejs2/helpers/esm/classCallCheck": [
+    {
+      "id": "LkAs",
+      "name": "../node_modules/@babel/runtime-corejs2/helpers/esm/classCallCheck.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_an-instance": [
+    {
+      "id": "LuVv",
+      "name": "../node_modules/core-js/library/modules/_an-instance.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./pa-in.js": [
+    {
+      "id": "Ly9c",
+      "name": "../node_modules/moment/locale/pa-in.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./src/assert": [
+    {
+      "id": "MEUN",
+      "name": "../node_modules/@firebase/util/dist/cjs/src/assert.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./decode": [
+    {
+      "id": "MNOf",
+      "name": "../node_modules/querystring-es3/decode.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../../modules/es6.symbol": [
+    {
+      "id": "MRte",
+      "name": "../node_modules/core-js/library/modules/es6.symbol.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./uz-latn.js": [
+    {
+      "id": "MTcW",
+      "name": "../node_modules/moment/locale/uz-latn.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "next-server/dist/lib/utils": [
+    {
+      "id": "MUK1",
+      "name": "../node_modules/next-server/dist/lib/utils.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./pl.js": [
+    {
+      "id": "MX9p",
+      "name": "../node_modules/moment/locale/pl.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@babel/runtime-corejs2/helpers/esm/createClass": [
+    {
+      "id": "Moms",
+      "name": "../node_modules/@babel/runtime-corejs2/helpers/esm/createClass.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./src/sha1": [
+    {
+      "id": "MzDU",
+      "name": "../node_modules/@firebase/util/dist/cjs/src/sha1.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./CompleteChildSource": [
+    {
+      "id": "N0UK",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/view/CompleteChildSource.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_iterators": [
+    {
+      "id": "N9zW",
+      "name": "../node_modules/core-js/library/modules/_iterators.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./ca.js": [
+    {
+      "id": "NQcR",
+      "name": "../node_modules/moment/locale/ca.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_is-array-iter": [
+    {
+      "id": "Ng5M",
+      "name": "../node_modules/core-js/library/modules/_is-array-iter.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_array-methods": [
+    {
+      "id": "NlCR",
+      "name": "../node_modules/core-js/library/modules/_array-methods.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../helpers/typeof": [
+    {
+      "id": "NluH",
+      "name": "../node_modules/@babel/runtime-corejs2/helpers/typeof.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../../services": [
+    {
+      "id": "NsBw",
+      "name": "./services/index.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./tr.js": [
+    {
+      "id": "Nx06",
+      "name": "../node_modules/moment/locale/tr.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_validate-collection": [
+    {
+      "id": "O/tV",
+      "name": "../node_modules/core-js/library/modules/_validate-collection.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "hoist-non-react-statics": [
+    {
+      "id": "O2QM",
+      "name": "../node_modules/next/node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@babel/runtime-corejs2/core-js/set": [
+    {
+      "id": "OAWj",
+      "name": "../node_modules/@babel/runtime-corejs2/core-js/set.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./filter/LimitedFilter": [
+    {
+      "id": "OCPe",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/view/filter/LimitedFilter.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../core-js/object/set-prototype-of": [
+    {
+      "id": "OKNm",
+      "name": "../node_modules/@babel/runtime-corejs2/core-js/object/set-prototype-of.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./src/json": [
+    {
+      "id": "OU6l",
+      "name": "../node_modules/@firebase/util/dist/cjs/src/json.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../realtime/BrowserPollConnection": [
+    {
+      "id": "OUQf",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/realtime/BrowserPollConnection.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./src/crypt": [
+    {
+      "id": "OVYQ",
+      "name": "../node_modules/@firebase/util/dist/cjs/src/crypt.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "prop-types": [
+    {
+      "id": "OWZz",
+      "name": "../node_modules/next/node_modules/prop-types/index.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./util/VisibilityMonitor": [
+    {
+      "id": "Oc9O",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/util/VisibilityMonitor.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@babel/runtime-corejs2/helpers/inherits": [
+    {
+      "id": "Od8a",
+      "name": "../node_modules/@babel/runtime-corejs2/helpers/inherits.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./en-nz.js": [
+    {
+      "id": "Odsn",
+      "name": "../node_modules/moment/locale/en-nz.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../core/util/validation": [
+    {
+      "id": "P64q",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/util/validation.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../modules/es7.promise.finally": [
+    {
+      "id": "P8hI",
+      "name": "../node_modules/core-js/library/modules/es7.promise.finally.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./stats/StatsListener": [
+    {
+      "id": "P8nz",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/stats/StatsListener.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_species-constructor": [
+    {
+      "id": "PK7I",
+      "name": "../node_modules/core-js/library/modules/_species-constructor.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@babel/runtime-corejs2/helpers/interopRequireDefault": [
+    {
+      "id": "PL1w",
+      "name": "../node_modules/@babel/runtime-corejs2/helpers/interopRequireDefault.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./polling/PacketReceiver": [
+    {
+      "id": "PMln",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/realtime/polling/PacketReceiver.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_hide": [
+    {
+      "id": "PPkd",
+      "name": "../node_modules/core-js/library/modules/_hide.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./bookItem.scss": [
+    {
+      "id": "Pdb/",
+      "name": "./components/bookItem/bookItem.scss",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./ky.js": [
+    {
+      "id": "Pfmo",
+      "name": "../node_modules/moment/locale/ky.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_shared-key": [
+    {
+      "id": "Q5TA",
+      "name": "../node_modules/core-js/library/modules/_shared-key.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_object-keys-internal": [
+    {
+      "id": "Qqke",
+      "name": "../node_modules/core-js/library/modules/_object-keys-internal.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@babel/runtime-corejs2/helpers/esm/asyncToGenerator": [
+    {
+      "id": "R3/3",
+      "name": "../node_modules/@babel/runtime-corejs2/helpers/esm/asyncToGenerator.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./fy.js": [
+    {
+      "id": "RmWi",
+      "name": "../node_modules/moment/locale/fy.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./es.js": [
+    {
+      "id": "SKOl",
+      "name": "../node_modules/moment/locale/es.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./src/query": [
+    {
+      "id": "STmR",
+      "name": "../node_modules/@firebase/util/dist/cjs/src/query.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../core-js/get-iterator": [
+    {
+      "id": "SY1S",
+      "name": "../node_modules/@babel/runtime-corejs2/core-js/get-iterator.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./item-saved-book.scss": [
+    {
+      "id": "Sb4C",
+      "name": "./components/item-saved-book/item-saved-book.scss",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_array-species-constructor": [
+    {
+      "id": "SfGT",
+      "name": "../node_modules/core-js/library/modules/_array-species-constructor.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@firebase/messaging": [
+    {
+      "id": "SpPW",
+      "name": "../node_modules/@firebase/messaging/dist/esm/index.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_to-iobject": [
+    {
+      "id": "T/1i",
+      "name": "../node_modules/core-js/library/modules/_to-iobject.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_enum-keys": [
+    {
+      "id": "T4P6",
+      "name": "../node_modules/core-js/library/modules/_enum-keys.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./nn.js": [
+    {
+      "id": "T9ox",
+      "name": "../node_modules/moment/locale/nn.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./encode": [
+    {
+      "id": "THQi",
+      "name": "../node_modules/querystring-es3/encode.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./src/constants": [
+    {
+      "id": "TOyU",
+      "name": "../node_modules/@firebase/util/dist/cjs/src/constants.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./bm.js": [
+    {
+      "id": "TQ38",
+      "name": "../node_modules/moment/locale/bm.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_iter-step": [
+    {
+      "id": "TTxG",
+      "name": "../node_modules/core-js/library/modules/_iter-step.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../../modules/_core": [
+    {
+      "id": "TaGV",
+      "name": "../node_modules/core-js/library/modules/_core.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "moment": [
+    {
+      "id": "TiKg",
+      "name": "../node_modules/moment/moment.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./view/CacheNode": [
+    {
+      "id": "TlH/",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/view/CacheNode.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./stats/StatsManager": [
+    {
+      "id": "TxRa",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/stats/StatsManager.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./el.js": [
+    {
+      "id": "U5Cp",
+      "name": "../node_modules/moment/locale/el.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@babel/runtime-corejs2/core-js/object/assign": [
+    {
+      "id": "U8Yc",
+      "name": "../node_modules/@babel/runtime-corejs2/core-js/object/assign.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./fr-ca.js": [
+    {
+      "id": "UKIa",
+      "name": "../node_modules/moment/locale/fr-ca.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "querystring": [
+    {
+      "id": "UKnr",
+      "name": "../node_modules/querystring-es3/index.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "core-js/library/fn/get-iterator": [
+    {
+      "id": "UR6/",
+      "name": "../node_modules/core-js/library/fn/get-iterator.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_ie8-dom-define": [
+    {
+      "id": "UTwT",
+      "name": "../node_modules/core-js/library/modules/_ie8-dom-define.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./ur.js": [
+    {
+      "id": "UZ6Q",
+      "name": "../node_modules/moment/locale/ur.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./si.js": [
+    {
+      "id": "Ueyn",
+      "name": "../node_modules/moment/locale/si.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./post-item-2.scss": [
+    {
+      "id": "Unvu",
+      "name": "./components/post-item-2/post-item-2.scss",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@babel/runtime-corejs2/regenerator": [
+    {
+      "id": "UrUy",
+      "name": "../node_modules/@babel/runtime-corejs2/regenerator/index.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../../modules/es7.symbol.observable": [
+    {
+      "id": "UvcN",
+      "name": "../node_modules/core-js/library/modules/es7.symbol.observable.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./gu.js": [
+    {
+      "id": "Uz2K",
+      "name": "../node_modules/moment/locale/gu.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./kn.js": [
+    {
+      "id": "VCFo",
+      "name": "../node_modules/moment/locale/kn.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./core.get-iterator-method": [
+    {
+      "id": "VJcA",
+      "name": "../node_modules/core-js/library/modules/core.get-iterator-method.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./error.scss": [
+    {
+      "id": "VPWl",
+      "name": "./modals/error/error.scss",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./pt.js": [
+    {
+      "id": "VVP3",
+      "name": "../node_modules/moment/locale/pt.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_collection": [
+    {
+      "id": "VX2v",
+      "name": "../node_modules/core-js/library/modules/_collection.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./ms.js": [
+    {
+      "id": "Vbbc",
+      "name": "../node_modules/moment/locale/ms.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@firebase/storage": [
+    {
+      "id": "VkQP",
+      "name": "../node_modules/@firebase/storage/dist/esm/index.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "core-js/library/fn/array/from": [
+    {
+      "id": "Vlwe",
+      "name": "../node_modules/core-js/library/fn/array/from.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@firebase/util": [
+    {
+      "id": "Vt+O",
+      "name": "../node_modules/@firebase/util/dist/cjs/index.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./warning.scss": [
+    {
+      "id": "Vtt4",
+      "name": "./modals/warning/warning.scss",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./ServerActions": [
+    {
+      "id": "WCkt",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/ServerActions.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_new-promise-capability": [
+    {
+      "id": "WJTZ",
+      "name": "../node_modules/core-js/library/modules/_new-promise-capability.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./ka.js": [
+    {
+      "id": "WXVf",
+      "name": "../node_modules/moment/locale/ka.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_set-proto": [
+    {
+      "id": "WbNG",
+      "name": "../node_modules/core-js/library/modules/_set-proto.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./jv.js": [
+    {
+      "id": "WnjQ",
+      "name": "../node_modules/moment/locale/jv.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./util/ServerValues": [
+    {
+      "id": "WoDz",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/util/ServerValues.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../modules/es6.string.iterator": [
+    {
+      "id": "WwSA",
+      "name": "../node_modules/core-js/library/modules/es6.string.iterator.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../core/util/libs/parser": [
+    {
+      "id": "Wx5D",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/util/libs/parser.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./factoryWithThrowingShims": [
+    {
+      "id": "X5Pn",
+      "name": "../node_modules/next/node_modules/prop-types/factoryWithThrowingShims.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../storage/storage": [
+    {
+      "id": "X8h5",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/storage/storage.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./nl-be.js": [
+    {
+      "id": "XLIu",
+      "name": "../node_modules/moment/locale/nl-be.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./src/api/internal": [
+    {
+      "id": "XRUk",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/api/internal.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./headline.scss": [
+    {
+      "id": "XVlR",
+      "name": "./components/headline/headline.scss",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@firebase/database": [
+    {
+      "id": "XYUw",
+      "name": "../node_modules/@firebase/database/dist/cjs/index.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../modules/es7.set.of": [
+    {
+      "id": "XZM3",
+      "name": "../node_modules/core-js/library/modules/es7.set.of.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_defined": [
+    {
+      "id": "Xj5l",
+      "name": "../node_modules/core-js/library/modules/_defined.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../../modules/es6.object.create": [
+    {
+      "id": "XmXP",
+      "name": "../node_modules/core-js/library/modules/es6.object.create.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../core-js/symbol": [
+    {
+      "id": "XzKa",
+      "name": "../node_modules/@babel/runtime-corejs2/core-js/symbol.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./sk.js": [
+    {
+      "id": "YIvA",
+      "name": "../node_modules/moment/locale/sk.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@babel/runtime-corejs2/helpers/esm/assertThisInitialized": [
+    {
+      "id": "YKN3",
+      "name": "../node_modules/@babel/runtime-corejs2/helpers/esm/assertThisInitialized.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../realtime/Connection": [
+    {
+      "id": "YKeE",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/realtime/Connection.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./es-us.js": [
+    {
+      "id": "YL9C",
+      "name": "../node_modules/moment/locale/es-us.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./success.scss": [
+    {
+      "id": "YLEj",
+      "name": "./modals/success/success.scss",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./mt.js": [
+    {
+      "id": "YkvB",
+      "name": "../node_modules/moment/locale/mt.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_wks-define": [
+    {
+      "id": "YlUf",
+      "name": "../node_modules/core-js/library/modules/_wks-define.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./en-gb.js": [
+    {
+      "id": "YmdP",
+      "name": "../node_modules/moment/locale/en-gb.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_collection-strong": [
+    {
+      "id": "Yvct",
+      "name": "../node_modules/core-js/library/modules/_collection-strong.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../../../../modals": [
+    {
+      "id": "YwP9",
+      "name": "./modals/index.jsx",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./src/validation": [
+    {
+      "id": "Z/6F",
+      "name": "../node_modules/@firebase/util/dist/cjs/src/validation.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@babel/runtime-corejs2/core-js/promise": [
+    {
+      "id": "ZOIa",
+      "name": "../node_modules/@babel/runtime-corejs2/core-js/promise.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./ar-tn.js": [
+    {
+      "id": "ZPeb",
+      "name": "../node_modules/moment/locale/ar-tn.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./te.js": [
+    {
+      "id": "Zov1",
+      "name": "../node_modules/moment/locale/te.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./km.js": [
+    {
+      "id": "ZuGE",
+      "name": "../node_modules/moment/locale/km.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "react-is": [
+    {
+      "id": "Zubs",
+      "name": "../node_modules/next/node_modules/react-is/index.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./hy-am.js": [
+    {
+      "id": "ZxHn",
+      "name": "../node_modules/moment/locale/hy-am.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./ug-cn.js": [
+    {
+      "id": "a1x9",
+      "name": "../node_modules/moment/locale/ug-cn.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./br.js": [
+    {
+      "id": "afE2",
+      "name": "../node_modules/moment/locale/br.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@babel/runtime-corejs2/helpers/esm/defineProperty": [
+    {
+      "id": "azxR",
+      "name": "../node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./mi.js": [
+    {
+      "id": "b1YN",
+      "name": "../node_modules/moment/locale/mi.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./dist/client/router": [
+    {
+      "id": "bBV7",
+      "name": "../node_modules/next/dist/client/router.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../core/util/CountedSet": [
+    {
+      "id": "bENW",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/util/CountedSet.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@babel/runtime-corejs2/helpers/esm/possibleConstructorReturn": [
+    {
+      "id": "bMj6",
+      "name": "../node_modules/@babel/runtime-corejs2/helpers/esm/possibleConstructorReturn.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./childSet": [
+    {
+      "id": "bYnJ",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/snap/childSet.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../../components": [
+    {
+      "id": "bc/i",
+      "name": "./components/index.jsx",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "core-js/library/fn/set": [
+    {
+      "id": "bdJ0",
+      "name": "../node_modules/core-js/library/fn/set.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./en-ca.js": [
+    {
+      "id": "bxNt",
+      "name": "../node_modules/moment/locale/en-ca.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "core-js/library/fn/object/define-property": [
+    {
+      "id": "bztI",
+      "name": "../node_modules/core-js/library/fn/object/define-property.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_task": [
+    {
+      "id": "cCv0",
+      "name": "../node_modules/core-js/library/modules/_task.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./tg.js": [
+    {
+      "id": "cLEX",
+      "name": "../node_modules/moment/locale/tg.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./src/shims/findIndex": [
+    {
+      "id": "cQ8J",
+      "name": "../node_modules/@firebase/polyfill/dist/esm/src/shims/findIndex.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./th.js": [
+    {
+      "id": "cYD4",
+      "name": "../node_modules/moment/locale/th.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./tzm-latn.js": [
+    {
+      "id": "ceDr",
+      "name": "../node_modules/moment/locale/tzm-latn.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./src/obj": [
+    {
+      "id": "ckT/",
+      "name": "../node_modules/@firebase/util/dist/cjs/src/obj.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./src/polyfills/promise": [
+    {
+      "id": "cm0I",
+      "name": "../node_modules/@firebase/polyfill/dist/esm/src/polyfills/promise.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_uid": [
+    {
+      "id": "ct/D",
+      "name": "../node_modules/core-js/library/modules/_uid.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "next/router": [
+    {
+      "id": "dAGg",
+      "name": "../node_modules/next/router.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_to-object": [
+    {
+      "id": "dCrc",
+      "name": "../node_modules/core-js/library/modules/_to-object.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./zh-hk.js": [
+    {
+      "id": "dH0k",
+      "name": "../node_modules/moment/locale/zh-hk.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_iter-create": [
+    {
+      "id": "dR8c",
+      "name": "../node_modules/core-js/library/modules/_iter-create.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./ml.js": [
+    {
+      "id": "dS3T",
+      "name": "../node_modules/moment/locale/ml.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./he.js": [
+    {
+      "id": "dSB2",
+      "name": "../node_modules/moment/locale/he.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./storage": [
+    {
+      "id": "dbqZ",
+      "name": "../node_modules/firebase/storage/index.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./ne.js": [
+    {
+      "id": "dhqa",
+      "name": "../node_modules/moment/locale/ne.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./../../../next/node_modules/webpack/buildin/global.js": [
+    {
+      "id": "dm4u",
+      "name": "../node_modules/next/node_modules/webpack/buildin/global.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_object-gopn-ext": [
+    {
+      "id": "dn9X",
+      "name": "../node_modules/core-js/library/modules/_object-gopn-ext.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./cv.js": [
+    {
+      "id": "e/5r",
+      "name": "../node_modules/moment/locale/cv.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./tzm.js": [
+    {
+      "id": "eHpI",
+      "name": "../node_modules/moment/locale/tzm.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_object-dp": [
+    {
+      "id": "eOWL",
+      "name": "../node_modules/core-js/library/modules/_object-dp.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../../modules/_wks-ext": [
+    {
+      "id": "eTWF",
+      "name": "../node_modules/core-js/library/modules/_wks-ext.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../core/snap/indexes/KeyIndex": [
+    {
+      "id": "eWv5",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/snap/indexes/KeyIndex.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./uz.js": [
+    {
+      "id": "eYI/",
+      "name": "../node_modules/moment/locale/uz.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./loading.scss": [
+    {
+      "id": "eq08",
+      "name": "./components/loading/loading.scss",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./ru.js": [
+    {
+      "id": "eqS4",
+      "name": "../node_modules/moment/locale/ru.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./src/api/Database": [
+    {
+      "id": "etkU",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/api/Database.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_is-object": [
+    {
+      "id": "fGh/",
+      "name": "../node_modules/core-js/library/modules/_is-object.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./auth": [
+    {
+      "id": "fO1X",
+      "name": "../node_modules/firebase/auth/index.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./messaging": [
+    {
+      "id": "fnj5",
+      "name": "../node_modules/firebase/messaging/index.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./hr.js": [
+    {
+      "id": "fnly",
+      "name": "../node_modules/moment/locale/hr.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./view/EventQueue": [
+    {
+      "id": "fo7M",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./ar-dz.js": [
+    {
+      "id": "fyYX",
+      "name": "../node_modules/moment/locale/ar-dz.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_cof": [
+    {
+      "id": "g2rQ",
+      "name": "../node_modules/core-js/library/modules/_cof.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./setPrototypeOf": [
+    {
+      "id": "g9SA",
+      "name": "../node_modules/@babel/runtime-corejs2/helpers/setPrototypeOf.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../../helpers/esm/typeof": [
+    {
+      "id": "gDVU",
+      "name": "../node_modules/@babel/runtime-corejs2/helpers/esm/typeof.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_user-agent": [
+    {
+      "id": "gDZL",
+      "name": "../node_modules/core-js/library/modules/_user-agent.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../core/snap/indexes/PriorityIndex": [
+    {
+      "id": "gK5O",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/snap/indexes/PriorityIndex.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./en-ie.js": [
+    {
+      "id": "gLHG",
+      "name": "../node_modules/moment/locale/en-ie.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_iter-define": [
+    {
+      "id": "gMWQ",
+      "name": "../node_modules/core-js/library/modules/_iter-define.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "core-js/library/fn/symbol/iterator": [
+    {
+      "id": "gSCB",
+      "name": "../node_modules/core-js/library/fn/symbol/iterator.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./af": [
+    {
+      "id": "ggbP",
+      "name": "../node_modules/moment/locale/af.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_to-length": [
+    {
+      "id": "gou2",
+      "name": "../node_modules/core-js/library/modules/_to-length.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_library": [
+    {
+      "id": "gtwY",
+      "name": "../node_modules/core-js/library/modules/_library.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@babel/runtime-corejs2/helpers/esm/slicedToArray": [
+    {
+      "id": "hDBU",
+      "name": "../node_modules/@babel/runtime-corejs2/helpers/esm/slicedToArray.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./DOMStorageWrapper": [
+    {
+      "id": "hHee",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/storage/DOMStorageWrapper.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../core-js/object/define-property": [
+    {
+      "id": "hHgk",
+      "name": "../node_modules/@babel/runtime-corejs2/core-js/object/define-property.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_set-species": [
+    {
+      "id": "hXZv",
+      "name": "../node_modules/core-js/library/modules/_set-species.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_meta": [
+    {
+      "id": "hYpR",
+      "name": "../node_modules/core-js/library/modules/_meta.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@babel/runtime-corejs2/helpers/esm/getPrototypeOf": [
+    {
+      "id": "hZod",
+      "name": "../node_modules/@babel/runtime-corejs2/helpers/esm/getPrototypeOf.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "setimmediate": [
+    {
+      "id": "heVN",
+      "name": "../node_modules/setimmediate/setImmediate.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./editor.scss": [
+    {
+      "id": "hghF",
+      "name": "./components/editor/editor.scss",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    },
+    {
+      "id": "gVRd",
+      "name": "./pages/profile/components/editor/editor.scss",
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    }
+  ],
+  "./ta.js": [
+    {
+      "id": "i/qy",
+      "name": "../node_modules/moment/locale/ta.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@firebase/app": [
+    {
+      "id": "i2he",
+      "name": "../node_modules/@firebase/app/dist/esm/index.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../modules/es6.object.to-string": [
+    {
+      "id": "iKhv",
+      "name": "../node_modules/core-js/library/modules/es6.object.to-string.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./snap/nodeFromJSON": [
+    {
+      "id": "iQWb",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/snap/nodeFromJSON.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./headline-custom.scss": [
+    {
+      "id": "iStm",
+      "name": "./components/headline-custom/headline-custom.scss",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@babel/runtime-corejs2/helpers/construct": [
+    {
+      "id": "ied0",
+      "name": "../node_modules/@babel/runtime-corejs2/helpers/construct.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./CompoundWrite": [
+    {
+      "id": "ilTK",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/CompoundWrite.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./SyncTree": [
+    {
+      "id": "itje",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/SyncTree.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./lib/ReactPropTypesSecret": [
+    {
+      "id": "j0Iy",
+      "name": "../node_modules/next/node_modules/prop-types/lib/ReactPropTypesSecret.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./uk.js": [
+    {
+      "id": "jAw7",
+      "name": "../node_modules/moment/locale/uk.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../core/snap/indexes/ValueIndex": [
+    {
+      "id": "jBzK",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/snap/indexes/ValueIndex.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../core-js/object/get-prototype-of": [
+    {
+      "id": "jDdP",
+      "name": "../node_modules/@babel/runtime-corejs2/core-js/object/get-prototype-of.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./it-ch.js": [
+    {
+      "id": "jSwB",
+      "name": "../node_modules/moment/locale/it-ch.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./src/subscribe": [
+    {
+      "id": "jfov",
+      "name": "../node_modules/@firebase/util/dist/cjs/src/subscribe.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./gom-latn.js": [
+    {
+      "id": "jixF",
+      "name": "../node_modules/moment/locale/gom-latn.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./ar-kw.js": [
+    {
+      "id": "jogf",
+      "name": "../node_modules/moment/locale/ar-kw.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../modules/web.dom.iterable": [
+    {
+      "id": "k/kI",
+      "name": "../node_modules/core-js/library/modules/web.dom.iterable.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_object-pie": [
+    {
+      "id": "kBaS",
+      "name": "../node_modules/core-js/library/modules/_object-pie.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./ChildChangeAccumulator": [
+    {
+      "id": "kUhf",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/view/ChildChangeAccumulator.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./slide.scss": [
+    {
+      "id": "kh7v",
+      "name": "./components/slide/slide.scss",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./ja.js": [
+    {
+      "id": "km6H",
+      "name": "../node_modules/moment/locale/ja.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./ReadonlyRestClient": [
+    {
+      "id": "ks8g",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/ReadonlyRestClient.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_descriptors": [
+    {
+      "id": "lBnu",
+      "name": "../node_modules/core-js/library/modules/_descriptors.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./view/ViewCache": [
+    {
+      "id": "lTdp",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/view/ViewCache.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./Change": [
+    {
+      "id": "lh4q",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/view/Change.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "punycode": [
+    {
+      "id": "lphy",
+      "name": "../node_modules/node-libs-browser/node_modules/punycode/punycode.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_array-from-iterable": [
+    {
+      "id": "lyqB",
+      "name": "../node_modules/core-js/library/modules/_array-from-iterable.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_dom-create": [
+    {
+      "id": "m/Uw",
+      "name": "../node_modules/core-js/library/modules/_dom-create.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./be.js": [
+    {
+      "id": "mOKi",
+      "name": "../node_modules/moment/locale/be.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../modules/es7.set.from": [
+    {
+      "id": "mPQl",
+      "name": "../node_modules/core-js/library/modules/es7.set.from.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../modules/es7.set.to-json": [
+    {
+      "id": "mVXz",
+      "name": "../node_modules/core-js/library/modules/es7.set.to-json.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "react": [
+    {
+      "id": "mXGw",
+      "name": "../node_modules/react/index.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_enum-bug-keys": [
+    {
+      "id": "miGZ",
+      "name": "../node_modules/core-js/library/modules/_enum-bug-keys.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./de-ch.js": [
+    {
+      "id": "mq6o",
+      "name": "../node_modules/moment/locale/de-ch.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "core-js/library/fn/object/get-prototype-of": [
+    {
+      "id": "n+bS",
+      "name": "../node_modules/core-js/library/fn/object/get-prototype-of.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_object-dps": [
+    {
+      "id": "n6P+",
+      "name": "../node_modules/core-js/library/modules/_object-dps.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./src/api/test_access": [
+    {
+      "id": "nGNE",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/api/test_access.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../core/SyncPoint": [
+    {
+      "id": "nfAl",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/SyncPoint.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./util/ImmutableTree": [
+    {
+      "id": "niSF",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/util/ImmutableTree.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./comparators": [
+    {
+      "id": "nu1I",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/snap/comparators.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_add-to-unscopables": [
+    {
+      "id": "o3C2",
+      "name": "../node_modules/core-js/library/modules/_add-to-unscopables.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./da.js": [
+    {
+      "id": "oBlQ",
+      "name": "../node_modules/moment/locale/da.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_iter-call": [
+    {
+      "id": "oICS",
+      "name": "../node_modules/core-js/library/modules/_iter-call.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./EventEmitter": [
+    {
+      "id": "oIpL",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/util/EventEmitter.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./nl.js": [
+    {
+      "id": "oPI1",
+      "name": "../node_modules/moment/locale/nl.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./../timers-browserify/main.js": [
+    {
+      "id": "oPUo",
+      "name": "../node_modules/timers-browserify/main.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./assertThisInitialized": [
+    {
+      "id": "oS/Z",
+      "name": "../node_modules/@babel/runtime-corejs2/helpers/assertThisInitialized.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./bg.js": [
+    {
+      "id": "oaWn",
+      "name": "../node_modules/moment/locale/bg.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../modules/es6.promise": [
+    {
+      "id": "oiJE",
+      "name": "../node_modules/core-js/library/modules/es6.promise.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../LeafNode": [
+    {
+      "id": "okKR",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/snap/LeafNode.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./ar-sa.js": [
+    {
+      "id": "ooRU",
+      "name": "../node_modules/moment/locale/ar-sa.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "promise-polyfill": [
+    {
+      "id": "ooTu",
+      "name": "../node_modules/promise-polyfill/promise.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./se.js": [
+    {
+      "id": "opZB",
+      "name": "../node_modules/moment/locale/se.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./rankBooks.scss": [
+    {
+      "id": "p0sY",
+      "name": "./components/rankBooks/rankBooks.scss",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./eu.js": [
+    {
+      "id": "pAPS",
+      "name": "../node_modules/moment/locale/eu.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_set-collection-of": [
+    {
+      "id": "pFlO",
+      "name": "../node_modules/core-js/library/modules/_set-collection-of.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "firebase": [
+    {
+      "id": "pT5F",
+      "name": "../node_modules/firebase/index.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./post-item.scss": [
+    {
+      "id": "pTp9",
+      "name": "./components/post-item/post-item.scss",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_object-gops": [
+    {
+      "id": "phsM",
+      "name": "../node_modules/core-js/library/modules/_object-gops.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./stats/StatsReporter": [
+    {
+      "id": "plZH",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/stats/StatsReporter.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./cloudImage.scss": [
+    {
+      "id": "q7ob",
+      "name": "./components/cloudImage/cloudImage.scss",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_has": [
+    {
+      "id": "qA3Z",
+      "name": "../node_modules/core-js/library/modules/_has.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_object-sap": [
+    {
+      "id": "qNvu",
+      "name": "../node_modules/core-js/library/modules/_object-sap.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_invoke": [
+    {
+      "id": "qacR",
+      "name": "../node_modules/core-js/library/modules/_invoke.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./pt-br.js": [
+    {
+      "id": "qatJ",
+      "name": "../node_modules/moment/locale/pt-br.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./ms-my.js": [
+    {
+      "id": "qelJ",
+      "name": "../node_modules/moment/locale/ms-my.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_microtask": [
+    {
+      "id": "qg1s",
+      "name": "../node_modules/core-js/library/modules/_microtask.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../core/util/Path": [
+    {
+      "id": "qrX8",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/util/Path.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_bind": [
+    {
+      "id": "rPaN",
+      "name": "../node_modules/core-js/library/modules/_bind.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./src/deferred": [
+    {
+      "id": "rTOR",
+      "name": "../node_modules/@firebase/util/dist/cjs/src/deferred.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./en-il.js": [
+    {
+      "id": "rTiS",
+      "name": "../node_modules/moment/locale/en-il.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../../authentication/firebase": [
+    {
+      "id": "re7v",
+      "name": "./authentication/firebase.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../../modules/es6.reflect.construct": [
+    {
+      "id": "rgc3",
+      "name": "../node_modules/core-js/library/modules/es6.reflect.construct.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./vi.js": [
+    {
+      "id": "riLI",
+      "name": "../node_modules/moment/locale/vi.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./me.js": [
+    {
+      "id": "riUx",
+      "name": "../node_modules/moment/locale/me.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./AuthTokenProvider": [
+    {
+      "id": "rzlE",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/AuthTokenProvider.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../core-js/array/is-array": [
+    {
+      "id": "s20r",
+      "name": "../node_modules/@babel/runtime-corejs2/core-js/array/is-array.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./sl.js": [
+    {
+      "id": "s2ex",
+      "name": "../node_modules/moment/locale/sl.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./ga.js": [
+    {
+      "id": "s5bY",
+      "name": "../node_modules/moment/locale/ga.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "regenerator-runtime": [
+    {
+      "id": "s8Nl",
+      "name": "../node_modules/@babel/runtime-corejs2/node_modules/regenerator-runtime/runtime-module.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_for-of": [
+    {
+      "id": "s9UB",
+      "name": "../node_modules/core-js/library/modules/_for-of.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./post-general.scss": [
+    {
+      "id": "sAtk",
+      "name": "./components/post-general/post-general.scss",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./tlh.js": [
+    {
+      "id": "sCZo",
+      "name": "../node_modules/moment/locale/tlh.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./fr-ch.js": [
+    {
+      "id": "sIcz",
+      "name": "../node_modules/moment/locale/fr-ch.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./az.js": [
+    {
+      "id": "sTnJ",
+      "name": "../node_modules/moment/locale/az.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_set-to-string-tag": [
+    {
+      "id": "sWB5",
+      "name": "../node_modules/core-js/library/modules/_set-to-string-tag.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./operation/ListenComplete": [
+    {
+      "id": "sabq",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/operation/ListenComplete.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../../../../components/post-item/post-item": [
+    {
+      "id": "sn1C",
+      "name": "./components/post-item/post-item.jsx",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "url": [
+    {
+      "id": "so/P",
+      "name": "../node_modules/url/url.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_object-gopn": [
+    {
+      "id": "sqS1",
+      "name": "../node_modules/core-js/library/modules/_object-gopn.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../core-js/symbol/iterator": [
+    {
+      "id": "t+lh",
+      "name": "../node_modules/@babel/runtime-corejs2/core-js/symbol/iterator.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "next-server/head": [
+    {
+      "id": "t4GJ",
+      "name": "../node_modules/next-server/head.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "@babel/runtime-corejs2/helpers/esm/inherits": [
+    {
+      "id": "tEuJ",
+      "name": "../node_modules/@babel/runtime-corejs2/helpers/esm/inherits.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./yo.js": [
+    {
+      "id": "tL86",
+      "name": "../node_modules/moment/locale/yo.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_object-assign": [
+    {
+      "id": "tbIA",
+      "name": "../node_modules/core-js/library/modules/_object-assign.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./database": [
+    {
+      "id": "tkD1",
+      "name": "../node_modules/firebase/database/index.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../modules/core.get-iterator": [
+    {
+      "id": "uMC/",
+      "name": "../node_modules/core-js/library/modules/core.get-iterator.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./side-effect": [
+    {
+      "id": "uYFp",
+      "name": "../node_modules/next-server/dist/lib/side-effect.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../core/RepoInfo": [
+    {
+      "id": "uk4C",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/RepoInfo.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "../core/view/QueryParams": [
+    {
+      "id": "uoOU",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/view/QueryParams.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./EventGenerator": [
+    {
+      "id": "v/6t",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/view/EventGenerator.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./bo.js": [
+    {
+      "id": "vPIy",
+      "name": "../node_modules/moment/locale/bo.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "core-js/library/fn/object/keys": [
+    {
+      "id": "wFa1",
+      "name": "../node_modules/core-js/library/fn/object/keys.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./lb.js": [
+    {
+      "id": "wSTE",
+      "name": "../node_modules/moment/locale/lb.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./lt.js": [
+    {
+      "id": "wUrv",
+      "name": "../node_modules/moment/locale/lt.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./fr.js": [
+    {
+      "id": "wehu",
+      "name": "../node_modules/moment/locale/fr.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./src/utf8": [
+    {
+      "id": "wgXv",
+      "name": "../node_modules/@firebase/util/dist/cjs/src/utf8.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./util": [
+    {
+      "id": "wjI5",
+      "name": "../node_modules/url/util.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./tzl.js": [
+    {
+      "id": "x0TR",
+      "name": "../node_modules/moment/locale/tzl.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "react-dom": [
+    {
+      "id": "xARA",
+      "name": "../node_modules/react-dom/index.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "core-js/library/fn/reflect/construct": [
+    {
+      "id": "xGJO",
+      "name": "../node_modules/core-js/library/fn/reflect/construct.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./lv.js": [
+    {
+      "id": "xVOH",
+      "name": "../node_modules/moment/locale/lv.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./sr-cyrl.js": [
+    {
+      "id": "xXeP",
+      "name": "../node_modules/moment/locale/sr-cyrl.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./view/View": [
+    {
+      "id": "xjxP",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/view/View.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./IndexMap": [
+    {
+      "id": "xrKZ",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/snap/IndexMap.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./sw.js": [
+    {
+      "id": "y2+C",
+      "name": "../node_modules/moment/locale/sw.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./mk.js": [
+    {
+      "id": "yPwC",
+      "name": "../node_modules/moment/locale/mk.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./ss.js": [
+    {
+      "id": "z3ad",
+      "name": "../node_modules/moment/locale/ss.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./snap/ChildrenNode": [
+    {
+      "id": "z6of",
+      "name": "../node_modules/@firebase/database/dist/cjs/src/core/snap/ChildrenNode.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./kk.js": [
+    {
+      "id": "zJNk",
+      "name": "../node_modules/moment/locale/kk.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_property-desc": [
+    {
+      "id": "zJT+",
+      "name": "../node_modules/core-js/library/modules/_property-desc.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_to-integer": [
+    {
+      "id": "zWQs",
+      "name": "../node_modules/core-js/library/modules/_to-integer.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./ar-ly.js": [
+    {
+      "id": "zWXE",
+      "name": "../node_modules/moment/locale/ar-ly.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_promise-resolve": [
+    {
+      "id": "zafj",
+      "name": "../node_modules/core-js/library/modules/_promise-resolve.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./ar.js": [
+    {
+      "id": "zaxx",
+      "name": "../node_modules/moment/locale/ar.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./_array-includes": [
+    {
+      "id": "zeFm",
+      "name": "../node_modules/core-js/library/modules/_array-includes.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./fa.js": [
+    {
+      "id": "zhSd",
+      "name": "../node_modules/moment/locale/fa.js",
+      "file": "static/chunks/commons.2be2c448821b23e538ee.js",
+      "publicPath": "static/chunks/commons.2be2c448821b23e538ee.js"
+    }
+  ],
+  "./one-type-post.scss": [
+    {
+      "id": "+0JC",
+      "name": "./pages/one-type-post/one-type-post.scss",
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
     }
   ],
   "./new-post-item.scss": [
     {
-      "id": "./pages/home/components/new-post-item/new-post-item.scss",
+      "id": "+XwT",
       "name": "./pages/home/components/new-post-item/new-post-item.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
     }
   ],
-  "./newpost.scss": [
+  "./app.scss": [
     {
-      "id": "./pages/home/components/newpost/newpost.scss",
-      "name": "./pages/home/components/newpost/newpost.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "id": "09Of",
+      "name": "./pages/app.scss",
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
     }
   ],
   "./slideHome.scss": [
     {
-      "id": "./pages/home/components/slideHome/slideHome.scss",
+      "id": "dwpl",
       "name": "./pages/home/components/slideHome/slideHome.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
     }
   ],
   "./stand-out-posts-2-column.scss": [
     {
-      "id": "./pages/home/components/stand-out-posts-2-column/stand-out-posts-2-column.scss",
+      "id": "bCbz",
       "name": "./pages/home/components/stand-out-posts-2-column/stand-out-posts-2-column.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    }
+  ],
+  "./login.scss": [
+    {
+      "id": "Cg0e",
+      "name": "./pages/login/login.scss",
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
     }
   ],
   "./stand-out-posts.scss": [
     {
-      "id": "./pages/home/components/stand-out-posts/stand-out-posts.scss",
+      "id": "DAMH",
       "name": "./pages/home/components/stand-out-posts/stand-out-posts.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    }
+  ],
+  "./newpost.scss": [
+    {
+      "id": "Fn25",
+      "name": "./pages/home/components/newpost/newpost.scss",
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    }
+  ],
+  "./contact.scss": [
+    {
+      "id": "atC5",
+      "name": "./pages/contact/contact.scss",
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    }
+  ],
+  "./newestBook.scss": [
+    {
+      "id": "qHcY",
+      "name": "./pages/books/components/newestBooks/newestBook.scss",
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    }
+  ],
+  "./post.scss": [
+    {
+      "id": "Rf1T",
+      "name": "./pages/post/post.scss",
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    }
+  ],
+  "./topBook.scss": [
+    {
+      "id": "1/lh",
+      "name": "./pages/books/components/topBooks/topBook.scss",
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    }
+  ],
+  "./posts.scss": [
+    {
+      "id": "yYTk",
+      "name": "./pages/posts/posts.scss",
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
     }
   ],
   "./home.scss": [
     {
-      "id": "./pages/home/home.scss",
+      "id": "xCN8",
       "name": "./pages/home/home.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    }
+  ],
+  "./books.scss": [
+    {
+      "id": "qvQJ",
+      "name": "./pages/books/books.scss",
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    }
+  ],
+  "./info.scss": [
+    {
+      "id": "Nsr7",
+      "name": "./pages/profile/components/info/info.scss",
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    },
+    {
+      "id": "d2Or",
+      "name": "./pages/book/components/info/info.scss",
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    }
+  ],
+  "./reviews.scss": [
+    {
+      "id": "WoB6",
+      "name": "./pages/book/components/reviews/reviews.scss",
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    }
+  ],
+  "./profile.scss": [
+    {
+      "id": "uAZH",
+      "name": "./pages/profile/profile.scss",
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
     }
   ],
   "./searchResult.scss": [
     {
-      "id": "./pages/searchResult/searchResult.scss",
+      "id": "adV/",
       "name": "./pages/searchResult/searchResult.scss",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    }
+  ],
+  "./book.scss": [
+    {
+      "id": "4Fnp",
+      "name": "./pages/book/book.scss",
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    }
+  ],
+  "./_error.scss": [
+    {
+      "id": "u1cx",
+      "name": "./pages/_error/_error.scss",
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
+    }
+  ],
+  "./ranks.scss": [
+    {
+      "id": "yq7R",
+      "name": "./pages/books/components/ranks/ranks.scss",
+      "file": "static/chunks/styles.a47dc7438d2b4e37c6b0.js",
+      "publicPath": "static/chunks/styles.a47dc7438d2b4e37c6b0.js"
     }
   ]
 }
