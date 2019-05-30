@@ -1,5 +1,6 @@
 import * as React from 'react'
 import './ranks.scss'
+import { CloudImage } from '../../../../components';
 
 
 export class Ranks extends React.Component {
@@ -22,7 +23,7 @@ export class Ranks extends React.Component {
                 <div className="list">
                     <div className="rank-book-item">
                         <div className="image-wrapper">
-                            <img src="https://www.nxbtre.com.vn/Images/Book/nxbtre_full_10352018_093557.jpg" />
+                            <CloudImage src="https://www.nxbtre.com.vn/Images/Book/nxbtre_full_10352018_093557.jpg" />
                         </div>
                         <div className="book-info">
                             <h3>Tạo lập mô hình kinh doanh</h3>
@@ -40,7 +41,7 @@ export class Ranks extends React.Component {
                     <hr/>
                     <div className="rank-book-item">
                         <div className="image-wrapper">
-                            <img src="https://www.nxbtre.com.vn/Images/Book/nxbtre_full_10352018_093557.jpg" />
+                            <CloudImage src="https://www.nxbtre.com.vn/Images/Book/nxbtre_full_10352018_093557.jpg" />
                         </div>
                         <div className="book-info">
                             <h3>Tạo lập mô hình kinh doanh</h3>
@@ -58,7 +59,7 @@ export class Ranks extends React.Component {
                     <hr/>
                     <div className="rank-book-item">
                         <div className="image-wrapper">
-                            <img src="https://www.nxbtre.com.vn/Images/Book/nxbtre_full_10352018_093557.jpg" />
+                            <CloudImage src="https://www.nxbtre.com.vn/Images/Book/nxbtre_full_10352018_093557.jpg" />
                         </div>
                         <div className="book-info">
                             <h3>Tạo lập mô hình kinh doanh</h3>
@@ -76,7 +77,7 @@ export class Ranks extends React.Component {
                     <hr/>
                     <div className="rank-book-item">
                         <div className="image-wrapper">
-                            <img src="https://www.nxbtre.com.vn/Images/Book/nxbtre_full_10352018_093557.jpg" />
+                            <CloudImage src="https://www.nxbtre.com.vn/Images/Book/nxbtre_full_10352018_093557.jpg" />
                         </div>
                         <div className="book-info">
                             <h3>Tạo lập mô hình kinh doanh</h3>

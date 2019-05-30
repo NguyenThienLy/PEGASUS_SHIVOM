@@ -1,5 +1,6 @@
 import * as React from 'react'
 import './savedBookItem.scss'
+import { CloudImage } from '..';
 
 export class SavedBookItem extends React.Component{
     constructor (props){
@@ -11,7 +12,7 @@ export class SavedBookItem extends React.Component{
         return (
             <div id ="saved-book-wrap">
                 <div id="saved-book--img">
-                    <a href="#"><img src={imgurl} alt={name}/></a>
+                    <a href="#"><CloudImage src={imgurl} alt={name}/></a>
                 </div>
                 <div id="saved-book--name"><a href="#">{name}</a></div>
                 <div id="saved-book--author"><span>{author}</span></div>

@@ -1,5 +1,6 @@
 import * as React from 'react'
 import './bookItem.scss'
+import { CloudImage } from '..';
 
 
 export class BookItem extends React.Component {
@@ -12,7 +13,7 @@ export class BookItem extends React.Component {
         return (
             <div className="book-item">
                 <div className="image-wrapper">
-                    <img src={img} />
+                    <CloudImage src={img} />
                 </div>
                 <div className="info">
                     <h3 onClick={handleClick}>{title}</h3>

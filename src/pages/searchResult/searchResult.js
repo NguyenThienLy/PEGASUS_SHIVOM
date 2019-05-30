@@ -1,7 +1,7 @@
 import * as React from "react";
 import "isomorphic-unfetch";
 import { connect } from "react-redux";
-import { Header, Headline, Footer } from "../../components";
+import { Header, Headline, Footer, CloudImage } from "../../components";
 import Head from "next/head";
 import Link from "next/link";
 import "./searchResult.scss";
@@ -71,12 +71,7 @@ class SearchResult extends React.Component {
                 <Head>
                     <title>Kết quả tìm kiếm</title>
                     <meta content="width=device-width, initial-scale=1" name="viewport" />
-                    <link
-                        rel="stylesheet"
-                        href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
-                        integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
-                        crossorigin="anonymous"
-                    />
+                   
                 </Head>
                 <Header {...this.props} />
 
@@ -130,7 +125,7 @@ class SearchResult extends React.Component {
                                                         <div>
                                                             <div className="__search-result">
                                                                 <div className="image-wrapper">
-                                                                    <img src={result._source.thumb} />
+                                                                    <CloudImage src={result._source.thumb} />
                                                                 </div>
                                                                 <div className="info">
                                                                     <h3 dangerouslySetInnerHTML={{ __html: this.state.results[index].highlight.title[0] }} ></h3>
@@ -145,7 +140,7 @@ class SearchResult extends React.Component {
                                                         <div>
                                                             <div className="__search-result">
                                                                 <div className="image-wrapper">
-                                                                    <img src={result._source.avatar} />
+                                                                    <CloudImage src={result._source.avatar} />
                                                                 </div>
                                                                 <div className="info">
                                                                     <h3 dangerouslySetInnerHTML={{ __html: this.state.results[index].highlight.name[0] }} ></h3>
@@ -167,7 +162,7 @@ class SearchResult extends React.Component {
                                                         <div>
                                                             <div className="__search-result">
                                                                 <div className="image-wrapper">
-                                                                    <img src={result._source.thumb} />
+                                                                    <CloudImage src={result._source.thumb} />
                                                                 </div>
                                                                 <div className="info">
                                                                     <h3 dangerouslySetInnerHTML={{ __html: this.state.results[index].highlight.title[0] }} ></h3>

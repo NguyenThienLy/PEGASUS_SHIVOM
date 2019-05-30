@@ -2,6 +2,7 @@ import * as React from 'react'
 import './editor.scss'
 import CKEditor from "react-ckeditor-component";
 import { BaseModal } from '../../../../modals'
+import { CloudImage } from '../../../../components';
 
 export class Editor extends React.Component {
     constructor(props) {
@@ -28,7 +29,7 @@ export class Editor extends React.Component {
                     </div>
                     <div className="editor-thumbnail">
                         <div className="image">
-                            <img src="https://demos.creative-tim.com/material-kit-react/static/media/bg.e5241971.jpg" />
+                            <CloudImage src="https://demos.creative-tim.com/material-kit-react/static/media/bg.e5241971.jpg" />
 
                         </div>
                         {/* <div className="upload-image-button">
