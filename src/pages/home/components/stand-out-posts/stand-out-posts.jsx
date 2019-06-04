@@ -25,7 +25,7 @@ export class StandOutPost extends Component {
                     {
                         posts.length > 0 && (
                             <div className="active">
-                                <div className="img"><a href="#"><CloudImage src={activePost.img} alt="" /> </a></div>
+                                <div className="img" style={{ backgroundImage: "url(" + activePost.img + ")" }}></div>
                                 <div className="book"><a href="#">{activePost.book}</a> </div>
                                 <div className="title"><a href="#">{activePost.title}</a></div>
                                 <div className="author-time">
