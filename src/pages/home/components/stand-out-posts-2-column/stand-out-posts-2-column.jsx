@@ -3,6 +3,7 @@ import { PostItem } from '../../../../components/post-item/post-item'
 import './stand-out-posts-2-column.scss'
 import * as moment from 'moment'
 import Link from 'next/link'
+import { CloudImage } from '../../../../components';
 
 export class StandOutPost2Column extends Component {
     state = {}
@@ -11,20 +12,20 @@ export class StandOutPost2Column extends Component {
         console.log("posts: ", posts)
         return (
             <div>
-                {posts.length == 0 && (<div id="stand-out-post-2-column-empty">
+                {posts.length == 0 && (<div className="stand-out-post-2-column-empty">
                     "Không có bài viết nào"
                 </div>)}
 
                 {
                     posts.length > 0 && (
-                        <div id="stand-out-post-2-column">
+                        <div className="stand-out-post-2-column">
                             <div className="left">
                                 {
                                     posts.map((item, index) => {
                                         if (index === 0) {
                                             return (
                                                 <div className="fisrt-stand-out-post">
-                                                    <div className="img"><a href="#"><img src={posts[0].thumb} alt="" /> </a></div>
+                                                    <div className="img"><a href="#"><CloudImage src={posts[0].thumb} alt="" /> </a></div>
                                                     <div className="book"><a href="#">{posts[0].book.title}</a> </div>
                                                     <div className="title">
                                                     <Link href={`/bai-viet/${posts[0].slug}`}>
@@ -54,7 +55,7 @@ export class StandOutPost2Column extends Component {
                                         if (index === 1) {
                                             return (
                                                 <div className="second-stand-out-post">
-                                                    <div className="img"><a href="#"><img src={posts[1].thumb} alt="" /> </a></div>
+                                                    <div className="img"><a href="#"><CloudImage src={posts[1].thumb} alt="" /> </a></div>
                                                     <div className="book"><a href="#">{posts[1].book.title}</a> </div>
                                                     <div className="title">
                                                     <Link href={`/bai-viet/${posts[1].slug}`}>

@@ -1,5 +1,6 @@
 import * as React from 'react'
 import './post-general.scss'
+import { CloudImage } from '..';
 
 export class PostGeneral extends React.Component {
     constructor() {
@@ -11,7 +12,7 @@ export class PostGeneral extends React.Component {
             <div>
                 <div className="wrap">
                     <div className="imgPost col-sm-12">
-                        <img src="img/slide0.jpg" alt="" />
+                        <CloudImage src="img/slide0.jpg" alt="" />
                     </div>
                     <div className="content col-sm-12">
                         <div className="content-top">

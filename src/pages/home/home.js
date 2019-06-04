@@ -35,7 +35,7 @@ class Home extends React.Component {
 			posts: [],
 			slides: [
 				{
-					img: '/img/slide0.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					author: 'Tạ Minh Tuấn',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 1,
@@ -43,7 +43,7 @@ class Home extends React.Component {
 						'Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên'
 				},
 				{
-					img: '/img/slide1.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					author: 'Tạ Minh Tuấn',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 1,
@@ -51,7 +51,7 @@ class Home extends React.Component {
 						'Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên'
 				},
 				{
-					img: '/img/slide2.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					author: 'Tạ Minh Tuấn',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 1,
@@ -59,7 +59,7 @@ class Home extends React.Component {
 						'Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên'
 				},
 				{
-					img: '/img/slide3.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					author: 'Tạ Minh Tuấn',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 1,
@@ -67,7 +67,7 @@ class Home extends React.Component {
 						'Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên'
 				},
 				{
-					img: '/img/slide4.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					author: 'Tạ Minh Tuấn',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 1,
@@ -75,7 +75,7 @@ class Home extends React.Component {
 						'Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên'
 				},
 				{
-					img: '/img/slide0.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					author: 'Tạ Minh Tuấn',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 1,
@@ -107,7 +107,7 @@ class Home extends React.Component {
 			newPost: [
 				{
 					_id: 1,
-					img: '/img/slide0.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 1,
@@ -115,7 +115,7 @@ class Home extends React.Component {
 				},
 				{
 					_id: 2,
-					img: '/img/slide1.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 2,
@@ -123,7 +123,7 @@ class Home extends React.Component {
 				},
 				{
 					_id: 3,
-					img: '/img/slide2.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 3,
@@ -131,7 +131,7 @@ class Home extends React.Component {
 				},
 				{
 					_id: 4,
-					img: '/img/slide3.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 1,
@@ -144,7 +144,7 @@ class Home extends React.Component {
 			standOutPosts: [
 				{
 					_id: 1,
-					img: '/img/slide0.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					title: 'Cuốn sách giúp tôi hướng về phía mặt trời 1',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 1,
@@ -156,7 +156,7 @@ class Home extends React.Component {
 				},
 				{
 					_id: 2,
-					img: '/img/slide1.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 2,
@@ -167,7 +167,7 @@ class Home extends React.Component {
 				},
 				{
 					_id: 3,
-					img: '/img/slide2.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 3,
@@ -178,7 +178,7 @@ class Home extends React.Component {
 				},
 				{
 					_id: 4,
-					img: '/img/slide3.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					title: 'Cuốn sách giúp tôi hướng về phía mặt trời 2',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 1,
@@ -189,7 +189,7 @@ class Home extends React.Component {
 				},
 				{
 					_id: 1,
-					img: '/img/slide0.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					title: 'Cuốn sách giúp tôi hướng về phía mặt trời 1',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 1,
@@ -201,7 +201,7 @@ class Home extends React.Component {
 				},
 				{
 					_id: 2,
-					img: '/img/slide1.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 2,
@@ -212,7 +212,7 @@ class Home extends React.Component {
 				},
 				{
 					_id: 3,
-					img: '/img/slide2.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 3,
@@ -223,7 +223,7 @@ class Home extends React.Component {
 				},
 				{
 					_id: 4,
-					img: '/img/slide3.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					title: 'Cuốn sách giúp tôi hướng về phía mặt trời 2',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 1,
@@ -238,7 +238,7 @@ class Home extends React.Component {
 				{
 					id: 1,
 					bookName: 'Tâm hồn cao thượng',
-					img: '/img/rankBook.jpg',
+					img: 'https://bizweb.dktcdn.net/100/197/269/products/nhung-ao-tuong-ve-thien-tai.jpg?v=1554448287327',
 					rating: 2,
 					numberReview: 111,
 					bookAuthor: 'Edmondo De Amicis',
@@ -247,7 +247,7 @@ class Home extends React.Component {
 				{
 					id: 2,
 					bookName: 'Tâm hồn cao thượng',
-					img: '/img/rankBook.jpg',
+					img: 'https://bizweb.dktcdn.net/100/197/269/products/vung-tam-ben-chi.jpg?v=1551675626777',
 					rating: 2,
 					numberReview: 111,
 					bookAuthor: 'Edmondo De Amicis',
@@ -256,7 +256,7 @@ class Home extends React.Component {
 				{
 					id: 3,
 					bookName: 'Tâm hồn cao thượng',
-					img: '/img/rankBook.jpg',
+					img: 'https://bizweb.dktcdn.net/100/197/269/products/planet-web.jpg?v=1552897461427',
 
 					rating: 2,
 					numberReview: 111,
@@ -266,7 +266,7 @@ class Home extends React.Component {
 				{
 					id: 4,
 					bookName: 'Tâm hồn cao thượng',
-					img: '/img/rankBook.jpg',
+					img: 'https://bizweb.dktcdn.net/100/197/269/products/bia-trc-1.jpg?v=1536824414917',
 
 					rating: 2,
 					numberReview: 111,
@@ -276,7 +276,7 @@ class Home extends React.Component {
 				{
 					id: 5,
 					bookName: 'Tâm hồn cao thượng',
-					img: '/img/rankBook.jpg',
+					img: 'https://bizweb.dktcdn.net/100/197/269/products/t-pha.jpg?v=1526350219870',
 
 					rating: 2,
 					numberReview: 111,
@@ -305,7 +305,7 @@ class Home extends React.Component {
 				categories: categories,
 				posts: posts
 			})
-			
+
 
 		} catch (err) {
 			console.log("err: ", err)
@@ -331,90 +331,50 @@ class Home extends React.Component {
 			<div>
 				<Head>
 					<title>Trang chủ</title>
-					<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous" />
-					<script
-						src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-						integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-						crossOrigin="anonymous"
-					/>
-					<script
-						src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-						integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-						crossOrigin="anonymous"
-					/>
-					{/* <script
-            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossOrigin="anonymous"
-          /> */}
-					<link
-						href="https://fonts.googleapis.com/css?family=Roboto"
-						rel="stylesheet"
+
+				
+					<meta
+						name="title"
+						content="Mạng xã hội những người yêu sách, thích viết lách"
 					/>
 					<meta
-						name="viewport"
-						content="initial-scale=1.0, width=device-width"
+						name="description"
+						content="Mạng xã hội những người yêu sách, thích viết lách"
 					/>
 					<link href="../app.scss" rel="stylesheet" />
 				</Head>
 				<Header {...this.props} />
-		  		{this.state.posts.length > 0 ?
-				<div className="home-main">
-		  			
-					<SlideHome slides={this.state.slides} />
-					<div className="content-home-wrap">
-						<div className="left">
-							{/* <Headline title="Bài viết nổi bật" /> */}
-							<div className="headline-stand-out headline-stand-out-posts">
-								<div className="title">Bài viết nổi bật</div>
-								<span id="type-stand-out">
-									{(this.state.currentIdTypeStandOut == this.state.AllTypeId &&
-										"Tất cả") ||
-										this.state.typeBook.filter(
-											item => item.id == this.state.currentIdTypeStandOut
-										)[0].name}
-								</span>
-								<div className="tab">
-									<div className="tab-wide-screen">
-										<button
-											className="tab-stand-out-type btn m-2 btn-sm"
-											onClick={() => {
-												this.onChangeTypePostStandOut(this.state.AllTypeId);
-											}}
-										>
-											Tất cả
+				{this.state.posts.length > 0 ?
+					<div className="home-main">
+
+						<SlideHome slides={this.state.slides} />
+						<div className="content-home-wrap">
+							<div className="left">
+								{/* <Headline title="Bài viết nổi bật" /> */}
+								<div className="headline-stand-out headline-stand-out-posts">
+									<div className="title">Bài viết nổi bật</div>
+									<span id="type-stand-out">
+										{(this.state.currentIdTypeStandOut == this.state.AllTypeId &&
+											"Tất cả") ||
+											this.state.typeBook.filter(
+												item => item.id == this.state.currentIdTypeStandOut
+											)[0].name}
+									</span>
+									<div className="tab">
+										<div className="tab-wide-screen">
+											<button
+												className="tab-stand-out-type btn m-2 btn-sm"
+												onClick={() => {
+													this.onChangeTypePostStandOut(this.state.AllTypeId);
+												}}
+											>
+												Tất cả
                     </button>
-										{this.state.typeBook.map((item, index) => {
-											if (index < 2) {
-												return (
-													<button
-														className="tab-stand-out-type btn m-2 btn-sm"
-														onClick={() => {
-															this.onChangeTypePostStandOut(item.id);
-														}}
-													>
-														{item.name}
-													</button>
-												);
-											}
-										})}
-										<button
-											class="btn m-2 btn-sm dropdown-toggle tab-stand-out-type"
-											type="button"
-											id="dropdownMenu2"
-											data-toggle="dropdown"
-											aria-haspopup="true"
-											aria-expanded="false"
-										>
-											Thêm
-                    </button>
-										<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
 											{this.state.typeBook.map((item, index) => {
-												if (index >= 2) {
+												if (index < 2) {
 													return (
 														<button
-															class="dropdown-item"
-															type="button"
+															className="tab-stand-out-type btn m-2 btn-sm"
 															onClick={() => {
 																this.onChangeTypePostStandOut(item.id);
 															}}
@@ -424,80 +384,106 @@ class Home extends React.Component {
 													);
 												}
 											})}
+											<button
+												class="btn m-2 btn-sm dropdown-toggle tab-stand-out-type"
+												type="button"
+												id="dropdownMenu2"
+												data-toggle="dropdown"
+												aria-haspopup="true"
+												aria-expanded="false"
+											>
+												Thêm
+                    </button>
+											<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+												{this.state.typeBook.map((item, index) => {
+													if (index >= 2) {
+														return (
+															<button
+																class="dropdown-item"
+																type="button"
+																onClick={() => {
+																	this.onChangeTypePostStandOut(item.id);
+																}}
+															>
+																{item.name}
+															</button>
+														);
+													}
+												})}
+											</div>
 										</div>
-									</div>
-									<div
-										className="tab-small-screen"
-										onClick={() => {
-											this.onToggleMenuStandoutPost();
-										}}
-									>
-										<i class="fas fa-ellipsis-h" />
-									</div>
-								</div>
-							</div>
-							<div id="menu-tab-small-screen">
-								<ul
-									className="tab-stand-out-type"
-									onClick={() => {
-										this.onChangeTypePostStandOut(this.state.AllTypeId);
-									}}
-								>
-									Tất cả
-                </ul>
-								{this.state.typeBook.map((item, index) => {
-									return (
-										<ul
-											className="tab-stand-out-type"
+										<div
+											className="tab-small-screen"
 											onClick={() => {
-												this.onChangeTypePostStandOut(item.id);
+												this.onToggleMenuStandoutPost();
 											}}
 										>
-											{item.name}
-										</ul>
-									);
-								})}
-							</div>
-							<StandOutPost
-								posts={
-									(this.state.currentIdTypeStandOut == this.state.AllTypeId &&
-										this.state.standOutPosts) ||
-									this.state.standOutPosts.filter(
-										item => item.type == this.state.currentIdTypeStandOut
-									)
-								}
-								typeBook={this.state.typeBook}
-							/>
-							<div
-								style={{
-									height: "30px"
-								}}
-							/>
-							{/* Bài viết nổi bật theo loại 1 */}
-							<div>
-								{this.state.categories.map(category => {
-									return (
-										<div>
-											<div className="headline-stand-out headline-stand-out-first">
-												<div className="title">
-													{category.name}
-												</div>
-											</div>
-											<StandOutPost2Column
-												posts={this.state.posts.filter(
-													(item, index) => item.book.category._id == category._id
-												).slice(0,8)}
-												typeBook={this.state.typeBook}
-											/>
+											<i class="fas fa-ellipsis-h" />
 										</div>
-									)
-								})}
+									</div>
+								</div>
+								<div id="menu-tab-small-screen">
+									<ul
+										className="tab-stand-out-type"
+										onClick={() => {
+											this.onChangeTypePostStandOut(this.state.AllTypeId);
+										}}
+									>
+										Tất cả
+                </ul>
+									{this.state.typeBook.map((item, index) => {
+										return (
+											<ul
+												className="tab-stand-out-type"
+												onClick={() => {
+													this.onChangeTypePostStandOut(item.id);
+												}}
+											>
+												{item.name}
+											</ul>
+										);
+									})}
+								</div>
+								<StandOutPost
+									posts={
+										(this.state.currentIdTypeStandOut == this.state.AllTypeId &&
+											this.state.standOutPosts) ||
+										this.state.standOutPosts.filter(
+											item => item.type == this.state.currentIdTypeStandOut
+										)
+									}
+									typeBook={this.state.typeBook}
+								/>
+								<div
+									style={{
+										height: "30px"
+									}}
+								/>
+								{/* Bài viết nổi bật theo loại 1 */}
+								<div>
+									{this.state.categories.map(category => {
+										return (
+											<div>
+												<div className="headline-stand-out headline-stand-out-first">
+													<div className="title">
+														{category.name}
+													</div>
+												</div>
+												<StandOutPost2Column
+													posts={this.state.posts.filter(
+														(item, index) => item.book.category._id == category._id
+													).slice(0, 8)}
+													typeBook={this.state.typeBook}
+												/>
+											</div>
+										)
+									})}
 
-							</div>
-							{/* //Bài viết nổi bật theo loại 1 */}
+								</div>
+								{/* //Bài viết nổi bật theo loại 1 */}
 
-							{/* Bài viết theo loại 2 */}
-							{/* <div className="headline-stand-out headline-stand-out-second">
+								{/* Bài viết theo loại 2 */}
+								{/* <div className="headline-stand-out headline-stand-out-second">
 								<div className="title">
 									{
 										this.state.typeBook.filter(
@@ -512,10 +498,10 @@ class Home extends React.Component {
 								)}
 								typeBook={this.state.typeBook}
 							/> */}
-							{/* //Bài viết theo loại 2 */}
+								{/* //Bài viết theo loại 2 */}
 
-							{/* Bài viết nổi bật theo loại 3 */}
-							{/* <div className="headline-stand-out headline-stand-out-third">
+								{/* Bài viết nổi bật theo loại 3 */}
+								{/* <div className="headline-stand-out headline-stand-out-third">
 								<div className="title">
 									{
 										this.state.typeBook.filter(
@@ -524,30 +510,30 @@ class Home extends React.Component {
 									}
 								</div>
 							</div> */}
-							{/* <StandOutPost2Column
+								{/* <StandOutPost2Column
 								posts={this.state.standOutPosts.filter(
 									item => item.type == this.state.thirdStandOutTypeBook
 								)}
 								typeBook={this.state.typeBook}
 							/> */}
-							{/* //Bài viết nổi bật theo loại 3 */}
-						</div>
-						<div className="right">
-							{/* Bài viết mới nhất */}
-							<NewPost posts={this.state.posts.slice(0, 8)} />
-							{/* Bảng xếp hạng */}
-							<div id="rank-book-home">
-								<div className="headline-stand-out headline-stand-out-rating">
-									<div className="title">Bảng xếp hạng</div>
-								</div>
-								<div id="rank">
-									<RankBooks rankBooks={this.state.rankBooks} />
+								{/* //Bài viết nổi bật theo loại 3 */}
+							</div>
+							<div className="right">
+								{/* Bài viết mới nhất */}
+								<NewPost posts={this.state.posts.slice(0, 8)} />
+								{/* Bảng xếp hạng */}
+								<div id="rank-book-home">
+									<div className="headline-stand-out headline-stand-out-rating">
+										<div className="title">Bảng xếp hạng</div>
+									</div>
+									<div id="rank">
+										<RankBooks rankBooks={this.state.rankBooks} />
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				:<Loading/>}
+					: <Loading />}
 				<Footer />
 			</div>
 		);

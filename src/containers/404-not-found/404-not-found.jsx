@@ -1,5 +1,6 @@
 import * as React from 'react'
 import './404-not-found.scss'
+import { CloudImage } from '../../components';
 
 export class NotFound extends React.Component {
     constructor(pros) {
@@ -11,7 +12,7 @@ export class NotFound extends React.Component {
             <div>
                 <div className="content">
                     <div>
-                        <img src="img/error-404.png" alt="404 not found" />
+                        <CloudImage src="img/error-404.png" alt="404 not found" />
                     </div>
                     <div>
                         <span>Xin lỗi, trang bạn yêu cầu hiện không tìm thấy</span>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './post-item-2.scss'
 import Link from 'next/link'
+import { CloudImage } from '..';
 
 export class PostItem2 extends Component {
     constructor(props) {
@@ -23,10 +24,10 @@ export class PostItem2 extends Component {
         const { post } = this.props;
         // const { post } = this.props;
         return (
-            <div id="post-item-2-wrap">
+            <div className="post-item-2-wrap">
                 <div className="img">
                     <Link href={`/bai-viet/${post.slug}`}>
-                        <a href="/bai-viet/{post._id}"><img src={post.thumb} alt={post.title} /></a>
+                        <a href="/bai-viet/{post._id}"><CloudImage src={post.thumb} alt={post.title} /></a>
                     </Link>
                 </div>
                 <div className="mask"></div>

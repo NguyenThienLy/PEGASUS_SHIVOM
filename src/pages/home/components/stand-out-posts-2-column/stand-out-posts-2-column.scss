@@ -9,7 +9,7 @@
 		color: rgb(207, 203, 203);
 	}
 }
-#stand-out-post-2-column {
+.stand-out-post-2-column {
 	display: flex;
 	.left,
 	.right {
@@ -98,7 +98,7 @@
 }
 
 @media only screen and (max-width: 600px) {
-	#stand-out-post-2-column {
+	.stand-out-post-2-column {
 		flex-direction: column;
 	}
 }

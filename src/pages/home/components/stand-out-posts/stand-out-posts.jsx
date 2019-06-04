@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { PostItem } from '../../../../components/post-item/post-item'
 import './stand-out-posts.scss'
+import { CloudImage } from '../../../../components';
 
 export class StandOutPost extends Component {
 
@@ -24,7 +25,7 @@ export class StandOutPost extends Component {
                     {
                         posts.length > 0 && (
                             <div className="active">
-                                <div className="img"><a href="#"><img src={activePost.img} alt="" /> </a></div>
+                                <div className="img"><a href="#"><CloudImage src={activePost.img} alt="" /> </a></div>
                                 <div className="book"><a href="#">{activePost.book}</a> </div>
                                 <div className="title"><a href="#">{activePost.title}</a></div>
                                 <div className="author-time">
