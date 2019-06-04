@@ -74,6 +74,8 @@ export class CrudApi {
       )
     };
     const res = await this.exec(url, options);
+    console.log("url: ", url)
+    console.log("res", res)
     return res.results.objects.rows;
   }
   async getItem(id, option = {}) {

@@ -16,9 +16,25 @@ class Post extends React.Component {
     }
     static async  getInitialProps({ req, query }) {
         const slug = req.params.postId
-        const posts = await api.post.getList({ query: { fields: ["$all", { book: ["title","description", { "author": ["name"] }, { category: ["name"]}] }], filter: { slug: slug } } })
+        const posts = await api.post.getList({
+            query: {
+                fields: ["$all", {
+                    book: ["title", "thumb", { author: ["name", "avatar"] }, { category: ["name"] }]
+                }
+                ], filter: { slug: slug }
+            }
+        })
         return {
             post: posts[0]
+        }
+    }
+    async componentDidMount() {
+        try {
+
+        } catch (err) {
+
+        } finally {
+
         }
     }
     render() {
@@ -43,7 +59,7 @@ class Post extends React.Component {
                             </h2>
 
                             <div className="book-info__book-genre">
-                                <a href="#">{this.props.post.book.category.name}</a>, <a href="#">giả tưởng</a>
+                                <a href="#">{this.props.post.book.category.name}</a>
                             </div>
                         </div>
                         <div className="reviewer-info">
@@ -80,7 +96,7 @@ class Post extends React.Component {
                                 <a
                                     href="#"
                                     className="post-subgroup__book-info__title__a">
-                                    Bố già
+                                    {this.props.post.book.title}
                                 </a>
                                 <div className="post-subgroup__book-info__title__average-point">
                                     rate this book
@@ -89,8 +105,8 @@ class Post extends React.Component {
                             <div className="post-subgroup__book-info__img">
                                 <a href="#">
                                     <img
-                                        src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f4/Godfather-Novel-Cover.png/175px-Godfather-Novel-Cover.png"
-                                        alt="book's cover image"
+                                        src={this.props.post.book.thumb}
+                                        alt={this.props.post.book.title}
                                         className="post-subgroup__book-info__img--float">
                                     </img>
                                 </a>
@@ -113,21 +129,21 @@ class Post extends React.Component {
                                 <a
                                     href="#"
                                     className="post-subgroup__author-info__name__a">
-                                    Mario Puzo
+                                    {this.props.post.book.author.name}
                                 </a>
                             </div>
                             <div className="post-subgroup__author-info__top">
                                 <div className="post-subgroup__author-info__top__avatar">
                                     <a href="#" className="post-subgroup__author-info__top__avatar--hover">
                                         <img
-                                            src="https://images.gr-assets.com/authors/1379918709p5/12605.jpg"
+                                            src={this.props.post.book.author.avatar}
                                             alt="author's image"
                                             className="post-subgroup__author-info__top__avatar__img">
                                         </img>
                                     </a>
                                 </div>
                                 <div className="post-subgroup__author-info__top__name">
-                                    <a href="#" className="post-subgroup__author-info__top__name__a">Mario Puzo</a>
+                                    <a href="#" className="post-subgroup__author-info__top__name__a">{this.props.post.book.author.name}</a>
                                 </div>
                                 <div className="post-subgroup__author-info__top__follow">
                                     <button type="button" className="post-subgroup__author-info__top__follow__button">Theo dõi</button>
