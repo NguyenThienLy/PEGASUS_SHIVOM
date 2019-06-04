@@ -1,6 +1,6 @@
 @import "../../default.scss";
 
-#post-item-2-wrap {
+.post-item-2-wrap {
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
@@ -106,7 +106,7 @@
 }
 
 @media only screen and (max-width: 600px) {
-	#post-item-2-wrap {
+	.post-item-2-wrap {
 		width: 100%;
 		img {
 			max-width: 100%;

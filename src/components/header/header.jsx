@@ -17,8 +17,8 @@ export class Header extends React.Component {
         super(props)
         this.state = {
             user: null,
-            categories: [[], []]
-
+            categories: [[], []],
+            search: null
         }
     }
     async logout() {
@@ -57,8 +57,27 @@ export class Header extends React.Component {
         }
     }
     async componentDidMount() {
+        const s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.innerHTML = `
+            var prevScrollpos = window.pageYOffset;
+            window.onscroll = function() {
+            var currentScrollPos = window.pageYOffset;
+            if (prevScrollpos > currentScrollPos) {
+                document.getElementById("header-id").style.top = "0px";
+                //document.getElementById("header-id").style.position = "fixed";
+                document.getElementById("header-id").style.boxShadow = "none";
+            } else {
+                document.getElementById("header-id").style.top = "-67px";
+                document.getElementById("header-id").style.boxShadow = "rgba(0, 0, 0, 0.16) 0px 0px 3px 0px, rgba(0, 0, 0, 0.12) 0px 1px 7px 0px";
+            }
+            prevScrollpos = currentScrollPos;
+            }
+        `;
+        document.body.appendChild(s);
         try {
-            const categories = await api.bookCategory.getList({ query: { fields: ["name"], limit: 50 } })
+            const categories = await api.bookCategory.getList({ query: { fields: ["name", "slug"], limit: 50 } })
 
             let categoriesChunked = _.chunk(categories, 8)
             this.setState({ categories: categoriesChunked })
@@ -66,6 +85,14 @@ export class Header extends React.Component {
             console.log("err: ", err)
         }
     }
+    onSearch = async () => {
+        const query = this.refs.search.value
+        this.setState({ search: query })
+    }
+    onSearchKeyPress = async (event) => {
+        Router.push(`/tim-kiem?search=${this.state.search}`)       
+    }
+
 
     render() {
         return (
@@ -73,31 +100,30 @@ export class Header extends React.Component {
             <div className="header" id="header-id">
                 <div className="first-floor" id="first-floor-id">
                     <div>
-                        {/* <a href="https://cuongsach.com" className="logo">
+                        {/* <a href="https://cuongsach.com" className="first-floor__logo">
                             <img src="./logo.jpeg" alt="Cuồng Sách logo">
                         </a>   */}
-                        <div className="page-title"><b>Cuồng sách.</b></div>
+                        <div className="first-floor__page-title"><b>Cuồng sách.</b></div>
                     </div>
 
                     <div className="function-group">
-                        <div className="function-group-item search-box">
-                            <input className="search-txt" type="text" name="search-box" placeholder="Tìm kiếm..." />
-                            <a className="search-icon" href="#">
+                        <div className="function-group__item search-box">
+
+                            <input className="search-box__search-txt" type="text" name="search-box" placeholder="Tìm kiếm..." ref="search" onChange={this.onSearch} onKeyPress={this.onSearchKeyPress} />
+                            <a className="search-box__search-icon" href="#" aria-label="Search book and reviewer">
                                 <i class="fas fa-search"></i>
                             </a>
 
                         </div>
-                        <button className="function-group-item sign-in-button" id="login-button">
-                            {/* <a href="#"> */}
+                        <button className="function-group__item sign-in-button" id="login-button">
                             {!this.state.user ?
                                 <Link href="/login">
-                                    <a href="#" className="nav-link">Đăng nhập</a>
+                                    <a href="#" className="nav-link btn-sign-in">Đăng nhập</a>
                                 </Link>
                                 : <div>
                                     <a onClick={this.logout} href="#">{this.state.user.displayName || this.state.user.email}</a>
                                 </div>
                             }
-                            {/* </a> */}
                         </button>
                     </div>
                 </div>
@@ -106,10 +132,10 @@ export class Header extends React.Component {
                     <nav className="navbar">
                         <ul className="nav-links">
                             <Link href="/">
-                                <li className="nav-item"><a href="#" className="active">trang chủ</a></li>
+                                <li className="nav-item"><a href="#" className="active nav-item--style">trang chủ</a></li>
                             </Link>
 
-                            <li className="nav-item"><a href="#">thể loại</a>
+                            <li className="nav-item"><a href="#" className="nav-item--style">thể loại</a>
 
                                 <div className="drop-down-1">
                                     {this.state.categories.map((arrayChild) => {
@@ -118,7 +144,7 @@ export class Header extends React.Component {
                                             <ul>
                                                 {arrayChild.map(category => {
                                                     return (
-                                                        <Link href="/the-loai/van-hoc-kinh-dien">
+                                                        <Link href={`/the-loai/${category.slug}`}>
                                                             <li className="drop-down-item"><a href="#" >{category.name}</a></li>
                                                         </Link>
                                                     )
@@ -172,7 +198,7 @@ export class Header extends React.Component {
                                 </div>
                             </li>
                             <Link href="/">
-                                <li className="nav-item"><a href="#">sách hay</a>
+                                <li className="nav-item"><a href="#" className="nav-item--style">sách hay</a>
 
                                     {/* <div className="drop-down-1">
                                         <ul>
@@ -189,13 +215,13 @@ export class Header extends React.Component {
                                 </li>
                             </Link>
                             <Link href="/">
-                                <li className="nav-item"><a href="#">góc mọt sách</a></li>
+                                <li className="nav-item"><a href="#" className="nav-item--style">góc mọt sách</a></li>
                             </Link>
                             <Link href="/">
-                                <li className="nav-item"><a href="#">góc sáng tác</a></li>
+                                <li className="nav-item"><a href="#" className="nav-item--style">góc sáng tác</a></li>
                             </Link>
                             <Link href="/">
-                                <li className="nav-item"><a href="#">cộng đồng</a></li>
+                                <li className="nav-item"><a href="#" className="nav-item--style">cộng đồng</a></li>
                             </Link>
                         </ul>
                     </nav>

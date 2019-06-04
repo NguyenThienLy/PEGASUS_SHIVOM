@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import "./slideHome.scss"
+import { CloudImage } from '../../../../components';
+
 
 
 export class SlideHome extends Component {
@@ -22,7 +24,8 @@ export class SlideHome extends Component {
                     {
                         <div>
                             <div id="img-wrap">
-                                <img src={slides[this.state.currentSlideIndex].img} alt={slides[this.state.currentSlideIndex].quote.substring(0, 10)} />
+                                <CloudImage src={slides[this.state.currentSlideIndex].img} alt={slides[this.state.currentSlideIndex].quote.substring(0, 10)} />
+                                {/* <img src={slides[this.state.currentSlideIndex].img} alt={slides[this.state.currentSlideIndex].quote.substring(0, 10)} /> */}
                             </div>
                             <div>
                                 <div className="name">
@@ -44,7 +47,7 @@ export class SlideHome extends Component {
                             return (
                                 <div>
                                     <div className="img-wrap" onClick={() => { this.onChangeSlide(index) }}>
-                                        <img src={item.img} alt={item.quote.substring(0, 10)} />
+                                        <CloudImage src={item.img} alt={item.quote.substring(0, 10)} />
                                     </div>
                                     <div>
                                         <div className="quote">

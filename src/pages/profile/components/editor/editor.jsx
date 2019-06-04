@@ -2,6 +2,7 @@ import * as React from 'react'
 import './editor.scss'
 import CKEditor from "react-ckeditor-component";
 import { BaseModal } from '../../../../modals'
+import { CloudImage } from '../../../../components';
 
 export class Editor extends React.Component {
     constructor(props) {

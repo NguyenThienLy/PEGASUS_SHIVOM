@@ -1,11 +1,9 @@
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
-* {
-	box-sizing: border-box;
-}
 
-.login-main {
+.__login-main {
+	box-sizing: border-box;
 	background-image: url('/img/login-bg.jpg');
 	opacity: 0.96;
 	display: flex;
@@ -15,7 +13,6 @@
 	font-family: 'Montserrat', sans-serif;
 	height: 100vh;
 	margin: -20px 0 50px;
-}
 
 h1 {
 	font-weight: bold;
@@ -226,3 +223,5 @@ form {
 	width: 40px;
 }
 
+
+}

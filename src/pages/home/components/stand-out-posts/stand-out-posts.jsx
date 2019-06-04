@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { PostItem } from '../../../../components/post-item/post-item'
 import './stand-out-posts.scss'
+import { CloudImage } from '../../../../components';
 
 export class StandOutPost extends Component {
 

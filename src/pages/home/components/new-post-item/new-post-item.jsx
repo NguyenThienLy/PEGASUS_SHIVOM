@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './new-post-item.scss'
+import Link from 'next/link'
+import { CloudImage } from '../../../../components';
 
 
 export class NewPostItem extends Component {
@@ -10,9 +12,13 @@ export class NewPostItem extends Component {
             <div className="post-item-wrap">
                 <div className="img">
                     <a href="#">
-                        <img src={post.thumb} alt="" />
+                        <CloudImage src={post.thumb} alt="" />
                     </a>
-                    <div className="book"><a href="">{post.book.title.substring(0, 15)}...</a></div>
+                    <div className="book">
+                        <Link href={`/bai-viet/${post.slug}`}>
+                            <a href="">{post.book.title.substring(0, 15)}...</a>
+                        </Link>
+                    </div>
                 </div>
                 <div className="title"><a href="">{post.title}</a></div>
             </div>);

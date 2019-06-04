@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './one-type-post.scss';
-import { PostItem2, Headline } from '../../components/';
+import { PostItem2, Headline, Loading, Footer, CloudImage } from '../../components/';
 import { Header } from '../../components/header/header';
 import Head from 'next/head';
 import { connect } from 'react-redux';
+import { api } from '../../services';
 
 class OneTypePost extends Component {
 	state = {};

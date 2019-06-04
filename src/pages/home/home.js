@@ -22,7 +22,7 @@ class Home extends React.Component {
 			posts: [],
 			slides: [
 				{
-					img: '/img/slide0.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					author: 'Tạ Minh Tuấn',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 1,
@@ -30,7 +30,7 @@ class Home extends React.Component {
 						'Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên'
 				},
 				{
-					img: '/img/slide1.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					author: 'Tạ Minh Tuấn',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 1,
@@ -38,7 +38,7 @@ class Home extends React.Component {
 						'Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên'
 				},
 				{
-					img: '/img/slide2.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					author: 'Tạ Minh Tuấn',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 1,
@@ -46,7 +46,7 @@ class Home extends React.Component {
 						'Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên'
 				},
 				{
-					img: '/img/slide3.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					author: 'Tạ Minh Tuấn',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 1,
@@ -54,7 +54,7 @@ class Home extends React.Component {
 						'Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên'
 				},
 				{
-					img: '/img/slide4.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					author: 'Tạ Minh Tuấn',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 1,
@@ -62,7 +62,7 @@ class Home extends React.Component {
 						'Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên'
 				},
 				{
-					img: '/img/slide0.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					author: 'Tạ Minh Tuấn',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 1,
@@ -94,7 +94,7 @@ class Home extends React.Component {
 			newPost: [
 				{
 					_id: 1,
-					img: '/img/slide0.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 1,
@@ -102,7 +102,7 @@ class Home extends React.Component {
 				},
 				{
 					_id: 2,
-					img: '/img/slide1.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 2,
@@ -110,7 +110,7 @@ class Home extends React.Component {
 				},
 				{
 					_id: 3,
-					img: '/img/slide2.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 3,
@@ -118,7 +118,7 @@ class Home extends React.Component {
 				},
 				{
 					_id: 4,
-					img: '/img/slide3.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 1,
@@ -131,7 +131,7 @@ class Home extends React.Component {
 			standOutPosts: [
 				{
 					_id: 1,
-					img: '/img/slide0.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					title: 'Cuốn sách giúp tôi hướng về phía mặt trời 1',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 1,
@@ -143,7 +143,7 @@ class Home extends React.Component {
 				},
 				{
 					_id: 2,
-					img: '/img/slide1.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 2,
@@ -154,7 +154,7 @@ class Home extends React.Component {
 				},
 				{
 					_id: 3,
-					img: '/img/slide2.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 3,
@@ -165,7 +165,7 @@ class Home extends React.Component {
 				},
 				{
 					_id: 4,
-					img: '/img/slide3.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					title: 'Cuốn sách giúp tôi hướng về phía mặt trời 2',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 1,
@@ -176,7 +176,7 @@ class Home extends React.Component {
 				},
 				{
 					_id: 1,
-					img: '/img/slide0.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					title: 'Cuốn sách giúp tôi hướng về phía mặt trời 1',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 1,
@@ -188,7 +188,7 @@ class Home extends React.Component {
 				},
 				{
 					_id: 2,
-					img: '/img/slide1.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 2,
@@ -199,7 +199,7 @@ class Home extends React.Component {
 				},
 				{
 					_id: 3,
-					img: '/img/slide2.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 3,
@@ -210,7 +210,7 @@ class Home extends React.Component {
 				},
 				{
 					_id: 4,
-					img: '/img/slide3.jpg',
+					img: 'https://i.imgur.com/OTzZkvy.jpg',
 					title: 'Cuốn sách giúp tôi hướng về phía mặt trời 2',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 1,
@@ -225,7 +225,8 @@ class Home extends React.Component {
 				{
 					id: 1,
 					bookName: 'Tâm hồn cao thượng',
-					img: '/img/rankBook.jpg',
+					img:
+						'https://bizweb.dktcdn.net/100/197/269/products/nhung-ao-tuong-ve-thien-tai.jpg?v=1554448287327',
 					rating: 2,
 					numberReview: 111,
 					bookAuthor: 'Edmondo De Amicis',
@@ -234,7 +235,7 @@ class Home extends React.Component {
 				{
 					id: 2,
 					bookName: 'Tâm hồn cao thượng',
-					img: '/img/rankBook.jpg',
+					img: 'https://bizweb.dktcdn.net/100/197/269/products/vung-tam-ben-chi.jpg?v=1551675626777',
 					rating: 2,
 					numberReview: 111,
 					bookAuthor: 'Edmondo De Amicis',
@@ -243,7 +244,7 @@ class Home extends React.Component {
 				{
 					id: 3,
 					bookName: 'Tâm hồn cao thượng',
-					img: '/img/rankBook.jpg',
+					img: 'https://bizweb.dktcdn.net/100/197/269/products/planet-web.jpg?v=1552897461427',
 
 					rating: 2,
 					numberReview: 111,
@@ -253,7 +254,7 @@ class Home extends React.Component {
 				{
 					id: 4,
 					bookName: 'Tâm hồn cao thượng',
-					img: '/img/rankBook.jpg',
+					img: 'https://bizweb.dktcdn.net/100/197/269/products/bia-trc-1.jpg?v=1536824414917',
 
 					rating: 2,
 					numberReview: 111,
@@ -263,7 +264,7 @@ class Home extends React.Component {
 				{
 					id: 5,
 					bookName: 'Tâm hồn cao thượng',
-					img: '/img/rankBook.jpg',
+					img: 'https://bizweb.dktcdn.net/100/197/269/products/t-pha.jpg?v=1526350219870',
 
 					rating: 2,
 					numberReview: 111,
@@ -294,17 +295,6 @@ class Home extends React.Component {
 				categories: categories,
 				posts: posts
 			});
-			// const categories = await api.bookCategory.getList({ query: {
-			// 	fields: ["$all"]
-			// }})
-			// this.setState({ categories: categories })
-			// for(const categoryIndex in categories){
-			// 	const posts = await api.bookCategory.getPosts(categories[categoryIndex]._id, { query: {
-			// 		fields: ["$all"]
-			// 	}})
-			// 	categories[categoryIndex].posts = posts
-			// 	this.setState({ categories: categories })
-			// }
 		} catch (err) {
 			console.log('err: ', err);
 		}
@@ -348,6 +338,9 @@ class Home extends React.Component {
 						integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 						crossOrigin="anonymous"
 					/>
+
+					<meta name="title" content="Mạng xã hội những người yêu sách, thích viết lách" />
+					<meta name="description" content="Mạng xã hội những người yêu sách, thích viết lách" />
 					<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
 					<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 					<link href="../app.scss" rel="stylesheet" />
@@ -398,8 +391,7 @@ class Home extends React.Component {
 												{this.state.typeBook.map((item, index) => {
 													return (
 														<button
-															class="dropdown-item"
-															type="button"
+															className="tab-stand-out-type btn m-2 btn-sm"
 															onClick={() => {
 																this.onChangeTypePostStandOut(item.id);
 															}}

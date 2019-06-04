@@ -1,7 +1,8 @@
 import { CrudApi } from '../crud'
+import * as _ from 'lodash'
 
 export class BookCategoryApi extends CrudApi {
-    constructor(){
+    constructor() {
         super("bookCategory")
     }
     async getPosts(id, option = {}) {
@@ -9,16 +10,16 @@ export class BookCategoryApi extends CrudApi {
         const query = this._serialize(option.query || {});
         url += `${query}`;
         const options = {
-          method: "GET",
-          headers: _.merge(
-            {
-              "User-Agent": "Request-Promise",
-              "Content-Type": "Application/json"
-            },
-            option.headers || {}
-          )
+            method: "GET",
+            headers: _.merge(
+                {
+                    "User-Agent": "Request-Promise",
+                    "Content-Type": "Application/json"
+                },
+                option.headers || {}
+            )
         };
         const res = await this.exec(url, options);
         return res.results.objects.rows;
-      }
+    }
 }

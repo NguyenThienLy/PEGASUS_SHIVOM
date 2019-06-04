@@ -46,7 +46,7 @@ export class CrudApi {
     const keys = Object.keys(obj);
     let query = "?";
     for (const key of keys) {
-      query += `${key}=${JSON.stringify(obj[key])}&`;
+      query += typeof(obj[key]) === "string" ? `${key}=${obj[key]}&`:`${key}=${JSON.stringify(obj[key])}&`;
     }
     return query;
   }
