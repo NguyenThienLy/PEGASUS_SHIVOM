@@ -20,14 +20,13 @@ class OneTypePost extends Component {
     }
     static async  getInitialProps({ req, query }) {
         const slug = req.params.slug
-        const categories = await api.bookCategory.getList({
+        const category = await api.bookCategory.getItemBySlug(slug, {
             query: {
-                fields: ["$all"],
-                filter: { slug }
+                fields: ["$all"]
             }
         })
         return {
-            category: categories[0]
+            category: category
         }
     }
     async componentDidMount() {

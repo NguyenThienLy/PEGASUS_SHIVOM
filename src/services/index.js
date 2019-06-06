@@ -4,6 +4,7 @@ import { BookCategoryApi } from './reviewApi/bookCategory';
 import { UserApi } from './reviewApi/user';
 import { PostApi } from './reviewApi/post';
 import { SearchApi } from './reviewApi/search'
+import { BookAuthorApi } from './reviewApi/bookAuthor';
 
 const crudApi = new CrudApi()
  
@@ -16,6 +17,7 @@ class api {
     static user = new UserApi()
     static post = new PostApi()
     static search = new SearchApi()
+    static bookAuthor = new BookAuthorApi()
 }
 
 export {

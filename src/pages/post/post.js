@@ -13,24 +13,54 @@ import { Header } from '../../components'
 class Post extends React.Component {
     constructor(props) {
         super(props)
+        this.state = {
+            book: {},
+            author: {},
+            category: {},
+            reviewer: {}
+        }
     }
     static async  getInitialProps({ req, query }) {
         const slug = req.params.postId
-        const posts = await api.post.getList({
-            query: {
-                fields: ["$all", {
-                    book: ["title", "thumb", { author: ["name", "avatar"] }, { category: ["name"] }]
-                }
-                ], filter: { slug: slug }
-            }
-        })
+        const post = await api.post.getItemBySlug(slug, { query: { fields: ["$all"] } })
         return {
-            post: posts[0]
+            post: post
         }
     }
     async componentDidMount() {
         try {
-
+            const book = await api.book.getItem(this.props.post.bookId, {
+                query: {
+                    fields: ["title","thumb","authorId","categoryId"]
+                }
+            })
+            console.log("booK: ", book)
+            this.setState({ book })
+            const [author, category] = await Promise.all([
+                api.bookAuthor.getItem(book.authorId, {
+                    query: {
+                        fields: ["name", "avatar"]
+                    }
+                }),
+                api.bookCategory.getItem(book.categoryId, {
+                    query: {
+                        fields: ["name"]
+                    }
+                })
+            ])
+            console.log("author: ", author)
+            console.log("category: ", category)
+            this.setState({
+                author, category
+            })
+            const reviewer = await api.user.getItem(this.props.post.userId, {
+                query: {
+                    fields: ["$all"]
+                }
+            })
+            console.log("reviewer: ", reviewer)
+            this.setState({ reviewer })
+            this.forceUpdate()
         } catch (err) {
 
         } finally {
@@ -53,13 +83,13 @@ class Post extends React.Component {
                         <div className="book-info">
                             <h2 className="book-info__h2">
                                 <div>
-                                    <a href="#" className="book-info__title">{this.props.post.book.title}</a> <i>của</i> <a href="#" className="book-info__author">{this.props.post.book.author.name}</a>
+                                    <a href="#" className="book-info__title">{this.state.book.title}</a> <i>của</i> <a href="#" className="book-info__author">{this.state.author.name}</a>
                                 </div>
 
                             </h2>
 
                             <div className="book-info__book-genre">
-                                <a href="#">{this.props.post.book.category.name}</a>
+                                <a href="#">{this.state.category.name}</a>
                             </div>
                         </div>
                         <div className="reviewer-info">
@@ -73,7 +103,7 @@ class Post extends React.Component {
                                 </a>
                             </div>
                             <div className="reviewer-info__username">
-                                <a href="#">Lê Nguyễn Minh</a>
+                                <a href="#">{this.state.reviewer.firstName} {this.state.reviewer.lastName}</a>
                             </div>
                             <div className="reviewer-info__follow">
                                 <button type="button" className="reviewer-info__follow__button">Theo dõi</button>
@@ -96,7 +126,7 @@ class Post extends React.Component {
                                 <a
                                     href="#"
                                     className="post-subgroup__book-info__title__a">
-                                    {this.props.post.book.title}
+                                    {this.state.book.title}
                                 </a>
                                 <div className="post-subgroup__book-info__title__average-point">
                                     rate this book
@@ -105,8 +135,8 @@ class Post extends React.Component {
                             <div className="post-subgroup__book-info__img">
                                 <a href="#">
                                     <img
-                                        src={this.props.post.book.thumb}
-                                        alt={this.props.post.book.title}
+                                        src={this.state.book.thumb}
+                                        alt={this.state.book.title}
                                         className="post-subgroup__book-info__img--float">
                                     </img>
                                 </a>
@@ -129,21 +159,21 @@ class Post extends React.Component {
                                 <a
                                     href="#"
                                     className="post-subgroup__author-info__name__a">
-                                    {this.props.post.book.author.name}
+                                    {this.state.author.name}
                                 </a>
                             </div>
                             <div className="post-subgroup__author-info__top">
                                 <div className="post-subgroup__author-info__top__avatar">
                                     <a href="#" className="post-subgroup__author-info__top__avatar--hover">
                                         <img
-                                            src={this.props.post.book.author.avatar}
+                                            src={this.state.author.avatar}
                                             alt="author's image"
                                             className="post-subgroup__author-info__top__avatar__img">
                                         </img>
                                     </a>
                                 </div>
                                 <div className="post-subgroup__author-info__top__name">
-                                    <a href="#" className="post-subgroup__author-info__top__name__a">{this.props.post.book.author.name}</a>
+                                    <a href="#" className="post-subgroup__author-info__top__name__a">{this.state.author.name}</a>
                                 </div>
                                 <div className="post-subgroup__author-info__top__follow">
                                     <button type="button" className="post-subgroup__author-info__top__follow__button">Theo dõi</button>

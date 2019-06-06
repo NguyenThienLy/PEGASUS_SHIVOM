@@ -22,4 +22,21 @@ export class BookCategoryApi extends CrudApi {
         const res = await this.exec(url, options);
         return res.results.objects.rows;
     }
+    async getItemBySlug(slug, option = {}) {
+        let url = this.baseUrl(`slug/${slug}`);
+        const query = this._serialize(option.query || {});
+        url += `${query}`;
+        const options = {
+          method: "GET",
+          headers: _.merge(
+            {
+              "User-Agent": "Request-Promise",
+              "Content-Type": "Application/json"
+            },
+            option.headers || {}
+          )
+        };
+        const res = await this.exec(url, options);
+        return res.result.object;
+      }
 }
