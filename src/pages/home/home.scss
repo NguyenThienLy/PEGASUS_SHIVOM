@@ -15,21 +15,39 @@
 		margin-right: 10px;
 		.headline-stand-out-posts {
 			border-bottom: 4px solid #f9c100;
-			.title {
-				background-color: #f9c100;
-			}
-			#type-stand-out {
-				background-color: #fff;
-				border-bottom-left-radius: 10px;
-				border-top-right-radius: 10px;
-				color: #f9c100;
-				padding: 5px 20px;
-				border: 1px solid;
-				box-shadow: 1px 1px 1px rgb(204, 202, 202);
+			div {
+				display: flex;
+				justify-content: flex-start;
+				.title {
+					background-color: #f9c100;
+				}
+				#type-stand-out {
+					margin-left: 10px;
+					background-color: #fff;
+					border-bottom-left-radius: 10px;
+					border-top-right-radius: 10px;
+					color: #f9c100;
+					padding: 5px 20px;
+					border: 1px solid;
+					box-shadow: 1px 1px 1px rgb(204, 202, 202);
+				}
 			}
 			.tab {
-				.tab-wide-screen button {
-					margin-bottom: 0px !important;
+				.tab-wide-screen {
+					button {
+						margin-bottom: 0px !important;
+					}
+					#menu-standout-posts {
+						display: flex;
+						flex-direction: column;
+						button {
+							max-width: 101px;
+							margin-right: 20px;
+							&:hover {
+								background-color: rgba(249, 193, 0, 0.5);
+							}
+						}
+					}
 				}
 				.tab-small-screen {
 					display: none;

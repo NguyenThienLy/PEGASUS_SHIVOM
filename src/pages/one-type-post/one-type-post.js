@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import { api } from '../../services';
 
 class OneTypePost extends Component {
-    state = {};
     constructor(props) {
         super(props);
         this.state = {
@@ -111,7 +110,7 @@ class OneTypePost extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return state;
+	return state;
 };
 
 export default connect(mapStateToProps)(OneTypePost);

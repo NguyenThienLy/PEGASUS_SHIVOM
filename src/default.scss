@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather:400,700&subset=vietnamese');
+
 $main-color: #58b1e1;
 $sub-main-color: #6a9cb6;
 $font-color: #29424e;
@@ -12,4 +14,9 @@ $font-body: 'Merriweather', serif;
 	.title {
 		font-family: $font-title;
 	}
+}
+
+.my-container {
+	max-width: 1180px;
+	margin: 0px auto;
 }
