@@ -9,6 +9,7 @@ export class CloudImage extends Component {
         return (
             <img
                 src={`https://ce83c157c.cloudimg.io/width/800/png-lossy-40/${this.props.src}`}
+                //src={`https://ce83c157c.cloudimg.io/cdno/30/30/png-lossy-40/${this.props.src}`}
                 alt={this.props.alt}
             />
         );
