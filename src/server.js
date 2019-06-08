@@ -51,6 +51,9 @@ class Server {
 		this.server.get('/profile', (req, res) => {
 			this.app.render(req, res, '/profile/profile');
 		});
+		this.server.get('/profile/:profileId', (req, res) => {
+			this.app.render(req, res, '/profile/profile');
+		});
 		this.server.get('/login', (req, res) => {
 			this.app.render(req, res, '/login/login');
 		});

@@ -14,7 +14,11 @@ export class PostItem2 extends Component {
         console.log("props: ", this.props)
         if (this.props.users) {
             const user = this.props.users.find((user) => { return user._id = this.props.post.userId })
-            const authorElement = <div className="author"><a href="#">{user.firstName} {user.lastName}</a></div>
+            const authorElement = <div className="author">
+                <Link href={`/profile/${user._id}`}>
+                    <a href="#">{user.firstName} {user.lastName}</a>
+                </Link>
+            </div>
             console.log("user", user)
             this.setState({ authorElement })
         }

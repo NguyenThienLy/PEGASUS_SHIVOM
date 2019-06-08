@@ -18,11 +18,11 @@ export class ItemSavedBook extends React.Component {
                     <div id="title-small-book"><a href="#">{this.props.title}</a></div>
                     <div id="author-small-book">{this.props.author}</div>
                     <div id="small-book-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+                        <i className="fas fa-star"></i>
+                        <i className="fas fa-star"></i>
+                        <i className="fas fa-star"></i>
+                        <i className="fas fa-star"></i>
+                        <i className="fas fa-star"></i>
                     </div>
                 </div>
             </div>

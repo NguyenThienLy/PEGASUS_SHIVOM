@@ -28,7 +28,7 @@ export default class SlideHome extends Component {
                             <div>
                                 <div className="name">
                                     <span className="author">{slides[this.state.currentSlideIndex].author}</span>
-                                    <i class="fas fa-book"></i>
+                                    <i className="fas fa-book"></i>
                                     <span className="bookName"> {slides[this.state.currentSlideIndex].book}</span>
                                 </div>
 
@@ -43,7 +43,7 @@ export default class SlideHome extends Component {
                     {
                         slides.map((item, index) => {
                             return (
-                                <div>
+                                <div key={index}>
                                     <div className="img-wrap" onClick={() => { this.onChangeSlide(index) }}>
                                         <CloudImage src={item.img} alt={item.quote.substring(0, 10)} />
                                     </div>

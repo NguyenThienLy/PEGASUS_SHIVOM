@@ -77,7 +77,7 @@ export class Header extends React.Component {
         `;
         document.body.appendChild(s);
         try {
-            const categories = await api.bookCategory.getList({ query: { fields: ["name", "slug"], limit: 50 } })
+            const categories = await api.bookCategory.getList({ query: { fields: ["name", "slug","_id"], limit: 50 } })
 
             let categoriesChunked = _.chunk(categories, 8)
             this.setState({ categories: categoriesChunked })
@@ -111,7 +111,7 @@ export class Header extends React.Component {
 
                             <input className="search-box__search-txt" type="text" name="search-box" placeholder="Tìm kiếm..." ref="search" onChange={this.onSearch} onKeyPress={this.onSearchKeyPress} />
                             <a className="search-box__search-icon" href="#" aria-label="Search book and reviewer">
-                                <i class="fas fa-search"></i>
+                                <i className="fas fa-search"></i>
                             </a>
 
                         </div>
@@ -138,13 +138,13 @@ export class Header extends React.Component {
                             <li className="nav-item"><a href="#" className="nav-item--style">thể loại</a>
 
                                 <div className="drop-down-1">
-                                    {this.state.categories.map((arrayChild) => {
+                                    {this.state.categories.map((arrayChild, index) => {
 
                                         return (
-                                            <ul>
+                                            <ul key={index}>
                                                 {arrayChild.map(category => {
                                                     return (
-                                                        <Link href={`/the-loai/${category.slug}`}>
+                                                        <Link href={`/the-loai/${category.slug}`} key={category._id}>
                                                             <li className="drop-down-item"><a href="#" >{category.name}</a></li>
                                                         </Link>
                                                     )

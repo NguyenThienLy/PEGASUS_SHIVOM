@@ -7,6 +7,7 @@ import './profile.scss';
 
 import { Editor } from './components/editor/editor';
 import Information from './components/information/information';
+import { api } from '../../services'
 
 class Profile extends React.Component {
 	constructor(props) {
@@ -244,7 +245,14 @@ class Profile extends React.Component {
 		this.handleClose = this.handleClose.bind(this);
 	}
 	static async getInitialProps({ req, query }) {
-		return {};
+		const profileId = req.params.profileId
+		const user = await api.user.getItem(profileId, {
+			query: {
+				fields: ["$all"]
+			}
+		})
+		
+		return { user };
 	}
 	async handleClose() {
 		console.log('close');
@@ -328,7 +336,7 @@ class Profile extends React.Component {
 							<input type="text" name="" id="write-post" placeholder="" />
 							<div className="placeholder">
 								<div>
-									<i class="fas fa-pen-fancy" /> Hãy chia sẽ cảm nhận về sách tại đây
+									<i className="fas fa-pen-fancy" /> Hãy chia sẽ cảm nhận về sách tại đây
 									</div>
 							</div>
 						</div>
@@ -339,7 +347,7 @@ class Profile extends React.Component {
 					<div className="profile__content--home">
 						<div className="posts-wrap">
 							{this.state.postsFromUser.map((item, index) => {
-								return <PostItem3 post={item} author={this.state.user} />;
+								return <PostItem3 post={item} author={this.state.user} key={index}/>;
 							})}
 						</div>
 					</div>
@@ -357,6 +365,7 @@ class Profile extends React.Component {
 												name={item.firstName + ' ' + item.lastName}
 												numberFan={12}
 												imgurl={item.avatar}
+												key={index}
 											/>
 										)
 									})
@@ -370,6 +379,7 @@ class Profile extends React.Component {
 												name={item.firstName + ' ' + item.lastName}
 												numberFan={12}
 												imgurl={item.avatar}
+												key={index}
 											/>
 										)
 									})
@@ -383,6 +393,7 @@ class Profile extends React.Component {
 												name={item.firstName + ' ' + item.lastName}
 												numberFan={12}
 												imgurl={item.avatar}
+												key={index}
 											/>
 										)
 									})
@@ -404,7 +415,7 @@ class Profile extends React.Component {
 							{
 								this.state.savedBooks.books.map((item, index) => {
 									return index % numberBookInRow == 0 && (
-										<div className="save-book__column--item">
+										<div className="save-book__column--item" key={index}>
 											<ItemSavedBook title={item.title} img_src={item.thumb} author={item.authorName} />
 										</div>
 									)
@@ -416,7 +427,7 @@ class Profile extends React.Component {
 							{
 								this.state.savedBooks.books.map((item, index) => {
 									return index % numberBookInRow == 1 && (
-										<div className="save-book__column--item">
+										<div className="save-book__column--item" key={index}>
 											<ItemSavedBook title={item.title} img_src={item.thumb} author={item.authorName} />
 										</div>
 									)
@@ -429,7 +440,7 @@ class Profile extends React.Component {
 							{
 								this.state.savedBooks.books.map((item, index) => {
 									return index % numberBookInRow == 2 && (
-										<div className="save-book__column--item">
+										<div className="save-book__column--item" key={index}>
 											<ItemSavedBook title={item.title} img_src={item.thumb} author={item.authorName} />
 										</div>
 									)
@@ -442,7 +453,7 @@ class Profile extends React.Component {
 							{
 								this.state.savedBooks.books.map((item, index) => {
 									return index % numberBookInRow == 3 && (
-										<div className="save-book__column--item">
+										<div className="save-book__column--item" key={index}>
 											<ItemSavedBook title={item.title} img_src={item.thumb} author={item.authorName} />
 										</div>
 									)
@@ -457,7 +468,7 @@ class Profile extends React.Component {
 
 					<div className="posts-wrap">
 						{this.state.savedPost.map((item, index) => {
-							return <PostItem3 post={item} author={this.state.user} />;
+							return <PostItem3 post={item} author={this.state.user} key={index}/>;
 						})}
 					</div>
 				</div>
@@ -475,14 +486,7 @@ class Profile extends React.Component {
 			<div>
 				<Head>
 					<title>Trang cá nhân</title>
-					<meta content="width=device-width, initial-scale=1" name="viewport" />
-					<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
-					<link
-						rel="stylesheet"
-						href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
-						integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
-						crossorigin="anonymous"
-					/>
+					
 				</Head>
 				<Header {...this.props} />
 
@@ -493,9 +497,10 @@ class Profile extends React.Component {
 							<div className="menu-home-user">
 								<div className="tab-signs-wrap">
 									<div className="tabs-signs">
-										{this.state.tabs.map((item) => {
+										{this.state.tabs.map((item, index) => {
 											return (
 												<div
+													key={index}
 													className={
 														item.id == this.state.activeTab ? (
 															'tab-sign tab-active'
@@ -504,16 +509,16 @@ class Profile extends React.Component {
 															)
 													}
 												>
-													<i class="fas fa-map-signs" />
+													<i className="fas fa-map-signs" />
 												</div>
 											);
 										})}
 									</div>
 								</div>
 								<div className="tabs">
-									{this.state.tabs.map((item) => {
+									{this.state.tabs.map((item, index) => {
 										return (
-											<div className={item.id == this.state.activeTab ? 'tab tab-active' : 'tab'}>
+											<div className={item.id == this.state.activeTab ? 'tab tab-active' : 'tab'} key={index}>
 												<div className="tab" onClick={() => this.changeActiveTab(item.id)}>
 													{item.name}
 												</div>

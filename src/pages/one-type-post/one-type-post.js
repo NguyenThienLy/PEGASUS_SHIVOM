@@ -62,7 +62,7 @@ class OneTypePost extends Component {
                     <div className="container">
                         <div className="name-type-wrap">
                             <div className="img">
-                                <CloudImage src="/img/type-book.jpg" alt={this.props.category.name} />
+                                <CloudImage src="https://i.imgur.com/2Rp3ACm.jpg" alt={this.props.category.name} />
                             </div>
                             <div className="name-type-book"><div>{this.props.category.name}</div></div>
                         </div>
@@ -72,7 +72,7 @@ class OneTypePost extends Component {
                                     this.state.posts.map((item, index) => {
                                         if (index % 3 == 0) {
                                             return (
-                                                <PostItem2 post={item} users={this.state.users} />
+                                                <PostItem2 post={item} users={this.state.users} key={index}/>
                                             )
                                         }
                                     })
@@ -83,7 +83,7 @@ class OneTypePost extends Component {
                                     this.state.posts.map((item, index) => {
                                         if (index % 3 == 1) {
                                             return (
-                                                <PostItem2 post={item} users={this.state.users} />
+                                                <PostItem2 post={item} users={this.state.users} key={index}/>
                                             )
                                         }
                                     })
@@ -94,7 +94,7 @@ class OneTypePost extends Component {
                                     this.state.posts.map((item, index) => {
                                         if (index % 3 == 2) {
                                             return (
-                                                <PostItem2 post={item} users={this.state.users} />
+                                                <PostItem2 post={item} users={this.state.users} key={index}/>
                                             )
                                         }
                                     })

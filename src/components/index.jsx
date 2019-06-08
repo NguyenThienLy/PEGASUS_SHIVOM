@@ -20,5 +20,6 @@ export * from './post-item/post-item'
 export * from './post-item-2/post-item-2'
 export * from './post-item-3/post-item-3'
 export * from './cloudImage/cloudImage'
+export * from './postItem/horizontal/horizontal'
 // export * from
 // export * from

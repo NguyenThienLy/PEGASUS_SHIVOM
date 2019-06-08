@@ -17,11 +17,11 @@ export class SavedBookItem extends React.Component{
                 <div id="saved-book--name"><a href="#">{name}</a></div>
                 <div id="saved-book--author"><span>{author}</span></div>
                 <div id="saved-book--rate">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
+                <i className="fa fa-star" aria-hidden="true"></i>
+                <i className="fa fa-star" aria-hidden="true"></i>
+                <i className="fa fa-star" aria-hidden="true"></i>
+                <i className="fa fa-star" aria-hidden="true"></i>
+                <i className="fa fa-star" aria-hidden="true"></i>
                 </div>
             </div>
         )

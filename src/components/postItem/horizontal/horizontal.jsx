@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import './post-item.scss'
+import './horizontal.scss'
 import * as moment from 'moment'
 import Link from 'next/link'
-import { CloudImage } from '..';
-export class PostItem extends Component {
+import { CloudImage } from '../..';
+
+export class PostItemHorizontal extends Component {
     state = {}
     render() {
         const { post } = this.props
         return (
-            <div className="post-item-wrap">
+            <div className="post-item_horizontal">
                 <div className="img">
                     <Link href={`/bai-viet/${post.slug}`}>
-                        <a href="#"><CloudImage src={post.thumb} alt="" /></a>
+                        <CloudImage src={post.thumb} alt="" />
                     </Link></div>
                 <div className="content">
                     <div className="title">

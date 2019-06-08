@@ -33,7 +33,7 @@ export class PostItem3 extends Component {
                 <div className="first-line">
                     <div className="infor-author">
                         <div className="img">
-                            <img src={author.avatar} alt="" />
+                            <CloudImage src={author.avatar} alt="" />
                         </div>
                         <div className="right-column">
                             <div className="author">
@@ -46,7 +46,7 @@ export class PostItem3 extends Component {
 
                 </div>
                 <div className="img" style={{ backgroundImage: "url(" + post.images + ")" }}>
-                    {/* <img src={post.images} alt="" /> */}
+                    {/* <CloudImage src={post.images} alt="" /> */}
                 </div>
                 <div className="title-react-line">
 

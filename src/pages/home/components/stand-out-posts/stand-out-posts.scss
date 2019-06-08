@@ -1,17 +1,18 @@
 @import "../../../../default.scss";
 
-.stand-out-post-wrap {
-	display: flex;
-	flex-direction: column;
-
+.stand-out-post-main {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	height: 455px;
 	.stand-out-post {
 		display: flex;
-		.active {
-			margin-top: 10px;
-			display: flex;
-			flex-direction: column;
-			overflow: hidden;
-
+		flex-direction: row;
+		justify-content: space-between;
+		height: 100%;
+		.stand-out-post_active {
+			height: 100%;
+			flex: 2;
+			padding-right: 6px;
 			.img {
 				overflow: hidden;
 				background-repeat: no-repeat;
@@ -83,11 +84,13 @@
 				text-align: justify;
 			}
 		}
-		.post {
+		.stand-out-post_posts {
 			overflow: auto;
-			height: 455px;
+			flex: 1;
+			padding-left: 6px;
 		}
 		.empty {
+			height: 100%;
 			text-align: center;
 			color: rgb(207, 203, 203);
 			margin: 30px auto;

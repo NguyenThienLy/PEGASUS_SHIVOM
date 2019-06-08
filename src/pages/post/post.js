@@ -10,6 +10,7 @@ import { Header } from '../../components'
 
 
 
+
 class Post extends React.Component {
     constructor(props) {
         super(props)
@@ -31,35 +32,31 @@ class Post extends React.Component {
         try {
             const book = await api.book.getItem(this.props.post.bookId, {
                 query: {
-                    fields: ["title","thumb","authorId","categoryId"]
+                    fields: ["title","thumb","authorId","categoryId","_id"]
                 }
             })
             console.log("booK: ", book)
             this.setState({ book })
-            const [author, category] = await Promise.all([
+            const [author, category, reviewer] = await Promise.all([
                 api.bookAuthor.getItem(book.authorId, {
                     query: {
-                        fields: ["name", "avatar"]
+                        fields: ["name", "avatar","_id"]
                     }
                 }),
                 api.bookCategory.getItem(book.categoryId, {
                     query: {
-                        fields: ["name"]
+                        fields: ["name","_id"]
+                    }
+                }),
+                api.user.getItem(this.props.post.userId, {
+                    query: {
+                        fields: ["$all"]
                     }
                 })
             ])
-            console.log("author: ", author)
-            console.log("category: ", category)
             this.setState({
-                author, category
+                author, category, reviewer
             })
-            const reviewer = await api.user.getItem(this.props.post.userId, {
-                query: {
-                    fields: ["$all"]
-                }
-            })
-            console.log("reviewer: ", reviewer)
-            this.setState({ reviewer })
             this.forceUpdate()
         } catch (err) {
 
@@ -103,7 +100,9 @@ class Post extends React.Component {
                                 </a>
                             </div>
                             <div className="reviewer-info__username">
+                                <Link href={`/profile/${this.state.reviewer._id}`}>
                                 <a href="#">{this.state.reviewer.firstName} {this.state.reviewer.lastName}</a>
+                                </Link>
                             </div>
                             <div className="reviewer-info__follow">
                                 <button type="button" className="reviewer-info__follow__button">Theo dõi</button>
@@ -123,11 +122,13 @@ class Post extends React.Component {
                     <div className="post-subgroup">
                         <div className="post-subgroup__book-info">
                             <div className="post-subgroup__book-info__title">
+                                <Link href={`/sach/${this.state.book._id}`}>
                                 <a
                                     href="#"
                                     className="post-subgroup__book-info__title__a">
                                     {this.state.book.title}
                                 </a>
+                                </Link>
                                 <div className="post-subgroup__book-info__title__average-point">
                                     rate this book
                                 </div>
@@ -237,11 +238,11 @@ class Post extends React.Component {
                         </div>
                         <div className="post-widget__quote">
                             <div>
-                                <i class="fas fa-quote-left"></i>
+                                <i className="fas fa-quote-left"></i>
                             </div>
                             <div className="post-widget__quote--style">Đời là bể khổ, mua thịt gà ăn</div>
                             <div className="fas-quote-icon-right">
-                                <i class="fas fa-quote-right"></i>
+                                <i className="fas fa-quote-right"></i>
                             </div>
                         </div>
                         <div className="post-widget__follow">
@@ -251,16 +252,16 @@ class Post extends React.Component {
 
                         <div className="post-widget__function-buttons">
                             <div>
-                                <i class="far fa-heart"></i>
+                                <i className="far fa-heart"></i>
                             </div>
                             <div>
-                                <i class="far fa-bookmark"></i>
+                                <i className="far fa-bookmark"></i>
                             </div>
                             <div>
-                                <i class="fab fa-facebook-square"></i>
+                                <i className="fab fa-facebook-square"></i>
                             </div>
                             <div>
-                                <i class="fab fa-twitter"></i>
+                                <i className="fab fa-twitter"></i>
                             </div>
 
                         </div>

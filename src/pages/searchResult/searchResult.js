@@ -121,16 +121,19 @@ class SearchResult extends React.Component {
                                 this.state.results.length > 0 ?
                                     <div>
                                         {this.state.results.map((result, index) => {
+                     
                                             switch (this.state.type) {
                                                 case "book":
                                                     return (
-                                                        <div>
+                                                        <div key={index}>
                                                             <div className="__search-result">
                                                                 <div className="image-wrapper">
                                                                     <CloudImage src={result._source.thumb} />
                                                                 </div>
                                                                 <div className="info">
+                                                                    <Link href={`/sach/${result._id}`}>
                                                                     <h3 dangerouslySetInnerHTML={{ __html: this.state.results[index].highlight.title[0] }} ></h3>
+                                                                    </Link>
                                                                     <p>Tạ Minh Tuấn</p>
                                                                 </div>
                                                             </div>
@@ -139,7 +142,7 @@ class SearchResult extends React.Component {
                                                     )
                                                 case "author":
                                                     return (
-                                                        <div>
+                                                        <div key={index}>
                                                             <div className="__search-result">
                                                                 <div className="image-wrapper">
                                                                     <CloudImage src={result._source.avatar} />
@@ -161,7 +164,7 @@ class SearchResult extends React.Component {
                                                 case "post":
                                                     return (
 
-                                                        <div>
+                                                        <div key={index}>
                                                             <div className="__search-result">
                                                                 <div className="image-wrapper">
                                                                     <CloudImage src={result._source.thumb} />

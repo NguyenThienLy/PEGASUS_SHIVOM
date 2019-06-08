@@ -44,7 +44,7 @@
     "babel": "src/server.js",
     "g": "node devHelper/templates/index",
     "prod_start": "NODE_ENV=production node src/server.js",
-    "start": "next build src && NODE_ENV=production node src/server.js"
+    "start": "next build src && NODE_ENV=production PORT=3030 node src/server.js"
   },
   "eslintConfig": {
     "extends": "react-app"

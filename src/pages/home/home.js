@@ -3,6 +3,7 @@ import 'isomorphic-unfetch';
 import { connect } from 'react-redux';
 
 import Head from 'next/head';
+import Link from 'next/link'
 import * as moment from 'moment';
 import * as _ from 'lodash';
 
@@ -281,7 +282,7 @@ class Home extends React.Component {
 				query: {
 					fields: [
 						'$all',
-						{ user: [ 'firstName', 'lastName' ], book: [ '$all', { category: [ '$all' ] } ] }
+						{ user: ['firstName', 'lastName', '_id'], book: ['$all', { category: ['$all'] }] }
 					],
 					limit: 100
 				}
@@ -290,7 +291,6 @@ class Home extends React.Component {
 				return post.book.category;
 			});
 			categories = _.unionBy(categories, '_id');
-			console.log('categories : ', categories);
 			this.setState({
 				categories: categories,
 				posts: posts
@@ -317,33 +317,8 @@ class Home extends React.Component {
 			<div>
 				<Head>
 					<title>Trang chủ</title>
-					<link
-						rel="stylesheet"
-						href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-						integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
-						crossorigin="anonymous"
-					/>
-					<script
-						src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-						integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-						crossOrigin="anonymous"
-					/>
-					<script
-						src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-						integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-						crossOrigin="anonymous"
-					/>
-					<script
-						src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-						integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-						crossOrigin="anonymous"
-					/>
-
 					<meta name="title" content="Mạng xã hội những người yêu sách, thích viết lách" />
 					<meta name="description" content="Mạng xã hội những người yêu sách, thích viết lách" />
-					<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
-					<meta name="viewport" content="initial-scale=1.0, width=device-width" />
-					<link href="../app.scss" rel="stylesheet" />
 				</Head>
 				<Header {...this.props} />
 				{this.state.posts.length > 0 ? (
@@ -365,7 +340,7 @@ class Home extends React.Component {
 									<div className="tab">
 										<div className="tab-wide-screen">
 											<button
-												class="btn m-2 btn-sm dropdown-toggle tab-stand-out-type"
+												className="btn m-2 btn-sm dropdown-toggle tab-stand-out-type"
 												type="button"
 												id="dropdownMenu2"
 												data-toggle="dropdown"
@@ -380,7 +355,7 @@ class Home extends React.Component {
 												aria-labelledby="dropdownMenu2"
 											>
 												<button
-													class="dropdown-item"
+													className="dropdown-item"
 													type="button"
 													onClick={() => {
 														this.onChangeTypePostStandOut(this.state.AllTypeId);
@@ -391,6 +366,7 @@ class Home extends React.Component {
 												{this.state.typeBook.map((item, index) => {
 													return (
 														<button
+															key={index}
 															className="tab-stand-out-type btn m-2 btn-sm"
 															onClick={() => {
 																this.onChangeTypePostStandOut(item.id);
@@ -408,7 +384,7 @@ class Home extends React.Component {
 												this.onToggleMenuStandoutPost();
 											}}
 										>
-											<i class="fas fa-ellipsis-h" />
+											<i className="fas fa-ellipsis-h" />
 										</div>
 									</div>
 								</div>
@@ -424,6 +400,7 @@ class Home extends React.Component {
 									{this.state.typeBook.map((item, index) => {
 										return (
 											<ul
+												key={index}
 												className="tab-stand-out-type"
 												onClick={() => {
 													this.onChangeTypePostStandOut(item.id);
@@ -435,6 +412,7 @@ class Home extends React.Component {
 									})}
 								</div>
 								<StandOutPost
+
 									posts={
 										(this.state.currentIdTypeStandOut == this.state.AllTypeId &&
 											this.state.standOutPosts) ||
@@ -444,18 +422,16 @@ class Home extends React.Component {
 									}
 									typeBook={this.state.typeBook}
 								/>
-								<div
-									style={{
-										height: '30px'
-									}}
-								/>
-								{/* Bài viết nổi bật theo loại 1 */}
-								<div>
-									{this.state.categories.map((category) => {
+								
+
+								<div class="home-popular-post-by-category">
+									{this.state.categories.map((category, index) => {
 										return (
-											<div>
+											<div key={category._id}>
 												<div className="headline-stand-out headline-stand-out-first">
-													<div className="title">{category.name}</div>
+													<Link href={`/the-loai/${category.slug}`}>
+														<div className="title">{category.name}</div>
+													</Link>
 												</div>
 												<StandOutPost2Column
 													posts={this.state.posts.filter(
@@ -467,43 +443,7 @@ class Home extends React.Component {
 										);
 									})}
 								</div>
-								{/* //Bài viết nổi bật theo loại 1 */}
 
-								{/* Bài viết theo loại 2 */}
-								{/* <div className="headline-stand-out headline-stand-out-second">
-								<div className="title">
-									{
-										this.state.typeBook.filter(
-											(item) => item.id == this.state.secondStandOutTypeBook
-										)[0].name
-									}
-								</div>
-							</div>
-							<StandOutPost
-								posts={this.state.standOutPosts.filter(
-									(item) => item.type == this.state.secondStandOutTypeBook
-								)}
-								typeBook={this.state.typeBook}
-							/> */}
-								{/* //Bài viết theo loại 2 */}
-
-								{/* Bài viết nổi bật theo loại 3 */}
-								{/* <div className="headline-stand-out headline-stand-out-third">
-								<div className="title">
-									{
-										this.state.typeBook.filter(
-											item => item.id == this.state.thirdStandOutTypeBook
-										)[0].name
-									}
-								</div>
-							</div> */}
-								{/* <StandOutPost2Column
-								posts={this.state.standOutPosts.filter(
-									item => item.type == this.state.thirdStandOutTypeBook
-								)}
-								typeBook={this.state.typeBook}
-							/> */}
-								{/* //Bài viết nổi bật theo loại 3 */}
 							</div>
 							<div className="right">
 								{/* Bài viết mới nhất */}
@@ -521,8 +461,8 @@ class Home extends React.Component {
 						</div>
 					</div>
 				) : (
-					<Loading />
-				)}
+						<Loading />
+					)}
 				<Footer />
 			</div>
 		);

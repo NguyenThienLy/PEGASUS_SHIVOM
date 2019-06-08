@@ -23,14 +23,14 @@ export class SlideHome extends Component {
                 <div id="active">
                     {
                         <div>
-                            <div id="img-wrap">
+                            <div className="slide-img-wrap">
                                 <CloudImage src={slides[this.state.currentSlideIndex].img} alt={slides[this.state.currentSlideIndex].quote.substring(0, 10)} />
-                                {/* <img src={slides[this.state.currentSlideIndex].img} alt={slides[this.state.currentSlideIndex].quote.substring(0, 10)} /> */}
+                                {/* <CloudImage src={slides[this.state.currentSlideIndex].img} alt={slides[this.state.currentSlideIndex].quote.substring(0, 10)} /> */}
                             </div>
                             <div>
                                 <div className="name">
                                     <span className="author">{slides[this.state.currentSlideIndex].author}</span>
-                                    <i class="fas fa-book"></i>
+                                    <i className="fas fa-book"></i>
                                     <span className="bookName"> {slides[this.state.currentSlideIndex].book}</span>
                                 </div>
 
@@ -45,8 +45,8 @@ export class SlideHome extends Component {
                     {
                         slides.map((item, index) => {
                             return (
-                                <div>
-                                    <div className="img-wrap" onClick={() => { this.onChangeSlide(index) }}>
+                                <div key={index}>
+                                    <div className="slide-img-wrap" onClick={() => { this.onChangeSlide(index) }}>
                                         <CloudImage src={item.img} alt={item.quote.substring(0, 10)} />
                                     </div>
                                     <div>

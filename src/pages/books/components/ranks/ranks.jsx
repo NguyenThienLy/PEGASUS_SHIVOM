@@ -29,11 +29,11 @@ export class Ranks extends React.Component {
                             <h3>Tạo lập mô hình kinh doanh</h3>
                             <p>Philip Kolter</p>
                             <div id="book-rank-star">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
+                                <i className="fas fa-star"></i>
+                                <i className="fas fa-star"></i>
+                                <i className="fas fa-star"></i>
+                                <i className="far fa-star"></i>
+                                <i className="far fa-star"></i>
                             </div>
                         </div>
                         
@@ -47,11 +47,11 @@ export class Ranks extends React.Component {
                             <h3>Tạo lập mô hình kinh doanh</h3>
                             <p>Philip Kolter</p>
                             <div id="book-rank-star">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
+                                <i className="fas fa-star"></i>
+                                <i className="fas fa-star"></i>
+                                <i className="fas fa-star"></i>
+                                <i className="far fa-star"></i>
+                                <i className="far fa-star"></i>
                             </div>
                         </div>
                         
@@ -65,11 +65,11 @@ export class Ranks extends React.Component {
                             <h3>Tạo lập mô hình kinh doanh</h3>
                             <p>Philip Kolter</p>
                             <div id="book-rank-star">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
+                                <i className="fas fa-star"></i>
+                                <i className="fas fa-star"></i>
+                                <i className="fas fa-star"></i>
+                                <i className="far fa-star"></i>
+                                <i className="far fa-star"></i>
                             </div>
                         </div>
                         
@@ -83,11 +83,11 @@ export class Ranks extends React.Component {
                             <h3>Tạo lập mô hình kinh doanh</h3>
                             <p>Philip Kolter</p>
                             <div id="book-rank-star">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
+                                <i className="fas fa-star"></i>
+                                <i className="fas fa-star"></i>
+                                <i className="fas fa-star"></i>
+                                <i className="far fa-star"></i>
+                                <i className="far fa-star"></i>
                             </div>
                         </div>
                         
