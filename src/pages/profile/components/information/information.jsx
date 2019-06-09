@@ -6,6 +6,12 @@ class Information extends Component {
         super(props);
         this.state = {}
     }
+    followUser = async () => {
+        return this.props.followUser()
+    }
+    unFollowUser = async () => {
+        return this.props.unFollowUser()
+    }
     render() {
         const { user } = this.props;
         return (
@@ -16,10 +22,12 @@ class Information extends Component {
                     </div>
                     <div className="first-line">
                         <div className="name">{user.firstName} {user.lastName}</div>
-                    <div className="score">
-                        {user.score} điểm tích lũy
+                        <div className="score">
+                            {user.score} điểm tích lũy
                     </div>
-                        <div className="follow">Theo dõi</div>
+                        {this.props.isFollow ?
+                            <div className="follow btn-unfollow" onClick={this.unFollowUser}>Huỷ theo dõi</div> :
+                            <div className="follow bt-follow" onClick={this.followUser}>Theo dõi</div>}
                     </div>
                 </div>
                 <div className="infor-detail">

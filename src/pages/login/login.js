@@ -39,7 +39,7 @@ class Login extends React.Component {
         }
     }
     async login() {
-
+       
     }
     onOpenSignInClick() {
         const container = document.getElementById('container');
@@ -59,6 +59,7 @@ class Login extends React.Component {
         try {
             const isLogin = await firebaseAuthentication.signInWithEmailAndPassword(body.email, body.password)
             if (isLogin) {
+                //this.login()
                 Router.push('/')
             } else {
                 alert("Đăng nhập không thành công")
@@ -74,10 +75,10 @@ class Login extends React.Component {
             email: this.refs.email.value,
             password: this.refs.password.value
         }
-        console.log("body: ", body)
         try {
             const isLogin = await firebaseAuthentication.createUserByEmailAndPassword(body.email, body.password)
             if (isLogin) {
+                //this.login()
                 Router.push('/')
             } else {
                 alert("Đăng nhập không thành công")
@@ -91,6 +92,7 @@ class Login extends React.Component {
         try {
             const isLogin = await firebaseAuthentication.signInWithFacebook()
             if (isLogin) {
+                //this.login()
                 Router.push('/')
             } else {
                 alert("Đăng nhập không thành công")
@@ -103,6 +105,7 @@ class Login extends React.Component {
         try {
             const isLogin = await firebaseAuthentication.signInWithGoogle()
             if (isLogin) {
+                //this.login()
                 Router.push('/')
             } else {
                 alert("Đăng nhập không thành công")

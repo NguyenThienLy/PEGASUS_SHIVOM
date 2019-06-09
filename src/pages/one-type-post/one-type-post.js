@@ -58,8 +58,9 @@ class OneTypePost extends Component {
                     <meta name="description" content={this.props.category.name}/>
                 </Head>
                 <Header {...this.props} />
+
                 {this.state.users ?
-                    <div className="container">
+                    <div className="one-type-post-page-wrap container">
                         <div className="name-type-wrap">
                             <div className="img">
                                 <CloudImage src="https://i.imgur.com/2Rp3ACm.jpg" alt={this.props.category.name} />

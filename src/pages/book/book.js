@@ -25,7 +25,6 @@ class Book extends React.Component {
 
             }
         })
-        console.log("book: ", book)
         return {
             book
         }

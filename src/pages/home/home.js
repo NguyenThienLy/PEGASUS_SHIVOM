@@ -13,7 +13,8 @@ import './home.scss';
 import '../../assets/bootstrap4/bootstrap.min.scss';
 
 import { api } from '../../services';
-import { RankBooks, Footer, Headline, Header, Slide, Loading } from '../../components';
+import { RankBooks, Headline, Footer, Header, Slide, Loading, LazyLoadComponent } from '../../components';
+
 
 class Home extends React.Component {
 	constructor(props) {
@@ -422,7 +423,7 @@ class Home extends React.Component {
 									}
 									typeBook={this.state.typeBook}
 								/>
-								
+
 
 								<div class="home-popular-post-by-category">
 									{this.state.categories.map((category, index) => {
@@ -463,7 +464,10 @@ class Home extends React.Component {
 				) : (
 						<Loading />
 					)}
-				<Footer />
+				<LazyLoadComponent
+					path="../footer/footer"
+				/>
+				{/* <Footer /> */}
 			</div>
 		);
 	}

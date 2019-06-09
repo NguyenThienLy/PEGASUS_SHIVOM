@@ -1,7 +1,7 @@
 import * as React from 'react';
 import 'isomorphic-unfetch';
 import { connect } from 'react-redux';
-import { Header, Headline, Footer, PostItem3, FollowedReviewerItem, ItemSavedBook } from '../../components';
+import { Header, Headline, Footer, PostItem3, FollowedReviewerItem, ItemSavedBook, LazyLoadComponent } from '../../components';
 import Head from 'next/head';
 import './profile.scss';
 
@@ -9,11 +9,19 @@ import { Editor } from './components/editor/editor';
 import Information from './components/information/information';
 import { api } from '../../services'
 
+const firebaseAuthentication = require('../../authentication/firebase')
+
 class Profile extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			showEditor: false,
+			isFollow: false,
+			followId: null,
+			posts: [],
+			followeds: [],
+			bookSaveds: [],
+			postSaveds: [],
 			tabs: [
 				{
 					id: 0,
@@ -32,7 +40,7 @@ class Profile extends React.Component {
 					name: 'Bài viết đã lưu'
 				}
 			],
-			activeTab: 2,
+			activeTab: 0,
 			savedTabId: 2,
 			isHomeUser: true,
 			user: {
@@ -246,13 +254,132 @@ class Profile extends React.Component {
 	}
 	static async getInitialProps({ req, query }) {
 		const profileId = req.params.profileId
-		const user = await api.user.getItem(profileId, {
+		const profile = await api.user.getItem(profileId, {
 			query: {
 				fields: ["$all"]
 			}
 		})
-		
-		return { user };
+		return { profile };
+	}
+	async componentDidMount() {
+		try {
+			const posts = await api.post.getList({
+				query: {
+					filter: {
+						userId: this.props.profile._id
+					},
+					fields: ["$all", { book: ["_id", "title"] }]
+				}
+			})
+			this.setState({ posts })
+			const followeds = await api.userFollow.getList({
+				query: {
+					filter: {
+						fromId: this.props.profile._id
+					},
+					fields: ["$all", { to: ["_id", "avatar", "firstName", "lastName", "avatar"] }]
+				}
+			})
+			this.setState({ followeds })
+			api.userSaved.getList({
+				query: {
+					filter: {
+						userId: this.props.profile._id,
+						type: "book"
+					},
+					fields: ["$all"]
+				}
+			}).then(async (items) => {
+				const books = await api.book.getList({
+					query: {
+						filter: {
+							_id: { $in: items.map(item => { return item.itemId }) }
+						},
+						fields: ["_id", "title", "thumb", { author: ["_id", "name"] }]
+					}
+				})
+				console.log("books: ", books)
+				this.setState({ bookSaveds: books })
+			})
+			api.userSaved.getList({
+				query: {
+					filter: {
+						userId: this.props.profile._id,
+						type: "post"
+					},
+					fields: ["$all"]
+				}
+			}).then(async (items) => {
+				const posts = await api.post.getList({
+					query: {
+						filter: {
+							_id: { $in: items.map(item => { return item.itemId }) }
+						},
+						fields: ["title", "thumb","content", { book: ["_id", "title"] }, { user: ["_id", "firstName", "lastName","avatar"] }]
+					}
+				})
+				this.setState({ postSaveds: posts })
+			})
+			setTimeout(() => {
+				console.log("chay day")
+				if (this.props.user) {
+					api.userFollow.findOne({
+						query: {
+							filter: {
+								fromId: this.props.user._id,
+								toId: this.props.profile._id
+							}
+						}
+					}).then(result => {
+						console.log("result: ", result)
+						this.setState({ isFollow: true, followId: result._id })
+						this.forceUpdate()
+					}).catch(err => {
+						console.log("not found: ", err)
+					})
+				}
+			}, 1000)
+		} catch (err) {
+
+		} finally {
+
+		}
+	}
+	followUser = async () => {
+		console.log("pròile:", this.props.profile)
+		if (!this.props.user) {
+			alert("Vui lòng đăng nhập trước khi thực hiện thao tác này")
+		} else {
+			try {
+				const token = await firebaseAuthentication.getIdToken()
+				const result = await api.userFollow.create({
+					toId: this.props.profile._id
+				}, {
+						headers: {
+							access_token: token
+						}
+					})
+				this.setState({ isFollow: true, followId: result._id })
+			} catch (err) {
+				console.log("err: ", err)
+				alert("Theo dõi không thành công")
+			}
+		}
+	}
+	unFollowUser = async () => {
+		try {
+			const token = await firebaseAuthentication.getIdToken()
+			const result = await api.userFollow.delete(this.state.followId, {
+				headers: {
+					access_token: token
+				}
+			})
+			alert("Huỷ theo dõi thành công")
+			this.setState({ isFollow: false, followId: null })
+		} catch (err) {
+			console.log("err: ", err)
+			alert("Huỷ theo dõi không thành công")
+		}
 	}
 	async handleClose() {
 		console.log('close');
@@ -346,8 +473,8 @@ class Profile extends React.Component {
 				result.push(
 					<div className="profile__content--home">
 						<div className="posts-wrap">
-							{this.state.postsFromUser.map((item, index) => {
-								return <PostItem3 post={item} author={this.state.user} key={index}/>;
+							{this.state.posts.map((item, index) => {
+								return <PostItem3 post={item} author={this.props.profile} key={index} />;
 							})}
 						</div>
 					</div>
@@ -359,12 +486,12 @@ class Profile extends React.Component {
 						<div className="profile__content--followed-review">
 							<div className="followed-review__column--one">
 								{
-									this.state.followdReviewers.map((item, index) => {
+									this.state.followeds.map((item, index) => {
 										return index % 3 == 0 && (
 											<FollowedReviewerItem
-												name={item.firstName + ' ' + item.lastName}
+												name={item.to.firstName + ' ' + item.to.lastName}
 												numberFan={12}
-												imgurl={item.avatar}
+												imgurl={item.to.avatar}
 												key={index}
 											/>
 										)
@@ -373,12 +500,12 @@ class Profile extends React.Component {
 							</div>
 							<div className="followed-review__column--two">
 								{
-									this.state.followdReviewers.map((item, index) => {
+									this.state.followeds.map((item, index) => {
 										return index % 3 == 1 && (
 											<FollowedReviewerItem
-												name={item.firstName + ' ' + item.lastName}
+												name={item.to.firstName + ' ' + item.to.lastName}
 												numberFan={12}
-												imgurl={item.avatar}
+												imgurl={item.to.avatar}
 												key={index}
 											/>
 										)
@@ -387,12 +514,12 @@ class Profile extends React.Component {
 							</div>
 							<div className="followed-review__column--three">
 								{
-									this.state.followdReviewers.map((item, index) => {
+									this.state.followeds.map((item, index) => {
 										return index % 3 == 2 && (
 											<FollowedReviewerItem
-												name={item.firstName + ' ' + item.lastName}
+												name={item.to.firstName + ' ' + item.to.lastName}
 												numberFan={12}
-												imgurl={item.avatar}
+												imgurl={item.to.avatar}
 												key={index}
 											/>
 										)
@@ -413,10 +540,10 @@ class Profile extends React.Component {
 					<div className="profile__content--saved-book">
 						<div className="save-book__column -one">
 							{
-								this.state.savedBooks.books.map((item, index) => {
+								this.state.bookSaveds.map((item, index) => {
 									return index % numberBookInRow == 0 && (
 										<div className="save-book__column--item" key={index}>
-											<ItemSavedBook title={item.title} img_src={item.thumb} author={item.authorName} />
+											<ItemSavedBook {...item} />
 										</div>
 									)
 								})
@@ -425,10 +552,10 @@ class Profile extends React.Component {
 						<div className="item__border"></div>
 						<div className="save-book__column -two">
 							{
-								this.state.savedBooks.books.map((item, index) => {
+								this.state.bookSaveds.map((item, index) => {
 									return index % numberBookInRow == 1 && (
 										<div className="save-book__column--item" key={index}>
-											<ItemSavedBook title={item.title} img_src={item.thumb} author={item.authorName} />
+											<ItemSavedBook {...item} />
 										</div>
 									)
 								})
@@ -438,10 +565,10 @@ class Profile extends React.Component {
 
 						<div className="save-book__column -three">
 							{
-								this.state.savedBooks.books.map((item, index) => {
+								this.state.bookSaveds.map((item, index) => {
 									return index % numberBookInRow == 2 && (
 										<div className="save-book__column--item" key={index}>
-											<ItemSavedBook title={item.title} img_src={item.thumb} author={item.authorName} />
+											<ItemSavedBook {...item} />
 										</div>
 									)
 								})
@@ -451,10 +578,10 @@ class Profile extends React.Component {
 
 						<div className="save-book__column -four">
 							{
-								this.state.savedBooks.books.map((item, index) => {
+								this.state.bookSaveds.map((item, index) => {
 									return index % numberBookInRow == 3 && (
 										<div className="save-book__column--item" key={index}>
-											<ItemSavedBook title={item.title} img_src={item.thumb} author={item.authorName} />
+											<ItemSavedBook {...item} />
 										</div>
 									)
 								})
@@ -467,8 +594,8 @@ class Profile extends React.Component {
 				result = (<div className="profile__content--saved-post">
 
 					<div className="posts-wrap">
-						{this.state.savedPost.map((item, index) => {
-							return <PostItem3 post={item} author={this.state.user} key={index}/>;
+						{this.state.postSaveds.map((item, index) => {
+							return <PostItem3 post={item} author={item.user} key={index} />;
 						})}
 					</div>
 				</div>
@@ -485,13 +612,18 @@ class Profile extends React.Component {
 		return (
 			<div>
 				<Head>
-					<title>Trang cá nhân</title>
-					
+					<title>{this.props.profile.firstName} {this.props.profile.lastName}</title>
+					<meta name="title" content={`${this.props.profile.firstName} ${this.props.profile.lastName}`} />
 				</Head>
 				<Header {...this.props} />
 
 				<div className="my-container profile-main">
-					<Information user={this.state.user} />
+					<Information
+						user={this.props.profile}
+						isFollow={this.state.isFollow}
+						followUser={this.followUser}
+						unFollowUser={this.unFollowUser}
+					/>
 					{this.state.isHomeUser ? (
 						<div className="user-tools">
 							<div className="menu-home-user">
@@ -539,7 +671,10 @@ class Profile extends React.Component {
 						{this.getContent()}
 					</div>
 				</div>
-				<Footer />
+				<LazyLoadComponent
+					path="../footer/footer"
+				/>
+				{/* <Footer /> */}
 			</div>
 		);
 	}

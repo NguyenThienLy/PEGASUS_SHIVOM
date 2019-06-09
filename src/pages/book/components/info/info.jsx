@@ -72,7 +72,7 @@ export class BookInfo extends React.Component {
 
                         {/* <h4>Sơ lược bản thân</h4> */}
                         <p>
-                            {this.props.description.slice(0,255)}...
+                            {this.props.description ? this.props.description.slice(0, 255) + "..." : "..."}
                         </p>
 
                     </div>

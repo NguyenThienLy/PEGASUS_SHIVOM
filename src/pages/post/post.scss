@@ -183,7 +183,8 @@
                     grid-area: avatar;
                     @include e('img') {                        
                         border-radius: 999px;
-                        height: 70px;
+                        width: 100%;
+                        height: 100%;
                     }
                 }
                 @include e('name') {

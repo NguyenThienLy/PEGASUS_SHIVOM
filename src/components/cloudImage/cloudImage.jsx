@@ -33,6 +33,9 @@ export class CloudImage extends Component {
 
     handleScroll() {
         const src = this.props.src
+        if(src === undefined){
+            return
+        }
         if (!this.state.loaded && elementInViewport(this.imgElm)) {
             // Load real image
             const imgLoader = new Image();

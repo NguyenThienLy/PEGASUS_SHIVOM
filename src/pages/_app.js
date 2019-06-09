@@ -8,7 +8,6 @@ import { configureStore } from '../store'
 
 import withReduxStore from '../lib/withReduxStore'
 
-import './app.scss'
 class ReviewApp extends App {
     render () {
         const { Component, pageProps, reduxStore } = this.props

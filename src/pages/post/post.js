@@ -6,10 +6,11 @@ import './post.scss'
 
 import { connect } from 'react-redux'
 import { api } from '../../services'
-import { Header } from '../../components'
+import { Header, ComponentLoading } from '../../components'
 
 
 
+const firebaseAuthentication = require('../../authentication/firebase')
 
 class Post extends React.Component {
     constructor(props) {
@@ -18,10 +19,14 @@ class Post extends React.Component {
             book: {},
             author: {},
             category: {},
-            reviewer: {}
+            reviewer: {},
+            isFollow: false,
+            followId: null
         }
     }
     static async  getInitialProps({ req, query }) {
+        console.log("query: ", query)
+        console.log("req: ", req)
         const slug = req.params.postId
         const post = await api.post.getItemBySlug(slug, { query: { fields: ["$all"] } })
         return {
@@ -32,20 +37,19 @@ class Post extends React.Component {
         try {
             const book = await api.book.getItem(this.props.post.bookId, {
                 query: {
-                    fields: ["title","thumb","authorId","categoryId","_id"]
+                    fields: ["title", "thumb", "authorId", "categoryId", "_id"]
                 }
             })
-            console.log("booK: ", book)
             this.setState({ book })
             const [author, category, reviewer] = await Promise.all([
                 api.bookAuthor.getItem(book.authorId, {
                     query: {
-                        fields: ["name", "avatar","_id"]
+                        fields: ["name", "avatar", "_id"]
                     }
                 }),
                 api.bookCategory.getItem(book.categoryId, {
                     query: {
-                        fields: ["name","_id"]
+                        fields: ["name", "_id"]
                     }
                 }),
                 api.user.getItem(this.props.post.userId, {
@@ -57,11 +61,63 @@ class Post extends React.Component {
             this.setState({
                 author, category, reviewer
             })
+            setTimeout(() => {
+                if (this.props.user) {
+                    api.userFollow.findOne({
+                        query: {
+                            filter: {
+                                fromId: this.props.user._id,
+                                toId: this.props.post.userId
+                            }
+                        }
+                    }).then(result => {
+                        console.log("result: ", result)
+                        this.setState({ isFollow: true, followId: result._id })
+                        this.forceUpdate()
+                    }).catch(err => {
+                        console.log("not found: ", err)
+                    })
+                }
+            }, 1000)
             this.forceUpdate()
         } catch (err) {
 
         } finally {
 
+        }
+    }
+    followUser = async () => {
+        if (!this.props.user) {
+            alert("Vui lòng đăng nhập trước khi thực hiện thao tác này")
+        } else {
+            try {
+                const token = await firebaseAuthentication.getIdToken()
+                const result = await api.userFollow.create({
+                    toId: this.state.reviewer._id
+                }, {
+                        headers: {
+                            access_token: token
+                        }
+                    })
+                this.setState({ isFollow: true, followId: result._id })
+            } catch (err) {
+                console.log("err: ", err)
+                alert("Theo dõi không thành công")
+            }
+        }
+    }
+    unFollowUser = async () => {
+        try {
+            const token = await firebaseAuthentication.getIdToken()
+            const result = await api.userFollow.delete(this.state.followId, {
+                headers: {
+                    access_token: token
+                }
+            })
+            this.setState({ isFollow: false, followId: null })
+        } catch (err) {
+            console.log("err: ", err)
+            alert("Theo dõi không thành công")
         }
     }
     render() {
@@ -89,28 +145,36 @@ class Post extends React.Component {
                                 <a href="#">{this.state.category.name}</a>
                             </div>
                         </div>
-                        <div className="reviewer-info">
-                            <div className="reviewer-info__avatar">
-                                <a href="#" className="reviewer-info__avatar reviewer-info__avatar--hover">
-                                    <img
-                                        src="https://instagram.fsgn4-1.fna.fbcdn.net/vp/42b79272c0fc6ccea431c76e02a15133/5D7BB3CB/t51.2885-19/s150x150/56194279_2392509284143924_5773805861218549760_n.jpg?_nc_ht=instagram.fsgn4-1.fna.fbcdn.net"
-                                        alt="User's avatar"
-                                        className="reviewer-info__avatar--style">
-                                    </img>
-                                </a>
+
+                        {!this.state.reviewer.firstName ? <ComponentLoading style={{
+                            height: "100px"
+                        }} /> : <div className="reviewer-info">
+
+                                <div className="reviewer-info__avatar">
+                                    <a href="#" className="reviewer-info__avatar reviewer-info__avatar--hover">
+                                        <img
+                                            src={this.state.reviewer.avatar}
+                                            alt="User's avatar"
+                                            className="reviewer-info__avatar--style">
+                                        </img>
+                                    </a>
+                                </div>
+                                <div className="reviewer-info__username">
+                                    <Link href={`/profile/${this.state.reviewer._id}`}>
+                                        <a href="#">{this.state.reviewer.firstName} {this.state.reviewer.lastName}</a>
+                                    </Link>
+                                </div>
+                                <div className="reviewer-info__follow">
+                                    {this.state.isFollow ?
+                                        <button type="button" className="reviewer-info__follow__button" onClick={this.unFollowUser}>Huỷ Theo dõi</button> :
+                                        <button type="button" className="reviewer-info__follow__button" onClick={this.followUser}>Theo dõi</button>}
+                                </div>
+                                <div className="reviewer-info__given-point">
+                                    - đã cho quyển sách này n điểm
                             </div>
-                            <div className="reviewer-info__username">
-                                <Link href={`/profile/${this.state.reviewer._id}`}>
-                                <a href="#">{this.state.reviewer.firstName} {this.state.reviewer.lastName}</a>
-                                </Link>
                             </div>
-                            <div className="reviewer-info__follow">
-                                <button type="button" className="reviewer-info__follow__button">Theo dõi</button>
-                            </div>
-                            <div className="reviewer-info__given-point">
-                                - đã cho quyển sách này n điểm
-                            </div>
-                        </div>
+                        }
+
 
                         <div className="post-content">
                             <p>{this.props.post.content}</p>
@@ -123,11 +187,11 @@ class Post extends React.Component {
                         <div className="post-subgroup__book-info">
                             <div className="post-subgroup__book-info__title">
                                 <Link href={`/sach/${this.state.book._id}`}>
-                                <a
-                                    href="#"
-                                    className="post-subgroup__book-info__title__a">
-                                    {this.state.book.title}
-                                </a>
+                                    <a
+                                        href="#"
+                                        className="post-subgroup__book-info__title__a">
+                                        {this.state.book.title}
+                                    </a>
                                 </Link>
                                 <div className="post-subgroup__book-info__title__average-point">
                                     rate this book

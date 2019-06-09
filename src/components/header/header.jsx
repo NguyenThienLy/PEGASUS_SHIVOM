@@ -30,14 +30,26 @@ export class Header extends React.Component {
             alert("Đăng xuất không thành công")
         }
     }
-
+    async login(token){
+        try {
+            
+            const result = await api.user.login(token)
+            console.log("result: ", result)
+            return result
+        } catch(err){
+            alert("Đăng nhập không thành công, vui lòng tải lại trang")
+            console.log("LOGIN ERR: ", err)
+        }
+    }
+   
     async componentWillMount() {
-        if (!this.props.user.email) {
+        if (!this.props.user) {
             const isLogin = await firebaseAuthentication.authenticated
             if (isLogin) {
                 const user = firebaseAuthentication.currentUser
-                this.props.dispatch(action.user.login(user))
-                console.log("user: ", user)
+                const token = await firebaseAuthentication.getIdToken()
+                const appUser = await this.login(token)
+                this.props.dispatch(action.user.login(appUser))
                 this.setState({
                     user: {
                         displayName: user.displayName,

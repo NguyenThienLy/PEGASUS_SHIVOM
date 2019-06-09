@@ -86,8 +86,24 @@ export class CrudApi {
         },
         option.headers || {}
       )
+    }
+    const res = await this.exec(url, options);
+    return res.result.object;
+  }
+  async findOne(option = {}) {
+    let url = this.baseUrl("find");
+    const query = this._serialize(option.query || {});
+    url += `${query}`;
+    const options = {
+      method: "GET",
+      headers: _.merge(
+        {
+          "User-Agent": "Request-Promise",
+          "Content-Type": "Application/json"
+        },
+        option.headers || {}
+      )
     };
-    console.log("url: ", url)
     const res = await this.exec(url, options);
     return res.result.object;
   }
