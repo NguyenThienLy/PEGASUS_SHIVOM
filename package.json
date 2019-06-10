@@ -47,7 +47,7 @@
     "babel": "src/server.js",
     "g": "node devHelper/templates/index",
     "prod_start": "NODE_ENV=production node src/server.js",
-    "start": "next build src && NODE_ENV=production PORT=3000 nodemon src/server.js",
+    "start": "next build src && NODE_ENV=production node src/server.js",
     "analyze": "cross-env BUNDLE_ANALYZE=both next build src",
     "analyze:server": "cross-env BUNDLE_ANALYZE=server next build src",
     "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build src"
