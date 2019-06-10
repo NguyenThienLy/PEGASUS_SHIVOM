@@ -22,7 +22,6 @@ export class Home extends React.Component {
         return false
     }
     render() {
-        console.log("props của home ", this.props)
         return (
             <div>
                 <Header {...this.props} {...this.state}/>

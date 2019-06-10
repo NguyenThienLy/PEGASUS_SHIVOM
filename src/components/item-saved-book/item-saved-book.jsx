@@ -8,10 +8,7 @@ export class ItemSavedBook extends React.Component {
     constructor(props) {
         super(props)
     }
-    // props: img_src, title, author
-
     render() {
-        console.log("book: ", this.props)
         return (
             <div>
                 <div id="wrap-small-book">
@@ -19,7 +16,7 @@ export class ItemSavedBook extends React.Component {
                         <CloudImage src={this.props.thumb} alt={this.props.title} />
                     </a></div>
                     <div id="title-small-book">
-                        <Link href={`/sach/${this.props._id}`}>
+                        <Link as={`/sach/${this.props._id}`} href={`/book/book?bookId=${this.props._id}`}>
                             <a href="#">{this.props.title}</a>
                         </Link>
                     </div>

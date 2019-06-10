@@ -21,7 +21,6 @@ export class Slide extends React.Component {
     timeOut 
 
     setSlide(n){
-        console.log("Da vao ham set slide");
         this.setState({currentSlide: n});
         // this.forceUpdate()
         // console.log("changed slide "+ this.state.currentSlide);
@@ -29,7 +28,6 @@ export class Slide extends React.Component {
     }
 
     showSlide(){
-        console.log("Da them")
         let btn = document.getElementsByClassName("rectangle-slide")
         btn[this.state.currentSlide].classList.remove("btn-active")
 

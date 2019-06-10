@@ -17,7 +17,7 @@ class Book extends React.Component {
         super(props)
     }
     static async  getInitialProps({ req, query }) {
-        const bookId = req.params.bookId
+        const bookId = query.bookId
         let book = {}
         book = await api.book.getItem(bookId, {
             query: {

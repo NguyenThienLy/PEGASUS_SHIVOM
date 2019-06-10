@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
-import './one-type-post.scss';
+import './category.scss';
 import { PostItem2, Headline, Loading, Footer, CloudImage } from '../../components/';
 import { Header } from '../../components/header/header';
 import Head from 'next/head';
 import { connect } from 'react-redux';
 import { api } from '../../services';
 
-class OneTypePost extends Component {
+class Category extends Component {
     constructor(props) {
         super(props);
         this.state = {
             users: null,
             posts: [
-                
+
             ],
-            typeBook: 'Truyện ngắn'
+            typeBook: 'Truyện ngắn',
+            loading: true
         };
     }
-    static async  getInitialProps({ req, query }) {
-        const slug = req.params.slug
+    static async getInitialProps({ req, query }) {
+        const slug = query.slug
         const category = await api.bookCategory.getItemBySlug(slug, {
             query: {
                 fields: ["$all"]
@@ -28,8 +29,7 @@ class OneTypePost extends Component {
             category: category
         }
     }
-    async componentDidMount() {
-
+    getPosts = async () => {
         try {
             const posts = await api.bookCategory.getPosts(this.props.category._id, {
                 query: {
@@ -42,11 +42,22 @@ class OneTypePost extends Component {
                     filter: { _id: { $in: posts.map(post => { return post.userId }) } }
                 }
             })
-            this.setState({ users, posts })
+            this.setState({ users, posts, loading: false })
             this.forceUpdate()
         } catch (err) {
             console.log("erd: ", err)
         }
+    }
+    static getDerivedStateFromProps(props, state) {
+    }
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        if (prevProps.category._id !== this.props.category._id) {
+            this.setState({ loading: true })
+            this.getPosts()
+        }
+    }
+    async componentDidMount() {
+        this.getPosts()
     }
     render() {
         const typeBook = "Truyện ngắn";
@@ -54,12 +65,12 @@ class OneTypePost extends Component {
             <div>
                 <Head>
                     <title>{this.props.category.name}</title>
-                    <meta name="title" content={this.props.category.name}/>
-                    <meta name="description" content={this.props.category.name}/>
+                    <meta name="title" content={this.props.category.name} />
+                    <meta name="description" content={this.props.category.name} />
                 </Head>
                 <Header {...this.props} />
 
-                {this.state.users ?
+                {!this.state.loading ?
                     <div className="one-type-post-page-wrap container">
                         <div className="name-type-wrap">
                             <div className="img">
@@ -73,7 +84,7 @@ class OneTypePost extends Component {
                                     this.state.posts.map((item, index) => {
                                         if (index % 3 == 0) {
                                             return (
-                                                <PostItem2 post={item} users={this.state.users} key={index}/>
+                                                <PostItem2 post={item} users={this.state.users} key={index} />
                                             )
                                         }
                                     })
@@ -84,7 +95,7 @@ class OneTypePost extends Component {
                                     this.state.posts.map((item, index) => {
                                         if (index % 3 == 1) {
                                             return (
-                                                <PostItem2 post={item} users={this.state.users} key={index}/>
+                                                <PostItem2 post={item} users={this.state.users} key={index} />
                                             )
                                         }
                                     })
@@ -95,7 +106,7 @@ class OneTypePost extends Component {
                                     this.state.posts.map((item, index) => {
                                         if (index % 3 == 2) {
                                             return (
-                                                <PostItem2 post={item} users={this.state.users} key={index}/>
+                                                <PostItem2 post={item} users={this.state.users} key={index} />
                                             )
                                         }
                                     })
@@ -104,14 +115,14 @@ class OneTypePost extends Component {
 
                         </div>
                     </div> : <Loading />}
-                    <Footer/>
+                <Footer />
             </div>
         );
     }
 }
 
 const mapStateToProps = (state) => {
-	return state;
+    return state;
 };
 
-export default connect(mapStateToProps)(OneTypePost);
+export default connect(mapStateToProps)(Category);

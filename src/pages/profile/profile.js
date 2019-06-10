@@ -253,7 +253,7 @@ class Profile extends React.Component {
 		this.handleClose = this.handleClose.bind(this);
 	}
 	static async getInitialProps({ req, query }) {
-		const profileId = req.params.profileId
+		const profileId = query.profileId
 		const profile = await api.user.getItem(profileId, {
 			query: {
 				fields: ["$all"]
@@ -298,7 +298,6 @@ class Profile extends React.Component {
 						fields: ["_id", "title", "thumb", { author: ["_id", "name"] }]
 					}
 				})
-				console.log("books: ", books)
 				this.setState({ bookSaveds: books })
 			})
 			api.userSaved.getList({
@@ -315,13 +314,12 @@ class Profile extends React.Component {
 						filter: {
 							_id: { $in: items.map(item => { return item.itemId }) }
 						},
-						fields: ["title", "thumb","content", { book: ["_id", "title"] }, { user: ["_id", "firstName", "lastName","avatar"] }]
+						fields: ["title", "thumb", "content", "slug", { book: ["_id", "title"] }, { user: ["_id", "firstName", "lastName", "avatar"] }]
 					}
 				})
 				this.setState({ postSaveds: posts })
 			})
 			setTimeout(() => {
-				console.log("chay day")
 				if (this.props.user) {
 					api.userFollow.findOne({
 						query: {
@@ -331,7 +329,6 @@ class Profile extends React.Component {
 							}
 						}
 					}).then(result => {
-						console.log("result: ", result)
 						this.setState({ isFollow: true, followId: result._id })
 						this.forceUpdate()
 					}).catch(err => {
@@ -346,7 +343,6 @@ class Profile extends React.Component {
 		}
 	}
 	followUser = async () => {
-		console.log("pròile:", this.props.profile)
 		if (!this.props.user) {
 			alert("Vui lòng đăng nhập trước khi thực hiện thao tác này")
 		} else {

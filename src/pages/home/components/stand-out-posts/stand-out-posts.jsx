@@ -26,7 +26,7 @@ export class StandOutPost extends Component {
                                 <div className="book"><a href="#">{activePost.book}</a> </div>
                                 <div className="title"><a href="#">{activePost.title}</a></div>
                                 <div className="author-time">
-                                    <Link href={`/profile`}>
+                                    <Link as={`/profile`} href={`/profile/profile?profileId=123`}>
                                         <div className="author"><a href="#">{activePost.author}</a></div>
                                     </Link>
                                     <div className="time">{activePost.time}</div>

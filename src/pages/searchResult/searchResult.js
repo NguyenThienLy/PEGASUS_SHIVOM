@@ -131,7 +131,7 @@ class SearchResult extends React.Component {
                                                                     <CloudImage src={result._source.thumb} />
                                                                 </div>
                                                                 <div className="info">
-                                                                    <Link href={`/sach/${result._id}`}>
+                                                                <Link as={`/sach/${result._id}`} href={`/book/book?bookId=${result._id}`}>
                                                                     <h3 dangerouslySetInnerHTML={{ __html: this.state.results[index].highlight.title[0] }} ></h3>
                                                                     </Link>
                                                                     <p>Tạ Minh Tuấn</p>

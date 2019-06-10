@@ -4,7 +4,6 @@ var currentSlide =0;
 var myFunc;
 
 function showSlide(){
-    console.log(currentSlide);
     var slides = document.getElementsByClassName(slideClass);
     var rectangle = document.getElementsByClassName(btn);
 

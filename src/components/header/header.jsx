@@ -30,18 +30,17 @@ export class Header extends React.Component {
             alert("Đăng xuất không thành công")
         }
     }
-    async login(token){
+    async login(token) {
         try {
-            
+
             const result = await api.user.login(token)
-            console.log("result: ", result)
             return result
-        } catch(err){
+        } catch (err) {
             alert("Đăng nhập không thành công, vui lòng tải lại trang")
             console.log("LOGIN ERR: ", err)
         }
     }
-   
+
     async componentWillMount() {
         if (!this.props.user) {
             const isLogin = await firebaseAuthentication.authenticated
@@ -89,7 +88,7 @@ export class Header extends React.Component {
         `;
         document.body.appendChild(s);
         try {
-            const categories = await api.bookCategory.getList({ query: { fields: ["name", "slug","_id"], limit: 50 } })
+            const categories = await api.bookCategory.getList({ query: { fields: ["name", "slug", "_id"], limit: 50 } })
 
             let categoriesChunked = _.chunk(categories, 8)
             this.setState({ categories: categoriesChunked })
@@ -102,7 +101,7 @@ export class Header extends React.Component {
         this.setState({ search: query })
     }
     onSearchKeyPress = async (event) => {
-        Router.push(`/tim-kiem?search=${this.state.search}`)       
+        Router.push(`/tim-kiem?search=${this.state.search}`)
     }
 
 
@@ -129,7 +128,7 @@ export class Header extends React.Component {
                         </div>
                         <button className="function-group__item sign-in-button" id="login-button">
                             {!this.state.user ?
-                                <Link href="/login">
+                                <Link as="/login" href="/login/login">
                                     <a href="#" className="nav-link btn-sign-in">Đăng nhập</a>
                                 </Link>
                                 : <div>
@@ -156,8 +155,8 @@ export class Header extends React.Component {
                                             <ul key={index}>
                                                 {arrayChild.map(category => {
                                                     return (
-                                                        <Link href={`/the-loai/${category.slug}`} key={category._id}>
-                                                            <li className="drop-down-item"><a href="#" >{category.name}</a></li>
+                                                        <Link as={`/the-loai/${category.slug}`} href={`/category/category?slug=${category.slug}`} key={category._id}>
+                                                            <li className="drop-down-item">{category.name}</li>
                                                         </Link>
                                                     )
 

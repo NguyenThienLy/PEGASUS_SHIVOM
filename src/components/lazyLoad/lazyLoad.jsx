@@ -33,9 +33,7 @@ export class LazyLoadComponent extends Component {
     }
 
     async handleScroll() {
-        console.log("in view port: ", elementInViewport(this.imgElm))
         if (!this.state.loaded && elementInViewport(this.imgElm)) {
-            console.log("load component: ")
             // Load real component
             const { default: Component } = await import('../footer/footer');
 

@@ -25,9 +25,7 @@ class Post extends React.Component {
         }
     }
     static async  getInitialProps({ req, query }) {
-        console.log("query: ", query)
-        console.log("req: ", req)
-        const slug = req.params.postId
+        const slug = query.slug
         const post = await api.post.getItemBySlug(slug, { query: { fields: ["$all"] } })
         return {
             post: post
@@ -71,7 +69,6 @@ class Post extends React.Component {
                             }
                         }
                     }).then(result => {
-                        console.log("result: ", result)
                         this.setState({ isFollow: true, followId: result._id })
                         this.forceUpdate()
                     }).catch(err => {
@@ -160,7 +157,7 @@ class Post extends React.Component {
                                     </a>
                                 </div>
                                 <div className="reviewer-info__username">
-                                    <Link href={`/profile/${this.state.reviewer._id}`}>
+                                    <Link as={`/profile/${this.state.reviewer._id}`} href={`/profile/profile?profileId=${this.state.reviewer._id}`}>
                                         <a href="#">{this.state.reviewer.firstName} {this.state.reviewer.lastName}</a>
                                     </Link>
                                 </div>
@@ -186,7 +183,7 @@ class Post extends React.Component {
                     <div className="post-subgroup">
                         <div className="post-subgroup__book-info">
                             <div className="post-subgroup__book-info__title">
-                                <Link href={`/sach/${this.state.book._id}`}>
+                                <Link as={`/sach/${this.state.book._id}`} href={`/book/book?bookId=${this.state.book._id}`}>
                                     <a
                                         href="#"
                                         className="post-subgroup__book-info__title__a">

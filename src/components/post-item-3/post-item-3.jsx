@@ -54,14 +54,14 @@ export class PostItem3 extends Component {
                 <div className="title-react-line">
 
                     <div className="title">
-                        <Link href={`/bai-viet/${this.props.post.slug}`}>
+                        <Link as={`/bai-viet/${this.props.post.slug}`} href={`/post/post?slug=${this.props.post.slug}`}>
                             <a href={`/bai-viet/${this.props.post.slug}`}>{post.title}</a>
                         </Link>
                     </div>
                     <div className="postReactions"><i className="fab fa-gratipay"></i>{post.postReactions} lượt thích</div>
                 </div>
                 <div className="name-book">
-                    <Link href={`/sach/${this.props.post.book._id}`}>
+                    <Link as={`/sach/${this.props.post.book._id}`} href={`/book/book?bookId=${this.props.post.book._id}`}>
                         <a href={`/sach/${this.props.post.book._id}`}>{post.book.title}</a>
                     </Link>
                 </div>

@@ -33,13 +33,13 @@ export class StandOutPost2Column extends Component {
                                                         </Link>
                                                     </div>
                                                     <div className="title">
-                                                        <Link href={`/bai-viet/${posts[0].slug}`}>
-                                                            <a href="#">{posts[0].title}</a>
+                                                        <Link as={`/bai-viet/${posts[0].slug}`} href={`/post/post?slug=${posts[0].slug}`}>
+                                                            <a>{posts[0].title}</a>
                                                         </Link>
                                                     </div>
                                                     <div className="author-time">
-                                                        <Link href={`/profile/${posts[0].user._id}`}>
-                                                            <div className="author"><a href="#">{posts[0].user.firstName} {posts[0].user.lastName}</a></div>
+                                                        <Link as={`/profile/${posts[0].user._id}`} href={`/profile/profile?profileId=${posts[0].user._id}`}>
+                                                            <div className="author"><a>{posts[0].user.firstName} {posts[0].user.lastName}</a></div>
                                                         </Link>
                                                         <div className="time">{moment(posts[0].createdAt).format("DD/MM/YYYY HH:mm")}</div>
                                                         <div className="love">{posts[0].reaction} <i className="fab fa-gratipay"></i></div>
@@ -69,13 +69,13 @@ export class StandOutPost2Column extends Component {
                                                         </Link>
                                                     </div>
                                                     <div className="title">
-                                                        <Link href={`/bai-viet/${posts[1].slug}`}>
-                                                            <a href="#">{posts[1].title}</a>
+                                                        <Link as={`/bai-viet/${posts[1].slug}`} href={`/post/post?slug=${posts[1].slug}`}>
+                                                            <a>{posts[1].title}</a>
                                                         </Link>
                                                     </div>
                                                     <div className="author-time">
-                                                        <Link href={`/profile/${posts[1].user._id}`}>
-                                                            <div className="author"><a href="#">{posts[1].user.firstName} {posts[1].user.lastName}</a></div>
+                                                        <Link as={`/profile/${posts[1].user._id}`} href={`/profile/profile?profileId=${posts[1].user._id}`}>
+                                                            <div className="author"><a>{posts[1].user.firstName} {posts[1].user.lastName}</a></div>
                                                         </Link>
                                                         <div className="time">{moment(posts[1].createdAt).format("DD/MM/YYYY HH:mm")}</div>
                                                         <div className="love">{posts[1].reaction} <i className="fab fa-gratipay"></i></div>

@@ -14,7 +14,6 @@ export class RankBooks extends Component {
     render() {
         const book = this.props.rankBooks[0];
         const rankBooks = this.props.rankBooks.filter((item, index) => index != 0);
-        // console.log("Books:" + rankBooks);
         return (
             <div id="rank-books-wrap">
                 <div id="first-book-wrap">

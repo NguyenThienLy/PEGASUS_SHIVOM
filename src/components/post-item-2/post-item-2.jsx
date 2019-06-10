@@ -11,15 +11,13 @@ export class PostItem2 extends Component {
         }
     }
     async componentDidMount() {
-        console.log("props: ", this.props)
         if (this.props.users) {
             const user = this.props.users.find((user) => { return user._id = this.props.post.userId })
             const authorElement = <div className="author">
-                <Link href={`/profile/${user._id}`}>
-                    <a href="#">{user.firstName} {user.lastName}</a>
+                <Link as={`/profile/${user._id}`} href={`/profile/profile?profileId=${user._id}`}>
+                    <a>{user.firstName} {user.lastName}</a>
                 </Link>
             </div>
-            console.log("user", user)
             this.setState({ authorElement })
         }
 
@@ -30,7 +28,7 @@ export class PostItem2 extends Component {
         return (
             <div className="post-item-2-wrap">
                 <div className="img">
-                    <Link href={`/bai-viet/${post.slug}`}>
+                    <Link as={`/bai-viet/${post.slug}`} href={`/post/post?slug=${post.slug}`}>
                         <a href="/bai-viet/{post._id}"><CloudImage src={post.thumb} alt={post.title} /></a>
                     </Link>
                 </div>
@@ -39,7 +37,7 @@ export class PostItem2 extends Component {
                     <span>{post.book.title.substring(0, 50)}</span>
                 </a> </div>
                 <div className="title"><div>
-                    <Link href={`/bai-viet/${post.slug}`}>
+                    <Link as={`/bai-viet/${post.slug}`} href={`/post/post?slug=${post.slug}`}>
                         <a href="/bai-viet/{post._id}">{post.title}</a>
                     </Link>
                 </div></div>

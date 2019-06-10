@@ -7,8 +7,6 @@ export class PostBody extends React.Component {
     }
 
     render() {
-        console.log("p: ", this.props)
-        
         return (
             <div className="post-body">
                 

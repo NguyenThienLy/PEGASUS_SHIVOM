@@ -79,7 +79,6 @@ class FirebaseAuthentication {
         try {
 
             const result = await firebase.auth().createUserWithEmailAndPassword(email, password)
-            console.log("result: ", result)
             this.user = result.user
             return true
         } catch (error) {
