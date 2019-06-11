@@ -161,33 +161,33 @@ class Profile extends React.Component {
 				currentPage: 15,
 				books: [
 					{
-						title: "Chỉ có gió mới biết 0 ",
-						authorName: "Don Bosco Việt Nam",
+						title: 'Chỉ có gió mới biết 0 ',
+						authorName: 'Don Bosco Việt Nam',
 						thumb: '/img/rankBook.jpg'
 					},
 					{
-						title: "Chỉ có gió mới biết 1",
-						authorName: "Don Bosco Việt Nam",
+						title: 'Chỉ có gió mới biết 1',
+						authorName: 'Don Bosco Việt Nam',
 						thumb: '/img/rankBook.jpg'
 					},
 					{
-						title: "Chỉ có gió mới biết 2",
-						authorName: "Don Bosco Việt Nam",
+						title: 'Chỉ có gió mới biết 2',
+						authorName: 'Don Bosco Việt Nam',
 						thumb: '/img/rankBook.jpg'
 					},
 					{
-						title: "Chỉ có gió mới biết 3",
-						authorName: "Don Bosco Việt Nam",
+						title: 'Chỉ có gió mới biết 3',
+						authorName: 'Don Bosco Việt Nam',
 						thumb: '/img/rankBook.jpg'
 					},
 					{
-						title: "Chỉ có gió mới biết 4",
-						authorName: "Don Bosco Việt Nam",
+						title: 'Chỉ có gió mới biết 4',
+						authorName: 'Don Bosco Việt Nam',
 						thumb: '/img/rankBook.jpg'
 					},
 					{
-						title: "Chỉ có gió mới biết 5",
-						authorName: "Don Bosco Việt Nam",
+						title: 'Chỉ có gió mới biết 5',
+						authorName: 'Don Bosco Việt Nam',
 						thumb: '/img/rankBook.jpg'
 					}
 				]
@@ -258,7 +258,7 @@ class Profile extends React.Component {
 		this.setState({ showEditor: true });
 	}
 
-	createPost = () => { };
+	createPost = () => {};
 
 	// createPost = (title, desciption, content, thumb) => {
 	// 	const title = document.getElementById('title-new-post').value;
@@ -276,23 +276,17 @@ class Profile extends React.Component {
 	getPageSavedBook = (page, active) => {
 		let result = [];
 		const spacePage = 3;
-		result.push(
-			<div className="profile__content--paging -page -first" >{`<<`}</div>
-		)
+		result.push(<div className="profile__content--paging -page -first">{`<<`}</div>);
 
 		if (page <= spacePage * 2) {
 			for (let i = 1; i < page - 1; i++) {
-				result.push(
-					<div className="profile__content--paging -page" >{i}</div>
-				)
+				result.push(<div className="profile__content--paging -page">{i}</div>);
 			}
-		}
-		else {
-			let start = 1, end = page - 1;
+		} else {
+			let start = 1,
+				end = page - 1;
 			if (active > spacePage) {
-				result.push(
-					<div className="profile__content--paging -more" >...</div>
-				)
+				result.push(<div className="profile__content--paging -more">...</div>);
 				start = active;
 			}
 
@@ -301,21 +295,15 @@ class Profile extends React.Component {
 			}
 
 			for (let i = start; i < end; i++) {
-				result.push(
-					<div className="profile__content--paging -page" >{i}</div>
-				)
+				result.push(<div className="profile__content--paging -page">{i}</div>);
 			}
 			if (end == active + spacePage) {
-				result.push(
-					<div className="profile__content--paging -more" >...</div>
-				)
+				result.push(<div className="profile__content--paging -more">...</div>);
 			}
 		}
-		result.push(
-			<div className="profile__content--paging -page -last" >>></div>
-		)
+		result.push(<div className="profile__content--paging -page -last">>></div>);
 		return result;
-	}
+	};
 
 	getContent = () => {
 		let result;
@@ -329,10 +317,10 @@ class Profile extends React.Component {
 							<div className="placeholder">
 								<div>
 									<i class="fas fa-pen-fancy" /> Hãy chia sẽ cảm nhận về sách tại đây
-									</div>
+								</div>
 							</div>
 						</div>
-					)
+					);
 				}
 
 				result.push(
@@ -346,121 +334,136 @@ class Profile extends React.Component {
 				);
 				break;
 			case 1: //follower
-				result =
-					(
-						<div className="profile__content--followed-review">
-							<div className="followed-review__column--one">
-								{
-									this.state.followdReviewers.map((item, index) => {
-										return index % 3 == 0 && (
-											<FollowedReviewerItem
-												name={item.firstName + ' ' + item.lastName}
-												numberFan={12}
-												imgurl={item.avatar}
-											/>
-										)
-									})
-								}
-							</div>
-							<div className="followed-review__column--two">
-								{
-									this.state.followdReviewers.map((item, index) => {
-										return index % 3 == 1 && (
-											<FollowedReviewerItem
-												name={item.firstName + ' ' + item.lastName}
-												numberFan={12}
-												imgurl={item.avatar}
-											/>
-										)
-									})
-								}
-							</div>
-							<div className="followed-review__column--three">
-								{
-									this.state.followdReviewers.map((item, index) => {
-										return index % 3 == 2 && (
-											<FollowedReviewerItem
-												name={item.firstName + ' ' + item.lastName}
-												numberFan={12}
-												imgurl={item.avatar}
-											/>
-										)
-									})
-								}
-							</div>
+				result = (
+					<div className="profile__content--followed-review">
+						<div className="followed-review__column--one">
+							{this.state.followdReviewers.map((item, index) => {
+								return (
+									index % 3 == 0 && (
+										<FollowedReviewerItem
+											name={item.firstName + ' ' + item.lastName}
+											numberFan={12}
+											imgurl={item.avatar}
+										/>
+									)
+								);
+							})}
 						</div>
-					);
+						<div className="followed-review__column--two">
+							{this.state.followdReviewers.map((item, index) => {
+								return (
+									index % 3 == 1 && (
+										<FollowedReviewerItem
+											name={item.firstName + ' ' + item.lastName}
+											numberFan={12}
+											imgurl={item.avatar}
+										/>
+									)
+								);
+							})}
+						</div>
+						<div className="followed-review__column--three">
+							{this.state.followdReviewers.map((item, index) => {
+								return (
+									index % 3 == 2 && (
+										<FollowedReviewerItem
+											name={item.firstName + ' ' + item.lastName}
+											numberFan={12}
+											imgurl={item.avatar}
+										/>
+									)
+								);
+							})}
+						</div>
+					</div>
+				);
 				break;
 			case 2: //saved book
 				const numberBookInRow = 4;
-				result = (<div className="profile__content--saved-book-wrap">
-					<div className="profile__content--paging">
-						{
-							this.getPageSavedBook(this.state.savedBooks.page, this.state.savedBooks.currentPage)
-						}
-					</div>
-					<div className="profile__content--saved-book">
-						<div className="save-book__column -one">
-							{
-								this.state.savedBooks.books.map((item, index) => {
-									return index % numberBookInRow == 0 && (
-										<div className="save-book__column--item">
-											<ItemSavedBook title={item.title} img_src={item.thumb} author={item.authorName} />
-										</div>
-									)
-								})
-							}
+				result = (
+					<div className="profile__content--saved-book-wrap">
+						<div className="profile__content--paging">
+							{this.getPageSavedBook(this.state.savedBooks.page, this.state.savedBooks.currentPage)}
 						</div>
-						<div className="item__border"></div>
-						<div className="save-book__column -two">
-							{
-								this.state.savedBooks.books.map((item, index) => {
-									return index % numberBookInRow == 1 && (
-										<div className="save-book__column--item">
-											<ItemSavedBook title={item.title} img_src={item.thumb} author={item.authorName} />
-										</div>
-									)
-								})
-							}
-						</div>
-						<div className="item__border"></div>
+						<div className="profile__content--saved-book">
+							<div className="save-book__column -one">
+								{this.state.savedBooks.books.map((item, index) => {
+									return (
+										index % numberBookInRow == 0 && (
+											<div className="save-book__column--item">
+												<ItemSavedBook
+													title={item.title}
+													img_src={item.thumb}
+													author={item.authorName}
+												/>
+											</div>
+										)
+									);
+								})}
+							</div>
+							<div className="item__border" />
+							<div className="save-book__column -two">
+								{this.state.savedBooks.books.map((item, index) => {
+									return (
+										index % numberBookInRow == 1 && (
+											<div className="save-book__column--item">
+												<ItemSavedBook
+													title={item.title}
+													img_src={item.thumb}
+													author={item.authorName}
+												/>
+											</div>
+										)
+									);
+								})}
+							</div>
+							<div className="item__border" />
 
-						<div className="save-book__column -three">
-							{
-								this.state.savedBooks.books.map((item, index) => {
-									return index % numberBookInRow == 2 && (
-										<div className="save-book__column--item">
-											<ItemSavedBook title={item.title} img_src={item.thumb} author={item.authorName} />
-										</div>
-									)
-								})
-							}
-						</div>
-						<div className="item__border"></div>
+							<div className="save-book__column -three">
+								{this.state.savedBooks.books.map((item, index) => {
+									return (
+										index % numberBookInRow == 2 && (
+											<div className="save-book__column--item">
+												<ItemSavedBook
+													title={item.title}
+													img_src={item.thumb}
+													author={item.authorName}
+												/>
+											</div>
+										)
+									);
+								})}
+							</div>
+							<div className="item__border" />
 
-						<div className="save-book__column -four">
-							{
-								this.state.savedBooks.books.map((item, index) => {
-									return index % numberBookInRow == 3 && (
-										<div className="save-book__column--item">
-											<ItemSavedBook title={item.title} img_src={item.thumb} author={item.authorName} />
-										</div>
-									)
-								})
-							}
+							<div className="save-book__column -four">
+								{this.state.savedBooks.books.map((item, index) => {
+									return (
+										index % numberBookInRow == 3 && (
+											<div className="save-book__column--item">
+												<ItemSavedBook
+													title={item.title}
+													img_src={item.thumb}
+													author={item.authorName}
+												/>
+											</div>
+										)
+									);
+								})}
+							</div>
 						</div>
 					</div>
-				</div>)
+				);
 				break;
 			case 3: //saved post
-				result = (<div className="profile__content--saved-post">
-
-					<div className="posts-wrap">
-						{this.state.savedPost.map((item, index) => {
-							return <PostItem3 post={item} author={this.state.user} />;
-						})}
+				result = (
+					<div className="profile__content--saved-post">
+						<div className="posts-wrap">
+							{this.state.savedPost.map((item, index) => {
+								return <PostItem3 post={item} author={this.state.user} />;
+							})}
+						</div>
 					</div>
-				</div>
 				);
 				break;
 			default:
@@ -500,8 +503,8 @@ class Profile extends React.Component {
 														item.id == this.state.activeTab ? (
 															'tab-sign tab-active'
 														) : (
-																'tab-sign'
-															)
+															'tab-sign'
+														)
 													}
 												>
 													<i class="fas fa-map-signs" />
@@ -524,15 +527,13 @@ class Profile extends React.Component {
 							</div>
 						</div>
 					) : (
-							<div />
-						)}
+						<div />
+					)}
 					{this.state.showEditor ? (
 						<Editor handleClose={this.handleClose} createPost={this.createPost} />
 					) : null}
 
-					<div className="profile-page">
-						{this.getContent()}
-					</div>
+					<div className="profile-page">{this.getContent()}</div>
 				</div>
 				<Footer />
 			</div>

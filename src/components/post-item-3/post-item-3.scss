@@ -37,20 +37,19 @@
 					text-align: center;
 					.name a {
 						text-decoration: none;
-						font-weight: bold;
 						color: #505050;
 						font-size: 0.7em;
 						padding-left: 10px;
 					}
 					.follow {
-						padding: 3px 10px;
+						padding: 2px 10px;
 						border-radius: 10px;
 						box-shadow: 0 3px 6px rgba(68, 65, 65, 0.3);
 						font-size: 0.6em;
 						text-align: center;
 						color: #888888;
 						border: 0.4px solid #888888;
-						height: 1.5em;
+						height: 1.6em;
 						width: 60;
 						margin-left: 15px;
 						&:hover {
@@ -85,7 +84,7 @@
 		justify-content: space-between;
 		.title {
 			margin-left: $margin-left;
-			font-weight: bold;
+			font-weight: 500;
 			font-size: 1.1em;
 			a {
 				color: #505050;
@@ -144,6 +143,7 @@
 	}
 	.read-more,
 	.shorten {
+		font-family: $font-title;
 		margin-left: $margin-left;
 		margin-right: $margin-left;
 		padding-bottom: 20px;
