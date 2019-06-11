@@ -39,13 +39,13 @@ export class CloudImage extends Component {
         if (!this.state.loaded && elementInViewport(this.imgElm)) {
             // Load real image
             const imgLoader = new Image();
-            imgLoader.src = src;
+            imgLoader.src = `https://ce83c157c.cloudimg.io/width/800/png-lossy-40/${src}`;
             imgLoader.onload = () => {
                 const ratioWH = imgLoader.width / imgLoader.height;
 
                 this.imgElm.setAttribute(
                     `src`,
-                    `${this.props.src}`
+                    `https://ce83c157c.cloudimg.io/width/800/png-lossy-40/${this.props.src}`
                 );
 
                 this.props.keepRatio && this.imgElm.setAttribute(

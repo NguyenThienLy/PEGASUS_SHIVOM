@@ -24,10 +24,13 @@ class Information extends Component {
                         <div className="name">{user.firstName} {user.lastName}</div>
                         <div className="score">
                             {user.score} điểm tích lũy
+
                     </div>
-                        {this.props.isFollow ?
-                            <div className="follow btn-unfollow" onClick={this.unFollowUser}>Huỷ theo dõi</div> :
-                            <div className="follow bt-follow" onClick={this.followUser}>Theo dõi</div>}
+                        {!this.props.isHomeUser ?
+                            <div>
+                                {this.props.isFollow ?
+                                    <div className="follow btn-unfollow" onClick={this.unFollowUser}>Huỷ theo dõi</div> :
+                                    <div className="follow bt-follow" onClick={this.followUser}>Theo dõi</div>}</div> : null}
                     </div>
                 </div>
                 <div className="infor-detail">

@@ -7,6 +7,7 @@ import { SearchApi } from './reviewApi/search'
 import { BookAuthorApi } from './reviewApi/bookAuthor';
 import { UserFollowApi } from './reviewApi/userFollow';
 import { UserSavedApi } from './reviewApi/userSaved';
+import { BookQuoteApi } from './reviewApi/bookQuote';
 
 const crudApi = new CrudApi()
  
@@ -22,6 +23,7 @@ class api {
     static bookAuthor = new BookAuthorApi()
     static userFollow = new UserFollowApi()
     static userSaved = new UserSavedApi()
+    static bookQuote = new BookQuoteApi()
 }
 
 export {

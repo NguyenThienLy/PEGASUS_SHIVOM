@@ -1,7 +1,4 @@
-const initBookState = [{
-    _id: "1",
-    name: "Init book"
-}]
+const initBookState = []
 
 const bookAction = {
     fetch: "FETCH_BOOK",

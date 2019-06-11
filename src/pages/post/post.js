@@ -7,6 +7,8 @@ import './post.scss'
 import { connect } from 'react-redux'
 import { api } from '../../services'
 import { Header, ComponentLoading } from '../../components'
+import { auth } from 'firebase';
+import { action } from '../../actions';
 
 
 
@@ -21,7 +23,9 @@ class Post extends React.Component {
             category: {},
             reviewer: {},
             isFollow: false,
-            followId: null
+            followId: null,
+            books: [],
+            isHomeUser: true
         }
     }
     static async  getInitialProps({ req, query }) {
@@ -31,57 +35,120 @@ class Post extends React.Component {
             post: post
         }
     }
+
     async componentDidMount() {
         try {
-            const book = await api.book.getItem(this.props.post.bookId, {
-                query: {
-                    fields: ["title", "thumb", "authorId", "categoryId", "_id"]
-                }
-            })
-            this.setState({ book })
-            const [author, category, reviewer] = await Promise.all([
-                api.bookAuthor.getItem(book.authorId, {
-                    query: {
-                        fields: ["name", "avatar", "_id"]
-                    }
-                }),
-                api.bookCategory.getItem(book.categoryId, {
-                    query: {
-                        fields: ["name", "_id"]
-                    }
-                }),
-                api.user.getItem(this.props.post.userId, {
-                    query: {
-                        fields: ["$all"]
-                    }
-                })
-            ])
-            this.setState({
-                author, category, reviewer
-            })
+            const book = await this.getBook()
+            this.getAuthor(book)
+            this.getReviewer(book)
+            this.getSameBook(book)
+
             setTimeout(() => {
                 if (this.props.user) {
-                    api.userFollow.findOne({
-                        query: {
-                            filter: {
-                                fromId: this.props.user._id,
-                                toId: this.props.post.userId
+                    if (this.props.user !== this.props.post.userId) {
+                        this.setState({ isHomeUser: false })
+                        api.userFollow.findOne({
+                            query: {
+                                filter: {
+                                    fromId: this.props.user._id,
+                                    toId: this.props.post.userId
+                                }
                             }
-                        }
-                    }).then(result => {
-                        this.setState({ isFollow: true, followId: result._id })
-                        this.forceUpdate()
-                    }).catch(err => {
-                        console.log("not found: ", err)
-                    })
+                        }).then(result => {
+                            this.setState({ isFollow: true, followId: result._id })
+                            this.forceUpdate()
+                        }).catch(err => {
+                            console.log("not found: ", err)
+                        })
+                    }
+                } else {
+                    this.setState({ isHomeUser: false })
                 }
-            }, 1000)
+            }, 300)
             this.forceUpdate()
         } catch (err) {
 
         } finally {
 
         }
+    }
+    getBook = async () => {
+        const bookIndex = this.props.books.findIndex((book) => { return book._id === this.props.post.bookId })
+        let book
+        if (bookIndex !== -1) {
+            book = this.props.books[bookIndex]
+        } else {
+            book = await api.book.getItem(this.props.post.bookId, {
+                query: {
+                    fields: ["title", "thumb", "authorId", "categoryId", "_id"]
+                }
+            })
+        }
+        this.setState({ book })
+        return book
+    }
+    getSameBook = async (book) => {
+        api.book.getList({
+            query: {
+                filter: {
+                    categoryId: book.categoryId
+                },
+                limit: 3,
+                fields: ["$all", { author: ["name", "avatar", "_id"] }]
+            }
+        }).then(books => {
+            this.setState({ books: books })
+        }).catch(err => {
+            console.log("Get same book err: ", err)
+        })
+    }
+    getAuthor = async (book) => {
+        const authorId = this.props.authors.findIndex((author) => { return author._id === book.authorId })
+        let author
+        if (authorId !== -1) {
+            author = this.props.authors[authorId]
+        } else {
+            author = await api.bookAuthor.getItem(book.authorId, {
+                query: {
+                    fields: ["$all"]
+                }
+            })
+            this.props.dispatch(action.author.add(author))
+        }
+        this.setState({ author })
+        return author
+    }
+    getCategory = async (book) => {
+        const categoryIndex = this.props.categories.findIndex((category) => { return category._id === book.categoryId })
+        let category
+        if (categoryIndex !== -1) {
+            book = this.props.categories[categoryIndex]
+        } else {
+            category = await api.category.getItem(book.categoryId, {
+                query: {
+                    fields: ["$all"]
+                }
+            })
+            this.props.dispatch(action.category.add(category))
+        }
+        this.setState({ category })
+        return category
+    }
+    getReviewer = async (book) => {
+        const reviewerIndex = this.props.reviewers.findIndex((reviewer) => { return reviewer._id === this.props.post.userId })
+        let reviewer
+        if (reviewerIndex !== -1) {
+            reviewer = this.props.reviewers[reviewerIndex]
+        } else {
+            reviewer = await api.user.getItem(this.props.post.userId, {
+                query: {
+                    fields: ["$all"]
+                }
+            })
+            this.props.dispatch(action.reviewer.add(reviewer))
+        }
+        this.setState({ reviewer })
+        return reviewer
     }
     followUser = async () => {
         if (!this.props.user) {
@@ -162,9 +229,10 @@ class Post extends React.Component {
                                     </Link>
                                 </div>
                                 <div className="reviewer-info__follow">
-                                    {this.state.isFollow ?
-                                        <button type="button" className="reviewer-info__follow__button" onClick={this.unFollowUser}>Huỷ Theo dõi</button> :
-                                        <button type="button" className="reviewer-info__follow__button" onClick={this.followUser}>Theo dõi</button>}
+                                    {!this.state.isHomeUser ? <div>
+                                        {this.state.isFollow ?
+                                            <button type="button" className="reviewer-info__follow__button" onClick={this.unFollowUser}>Huỷ Theo dõi</button> :
+                                            <button type="button" className="reviewer-info__follow__button" onClick={this.followUser}>Theo dõi</button>}</div> : null}
                                 </div>
                                 <div className="reviewer-info__given-point">
                                     - đã cho quyển sách này n điểm
@@ -261,26 +329,33 @@ class Post extends React.Component {
                                     Sách cùng thể loại
                                 </a>
                             </div>
-                            <div className="post-subgroup__related-books__content">
-                                <tr className="rlb-content-tr">
-                                    <td className="rlb-content-tr__td-cover">
-                                        <a href="#">
-                                            <img
-                                                src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1394988109i/22034._SY75_.jpg"
-                                                alt="related book cover"
-                                                className="rlb-content-tr__td-cover__img"></img>
-                                        </a>
-                                    </td>
-                                    <td className="rlb-content-tr__td-detail">
-                                        <a href="#"><span>The Godfather</span></a>
-                                        <br></br>
-                                        <span><i>của </i></span>
-                                        <span><a href="#">Mario Puzo</a></span>
-                                        <br></br>
-                                        <div>10 points</div>
-                                    </td>
-                                </tr>
-                            </div>
+                            {this.state.books.map((book => {
+                                return (
+                                    <div className="post-subgroup__related-books__content">
+                                        <tr className="rlb-content-tr">
+                                            <td className="rlb-content-tr__td-cover">
+                                                <a href="#">
+                                                    <img
+                                                        src={book.thumb}
+                                                        alt="related book cover"
+                                                        className="rlb-content-tr__td-cover__img"></img>
+                                                </a>
+                                            </td>
+                                            <td className="rlb-content-tr__td-detail">
+                                                <Link as={`/sach/${book._id}`} href={`/book/book?bookId=${book._id}`}>
+                                                    <a href={`/sach/${this.state.book._id}`}><span>{book.title}</span></a>
+                                                </Link>
+                                                <br></br>
+                                                <span><i>của </i></span>
+                                                <span><a href="#"> {book.author.name}</a></span>
+                                                <br></br>
+                                                <div>{book.rate} điểm</div>
+                                            </td>
+                                        </tr>
+                                    </div>
+                                )
+                            }))}
+
                         </div>
                     </div>
                     {/* =================================================== */}

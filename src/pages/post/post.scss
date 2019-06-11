@@ -237,8 +237,9 @@
                 margin: 10px 0 22px 0;
                 .rlb-content-tr{
                     @include e('td-cover'){
-                        width: 5%;
+                        width: 40%;
                         @include e('img'){
+                            width: 100%;
                             padding:5px;
                         }
                     }

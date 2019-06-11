@@ -58,7 +58,7 @@ export class PostItem3 extends Component {
                             <a href={`/bai-viet/${this.props.post.slug}`}>{post.title}</a>
                         </Link>
                     </div>
-                    <div className="postReactions"><i className="fab fa-gratipay"></i>{post.postReactions} lượt thích</div>
+                    <div className="postReactions"><i className="fab fa-gratipay"></i>{post.reaction} lượt thích</div>
                 </div>
                 <div className="name-book">
                     <Link as={`/sach/${this.props.post.book._id}`} href={`/book/book?bookId=${this.props.post.book._id}`}>

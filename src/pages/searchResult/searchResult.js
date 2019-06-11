@@ -19,10 +19,23 @@ class SearchResult extends React.Component {
         }
     }
     static async getInitialProps({ req, query }) {
-        const search = req.query.search || ""
+        const search = query.search
         return {
             search
         };
+    }
+    async getSnapshotBeforeUpdate(prevProps, prevState) {
+        if (prevProps.search !== this.props.search) {
+            try {
+                const results = await api.search.search({
+                    keyword: this.props.search,
+                    type: this.state.type
+                })
+                this.setState({ search: this.props.search, results: results.hits })
+            } catch (err) {
+
+            }
+        }
     }
     async componentDidMount() {
         this.setState({ search: this.props.search })
@@ -64,7 +77,7 @@ class SearchResult extends React.Component {
         }
     }
     openPost(slug) {
-        window.open(`http://localhost:3000/bai-viet/${slug}`,"_self")
+        window.open(`http://localhost:3000/bai-viet/${slug}`, "_self")
     }
 
 
@@ -121,7 +134,7 @@ class SearchResult extends React.Component {
                                 this.state.results.length > 0 ?
                                     <div>
                                         {this.state.results.map((result, index) => {
-                     
+
                                             switch (this.state.type) {
                                                 case "book":
                                                     return (
@@ -131,8 +144,8 @@ class SearchResult extends React.Component {
                                                                     <CloudImage src={result._source.thumb} />
                                                                 </div>
                                                                 <div className="info">
-                                                                <Link as={`/sach/${result._id}`} href={`/book/book?bookId=${result._id}`}>
-                                                                    <h3 dangerouslySetInnerHTML={{ __html: this.state.results[index].highlight.title[0] }} ></h3>
+                                                                    <Link as={`/sach/${result._id}`} href={`/book/book?bookId=${result._id}`}>
+                                                                        <h3 dangerouslySetInnerHTML={{ __html: this.state.results[index].highlight.title[0] }} ></h3>
                                                                     </Link>
                                                                     <p>Tạ Minh Tuấn</p>
                                                                 </div>

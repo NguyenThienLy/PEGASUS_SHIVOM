@@ -15,7 +15,7 @@ class Server {
 	constructor() {
 		this.dev = process.env.NODE_ENV === 'production' ? false : true;
 		this.quiet = process.env.NODE_ENV === 'production' ? false : true;
-		this.app = next({ dev: this.dev, dir: './src', quiet: this.quiet  });
+		this.app = next({ dev: this.dev, dir: './src', quiet: this.quiet });
 		this.handle = this.app.getRequestHandler();
 		this.port = process.env.PORT || 3000;
 		this.server = express();
@@ -54,7 +54,7 @@ class Server {
 			this.app.render(req, res, '/book/book', { bookId: req.params.bookId });
 		});
 		this.server.get('/tim-kiem', (req, res) => {
-			this.app.render(req, res, '/searchResult/searchResult');
+			this.app.render(req, res, '/searchResult/searchResult', { search: req.query.search });
 		});
 		this.server.get('/lien-he', (req, res) => {
 			this.app.render(req, res, '/contact/contact');

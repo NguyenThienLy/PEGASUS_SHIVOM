@@ -32,7 +32,6 @@ export class Header extends React.Component {
     }
     async login(token) {
         try {
-
             const result = await api.user.login(token)
             return result
         } catch (err) {
@@ -101,7 +100,7 @@ export class Header extends React.Component {
         this.setState({ search: query })
     }
     onSearchKeyPress = async (event) => {
-        Router.push(`/tim-kiem?search=${this.state.search}`)
+        Router.push(`/searchResult/searchResult?search=${this.state.search}`,`/tim-kiem?search=${this.state.search}`)
     }
 
 

@@ -42,213 +42,7 @@ class Profile extends React.Component {
 			],
 			activeTab: 0,
 			savedTabId: 2,
-			isHomeUser: true,
-			user: {
-				_id: '1',
-				firebaseUid: '',
-				firebaseUserInfo: '',
-				username: 'Minh Nhi',
-				firstName: 'Trần',
-				lastName: 'Minh Nhi',
-				email: 'tmnhi@gmail.com',
-				description: 'Là một người thích đọc sách',
-				birthday: '23/02/1998',
-				quote: 'Nếu giấc mơ của bạn không làm bạn sợ, rõ ràng giấc mơ đó chưa đủ lớn',
-				job: '',
-				score: 12,
-				influenceScore: 1,
-				avatar: '/img/avata-demo.jpg',
-				cover: '',
-				role: 'guest'
-			},
-			followdReviewers: [
-				{
-					_id: '1',
-					firebaseUid: '',
-					firebaseUserInfo: '',
-					username: 'lam123',
-					firstName: 'Nguyễn Nhật Ánh',
-					lastName: 'Lam',
-					email: 'tmnhi@gmail.com',
-					description: 'Là một người thích đọc sách',
-					birthday: '23/02/1998',
-					quote: 'Nếu giấc mơ của bạn không làm bạn sợ, rõ ràng giấc mơ đó chưa đủ lớn',
-					job: '',
-					score: 12,
-					influenceScore: 1,
-					avatar: '/img/avata-demo.jpg',
-					cover: '',
-					role: 'guest'
-				},
-				{
-					_id: '1',
-					firebaseUid: '',
-					firebaseUserInfo: '',
-					username: 'Minh Nhi',
-					firstName: 'Trần',
-					lastName: 'Minh Hoa',
-					email: 'tmnhi@gmail.com',
-					description: 'Là một người thích đọc sách',
-					birthday: '23/02/1998',
-					quote: 'Nếu giấc mơ của bạn không làm bạn sợ, rõ ràng giấc mơ đó chưa đủ lớn',
-					job: '',
-					score: 12,
-					influenceScore: 1,
-					avatar: '/img/avata-demo.jpg',
-					cover: '',
-					role: 'guest'
-				},
-				{
-					_id: '1',
-					firebaseUid: '',
-					firebaseUserInfo: '',
-					username: 'Minh Nhi',
-					firstName: 'Trần',
-					lastName: 'Minh Thảo',
-					email: 'tmnhi@gmail.com',
-					description: 'Là một người thích đọc sách',
-					birthday: '23/02/1998',
-					quote: 'Nếu giấc mơ của bạn không làm bạn sợ, rõ ràng giấc mơ đó chưa đủ lớn',
-					job: '',
-					score: 12,
-					influenceScore: 1,
-					avatar: '/img/avata-demo.jpg',
-					cover: '',
-					role: 'guest'
-				}
-			],
-			postsFromUser: [
-				{
-					id: 1,
-					title: 'Hãy hướng về phía mặt trời',
-					slug: '',
-					description:
-						'Ai cũng cần động lực để giúp bản thân làm những điều mình cần làm. Cuốn sách này giúp tôi nhận ra nhiều điều trong cuộc sống',
-					postTemplate: '',
-					content: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
-					Why do we use it?
-					It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-					
-					
-					Where does it come from?
-					Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.'`,
-					thumb:
-						'http://dinhvankiem.com/demo/e-reading/wp-content/uploads/2016/05/book-759873_1920-370x218.jpg',
-					images:
-						'http://dinhvankiem.com/demo/e-reading/wp-content/uploads/2016/05/book-759873_1920-370x218.jpg',
-					userId: '',
-					bookId: '',
-					createAt: '10:34 12/03/2019',
-					book: 'Trước bình minh là đêm tối',
-					postReactions: 4
-				},
-				{
-					id: 2,
-					images:
-						'http://dinhvankiem.com/demo/e-reading/wp-content/uploads/2016/05/glasses-272399_1920-370x218.jpg',
-					createAt: '10:34 12/03/2019',
-					title: 'Sống là cho đâu chỉ nhận riêng mình',
-					author: 'Nguyễn Nhật Minh Vy',
-					description:
-						'Cuộc sống là một cuốn nhật ký và bạn chính là chủ nhân. Hãy viêt sao để nó trở thành cuốn nhật ký đáng đọc.',
-					postReactions: 4,
-					bookId: '',
-					book: 'Trước bình minh là đêm tối',
-					content: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
-					Why do we use it?
-					It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-					
-					
-					Where does it come from?
-					Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.'`
-				}
-			],
-			savedBooks: {
-				page: 20,
-				currentPage: 15,
-				books: [
-					{
-						title: "Chỉ có gió mới biết 0 ",
-						authorName: "Don Bosco Việt Nam",
-						thumb: '/img/rankBook.jpg'
-					},
-					{
-						title: "Chỉ có gió mới biết 1",
-						authorName: "Don Bosco Việt Nam",
-						thumb: '/img/rankBook.jpg'
-					},
-					{
-						title: "Chỉ có gió mới biết 2",
-						authorName: "Don Bosco Việt Nam",
-						thumb: '/img/rankBook.jpg'
-					},
-					{
-						title: "Chỉ có gió mới biết 3",
-						authorName: "Don Bosco Việt Nam",
-						thumb: '/img/rankBook.jpg'
-					},
-					{
-						title: "Chỉ có gió mới biết 4",
-						authorName: "Don Bosco Việt Nam",
-						thumb: '/img/rankBook.jpg'
-					},
-					{
-						title: "Chỉ có gió mới biết 5",
-						authorName: "Don Bosco Việt Nam",
-						thumb: '/img/rankBook.jpg'
-					}
-				]
-			},
-			savedPost: [
-				{
-					id: 1,
-					title: 'Hãy hướng về phía mặt trời',
-					slug: '',
-					description:
-						'Ai cũng cần động lực để giúp bản thân làm những điều mình cần làm. Cuốn sách này giúp tôi nhận ra nhiều điều trong cuộc sống',
-					postTemplate: '',
-					content: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
-					Why do we use it?
-					It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-					
-					
-					Where does it come from?
-					Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.'`,
-					thumb:
-						'http://dinhvankiem.com/demo/e-reading/wp-content/uploads/2016/05/book-759873_1920-370x218.jpg',
-					images:
-						'http://dinhvankiem.com/demo/e-reading/wp-content/uploads/2016/05/book-759873_1920-370x218.jpg',
-					userId: '',
-					bookId: '',
-					createAt: '10:34 12/03/2019',
-					book: 'Trước bình minh là đêm tối',
-					postReactions: 4
-				},
-				{
-					id: 2,
-					images:
-						'http://dinhvankiem.com/demo/e-reading/wp-content/uploads/2016/05/glasses-272399_1920-370x218.jpg',
-					createAt: '10:34 12/03/2019',
-					title: 'Sống là cho đâu chỉ nhận riêng mình',
-					author: 'Nguyễn Nhật Minh Vy',
-					description:
-						'Cuộc sống là một cuốn nhật ký và bạn chính là chủ nhân. Hãy viêt sao để nó trở thành cuốn nhật ký đáng đọc.',
-					postReactions: 4,
-					bookId: '',
-					book: 'Trước bình minh là đêm tối',
-					content: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
-					Why do we use it?
-					It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-					
-					
-					Where does it come from?
-					Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.'`
-				}
-			]
+			isHomeUser: false
 		};
 		this.handleClose = this.handleClose.bind(this);
 	}
@@ -261,7 +55,18 @@ class Profile extends React.Component {
 		})
 		return { profile };
 	}
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.user) {
+			if (!this.state.isHomeUser && this.props.profile._id === nextProps.user._id) {
+				this.setState({ isHomeUser: true })
+			}
+		}
+		return true
+	}
 	async componentDidMount() {
+		if (this.props.user && this.props.profile._id === this.props.user._id) {
+			this.setState({ isHomeUser: true })
+		}
 		try {
 			const posts = await api.post.getList({
 				query: {
@@ -334,6 +139,7 @@ class Profile extends React.Component {
 					}).catch(err => {
 						console.log("not found: ", err)
 					})
+
 				}
 			}, 1000)
 		} catch (err) {
@@ -528,11 +334,11 @@ class Profile extends React.Component {
 			case 2: //saved book
 				const numberBookInRow = 4;
 				result = (<div className="profile__content--saved-book-wrap">
-					<div className="profile__content--paging">
+					{/* <div className="profile__content--paging">
 						{
 							this.getPageSavedBook(this.state.savedBooks.page, this.state.savedBooks.currentPage)
 						}
-					</div>
+					</div> */}
 					<div className="profile__content--saved-book">
 						<div className="save-book__column -one">
 							{
@@ -615,6 +421,7 @@ class Profile extends React.Component {
 
 				<div className="my-container profile-main">
 					<Information
+						isHomeUser={this.state.isHomeUser}
 						user={this.props.profile}
 						isFollow={this.state.isFollow}
 						followUser={this.followUser}
@@ -667,10 +474,8 @@ class Profile extends React.Component {
 						{this.getContent()}
 					</div>
 				</div>
-				<LazyLoadComponent
-					path="../footer/footer"
-				/>
-				{/* <Footer /> */}
+
+				<Footer />
 			</div>
 		);
 	}

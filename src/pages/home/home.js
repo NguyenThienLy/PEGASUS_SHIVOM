@@ -14,6 +14,7 @@ import '../../assets/bootstrap4/bootstrap.min.scss';
 
 import { api } from '../../services';
 import { RankBooks, Headline, Footer, Header, Slide, Loading, LazyLoadComponent } from '../../components';
+import { action } from '../../actions';
 
 
 class Home extends React.Component {
@@ -22,56 +23,8 @@ class Home extends React.Component {
 		this.state = {
 			categories: [],
 			posts: [],
-			slides: [
-				{
-					img: 'https://i.imgur.com/OTzZkvy.jpg',
-					author: 'Tạ Minh Tuấn',
-					book: 'Trước bình minh luôn là đêm tối',
-					type: 1,
-					quote:
-						'Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên'
-				},
-				{
-					img: 'https://i.imgur.com/OTzZkvy.jpg',
-					author: 'Tạ Minh Tuấn',
-					book: 'Trước bình minh luôn là đêm tối',
-					type: 1,
-					quote:
-						'Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên'
-				},
-				{
-					img: 'https://i.imgur.com/OTzZkvy.jpg',
-					author: 'Tạ Minh Tuấn',
-					book: 'Trước bình minh luôn là đêm tối',
-					type: 1,
-					quote:
-						'Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên'
-				},
-				{
-					img: 'https://i.imgur.com/OTzZkvy.jpg',
-					author: 'Tạ Minh Tuấn',
-					book: 'Trước bình minh luôn là đêm tối',
-					type: 1,
-					quote:
-						'Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên'
-				},
-				{
-					img: 'https://i.imgur.com/OTzZkvy.jpg',
-					author: 'Tạ Minh Tuấn',
-					book: 'Trước bình minh luôn là đêm tối',
-					type: 1,
-					quote:
-						'Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên'
-				},
-				{
-					img: 'https://i.imgur.com/OTzZkvy.jpg',
-					author: 'Tạ Minh Tuấn',
-					book: 'Trước bình minh luôn là đêm tối',
-					type: 1,
-					quote:
-						'Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên'
-				}
-			],
+			bookQuotes: [],
+			
 
 			typeBook: [
 				{
@@ -93,40 +46,7 @@ class Home extends React.Component {
 			],
 			AllTypeId: -1, //loại bài viết nổi bật là "Tất cả"
 			currentIdTypeStandOut: -1,
-			newPost: [
-				{
-					_id: 1,
-					img: 'https://i.imgur.com/OTzZkvy.jpg',
-					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
-					book: 'Trước bình minh luôn là đêm tối',
-					type: 1,
-					time: '8:00 23/01/2019'
-				},
-				{
-					_id: 2,
-					img: 'https://i.imgur.com/OTzZkvy.jpg',
-					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
-					book: 'Trước bình minh luôn là đêm tối',
-					type: 2,
-					time: '8:00 23/01/2019'
-				},
-				{
-					_id: 3,
-					img: 'https://i.imgur.com/OTzZkvy.jpg',
-					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
-					book: 'Trước bình minh luôn là đêm tối',
-					type: 3,
-					time: '8:00 23/01/2019'
-				},
-				{
-					_id: 4,
-					img: 'https://i.imgur.com/OTzZkvy.jpg',
-					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
-					book: 'Trước bình minh luôn là đêm tối',
-					type: 1,
-					time: '8:00 23/01/2019'
-				}
-			],
+			
 			firstStandOutTypeBook: 1,
 			secondStandOutTypeBook: 2,
 			thirdStandOutTypeBook: 3,
@@ -283,19 +203,40 @@ class Home extends React.Component {
 				query: {
 					fields: [
 						'$all',
-						{ user: ['firstName', 'lastName', '_id'], book: ['$all', { category: ['$all'] }] }
+						{ user: ['firstName', 'lastName', '_id', "avatar"], book: ['$all', { category: ['$all'] }] }
 					],
 					limit: 100
 				}
 			});
+			this.props.dispatch(action.post.fetch(posts))
 			let categories = posts.map((post) => {
 				return post.book.category;
 			});
 			categories = _.unionBy(categories, '_id');
+			this.props.dispatch(action.category.fetch(categories))
 			this.setState({
 				categories: categories,
 				posts: posts
 			});
+			let books = posts.map((post) => {
+				return post.book;
+			});
+			books = _.unionBy(books, '_id');
+			this.props.dispatch(action.book.fetch(books))
+			if(this.props.bookQuotes.length === 0) {
+				api.bookQuote.getList({
+					query: {
+						fields: ["$all", { book: ["$all"] }]
+					}
+				}).then(bookQuotes => {
+					console.log("book quote: ", bookQuotes)
+					this.setState({ bookQuotes })
+					this.props.dispatch(action.bookQuote.fetch(bookQuotes))
+				})
+			} else {
+				this.setState({ bookQuotes: this.props.bookQuotes})
+			}
+			
 		} catch (err) {
 			console.log('err: ', err);
 		}
@@ -324,7 +265,7 @@ class Home extends React.Component {
 				<Header {...this.props} />
 				{this.state.posts.length > 0 ? (
 					<div className="home-main">
-						<SlideHome slides={this.state.slides} />
+						<SlideHome bookQuotes={this.state.bookQuotes} />
 						<div className="content-home-wrap">
 							<div className="left">
 								{/* <Headline title="Bài viết nổi bật" /> */}
