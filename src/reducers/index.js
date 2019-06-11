@@ -1,28 +1,34 @@
 import { combineReducers } from "redux";
-import * as guid from "guid";
-import * as _ from "lodash";
 
-
-import books from './book'
 import user from './user'
-import categories from './category'
-import posts from './post'
-import reviewers from './reviewer'
-import userFollows from './userFollow'
-import userSaveds from './userSaved'
-import authors from './author'
-import bookQuotes from './bookQuote'
+import { CategoryReducer } from './category'
+import { ReviewerReducer } from './reviewer'
+import { UserFollowReducer } from './userFollow'
+import { UserSavedReducer } from './userSaved'
+import { AuthorReducer } from './author'
+import { PostReducer } from './post'
+import { BookReducer } from './book'
+import { BookQuoteReducer } from './bookQuote'
+
+const postReducer = new PostReducer()
+const bookReducer = new BookReducer()
+const bookQuoteReducer = new BookQuoteReducer()
+const authorReducer = new AuthorReducer()
+const categoryReducer = new CategoryReducer()
+const reviewerReducer = new ReviewerReducer()
+const userFollowReducer = new UserFollowReducer()
+const userSavedReducer = new UserSavedReducer()
 
 const store = combineReducers({
-    books,
+    books: bookReducer.reducer,
     user,
-    categories,
-    posts,
-    reviewers,
-    userFollows,
-    userSaveds,
-    authors,
-    bookQuotes
+    categories: categoryReducer.reducer,
+    posts: postReducer.reducer,
+    reviewers: reviewerReducer.reducer,
+    userFollows: userFollowReducer.reducer,
+    userSaveds: userSavedReducer.reducer,
+    authors: authorReducer.reducer,
+    bookQuotes: bookQuoteReducer.reducer
 })
 
 export default store

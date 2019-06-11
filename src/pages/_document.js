@@ -13,6 +13,7 @@ class MyDocument extends Document {
                     <style>{`body { margin: 0 } /* custom! */`}</style>
                     <link rel="manifest" href="/manifest.json"/>
                     <link rel="icon" href="/bookFeeling.jpg"/>
+                    <link rel="stylesheet" type="text/css" href="/css/nprogress.css"/>
                     <link href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat" rel="stylesheet" media="screen" disabled />
                     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous" media="screen" disabled />
                     <link

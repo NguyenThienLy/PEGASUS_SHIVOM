@@ -42,7 +42,8 @@ class Profile extends React.Component {
 			],
 			activeTab: 0,
 			savedTabId: 2,
-			isHomeUser: false
+			isHomeUser: false,
+			isBtnFollowLoading: false
 		};
 		this.handleClose = this.handleClose.bind(this);
 	}
@@ -149,6 +150,7 @@ class Profile extends React.Component {
 		}
 	}
 	followUser = async () => {
+		this.setState({ isBtnFollowLoading: true })
 		if (!this.props.user) {
 			alert("Vui lòng đăng nhập trước khi thực hiện thao tác này")
 		} else {
@@ -167,8 +169,10 @@ class Profile extends React.Component {
 				alert("Theo dõi không thành công")
 			}
 		}
+		this.setState({ isBtnFollowLoading: false })
 	}
 	unFollowUser = async () => {
+		this.setState({ isBtnFollowLoading: true })
 		try {
 			const token = await firebaseAuthentication.getIdToken()
 			const result = await api.userFollow.delete(this.state.followId, {
@@ -181,6 +185,8 @@ class Profile extends React.Component {
 		} catch (err) {
 			console.log("err: ", err)
 			alert("Huỷ theo dõi không thành công")
+		} finally {
+			this.setState({ isBtnFollowLoading: false })
 		}
 	}
 	async handleClose() {
@@ -426,6 +432,7 @@ class Profile extends React.Component {
 						isFollow={this.state.isFollow}
 						followUser={this.followUser}
 						unFollowUser={this.unFollowUser}
+						isBtnFollowLoading={this.state.isBtnFollowLoading}
 					/>
 					{this.state.isHomeUser ? (
 						<div className="user-tools">

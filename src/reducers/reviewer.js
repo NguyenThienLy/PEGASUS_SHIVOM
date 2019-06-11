@@ -1,28 +1,7 @@
-const initReviewerState = []
+import { BaseReducer } from './base'
 
-const reviewerAction = {
-    fetch: "FETCH_REVIEWER",
-    add: "ADD_REVIEWER",
-    delete: "DELETE_REVIEWER",
-    edit: "EDIT_REVIEWER"
+export class ReviewerReducer extends BaseReducer {
+    constructor(){
+        super("REVIEWER")
+    }  
 }
-
-const reviewers = (state = initReviewerState,  action) => {
-    switch (action.type) {
-        case reviewerAction.fetch:
-            state = action.payload;
-            break
-        case reviewerAction.add:
-            state.unshift(action.payload)
-            break
-        case reviewerAction.delete:
-
-            break
-        case reviewerAction.edit:
-        
-            break
-    }
-    return state
-}
-
-export default reviewers

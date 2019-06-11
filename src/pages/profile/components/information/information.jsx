@@ -4,13 +4,16 @@ import './information.scss'
 class Information extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        
     }
     followUser = async () => {
         return this.props.followUser()
     }
     unFollowUser = async () => {
         return this.props.unFollowUser()
+    }
+    componentWillReceiveProps(nextProps){
+        return true
     }
     render() {
         const { user } = this.props;
@@ -29,8 +32,8 @@ class Information extends Component {
                         {!this.props.isHomeUser ?
                             <div>
                                 {this.props.isFollow ?
-                                    <div className="follow btn-unfollow" onClick={this.unFollowUser}>Huỷ theo dõi</div> :
-                                    <div className="follow bt-follow" onClick={this.followUser}>Theo dõi</div>}</div> : null}
+                                    <div className="follow btn-unfollow" onClick={this.unFollowUser} disabled={this.props.isBtnFollowLoading}>{this.props.isBtnFollowLoading ? <i class="fas fa-circle-notch fa-spin"></i> : "Huỷ theo dõi"}</div> :
+                                    <div className="follow bt-follow" onClick={this.followUser} disabled={this.props.isBtnFollowLoading}>{this.props.isBtnFollowLoading ? <i class="fas fa-circle-notch fa-spin"></i> : "Theo dõi"}</div>}</div> : null}
                     </div>
                 </div>
                 <div className="infor-detail">
