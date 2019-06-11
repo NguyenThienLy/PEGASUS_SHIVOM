@@ -1,47 +1,51 @@
 @import "../../default.scss";
-.rank-item-wrap {
-  display: flex;
-  margin: 10px auto;
-  .img {
-    flex: 1;
-    a img {
-      width: 100%;
-      overflow: hidden;
-      transition: transform 2s ease-out;
-      &:hover {
-        transform: scale(1.1);
-        box-shadow: 2px 2px 2px rgb(204, 203, 203);
-      }
-    }
-  }
-  .content {
-    flex: 2;
-    margin-left: 20px;
-    .book-name {
-      a {
-        color: #555555;
-        font-weight: bold;
-        text-decoration: none;
-        &:hover {
-          color: $color-hover;
-        }
-      }
-    }
-    .rating-star {
-      text-decoration: none;
-      i {
-        color: #f9c100;
-        margin: 0px 2px;
-      }
-      span {
-        color: rgb(233, 227, 227);
-        font-size: 0.8em;
-        margin-left: 10px;
-      }
-    }
-
-    .author {
-      color: rgb(168, 159, 159);
-    }
-  }
+.rank-book-item--wrap {
+	display: flex;
+	margin: 5px auto;
+	padding: 5px;
+	border: 1px solid rgba(0, 0, 0, 0.05);
+	.rank-book-item {
+		&__img {
+			flex: 1;
+			a img {
+				width: $width-book;
+				height: $height-book;
+				overflow: hidden;
+				transition: transform 2s ease-out;
+				&:hover {
+					transform: scale(1.1);
+					box-shadow: 2px 2px 2px rgb(204, 203, 203);
+				}
+			}
+		}
+		&__content {
+			flex: 2;
+			margin-left: 20px;
+			&--book-name {
+				a {
+					color: #555555;
+					text-decoration: none;
+					&:hover {
+						color: $color-hover;
+					}
+				}
+			}
+			&--rating-star {
+				text-decoration: none;
+				i {
+					color: #f9c100;
+					margin: 0px 2px;
+				}
+				span {
+					color: rgb(233, 227, 227);
+					font-size: 0.8em;
+					margin-left: 10px;
+				}
+			}
+			&--author {
+				color: rgb(168, 159, 159);
+				font-size: 0.8em;
+			}
+		}
+	}
 }

@@ -8,15 +8,15 @@ export class PostItem extends Component {
     render() {
         const { post } = this.props
         return (
-            <div className="post-item-wrap">
-                <div className="img"><a href="#"><CloudImage src={post.thumb} alt="" /></a></div>
-                <div className="content">
-                    <div className="title">
+            <div className="post-item--wrap">
+                <div className="post-item__img"><a href="#"><CloudImage src={post.thumb} alt="" /></a></div>
+                <div className="post-item__content">
+                    <div className="post-item__content--time">{moment(post.createdAt).format("DD/MM/YYYY HH:mm")}</div>
+                    <div className="post-item__content--title">
                         <Link href={`/bai-viet/${post.slug}`}>
                             <a href="#">{post.title}</a>
                         </Link>
                     </div>
-                    <div className="time">{moment(post.createdAt).format("DD/MM/YYYY HH:mm")}</div>
                 </div>
             </div>
         );

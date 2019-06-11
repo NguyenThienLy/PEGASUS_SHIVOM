@@ -13,9 +13,9 @@ export class StandOutPost extends Component {
 
 
     render() {
-        const { posts, typeBook } = this.props;
-        // console.log("post kajdkf: " + posts + this.state.currentType)
-        const activePost = posts[0];
+        const { typeBook } = this.props;
+        const activePost = this.props.posts[0];
+        const posts = this.props.posts.filter((item, index) => index != 0);
 
         return (
             <div className="stand-out-post-wrap">
@@ -25,7 +25,9 @@ export class StandOutPost extends Component {
                     {
                         posts.length > 0 && (
                             <div className="active">
-                                <div className="img" style={{ backgroundImage: "url(" + activePost.img + ")" }}></div>
+                                <div className="img">
+                                    <img src={activePost.img} alt={activePost.title} />
+                                </div>
                                 <div className="book"><a href="#">{activePost.book}</a> </div>
                                 <div className="title"><a href="#">{activePost.title}</a></div>
                                 <div className="author-time">
@@ -33,18 +35,16 @@ export class StandOutPost extends Component {
                                     <div className="time">{activePost.time}</div>
                                     <div className="love">{activePost.love} <i class="fab fa-gratipay"></i></div>
                                 </div>
-                                <div className="decription">{activePost.decription.substring(0, 100)}...</div>
+                                <div className="decription">{activePost.decription.substring(0, 200)}...</div>
                             </div>
                         )
                     }
                     <div className="post">
                         {
                             posts.map((item, index) => {
-                                if (index != 0) {
-                                    return (
-                                        <PostItem post={item} />
-                                    )
-                                }
+                                return (
+                                    <PostItem post={item} />
+                                )
                             })
                         }
                     </div>
