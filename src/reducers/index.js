@@ -9,6 +9,7 @@ import { AuthorReducer } from './author'
 import { PostReducer } from './post'
 import { BookReducer } from './book'
 import { BookQuoteReducer } from './bookQuote'
+import { BookRateReducer } from "./bookRate";
 
 const postReducer = new PostReducer()
 const bookReducer = new BookReducer()
@@ -18,6 +19,7 @@ const categoryReducer = new CategoryReducer()
 const reviewerReducer = new ReviewerReducer()
 const userFollowReducer = new UserFollowReducer()
 const userSavedReducer = new UserSavedReducer()
+const bookRateReducer = new BookRateReducer()
 
 const store = combineReducers({
     books: bookReducer.reducer,
@@ -28,7 +30,8 @@ const store = combineReducers({
     userFollows: userFollowReducer.reducer,
     userSaveds: userSavedReducer.reducer,
     authors: authorReducer.reducer,
-    bookQuotes: bookQuoteReducer.reducer
+    bookQuotes: bookQuoteReducer.reducer,
+    bookRate: bookRateReducer.reducer
 })
 
 export default store

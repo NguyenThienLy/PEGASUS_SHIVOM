@@ -27,7 +27,9 @@ class Post extends React.Component {
             books: [],
             isHomeUser: true,
             loading: true,
-            isBtnLoading: false
+            isBtnLoading: false,
+            isRateForBook: false,
+            bookRate: null
         }
     }
     static async getInitialProps({ req, query }) {
@@ -45,7 +47,7 @@ class Post extends React.Component {
             this.getAuthor(book)
             this.getReviewer(book)
             this.getSameBook(book)
-
+            this.getBookRate(book)
             setTimeout(() => {
                 if (this.props.user) {
                     if (this.props.user._id !== this.props.post.userId) {
@@ -161,7 +163,24 @@ class Post extends React.Component {
             this.props.dispatch(action.reviewer.add(reviewer))
         }
         this.setState({ reviewer })
+
         return reviewer
+    }
+    getBookRate = async (book) => {
+        api.bookRate.findOne({
+            query: {
+                filter: {
+                    userId: this.props.post.userId,
+                    bookId: book._id
+                },
+                fields: ["$all"]
+            }
+        }).then(bookRate => {
+            this.setState({ bookRate })
+            this.props.dispatch(action.bookRate.add(bookRate))
+        }).catch(err => {
+            console.log("GET BOOK RATE ERR: ", err)
+        })
     }
     followUser = async () => {
         this.setState({ isBtnLoading: true })
@@ -252,9 +271,12 @@ class Post extends React.Component {
                                                 <button type="button" className="reviewer-info__follow__button" onClick={this.unFollowUser} disabled={this.state.isBtnLoading}>{this.state.isBtnLoading ? <i class="fas fa-circle-notch fa-spin"></i> : "Huỷ theo dõi"}</button> :
                                                 <button type="button" className="reviewer-info__follow__button" onClick={this.followUser} disabled={this.state.isBtnLoading}>{this.state.isBtnLoading ? <i class="fas fa-circle-notch fa-spin"></i> : "Theo dõi"}</button>}</div> : null}
                                     </div>
-                                    <div className="reviewer-info__given-point">
-                                        - đã cho quyển sách này n điểm
-                            </div>
+                                    {this.state.bookRate ?
+                                        <div className="reviewer-info__given-point">
+                                            - đã cho quyển sách này {this.state.bookRate.rate} điểm
+                            </div> : <div className="reviewer-info__given-point">
+                                            - chưa cho điểm quyển sách này
+                            </div>}
                                 </div>
                             }
 
@@ -290,13 +312,13 @@ class Post extends React.Component {
                                     </a>
                                 </div>
                                 <div className="post-subgroup__book-info__shortcut">
-                                    {this.state.book.description ? this.state.book.description.slice(0, 255) : ""}
+                                    {this.state.book.description ? this.state.book.description.substring(0, 255) : ""}
                                     <span>
-                                        {this.state.book.description && this.state.book.description.lengh > 255 ? <a
+                                        <a
                                             href="#"
                                             className="post-subgroup__book-info__shortcut__more">
-                                            &nbsp;...xem thêm
-                                    </a> : null}
+                                            &nbsp;Chi tiết
+                                    </a>
                                     </span>
                                 </div>
                             </div>

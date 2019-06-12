@@ -8,6 +8,8 @@ import { BookAuthorApi } from './reviewApi/bookAuthor';
 import { UserFollowApi } from './reviewApi/userFollow';
 import { UserSavedApi } from './reviewApi/userSaved';
 import { BookQuoteApi } from './reviewApi/bookQuote';
+import { BookRateApi } from './reviewApi/bookRate';
+
 
 const crudApi = new CrudApi()
  
@@ -24,6 +26,7 @@ class api {
     static userFollow = new UserFollowApi()
     static userSaved = new UserSavedApi()
     static bookQuote = new BookQuoteApi()
+    static bookRate = new BookRateApi()
 }
 
 export {
