@@ -13,9 +13,12 @@ export class PostItem extends Component {
                 <div className="post-item__content">
                     <div className="post-item__content--time">{moment(post.createdAt).format("DD/MM/YYYY HH:mm")}</div>
                     <div className="post-item__content--title">
-                        <Link href={`/bai-viet/${post.slug}`}>
-                            <a href="#">{post.title}</a>
+                    <Link as={`/bai-viet/${post.slug}`} href={`/post?slug=${post.slug}`}>
+                            <a>{post.title}</a>
                         </Link>
+                        {/* <Link as={`/bai-viet/${post.slug}`} href={`/post/post?slug=${post.slug}`}>
+                            <a href="#">{post.title}</a>
+                        </Link> */}
                     </div>
                 </div>
             </div>

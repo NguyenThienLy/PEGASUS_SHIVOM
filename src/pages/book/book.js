@@ -10,13 +10,23 @@ import './book.scss'
 import { BookInfo } from './components/info/info'
 import { Reviews } from './components/reviews/reviews'
 
+import { api } from '../../services'
+
 class Book extends React.Component {
     constructor(props) {
         super(props)
     }
     static async  getInitialProps({ req, query }) {
-        return {
+        const bookId = query.bookId
+        let book = {}
+        book = await api.book.getItem(bookId, {
+            query: {
+                fields:["$all", { "author": ["name","avatar","_id"]}, { "category":["name"]}],
 
+            }
+        })
+        return {
+            book
         }
     }
     render() {
@@ -24,7 +34,7 @@ class Book extends React.Component {
         return (
             <div>
                 <Head>
-                    <title>Chi tiết sách</title>
+                    <title>{this.props.book.title}</title>
                     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
                     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
@@ -32,7 +42,7 @@ class Book extends React.Component {
                 </Head>
                 <Header {...this.props}/>
                 <div className="book-main">
-                    <BookInfo />
+                    <BookInfo {...this.props.book}/>
                     <div style={
                         {
                             height: "30px"

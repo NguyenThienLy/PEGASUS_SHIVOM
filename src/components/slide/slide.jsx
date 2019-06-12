@@ -21,7 +21,6 @@ export class Slide extends React.Component {
     timeOut 
 
     setSlide(n){
-        console.log("Da vao ham set slide");
         this.setState({currentSlide: n});
         // this.forceUpdate()
         // console.log("changed slide "+ this.state.currentSlide);
@@ -29,7 +28,6 @@ export class Slide extends React.Component {
     }
 
     showSlide(){
-        console.log("Da them")
         let btn = document.getElementsByClassName("rectangle-slide")
         btn[this.state.currentSlide].classList.remove("btn-active")
 
@@ -48,7 +46,7 @@ export class Slide extends React.Component {
              
             <div className="slide" onLoad={() => {setTimeout(this.showSlide, 2000)}}>
                 <div className="slide-img">
-                    <img  id="single-img-slide" src={this.state.img[this.state.currentSlide]} />
+                    <CloudImage  id="single-img-slide" src={this.state.img[this.state.currentSlide]} />
                 </div>
 
                 <div className="slide__btn">
@@ -84,13 +82,13 @@ export class Slide extends React.Component {
 //         </ol>
 //         <div className="carousel-inner">
 //             <div className="carousel-item active">
-//             <img src="img/slide0.jpg" className="d-block w-100" alt="book"/>
+//             <CloudImage src="img/slide0.jpg" className="d-block w-100" alt="book"/>
 //             </div>
 //             <div className="carousel-item">
-//             <img src="img/slide1.jpg" className="d-block w-100" alt="book"/>
+//             <CloudImage src="img/slide1.jpg" className="d-block w-100" alt="book"/>
 //             </div>
 //             <div className="carousel-item">
-//             <img src="img/slide2.jpg" className="d-block w-100" alt="book"/>
+//             <CloudImage src="img/slide2.jpg" className="d-block w-100" alt="book"/>
 //             </div>
 //         </div>
 //         <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

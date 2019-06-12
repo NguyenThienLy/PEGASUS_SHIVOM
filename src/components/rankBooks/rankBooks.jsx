@@ -4,6 +4,8 @@ import { RankBookItem } from '../../components/rankBookItem/rankBookItem'
 import { BookItem } from '../bookItem/bookItem';
 import { CloudImage } from '..';
 
+import Link from 'next/link'
+
 export class RankBooks extends Component {
     constructor(props) {
         super(props);
@@ -11,30 +13,29 @@ export class RankBooks extends Component {
     }
 
     checkScroll = () => {
-        window.onscroll = function () {
-            const currentScrollPos = window.pageYOffset;
 
-            if (currentScrollPos > 600) {
-                console.log("being checked scroll..., current y: ", currentScrollPos);
-                let x = document.getElementById("rank-books-wrap")
-                x.classList.add("rank-books-wrap-sticky");
-                console.log("element: ", document.getElementById("rank-books-wrap"));
-            } else {
-                document.getElementById("rank-books-wrap").classList.remove("rank-books-wrap-sticky");
-            }
+        const currentScrollPos = window.pageYOffset;
+
+        if (currentScrollPos > 600) {
+            let x = document.getElementById("rank-books-wrap")
+            x.classList.add("rank-books-wrap-sticky");
+        } else {
+            document.getElementById("rank-books-wrap").classList.remove("rank-books-wrap-sticky");
         }
+
+    }
+    componentDidMount() {
+        this.checkScroll();
+        window.addEventListener('scroll', this.checkScroll);
     }
 
-    async componentDidMount() {
-        setInterval(() => {
-            this.checkScroll();
-        }, 1000);
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.checkScroll);
     }
 
     render() {
         const book = this.props.rankBooks[0];
         const rankBooks = this.props.rankBooks.filter((item, index) => index != 0);
-        // console.log("Books:" + rankBooks);
         return (
             <div id="rank-books-wrap" >
                 <div id="first-book-wrap">
@@ -43,7 +44,7 @@ export class RankBooks extends Component {
                     <div className="author">{book.bookAuthor}</div>
                     <div className="rating">
                         <a href="#" className="rating-star">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i>
                             <span>{book.rating}</span></a>
                         <div href="#" className="number-rating">{book.numberReview} đánh giá</div>
                     </div>
@@ -52,7 +53,7 @@ export class RankBooks extends Component {
                     {
                         rankBooks.map((item, index) => {
                             return (
-                                <RankBookItem book={item} />
+                                <RankBookItem book={item} key={index} />
                             )
                         })
                     }

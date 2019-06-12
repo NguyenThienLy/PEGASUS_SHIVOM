@@ -19,10 +19,23 @@ class SearchResult extends React.Component {
         }
     }
     static async getInitialProps({ req, query }) {
-        const search = req.query.search || ""
+        const search = query.search
         return {
             search
         };
+    }
+    async getSnapshotBeforeUpdate(prevProps, prevState) {
+        if (prevProps.search !== this.props.search) {
+            try {
+                const results = await api.search.search({
+                    keyword: this.props.search,
+                    type: this.state.type
+                })
+                this.setState({ search: this.props.search, results: results.hits })
+            } catch (err) {
+
+            }
+        }
     }
     async componentDidMount() {
         this.setState({ search: this.props.search })
@@ -63,6 +76,9 @@ class SearchResult extends React.Component {
             console.log('err: ', err)
         }
     }
+    openPost(slug) {
+        window.open(`http://localhost:3000/bai-viet/${slug}`, "_self")
+    }
 
 
     render() {
@@ -71,7 +87,7 @@ class SearchResult extends React.Component {
                 <Head>
                     <title>Kết quả tìm kiếm</title>
                     <meta content="width=device-width, initial-scale=1" name="viewport" />
-                   
+
                 </Head>
                 <Header {...this.props} />
 
@@ -102,7 +118,7 @@ class SearchResult extends React.Component {
                                         <option value="10" selected>10 kết quả / trang</option>
                                         <option value="15">15 kết quả / trang</option>
                                         <option value="20">20 kết quả / trang</option>
-                                        <option value="25">25kết quả / trang</option>
+                                        <option value="25">25 kết quả / trang</option>
                                     </select>
 
                                     <select className="select-css">
@@ -118,17 +134,19 @@ class SearchResult extends React.Component {
                                 this.state.results.length > 0 ?
                                     <div>
                                         {this.state.results.map((result, index) => {
-                                            console.log("result: ", result)
+
                                             switch (this.state.type) {
                                                 case "book":
                                                     return (
-                                                        <div>
+                                                        <div key={index}>
                                                             <div className="__search-result">
                                                                 <div className="image-wrapper">
                                                                     <CloudImage src={result._source.thumb} />
                                                                 </div>
                                                                 <div className="info">
-                                                                    <h3 dangerouslySetInnerHTML={{ __html: this.state.results[index].highlight.title[0] }} ></h3>
+                                                                    <Link as={`/sach/${result._id}`} href={`/book/book?bookId=${result._id}`}>
+                                                                        <h3 dangerouslySetInnerHTML={{ __html: this.state.results[index].highlight.title[0] }} ></h3>
+                                                                    </Link>
                                                                     <p>Tạ Minh Tuấn</p>
                                                                 </div>
                                                             </div>
@@ -137,7 +155,7 @@ class SearchResult extends React.Component {
                                                     )
                                                 case "author":
                                                     return (
-                                                        <div>
+                                                        <div key={index}>
                                                             <div className="__search-result">
                                                                 <div className="image-wrapper">
                                                                     <CloudImage src={result._source.avatar} />
@@ -159,13 +177,13 @@ class SearchResult extends React.Component {
                                                 case "post":
                                                     return (
 
-                                                        <div>
+                                                        <div key={index}>
                                                             <div className="__search-result">
                                                                 <div className="image-wrapper">
                                                                     <CloudImage src={result._source.thumb} />
                                                                 </div>
                                                                 <div className="info">
-                                                                    <h3 dangerouslySetInnerHTML={{ __html: this.state.results[index].highlight.title[0] }} ></h3>
+                                                                    <h3 dangerouslySetInnerHTML={{ __html: this.state.results[index].highlight.title[0] }} onClick={() => { return this.openPost(result._source.slug) }} ></h3>
                                                                     <p>{result._source.author}</p>
                                                                 </div>
                                                             </div>

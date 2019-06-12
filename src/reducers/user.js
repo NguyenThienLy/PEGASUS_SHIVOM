@@ -1,8 +1,6 @@
 
 
-const initUserState = {
-    
-}
+const initUserState = null
 
 const userAction = {
     LOGIN: "LOGIN",
@@ -15,7 +13,7 @@ const user = (state = initUserState,  action) => {
             state = action.payload
             break
         case userAction.LOGOUT:
-            state = {}
+            state = null
             break
     }
     return state

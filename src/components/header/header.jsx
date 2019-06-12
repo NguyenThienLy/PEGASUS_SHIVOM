@@ -30,14 +30,24 @@ export class Header extends React.Component {
             alert("Đăng xuất không thành công")
         }
     }
+    async login(token) {
+        try {
+            const result = await api.user.login(token)
+            return result
+        } catch (err) {
+            alert("Đăng nhập không thành công, vui lòng tải lại trang")
+            console.log("LOGIN ERR: ", err)
+        }
+    }
 
     async componentWillMount() {
-        if (!this.props.user.email) {
+        if (!this.props.user) {
             const isLogin = await firebaseAuthentication.authenticated
             if (isLogin) {
                 const user = firebaseAuthentication.currentUser
-                this.props.dispatch(action.user.login(user))
-                console.log("user: ", user)
+                const token = await firebaseAuthentication.getIdToken()
+                const appUser = await this.login(token)
+                this.props.dispatch(action.user.login(appUser))
                 this.setState({
                     user: {
                         displayName: user.displayName,
@@ -77,7 +87,7 @@ export class Header extends React.Component {
         `;
         document.body.appendChild(s);
         try {
-            const categories = await api.bookCategory.getList({ query: { fields: ["name", "slug"], limit: 50 } })
+            const categories = await api.bookCategory.getList({ query: { fields: ["name", "slug", "_id"], limit: 50 } })
 
             let categoriesChunked = _.chunk(categories, 8)
             this.setState({ categories: categoriesChunked })
@@ -90,7 +100,7 @@ export class Header extends React.Component {
         this.setState({ search: query })
     }
     onSearchKeyPress = async (event) => {
-        Router.push(`/tim-kiem?search=${this.state.search}`)       
+        Router.push(`/searchResult/searchResult?search=${this.state.search}`,`/tim-kiem?search=${this.state.search}`)
     }
 
 
@@ -111,13 +121,13 @@ export class Header extends React.Component {
 
                             <input className="search-box__search-txt" type="text" name="search-box" placeholder="Tìm kiếm..." ref="search" onChange={this.onSearch} onKeyPress={this.onSearchKeyPress} />
                             <a className="search-box__search-icon" href="#" aria-label="Search book and reviewer">
-                                <i class="fas fa-search"></i>
+                                <i className="fas fa-search"></i>
                             </a>
 
                         </div>
                         <button className="function-group__item sign-in-button" id="login-button">
                             {!this.state.user ?
-                                <Link href="/login">
+                                <Link as="/login" href="/login/login">
                                     <a href="#" className="nav-link btn-sign-in">Đăng nhập</a>
                                 </Link>
                                 : <div>
@@ -138,14 +148,14 @@ export class Header extends React.Component {
                             <li className="nav-item"><a href="#" className="nav-item--style">thể loại</a>
 
                                 <div className="drop-down-1">
-                                    {this.state.categories.map((arrayChild) => {
+                                    {this.state.categories.map((arrayChild, index) => {
 
                                         return (
-                                            <ul>
+                                            <ul key={index}>
                                                 {arrayChild.map(category => {
                                                     return (
-                                                        <Link href={`/the-loai/${category.slug}`}>
-                                                            <li className="drop-down-item"><a href="#" >{category.name}</a></li>
+                                                        <Link as={`/the-loai/${category.slug}`} href={`/category/category?slug=${category.slug}`} key={category._id}>
+                                                            <li className="drop-down-item">{category.name}</li>
                                                         </Link>
                                                     )
 

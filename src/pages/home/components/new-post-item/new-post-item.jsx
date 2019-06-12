@@ -15,12 +15,16 @@ export class NewPostItem extends Component {
                         <CloudImage src={post.thumb} alt="" />
                     </a>
                     <div className="book">
-                        <Link href={`/bai-viet/${post.slug}`}>
+                    <Link as={`/sach/${post.book._id}`} href={`/book/book?bookId=${post.book._id}`}>
                             <a href="">{post.book.title.substring(0, 15)}...</a>
                         </Link>
                     </div>
                 </div>
-                <div className="title"><a href="">{post.title}</a></div>
+                <div className="title">
+                <Link as={`/bai-viet/${post.slug}`} href={`/post/post?slug=${post.slug}`}>
+                <a href="">{post.title}</a>
+                </Link>
+                </div>
             </div>);
     }
 }

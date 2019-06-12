@@ -27,7 +27,7 @@ export class CustomRouter extends React.Component {
                 {
                     routes.map((prop, key) => {
                         return (
-                            prop.path === path ? <prop.component {...prop.props} /> : null
+                            prop.path === path ? <prop.component {...prop.props} key={key}/> : null
                         );
                     })
                 }

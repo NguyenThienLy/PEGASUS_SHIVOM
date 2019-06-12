@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './rankBookItem.scss'
 import { CloudImage } from '..';
 
+import Link from 'next/link'
 export class RankBookItem extends Component {
     state = {}
     render() {

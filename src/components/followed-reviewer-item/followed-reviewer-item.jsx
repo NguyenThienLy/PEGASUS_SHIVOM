@@ -16,7 +16,7 @@ export class FollowedReviewerItem extends React.Component {
                 </div>
                 <div id="followed-person--name" className="title"><a href="#">{name}</a></div>
                 <div id="followed-person--fan">{numberFan} người theo dõi</div>
-                <a name="" id="followed-person--btn" class="btn" href="#" role="button">Theo dõi</a>
+                <a name="" id="followed-person--btn" className="btn" href="#" role="button">Theo dõi</a>
             </div>
         )
 

@@ -4,9 +4,11 @@
   "private": true,
   "dependencies": {
     "@babel/preset-react": "^7.0.0",
+    "@zeit/next-bundle-analyzer": "^0.1.2",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "bootstrap": "^4.3.1",
+    "cross-env": "^5.2.0",
     "custom-template-generator": "^0.1.2",
     "dns": "^0.2.2",
     "express": "^4.16.4",
@@ -17,11 +19,13 @@
     "inquirer": "^6.2.2",
     "isomorphic-unfetch": "^3.0.0",
     "lodash": "^4.17.11",
+    "lru-cache": "^5.1.1",
     "moment": "^2.24.0",
     "net": "^1.0.2",
     "next": "^8.0.3",
     "node-sass": "^4.11.0",
     "nodemon": "^1.18.10",
+    "nprogress": "^0.2.0",
     "react": "^16.8.3",
     "react-ckeditor-component": "^1.1.0",
     "react-dom": "^16.8.3",
@@ -37,7 +41,6 @@
     "tls": "0.0.1"
   },
   "scripts": {
- 
     "next": "next src",
     "build": "next build src",
     "server": "nodemon src/server.js",
@@ -45,7 +48,10 @@
     "babel": "src/server.js",
     "g": "node devHelper/templates/index",
     "prod_start": "NODE_ENV=production node src/server.js",
-    "start":"next build src && NODE_ENV=production node src/server.js"
+    "start": "next build src && NODE_ENV=production node src/server.js",
+    "analyze": "cross-env BUNDLE_ANALYZE=both next build src",
+    "analyze:server": "cross-env BUNDLE_ANALYZE=server next build src",
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build src"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -59,6 +65,7 @@
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.4.0",
-    "@babel/preset-env": "^7.4.2"
+    "@babel/preset-env": "^7.4.2",
+    "terser-webpack-plugin": "^1.3.0"
   }
 }

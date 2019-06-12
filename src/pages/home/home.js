@@ -13,8 +13,9 @@ import './home.scss';
 import '../../assets/bootstrap4/bootstrap.min.scss';
 
 import { api } from '../../services';
-import { RankBooks, Footer, Headline, Header, Slide, Loading } from '../../components';
+import { RankBooks, Headline, Footer, Header, Slide, Loading, LazyLoadComponent } from '../../components';
 import { action } from '../../actions';
+
 
 class Home extends React.Component {
 	constructor(props) {
@@ -22,56 +23,8 @@ class Home extends React.Component {
 		this.state = {
 			categories: [],
 			posts: [],
-			slides: [
-				{
-					img: 'https://i.imgur.com/OTzZkvy.jpg',
-					author: 'Tạ Minh Tuấn',
-					book: 'Trước bình minh luôn là đêm tối',
-					type: 1,
-					quote:
-						'Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên'
-				},
-				{
-					img: 'https://i.imgur.com/OTzZkvy.jpg',
-					author: 'Tạ Minh Tuấn',
-					book: 'Trước bình minh luôn là đêm tối',
-					type: 1,
-					quote:
-						'Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên'
-				},
-				{
-					img: 'https://i.imgur.com/OTzZkvy.jpg',
-					author: 'Tạ Minh Tuấn',
-					book: 'Trước bình minh luôn là đêm tối',
-					type: 1,
-					quote:
-						'Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên'
-				},
-				{
-					img: 'https://i.imgur.com/OTzZkvy.jpg',
-					author: 'Tạ Minh Tuấn',
-					book: 'Trước bình minh luôn là đêm tối',
-					type: 1,
-					quote:
-						'Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên'
-				},
-				{
-					img: 'https://i.imgur.com/OTzZkvy.jpg',
-					author: 'Tạ Minh Tuấn',
-					book: 'Trước bình minh luôn là đêm tối',
-					type: 1,
-					quote:
-						'Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên'
-				},
-				{
-					img: 'https://i.imgur.com/OTzZkvy.jpg',
-					author: 'Tạ Minh Tuấn',
-					book: 'Trước bình minh luôn là đêm tối',
-					type: 1,
-					quote:
-						'Hãy trở thành người nhạc trưởng của chính cuộc đời bạn. Đừng sống vô nghĩa để rồi chết đi và mang theo xuống mồ bản nhạc có ý nghĩa nhất của đời người, chưa bao giờ được cất lên'
-				}
-			],
+			bookQuotes: [],
+			
 
 			typeBook: [
 				{
@@ -91,42 +44,12 @@ class Home extends React.Component {
 					name: 'Kỹ năng'
 				}
 			],
-
-			newPost: [
-				{
-					_id: 1,
-					img: 'https://i.imgur.com/OTzZkvy.jpg',
-					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
-					book: 'Trước bình minh luôn là đêm tối',
-					type: 1,
-					time: '8:00 23/01/2019'
-				},
-				{
-					_id: 2,
-					img: 'https://i.imgur.com/OTzZkvy.jpg',
-					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
-					book: 'Trước bình minh luôn là đêm tối',
-					type: 2,
-					time: '8:00 23/01/2019'
-				},
-				{
-					_id: 3,
-					img: 'https://i.imgur.com/OTzZkvy.jpg',
-					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
-					book: 'Trước bình minh luôn là đêm tối',
-					type: 3,
-					time: '8:00 23/01/2019'
-				},
-				{
-					_id: 4,
-					img: 'https://i.imgur.com/OTzZkvy.jpg',
-					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
-					book: 'Trước bình minh luôn là đêm tối',
-					type: 1,
-					time: '8:00 23/01/2019'
-				}
-			],
-
+			AllTypeId: -1, //loại bài viết nổi bật là "Tất cả"
+			currentIdTypeStandOut: -1,
+			
+			firstStandOutTypeBook: 1,
+			secondStandOutTypeBook: 2,
+			thirdStandOutTypeBook: 3,
 			standOutPosts: [
 				{
 					_id: 1,
@@ -280,20 +203,40 @@ class Home extends React.Component {
 				query: {
 					fields: [
 						'$all',
-						{ user: ['firstName', 'lastName'], book: ['$all', { category: ['$all'] }] }
+						{ user: ['firstName', 'lastName', '_id', "avatar"], book: ['$all', { category: ['$all'] }] }
 					],
 					limit: 100
 				}
 			});
+			this.props.dispatch(action.post.fetch(posts))
 			let categories = posts.map((post) => {
 				return post.book.category;
 			});
 			categories = _.unionBy(categories, '_id');
-			console.log('categories : ', categories);
+			this.props.dispatch(action.category.fetch(categories))
 			this.setState({
 				categories: categories,
 				posts: posts
 			});
+			let books = posts.map((post) => {
+				return post.book;
+			});
+			books = _.unionBy(books, '_id');
+			this.props.dispatch(action.book.fetch(books))
+			if(this.props.bookQuotes.length === 0) {
+				api.bookQuote.getList({
+					query: {
+						fields: ["$all", { book: ["$all"] }]
+					}
+				}).then(bookQuotes => {
+					console.log("book quote: ", bookQuotes)
+					this.setState({ bookQuotes })
+					this.props.dispatch(action.bookQuote.fetch(bookQuotes))
+				})
+			} else {
+				this.setState({ bookQuotes: this.props.bookQuotes})
+			}
+			
 		} catch (err) {
 			console.log('err: ', err);
 		}
@@ -308,38 +251,13 @@ class Home extends React.Component {
 			<div>
 				<Head>
 					<title>Trang chủ</title>
-					<link
-						rel="stylesheet"
-						href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-						integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
-						crossorigin="anonymous"
-					/>
-					<script
-						src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-						integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-						crossOrigin="anonymous"
-					/>
-					<script
-						src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-						integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-						crossOrigin="anonymous"
-					/>
-					<script
-						src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-						integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-						crossOrigin="anonymous"
-					/>
-
 					<meta name="title" content="Mạng xã hội những người yêu sách, thích viết lách" />
 					<meta name="description" content="Mạng xã hội những người yêu sách, thích viết lách" />
-					<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
-					<meta name="viewport" content="initial-scale=1.0, width=device-width" />
-					<link href="../app.scss" rel="stylesheet" />
 				</Head>
 				<Header {...this.props} />
 				{this.state.posts.length > 0 ? (
 					<div className="home-main">
-						<SlideHome slides={this.state.slides} />
+						<SlideHome bookQuotes={this.state.bookQuotes} />
 						<div className="content-home-wrap">
 							<div className="left">
 								{/* Bài viết nổi bật */}

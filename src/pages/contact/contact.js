@@ -58,15 +58,15 @@ export default class Contact extends React.Component {
                         <div className="contact-info">
                             <h1 className="contact-title">PEGASUS TEAM</h1>
                             <div className="info-line">
-                                <i class="fas fa-phone-square"></i>
+                                <i className="fas fa-phone-square"></i>
                                 <span className="contact-info-element">19006789</span>
                             </div>
                             <div className="info-line">
-                                <i class="fas fa-envelope"></i>
+                                <i className="fas fa-envelope"></i>
                                 <span className="contact-info-element">pegasus.tech.solution@gmail.com</span>
                             </div>
                             <div className="info-line">
-                                <i class="fas fa-globe-africa"></i>
+                                <i className="fas fa-globe-africa"></i>
                                 <span className="contact-info-element">Tầng 81 toà nhà Landmark</span>
                             </div>
 

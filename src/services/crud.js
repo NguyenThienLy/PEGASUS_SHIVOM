@@ -37,16 +37,13 @@ export class CrudApi {
     return parsedQuery;
   }
   baseUrl(subpath = "") {
-    return `${environment.host}/api/${environment.version}/${
-      this.path
-    }/${subpath}`;
-    //return "https://pntravel.herokuapp.com/api/v1/post"
+    return `${environment.host}/api/${environment.version}/${this.path}/${subpath}`;
   }
   _serialize(obj) {
     const keys = Object.keys(obj);
     let query = "?";
     for (const key of keys) {
-      query += typeof(obj[key]) === "string" ? `${key}=${obj[key]}&`:`${key}=${JSON.stringify(obj[key])}&`;
+      query += typeof (obj[key]) === "string" ? `${key}=${obj[key]}&` : `${key}=${JSON.stringify(obj[key])}&`;
     }
     return query;
   }
@@ -77,7 +74,24 @@ export class CrudApi {
     return res.results.objects.rows;
   }
   async getItem(id, option = {}) {
-    let url = this.baseUrl();
+    let url = this.baseUrl(id);
+    const query = this._serialize(option.query || {});
+    url += `${query}`;
+    const options = {
+      method: "GET",
+      headers: _.merge(
+        {
+          "User-Agent": "Request-Promise",
+          "Content-Type": "Application/json"
+        },
+        option.headers || {}
+      )
+    }
+    const res = await this.exec(url, options);
+    return res.result.object;
+  }
+  async findOne(option = {}) {
+    let url = this.baseUrl("find");
     const query = this._serialize(option.query || {});
     url += `${query}`;
     const options = {
@@ -90,11 +104,11 @@ export class CrudApi {
         option.headers || {}
       )
     };
-    const res = await this.exec(url.href, options);
+    const res = await this.exec(url, options);
     return res.result.object;
   }
   async delete(id, option = {}) {
-    let url = this.baseUrl();
+    let url = this.baseUrl(id);
     const query = this._serialize(option.query || {});
     url += `${query}`;
     const options = {
@@ -107,12 +121,12 @@ export class CrudApi {
         option.headers || {}
       )
     };
-    const res = await this.exec(url.href, options);
+    const res = await this.exec(url, options);
     return res.result.object;
   }
 
   async update(id, body, option = {}) {
-    let url = this.baseUrl();
+    let url = this.baseUrl(id);
     const query = this._serialize(option.query || {});
     url += `${query}`;
     const options = {
@@ -126,7 +140,7 @@ export class CrudApi {
       ),
       body: JSON.stringify(body)
     };
-    const res = await this.exec(url.href, options);
+    const res = await this.exec(url, options);
     return res.result.object;
   }
   async create(body, option = {}) {
@@ -144,8 +158,8 @@ export class CrudApi {
       ),
       body: JSON.stringify(body)
     };
-    const res = await this.exec(url.href, options);
+    const res = await this.exec(url, options);
     return res.result.object;
   }
-  async deleteAll() {}
+  async deleteAll() { }
 }

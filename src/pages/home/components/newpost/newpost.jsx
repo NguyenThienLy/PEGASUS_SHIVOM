@@ -18,7 +18,7 @@ export class NewPost extends Component {
                             posts.map((item, index) => {
                                 if (index % 2 == 0)
                                     return (
-                                        <NewPostItem post={item} />
+                                        <NewPostItem post={item} key={index}/>
                                     )
                             })
                         }
@@ -28,7 +28,7 @@ export class NewPost extends Component {
                             posts.map((item, index) => {
                                 if (index % 2 != 0)
                                     return (
-                                        <NewPostItem post={item} />
+                                        <NewPostItem post={item} key={index}/>
                                     )
                             })
                         }

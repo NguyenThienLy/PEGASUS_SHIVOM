@@ -39,7 +39,7 @@ class Login extends React.Component {
         }
     }
     async login() {
-
+       
     }
     onOpenSignInClick() {
         const container = document.getElementById('container');
@@ -59,6 +59,7 @@ class Login extends React.Component {
         try {
             const isLogin = await firebaseAuthentication.signInWithEmailAndPassword(body.email, body.password)
             if (isLogin) {
+                //this.login()
                 Router.push('/')
             } else {
                 alert("Đăng nhập không thành công")
@@ -74,10 +75,10 @@ class Login extends React.Component {
             email: this.refs.email.value,
             password: this.refs.password.value
         }
-        console.log("body: ", body)
         try {
             const isLogin = await firebaseAuthentication.createUserByEmailAndPassword(body.email, body.password)
             if (isLogin) {
+                //this.login()
                 Router.push('/')
             } else {
                 alert("Đăng nhập không thành công")
@@ -91,6 +92,7 @@ class Login extends React.Component {
         try {
             const isLogin = await firebaseAuthentication.signInWithFacebook()
             if (isLogin) {
+                //this.login()
                 Router.push('/')
             } else {
                 alert("Đăng nhập không thành công")
@@ -103,6 +105,7 @@ class Login extends React.Component {
         try {
             const isLogin = await firebaseAuthentication.signInWithGoogle()
             if (isLogin) {
+                //this.login()
                 Router.push('/')
             } else {
                 alert("Đăng nhập không thành công")
@@ -124,14 +127,14 @@ class Login extends React.Component {
                 </Head>
                 {this.state.showLoading ? <Loading /> :
                     <div className="__login-main">
-                        <div class="container" id="container">
-                            <div class="form-container sign-up-container">
+                        <div className="container" id="container">
+                            <div className="form-container sign-up-container">
                                 <form action="#">
                                     <h1>Create Account</h1>
-                                    <div class="social-container">
-                                        <a href="#" class="social" onClick={this.loginWithFacebook} className="__login-a" ><i class="fab fa-facebook-f"></i></a>
-                                        <a href="#" class="social" onClick={this.loginWithGoogle} className="__login-a" ><i class="fab fa-google-plus-g"></i></a>
-                                        <a href="#" class="social" className="__login-a"><i class="fab fa-instagram" ></i></a>
+                                    <div className="social-container">
+                                        <a href="#" className="social" onClick={this.loginWithFacebook} className="__login-a" ><i className="fab fa-facebook-f"></i></a>
+                                        <a href="#" className="social" onClick={this.loginWithGoogle} className="__login-a" ><i className="fab fa-google-plus-g"></i></a>
+                                        <a href="#" className="social" className="__login-a"><i className="fab fa-instagram" ></i></a>
                                     </div>
                                     <span>or use your email for registration</span>
                                     <input type="text" placeholder="Name" name="name" ref="name" className="__login-input" />
@@ -140,13 +143,13 @@ class Login extends React.Component {
                                     <button onClick={this.onSignUpClick} className="__login-button">Sign Up</button>
                                 </form>
                             </div>
-                            <div class="form-container sign-in-container">
+                            <div className="form-container sign-in-container">
                                 <form action="#">
                                     <h1>Sign in</h1>
-                                    <div class="social-container">
-                                        <a href="#" class="social" onClick={this.loginWithFacebook} className="__login-a"><i class="fab fa-facebook-f"></i></a>
-                                        <a href="#" class="social" onClick={this.loginWithGoogle} className="__login-a"><i class="fab fa-google-plus-g"></i></a>
-                                        <a href="#" class="social" className="__login-a"><i class="fab fa-instagram" ></i></a>
+                                    <div className="social-container">
+                                        <a href="#" className="social" onClick={this.loginWithFacebook} className="__login-a"><i className="fab fa-facebook-f"></i></a>
+                                        <a href="#" className="social" onClick={this.loginWithGoogle} className="__login-a"><i className="fab fa-google-plus-g"></i></a>
+                                        <a href="#" className="social" className="__login-a"><i className="fab fa-instagram" ></i></a>
                                     </div>
                                     <span>or use your account</span>
                                     <input type="email" placeholder="Email" ref="emailLogin" className="__login-input" />
@@ -155,16 +158,16 @@ class Login extends React.Component {
                                     <button onClick={this.onSignInClick} className="__login-button">Sign In</button>
                                 </form>
                             </div>
-                            <div class="overlay-container">
-                                <div class="overlay">
-                                    <div class="overlay-panel overlay-left">
+                            <div className="overlay-container">
+                                <div className="overlay">
+                                    <div className="overlay-panel overlay-left">
                                         <h1>Welcome Back!</h1>
                                         <p>
                                             To keep connected with us please login with your personal info
             </p>
                                         <button id="signIn" onClick={this.onOpenSignInClick} className="__login-button ghost">Sign In</button>
                                     </div>
-                                    <div class="overlay-panel overlay-right">
+                                    <div className="overlay-panel overlay-right">
                                         <h1>Hello, Friend!</h1>
                                         <p>Enter your personal details and start journey with us</p>
                                         <button id="signUp" onClick={this.onOpenSignUpClick} className="__login-button ghost">Sign Up</button>

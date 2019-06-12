@@ -39,4 +39,10 @@ export default class BaseAction {
             payload: body
         }
     }
+    concat(body) {
+        return {
+            type: `CONCAT_${this.name}`,
+            payload: body
+        }
+    }
 }

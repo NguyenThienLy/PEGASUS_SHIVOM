@@ -15,7 +15,7 @@ export class Info extends React.Component {
                 <div className="reviewer-info-row">
                     <div className="basic-info">
                         <div className="reviewer-avatar">
-                            <CloudImage src="https://cdn.iconscout.com/icon/free/png-256/avatar-369-456321.png" />
+                            <img src="https://cdn.iconscout.com/icon/free/png-256/avatar-369-456321.png" />
                         </div>
                         <h4 className="review-name">Trần Thị Lý</h4>
                     </div>
@@ -26,7 +26,7 @@ export class Info extends React.Component {
                             <div className="summary-number">
                                 <span>15</span>
                                 <div className="summary-icon">
-                                    <CloudImage src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_mjnL_r3xypi88HNvQq2QY3vAmb-YO06ZX_6FK_cY1KZmzXT2" />
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_mjnL_r3xypi88HNvQq2QY3vAmb-YO06ZX_6FK_cY1KZmzXT2" />
                                 </div>
                             </div>
                             <p>Bài viết</p>
@@ -35,7 +35,7 @@ export class Info extends React.Component {
                             <div className="summary-number">
                                 <span>200</span>
                                 <div className="summary-icon">
-                                    <CloudImage src="https://cdn1.iconfinder.com/data/icons/mix-color-3/502/Untitled-8-512.png" />
+                                    <img src="https://cdn1.iconfinder.com/data/icons/mix-color-3/502/Untitled-8-512.png" />
                                 </div>
                             </div>
                             <p>Người theo dõi</p>
@@ -45,7 +45,7 @@ export class Info extends React.Component {
                             <div className="summary-number">
                                 <span>187</span>
                                 <div className="summary-icon">
-                                    <CloudImage src="https://cdn.iconscout.com/icon/free/png-256/ruby-226055.png" />
+                                    <img src="https://cdn.iconscout.com/icon/free/png-256/ruby-226055.png" />
                                 </div>
                             </div>
                             <p>Điểm tích luỹ</p>

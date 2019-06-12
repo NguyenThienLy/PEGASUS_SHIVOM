@@ -1,18 +1,27 @@
 import * as React from 'react';
 import 'isomorphic-unfetch';
 import { connect } from 'react-redux';
-import { Header, Headline, Footer, PostItem3, FollowedReviewerItem, ItemSavedBook } from '../../components';
+import { Header, Headline, Footer, PostItem3, FollowedReviewerItem, ItemSavedBook, LazyLoadComponent } from '../../components';
 import Head from 'next/head';
 import './profile.scss';
 
 import { Editor } from './components/editor/editor';
 import Information from './components/information/information';
+import { api } from '../../services'
+
+const firebaseAuthentication = require('../../authentication/firebase')
 
 class Profile extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			showEditor: false,
+			isFollow: false,
+			followId: null,
+			posts: [],
+			followeds: [],
+			bookSaveds: [],
+			postSaveds: [],
 			tabs: [
 				{
 					id: 0,
@@ -31,220 +40,154 @@ class Profile extends React.Component {
 					name: 'Bài viết đã lưu'
 				}
 			],
-			activeTab: 2,
+			activeTab: 0,
 			savedTabId: 2,
-			isHomeUser: true,
-			user: {
-				_id: '1',
-				firebaseUid: '',
-				firebaseUserInfo: '',
-				username: 'Minh Nhi',
-				firstName: 'Trần',
-				lastName: 'Minh Nhi',
-				email: 'tmnhi@gmail.com',
-				description: 'Là một người thích đọc sách',
-				birthday: '23/02/1998',
-				quote: 'Nếu giấc mơ của bạn không làm bạn sợ, rõ ràng giấc mơ đó chưa đủ lớn',
-				job: '',
-				score: 12,
-				influenceScore: 1,
-				avatar: '/img/avata-demo.jpg',
-				cover: '',
-				role: 'guest'
-			},
-			followdReviewers: [
-				{
-					_id: '1',
-					firebaseUid: '',
-					firebaseUserInfo: '',
-					username: 'lam123',
-					firstName: 'Nguyễn Nhật Ánh',
-					lastName: 'Lam',
-					email: 'tmnhi@gmail.com',
-					description: 'Là một người thích đọc sách',
-					birthday: '23/02/1998',
-					quote: 'Nếu giấc mơ của bạn không làm bạn sợ, rõ ràng giấc mơ đó chưa đủ lớn',
-					job: '',
-					score: 12,
-					influenceScore: 1,
-					avatar: '/img/avata-demo.jpg',
-					cover: '',
-					role: 'guest'
-				},
-				{
-					_id: '1',
-					firebaseUid: '',
-					firebaseUserInfo: '',
-					username: 'Minh Nhi',
-					firstName: 'Trần',
-					lastName: 'Minh Hoa',
-					email: 'tmnhi@gmail.com',
-					description: 'Là một người thích đọc sách',
-					birthday: '23/02/1998',
-					quote: 'Nếu giấc mơ của bạn không làm bạn sợ, rõ ràng giấc mơ đó chưa đủ lớn',
-					job: '',
-					score: 12,
-					influenceScore: 1,
-					avatar: '/img/avata-demo.jpg',
-					cover: '',
-					role: 'guest'
-				},
-				{
-					_id: '1',
-					firebaseUid: '',
-					firebaseUserInfo: '',
-					username: 'Minh Nhi',
-					firstName: 'Trần',
-					lastName: 'Minh Thảo',
-					email: 'tmnhi@gmail.com',
-					description: 'Là một người thích đọc sách',
-					birthday: '23/02/1998',
-					quote: 'Nếu giấc mơ của bạn không làm bạn sợ, rõ ràng giấc mơ đó chưa đủ lớn',
-					job: '',
-					score: 12,
-					influenceScore: 1,
-					avatar: '/img/avata-demo.jpg',
-					cover: '',
-					role: 'guest'
-				}
-			],
-			postsFromUser: [
-				{
-					id: 1,
-					title: 'Hãy hướng về phía mặt trời',
-					slug: '',
-					description:
-						'Ai cũng cần động lực để giúp bản thân làm những điều mình cần làm. Cuốn sách này giúp tôi nhận ra nhiều điều trong cuộc sống',
-					postTemplate: '',
-					content: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
-					Why do we use it?
-					It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-					
-					
-					Where does it come from?
-					Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.'`,
-					thumb:
-						'http://dinhvankiem.com/demo/e-reading/wp-content/uploads/2016/05/book-759873_1920-370x218.jpg',
-					images:
-						'http://dinhvankiem.com/demo/e-reading/wp-content/uploads/2016/05/book-759873_1920-370x218.jpg',
-					userId: '',
-					bookId: '',
-					createAt: '10:34 12/03/2019',
-					book: 'Trước bình minh là đêm tối',
-					postReactions: 4
-				},
-				{
-					id: 2,
-					images:
-						'http://dinhvankiem.com/demo/e-reading/wp-content/uploads/2016/05/glasses-272399_1920-370x218.jpg',
-					createAt: '10:34 12/03/2019',
-					title: 'Sống là cho đâu chỉ nhận riêng mình',
-					author: 'Nguyễn Nhật Minh Vy',
-					description:
-						'Cuộc sống là một cuốn nhật ký và bạn chính là chủ nhân. Hãy viêt sao để nó trở thành cuốn nhật ký đáng đọc.',
-					postReactions: 4,
-					bookId: '',
-					book: 'Trước bình minh là đêm tối',
-					content: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
-					Why do we use it?
-					It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-					
-					
-					Where does it come from?
-					Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.'`
-				}
-			],
-			savedBooks: {
-				page: 20,
-				currentPage: 15,
-				books: [
-					{
-						title: 'Chỉ có gió mới biết 0 ',
-						authorName: 'Don Bosco Việt Nam',
-						thumb: '/img/rankBook.jpg'
-					},
-					{
-						title: 'Chỉ có gió mới biết 1',
-						authorName: 'Don Bosco Việt Nam',
-						thumb: '/img/rankBook.jpg'
-					},
-					{
-						title: 'Chỉ có gió mới biết 2',
-						authorName: 'Don Bosco Việt Nam',
-						thumb: '/img/rankBook.jpg'
-					},
-					{
-						title: 'Chỉ có gió mới biết 3',
-						authorName: 'Don Bosco Việt Nam',
-						thumb: '/img/rankBook.jpg'
-					},
-					{
-						title: 'Chỉ có gió mới biết 4',
-						authorName: 'Don Bosco Việt Nam',
-						thumb: '/img/rankBook.jpg'
-					},
-					{
-						title: 'Chỉ có gió mới biết 5',
-						authorName: 'Don Bosco Việt Nam',
-						thumb: '/img/rankBook.jpg'
-					}
-				]
-			},
-			savedPost: [
-				{
-					id: 1,
-					title: 'Hãy hướng về phía mặt trời',
-					slug: '',
-					description:
-						'Ai cũng cần động lực để giúp bản thân làm những điều mình cần làm. Cuốn sách này giúp tôi nhận ra nhiều điều trong cuộc sống',
-					postTemplate: '',
-					content: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
-					Why do we use it?
-					It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-					
-					
-					Where does it come from?
-					Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.'`,
-					thumb:
-						'http://dinhvankiem.com/demo/e-reading/wp-content/uploads/2016/05/book-759873_1920-370x218.jpg',
-					images:
-						'http://dinhvankiem.com/demo/e-reading/wp-content/uploads/2016/05/book-759873_1920-370x218.jpg',
-					userId: '',
-					bookId: '',
-					createAt: '10:34 12/03/2019',
-					book: 'Trước bình minh là đêm tối',
-					postReactions: 4
-				},
-				{
-					id: 2,
-					images:
-						'http://dinhvankiem.com/demo/e-reading/wp-content/uploads/2016/05/glasses-272399_1920-370x218.jpg',
-					createAt: '10:34 12/03/2019',
-					title: 'Sống là cho đâu chỉ nhận riêng mình',
-					author: 'Nguyễn Nhật Minh Vy',
-					description:
-						'Cuộc sống là một cuốn nhật ký và bạn chính là chủ nhân. Hãy viêt sao để nó trở thành cuốn nhật ký đáng đọc.',
-					postReactions: 4,
-					bookId: '',
-					book: 'Trước bình minh là đêm tối',
-					content: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
-					Why do we use it?
-					It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-					
-					
-					Where does it come from?
-					Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.'`
-				}
-			]
+			isHomeUser: false,
+			isBtnFollowLoading: false
 		};
 		this.handleClose = this.handleClose.bind(this);
 	}
 	static async getInitialProps({ req, query }) {
-		return {};
+		const profileId = query.profileId
+		const profile = await api.user.getItem(profileId, {
+			query: {
+				fields: ["$all"]
+			}
+		})
+		return { profile };
+	}
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.user) {
+			if (!this.state.isHomeUser && this.props.profile._id === nextProps.user._id) {
+				this.setState({ isHomeUser: true })
+			}
+		}
+		return true
+	}
+	async componentDidMount() {
+		if (this.props.user && this.props.profile._id === this.props.user._id) {
+			this.setState({ isHomeUser: true })
+		}
+		try {
+			const posts = await api.post.getList({
+				query: {
+					filter: {
+						userId: this.props.profile._id
+					},
+					fields: ["$all", { book: ["_id", "title"] }]
+				}
+			})
+			this.setState({ posts })
+			const followeds = await api.userFollow.getList({
+				query: {
+					filter: {
+						fromId: this.props.profile._id
+					},
+					fields: ["$all", { to: ["_id", "avatar", "firstName", "lastName", "avatar"] }]
+				}
+			})
+			this.setState({ followeds })
+			api.userSaved.getList({
+				query: {
+					filter: {
+						userId: this.props.profile._id,
+						type: "book"
+					},
+					fields: ["$all"]
+				}
+			}).then(async (items) => {
+				const books = await api.book.getList({
+					query: {
+						filter: {
+							_id: { $in: items.map(item => { return item.itemId }) }
+						},
+						fields: ["_id", "title", "thumb", { author: ["_id", "name"] }]
+					}
+				})
+				this.setState({ bookSaveds: books })
+			})
+			api.userSaved.getList({
+				query: {
+					filter: {
+						userId: this.props.profile._id,
+						type: "post"
+					},
+					fields: ["$all"]
+				}
+			}).then(async (items) => {
+				const posts = await api.post.getList({
+					query: {
+						filter: {
+							_id: { $in: items.map(item => { return item.itemId }) }
+						},
+						fields: ["title", "thumb", "content", "slug", { book: ["_id", "title"] }, { user: ["_id", "firstName", "lastName", "avatar"] }]
+					}
+				})
+				this.setState({ postSaveds: posts })
+			})
+			setTimeout(() => {
+				if (this.props.user) {
+					api.userFollow.findOne({
+						query: {
+							filter: {
+								fromId: this.props.user._id,
+								toId: this.props.profile._id
+							}
+						}
+					}).then(result => {
+						this.setState({ isFollow: true, followId: result._id })
+						this.forceUpdate()
+					}).catch(err => {
+						console.log("not found: ", err)
+					})
+
+				}
+			}, 1000)
+		} catch (err) {
+
+		} finally {
+
+		}
+	}
+	followUser = async () => {
+		this.setState({ isBtnFollowLoading: true })
+		if (!this.props.user) {
+			alert("Vui lòng đăng nhập trước khi thực hiện thao tác này")
+		} else {
+			try {
+				const token = await firebaseAuthentication.getIdToken()
+				const result = await api.userFollow.create({
+					toId: this.props.profile._id
+				}, {
+						headers: {
+							access_token: token
+						}
+					})
+				this.setState({ isFollow: true, followId: result._id })
+			} catch (err) {
+				console.log("err: ", err)
+				alert("Theo dõi không thành công")
+			}
+		}
+		this.setState({ isBtnFollowLoading: false })
+	}
+	unFollowUser = async () => {
+		this.setState({ isBtnFollowLoading: true })
+		try {
+			const token = await firebaseAuthentication.getIdToken()
+			const result = await api.userFollow.delete(this.state.followId, {
+				headers: {
+					access_token: token
+				}
+			})
+			alert("Huỷ theo dõi thành công")
+			this.setState({ isFollow: false, followId: null })
+		} catch (err) {
+			console.log("err: ", err)
+			alert("Huỷ theo dõi không thành công")
+		} finally {
+			this.setState({ isBtnFollowLoading: false })
+		}
 	}
 	async handleClose() {
 		console.log('close');
@@ -326,8 +269,8 @@ class Profile extends React.Component {
 				result.push(
 					<div className="profile__content--home">
 						<div className="posts-wrap">
-							{this.state.postsFromUser.map((item, index) => {
-								return <PostItem3 post={item} author={this.state.user} />;
+							{this.state.posts.map((item, index) => {
+								return <PostItem3 post={item} author={this.props.profile} key={index} />;
 							})}
 						</div>
 					</div>
@@ -337,39 +280,42 @@ class Profile extends React.Component {
 				result = (
 					<div className="profile__content--followed-review">
 						<div className="followed-review__column--one">
-							{this.state.followdReviewers.map((item, index) => {
+							{this.state.followeds.map((item, index) => {
 								return (
 									index % 3 == 0 && (
 										<FollowedReviewerItem
-											name={item.firstName + ' ' + item.lastName}
-											numberFan={12}
-											imgurl={item.avatar}
+										name={item.to.firstName + ' ' + item.to.lastName}
+										numberFan={12}
+										imgurl={item.to.avatar}
+										key={index}
 										/>
 									)
 								);
 							})}
 						</div>
 						<div className="followed-review__column--two">
-							{this.state.followdReviewers.map((item, index) => {
+							{this.state.followeds.map((item, index) => {
 								return (
 									index % 3 == 1 && (
 										<FollowedReviewerItem
-											name={item.firstName + ' ' + item.lastName}
-											numberFan={12}
-											imgurl={item.avatar}
+										name={item.to.firstName + ' ' + item.to.lastName}
+										numberFan={12}
+										imgurl={item.to.avatar}
+										key={index}
 										/>
 									)
 								);
 							})}
 						</div>
 						<div className="followed-review__column--three">
-							{this.state.followdReviewers.map((item, index) => {
+							{this.state.followeds.map((item, index) => {
 								return (
 									index % 3 == 2 && (
 										<FollowedReviewerItem
-											name={item.firstName + ' ' + item.lastName}
-											numberFan={12}
-											imgurl={item.avatar}
+										name={item.to.firstName + ' ' + item.to.lastName}
+										numberFan={12}
+										imgurl={item.to.avatar}
+										key={index}
 										/>
 									)
 								);
@@ -382,19 +328,17 @@ class Profile extends React.Component {
 				const numberBookInRow = 4;
 				result = (
 					<div className="profile__content--saved-book-wrap">
-						<div className="profile__content--paging">
+						{/* <div className="profile__content--paging">
 							{this.getPageSavedBook(this.state.savedBooks.page, this.state.savedBooks.currentPage)}
-						</div>
+						</div> */}
 						<div className="profile__content--saved-book">
 							<div className="save-book__column -one">
-								{this.state.savedBooks.books.map((item, index) => {
+								{this.state.bookSaveds.map((item, index) => {
 									return (
 										index % numberBookInRow == 0 && (
 											<div className="save-book__column--item">
 												<ItemSavedBook
-													title={item.title}
-													img_src={item.thumb}
-													author={item.authorName}
+													{...item}
 												/>
 											</div>
 										)
@@ -403,14 +347,12 @@ class Profile extends React.Component {
 							</div>
 							<div className="item__border" />
 							<div className="save-book__column -two">
-								{this.state.savedBooks.books.map((item, index) => {
+								{this.state.bookSaveds.map((item, index) => {
 									return (
 										index % numberBookInRow == 1 && (
 											<div className="save-book__column--item">
 												<ItemSavedBook
-													title={item.title}
-													img_src={item.thumb}
-													author={item.authorName}
+													{...item}
 												/>
 											</div>
 										)
@@ -420,14 +362,12 @@ class Profile extends React.Component {
 							<div className="item__border" />
 
 							<div className="save-book__column -three">
-								{this.state.savedBooks.books.map((item, index) => {
+								{this.state.bookSaveds.map((item, index) => {
 									return (
 										index % numberBookInRow == 2 && (
 											<div className="save-book__column--item">
 												<ItemSavedBook
-													title={item.title}
-													img_src={item.thumb}
-													author={item.authorName}
+													{...item}
 												/>
 											</div>
 										)
@@ -437,14 +377,12 @@ class Profile extends React.Component {
 							<div className="item__border" />
 
 							<div className="save-book__column -four">
-								{this.state.savedBooks.books.map((item, index) => {
+								{this.state.bookSaveds.map((item, index) => {
 									return (
 										index % numberBookInRow == 3 && (
 											<div className="save-book__column--item">
 												<ItemSavedBook
-													title={item.title}
-													img_src={item.thumb}
-													author={item.authorName}
+													{...item}
 												/>
 											</div>
 										)
@@ -459,8 +397,8 @@ class Profile extends React.Component {
 				result = (
 					<div className="profile__content--saved-post">
 						<div className="posts-wrap">
-							{this.state.savedPost.map((item, index) => {
-								return <PostItem3 post={item} author={this.state.user} />;
+							{this.state.postSaveds.map((item, index) => {
+								return <PostItem3 post={item} author={this.props.profile} />;
 							})}
 						</div>
 					</div>
@@ -477,28 +415,29 @@ class Profile extends React.Component {
 		return (
 			<div>
 				<Head>
-					<title>Trang cá nhân</title>
-					<meta content="width=device-width, initial-scale=1" name="viewport" />
-					<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
-					<link
-						rel="stylesheet"
-						href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
-						integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
-						crossorigin="anonymous"
-					/>
+					<title>{this.props.profile.firstName} {this.props.profile.lastName}</title>
+					<meta name="title" content={`${this.props.profile.firstName} ${this.props.profile.lastName}`} />
 				</Head>
 				<Header {...this.props} />
 
 				<div className="my-container profile-main">
-					<Information user={this.state.user} />
+					<Information
+						isHomeUser={this.state.isHomeUser}
+						user={this.props.profile}
+						isFollow={this.state.isFollow}
+						followUser={this.followUser}
+						unFollowUser={this.unFollowUser}
+						isBtnFollowLoading={this.state.isBtnFollowLoading}
+					/>
 					{this.state.isHomeUser ? (
 						<div className="user-tools">
 							<div className="menu-home-user">
 								<div className="tab-signs-wrap">
 									<div className="tabs-signs">
-										{this.state.tabs.map((item) => {
+										{this.state.tabs.map((item, index) => {
 											return (
 												<div
+													key={index}
 													className={
 														item.id == this.state.activeTab ? (
 															'tab-sign tab-active'
@@ -507,16 +446,16 @@ class Profile extends React.Component {
 														)
 													}
 												>
-													<i class="fas fa-map-signs" />
+													<i className="fas fa-map-signs" />
 												</div>
 											);
 										})}
 									</div>
 								</div>
 								<div className="tabs">
-									{this.state.tabs.map((item) => {
+									{this.state.tabs.map((item, index) => {
 										return (
-											<div className={item.id == this.state.activeTab ? 'tab tab-active' : 'tab'}>
+											<div className={item.id == this.state.activeTab ? 'tab tab-active' : 'tab'} key={index}>
 												<div className="tab" onClick={() => this.changeActiveTab(item.id)}>
 													{item.name}
 												</div>
@@ -535,6 +474,7 @@ class Profile extends React.Component {
 
 					<div className="profile-page">{this.getContent()}</div>
 				</div>
+
 				<Footer />
 			</div>
 		);

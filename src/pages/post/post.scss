@@ -125,6 +125,7 @@
         @include e('book-info'){
             // background-color:red;
             padding: 10px;
+            overflow: auto;
             @include e('title'){
                 padding-bottom:5px;
                 border-bottom: 1px solid rgba(0,0,0,0.1);
@@ -183,7 +184,8 @@
                     grid-area: avatar;
                     @include e('img') {                        
                         border-radius: 999px;
-                        height: 70px;
+                        width: 100%;
+                        height: 100%;
                     }
                 }
                 @include e('name') {
@@ -236,8 +238,9 @@
                 margin: 10px 0 22px 0;
                 .rlb-content-tr{
                     @include e('td-cover'){
-                        width: 5%;
+                        width: 40%;
                         @include e('img'){
+                            width: 100%;
                             padding:5px;
                         }
                     }

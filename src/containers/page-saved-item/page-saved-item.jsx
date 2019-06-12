@@ -8,9 +8,9 @@ export default class PageSavedItems extends React.Component {
     }
 
     render() {
-        const bookTitle = { title: "Sách", icon_awesome: <i class="fas fa-book"></i>, number: 12 }
-        const followedPersonTitle = { title: "Theo dõi", icon_awesome: <i class="fas fa-users"></i>, number: 67 }
-        const savedPostTitle = { title: "Bài viết", icon_awesome:<i class="fas fa-heart"></i>, number: 33 }
+        const bookTitle = { title: "Sách", icon_awesome: <i className="fas fa-book"></i>, number: 12 }
+        const followedPersonTitle = { title: "Theo dõi", icon_awesome: <i className="fas fa-users"></i>, number: 67 }
+        const savedPostTitle = { title: "Bài viết", icon_awesome:<i className="fas fa-heart"></i>, number: 33 }
 
         
         let bookInfor = { img_src: "img/sample_book.png", title: "Bắt trẻ đồng xanh", author: "Nguyễn Nhật Ánh" }

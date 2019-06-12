@@ -12,21 +12,10 @@ class Error extends React.Component {
       <BaseModal  {...this.props}>
         {children}
         <div className="error-icon">
-          <i class="far fa-times-circle"></i>
+          <i className="far fa-times-circle"></i>
         </div>
       </BaseModal>
-      // <div className={showModalClass}>
-      //   <section className="modal-main">
-      //     <button onClick={handleClose} className="modal-close-button"><i class="fas fa-times"></i></button>
-      //     <div className="modal-content">
-      //       {children}
-      //       <div className="error-icon">
-      //         <i class="far fa-times-circle"></i>
-      //       </div>
-
-      //     </div>
-      //   </section>
-      // </div>
+   
     );
   }
 }
