@@ -19,17 +19,17 @@
 	// height: 100%;
 	width: 205px;
 	height: 305px;
-	box-shadow: 0px 2px 3px rgb(146, 144, 144);
+	box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.015);
 }
 #img-small-book a img:hover {
-	box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.295);
+	box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
 }
 #title-small-book {
 	margin-top: 10px;
 }
 #title-small-book a {
-	font-weight: bold;
-	font-size: 1.3em;
+	font-weight: 500;
+	font-size: 1em;
 	color: $font-color;
 	text-decoration: none;
 }
@@ -37,8 +37,9 @@
 	color: $main-color;
 	text-decoration: none;
 }
-#author-small-book span {
-	color: $font-note-color;
+#author-small-book {
+	color: rgba(0, 0, 0, 0.397);
+	font-size: 0.8em;
 }
 #small-book-rating i {
 	color: rgb(233, 236, 24);

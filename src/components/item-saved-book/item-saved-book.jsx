@@ -15,7 +15,7 @@ export class ItemSavedBook extends React.Component {
                     <div id="img-small-book"><a href="">
                         <CloudImage src={this.props.img_src} alt="Bìa sách" />
                     </a></div>
-                    <div id="title-small-book"><a href="#">{this.props.title}</a></div>
+                    <div id="title-small-book" className="title"><a href="#">{this.props.title}</a></div>
                     <div id="author-small-book">{this.props.author}</div>
                     <div id="small-book-rating">
                         <i class="fas fa-star"></i>

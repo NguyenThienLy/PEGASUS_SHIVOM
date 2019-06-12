@@ -11,55 +11,24 @@ export class RankBooks extends Component {
     }
 
     checkScroll = () => {
-        // console.log("on check scroll");
         window.onscroll = function () {
-
             const currentScrollPos = window.pageYOffset;
 
             if (currentScrollPos > 600) {
                 console.log("being checked scroll..., current y: ", currentScrollPos);
                 let x = document.getElementById("rank-books-wrap")
                 x.classList.add("rank-books-wrap-sticky");
-                //document.getElementById("header-id").style.position = "fixed";
                 console.log("element: ", document.getElementById("rank-books-wrap"));
             } else {
                 document.getElementById("rank-books-wrap").classList.remove("rank-books-wrap-sticky");
             }
         }
-        // console.log("end check scroll");
     }
 
     async componentDidMount() {
-        //setTimeout(this.checkScroll, 2000);
         setInterval(() => {
             this.checkScroll();
         }, 1000);
-
-        // const s = document.createElement('script');
-        // s.type = 'text/javascript';
-        // s.async = true;
-        // s.innerHTML = `
-        //     window.onscroll = function() {
-        //     var currentScrollPos = window.pageYOffset;
-        //     if (currentScrollPos > 300) {
-        //         let x = document.getElementById("rank-books-wrap")
-        //         x.classList.add = "rank-books-wrap-sticky";
-        //         // document.getElementById("header-id").style.position = "fixed";
-        //     } else {
-        //         // document.getElementById("rank-books-wrap").style.top = "300px";
-        //         document.getElementById("rank-books-wrap").classList.remove = "rank-books-wrap-sticky";
-
-        //     }
-
-        //     }
-        // `;
-
-
-        // let x = document.getElementById("rank-books-wrap")
-        // x.classList.add = " -sticky";
-        // console.log("element: ", document.getElementById("rank-books-wrap"));
-
-
     }
 
     render() {
