@@ -11,8 +11,8 @@ export class SavedBookItem extends React.Component{
         const {name, author, rate, imgurl} = this.props;
         return (
             <div id ="saved-book-wrap">
-                <div id="saved-book--img">
-                    <a href="#"><CloudImage src={imgurl} alt={name}/></a>
+                <div id="saved-book__img">
+                    <a href="#" className = "saved-book__img--src"><CloudImage src={imgurl} alt={name} /></a>
                 </div>
                 <div id="saved-book--name"><a href="#">{name}</a></div>
                 <div id="saved-book--author"><span>{author}</span></div>

@@ -40,7 +40,7 @@ export class SlideHome extends Component {
                                     </span>
                                 </div>
 
-                                <div className="quote"><blockquote>{this.props.bookQuotes[this.state.currentSlideIndex].quote}</blockquote></div>
+                                <div className="quote title"><blockquote>{this.props.bookQuotes[this.state.currentSlideIndex].quote}</blockquote></div>
                             </div>
 
                         </div>
@@ -54,7 +54,7 @@ export class SlideHome extends Component {
                                             <CloudImage src={item.image} alt={item.quote.substring(0, 10)} />
                                         </div>
                                         <div>
-                                            <div className="quote">
+                                            <div className="quote title">
                                                 {item.quote.substring(0, 30)} ...</div>
                                             <div className="author">{item.book.title}</div>
                                         </div>

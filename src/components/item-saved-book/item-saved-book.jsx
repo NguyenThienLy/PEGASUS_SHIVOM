@@ -15,7 +15,9 @@ export class ItemSavedBook extends React.Component {
                     <div id="img-small-book"><a href="">
                         <CloudImage src={this.props.thumb} alt={this.props.title} />
                     </a></div>
-                    <div id="title-small-book">
+                    {/* <div id="title-small-book" className="title"><a href="#">{this.props.title}</a></div>
+                    <div id="author-small-book">{this.props.author}</div> */}
+                    <div id="title-small-book" className="title">
                         <Link as={`/sach/${this.props._id}`} href={`/book/book?bookId=${this.props._id}`}>
                             <a href="#">{this.props.title}</a>
                         </Link>
