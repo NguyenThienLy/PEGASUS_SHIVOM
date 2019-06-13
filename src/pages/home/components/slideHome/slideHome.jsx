@@ -17,8 +17,16 @@ export class SlideHome extends Component {
         console.log("current: ", this.state.currentSlideIndex)
         this.setState({ currentSlideIndex: index });
         this.forceUpdate()
+        document.getElementsByClassName("slide-img-wrap")[0].classList.add("opacity")
     }
-    
+    componentWillReceiveProps(nextProps){
+
+    }
+    componentWillUpdate(nextState, nextProps){
+        console.log("next state: ", nextState)
+        console.log("next props: ", nextProps)
+        
+    }
     render() {
         return (
             this.props.bookQuotes.length > 0 ?
