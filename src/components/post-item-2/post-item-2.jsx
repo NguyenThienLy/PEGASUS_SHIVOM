@@ -33,9 +33,13 @@ export class PostItem2 extends Component {
                     </Link>
                 </div>
                 <div className="mask"></div>
-                <div className="book"><a href="#">
-                    <span>{post.book.title.substring(0, 50)}</span>
-                </a> </div>
+                <div className="book">
+                    <Link as={`/sach/${post.book._id}`} href={`/book/book?bookId=${post.book._id}`}>
+                        <a href="#">
+                            <span>{post.book.title.substring(0, 50)}</span>
+                        </a>
+                    </Link>
+                </div>
                 <div className="title"><div>
                     <Link as={`/bai-viet/${post.slug}`} href={`/post/post?slug=${post.slug}`}>
                         <a href="/bai-viet/{post._id}">{post.title}</a>
