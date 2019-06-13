@@ -305,6 +305,12 @@
             font-weight: 100;
             margin-left: 20%;
             color: rgba(0,0,0,0.84);
+            @include e('saved'){
+                color: #6FD6FF;
+            }
+            @include e('reacted'){
+                color: red;
+            }
         }
     }
 

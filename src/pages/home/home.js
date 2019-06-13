@@ -208,12 +208,12 @@ class Home extends React.Component {
 					limit: 100
 				}
 			});
-			this.props.dispatch(action.post.fetch(posts))
+			this.props.dispatch(action.post.concat(posts))
 			let categories = posts.map((post) => {
 				return post.book.category;
 			});
 			categories = _.unionBy(categories, '_id');
-			this.props.dispatch(action.category.fetch(categories))
+			this.props.dispatch(action.category.concat(categories))
 			this.setState({
 				categories: categories,
 				posts: posts
@@ -222,7 +222,7 @@ class Home extends React.Component {
 				return post.book;
 			});
 			books = _.unionBy(books, '_id');
-			this.props.dispatch(action.book.fetch(books))
+			this.props.dispatch(action.book.concat(books))
 			if(this.props.bookQuotes.length === 0) {
 				api.bookQuote.getList({
 					query: {
