@@ -3,7 +3,7 @@ import 'isomorphic-unfetch';
 import { connect } from 'react-redux';
 
 import Head from 'next/head';
-import Link from 'next/link'
+import Link from 'next/link';
 import * as moment from 'moment';
 import * as _ from 'lodash';
 
@@ -54,7 +54,7 @@ class Home extends React.Component {
 				{
 					_id: 1,
 					img: 'https://i.imgur.com/OTzZkvy.jpg',
-					title: 'Cuốn sách giúp tôi hướng về phía mặt trời 1',
+					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 1,
 					time: '8:00 23/01/2019',
@@ -88,7 +88,7 @@ class Home extends React.Component {
 				{
 					_id: 4,
 					img: 'https://i.imgur.com/OTzZkvy.jpg',
-					title: 'Cuốn sách giúp tôi hướng về phía mặt trời 2',
+					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 1,
 					time: '8:00 23/01/2019',
@@ -99,7 +99,7 @@ class Home extends React.Component {
 				{
 					_id: 1,
 					img: 'https://i.imgur.com/OTzZkvy.jpg',
-					title: 'Cuốn sách giúp tôi hướng về phía mặt trời 1',
+					title: 'Cuốn sách giúp tôi hướng về phía mặt trời',
 					book: 'Trước bình minh luôn là đêm tối',
 					type: 1,
 					time: '8:00 23/01/2019',
@@ -208,12 +208,12 @@ class Home extends React.Component {
 					limit: 100
 				}
 			});
-			this.props.dispatch(action.post.fetch(posts))
+			this.props.dispatch(action.post.concat(posts))
 			let categories = posts.map((post) => {
 				return post.book.category;
 			});
 			categories = _.unionBy(categories, '_id');
-			this.props.dispatch(action.category.fetch(categories))
+			this.props.dispatch(action.category.concat(categories))
 			this.setState({
 				categories: categories,
 				posts: posts
@@ -222,7 +222,7 @@ class Home extends React.Component {
 				return post.book;
 			});
 			books = _.unionBy(books, '_id');
-			this.props.dispatch(action.book.fetch(books))
+			this.props.dispatch(action.book.concat(books))
 			if(this.props.bookQuotes.length === 0) {
 				api.bookQuote.getList({
 					query: {
@@ -246,14 +246,6 @@ class Home extends React.Component {
 		return {};
 	}
 
-	onToggleMenuStandoutPost = () => {
-		const toggle = document.getElementById('menu-tab-small-screen');
-		toggle.classList.toggle('menu-tab-small-screen-show');
-	};
-	onChangeTypePostStandOut = (typeID) => {
-		this.setState({ currentIdTypeStandOut: typeID });
-		const tabs = document.getElementsByClassName('tab-stand-out-type');
-	};
 	render() {
 		return (
 			<div>
@@ -268,103 +260,15 @@ class Home extends React.Component {
 						<SlideHome bookQuotes={this.state.bookQuotes} />
 						<div className="content-home-wrap">
 							<div className="left">
-								{/* <Headline title="Bài viết nổi bật" /> */}
-								<div className="headline-stand-out headline-stand-out-posts">
-									<div>
-										<div className="title">Bài viết nổi bật</div>
-										<span id="type-stand-out">
-											{(this.state.currentIdTypeStandOut == this.state.AllTypeId && 'Tất cả') ||
-												this.state.typeBook.filter(
-													(item) => item.id == this.state.currentIdTypeStandOut
-												)[0].name}
-										</span>
-									</div>
-									<div className="tab">
-										<div className="tab-wide-screen">
-											<button
-												className="btn m-2 btn-sm dropdown-toggle tab-stand-out-type"
-												type="button"
-												id="dropdownMenu2"
-												data-toggle="dropdown"
-												aria-haspopup="true"
-												aria-expanded="false"
-											>
-												Thêm
-											</button>
-											<div
-												id="menu-standout-posts"
-												className="dropdown-menu"
-												aria-labelledby="dropdownMenu2"
-											>
-												<button
-													className="dropdown-item"
-													type="button"
-													onClick={() => {
-														this.onChangeTypePostStandOut(this.state.AllTypeId);
-													}}
-												>
-													Tất cả
-												</button>
-												{this.state.typeBook.map((item, index) => {
-													return (
-														<button
-															key={index}
-															className="tab-stand-out-type btn m-2 btn-sm"
-															onClick={() => {
-																this.onChangeTypePostStandOut(item.id);
-															}}
-														>
-															{item.name}
-														</button>
-													);
-												})}
-											</div>
-										</div>
-										<div
-											className="tab-small-screen"
-											onClick={() => {
-												this.onToggleMenuStandoutPost();
-											}}
-										>
-											<i className="fas fa-ellipsis-h" />
+								{/* Bài viết nổi bật */}
+								<div className="left__standout-posts">
+									<div className="headline-stand-out headline-stand-out-posts">
+										<div>
+											<div className="title">Bài viết nổi bật</div>
 										</div>
 									</div>
+									<StandOutPost posts={this.state.standOutPosts} typeBook={this.state.typeBook} />
 								</div>
-								<div id="menu-tab-small-screen">
-									<ul
-										className="tab-stand-out-type"
-										onClick={() => {
-											this.onChangeTypePostStandOut(this.state.AllTypeId);
-										}}
-									>
-										Tất cả
-									</ul>
-									{this.state.typeBook.map((item, index) => {
-										return (
-											<ul
-												key={index}
-												className="tab-stand-out-type"
-												onClick={() => {
-													this.onChangeTypePostStandOut(item.id);
-												}}
-											>
-												{item.name}
-											</ul>
-										);
-									})}
-								</div>
-								<StandOutPost
-
-									posts={
-										(this.state.currentIdTypeStandOut == this.state.AllTypeId &&
-											this.state.standOutPosts) ||
-										this.state.standOutPosts.filter(
-											(item) => item.type == this.state.currentIdTypeStandOut
-										)
-									}
-									typeBook={this.state.typeBook}
-								/>
-
 
 								<div class="home-popular-post-by-category">
 									{this.state.categories.map((category, index) => {
@@ -387,9 +291,9 @@ class Home extends React.Component {
 								</div>
 
 							</div>
+
+
 							<div className="right">
-								{/* Bài viết mới nhất */}
-								<NewPost posts={this.state.posts.slice(0, 8)} />
 								{/* Bảng xếp hạng */}
 								<div id="rank-book-home">
 									<div className="headline-stand-out headline-stand-out-rating">
@@ -405,10 +309,7 @@ class Home extends React.Component {
 				) : (
 						<Loading />
 					)}
-				<LazyLoadComponent
-					path="../footer/footer"
-				/>
-				{/* <Footer /> */}
+				<Footer />
 			</div>
 		);
 	}

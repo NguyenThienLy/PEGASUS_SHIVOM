@@ -1,27 +1,28 @@
 @import "../../../../default.scss";
 
-.stand-out-post-main {
-	padding-top: 12px;
-	padding-bottom: 12px;
-	height: 455px;
+.stand-out-post-wrap {
+	display: flex;
+	flex-direction: column;
 	.stand-out-post {
 		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		height: 100%;
-		.stand-out-post_active {
-			height: 100%;
+		.active {
+			display: flex;
+			flex-direction: column;
+			overflow: hidden;
+			width: 470px;
+			height: 360px;
+			margin: 10px 8px;
 			flex: 2;
-			padding-right: 6px;
 			.img {
 				overflow: hidden;
-				background-repeat: no-repeat;
-				background-position: center;
-				width: 411px;
-				height: 240px;
-				transition: transform 2s ease-out;
-				&:hover {
-					transform: scale(1.01);
+				text-align: center;
+				img {
+					width: 411px;
+					height: 240px;
+					transition: transform 2s ease-out;
+					&:hover {
+						transform: scale(1.01);
+					}
 				}
 			}
 			div a {
@@ -40,15 +41,16 @@
 					padding: 5px 20px;
 				}
 				a:hover {
-					font-weight: bold;
 					color: $color-hover;
 				}
 			}
 			.title {
+				text-align: center;
 				a {
-					font-weight: bold;
-					font-size: 1.3em;
-					color: #555555;
+					// font-weight: bold;
+					font-size: 1em;
+					color: #000000;
+					font-weight: 500;
 				}
 				a:hover {
 					color: $color-hover;
@@ -59,11 +61,12 @@
 				justify-content: space-between;
 				align-items: center;
 				margin: 5px 10px;
+				font-size: 0.9em;
 				.author {
 					a {
 						text-decoration: none;
 						color: #2b2a2a;
-						font-weight: bold;
+						// font-weight: bold;
 						font-size: 0.9em;
 					}
 					a:hover {
@@ -86,8 +89,8 @@
 		}
 		.stand-out-post_posts {
 			overflow: auto;
+			height: 465px;
 			flex: 1;
-			padding-left: 6px;
 		}
 		.empty {
 			height: 100%;
@@ -102,6 +105,20 @@
 	.stand-out-post-wrap {
 		.stand-out-post {
 			flex-direction: column;
+			.active {
+				width: 100%;
+				max-height: 360px;
+				.img {
+					img {
+						width: 100%;
+						max-height: 240px;
+						transition: transform 2s ease-out;
+						&:hover {
+							transform: scale(1.01);
+						}
+					}
+				}
+			}
 		}
 	}
 }

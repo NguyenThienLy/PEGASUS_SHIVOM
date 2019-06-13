@@ -24,10 +24,9 @@ class Information extends Component {
                         <img src={user.avatar} alt="" />
                     </div>
                     <div className="first-line">
-                        <div className="name">{user.firstName} {user.lastName}</div>
+                        <div className="name title">{user.firstName} {user.lastName}</div>
                         <div className="score">
                             {user.score} điểm tích lũy
-
                     </div>
                         {!this.props.isHomeUser ?
                             <div>
@@ -44,7 +43,7 @@ class Information extends Component {
                             <div className="lable">Trích dẫn yêu thích</div>
                             {
                                 user.quote != "" ?
-                                    <div className="quote-detail">"{user.quote}"</div>
+                                    <div className="quote-detail">{user.quote}"</div>
 
                                     : <div className="quote-empty">(Trống)</div>
 

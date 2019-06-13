@@ -25,7 +25,7 @@ export class StandOutPost2Column extends Component {
                                             return (
                                                 <div className="fisrt-stand-out-post" key={index}>
                                                     <div className="img">
-                                                        <CloudImage src={posts[0].thumb} alt="" />
+                                                        <a href="#"><CloudImage src={posts[0].thumb} alt="" /></a>
                                                     </div>
                                                     <div className="book">
                                                         <Link as={`/sach/${posts[0].book._id}`} href={`/book/book?bookId=${posts[0].book._id}`}>
@@ -64,7 +64,7 @@ export class StandOutPost2Column extends Component {
                                                 <div className="second-stand-out-post" key={index}>
                                                     <div className="img"><CloudImage src={posts[1].thumb} alt="" /></div>
                                                     <div className="book">
-                                                    <Link as={`/sach/${posts[1].book._id}`} href={`/book/book?bookId=${posts[1].book._id}`}>
+                                                        <Link as={`/sach/${posts[1].book._id}`} href={`/book/book?bookId=${posts[1].book._id}`}>
                                                             {posts[1].book.title}
                                                         </Link>
                                                     </div>

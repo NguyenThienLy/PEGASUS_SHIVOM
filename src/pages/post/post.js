@@ -3,6 +3,9 @@ import 'isomorphic-unfetch'
 import Head from 'next/head'
 import Link from 'next/link'
 import './post.scss'
+import {
+    Tooltip,
+} from 'react-tippy';
 
 import { connect } from 'react-redux'
 import { api } from '../../services'
@@ -29,7 +32,12 @@ class Post extends React.Component {
             loading: true,
             isBtnLoading: false,
             isRateForBook: false,
-            bookRate: null
+            bookRate: null,
+            isSaved: null,
+            isBtnSaveLoading: false,
+            savedPostId: null,
+            isBtnReactionLoading: false,
+            postReactionId: null
         }
     }
     static async getInitialProps({ req, query }) {
@@ -82,6 +90,10 @@ class Post extends React.Component {
             if (!this.state.isHomeUser && this.state.reviewer._id === nextProps.user._id) {
                 this.setState({ isHomeUser: true })
             }
+            if (this.state.isSaved == undefined) {
+                this.getPostSaved(nextProps.user)
+                this.getPostReaction(nextProps.user)
+            }
         }
         return true
     }
@@ -115,6 +127,34 @@ class Post extends React.Component {
             this.props.dispatch(action.book.concat(books))
         }).catch(err => {
             console.log("Get same book err: ", err)
+        })
+    }
+    getPostSaved = async (user) => {
+        api.userSaved.findOne({
+            query: {
+                filter: {
+                    itemId: this.props.post._id,
+                    userId: user._id
+                }
+            }
+        }).then(result => {
+            this.setState({ isSaved: true, savedPostId: result._id })
+        }).catch(err => {
+            this.setState({ isSaved: false })
+        })
+    }
+    getPostReaction = async (user) => {
+        api.postReaction.findOne({
+            query: {
+                filter: {
+                    userId: user._id,
+                    postId: this.props.post._id
+                }
+            }
+        }).then(result => {
+            this.setState({ postReactionId: result._id })
+        }).catch(err => {
+
         })
     }
     getAuthor = async (book) => {
@@ -204,6 +244,7 @@ class Post extends React.Component {
         }
         this.setState({ isBtnLoading: false })
     }
+
     unFollowUser = async () => {
         this.setState({ isBtnLoading: true })
         try {
@@ -219,6 +260,90 @@ class Post extends React.Component {
             alert("Theo dõi không thành công")
         } finally {
             this.setState({ isBtnLoading: false })
+        }
+    }
+    savePost = async () => {
+        this.setState({ isBtnSaveLoading: true })
+        if (!this.props.user) {
+            alert("Vui lòng đăng nhập trước khi thực hiện thao tác này")
+        } else {
+            try {
+                const token = await firebaseAuthentication.getIdToken()
+                const result = await api.userSaved.create({
+                    userId: this.props.user._id,
+                    itemId: this.props.post._id,
+                    type: "post"
+                }, {
+                        headers: {
+                            access_token: token
+                        }
+                    })
+                this.setState({ isSaved: true, savedPostId: result._id })
+            } catch (err) {
+                console.log("err: ", err)
+                alert("Theo dõi không thành công")
+            }
+        }
+        this.setState({ isBtnSaveLoading: false })
+    }
+
+    cancelSavePost = async () => {
+        this.setState({ isBtnSaveLoading: true })
+        try {
+            const token = await firebaseAuthentication.getIdToken()
+            const result = await api.userSaved.delete(this.state.savedPostId, {
+                headers: {
+                    access_token: token
+                }
+            })
+            this.setState({ isSaved: false, savedPostId: null })
+        } catch (err) {
+            console.log("err: ", err)
+            alert("Theo dõi không thành công")
+        } finally {
+            this.setState({ isBtnSaveLoading: false })
+        }
+    }
+    reactPost = async () => {
+        this.setState({ isBtnReactionLoading: true })
+        if (!this.props.user) {
+            alert("Vui lòng đăng nhập trước khi thực hiện thao tác này")
+        } else {
+            try {
+                const token = await firebaseAuthentication.getIdToken()
+                const result = await api.postReaction.create({
+                    userId: this.props.user._id,
+                    postId: this.props.post._id,
+                    postAuthorId: this.props.post.userId
+                }, {
+                        headers: {
+                            access_token: token
+                        }
+                    })
+                this.setState({ postReactionId: result._id })
+            } catch (err) {
+                console.log("err: ", err)
+                alert("Theo dõi không thành công")
+            }
+        }
+        this.setState({ isBtnReactionLoading: false })
+    }
+
+    cancelReactPost = async () => {
+        this.setState({ isBtnReactionLoading: true })
+        try {
+            const token = await firebaseAuthentication.getIdToken()
+            const result = await api.postReaction.delete(this.state.postReactionId, {
+                headers: {
+                    access_token: token
+                }
+            })
+            this.setState({ postReactionId: null })
+        } catch (err) {
+            console.log("err: ", err)
+            alert("Huỷ không thành công")
+        } finally {
+            this.setState({ isBtnReactionLoading: false })
         }
     }
     render() {
@@ -428,19 +553,58 @@ class Post extends React.Component {
 
                                 <hr></hr>
                             </div>
-
                             <div className="post-widget__function-buttons">
+                                {!this.state.postReactionId ? <div onClick={this.reactPost}>
+                                    {this.state.isBtnReactionLoading ?
+                                        <i class="fas fa-circle-notch fa-spin"></i>
+                                        :
+                                        <Tooltip
+                                            title="Yêu thích"
+                                            position="right"
+                                        >
+                                            <i className="far fa-heart"></i>
+                                        </Tooltip>}
+                                </div> :
+                                    <div onClick={this.cancelReactPost} className="post-widget__function-buttons__reacted">
+                                        <Tooltip
+                                            title="Bỏ yêu thích"
+                                            position="right"
+                                        >
+                                            {this.state.isBtnReactionLoading ? <i class="fas fa-circle-notch fa-spin"></i> : <i className="far fa-heart"></i>}
+                                        </Tooltip>
+                                    </div>}
+                                {this.state.isSaved !== undefined && this.state.isSaved == false ?
+                                    <div onClick={this.savePost}>
+                                        <Tooltip
+                                            title="Lưu bài viết"
+                                            position="right"
+                                        >
+                                            {this.state.isBtnSaveLoading ? <i class="fas fa-circle-notch fa-spin"></i> : <i className="far fa-bookmark"></i>}
+                                        </Tooltip>
+                                    </div> :
+                                    <div className="post-widget__function-buttons__saved" onClick={this.cancelSavePost}>
+                                        <Tooltip
+                                            title="Bỏ lưu"
+                                            position="right"
+                                        >
+                                            {this.state.isBtnSaveLoading ? <i class="fas fa-circle-notch fa-spin"></i> : <i className="far fa-bookmark"></i>}
+                                        </Tooltip>
+                                    </div>}
                                 <div>
-                                    <i className="far fa-heart"></i>
+                                    <Tooltip
+                                        title="Chia sẻ Facebook"
+                                        position="right"
+                                    >
+                                        <i className="fab fa-facebook-square"></i>
+                                    </Tooltip>
                                 </div>
                                 <div>
-                                    <i className="far fa-bookmark"></i>
-                                </div>
-                                <div>
-                                    <i className="fab fa-facebook-square"></i>
-                                </div>
-                                <div>
-                                    <i className="fab fa-twitter"></i>
+                                    <Tooltip
+                                        title="Chia sẻ Twitter"
+                                        position="right"
+                                    >
+                                        <i className="fab fa-twitter"></i>
+                                    </Tooltip>
                                 </div>
 
                             </div>

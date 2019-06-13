@@ -9,9 +9,16 @@ $font-size-title-item: 1.2em;
 $font-title: 'Montserrat', sans-serif;
 $font-body: 'Merriweather', serif;
 
+// $width-book: 120px;
+// $height-book: 165px;
+$width-book: 60px;
+$height-book: 82px;
+$font-size: 15px;
+
 * body {
 	font-family: $font-body;
-	.title {
+	.title,
+	&--title {
 		font-family: $font-title;
 	}
 }

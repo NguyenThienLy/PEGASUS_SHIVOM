@@ -40,8 +40,8 @@ export class PostItem3 extends Component {
                         </div>
                         <div className="right-column">
                             <div className="author">
-                                <div className="name"><a href="profile/{author._id}">{author.firstName} {author.lastName}</a></div>
-                                {/* <div className="follow">Theo dõi</div> */}
+                                <div className="name title"><a href="profile/{author._id}">{author.firstName} {author.lastName}</a></div>
+                                <div className="follow">Theo dõi</div>
                             </div>
                             <div className="time">{post.createdAt}</div>
                         </div>
@@ -65,7 +65,8 @@ export class PostItem3 extends Component {
                         <a href={`/sach/${this.props.post.book._id}`}>{post.book.title}</a>
                     </Link>
                 </div>
-                <div className="description">{post.description}</div>
+                
+                <div className="description title">{post.description}</div>
                 <div className="content" id={post._id + "content-post"}>{post.content.substring(0, 300)}...</div>
                 <div className="read-more" id={post._id + "read-more-post-btn"} onClick={() => this.readMoreContent()}>Xem thêm</div>
                 <div className="shorten" id={post._id + "shorten-post-btn"} onClick={() => this.shortenContent()}>Thu gọn</div>
