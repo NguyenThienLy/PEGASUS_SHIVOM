@@ -71,7 +71,11 @@ export class CrudApi {
       )
     };
     const res = await this.exec(url, options);
-    return res.results.objects.rows;
+    if (res.code === 200) {
+      return res.results.objects.rows;
+    } else {
+      throw res
+    }
   }
   async getItem(id, option = {}) {
     let url = this.baseUrl(id);
@@ -88,7 +92,11 @@ export class CrudApi {
       )
     }
     const res = await this.exec(url, options);
-    return res.result.object;
+    if (res.code === 200) {
+      return res.result.object;
+    } else {
+      throw res
+    }
   }
   async findOne(option = {}) {
     let url = this.baseUrl("find");
@@ -104,8 +112,13 @@ export class CrudApi {
         option.headers || {}
       )
     };
+
     const res = await this.exec(url, options);
-    return res.result.object;
+    if (res.code === 200) {
+      return res.result.object;
+    } else {
+      throw res
+    }
   }
   async delete(id, option = {}) {
     let url = this.baseUrl(id);
@@ -122,7 +135,11 @@ export class CrudApi {
       )
     };
     const res = await this.exec(url, options);
-    return res.result.object;
+    if (res.code === 200) {
+      return res.result.object;
+    } else {
+      throw res
+    }
   }
 
   async update(id, body, option = {}) {
@@ -141,7 +158,11 @@ export class CrudApi {
       body: JSON.stringify(body)
     };
     const res = await this.exec(url, options);
-    return res.result.object;
+    if (res.code === 200) {
+      return res.result.object;
+    } else {
+      throw res
+    }
   }
   async create(body, option = {}) {
     let url = this.baseUrl();
@@ -159,7 +180,11 @@ export class CrudApi {
       body: JSON.stringify(body)
     };
     const res = await this.exec(url, options);
-    return res.result.object;
+    if (res.code === 200) {
+      return res.result.object;
+    } else {
+      throw res
+    }
   }
   async deleteAll() { }
 }

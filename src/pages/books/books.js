@@ -39,10 +39,7 @@ class Books extends React.Component {
             <div>
                 <Head>
                     <title>Danh sách sách</title>
-                    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-                    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
-                    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
-                        crossorigin="anonymous"></link>
+                    
                 </Head>
                 <Header {...this.props}/>
                 {/* <ul className="nav">

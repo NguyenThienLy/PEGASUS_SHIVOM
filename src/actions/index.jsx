@@ -9,6 +9,7 @@ import { CategoryAction } from './category'
 import { ReviewerAction } from './reviewer'
 import { AuthorAction } from './author'
 import { BookQuoteAction } from './bookQuote';
+import { BookRateAction } from './bookRate';
 class action {
     constructor() {
     }
@@ -21,6 +22,7 @@ class action {
     static userFollow = new UserFollowAction()
     static author = new AuthorAction()
     static bookQuote = new BookQuoteAction()
+    static bookRate = new BookRateAction()
 }
 
 export {

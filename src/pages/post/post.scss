@@ -1,7 +1,4 @@
 @import "../../default.scss";
-
-@import url('https://fonts.googleapis.com/css?family=Merriweather:400,700&subset=vietnamese');
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 @mixin e($element){
     &__#{$element} {
         @content;
@@ -305,6 +302,12 @@
             font-weight: 100;
             margin-left: 20%;
             color: rgba(0,0,0,0.84);
+            @include e('saved'){
+                color: #6FD6FF;
+            }
+            @include e('reacted'){
+                color: red;
+            }
         }
     }
 

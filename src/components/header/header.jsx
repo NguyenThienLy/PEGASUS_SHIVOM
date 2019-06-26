@@ -87,8 +87,13 @@ export class Header extends React.Component {
         `;
         document.body.appendChild(s);
         try {
-            const categories = await api.bookCategory.getList({ query: { fields: ["name", "slug", "_id"], limit: 50 } })
-
+            let categories
+            if (this.props.categories.length === 0) {
+                categories = await api.bookCategory.getList({ query: { fields: ["$all"], limit: 50 } })
+                this.props.dispatch(action.category.concat(categories))
+            } else {
+                categories = this.props.categories
+            }
             let categoriesChunked = _.chunk(categories, 8)
             this.setState({ categories: categoriesChunked })
         } catch (err) {
@@ -100,7 +105,7 @@ export class Header extends React.Component {
         this.setState({ search: query })
     }
     onSearchKeyPress = async (event) => {
-        Router.push(`/searchResult/searchResult?search=${this.state.search}`,`/tim-kiem?search=${this.state.search}`)
+        Router.push(`/searchResult/searchResult?search=${this.state.search}`, `/tim-kiem?search=${this.state.search}`)
     }
 
 
