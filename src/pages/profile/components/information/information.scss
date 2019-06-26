@@ -45,6 +45,8 @@
 	}
 	.infor-detail {
 		margin-left: 10px;
+		min-width: 600px;
+		max-width: 780px;
 		div {
 			margin-bottom: 10px;
 		}
@@ -63,18 +65,39 @@
 			.quote {
 				padding-left: 15px;
 				align-self: center;
-				.lable {
-					color: #505050;
+				&__lable {
+					color: #00000082;
 					font-weight: bold;
 					font-size: 0.9em;
 					padding-top: 10px;
+					font-family: "Montserrat", sans-serif;
+					margin-bottom: 20px;
+					padding-top: 20px;
 				}
-				.quote-detail,
-				.quote-empty {
-					color: #888888;
-					font-style: italic;
-					padding-right: 10px;
-					padding-left: 15px;
+				&__content{
+					&--empty, &--detail {
+						color: #888888;
+						// font-style: italic;
+						padding-right: 10px;
+						padding-left: 15px;
+					}
+					&--detail{
+						display: flex;
+						.quote-sign{
+							color: $main-color;
+							&.-left{
+								margin-top: -10px;
+							}
+							&.right{
+								margin-bottom: -10px;
+							}
+						}
+						.detail{
+							padding: 0px 10px;
+							font-family: "Montserrat", sans-serif;
+						}
+						
+					}
 				}
 			}
 		}

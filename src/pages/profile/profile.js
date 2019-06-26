@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import { Header, Headline, Footer, PostItem3, FollowedReviewerItem, ItemSavedBook, LazyLoadComponent } from '../../components';
 import Head from 'next/head';
 import './profile.scss';
-
-import { Editor } from './components/editor/editor';
+import {EditorPost} from './components/editorPost/editorPost';
 import Information from './components/information/information';
 import { api } from '../../services'
 
@@ -65,6 +64,7 @@ class Profile extends React.Component {
 		return true
 	}
 	async componentDidMount() {
+
 		if (this.props.user && this.props.profile._id === this.props.user._id) {
 			this.setState({ isHomeUser: true })
 		}
@@ -196,9 +196,12 @@ class Profile extends React.Component {
 		});
 	}
 
-	openEditor() {
+	openEditor = () => {
 		console.log('on open');
 		this.setState({ showEditor: true });
+	}
+	closeEditor = () =>  {
+		this.setState({showEditor: false});
 	}
 
 	createPost = () => {};
@@ -259,7 +262,7 @@ class Profile extends React.Component {
 							<input type="text" name="" id="write-post" placeholder="" />
 							<div className="placeholder">
 								<div>
-									<i class="fas fa-pen-fancy" /> Hãy chia sẽ cảm nhận về sách tại đây
+									<i class="fas fa-pen-fancy" /> Hãy chia sẻ cảm nhận về sách tại đây
 								</div>
 							</div>
 						</div>
@@ -412,6 +415,7 @@ class Profile extends React.Component {
 	};
 
 	render() {
+		// console.log(Editor)
 		return (
 			<div>
 				<Head>
@@ -432,26 +436,6 @@ class Profile extends React.Component {
 					{this.state.isHomeUser ? (
 						<div className="user-tools">
 							<div className="menu-home-user">
-								<div className="tab-signs-wrap">
-									<div className="tabs-signs">
-										{this.state.tabs.map((item, index) => {
-											return (
-												<div
-													key={index}
-													className={
-														item.id == this.state.activeTab ? (
-															'tab-sign tab-active'
-														) : (
-															'tab-sign'
-														)
-													}
-												>
-													<i className="fas fa-map-signs" />
-												</div>
-											);
-										})}
-									</div>
-								</div>
 								<div className="tabs">
 									{this.state.tabs.map((item, index) => {
 										return (
@@ -468,14 +452,11 @@ class Profile extends React.Component {
 					) : (
 						<div />
 					)}
-					{this.state.showEditor ? (
-						<Editor handleClose={this.handleClose} createPost={this.createPost} />
-					) : null}
-
 					<div className="profile-page">{this.getContent()}</div>
 				</div>
-
 				<Footer />
+				<EditorPost visible = {this.state.showEditor} closeEditor = {this.closeEditor}/>
+
 			</div>
 		);
 	}

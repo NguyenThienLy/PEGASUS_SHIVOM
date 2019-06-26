@@ -18,12 +18,12 @@ export class SlideHome extends Component {
         this.setState({ currentSlideIndex: index });
         this.forceUpdate()
     }
-    
+
     render() {
         return (
             this.props.bookQuotes.length > 0 ?
                 <div className="slide-home-wrap">
-                
+
                     <div id="active">
                         <div>
                             <div className="slide-img-wrap">

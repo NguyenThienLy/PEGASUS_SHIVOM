@@ -4,7 +4,7 @@ import './information.scss'
 class Information extends Component {
     constructor(props) {
         super(props);
-        
+
     }
     followUser = async () => {
         return this.props.followUser()
@@ -12,7 +12,7 @@ class Information extends Component {
     unFollowUser = async () => {
         return this.props.unFollowUser()
     }
-    componentWillReceiveProps(nextProps){
+    componentWillReceiveProps(nextProps) {
         return true
     }
     render() {
@@ -40,14 +40,23 @@ class Information extends Component {
                     <div className="description">{user.description}</div>
                     <div className="quote-wrap">
                         <div className="quote">
-                            <div className="lable">Trích dẫn yêu thích</div>
-                            {
-                                user.quote != "" ?
-                                    <div className="quote-detail">{user.quote}"</div>
+                            <div className="quote__lable">Trích dẫn yêu thích</div>
+                            <div className="quote__content">
+                                {
+                                    user.quote != "" ?
+                                        <div className="quote__content--detail">
+                                            <div className="quote-sign -left"><i class="fas fa-quote-left"></i></div>
+                                            <div className="detail">
+                                                {user.quote}
+                                            </div>
+                                            <div className="quote-sign -right"><i class="fas fa-quote-right"></i></div>
 
-                                    : <div className="quote-empty">(Trống)</div>
+                                        </div>
 
-                            }
+                                        : <div className="quote__content--empty">(Trống)</div>
+
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>

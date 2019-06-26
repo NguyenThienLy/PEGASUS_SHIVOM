@@ -27,6 +27,7 @@
     "nodemon": "^1.18.10",
     "nprogress": "^0.2.0",
     "react": "^16.8.3",
+    "react-awesome-modal": "^2.0.5",
     "react-ckeditor-component": "^1.1.0",
     "react-dom": "^16.8.3",
     "react-redux": "^6.0.1",
