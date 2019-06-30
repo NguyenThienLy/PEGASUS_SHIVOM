@@ -1,46 +1,38 @@
-import * as React from 'react'
+import React from 'react'
+
 import Head from 'next/head'
 import Link from 'next/link'
 import { connect } from 'react-redux'
 import { api } from '../../services'
-import { action } from '../../actions';
+import { action } from '../../actions'
 
-import './post.scss'
 import { Header, Footer } from '../../components'
+import './blog.scss'
 
-class Post extends React.Component {
+ class Blog extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {
-            
-        }
     }
-    static async getInitialProps({ req, query }) {
+    static async  getInitialProps({ req, query }) {
         return {
-
         }
     }
-
-    async componentDidMount() {
-        
-    }
-    
     render() {
-
+  
         return (
             <div>
                 <Head>
-                    <title>Bài viết chi tiết</title>
-                    <meta name="title" content="Bài viết" />
-                    <meta name="description" content="Chi tiết bài viết" />
+                    <title>Blog</title>
+                    <meta name="title" content="Blog" />
+                    <meta name="description" content="Blog công ty công nghệ Pegasus" />
                 </Head>
                 <Header {...this.props} />
                 <React.Fragment>
                 <div className="body">
-                        <h1>Bài viết</h1>
+                        <h1>Giới thiệu team Pegasus</h1>
                     </div>
                 </React.Fragment>
-                <Footer/>
+                <Footer />
             </div>
         )
     }
@@ -48,7 +40,7 @@ class Post extends React.Component {
 
 const mapStateToProps = (state) => {
     return state;
-};
-
-export default connect(mapStateToProps)(Post);
+  };
+  
+  export default connect(mapStateToProps)(Blog);
 

@@ -1,15 +1,16 @@
 import * as React from 'react'
 
-import { Header } from '../../components'
-
 import Head from 'next/head'
+import Link from 'next/link'
+import { connect } from 'react-redux'
+import { api } from '../../services'
+import { action } from '../../actions'
 
 import './contact.scss'
-
-
+import { Header, Footer } from '../../components'
 import GoogleMapReact from 'google-map-react';
 
-export default class Contact extends React.Component {
+export class Contact extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -31,45 +32,12 @@ export default class Contact extends React.Component {
             <div>
                 <Head>
                     <title>Liên hệ</title>
-                   
-
+                    <meta name="title" content="Liên hệ" />
+                    <meta name="description" content="Liên hệ công ty công nghệ Pegasus" />
                 </Head>
                 <Header {...this.props}/>
-                <div className="contact">
-                    {/* <div><h1 className="text-center contact-title">Liên hệ với chúng tôi</h1></div> */}
-                    <div className="contact-container">
-                        <div className="contact-form">
-                            <div>
-                                <input placeholder="Họ tên" />
-                                <input placeholder="Số điện thoại" />
-                            </div>
-                            <div>
-                                <input placeholder="Email" />
-                                <input placeholder="Chủ đề" />
-                            </div>
-                            <div className="contact-form-message">
-                                <textarea placeholder="Nội dung tin nhắn"></textarea>
-                            </div>
-                            <button>Gửi tin nhắn</button>
-                        </div>
-                        <div className="contact-info">
-                            <h1 className="contact-title">PEGASUS TEAM</h1>
-                            <div className="info-line">
-                                <i className="fas fa-phone-square"></i>
-                                <span className="contact-info-element">19006789</span>
-                            </div>
-                            <div className="info-line">
-                                <i className="fas fa-envelope"></i>
-                                <span className="contact-info-element">pegasus.tech.solution@gmail.com</span>
-                            </div>
-                            <div className="info-line">
-                                <i className="fas fa-globe-africa"></i>
-                                <span className="contact-info-element">Tầng 81 toà nhà Landmark</span>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
+                <React.Fragment>
+                <div className="body">
                 <div>
                     <GoogleMapReact
                         bootstrapURLKeys={{ key: "AIzaSyARRlQaEH15TgxFmDliRLH-NpQNAEqcJps" }}
@@ -77,7 +45,17 @@ export default class Contact extends React.Component {
                         defaultZoom={this.state.zoom}
                     />
                 </div>
+                </div>
+                
+                </React.Fragment>
+                <Footer/>
             </div>
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return state;
+  };
+  
+  export default connect(mapStateToProps)(Contact);

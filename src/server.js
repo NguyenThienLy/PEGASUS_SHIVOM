@@ -38,38 +38,22 @@ class Server {
 
 	async handleRequest() {
 		this.server.get('/', (req, res) => {
-			//this.renderAndCache(req, res, '/index')
 			this.app.render(req, res, '/index');
 		});
 		this.server.get('/bai-viet', (req, res) => {
-			this.app.render(req, res, '/posts/posts');
+			this.app.render(req, res, '/blog/blog');
 		});
 		this.server.get('/bai-viet/:slug', (req, res) => {
 			this.app.render(req, res, '/post/post', { slug: req.params.slug });
 		});
-		this.server.get('/sach', (req, res) => {
-			this.app.render(req, res, '/books/books');
+		this.server.get('/du-an', (req, res) => {
+			this.app.render(req, res, '/project/project');
 		});
-		this.server.get('/sach/:bookId', (req, res) => {
-			this.app.render(req, res, '/book/book', { bookId: req.params.bookId });
-		});
-		this.server.get('/tim-kiem', (req, res) => {
-			this.app.render(req, res, '/searchResult/searchResult', { search: req.query.search });
+		this.server.get('/gioi-thieu', (req, res) => {
+			this.app.render(req, res, '/about/about');
 		});
 		this.server.get('/lien-he', (req, res) => {
 			this.app.render(req, res, '/contact/contact');
-		});
-		this.server.get('/profile', (req, res) => {
-			this.app.render(req, res, '/profile/profile');
-		});
-		this.server.get('/profile/:profileId', (req, res) => {
-			this.app.render(req, res, '/profile/profile', { profileId: req.params.profileId });
-		});
-		this.server.get('/login', (req, res) => {
-			this.app.render(req, res, '/login/login');
-		});
-		this.server.get('/the-loai/:slug', (req, res) => {
-			this.app.render(req, res, '/category/category', { slug: req.params.slug });
 		});
 		this.server.get('*', (req, res) => {
 			this.app.render(req, res, '/_error/_error');
