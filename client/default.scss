@@ -1,0 +1,35 @@
+
+
+$main-color: #58b1e1;
+$sub-main-color: #6a9cb6;
+$font-color: #29424e;
+$font-note-color: rgb(187, 184, 184);
+$color-hover: #e37f2b;
+$font-size-title-item: 1.2em;
+$font-title: 'Montserrat', sans-serif;
+$font-body: 'Merriweather', serif;
+
+// $width-book: 120px;
+// $height-book: 165px;
+$width-book: 60px;
+$height-book: 82px;
+$font-size: 15px;
+
+* body {
+	font-family: $font-body;
+	.title,
+	&--title {
+		font-family: $font-title;
+	}
+}
+.body {
+	margin-top: 120px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 70%;
+}
+
+.my-container {
+	max-width: 1180px;
+	margin: 0px auto;
+}
