@@ -15,8 +15,8 @@
 .header-wrapper{
     font-family: $font-title;
     font-size: 16px;
-    border-bottom: 1px solid $border-color;
-    background-color: $background-color;
+    border-bottom: 1px solid $sub-main-color;
+    background-color: #fcfcfc;
     @include e('page-menu-area') {
         display: flex;
         justify-content: space-between;
@@ -86,7 +86,7 @@
                                 padding: 0;
                                 margin: 0;
                                 z-index: 997;
-                                border: 1px solid $border-color;
+                                border: 1px solid $sub-main-color;
                                 @include e('list-items'){
                                     margin: 0;
                                     padding: 20px 0 20px 0;
