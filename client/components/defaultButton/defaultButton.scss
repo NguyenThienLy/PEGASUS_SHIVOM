@@ -1,0 +1,85 @@
+@import "../../default.scss";
+
+//block-element
+@mixin e($element) {
+  &__#{$element} {
+    @content;
+  }
+}
+//block modifier
+@mixin m($modifier) {
+  &--#{$modifier} {
+    @content;
+  }
+}
+
+$main-color: #c67a47;
+$line-color: #d0936a;
+
+.default-button {
+  display: inline-block;
+  padding: 1em 1em;
+  @include e("link") {
+    position: relative;
+    border: none;
+    color: $main-color;
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: none;
+    padding: 1em 2em;
+    @include e("btn") {
+      position: absolute;
+      background-color: $line-color;
+      -webkit-transition: width 0.8s ease;
+      transition: width 0.8s ease;
+    }
+    @include e("btn-left") {
+      top: 0;
+      left: 0;
+      width: 1px;
+      height: 100%;
+    }
+    @include e("btn-right") {
+      top: 0;
+      left: 100%;
+      width: 1px;
+      height: 100%;
+    }
+    @include e("btn-top-left") {
+      top: 0;
+      left: 0;
+      width: 75%;
+      height: 1px;
+    }
+    @include e("btn-top-right") {
+      top: 0;
+      right: 0;
+      width: 10%;
+      height: 1px;
+    }
+    @include e("btn-bottom-left") {
+      bottom: 0;
+      left: 0;
+      width: 10%;
+      height: 1px;
+    }
+    @include e("btn-bottom-right") {
+      bottom: 0;
+      right: 0;
+      width: 75%;
+      height: 1px;
+    }
+    &:hover .default-button__link__btn-top-left {
+      width: 10%;
+    }
+    &:hover .default-button__link__btn-top-right {
+      width: 75%;
+    }
+    &:hover .default-button__link__btn-bottom-left {
+      width: 75%;
+    }
+    &:hover .default-button__link__btn-bottom-right {
+      width: 10%;
+    }
+  }
+}

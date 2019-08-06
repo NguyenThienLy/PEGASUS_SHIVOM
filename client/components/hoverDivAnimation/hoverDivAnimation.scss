@@ -16,45 +16,45 @@
 $hover-color: rgba(247, 233, 221, 0.8);
 $main-color: rgba(0, 0, 0, 0.6);
 
-/* Safari 4.0 - 8.0 */
-@-webkit-keyframes in {
-  0% {
-    width: 0px;
-  }
-  100% {
-    width: 100%;
-  }
-}
+// /* Safari 4.0 - 8.0 */
+// @-webkit-keyframes in {
+//   0% {
+//     width: 0px;
+//   }
+//   100% {
+//     width: 100%;
+//   }
+// }
 
-/* Standard syntax */
-@keyframes in {
-  0% {
-    width: 0px;
-  }
-  100% {
-    width: 100%;
-  }
-}
+// /* Standard syntax */
+// @keyframes in {
+//   0% {
+//     width: 0px;
+//   }
+//   100% {
+//     width: 100%;
+//   }
+// }
 
-/* Standard syntax */
-@keyframes out {
-  0% {
-    width: 100%;
-  }
-  100% {
-    width: 0px;
-  }
-}
+// /* Standard syntax */
+// @keyframes out {
+//   0% {
+//     width: 100%;
+//   }
+//   100% {
+//     width: 0px;
+//   }
+// }
 
-/* Safari 4.0 - 8.0 */
-@-webkit-keyframes out {
-  0% {
-    width: 100%;
-  }
-  100% {
-    width: 0px;
-  }
-}
+// /* Safari 4.0 - 8.0 */
+// @-webkit-keyframes out {
+//   0% {
+//     width: 100%;
+//   }
+//   100% {
+//     width: 0px;
+//   }
+// }
 
 .hover-div {
   position: relative;
@@ -62,9 +62,11 @@ $main-color: rgba(0, 0, 0, 0.6);
   @include m("hover") {
     position: absolute;
     left: 0;
-    bottom: -0.5em;
+    bottom: -0.7em;
     background-color: $hover-color;
     z-index: -1;
+    -webkit-transition: width 0.5s ease;
+    transition: width 0.5s ease;
   }
   a {
     color: $main-color;
@@ -80,12 +82,14 @@ $main-color: rgba(0, 0, 0, 0.6);
   }
   &:hover .hover-div--hover {
     height: 20px;
-    -webkit-animation: in 0.5s 1 forwards;
-    animation: in 0.5s 1 forwards;
+    width: 100%;
+    // -webkit-animation: in 0.5s 1 forwards;
+    // animation: in 0.5s 1 forwards;
   }
   &:not(:hover) .hover-div--hover {
     height: 20px;
-    -webkit-animation: out 0.5s 1 forwards;
-    animation: out 0.5s 1 forwards;
+    width: 0%;
+    // -webkit-animation: out 0.5s 1 forwards;
+    // animation: out 0.5s 1 forwards;
   }
 }
