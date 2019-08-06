@@ -1,5 +1,4 @@
 import * as React from 'react'
-import './../../assets/bootstrap4/bootstrap.min.scss'
 import './footer.scss'
 
 import Link from 'next/link'
@@ -13,20 +12,20 @@ export class Footer extends React.Component {
 
     render() {
         return (
-            <div className="footer">
             <div className="footer-wrapper">
-                <div className="content-list">
-                    <a href="#" className="content-items">About Us</a>
-                    <a href="#" className="content-items">Contact</a>
-                    <a href="#" className="content-items">Privacy</a>
-                    <a href="#" className="content-items">Terms</a>
-                    <a href="#" className="content-items">Help</a>                    
+                <div className="footer-wrapper__first-floor">
+                    <div className="footer-wrapper__first-floor__logo"></div>
+                    <div className="footer-wrapper__first-floor__contact"></div>
+                    <div className="footer-wrapper__first-floor__social-group"></div>
+                    <div className="footer-wrapper__first-floor__email-regis"></div>
                 </div>
-                <div className="footer-copyright">
-                    <h5>cuongsach.com 2019 © Pegasus Tech</h5>
+                <hr className="footer-wrapper__divider"/>
+                <div className="footer-wrapper__second-floor">
+                    <a href="#" className="footer-wrapper__second-floor__item">Trang chủ</a>
+                    <a href="#" className="footer-wrapper__second-floor__item">Khoá học</a>
+                    <a href="#" className="footer-wrapper__second-floor__item">Tin tức</a>
+                    <a href="#" className="footer-wrapper__second-floor__item">Về chúng tôi</a>
                 </div>
-                
-            </div>
             </div>
         )
     }

@@ -10,7 +10,6 @@ import * as bodyParser from 'body-parser'
 import { config } from './config'
 
 import api from './routers'
-import connectDatabase from './mongooseConnect'
 
 
 class Server {

@@ -2,18 +2,19 @@
 
 $main-color: #58b1e1;
 $sub-main-color: #6a9cb6;
+$background-color: #FCFCFC;
+$border-color: #EDF7FC;
+$hover-color: #6a9cb6;
+
+$font-title: 'Quicksand', sans-serif;
+$font-body: 'Quicksand', serif;
+$font-size: 16px;
+$font-size-title-item: 1.2em;
 $font-color: #29424e;
 $font-note-color: rgb(187, 184, 184);
-$color-hover: #e37f2b;
-$font-size-title-item: 1.2em;
-$font-title: 'Montserrat', sans-serif;
-$font-body: 'Quicksand', sans-serif;
 
-// $width-book: 120px;
-// $height-book: 165px;
-$width-book: 60px;
-$height-book: 82px;
-$font-size: 15px;
+$color-grey: #363738;
+
 
 * body {
 	font-family: $font-body;
@@ -33,3 +34,9 @@ $font-size: 15px;
 	max-width: 1180px;
 	margin: 0px auto;
 }
+
+//#89c3eb
+// #A0D8EF
+// #C2E6F4
+//DCF0F9
+// #EDF7FC

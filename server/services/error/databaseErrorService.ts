@@ -1,20 +1,18 @@
 import { BaseError } from './base'
-
-export class DatabaseException extends BaseError {
+class DatabaseException extends BaseError {
     constructor(key: string, message: string, code?: number) {
         super({
-            code: code || 403,
+            code: code || 500,
             type: `database_exception_${key}`,
             message
         })
     }
 }
-
 export class DatabaseErrorService {
-    constructor(){
-        
+    recordNotFound() {
+        return new DatabaseException('record_not_found', 'Record Not Found')
     }
-    query(){
-        return new DatabaseException('query',"Database query error",401)
+    queryFail(message: string = "Query Fail") {
+        return new DatabaseException('query_fail', message)
     }
 }

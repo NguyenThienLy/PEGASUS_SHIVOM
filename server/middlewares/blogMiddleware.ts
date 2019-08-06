@@ -13,7 +13,7 @@ export class BookingInfoMiddleware extends BaseMiddleware {
            
             next()
         } catch(error){
-            throw errorService.database.query()
+            throw errorService.database.queryFail()
         }
     }
 }

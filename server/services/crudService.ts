@@ -1,4 +1,7 @@
 import { Model, BaseModel, DocumentQuery } from '../models'
+import { errorService } from '.';
+import { config } from '../config';
+import { BaseError } from './error/base';
 
 export interface ICrudOption {
     filter?: any
@@ -26,21 +29,21 @@ export class CrudService<T extends Model> {
                 result = await promise;
             }
             if ((result === undefined || result === null) && !option.allowNull)
-                console.log("record not found")
-                //throw errorService.database.recordNotFound()
+
+                throw errorService.database.recordNotFound()
             return result;
         } catch (err) {
-            throw err;
-            // if (err instanceof BaseError) throw err
-            // if (config.server.debug) {
-            //     if (err.errors && err.errors[0]) {
-            //         throw errorService.database.queryFail(err.errors[0].message)
-            //     } else {
-            //       throw errorService.database.queryFail(err.message)
-            //     }
-            // } else {
-            //     throw err
-            // }
+
+            if (err instanceof BaseError) throw err
+            if (config.server.debug) {
+                if (err.errors && err.errors[0]) {
+                    throw errorService.database.queryFail(err.errors[0].message)
+                } else {
+                    throw errorService.database.queryFail(err.message)
+                }
+            } else {
+                throw err
+            }
         }
     }
     async getList(option: ICrudOption = {
