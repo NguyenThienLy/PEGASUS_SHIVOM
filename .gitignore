@@ -6,12 +6,14 @@
 .pnp.js
 /client/.next
 /client/out
+/src
 
 # testing
 /coverage
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store

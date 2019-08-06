@@ -1,0 +1,212 @@
+@import "../../default.scss";
+
+//block-element
+@mixin e($element) {
+  &__#{$element} {
+    @content;
+  }
+}
+//block modifier
+@mixin m($modifier) {
+  &--#{$modifier} {
+    @content;
+  }
+}
+
+$main-color: rgba(0, 0, 0, 0.6);
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes in {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Standard syntax */
+@keyframes in {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Standard syntax */
+@keyframes out {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0px;
+  }
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes out {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0px;
+  }
+}
+
+.time-table {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  @include e("tabs") {
+    margin-bottom: 1.5em;
+    padding: 2em 0em;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      li {
+        margin-right: 2em;
+        float: left;
+        .time-table__tabs__wrapper {
+          position: relative;
+          display: inline-block;
+          @include m("hover") {
+            position: absolute;
+            left: 0;
+            bottom: -0.5em;
+            background-color: rgba(247, 233, 221, 0.8);
+            z-index: -1;
+          }
+          a {
+            color: $main-color;
+            text-transform: uppercase;
+            display: block;
+            text-align: center;
+            padding: 0em 0.4em;
+            text-decoration: none;
+          }
+          &:hover a {
+            color: #d0936a;
+            transition: 200ms;
+          }
+          &:hover .time-table__tabs__wrapper--hover {
+            height: 20px;
+            -webkit-animation: in 0.5s 1 forwards;
+            animation: in 0.5s 1 forwards;
+          }
+          &:not(:hover) .time-table__tabs__wrapper--hover {
+            height: 20px;
+            -webkit-animation: out 0.5s 1 forwards;
+            animation: out 0.5s 1 forwards;
+          }
+        }
+      }
+    }
+  }
+  @include e("events") {
+    position: relative;
+    @include e("background") {
+      width: -webkit-fill-available;
+      position: absolute;
+      height: 100%;
+      left: 20px;
+      top: -20px;
+      border: 1px solid #e5e5e5;
+      z-index: -1;
+    }
+    table,
+    th,
+    td {
+      border: 1px solid #e5e5e5;
+      border-collapse: collapse;
+      text-align: center;
+    }
+    table {
+      font-size: 15px;
+      width: 100%;
+      letter-spacing: normal;
+      line-height: normal;
+      background: #fff;
+      vertical-align: middle;
+      table-layout: fixed;
+      thead {
+        th {
+          color: $main-color;
+          font-weight: 600;
+          padding: 1em 0.5em;
+          background-color: #fafafa;
+        }
+      }
+      tbody {
+        td {
+          .time-table__events__class-time {
+            color: grey;
+          }
+          .time-table__events__class-info {
+            display: flex;
+            flex-direction: column;
+            padding: 1em 1em;
+            position: relative;
+            @include e("class-name") {
+              color: #303030;
+              text-decoration: none;
+              font-weight: 500;
+              margin-bottom: 1em;
+            }
+            @include e("class-teacher") {
+              color: grey;
+            }
+          }
+          .time-table__events__my-tooltip {
+            @include e("content") {
+              max-width: fit-content;
+              top: 0;
+              left: 50%;
+              transform: translate(-50%, -100%);
+              padding: 10px 20px;
+              color: #ffffff;
+              background-color: #d0936a;
+              font-weight: normal;
+              border-radius: 3px;
+              position: absolute;
+              z-index: 99999999;
+              box-sizing: border-box;
+              box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+              visibility: hidden;
+              opacity: 0;
+              transition: opacity 0.3s;
+              i {
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                margin-left: -12px;
+                width: 16px;
+                height: 8px;
+                overflow: hidden;
+                &::after {
+                  content: "";
+                  position: absolute;
+                  width: 8px;
+                  height: 8px;
+                  left: 50%;
+                  transform: translate(-50%, -50%) rotate(45deg);
+                  background-color: #d0936a;
+                  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+                }
+              }
+            }
+            &:hover .time-table__events__my-tooltip__content {
+              visibility: visible;
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+}
