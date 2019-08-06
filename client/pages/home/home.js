@@ -6,7 +6,7 @@ import { action } from '../../actions';
 import { api } from '../../services';
 
 import './home.scss';
-import { Footer, Header } from '../../components';
+import { Footer, Header, TimeTable } from '../../components';
 
 
 
@@ -38,6 +38,7 @@ class Home extends React.Component {
 					<div className="body">
 						<h1>Trang chủ</h1>
 					</div>
+					<TimeTable />
 				</React.Fragment>
 				<Footer />
 			</div>

@@ -15,7 +15,7 @@ class Server {
 	constructor() {
 		this.dev = process.env.NODE_ENV === 'production' ? false : true;
 		this.quiet = process.env.NODE_ENV === 'production' ? false : true;
-		this.app = next({ dev: this.dev, dir: './src', quiet: this.quiet });
+		this.app = next({ dev: this.dev, dir: './client', quiet: this.quiet });
 		this.handle = this.app.getRequestHandler();
 		this.port = process.env.PORT || 3000;
 		this.server = express();
