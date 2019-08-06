@@ -12,6 +12,8 @@ export type ClassModel = BaseModel & {
     description: string
     teacher: string[] | TeacherModel[]
     quantity: number
+    startTime: Date
+    endTime: Date
 }
 
 const classSchema = new Schema({

@@ -14,6 +14,8 @@ import { PackageController } from './crud/packageController'
 import { SkillController } from './crud/skillController'
 import { TeacherController } from './crud/teacherController'
 import { StudentController } from './crud/studentController'
+import { TimeTableController } from './crud/timeTableController'
+import { TimeTableItemController } from './crud/timeTableItemController'
 
 
 
@@ -30,6 +32,8 @@ const packageController = new PackageController()
 const skillController = new SkillController()
 const teacherController = new TeacherController()
 const studentController = new StudentController()
+const timeTableController = new TimeTableController()
+const timeTableItemController = new TimeTableItemController()
 
 export {
     CrudController,
@@ -46,5 +50,7 @@ export {
     packageController,
     skillController,
     teacherController,
-    studentController
+    studentController,
+    timeTableController,
+    timeTableItemController
 }

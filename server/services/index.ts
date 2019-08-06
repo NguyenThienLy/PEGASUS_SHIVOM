@@ -17,6 +17,8 @@ import { PackageService } from './crud/packageService'
 import { SkillService } from './crud/skillService'
 import { TeacherService } from './crud/teacherService'
 import { StudentService } from './crud/studentService'
+import { TimeTableService } from './crud/timeTableService'
+import { TimeTableItemService } from './crud/timeTableItemService'
 
 
 const utilService = new UtilService()
@@ -36,6 +38,8 @@ const packageService = new PackageService()
 const skillService = new SkillService()
 const teacherService = new TeacherService()
 const studentService = new StudentService()
+const timeTableService = new TimeTableService()
+const timeTableItemService = new TimeTableItemService()
 
 export {
     CrudService, ICrudExecOption, ICrudOption,
@@ -55,5 +59,7 @@ export {
     packageService,
     skillService,
     teacherService,
-    studentService
+    studentService,
+    timeTableItemService,
+    timeTableService
 }
