@@ -30,15 +30,16 @@ export interface IValidateSchemaProperties {
 export class BaseRouter {
 
     onError(res: Response, error: any) {
-        if (!error.options) {
-            // console.log("UNKNOW ERROR", error)
-            res.status(400).json(error.message)
+        const options = error.options || error.errorInfo;
+        if (!options) {
+          console.log("UNKNOW ERROR", error)
+         
+          const err = errorService.router.somethingWentWrong()
+          res.status(err.options.code).json(err.options)
         } else {
-            const err = errorService.router.somethingWentWrong()
-            res.status(err.options.code).json(err.options)
+          res.status(_.get(options.code) || 500).json(options)
         }
-    }
-
+      }
     onSuccess(res: Response, object: any = {}, extras: any = {}) {
         object = object || {}
         if (Object.keys(object).length === 0) {
