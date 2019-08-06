@@ -56,7 +56,7 @@
   "scripts": {
     "next": "next src",
     "build": "next build client",
-    "server": "nodemon src/server.js",
+    "server": "nodemon client/server.js",
     "export": "next build client && next export client",
     "babel": "src/server.js",
     "g": "node devHelper/templates/index",
