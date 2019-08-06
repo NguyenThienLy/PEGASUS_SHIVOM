@@ -1,0 +1,49 @@
+@import '../../default.scss';
+//block-element
+@mixin e($element){
+    &__#{$element} {
+        @content;
+    }
+}
+//block modifier
+@mixin m($modifier){
+    &--#{$modifier} {
+        @content;
+    }
+}
+
+.footer-wrapper{
+    font-size: $font-size;
+    background-color: $background-color;
+    @include e('first-floor'){
+        
+        @include e(email-regis){
+
+        }    
+    }
+    
+    @include e('divider'){
+        display: block; 
+        height: 1px;
+        border: 0; 
+        border-top: 1px solid $border-color;
+        margin: 0; 
+        padding: 0;
+    }
+    @include e('second-floor'){
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 70px;
+        @include e('item'){
+            text-decoration: none;
+            color: $main-color;
+            padding: 20px 40px;
+            text-transform: uppercase;
+            font-family: $font-title;
+            font-size: 0.75em;
+            letter-spacing: .14em;
+        }
+    }
+
+}

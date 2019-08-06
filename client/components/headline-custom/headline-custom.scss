@@ -1,0 +1,29 @@
+@import '../../default.scss';
+
+#headline-title{
+    border-bottom: 2px solid $main-color;
+    padding-bottom: 3px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5em;
+}
+
+#headline-title .title{
+    background-color: $main-color;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-left: 20px;
+    padding-right: 100px;
+    border-top-right-radius: 15px;
+}
+
+#headline-title .infor{
+    border-radius: 10px;
+    border: 2px solid $main-color;
+    color: $main-color;
+    background-color: #fff;
+}
+#headline-title .infor *{   
+    margin: auto 10px;
+}
