@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+
+$main-color: #00a3af;
+$sub-main-color: #83ccd2;
+$background-color: #EFF7FC;
+$border-color: #EDF7FC;
+$hover-color: #6a9cb6;
+
+$font-title: 'Quicksand', sans-serif;
+$font-body: 'Quicksand', serif;
+$font-size: 16px;
+$font-size-title-item: 1.2em;
+$font-color: #2d2d2d;
+$font-note-color: rgb(187, 184, 184);
+
+$color-grey: #363738;
+
+
+* body {
+	font-family: $font-body;
+	.title,
+	&--title {
+		font-family: $font-title;
+	}
+}
+.body {
+	margin-top: 120px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 70%;
+}
+
+.my-container {
+	max-width: 1180px;
+	margin: 0px auto;
+}
+
+//#89c3eb
+// #A0D8EF
+// #C2E6F4
+//DCF0F9
+// #EDF7FC
