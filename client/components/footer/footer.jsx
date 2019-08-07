@@ -2,11 +2,31 @@ import * as React from 'react'
 import './footer.scss'
 import Link from 'next/link'
 import Head from 'next/head'
-
+import { HoverDivAnimation } from '../hoverDivAnimation/hoverDivAnimation'
 import { SocialGroup } from './socialGroup/socialGroup';
 export class Footer extends React.Component {
     constructor(props) {
         super(props)
+        this.state = {
+            categories : [
+                {
+                    name : "trang chủ",
+                    href: "#"
+                },
+                {
+                    name : "khoá học",
+                    href: "#",
+                },
+                {
+                    name : "tin tức",
+                    href: "#"
+                },
+                {
+                    name : "về chúng tôi",
+                    href: "#"
+                }
+            ]
+        }
     }
 
     render() {
@@ -55,10 +75,13 @@ export class Footer extends React.Component {
                 </div>
                 <hr className="footer-wrapper__divider"/>
                 <div className="footer-wrapper__second-floor">
-                    <a href="#" className="footer-wrapper__second-floor__item">Trang chủ</a>
-                    <a href="#" className="footer-wrapper__second-floor__item">Khoá học</a>
-                    <a href="#" className="footer-wrapper__second-floor__item">Tin tức</a>
-                    <a href="#" className="footer-wrapper__second-floor__item">Về chúng tôi</a>
+                    {this.state.categories.map(category => {
+                        return(
+                            <div href={category.href} className="footer-wrapper__second-floor__item">
+                                <HoverDivAnimation title={category.name}/>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         )

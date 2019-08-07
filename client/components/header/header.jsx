@@ -1,6 +1,7 @@
 import * as React from 'react'
 import './header.scss'
 import Link from 'next/link'
+import { HoverDivAnimation } from '../hoverDivAnimation/hoverDivAnimation'
 // import Router from 'next/router'
 // import Head from 'next/head'
 // import * as _ from "lodash"
@@ -12,12 +13,46 @@ export class Header extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            
+            categories : [
+                {
+                    name:"trang chủ"
+                },
+                {
+                    name:"khoá học",
+                    subCategories : [
+                        {
+                            name : "khoá học môt"
+                        },
+                        {
+                            name : "khoá học hai"
+                        },
+                        {
+                            name : "khoá học ba"
+                        },
+                    ],
+                },
+                {
+                    name:"tin tức",
+                    subCategories : [
+                        {
+                            name : "khoá học môt"
+                        },
+                        {
+                            name : "khoá học hai"
+                        },
+                        {
+                            name : "khoá học ba"
+                        },
+                    ],
+                },
+                {
+                    name:"về chúng tôi"
+                },
+            ]
         }
     }
     
-        // async componentWillMount() {
-            
+        // async componentWillMount() {            
         // }
         // async componentDidMount() {
         //     const s = document.createElement('script');
@@ -38,17 +73,9 @@ export class Header extends React.Component {
         //         prevScrollpos = currentScrollPos;
         //         }
         //     `;
-        //     document.body.appendChild(s);
-            
+        //     document.body.appendChild(s);            
         // }
-        // onSearch = async () => {
-        //     const query = this.refs.search.value
-        //     this.setState({ search: query })
-        // }
-        // onSearchKeyPress = async (event) => {
-        //     console.log("search xong rồi")
-        //     // Router.push(`/searchResult/searchResult?search=${this.state.search}`, `/tim-kiem?search=${this.state.search}`)
-        // }
+        
     
 
 
@@ -65,51 +92,29 @@ export class Header extends React.Component {
                                 />
                             </a>
                         </div>
-                        <nav className="header-wrapper__page-menu-area__left__navbar">
-                            <ul className="header-wrapper__page-menu-area__left__navbar__list-items">
-                                <li className="header-wrapper__page-menu-area__left__navbar__list-items__item" id="nav-home-page">
-                                    <a href="#"className="category-name">
-                                        <span>Trang chủ</span>
-                                    </a>
-                                </li>
-                                <li className="header-wrapper__page-menu-area__left__navbar__list-items__item" id="nav-courses">
-                                    <a href="#" className="category-name">
-                                        <span>Khoá học</span>
-                                    </a>
-                                    <div className="header-wrapper__page-menu-area__left__navbar__list-items__item__dropdown hover-dropdown" >
-                                        <div className="header-wrapper__page-menu-area__left__navbar__list-items__item__dropdown__inner">
-                                            <ul className="header-wrapper__page-menu-area__left__navbar__list-items__item__dropdown__inner__list-items">
-                                                <li className="header-wrapper__page-menu-area__left__navbar__list-items__item__dropdown__inner__list-items__item">
-                                                    <a href="#" className="sub-category-name">
-                                                        <span>khoá học một</span>
-                                                    </a>
-                                                </li>
-                                                <li className="header-wrapper__page-menu-area__left__navbar__list-items__item__dropdown__inner__list-items__item">
-                                                    <a href="#" className="sub-category-name">
-                                                        <span>khoá học hai</span>
-                                                    </a>
-                                                </li>
-                                                <li className="header-wrapper__page-menu-area__left__navbar__list-items__item__dropdown__inner__list-items__item">
-                                                    <a href="#" className="sub-category-name">
-                                                        <span>khoá học ba</span>
-                                                    </a>
-                                                </li>
-                                            </ul>      
-                                        </div>
-                                    </div>
-                                </li>
-                                <li className="header-wrapper__page-menu-area__left__navbar__list-items__item" id="nav-news">
-                                    <a href="#" className="category-name">
-                                        <span>Tin tức</span>
-                                    </a>
-                                </li>
-                                <li className="header-wrapper__page-menu-area__left__navbar__list-items__item" id="nav-about-us">
-                                    <a href="#" className="category-name">
-                                        <span>Về chúng tôi</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+                        <div>
+                            <div className="header-wrapper__page-menu-area__left__navbar">
+                                <ul  className="header-wrapper__page-menu-area__left__navbar__list-items">
+                                    {this.state.categories.map(category => {
+                                    return (
+                                        <li  className="header-wrapper__page-menu-area__left__navbar__list-items__item">
+                                            <HoverDivAnimation title={category.name} />
+                                            <ul className="sub-navbar header-wrapper__page-menu-area__left__navbar__list-items">
+                                                {(category.subCategories || [] ).map(subCategory => {
+                                                    return(
+                                                        <li className="header-wrapper__page-menu-area__left__navbar__list-items__item">
+                                                            <HoverDivAnimation title={subCategory.name} />
+                                                        </li>
+                                                    );
+                                                })}
+                                            </ul>
+                                        </li>
+                                    );
+                                    })}
+                                </ul>
+                            </div>
+                        </div>
+                       
                     </div>    
                     <div className="header-wrapper__page-menu-area__right">
                         <div className="header-wrapper__page-menu-area__right__more-btn">
