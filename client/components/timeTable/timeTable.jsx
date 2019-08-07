@@ -29,6 +29,7 @@ export class TimeTable extends React.Component {
   render() {
     return (
       <div className="time-table">
+        
         <div className="time-table__tabs">
           <ul>
             {this.state.courses.map(course => {

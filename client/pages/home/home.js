@@ -6,9 +6,7 @@ import { action } from '../../actions';
 import { api } from '../../services';
 
 import './home.scss';
-import { Footer, Header, TimeTable } from '../../components';
-
-
+import { Footer, Header, TimeTable, DefaultButton } from '../../components';
 
 class Home extends React.Component {
 	constructor(props) {
@@ -39,6 +37,7 @@ class Home extends React.Component {
 						<h1>Trang chủ</h1>
 					</div>
 					<TimeTable />
+					<DefaultButton content="Xem thêm"></DefaultButton>
 				</React.Fragment>
 				<Footer />
 			</div>

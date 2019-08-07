@@ -17,45 +17,45 @@
 // $hover-color: $sub-main-color;
 // $main-color: rgba(0, 0, 0, 0.6);
 
-/* Safari 4.0 - 8.0 */
-@-webkit-keyframes in {
-  0% {
-    width: 0px;
-  }
-  100% {
-    width: 100%;
-  }
-}
+// /* Safari 4.0 - 8.0 */
+// @-webkit-keyframes in {
+//   0% {
+//     width: 0px;
+//   }
+//   100% {
+//     width: 100%;
+//   }
+// }
 
-/* Standard syntax */
-@keyframes in {
-  0% {
-    width: 0px;
-  }
-  100% {
-    width: 100%;
-  }
-}
+// /* Standard syntax */
+// @keyframes in {
+//   0% {
+//     width: 0px;
+//   }
+//   100% {
+//     width: 100%;
+//   }
+// }
 
-/* Standard syntax */
-@keyframes out {
-  0% {
-    width: 100%;
-  }
-  100% {
-    width: 0px;
-  }
-}
+// /* Standard syntax */
+// @keyframes out {
+//   0% {
+//     width: 100%;
+//   }
+//   100% {
+//     width: 0px;
+//   }
+// }
 
-/* Safari 4.0 - 8.0 */
-@-webkit-keyframes out {
-  0% {
-    width: 100%;
-  }
-  100% {
-    width: 0px;
-  }
-}
+// /* Safari 4.0 - 8.0 */
+// @-webkit-keyframes out {
+//   0% {
+//     width: 100%;
+//   }
+//   100% {
+//     width: 0px;
+//   }
+// }
 
 .hover-div {
   position: relative;
@@ -66,6 +66,8 @@
     bottom: -0.5em;
     background-color: lighten($sub-main-color, 10%);
     z-index: -1;
+    -webkit-transition: width 0.5s ease;
+    transition: width 0.5s ease;
   }
   a {
     color: $font-color;
@@ -89,5 +91,15 @@
     height: 1.25em;
     -webkit-animation: out 0.5s 1 forwards;
     animation: out 0.5s 1 forwards;
+    height: 20px;
+    width: 100%;
+    // -webkit-animation: in 0.5s 1 forwards;
+    // animation: in 0.5s 1 forwards;
+  }
+  &:not(:hover) .hover-div--hover {
+    height: 20px;
+    width: 0%;
+    // -webkit-animation: out 0.5s 1 forwards;
+    // animation: out 0.5s 1 forwards;
   }
 }
