@@ -115,15 +115,11 @@ $box-shadow: 0 0 10px 2px $main-color;
         justify-content: center;
         align-items: center;
         height: 70px;
+        font-size: 0.875em;
         @include e('item'){
-            text-decoration: none;
-            color: $sub-main-color;
-            padding: 20px 40px;
-            text-transform: uppercase;
-            font-size: 0.75em;
-            letter-spacing: .14em;
-            &:hover{
-                color: darken( $main-color, 4%);
+            z-index: 2;
+            .hover-div--hover{
+                height: 15px;
             }
         }
     }
