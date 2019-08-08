@@ -11,16 +11,17 @@ import {
   Header,
   TimeTable,
   DefaultButton,
-  TrainingCourse,
+  TrainingClass,
   News,
-  ContactUs
+  ContactUs,
+  Trainer
 } from "../../components";
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      trainingCourses: [
+      trainingClasses: [
         {
           category: "fitness",
           name: "chạy bộ",
@@ -28,7 +29,8 @@ class Home extends React.Component {
           time: "1 Giờ",
           star: 1,
           love: 800,
-          image: "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-event-list-2a.jpg",
+          image:
+            "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-event-list-2a.jpg",
           link: "#"
         }
       ],
@@ -41,7 +43,19 @@ class Home extends React.Component {
         detail:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum. Nisi nam corporis alias quo qui.",
         more: "read more"
-      }
+      },
+      trainers: [
+        {
+          image:
+            "https://dalia.elated-themes.com/wp-content/uploads/2018/06/team2-img-8.jpg",
+          link: "#",
+          type: "physiotherapist",
+          name: "jessica fox",
+          facebook: "facebook.com",
+          twitter: "twitter.com",
+          instagram: "instagram.com"
+        }
+      ]
     };
   }
   static async getInitialProps({ req, query }) {
@@ -66,11 +80,14 @@ class Home extends React.Component {
             <h1>Trang chủ</h1>
           </div>
           <TimeTable />
-          {this.state.trainingCourses.map(trainingCourse => {
-            return <TrainingCourse trainingCourse={trainingCourse} />;
+          {this.state.trainingClasses.map(trainingClass => {
+            return <TrainingClass trainingClass={trainingClass} />;
           })}
           <News news={this.state.news} />
           <ContactUs />
+          {this.state.trainers.map(trainer => {
+            return <Trainer trainer={trainer} />;
+          })}
         </React.Fragment>
         <Footer />
       </div>

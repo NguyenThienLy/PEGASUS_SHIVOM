@@ -1,5 +1,4 @@
 @import "../../default.scss";
-@import url("https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap");
 
 //block-element
 @mixin e($element) {
@@ -39,7 +38,7 @@ $font-family-name: "Noto Serif SC", serif;
       }
       a {
         font-size: 0.8em;
-        letter-spacing: 0.3em;
+        letter-spacing: 0.2em;
         margin-left: 1.3em;
         text-decoration: none;
         transition: 200ms;
