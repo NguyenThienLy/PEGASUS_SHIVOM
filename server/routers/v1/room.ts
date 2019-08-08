@@ -1,12 +1,12 @@
 import * as express from 'express';
 import { CrudRouter } from '../crud';
 import { Request, Response } from '../base'
-import { classStudentController } from '../../controllers'
+import { roomController } from '../../controllers'
 import { } from '../../middlewares'
 
-export default class PaymentRouter extends CrudRouter<typeof classStudentController> {
+export default class RoomRouter extends CrudRouter<typeof roomController> {
     constructor() {
-        super(classStudentController);
+        super(roomController);
     }
     customRouter() {
         

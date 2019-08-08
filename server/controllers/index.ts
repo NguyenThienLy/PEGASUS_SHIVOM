@@ -14,8 +14,14 @@ import { PackageController } from './crud/packageController'
 import { SkillController } from './crud/skillController'
 import { TeacherController } from './crud/teacherController'
 import { StudentController } from './crud/studentController'
-import { TimeTableController } from './crud/timeTableController'
 import { TimeTableItemController } from './crud/timeTableItemController'
+
+import { RoomController } from './crud/roomController'
+import { ClassTimeTableController } from './crud/classTimeTableController'
+import { StudentTimeTableController } from './crud/studentTimeTableController'
+import { RankController } from './crud/rankController'
+import { StatisticStudentController } from './crud/statisticStudentController'
+import { StatisticClassController } from './crud/statisticClassController'
 
 
 
@@ -32,8 +38,14 @@ const packageController = new PackageController()
 const skillController = new SkillController()
 const teacherController = new TeacherController()
 const studentController = new StudentController()
-const timeTableController = new TimeTableController()
 const timeTableItemController = new TimeTableItemController()
+
+const roomController = new RoomController()
+const classTimeTableController = new ClassTimeTableController()
+const studentTimeTableController = new StudentTimeTableController()
+const rankController = new RankController()
+const statisticStudentController = new StatisticStudentController()
+const statisticClassController = new StatisticClassController()
 
 export {
     CrudController,
@@ -51,6 +63,12 @@ export {
     skillController,
     teacherController,
     studentController,
-    timeTableController,
-    timeTableItemController
+    timeTableItemController,
+
+    roomController,
+    classTimeTableController,
+    studentTimeTableController,
+    rankController,
+    statisticStudentController,
+    statisticClassController
 }
