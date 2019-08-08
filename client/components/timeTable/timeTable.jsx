@@ -68,7 +68,7 @@ export class TimeTable extends React.Component {
                     </div>
                     <a
                       className="time-table__events__class-info__class-name"
-                      href="https://dalia.elated-themes.com/events/body-balance/"
+                      href="#"
                       title="Body Balance"
                     >
                        Cân bằng <br/>cơ thể
@@ -86,7 +86,7 @@ export class TimeTable extends React.Component {
                     </div>
                     <a
                       className="time-table__events__class-info__class-name"
-                      href="https://dalia.elated-themes.com/events/body-balance/"
+                      href="#"
                       title="Body Balance"
                     >
                        Cân bằng <br/>cơ thể
@@ -105,7 +105,7 @@ export class TimeTable extends React.Component {
                     </div>
                     <a
                       className="time-table__events__class-info__class-name"
-                      href="https://dalia.elated-themes.com/events/body-balance/"
+                      href="#"
                       title="Body Balance"
                     >
                       Cân bằng <br/>cơ thể
@@ -124,7 +124,7 @@ export class TimeTable extends React.Component {
                     </div>
                     <a
                       className="time-table__events__class-info__class-name"
-                      href="https://dalia.elated-themes.com/events/body-balance/"
+                      href="#"
                       title="Body Balance"
                     >
                        Cân bằng <br/>cơ thể
