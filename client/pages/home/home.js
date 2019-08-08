@@ -12,7 +12,8 @@ import {
   TimeTable,
   DefaultButton,
   TrainingCourse,
-  News
+  News,
+  ContactUs
 } from "../../components";
 
 class Home extends React.Component {
@@ -69,6 +70,7 @@ class Home extends React.Component {
             return <TrainingCourse trainingCourse={trainingCourse} />;
           })}
           <News news={this.state.news} />
+          <ContactUs />
         </React.Fragment>
         <Footer />
       </div>
