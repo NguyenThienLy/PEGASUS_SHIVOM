@@ -13,23 +13,20 @@
   }
 }
 
-$main-color: #c67a47;
-$line-color: #d0936a;
-
 .default-button {
   display: inline-block;
   padding: 1em 1em;
   @include e("link") {
     position: relative;
     border: none;
-    color: $main-color;
+    color: $sub-main-color;
     font-size: 16px;
     font-weight: 400;
     text-decoration: none;
     padding: 1em 2em;
     @include e("btn") {
       position: absolute;
-      background-color: $line-color;
+      background-color: $sub-main-color;
       -webkit-transition: width 0.8s ease;
       transition: width 0.8s ease;
     }

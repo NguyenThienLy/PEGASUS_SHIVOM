@@ -14,48 +14,48 @@
 }
 
 
-$hover-color: lighten($sub-main-color, 20%);
+$hover-color: lighten($sub-main-color, 25%);
 
 
-/* Safari 4.0 - 8.0 */
-@-webkit-keyframes in {
-  0% {
-    width: 0px;
-  }
-  100% {
-    width: 100%;
-  }
-}
+// /* Safari 4.0 - 8.0 */
+// @-webkit-keyframes in {
+//   0% {
+//     width: 0px;
+//   }
+//   100% {
+//     width: 100%;
+//   }
+// }
 
-/* Standard syntax */
-@keyframes in {
-  0% {
-    width: 0px;
-  }
-  100% {
-    width: 100%;
-  }
-}
+// /* Standard syntax */
+// @keyframes in {
+//   0% {
+//     width: 0px;
+//   }
+//   100% {
+//     width: 100%;
+//   }
+// }
 
-/* Standard syntax */
-@keyframes out {
-  0% {
-    width: 100%;
-  }
-  100% {
-    width: 0px;
-  }
-}
+// /* Standard syntax */
+// @keyframes out {
+//   0% {
+//     width: 100%;
+//   }
+//   100% {
+//     width: 0px;
+//   }
+// }
 
-/* Safari 4.0 - 8.0 */
-@-webkit-keyframes out {
-  0% {
-    width: 100%;
-  }
-  100% {
-    width: 0px;
-  }
-}
+// /* Safari 4.0 - 8.0 */
+// @-webkit-keyframes out {
+//   0% {
+//     width: 100%;
+//   }
+//   100% {
+//     width: 0px;
+//   }
+// }
 
 .hover-div {
   position: relative;
