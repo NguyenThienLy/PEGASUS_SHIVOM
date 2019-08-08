@@ -6,7 +6,7 @@ import { action } from '../../actions';
 import { api } from '../../services';
 
 import './home.scss';
-import { Footer, Header, TimeTable, DefaultButton } from '../../components';
+import { Footer, Header, TimeTable, DefaultButton, ContactUs } from '../../components';
 
 class Home extends React.Component {
 	constructor(props) {
@@ -38,6 +38,7 @@ class Home extends React.Component {
 					</div>
 					<TimeTable />
 					<DefaultButton content="Xem thêm"></DefaultButton>
+					<ContactUs />
 				</React.Fragment>
 				<Footer />
 			</div>
