@@ -1,0 +1,99 @@
+@import "../../default.scss";
+@import url("https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap");
+
+//block-element
+@mixin e($element) {
+  &__#{$element} {
+    @content;
+  }
+}
+//block modifier
+@mixin m($modifier) {
+  &--#{$modifier} {
+    @content;
+  }
+}
+
+$font-family-name: "Noto Serif SC", serif;
+
+.news {
+  height: 24em;
+  margin: 2em 3em;
+  display: flex;
+  @include e("info") {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 45%;
+    margin-right: 4%;
+    @include e("category") {
+      text-transform: uppercase;
+      color: $font-color;
+      &::before {
+        content: "";
+        display: inline-block;
+        vertical-align: middle;
+        width: 15%;
+        height: 1px;
+        background-color: $main-color;
+      }
+      a {
+        font-size: 0.8em;
+        letter-spacing: 0.3em;
+        margin-left: 1.3em;
+        text-decoration: none;
+        transition: 200ms;
+        &:hover {
+          color: $main-color;
+        }
+      }
+    }
+    @include e("title") {
+      font-size: 2em;
+      font-family: $font-family-name;
+      letter-spacing: 0.08em;
+      margin-top: 0.3em;
+      margin-bottom: 0;
+      font-weight: 600;
+      text-transform: capitalize;
+      a {
+        color: $main-color;
+        text-decoration: none;
+      }
+    }
+    @include e("detail") {
+        line-height: 1.5em;
+      font-size: 0.8em;
+      word-spacing: 0.05em;
+      letter-spacing: 0.05em;
+    }
+    @include e("more") {
+        margin-top: 1.5em;
+        .default-button__link__content {
+            text-transform: uppercase;
+        }
+    }
+  }
+  @include e("image") {
+    width: 55%;
+    position: relative;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    @include e("background") {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0.5em;
+      top: -0.5em;
+      border: 1px solid $sub-main-color;
+      z-index: -1;
+      transition: 400ms;
+    }
+    &:hover .news__image__background {
+      left: 1em;
+      top: -1em;
+    }
+  }
+}

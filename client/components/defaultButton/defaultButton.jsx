@@ -7,10 +7,11 @@ export class DefaultButton extends React.Component {
   }
 
   render() {
+    const { link, content } = this.props;
     return (
       <div className="default-button">
-        <a href="#" className="default-button__link">
-          <span>{this.props.content}</span>
+        <a href={link} className="default-button__link">
+          <p className="default-button__link__content">{content}</p>
           <span className="default-button__link__btn default-button__link__btn-left" />
           <span className="default-button__link__btn default-button__link__btn-top-left" />
           <span className="default-button__link__btn default-button__link__btn-top-right" />

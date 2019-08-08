@@ -13,20 +13,30 @@
   }
 }
 
+$font-size-button-content: 0.8em;
+
 .default-button {
   display: inline-block;
-  padding: 1em 1em;
   @include e("link") {
     position: relative;
     border: none;
-    color: $sub-main-color;
+    color: $main-color;
     font-size: 16px;
     font-weight: 400;
     text-decoration: none;
     padding: 1em 2em;
+    @include e("content") {
+      letter-spacing: 0.2em;
+      font-size: $font-size-button-content;
+      margin: 0;
+      display: inline-block;
+      &::first-letter {
+        text-transform: capitalize;
+      }
+    }
     @include e("btn") {
       position: absolute;
-      background-color: $sub-main-color;
+      background-color: $main-color;
       -webkit-transition: width 0.8s ease;
       transition: width 0.8s ease;
     }

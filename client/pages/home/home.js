@@ -11,7 +11,8 @@ import {
   Header,
   TimeTable,
   DefaultButton,
-  TrainingCourse
+  TrainingCourse,
+  News
 } from "../../components";
 
 class Home extends React.Component {
@@ -22,13 +23,24 @@ class Home extends React.Component {
         {
           category: "fitness",
           name: "chạy bộ",
-          info:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+          detail: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
           time: "1 Giờ",
           star: 1,
-          love: 800
+          love: 800,
+          image: "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-event-list-2a.jpg",
+          link: "#"
         }
-      ]
+      ],
+      news: {
+        image:
+          "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-img-1.jpg",
+        link: "#",
+        category: "lorem ipsum",
+        title: "certified health professionals",
+        detail:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum. Nisi nam corporis alias quo qui.",
+        more: "read more"
+      }
     };
   }
   static async getInitialProps({ req, query }) {
@@ -53,12 +65,10 @@ class Home extends React.Component {
             <h1>Trang chủ</h1>
           </div>
           <TimeTable />
-          <DefaultButton content="Xem thêm" />
           {this.state.trainingCourses.map(trainingCourse => {
-            return (
-              <TrainingCourse trainingCourse={trainingCourse} ></TrainingCourse>
-            );
+            return <TrainingCourse trainingCourse={trainingCourse} />;
           })}
+          <News news={this.state.news} />
         </React.Fragment>
         <Footer />
       </div>
