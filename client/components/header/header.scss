@@ -17,19 +17,20 @@
     font-size: 16px;
     border-bottom: 1px solid $sub-main-color;
     background-color: #fcfcfc;
+    
     @include e('page-menu-area') {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        height: 70px;
+        // height: 70px;
         margin: 0 70px;       
-        
         @include e('left') {
             display: flex;
             align-items: center;
             height: 100%;
             font-weight: 400;
-            font-size: 0.8em;
+            font-size: 1em;
+            z-index: 2;
             @include e('logo-wrapper'){
                 @include e('a'){
                     @include e('img'){
@@ -39,75 +40,37 @@
             }
             @include e('navbar'){
                 height: 100%;
-                @include e('list-items'){
-                    display: flex;
-                    height: 100%;
-                    margin: 0;
-                    padding-left: 20px;
+                @include e('list-items') {
                     list-style-type: none;
-                    @include e('item'){
-                        height: 100%;                                                
-                        text-transform: uppercase;
-                        &:hover {
-                           .category-name{
-                               color: $main-color;
+                    margin: 0;
+                    padding: 0;
+                    @include e('item') {                        
+                        float: left;  
+                        height: 100%;
+                        padding: 1.8em 1em;
+                        &:focus, &:focus-within, &:hover{
+                            .sub-navbar{
+                                visibility: visible; /* shows sub-menu */
+                                opacity: 1;
+                                z-index: 1;
+                                transform: translateY(0%);
+                                transition-delay: 0s, 0s, 0.5s;
                             }
-                           .hover-dropdown{
-                            opacity: 1!important;
-                            visibility: visible!important;
-                            overflow: visible!important;
-                            }
-                        }                        
-                        .category-name{
-                            padding: 0 20px;
-                            text-decoration: none;
-                            color: $color-grey;
-                            height: 100%;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;                            
                         }
-                        .hover-dropdown{
-                            opacity: 0;
-                            visibility: hidden;
-                            overflow: hidden;
-                           
-                        }
-                        @include e('dropdown'){
+                        .sub-navbar{
+                            margin: 29px 0 0 -30px;
                             position: absolute;
-                            margin: 0;
-                            padding: 0;
-                            list-style-type: none;
-                            background: #fbfbfb;
-                            @include e('inner'){
-                                position: relative;
-                                z-index: 200;
-                                display: block;
-                                padding: 0;
-                                margin: 0;
-                                z-index: 997;
-                                border: 1px solid $sub-main-color;
-                                @include e('list-items'){
-                                    margin: 0;
-                                    padding: 20px 0 20px 0;
-                                    list-style-type: none;   
-                                    display: flex;
-                                    flex-direction: column;
-                                    align-items: center;                                 
-                                    @include e('item'){     
-                                        width: 248px;
-                                        height: 33px;
-                                        .sub-category-name{
-                                            padding: 0 20px;
-                                            text-decoration: none;
-                                            color: $color-grey;                                                                            
-                                        }
-                                        
-                                    }
-                                }
-                            }
-                        }
-                        
+                            display: flex;
+                            flex-direction: column; 
+                            border: 1px solid $sub-main-color;  
+                            background: #fcfcfc;
+                            visibility: hidden;   
+                            opacity: 0;
+                            transition: opacity 0.3s, all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
+                            li{
+                                padding: 0.5em 1em;
+                            }                          
+                        }                   
                     }
                 }
             }
