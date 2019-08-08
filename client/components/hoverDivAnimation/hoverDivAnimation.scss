@@ -13,9 +13,7 @@
   }
 }
 
-// $hover-color: rgba(247, 233, 221, 0.8);
-// $hover-color: $sub-main-color;
-// $main-color: rgba(0, 0, 0, 0.6);
+$hover-color: lighten($sub-main-color, 20%);
 
 // /* Safari 4.0 - 8.0 */
 // @-webkit-keyframes in {
@@ -64,7 +62,7 @@
     position: absolute;
     left: 0;
     bottom: -0.5em;
-    background-color: lighten($sub-main-color, 10%);
+    background-color: $hover-color;
     z-index: -1;
     -webkit-transition: width 0.5s ease;
     transition: width 0.5s ease;
@@ -83,21 +81,13 @@
     transition: 200ms;
   }
   &:hover .hover-div--hover {
-    height: 1.25em;
-    -webkit-animation: in 0.5s 1 forwards;
-    animation: in 0.5s 1 forwards;
-  }
-  &:not(:hover) .hover-div--hover {
-    height: 1.25em;
-    -webkit-animation: out 0.5s 1 forwards;
-    animation: out 0.5s 1 forwards;
-    height: 20px;
+    height: 1.1em;
     width: 100%;
     // -webkit-animation: in 0.5s 1 forwards;
     // animation: in 0.5s 1 forwards;
   }
   &:not(:hover) .hover-div--hover {
-    height: 20px;
+    height: 1.1em;
     width: 0%;
     // -webkit-animation: out 0.5s 1 forwards;
     // animation: out 0.5s 1 forwards;
