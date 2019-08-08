@@ -18,10 +18,11 @@ class Server {
         this.quiet = process.env.NODE_ENV === 'production' ? false : true;
         this.app = next({ dev: this.dev, dir: './client', quiet: this.quiet });
         this.handle = this.app.getRequestHandler();
-        this.port = process.env.PORT || 3000;
+        this.port = process.env.PORT || 4000;
         this.server = express();
         this.initDB();
         this.initMiddlewares();
+        this.initView();
         this.initRoute();
         this.initStatisFolder();
         this.init();
@@ -39,11 +40,11 @@ class Server {
         });
     }
 
-    async initMiddlewares(){
+    async initMiddlewares() {
         this.server.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
         this.server.use(bodyParser.urlencoded({ extended: false }));
         this.server.use(bodyParser.json());
-        
+
     }
     async initRoute() {
         this.server.use('/api/*', cors())
@@ -51,7 +52,12 @@ class Server {
     }
 
     async initStatisFolder() {
-        this.server.use(express.static(path.join(__dirname, './assets'), { maxAge: 31557600000 }));
+
+    }
+    async initView() {
+
+        this.server.use(express.static('../client/assets'));
+        this.server.set('view engine', 'html');
     }
 
     async init() {
@@ -65,6 +71,7 @@ class Server {
     }
 
     async handleRequest() {
+
         this.server.get('/', (req, res) => {
             this.app.render(req, res, '/index');
         });
