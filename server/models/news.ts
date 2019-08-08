@@ -1,6 +1,7 @@
 import * as mongoose from 'mongoose';
 import { BaseModel } from './base';
 import { AdminModel, NewCategoryModel } from '.';
+import { SliderModel } from './slider';
 
 const Schema = mongoose.Schema;
 
@@ -14,7 +15,8 @@ export type NewsModel = BaseModel & {
     metaDescription: string
     content: string
     thumb: string
-
+    isUseAtSlider: boolean
+    slider: string | SliderModel
 }
 
 const newsSchema = new Schema({
@@ -27,6 +29,8 @@ const newsSchema = new Schema({
     metaDescription: { type: String },
     content: { type: String, required: true },
     thumb: { type: String, required: true },
+    slider: { type: Schema.Types.ObjectId, ref: "Slider" },
+    isUseAtSlider: { type: Boolean, default: false },
     status: { type: String, enum: ["active", "deactive"], default: "active" }
 }, { timestamps: true })
 

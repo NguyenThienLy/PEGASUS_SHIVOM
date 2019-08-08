@@ -24,6 +24,7 @@ import { StudentTimeTableService } from './crud/studentTimeTableService'
 import { RankService } from './crud/rankService'
 import { StatisticStudentService } from './crud/statisticStudentService'
 import { StatisticClassService } from './crud/statisticClassService'
+import { SliderService } from './crud/sliderService'
 
 
 const utilService = new UtilService()
@@ -50,6 +51,7 @@ const studentTimeTableService = new StudentTimeTableService()
 const rankService = new RankService()
 const statisticStudentService = new StatisticStudentService()
 const statisticClassService = new StatisticClassService()
+const sliderService = new SliderService()
 
 export {
     CrudService, ICrudExecOption, ICrudOption,
@@ -76,5 +78,6 @@ export {
     studentTimeTableService,
     rankService,
     statisticStudentService,
-    statisticClassService
+    statisticClassService,
+    sliderService
 }

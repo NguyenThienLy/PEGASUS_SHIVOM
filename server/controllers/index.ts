@@ -22,6 +22,7 @@ import { StudentTimeTableController } from './crud/studentTimeTableController'
 import { RankController } from './crud/rankController'
 import { StatisticStudentController } from './crud/statisticStudentController'
 import { StatisticClassController } from './crud/statisticClassController'
+import { SliderController } from './crud/sliderController'
 
 
 
@@ -46,6 +47,7 @@ const studentTimeTableController = new StudentTimeTableController()
 const rankController = new RankController()
 const statisticStudentController = new StatisticStudentController()
 const statisticClassController = new StatisticClassController()
+const sliderController = new SliderController()
 
 export {
     CrudController,
@@ -70,5 +72,6 @@ export {
     studentTimeTableController,
     rankController,
     statisticStudentController,
-    statisticClassController
+    statisticClassController,
+    sliderController
 }
