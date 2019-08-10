@@ -19,11 +19,8 @@ import {
   Slider,
   TrainerInfo,
   NumberSection,
-<<<<<<< HEAD
   PostAuthor
-=======
   EventHour,
->>>>>>> f6ca853a151036ad2dff95adffca42f4d7f7480a
 } from "../../components";
 
 class Home extends React.Component {

@@ -18,11 +18,8 @@ export * from './slider/slider'
 export * from './trainerInfo/trainerInfo'
 export * from './trainer/trainer'
 export * from './review/review'
-<<<<<<< HEAD
 export * from './numberSection/numberSection'
 export * from './postAuthor/postAuthor'
-=======
 export * from './introHome/introHome'
 export * from './numberSection/numberSection'
 export * from './eventHour/eventHour'
->>>>>>> f6ca853a151036ad2dff95adffca42f4d7f7480a
