@@ -20,7 +20,6 @@ $font-family-name: "Noto Serif SC", serif;
   height: 25em;
   margin: 2em 2em;
   color: $color-grey;
-  position: relative;
   @include e("image") {
     height: 70%;
     position: relative;

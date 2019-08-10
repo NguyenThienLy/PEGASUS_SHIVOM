@@ -14,7 +14,8 @@ import {
   TrainingClass,
   News,
   ContactUs,
-  Trainer
+  Trainer,
+  Review
 } from "../../components";
 
 class Home extends React.Component {
@@ -55,7 +56,12 @@ class Home extends React.Component {
           twitter: "twitter.com",
           instagram: "instagram.com"
         }
-      ]
+      ],
+      review: {
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlp9UWxfO8gXd-LjSk2RhNeCrWXwJy69ruhejIsIY9Zw_HqDsxBQ",
+        content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum.",
+        owner: "callie hern"
+      }
     };
   }
   static async getInitialProps({ req, query }) {
@@ -88,6 +94,7 @@ class Home extends React.Component {
           {this.state.trainers.map(trainer => {
             return <Trainer trainer={trainer} />;
           })}
+          <Review review={this.state.review}></Review>
         </React.Fragment>
         <Footer />
       </div>
