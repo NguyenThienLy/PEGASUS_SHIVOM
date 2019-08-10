@@ -1,0 +1,43 @@
+@import "../../default.scss";
+
+//block-element
+@mixin e($element) {
+  &__#{$element} {
+    @content;
+  }
+}
+//block modifier
+@mixin m($modifier) {
+  &--#{$modifier} {
+    @content;
+  }
+}
+
+.number-section{
+    display: flex;
+    font-family: 'Cormorant', serif;
+    margin: 2em 4em;
+    @include e('item'){
+        width: 25%;
+        text-align: center;
+        position: relative;
+        @include e('number'){
+            font-size: 12em;
+            color: $main-color;
+            font-weight: 700;
+            opacity: 0.2;
+        }
+        @include e('content'){
+            color: $main-color;
+            text-transform: capitalize;
+            font-size: 2em;
+            @include m('overlay'){
+                position: absolute;
+                top: 55%;
+                right: 2.5em;
+                z-index:100;
+            }
+        }    
+    }
+
+}
