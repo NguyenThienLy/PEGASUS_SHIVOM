@@ -19,9 +19,10 @@ import {
   Slider,
   TrainerInfo,
   NumberSection,
-  PostAuthor
+  PostAuthor,
   EventHour,
   LatestPost,
+  IntroHome2,
 } from "../../components";
 
 class Home extends React.Component {
@@ -85,7 +86,12 @@ class Home extends React.Component {
         image: "https://dalia.elated-themes.com/wp-content/uploads/2018/05/blog-img-6-150x150.jpg",
         title: "clean beauty",
         date: "13th jun" 
-      }
+      },
+      introHome2: {
+        image: "https://dalia.elated-themes.com/wp-content/uploads/2018/05/h1-icon-img-1.png",
+        title: "relaxing massage",
+        content: "Lorem ipsum dolor sit amet, ad duo adipisci imperdiet, eum eu fugit."
+      },
     };
   }
   static async getInitialProps({ req, query }) {
@@ -126,6 +132,7 @@ class Home extends React.Component {
           <IntroHome introHome={this.state.introHome}></IntroHome>
           <EventHour eventHour={this.state.eventHour}></EventHour>
           <LatestPost latestPost={this.state.latestPost}></LatestPost>
+          <IntroHome2 introHome2={this.state.introHome2}></IntroHome2>
         </React.Fragment>
         <Footer />
       </div>

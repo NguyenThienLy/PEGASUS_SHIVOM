@@ -16,7 +16,7 @@ $main-color: #00a3af;
 $sub-main-color: #83ccd2;
 $background-color: #eff7fc;
 $border-color: #edf7fc;
-$table-border-color: #e5e5e5;
+$table-border-color: lighten($sub-main-color, 10%); //#e5e5e5;
 
 $font-title: "Quicksand", sans-serif;
 $font-body: "Quicksand", sans-serif;
