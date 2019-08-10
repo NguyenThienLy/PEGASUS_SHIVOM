@@ -1,6 +1,7 @@
 import * as mongoose from 'mongoose';
 import { BaseModel } from './base';
 import { CourseModel, TeacherModel } from '.';
+import { RoomModel } from './room';
 
 const Schema = mongoose.Schema;
 
@@ -14,6 +15,7 @@ export type ClassModel = BaseModel & {
     quantity: number
     startTime: Date
     endTime: Date
+    room: string | RoomModel
 }
 
 const classSchema = new Schema({
@@ -24,6 +26,7 @@ const classSchema = new Schema({
     description: { type: String },
     quantity: { type: Number, default: 0, required: true },
     teacher: { type: [{ type: Schema.Types.ObjectId, ref: "Teacher" }], default: [] },
+    room: { type: Schema.Types.ObjectId, ref: "Room" },
     status: { type: String, enum: ["active", "deactive"], default: "active" }
 }, { timestamps: true })
 

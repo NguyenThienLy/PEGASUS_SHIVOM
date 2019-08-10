@@ -1,5 +1,4 @@
 @import "../../default.scss";
-@import url("https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap");
 
 //block-element
 @mixin e($element) {
@@ -16,12 +15,12 @@
 
 $font-family-name: "Noto Serif SC", serif;
 
-.training-course {
+.training-class {
   color: $font-color;
   width: 30em;
   height: 15em;
   display: flex;
-  margin: auto;
+  margin: 2em 0 2em 2em;
   @include e("image") {
     width: 50%;
     position: relative;
@@ -41,7 +40,7 @@ $font-family-name: "Noto Serif SC", serif;
       transition: 300ms;
     }
   }
-  @include e("content") {
+  @include e("info") {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -49,7 +48,6 @@ $font-family-name: "Noto Serif SC", serif;
     margin-left: 5%;
     @include e("category") {
       text-transform: uppercase;
-      color: $font-color;
       &::before {
         content: "";
         display: inline-block;
@@ -59,9 +57,10 @@ $font-family-name: "Noto Serif SC", serif;
         background-color: $main-color;
       }
       a {
-        font-size: 0.8em;
-        letter-spacing: 0.3em;
-        margin-left: 0.6em;
+        color: $font-color;
+        font-size: 0.7em;
+        letter-spacing: 0.2em;
+        margin-left: 1em;
         text-decoration: none;
         transition: 200ms;
         &:hover {
@@ -70,9 +69,9 @@ $font-family-name: "Noto Serif SC", serif;
       }
     }
     @include e("name") {
-      font-size: 1.3em;
+      font-size: 1.4em;
       font-family: $font-family-name;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.05em;
       margin-top: 0.3em;
       margin-bottom: 0;
       font-weight: 100;
@@ -88,7 +87,7 @@ $font-family-name: "Noto Serif SC", serif;
         }
       }
     }
-    @include e("info") {
+    @include e("detail") {
       font-size: 0.8em;
       word-spacing: 0.05em;
       letter-spacing: 0.05em;
@@ -124,11 +123,11 @@ $font-family-name: "Noto Serif SC", serif;
       }
     }
   }
-  &:hover .training-course__image__background {
+  &:hover .training-class__image__background {
     visibility: visible;
     transform: translate(-0.5em, -0.5em);
   }
-  &:not(:hover) .training-course__image__background {
+  &:not(:hover) .training-class__image__background {
     border: 1px solid #fff;
     visibility: hidden;
   }

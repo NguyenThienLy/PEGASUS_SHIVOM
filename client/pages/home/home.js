@@ -11,8 +11,11 @@ import {
   Header,
   TimeTable,
   DefaultButton,
-  TrainingCourse,
+  TrainingClass,
+  News,
   ContactUs,
+  Trainer,
+  Review,
   Slider,
   ClassTrainer
 } from "../../components";
@@ -21,17 +24,46 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      trainingCourses: [
+      trainingClasses: [
         {
           category: "fitness",
           name: "chạy bộ",
-          info:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+          detail: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
           time: "1 Giờ",
           star: 1,
-          love: 800
+          love: 800,
+          image:
+            "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-event-list-2a.jpg",
+          link: "#"
         }
-      ]
+      ],
+      news: {
+        image:
+          "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-img-1.jpg",
+        link: "#",
+        category: "lorem ipsum",
+        title: "certified health professionals",
+        detail:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum. Nisi nam corporis alias quo qui.",
+        more: "read more"
+      },
+      trainers: [
+        {
+          image:
+            "https://dalia.elated-themes.com/wp-content/uploads/2018/06/team2-img-8.jpg",
+          link: "#",
+          type: "physiotherapist",
+          name: "jessica fox",
+          facebook: "facebook.com",
+          twitter: "twitter.com",
+          instagram: "instagram.com"
+        }
+      ],
+      review: {
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlp9UWxfO8gXd-LjSk2RhNeCrWXwJy69ruhejIsIY9Zw_HqDsxBQ",
+        content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum.",
+        owner: "callie hern"
+      }
     };
   }
   static async getInitialProps({ req, query }) {
@@ -57,14 +89,16 @@ class Home extends React.Component {
             <h1>Trang chủ</h1>
           </div>
           <TimeTable />
-          <ClassTrainer />
-          <DefaultButton content="Xem thêm" />
-          {this.state.trainingCourses.map(trainingCourse => {
-            return (
-              <TrainingCourse trainingCourse={trainingCourse} ></TrainingCourse>
-            );
+          {this.state.trainingClasses.map(trainingClass => {
+            return <TrainingClass trainingClass={trainingClass} />;
           })}
+          <ClassTrainer />
+          <News news={this.state.news} />
           <ContactUs />
+          {this.state.trainers.map(trainer => {
+            return <Trainer trainer={trainer} />;
+          })}
+          <Review review={this.state.review}></Review>
         </React.Fragment>
         <Footer />
       </div>

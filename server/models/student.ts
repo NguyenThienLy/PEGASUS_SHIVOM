@@ -1,5 +1,6 @@
 import * as mongoose from 'mongoose';
 import { BaseModel } from './base';
+import { RankModel } from './rank';
 
 const Schema = mongoose.Schema;
 
@@ -12,6 +13,8 @@ export type StudentModel = BaseModel & {
     phone: string
     email?: string
     avatar?: string
+    point: number
+    rank: string | RankModel
     otherInfo: {
         [x: string]: any
     }
@@ -26,6 +29,8 @@ const studentSchema = new Schema({
     phone: { type: String, required: true },
     email: { type: String },
     avatar: { type: String },
+    point: { type: Number, default: 0 },
+    rank: { type: Schema.Types.ObjectId, ref: "Rank" },
     otherInfo: { type: Schema.Types.Mixed },
     status: { type: String, enum: ["active", "deactive"], default: "active" }
 }, { timestamps: true })

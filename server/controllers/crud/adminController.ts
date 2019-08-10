@@ -1,5 +1,5 @@
 import { CrudController } from '../crudController'
-import { adminService, errorService } from '../../services/index'
+import { adminService, errorService, tokenService } from '../../services/index'
 
 
 export class AdminController extends CrudController<typeof adminService>{
@@ -17,7 +17,10 @@ export class AdminController extends CrudController<typeof adminService>{
             }
         })
         const isMatch = await admin.comparePassword(password)
-        if(!isMatch) throw errorService.auth.permissionDenied()
-        return admin
+        if (!isMatch) throw errorService.auth.permissionDenied()
+        const token = await tokenService.getAdminToken({ _id: admin._id })
+        const json = admin.toJSON()
+        json.accessToken = token
+        return json
     }
 }
