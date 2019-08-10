@@ -1,16 +1,4 @@
 @import '../../default.scss';
-//block-element
-@mixin e($element){
-    &__#{$element} {
-        @content;
-    }
-}
-//block modifier
-@mixin m($modifier){
-    &--#{$modifier} {
-        @content;
-    }
-}
 
 .class-trainer{
     width: 45em;
@@ -32,7 +20,10 @@
         @include e('name'){
             font-size: 2em;
             color: $main-color;
+            font-family: "Noto Serif SC", serif;
             margin: 0.5em 0;
+            letter-spacing: 0.08em;
+            font-weight: 600;
         }
         @include e('description'){
             color: $font-color;

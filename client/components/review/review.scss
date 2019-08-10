@@ -2,18 +2,6 @@
 @import url("https://fonts.googleapis.com/css?family=Lily+Script+One");
 @import url("https://fonts.googleapis.com/css?family=Coustard|IM+Fell+French+Canon&display=swap");
 
-//block-element
-@mixin e($element) {
-  &__#{$element} {
-    @content;
-  }
-}
-//block modifier
-@mixin m($modifier) {
-  &--#{$modifier} {
-    @content;
-  }
-}
 
 //$font-family-icon: 'Lily Script One', cursive;
 //$font-family-icon: 'Coustard', serif;

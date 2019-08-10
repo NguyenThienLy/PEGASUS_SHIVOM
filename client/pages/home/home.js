@@ -17,8 +17,9 @@ import {
   Review,
   IntroHome,
   Slider,
-  ClassTrainer,
+  TrainerInfo,
   NumberSection,
+  PostAuthor
   EventHour,
 } from "../../components";
 
@@ -106,9 +107,10 @@ class Home extends React.Component {
           {this.state.trainingClasses.map(trainingClass => {
             return <TrainingClass trainingClass={trainingClass} />;
           })}
-          <ClassTrainer />
+          <TrainerInfo />
           <News news={this.state.news} />
           <ContactUs />
+          <PostAuthor />
           <NumberSection />
           {this.state.trainers.map(trainer => {
             return <Trainer trainer={trainer} />;

@@ -1,7 +1,7 @@
 import * as React from 'react'
-import './classTrainer.scss'
+import './trainerInfo.scss'
 
-export class ClassTrainer extends React.Component{
+export class TrainerInfo extends React.Component{
     constructor(props){
         super(props);
     }
