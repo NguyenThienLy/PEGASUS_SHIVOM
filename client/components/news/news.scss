@@ -32,13 +32,13 @@ $font-family-name: "Noto Serif SC", serif;
         content: "";
         display: inline-block;
         vertical-align: middle;
-        width: 15%;
+        width: 10%;
         height: 1px;
         background-color: $main-color;
       }
       a {
         font-size: 0.8em;
-        letter-spacing: 0.2em;
+        letter-spacing: 0.3em;
         margin-left: 1.3em;
         text-decoration: none;
         transition: 300ms;
@@ -48,7 +48,7 @@ $font-family-name: "Noto Serif SC", serif;
       }
     }
     @include e("title") {
-      font-size: 2em;
+      font-size: 2.1em;
       font-family: $font-family-name;
       letter-spacing: 0.08em;
       margin-top: 0.3em;
@@ -61,16 +61,16 @@ $font-family-name: "Noto Serif SC", serif;
       }
     }
     @include e("detail") {
-        line-height: 1.5em;
-      font-size: 0.8em;
+      line-height: 1.5em;
+      font-size: 0.9em;
       word-spacing: 0.05em;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.025em;
     }
     @include e("more") {
-        margin-top: 1.5em;
-        .default-button__link__content {
-            text-transform: uppercase;
-        }
+      margin-top: 1.5em;
+      .default-button__link__content {
+        text-transform: uppercase;
+      }
     }
   }
   @include e("image") {
