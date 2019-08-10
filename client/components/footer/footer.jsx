@@ -44,8 +44,13 @@ export class Footer extends React.Component {
                     <div className="footer-wrapper__first-floor__contact">                     
                         <a 
                             className="footer-wrapper__first-floor__contact__item"
-                            href="mailto:minhle140198@gmail.com"
-                            alt="Địa chỉ email"
+                            href="#"
+                            >
+                                145/51/41 Le Duc Tho Go Vap
+                        </a>
+                        <a 
+                            className="footer-wrapper__first-floor__contact__item"
+                            href="mailto:minhle140198@gmail.com"                            
                             >
                                 Email: minhle140198@gmail
                         </a>
