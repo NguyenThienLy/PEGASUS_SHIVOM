@@ -19,6 +19,7 @@ import {
   Slider,
   ClassTrainer,
   NumberSection,
+  EventHour,
 } from "../../components";
 
 class Home extends React.Component {
@@ -70,6 +71,12 @@ class Home extends React.Component {
         image: "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-icon-img-1.png",
         title: "run outdoors",
         content: "Lorem ipsum dolor sit amet, ad duo adipisci imperdiet, eum eu fugit."
+      },
+      eventHour: {
+        weekday: "monday",
+        timeStart: "15.00",
+        timeEnd: "16.00",
+        trainer: "alice hattaway"
       }
     };
   }
@@ -108,6 +115,7 @@ class Home extends React.Component {
           })}
           <Review review={this.state.review}></Review>
           <IntroHome introHome={this.state.introHome}></IntroHome>
+          <EventHour eventHour={this.state.eventHour}></EventHour>
         </React.Fragment>
         <Footer />
       </div>
