@@ -15,6 +15,7 @@
 
 $font-size-table-content: 15px;
 $hover-color: darken($sub-main-color, 10%);
+$background-table-header-color: lighten($sub-main-color, 25%);
 
 .time-table {
   margin: 0 2em;
@@ -68,7 +69,7 @@ $hover-color: darken($sub-main-color, 10%);
           color: $font-color;
           font-weight: 600;
           padding: 1em 0.5em;
-          background-color: #fafafa;
+          background-color: $background-table-header-color;
         }
       }
       tbody {

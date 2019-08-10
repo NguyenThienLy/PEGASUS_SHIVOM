@@ -1,0 +1,41 @@
+@import "../../default.scss";
+
+//block-element
+@mixin e($element) {
+  &__#{$element} {
+    @content;
+  }
+}
+//block modifier
+@mixin m($modifier) {
+  &--#{$modifier} {
+    @content;
+  }
+}
+
+$font-family-content: "Noto Serif SC", serif;
+$font-family-number: "Cormorant", serif;
+
+.number-section {
+  font-family: $font-family-number;
+  margin: 2em 4em;
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  @include e("number") {
+    font-size: 12em;
+    color: $sub-main-color;
+    font-weight: 700;
+    opacity: 0.2;
+    z-index: -1;
+  }
+  @include e("content") {
+    width: 100%;
+    font-family: $font-family-content;
+    color: $main-color;
+    text-transform: capitalize;
+    font-size: 1.5em;
+    position: absolute;
+    top: 53%;
+  }
+}
