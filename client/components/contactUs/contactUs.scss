@@ -1,16 +1,5 @@
 @import '../../default.scss';
-//block-element
-@mixin e($element){
-    &__#{$element} {
-        @content;
-    }
-}
-//block modifier
-@mixin m($modifier){
-    &--#{$modifier} {
-        @content;
-    }
-}
+
 
 .contact-us{
     width: 1000px;

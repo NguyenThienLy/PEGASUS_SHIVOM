@@ -1,0 +1,48 @@
+@import '../../default.scss';
+
+.post-author{
+    display: flex;
+    width: 600px;
+    margin: 1em 1em;
+    @include e('avatar'){
+        img{
+            border-radius: 999px;
+            height: 125px;
+        }
+    }
+    @include e('info'){
+        margin-left: 1.5em; 
+        @include e('type'){
+            color: $font-color;
+            text-transform: uppercase;
+            font-size: 1em;
+            &::before{
+                content: "";
+                height: 1px;
+                width: 5em;
+                margin-right: 0.5em; 
+                background: $main-color;
+                display: inline-block;
+                vertical-align: middle;
+            }
+        }
+        @include e('name'){
+            font-family: "Noto Serif SC", serif;
+            
+            text-transform: capitalize;
+            font-size: 1.5em;
+            margin: 8px 0;
+            a{
+                color: $main-color;
+                text-decoration: none;
+                &:hover{
+                    color: $sub-main-color;
+                }
+            }
+        }
+        @include e('description'){
+            font-size: 0.875em;
+            color: $font-color;
+        }
+    }
+}
