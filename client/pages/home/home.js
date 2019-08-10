@@ -21,6 +21,7 @@ import {
   NumberSection,
   PostAuthor
   EventHour,
+  LatestPost,
 } from "../../components";
 
 class Home extends React.Component {
@@ -78,6 +79,12 @@ class Home extends React.Component {
         timeStart: "15.00",
         timeEnd: "16.00",
         trainer: "alice hattaway"
+      },
+      latestPost: {
+        link: "#",
+        image: "https://dalia.elated-themes.com/wp-content/uploads/2018/05/blog-img-6-150x150.jpg",
+        title: "clean beauty",
+        date: "13th jun" 
       }
     };
   }
@@ -118,6 +125,7 @@ class Home extends React.Component {
           <Review review={this.state.review}></Review>
           <IntroHome introHome={this.state.introHome}></IntroHome>
           <EventHour eventHour={this.state.eventHour}></EventHour>
+          <LatestPost latestPost={this.state.latestPost}></LatestPost>
         </React.Fragment>
         <Footer />
       </div>
