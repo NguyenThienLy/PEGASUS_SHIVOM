@@ -62,7 +62,7 @@ $font-family-name: "Noto Serif SC", serif;
         letter-spacing: 0.2em;
         margin-left: 1em;
         text-decoration: none;
-        transition: 200ms;
+        transition: 300ms;
         &:hover {
           color: $main-color;
         }
@@ -81,7 +81,7 @@ $font-family-name: "Noto Serif SC", serif;
       a {
         color: $color-grey;
         text-decoration: none;
-        transition: 200ms;
+        transition: 300ms;
         &:hover {
           color: $main-color;
         }

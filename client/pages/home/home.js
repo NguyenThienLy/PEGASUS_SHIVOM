@@ -10,12 +10,12 @@ import {
   Footer,
   Header,
   TimeTable,
-  DefaultButton,
   TrainingClass,
   News,
   ContactUs,
   Trainer,
   Review,
+  IntroHome,
   Slider,
   ClassTrainer,
   NumberSection,
@@ -64,6 +64,12 @@ class Home extends React.Component {
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlp9UWxfO8gXd-LjSk2RhNeCrWXwJy69ruhejIsIY9Zw_HqDsxBQ",
         content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum.",
         owner: "callie hern"
+      },
+      introHome: {
+        link: "#",
+        image: "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-icon-img-1.png",
+        title: "run outdoors",
+        content: "Lorem ipsum dolor sit amet, ad duo adipisci imperdiet, eum eu fugit."
       }
     };
   }
@@ -101,6 +107,7 @@ class Home extends React.Component {
             return <Trainer trainer={trainer} />;
           })}
           <Review review={this.state.review}></Review>
+          <IntroHome introHome={this.state.introHome}></IntroHome>
         </React.Fragment>
         <Footer />
       </div>
