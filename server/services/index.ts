@@ -3,6 +3,7 @@ import { CrudService, ICrudExecOption, ICrudOption } from './crudService'
 import { UtilService } from './utilService'
 import { ErrorService } from './errorService'
 import { TokenService } from './tokenService'
+import { CronJobService } from './cronjob/cronjobService'
 
 import { BlogService } from './crud/blogService'
 import { NewsService } from './crud/newsService'
@@ -30,6 +31,7 @@ import { SliderService } from './crud/sliderService'
 const utilService = new UtilService()
 const errorService = new ErrorService()
 const tokenService = new TokenService()
+const cronJobService = new CronJobService()
 
 const blogService = new BlogService()
 const newsService = new NewsService()
@@ -58,6 +60,7 @@ export {
     utilService,
     errorService,
     tokenService,
+    cronJobService,
 
     blogService,
     newsService,
