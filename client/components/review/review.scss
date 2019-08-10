@@ -45,7 +45,8 @@ $color-icon: lighten($sub-main-color, 15%);
         border-radius: 50%;
       }
       @include e("icon") {
-        color: $color-icon;
+        color: $sub-main-color;
+        opacity: 0.4;
         position: absolute;
         font-family: $font-family-icon;
         font-size: 8em;
@@ -63,9 +64,9 @@ $color-icon: lighten($sub-main-color, 15%);
       color: $font-color;
       line-height: 1.4em;
       word-spacing: 0.1em;
-      &::first-letter {
-        text-transform: capitalize;
-      }
+      // &::first-letter {
+      //   text-transform: capitalize;
+      // }
     }
     @include e("owner") {
       letter-spacing: 0.05em;
