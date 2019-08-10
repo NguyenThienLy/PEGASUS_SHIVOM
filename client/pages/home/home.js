@@ -12,7 +12,9 @@ import {
   TimeTable,
   DefaultButton,
   TrainingCourse,
-  ContactUs
+  ContactUs,
+  Slider,
+  ClassTrainer
 } from "../../components";
 
 class Home extends React.Component {
@@ -49,11 +51,13 @@ class Home extends React.Component {
           />
         </Head>
         <Header {...this.props} />
+        <Slider />
         <React.Fragment>
           <div className="body">
             <h1>Trang chủ</h1>
           </div>
           <TimeTable />
+          <ClassTrainer />
           <DefaultButton content="Xem thêm" />
           {this.state.trainingCourses.map(trainingCourse => {
             return (
