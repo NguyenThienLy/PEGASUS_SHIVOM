@@ -1,5 +1,5 @@
 import { CrudController } from '../crudController'
-import { adminService, errorService, tokenService } from '../../services/index'
+import { adminService, errorService, tokenService } from '../../services'
 
 
 export class AdminController extends CrudController<typeof adminService>{
