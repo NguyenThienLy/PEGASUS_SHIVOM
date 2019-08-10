@@ -23,9 +23,11 @@ $font-family-name: "Noto Serif SC", serif;
   @include e("image") {
     height: 70%;
     position: relative;
-    img {
-      width: 100%;
-      height: 100%;
+    a {
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
     @include e("background") {
       width: 100%;
@@ -43,7 +45,7 @@ $font-family-name: "Noto Serif SC", serif;
     height: 30%;
     margin-top: 5%;
     @include e("type") {
-        text-align: center;
+      text-align: center;
       &::before {
         content: "";
         display: inline-block;
@@ -61,7 +63,7 @@ $font-family-name: "Noto Serif SC", serif;
       }
     }
     @include e("name") {
-        text-align: center;
+      text-align: center;
       margin-top: 0.2em;
       font-family: $font-family-name;
       font-size: 1.4em;
@@ -70,7 +72,7 @@ $font-family-name: "Noto Serif SC", serif;
       letter-spacing: 0.05em;
     }
     @include e("other") {
-        text-align: center;
+      text-align: center;
       margin-top: 0.8em;
       a {
         margin-right: 1em;

@@ -6,8 +6,11 @@ export class Trainer extends React.Component {
     super(props);
   }
 
+
   render() {
     const { trainer } = this.props;
+    const widthSize = 120;
+    //style={{width: `${widthSize}px`}}
     return (
       <div className="trainer">
         <div className="trainer__image">

@@ -21,22 +21,22 @@
         justify-content: center;
         @include e('input'){
             width: 70%;
-            background: #fcfcfc;
+            background: #fff; //#fcfcfc;
             color:  $font-color;
             font-size: 0.875em;
-            box-shadow: 0 0 10px 0 rgba(0, 0, 0 , 0.03);
-            border: 1px solid lighten($sub-main-color, 10%);
+            //box-shadow: 0 0 10px 0 rgba(0, 0, 0 , 0.03);
+            border: 1px solid $table-border-color;
             outline: 0;
             padding: 1em 0.875em;
             margin: 2px;
         }
         @include e('select-box'){
             width: 70%;
-            background: #fcfcfc;
+            background: #fff; //#fcfcfc;
             color:  $font-color;
             font-size: 0.875em;
-            box-shadow: 0 0 10px 0 rgba(0, 0, 0 , 0.03);
-            border: 1px solid lighten($sub-main-color, 10%);
+            //box-shadow: 0 0 10px 0 rgba(0, 0, 0 , 0.03);
+            border: 1px solid $table-border-color;
             padding: 1em 0.875em;
             margin: 2px;
             outline: 0;
