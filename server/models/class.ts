@@ -11,7 +11,7 @@ export type ClassModel = BaseModel & {
     code: string
     shortDescription: string
     description: string
-    teacher: string[] | TeacherModel[]
+    teacher: string | TeacherModel
     quantity: number
     startTime: Date
     endTime: Date

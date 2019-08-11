@@ -15,6 +15,7 @@ export type StudentModel = BaseModel & {
     avatar?: string
     point: number
     rank: string | RankModel
+    cardId: string
     otherInfo: {
         [x: string]: any
     }
@@ -31,6 +32,7 @@ const studentSchema = new Schema({
     avatar: { type: String },
     point: { type: Number, default: 0 },
     rank: { type: Schema.Types.ObjectId, ref: "Rank" },
+    cardId: { type: String },
     otherInfo: { type: Schema.Types.Mixed },
     status: { type: String, enum: ["active", "deactive"], default: "active" }
 }, { timestamps: true })

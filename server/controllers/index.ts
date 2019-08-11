@@ -1,5 +1,6 @@
 
 import { CrudController } from './crudController';
+import { WebhookController } from './webhook/webhookController'
 
 import { BlogController } from './crud/blogController'
 import { NewsController } from './crud/newsController'
@@ -24,6 +25,7 @@ import { StatisticStudentController } from './crud/statisticStudentController'
 import { StatisticClassController } from './crud/statisticClassController'
 import { SliderController } from './crud/sliderController'
 
+const webhookController = new WebhookController()
 
 
 const blogController = new BlogController()
@@ -51,6 +53,8 @@ const sliderController = new SliderController()
 
 export {
     CrudController,
+
+    webhookController,
 
     blogController,
     newsController,
