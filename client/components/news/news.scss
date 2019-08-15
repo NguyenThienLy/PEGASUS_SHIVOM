@@ -60,7 +60,7 @@ $font-family-name: "Noto Serif SC", serif;
         text-decoration: none;
       }
     }
-    @include e("detail") {
+    @include e("content") {
       line-height: 1.5em;
       font-size: 0.9em;
       word-spacing: 0.05em;

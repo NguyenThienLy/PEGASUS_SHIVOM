@@ -22,11 +22,11 @@ export class News extends React.Component {
           <h4 className="news__info__title">
             <a href={news.link}>{news.title}</a>
           </h4>
-          <p className="news__info__detail">
-          {news.detail}
+          <p className="news__info__content">
+          {news.content}
           </p>
           <div className="news__info__more">
-            <DefaultButton link={news.link} content={news.more}></DefaultButton>
+            <DefaultButton link={news.link} content={news.button}></DefaultButton>
           </div>
         </div>
         <div className="news__image">

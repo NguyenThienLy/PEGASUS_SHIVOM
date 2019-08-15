@@ -23,6 +23,7 @@ import {
   EventHour,
   LatestPost,
   IntroHome2,
+  News2
 } from "../../components";
 
 class Home extends React.Component {
@@ -48,9 +49,9 @@ class Home extends React.Component {
         link: "#",
         category: "lorem ipsum",
         title: "certified health professionals",
-        detail:
+        content:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum. Nisi nam corporis alias quo qui.",
-        more: "read more"
+        button: "read more"
       },
       trainers: [
         {
@@ -65,15 +66,19 @@ class Home extends React.Component {
         }
       ],
       review: {
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlp9UWxfO8gXd-LjSk2RhNeCrWXwJy69ruhejIsIY9Zw_HqDsxBQ",
-        content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum.",
+        image:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlp9UWxfO8gXd-LjSk2RhNeCrWXwJy69ruhejIsIY9Zw_HqDsxBQ",
+        content:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum.",
         owner: "callie hern"
       },
       introHome: {
         link: "#",
-        image: "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-icon-img-1.png",
+        image:
+          "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-icon-img-1.png",
         title: "run outdoors",
-        content: "Lorem ipsum dolor sit amet, ad duo adipisci imperdiet, eum eu fugit."
+        content:
+          "Lorem ipsum dolor sit amet, ad duo adipisci imperdiet, eum eu fugit."
       },
       eventHour: {
         weekday: "monday",
@@ -83,15 +88,37 @@ class Home extends React.Component {
       },
       latestPost: {
         link: "#",
-        image: "https://dalia.elated-themes.com/wp-content/uploads/2018/05/blog-img-6-150x150.jpg",
+        image:
+          "https://dalia.elated-themes.com/wp-content/uploads/2018/05/blog-img-6-150x150.jpg",
         title: "clean beauty",
-        date: "13th jun" 
+        date: "13th jun"
       },
       introHome2: {
-        image: "https://dalia.elated-themes.com/wp-content/uploads/2018/05/h1-icon-img-1.png",
+        image:
+          "https://dalia.elated-themes.com/wp-content/uploads/2018/05/h1-icon-img-1.png",
         title: "relaxing massage",
-        content: "Lorem ipsum dolor sit amet, ad duo adipisci imperdiet, eum eu fugit."
+        content:
+          "Lorem ipsum dolor sit amet, ad duo adipisci imperdiet, eum eu fugit."
       },
+      news2: {
+        link: "#",
+        author: { name: "jessica smith", link: "#" },
+        category: { name: "post", link: "#" },
+        tags: [
+          { name: "business", link: "#" },
+          { name: "city break", link: "#" },
+          { name: "vacations", link: "#" }
+        ],
+        title: "almond butter fig healthy hair smoothie",
+        image:
+          "https://dalia.elated-themes.com/wp-content/uploads/2018/06/nutrition-home-blog-img-5-768x569.jpg",
+        dateCreated: { link: "#", day: "7th", month: "jun" },
+        content:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae feugiat magna, ut mattis ligula. Aliquam ut rutrum est. Maecenas sit amet scelerisque orci. Aenean et ex ut elit tincidunt rutrum vitae eleifend metus. Nunc tincidunt venenatis tellus euismod fermentum. Maecenas sed dapibus eros. Phasellus eu mi metus. Nunc mi nisl, viverra id sollicitudin et, auctor sit amet augue. Morbi blandit dolor ac rhoncus semper. Donec rutrum risus vitae arcu interdum condimentum. Pellentesque eu ex metus. Maecenas facilisis est at aliquet blandit. Nullam volutpat ultricies enim, ut pulvinar enim placerat non. Aenean facilisis aliquam felis in fermentum. Aenean ullamcorper pharetra purus.",
+        comment: { link: "#", quantity: 3 },
+        love: { link: "#", quantity: 0 },
+        button: "read more"
+      }
     };
   }
   static async getInitialProps({ req, query }) {
@@ -128,11 +155,12 @@ class Home extends React.Component {
           {this.state.trainers.map(trainer => {
             return <Trainer trainer={trainer} />;
           })}
-          <Review review={this.state.review}></Review>
-          <IntroHome introHome={this.state.introHome}></IntroHome>
-          <EventHour eventHour={this.state.eventHour}></EventHour>
-          <LatestPost latestPost={this.state.latestPost}></LatestPost>
-          <IntroHome2 introHome2={this.state.introHome2}></IntroHome2>
+          <Review review={this.state.review} />
+          <IntroHome introHome={this.state.introHome} />
+          <EventHour eventHour={this.state.eventHour} />
+          <LatestPost latestPost={this.state.latestPost} />
+          <IntroHome2 introHome2={this.state.introHome2} />
+          <News2 news2={this.state.news2} />
         </React.Fragment>
         <Footer />
       </div>
