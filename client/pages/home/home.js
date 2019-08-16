@@ -24,7 +24,8 @@ import {
   LatestPost,
   IntroHome2,
   News2,
-  NumberAdmin
+  NumberAdmin,
+  ProfileAdmin
 } from "../../components";
 
 class Home extends React.Component {
@@ -124,6 +125,18 @@ class Home extends React.Component {
         icon: '<i class="fas fa-id-card-alt"></i>',
         about: "booking",
         quantity: 184
+      },
+      profileAdmin: {
+        image:
+          "https://dalia.elated-themes.com/wp-content/uploads/2018/06/team2-img-8.jpg",
+        name: "nisha sharma",
+        phone: "0947161096",
+        email: "nisha_sharma@gmail.com",
+        location: "remote",
+        age: 25,
+        facebook: "facebook.com",
+        twitter: "twitter.com",
+        instagram: "instagram.com"
       }
     };
   }
@@ -167,7 +180,8 @@ class Home extends React.Component {
           <LatestPost latestPost={this.state.latestPost} />
           <IntroHome2 introHome2={this.state.introHome2} />
           <News2 news2={this.state.news2} />
-          <NumberAdmin numberAdmin={this.state.numberAdmin}></NumberAdmin>
+          <NumberAdmin numberAdmin={this.state.numberAdmin} />
+          <ProfileAdmin profileAdmin={this.state.profileAdmin}></ProfileAdmin>
         </React.Fragment>
         <Footer />
       </div>
