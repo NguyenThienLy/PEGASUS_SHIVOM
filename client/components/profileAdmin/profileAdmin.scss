@@ -1,0 +1,137 @@
+@import "../../default.scss";
+
+//block-element
+@mixin e($element) {
+  &__#{$element} {
+    @content;
+  }
+}
+//block modifier
+@mixin m($modifier) {
+  &--#{$modifier} {
+    @content;
+  }
+}
+
+$font-family-name: "Noto Serif SC", serif;
+$color-line: rgba(187, 184, 184, 0.5);
+
+.profileAdmin {
+  overflow-y: hidden;
+  width: 16em;
+  height: 23em;
+  margin: 3em 3em;
+  border-radius: 5px;
+  background-image: url(https://image.freepik.com/free-vector/colorful-memphis-background_1102-633.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  transition: 300ms;
+  -webkit-box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  @include e("overlay") {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+  @include e("blank") {
+    height: 8%;
+  }
+  @include e("image") {
+    //position: relative;
+    width: 6em;
+    height: 6em;
+    border-radius: 50%;
+    border: 1px solid $color-line;
+    margin: auto;
+    overflow: hidden;
+    -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+    img {
+      //position: absolute;
+      width: 100%;
+      height: 100%;
+      transform: scale(1.05);
+      //   top: 50%;
+      //   left: 50%;
+      //   transform: translate(-50%, -50%) scale(1.05);
+      transition: all 800ms ease;
+    }
+  }
+  @include e("info") {
+    text-align: center;
+    margin: 1em 0;
+    @include e("name") {
+      font-family: $font-family-name;
+      font-size: 1.2em;
+      color: $main-color;
+      text-transform: capitalize;
+      font-weight: 600;
+
+      letter-spacing: 0.025em;
+    }
+    @include e("email") {
+      color: $font-color;
+      font-size: 0.8em;
+    }
+  }
+  @include e("line") {
+    width: 100%;
+    height: 0.05em;
+    background-color: $color-line;
+  }
+  @include e("more") {
+    margin: 0.5em 0;
+    box-sizing: border-box;
+    @include e("column") {
+      float: left;
+      width: 50%;
+      @include e("holder") {
+        padding: 0.5em 1em 0.5em 1.5em;
+        @include e("title") {
+          font-size: 0.85em;
+          color: $main-color;
+          margin-bottom: 0.2em;
+        }
+        @include e("content") {
+          font-size: 0.8em;
+          color: $font-color;
+          letter-spacing: 0.05em;
+        }
+      }
+    }
+    &::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  }
+  @include e("links") {
+    text-align: center;
+    margin-top: 0.8em;
+    a {
+      margin-right: 1.2em;
+      text-decoration: none;
+      color: $main-color;
+      i {
+        font-size: 0.9em;
+      }
+    }
+    a:nth-child(3) {
+      margin-right: 0 !important;
+    }
+  }
+  &:hover {
+    -webkit-box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.2);
+  }
+  &:hover img {
+    //transform: translate(-50%, -50%) scale(1);
+    transform: scale(1);
+  }
+}
