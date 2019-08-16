@@ -12,8 +12,12 @@ $color-icon: lighten($sub-main-color, 15%);
   width: 17em;
   height: 21em;
   margin: 2em 2em;
-  -webkit-box-shadow: 0 0 15px rgba(131, 204, 210, 0.2);
-  box-shadow: 0 0 15px rgba(131, 204, 210, 0.2);
+  -webkit-box-shadow: 0 10px 20px rgba(131, 204, 210, 0.05),
+  0 -1px 5px rgba(131, 204, 210, 0.05),  -3px 0 20px rgba(131, 204, 210, 0.05),
+  3px 0 20px rgba(131, 204, 210, 0.05);
+    box-shadow: 0 10px 20px rgba(131, 204, 210, 0.05),
+    0 -1px 5px rgba(131, 204, 210, 0.05),  -3px 0 20px rgba(131, 204, 210, 0.05),
+    3px 0 20px rgba(131, 204, 210, 0.05);
   @include e("blankTop") { 
     height: 7%;
   }
