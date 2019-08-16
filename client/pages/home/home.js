@@ -23,7 +23,8 @@ import {
   EventHour,
   LatestPost,
   IntroHome2,
-  News2
+  News2,
+  NumberAdmin
 } from "../../components";
 
 class Home extends React.Component {
@@ -118,6 +119,11 @@ class Home extends React.Component {
         comment: { link: "#", quantity: 3 },
         love: { link: "#", quantity: 0 },
         button: "read more"
+      },
+      numberAdmin: {
+        icon: '<i class="fas fa-id-card-alt"></i>',
+        about: "booking",
+        quantity: 184
       }
     };
   }
@@ -161,6 +167,7 @@ class Home extends React.Component {
           <LatestPost latestPost={this.state.latestPost} />
           <IntroHome2 introHome2={this.state.introHome2} />
           <News2 news2={this.state.news2} />
+          <NumberAdmin numberAdmin={this.state.numberAdmin}></NumberAdmin>
         </React.Fragment>
         <Footer />
       </div>
