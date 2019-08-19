@@ -1,4 +1,4 @@
-import { BaseController } from '../baseController'
+import { BaseController } from '../base.controller'
 import { StudentModel, ClassTimeTableModel, StudentTimeTableModel } from '../../models';
 import { studentService, timeTableItemService, classTimeTableService, studentTimeTableService, checkinService } from '../../services';
 

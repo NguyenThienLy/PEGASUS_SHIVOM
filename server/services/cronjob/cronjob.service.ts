@@ -1,6 +1,6 @@
 import * as cron from 'node-cron'
-import { UpdateStatisticClassCronJob  } from './updateStatisticClass.cronjob'
-import { UpdateStatisticStudentCronJob } from './updateStatisticStudent.cronjob'
+import { UpdateStatisticClassCronJob  } from './updateStatisticClass.cronjob.service'
+import { UpdateStatisticStudentCronJob } from './updateStatisticStudent.cronjob.service'
 
 export class CronJobService {
     constructor() {

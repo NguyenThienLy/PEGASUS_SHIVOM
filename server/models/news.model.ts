@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose';
-import { BaseModel } from './base';
+import { BaseModel } from './base.model';
 import { AdminModel, NewCategoryModel } from '.';
-import { SliderModel } from './slider';
+import { SliderModel } from './slider.model';
 
 const Schema = mongoose.Schema;
 
