@@ -1,5 +1,5 @@
 import { CrudService, ICrudOption } from '../services'
-import { BaseController } from './baseController'
+import { BaseController } from './base.controller'
 
 
 export class CrudController<T extends CrudService<any>> extends BaseController  {

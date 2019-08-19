@@ -15,7 +15,8 @@ export default {
         defaultPageSize: 50
     },
     token: {
-        secret: process.env.TOKEN_SECRET
-    },
+        secret: process.env.TOKEN_SECRET,
+        checkinSecret: process.env.CHECKIN_SECRET
+    }
 
 }

@@ -1,4 +1,4 @@
-import { CrudController } from '../crudController'
+import { CrudController } from '../crud.controller'
 import { studentService } from '../../services/index'
 
 

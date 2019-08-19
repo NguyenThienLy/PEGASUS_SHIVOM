@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import { BaseModel } from './base';
+import { BaseModel } from './base.model';
 import { SkillModel } from '.';
 
 const Schema = mongoose.Schema;
