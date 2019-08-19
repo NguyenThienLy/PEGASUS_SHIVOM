@@ -9,18 +9,22 @@ export type TimeTableItemModel = BaseModel & {
     startTime: {
         hour: number
         minute: number
+        number: number
     }
     endTime: {
         hour: number
         minute: number
+        number: number
     }
     startAvailableCheckinTime: {
         hour: number
         minute: number
+        number: number
     }
     endAvailabelCheckinTime: {
         hour: number
         minute: number
+        number: number
     }
     room: string | RoomModel
 }
@@ -32,29 +36,45 @@ const timeTableItemSchema = new Schema({
     startTime: {
         hour: { type: Number },
         minute: { type: Number },
+        number: { type: Number },
     },
     endTime: {
         hour: { type: Number },
         minute: { type: Number },
+        number: { type: Number },
     },
     startAvailableCheckinTime: {
         hour: { type: Number },
         minute: { type: Number },
+        number: { type: Number },
     },
     endAvailabelCheckinTime: {
         hour: { type: Number },
         minute: { type: Number },
+        number: { type: Number },
     },
     room: { type: Schema.Types.ObjectId, ref: "Room" },
     status: { type: String, enum: ["active", "deactive"], default: "active" }
 }, { timestamps: true })
 
-timeTableItemSchema.pre("find", function (next) {
-    const timeTableItem = this as TimeTableItemModel
-    this.startTime = {
 
+timeTableItemSchema.pre('save', function (next) {
+    var timeTableItem = this as TimeTableItemModel
+
+    if (timeTableItem.isModified('startTime')){
+        timeTableItem.startTime.number = timeTableItem.startTime.hour*60 + timeTableItem.startTime.minute
     }
-})
+    if (timeTableItem.isModified('endTime')){
+        timeTableItem.endTime.number = timeTableItem.endTime.hour*60 + timeTableItem.endTime.minute
+    }
+    if (timeTableItem.isModified('startAvailableCheckinTime')){
+        timeTableItem.startAvailableCheckinTime.number = timeTableItem.startAvailableCheckinTime.hour*60 + timeTableItem.startAvailableCheckinTime.minute
+    }
+    if (timeTableItem.isModified('endAvailabelCheckinTime')){
+        timeTableItem.endAvailabelCheckinTime.number = timeTableItem.endAvailabelCheckinTime.hour*60 + timeTableItem.endAvailabelCheckinTime.minute
+    }
+    next()
+});
 
 export let TimeTableItem: mongoose.Model<TimeTableItemModel> = mongoose.model('TimeTableItem', timeTableItemSchema);
 

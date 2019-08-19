@@ -13,50 +13,34 @@ export class WebhookController extends BaseController {
         timestamps: string
     }) {
         const { cardId, timestamps } = params
-        console.log("timetamps: ", timestamps)
-        const checkInAtHours = moment(Number(timestamps)).hours()
-        const checkInAtMinute = moment(Number(timestamps)).minute()
-        const timeAtNumber = checkInAtHours * 60 + checkInAtMinute
-        console.log("time number: ", timeAtNumber)
         const student: StudentModel = await studentService.getItem({
             filter: {
                 cardId: cardId
             }
         })
-        console.log('student: ', student)
-
+        this.checkStudentTimeTable({
+            student,
+            cardId,
+            timestamps
+        })
+        return student
+    }
+    async checkStudentTimeTable(params: {
+        student: StudentModel,
+        cardId: string,
+        timestamps: string
+    }) {
+        const { student, cardId, timestamps } = params
+        const checkInAtHours = moment(Number(timestamps)).hours()
+        const checkInAtMinute = moment(Number(timestamps)).minute()
+        const timeAtNumber = checkInAtHours * 60 + checkInAtMinute
         // Tìm kiếm thời khoá biểu
         const { rows: timeTableItems } = await timeTableItemService.getList({
             filter: {
-                $or: [
-                    {
-
-                        "startAvailableCheckinTime.hour": checkInAtHours,
-                        "startAvailableCheckinTime.minute": { $lte: checkInAtMinute },
-                        "endAvailabelCheckinTime.hour": { $gte: checkInAtHours }
-
-                    },
-                    {
-
-                        "startAvailableCheckinTime.hour": { $lt: checkInAtHours },
-                        "endAvailabelCheckinTime.minute": { $gte: checkInAtMinute },
-                        "endAvailabelCheckinTime.hour": checkInAtHours
-
-                    },
-                    {
-
-                        "startAvailableCheckinTime.hour": checkInAtHours,
-                        "startAvailableCheckinTime.minute": { $lte: checkInAtMinute },
-                        "endAvailabelCheckinTime.minute": { $gte: checkInAtMinute },
-                        "endAvailabelCheckinTime.hour": checkInAtHours
-
-                    }
-                ]
+                'startAvailableCheckinTime.number': { $lte: timeAtNumber },
+                'endAvailabelCheckinTime.number': { $gte: timeAtNumber }
             }
         })
-        console.log("ket thuc")
-        console.log("Time table: ", timeTableItems)
-
         // Tìm kiếm lớp học
         for (const timeTableItem of timeTableItems) {
             try {
@@ -84,7 +68,6 @@ export class WebhookController extends BaseController {
                 console.log("err: ", err)
             }
         }
-
 
     }
 }

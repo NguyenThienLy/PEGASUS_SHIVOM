@@ -27,8 +27,8 @@ export default class WebhookRouter extends BaseRouter {
         ]
     }
     async checkin(req: Request, res: Response) {
-        webhookController.onCheckInEvent(req.checkInPayload)
-        this.onSuccess(res)
+        const result = await webhookController.onCheckInEvent(req.checkInPayload)
+        this.onSuccess(res, result)
     }
 
 }
