@@ -27,6 +27,7 @@ import {
   NumberAdmin,
   ProfileAdmin,
   Table,
+  LineChart,
 } from "../../components";
 
 class Home extends React.Component {
@@ -184,6 +185,7 @@ class Home extends React.Component {
           <NumberAdmin numberAdmin={this.state.numberAdmin} />
           <ProfileAdmin profileAdmin={this.state.profileAdmin}></ProfileAdmin>
           <Table></Table>
+          <LineChart></LineChart>
         </React.Fragment>
         <Footer />
       </div>
