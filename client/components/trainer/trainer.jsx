@@ -6,8 +6,11 @@ export class Trainer extends React.Component {
     super(props);
   }
 
+
   render() {
     const { trainer } = this.props;
+    const widthSize = 120;
+    //style={{width: `${widthSize}px`}}
     return (
       <div className="trainer">
         <div className="trainer__image">
@@ -23,13 +26,13 @@ export class Trainer extends React.Component {
           <div className="trainer__info__name">{trainer.name}</div>
           <div className="trainer__info__other">
             <a href={trainer.facebook}>
-              <i class="fab fa-facebook-f fa-sm" />
+              <i class="fab fa-facebook-f" />
             </a>
             <a href={trainer.twitter}>
-              <i class="fab fa-twitter fa-sm" />
+              <i class="fab fa-twitter" />
             </a>
             <a href={trainer.instagram}>
-              <i class="fab fa-instagram fa-sm" />
+              <i class="fab fa-instagram" />
             </a>
           </div>
         </div>

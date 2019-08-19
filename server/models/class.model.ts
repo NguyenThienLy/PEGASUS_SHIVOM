@@ -25,7 +25,7 @@ const classSchema = new Schema({
     shortDescription: { type: String },
     description: { type: String },
     quantity: { type: Number, default: 0, required: true },
-    teacher: { type: [{ type: Schema.Types.ObjectId, ref: "Teacher" }], default: [] },
+    teacher: { type: Schema.Types.ObjectId, ref: "Teacher" },
     room: { type: Schema.Types.ObjectId, ref: "Room" },
     status: { type: String, enum: ["active", "deactive"], default: "active" }
 }, { timestamps: true })

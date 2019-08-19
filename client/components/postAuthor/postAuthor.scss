@@ -1,0 +1,72 @@
+@import "../../default.scss";
+
+//block-element
+@mixin e($element) {
+    &__#{$element} {
+      @content;
+    }
+  }
+  //block modifier
+  @mixin m($modifier) {
+    &--#{$modifier} {
+      @content;
+    }
+  }
+
+.post-author {
+  width: 35em;
+  height: 11em;
+  margin: 2em 2em;
+  display: flex;
+  justify-content: center;
+  @include e("avatar") {
+    margin: auto;
+    img {
+      width: 9em;
+      height: 9em;
+      border-radius: 50%;
+    }
+  }
+  @include e("info") {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 1.5em;
+    @include e("type") {
+      color: $font-color;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 0.7em;
+      &::before {
+        content: "";
+        height: 1px;
+        width: 10%;
+        margin-right: 3%;
+        background: $main-color;
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+    @include e("name") {
+      font-family: "Noto Serif SC", serif;
+      text-transform: capitalize;
+      font-size: 1.3em;
+      margin: 5px 0 15px 0;
+      a {
+        color: $color-grey;
+        text-decoration: none;
+        transition: 300ms;
+        &:hover {
+          color: $main-color;
+        }
+      }
+    }
+    @include e("description") {
+      font-size: 0.85em;
+      color: $font-color;
+      letter-spacing: 0.025em;
+      word-spacing: 0.05em;
+      line-height: 1.5em;
+    }
+  }
+}

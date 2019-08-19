@@ -1,0 +1,60 @@
+@import "../../default.scss";
+
+//block-element
+@mixin e($element) {
+  &__#{$element} {
+    @content;
+  }
+}
+//block modifier
+@mixin m($modifier) {
+  &--#{$modifier} {
+    @content;
+  }
+}
+
+$font-family-about: "Noto Serif SC", serif;
+$color-icon: rgba(0,163,175,0.7);
+
+.numberAdmin {
+  width: 12em;
+  height: 7em;
+  margin: 3em 3em;
+  border-radius: 5px;
+  background-color: #fff;
+  -webkit-box-shadow: 4px 4px 20px rgba(131, 204, 210, 0.15);
+  box-shadow: 4px 4px 20px rgba(131, 204, 210, 0.15);
+  transition: 300ms;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  @include e("inner") {
+      display: flex;
+      align-items: center;
+    @include e("icon") {
+        color: $color-icon;
+        margin-right: 0.6em;
+        font-size: 2.5em;
+    }
+    @include e("info") {
+        color: $font-color;
+      @include e("about") {
+          font-family: $font-family-about;
+          text-transform: capitalize;
+          font-size: 0.8em;
+          margin-bottom: 0.5em;
+      }
+      @include e("quantity") {
+          font-size: 1.3em;
+          letter-spacing: 0.05em;
+          color: $main-color;
+      }
+    }
+  }
+  &:hover {
+    -webkit-box-shadow: 3px 3px 30px rgba(131, 204, 210, 0.25);
+    box-shadow: 3px 3px 30px rgba(131, 204, 210, 0.25);
+  }
+  
+}

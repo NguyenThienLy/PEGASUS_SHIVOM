@@ -1,39 +1,61 @@
-@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Cormorant:400,700&display=swap');
 @import url("https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap");
-
+@mixin e($element){
+  &__#{$element} {
+      @content;
+  }
+}
+//block modifier
+@mixin m($modifier){
+  &--#{$modifier} {
+      @content;
+  }
+}
 $main-color: #00a3af;
-$sub-main-color: #83CCD2;
-$background-color: #EFF7FC;
-$border-color: #EDF7FC;
-$table-border-color: #e5e5e5;
+$sub-main-color: #83ccd2;
+$background-color: #eff7fc;
+$border-color: #edf7fc;
+$table-border-color: lighten($sub-main-color, 10%); //#e5e5e5;
 
-$font-title: 'Quicksand', sans-serif;
-$font-body: 'Quicksand', sans-serif;
+$font-title: "Quicksand", sans-serif;
+$font-body: "Quicksand", sans-serif;
 $font-size: 16px;
 $font-size-title-item: 1.2em;
-$font-color: rgba(0,0,0,0.6);
+$font-color: rgba(0, 0, 0, 0.6);
 $font-note-color: rgb(187, 184, 184);
 
 $color-grey: #363738;
 
+::-moz-selection {
+  /* Code for Firefox */
+  color: #fff;
+  background: $main-color;
+}
+
+::selection {
+  color: #fff;
+  background: $main-color;
+}
 
 * body {
-	font-family: $font-body;
-	.title,
-	&--title {
-		font-family: $font-title;
-	}
+  font-family: $font-body;
+  .title,
+  &--title {
+    font-family: $font-title;
+  }
 }
+
 .body {
-	margin-top: 120px;
-	margin-left: auto;
-	margin-right: auto;
-	width: 70%;
+  margin-top: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
 }
 
 .my-container {
-	max-width: 1180px;
-	margin: 0px auto;
+  max-width: 1180px;
+  margin: 0px auto;
 }
 
 //#89c3eb
