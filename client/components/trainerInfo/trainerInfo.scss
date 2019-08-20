@@ -1,6 +1,7 @@
 @import "../../default.scss";
 
-$font-family-name: "Noto Serif SC", serif;
+$font-family-name: "Noto Serif SC",
+serif;
 
 .class-trainer {
   width: 40em;
@@ -8,16 +9,28 @@ $font-family-name: "Noto Serif SC", serif;
   display: flex;
   flex-direction: row;
   margin: auto;
+
   @include e("img") {
     width: 45%;
+    overflow: hidden;
+
     img {
+      transform: scale(1.1);
+
       width: 100%;
       height: 100%;
+
+      &:hover {
+        transition: 1s;
+        transform: scale(1);
+      }
     }
   }
+
   @include e("info") {
     width: 55%;
     padding-left: 2em;
+
     @include e("name") {
       font-size: 1.3em;
       color: $main-color;
@@ -26,6 +39,7 @@ $font-family-name: "Noto Serif SC", serif;
       letter-spacing: 0.05em;
       font-weight: 600;
     }
+
     @include e("description") {
       font-size: 0.9em;
       color: $font-color;
@@ -33,17 +47,22 @@ $font-family-name: "Noto Serif SC", serif;
       word-spacing: 0.05em;
       line-height: 1.6em;
     }
+
     @include e("detail") {
       margin-top: 1.6em;
+
       .list-items {
         list-style-type: none;
         padding: 0;
+
         &::first-letter {
           text-transform: capitalize;
         }
+
         @include e("item") {
           display: flex;
           margin: 8px 0;
+
           @include e("name") {
             letter-spacing: 0.05em;
             font-size: 0.9em;
@@ -51,6 +70,7 @@ $font-family-name: "Noto Serif SC", serif;
             width: 40%;
             color: $main-color;
           }
+
           @include e("content") {
             color: $font-color;
             font-size: 0.85em;
