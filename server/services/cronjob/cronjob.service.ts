@@ -1,6 +1,6 @@
 import * as cron from 'node-cron'
-import { UpdateStatisticClassCronJob  } from './updateStatisticClass.cronjob'
-import { UpdateStatisticStudentCronJob } from './updateStatisticStudent.cronjob'
+import { UpdateStatisticClassCronJob  } from './updateStatisticClass.cronjob.service'
+import { UpdateStatisticStudentCronJob } from './updateStatisticStudent.cronjob.service'
 
 export class CronJobService {
     constructor() {
@@ -11,10 +11,12 @@ export class CronJobService {
     // Hàm ghi nhận dữ liệu để thông kê
     async updateStatisticClass() {
         cron.schedule('* * * * *', () => {
-            UpdateStatisticClassCronJob.getInstance().updateStatisticClass();
-        });
+            UpdateStatisticClassCronJob.getInstance().updateStatisticClass()
+        })
 
-        //await UpdateStatisticClassCronJob.getInstance().updateStatisticClass();
+       // await UpdateStatisticClassCronJob.getInstance().updateStatisticClass();
+
+       // await UpdateStatisticClassCronJob.getInstance().updateStatisticClass()
     }
 
     // Hàm ghi nhận dữ liệu để thông kê

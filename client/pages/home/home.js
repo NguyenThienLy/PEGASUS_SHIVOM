@@ -34,6 +34,9 @@ import {
   ProfileAdmin,
   RingingPhone,
   RelatedPost
+  Table,
+  LineChart,
+  PieChart,
 } from "../../components";
 
 class Home extends React.Component {
@@ -187,8 +190,8 @@ class Home extends React.Component {
       <
       div className = "body" >
       <
-      h1 > Trang chủ < /h1> < /
-      div > <
+      h1 > Trang chủ < /h1> <
+      /div> <
       TimeTable / > {
         this.state.trainingClasses.map(trainingClass => {
           return <TrainingClass trainingClass = {
@@ -239,18 +242,17 @@ class Home extends React.Component {
         this.state.news2
       }
       /> <
-      RingingPhone / >
-      <
-      RelatedPost / >
-      <
       NumberAdmin numberAdmin = {
         this.state.numberAdmin
       }
       /> <
       ProfileAdmin profileAdmin = {
         this.state.profileAdmin
-      } > < /ProfileAdmin> < /
-      React.Fragment > <
+      } > < /ProfileAdmin> <
+      Table > < /Table> <
+      LineChart > < /LineChart> <
+      PieChart > < /PieChart>s <
+      /React.Fragment> <
       Footer / >
       <
       /div>

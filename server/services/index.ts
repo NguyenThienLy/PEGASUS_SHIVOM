@@ -1,31 +1,31 @@
 
-import { CrudService, ICrudExecOption, ICrudOption } from './crudService'
-import { UtilService } from './utilService'
-import { ErrorService } from './errorService'
-import { TokenService } from './tokenService'
-import { CronJobService } from './cronjob/cronjobService'
+import { CrudService, ICrudExecOption, ICrudOption } from './crud.service'
+import { UtilService } from './util.service'
+import { ErrorService } from './error.service'
+import { TokenService } from './token.service'
+import { CronJobService } from './cronjob/cronjob.service'
 
-import { BlogService } from './crud/blogService'
-import { NewsService } from './crud/newsService'
-import { AdminService } from './crud/adminService'
-import { CheckinService } from './crud/checkinService'
-import { ClassService } from './crud/classService'
-import { ContactService } from './crud/contactService'
-import { CourseService } from './crud/courseService'
-import { ClassStudentService } from './crud/classStudentService'
-import { NewCategoryService } from './crud/newCategoryService'
-import { PackageService } from './crud/packageService'
-import { SkillService } from './crud/skillService'
-import { TeacherService } from './crud/teacherService'
-import { StudentService } from './crud/studentService'
-import { TimeTableItemService } from './crud/timeTableItemService'
-import { RoomService } from './crud/roomService'
-import { ClassTimeTableService } from './crud/classTimeTableService'
-import { StudentTimeTableService } from './crud/studentTimeTableService'
-import { RankService } from './crud/rankService'
-import { StatisticStudentService } from './crud/statisticStudentService'
-import { StatisticClassService } from './crud/statisticClassService'
-import { SliderService } from './crud/sliderService'
+import { BlogService } from './crud/blog.crud.service'
+import { NewsService } from './crud/news.crud.service'
+import { AdminService } from './crud/admin.crud.service'
+import { CheckinService } from './crud/checkin.crud.service'
+import { ClassService } from './crud/class.crud.service'
+import { ContactService } from './crud/contact.crud.service'
+import { CourseService } from './crud/course.crud.service'
+import { CourseStudentService } from './crud/courseStudent.crud.service'
+import { NewCategoryService } from './crud/newCategory.crud.service'
+import { PackageService } from './crud/package.crud.service'
+import { SkillService } from './crud/skill.crud.service'
+import { TeacherService } from './crud/teacher.crud.service'
+import { StudentService } from './crud/student.crud.service'
+import { TimeTableItemService } from './crud/timeTableItem.crud.service'
+import { RoomService } from './crud/room.crud.service'
+import { ClassTimeTableService } from './crud/classTimeTable.crud.service'
+import { StudentTimeTableService } from './crud/studentTimeTable.crud.service'
+import { RankService } from './crud/rank.crud.service'
+import { StatisticStudentService } from './crud/statisticStudent.crud.service'
+import { StatisticClassService } from './crud/statisticClass.crud.service'
+import { SliderService } from './crud/slider.crud.service'
 
 
 const utilService = new UtilService()
@@ -40,7 +40,7 @@ const checkinService = new CheckinService()
 const classService = new ClassService()
 const contactService = new ContactService()
 const courseService = new CourseService()
-const classStudentService = new ClassStudentService()
+const courseStudentService = new CourseStudentService()
 const newCategoryService = new NewCategoryService()
 const packageService = new PackageService()
 const skillService = new SkillService()
@@ -69,7 +69,7 @@ export {
     classService,
     contactService,
     courseService,
-    classStudentService,
+    courseStudentService,
     newCategoryService,
     packageService,
     skillService,

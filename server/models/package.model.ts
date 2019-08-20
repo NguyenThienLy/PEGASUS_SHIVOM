@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
-import { BaseModel } from './base';
-import { ClassModel } from '.';
+import { BaseModel } from './base.model';
+import { ClassModel, CourseModel } from '.';
 
 const Schema = mongoose.Schema;
 
@@ -16,11 +16,11 @@ export type PackageModel = BaseModel & {
             amount: number
         }
     ]
-    class: string | ClassModel
+    course: string | CourseModel
 }
 
 const packageSchema = new Schema({
-    class: { type: Schema.Types.ObjectId, ref: "Class", required: true },
+    course: { type: Schema.Types.ObjectId, ref: "Course", required: true },
     name: { type: String },
     monthAmount: { type: Number },
     type: { type: String },

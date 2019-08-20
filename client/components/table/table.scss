@@ -1,0 +1,133 @@
+@import "../../default.scss";
+
+//block-element
+@mixin e($element) {
+  &__#{$element} {
+    @content;
+  }
+}
+//block modifier
+@mixin m($modifier) {
+  &--#{$modifier} {
+    @content;
+  }
+}
+
+$font-family-th: "Noto Serif SC", serif;
+$hover-color: lighten($sub-main-color, 30%);
+
+.table {
+  margin: 2em 2em;
+  border-radius: 5px;
+  background-color: #fff;
+  -webkit-box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  @include e("title") {
+    position: absolute;
+    top: -0.8em;
+    left: 0.8em;
+    display: flex;
+    align-items: flex-end;
+    @include e("icon") {
+      background-color: $main-color;
+      border-radius: 5px;
+      box-shadow: 1px 1px 5px rgba(0, 163, 175, 0.5);
+      box-shadow: 1px 1px 5px rgba(0, 163, 175, 0.5);
+      i {
+        padding: 1em 1.1em;
+        color: #fff;
+        font-size: 1.1em;
+      }
+    }
+    @include e("content") {
+      margin-left: 1.5em;
+      margin-bottom: 0.3em;
+    }
+  }
+  @include e("content") {
+    padding: 3em 0 2em;
+    width: 95%;
+    margin: auto;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      tr {
+        border-bottom: 1px solid $table-border-color;
+        transition: 200ms;
+        &:last-child {
+          border-bottom: none;
+        }
+        &:hover {
+          background-color: $hover-color;
+        }
+      }
+      th,
+      td {
+        padding: 1em;
+        text-align: left;
+      }
+      th {
+        font-weight: normal;
+        font-size: 0.9em;
+        font-family: $font-family-th;
+      }
+      td {
+        font-size: 0.8em;
+      }
+    }
+    @include e("center") {
+      text-align: center !important;
+    }
+    @include e("right") {
+      text-align: right !important;
+    }
+    @include e("btn") {
+      margin-right: 0.5em;
+      border: 0;
+      outline: 0;
+      padding: 0;
+      color: #fff;
+      border-radius: 5px;
+      padding: 0.6em;
+      transition: all 200ms ease-in;
+      cursor: pointer;
+      @include m("primary") {
+        background: $main-color;
+        box-shadow: 1px 1px 2px 0 rgba(0, 163, 175, 0.5);
+        &:hover {
+          background: darken($main-color, 5%);
+        }
+        &:active {
+          background: $main-color;
+          box-shadow: 1px 1px 5px 0 rgba(0, 163, 175, 0.3);
+        }
+        i {
+          margin: 0 0.3em;
+        }
+      }
+      @include m("success") {
+        background: #4caf50;
+        box-shadow: 1px 1px 2px 0 rgba(76, 175, 80, 0.5);
+        &:hover {
+          background: darken(#4caf50, 5%);
+        }
+        &:active {
+          background: #4caf50;
+          box-shadow: 1px 1px 5px 0 rgba(76, 175, 80, 0.3);
+        }
+      }
+      @include m("warning") {
+        background: #f44336;
+        box-shadow: 1px 1px 2px 0 rgba(244, 67, 54, 0.5);
+        &:hover {
+          background: darken(#f44336, 5%);
+        }
+        &:active {
+          background: #f44336;
+          box-shadow: 1px 1px 5px 0 rgba(244, 67, 54, 0.3);
+        }
+      }
+    }
+  }
+}

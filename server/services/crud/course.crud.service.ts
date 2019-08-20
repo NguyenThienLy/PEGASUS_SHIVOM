@@ -1,4 +1,4 @@
-import { CrudService } from '../crudService'
+import { CrudService } from '../crud.service'
 import { Course, CourseModel } from '../../models'
 
 export class CourseService extends CrudService<typeof Course> {

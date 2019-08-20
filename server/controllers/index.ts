@@ -1,29 +1,31 @@
 
-import { CrudController } from './crudController';
+import { CrudController } from './crud.controller';
+import { WebhookController } from './webhook/webhook.controller'
 
-import { BlogController } from './crud/blogController'
-import { NewsController } from './crud/newsController'
-import { AdminController } from './crud/adminController'
-import { CheckinController } from './crud/checkinController'
-import { ClassController } from './crud/classController'
-import { ContactController } from './crud/contactController'
-import { CourseController } from './crud/courseController'
-import { ClassStudentController } from './crud/classStudentController'
-import { NewCategoryController } from './crud/newCategoryController'
-import { PackageController } from './crud/packageController'
-import { SkillController } from './crud/skillController'
-import { TeacherController } from './crud/teacherController'
-import { StudentController } from './crud/studentController'
-import { TimeTableItemController } from './crud/timeTableItemController'
+import { BlogController } from './crud/blog.controller'
+import { NewsController } from './crud/news.controller'
+import { AdminController } from './crud/admin.controller'
+import { CheckinController } from './crud/checkin.controller'
+import { ClassController } from './crud/class.controller'
+import { ContactController } from './crud/contact.controller'
+import { CourseController } from './crud/course.controller'
+import { CourseStudentController } from './crud/courseStudent.controller'
+import { NewCategoryController } from './crud/newCategory.controller'
+import { PackageController } from './crud/package.controller'
+import { SkillController } from './crud/skill.controller'
+import { TeacherController } from './crud/teacher.controller'
+import { StudentController } from './crud/student.controller'
+import { TimeTableItemController } from './crud/timeTableItem.controller'
 
-import { RoomController } from './crud/roomController'
-import { ClassTimeTableController } from './crud/classTimeTableController'
-import { StudentTimeTableController } from './crud/studentTimeTableController'
-import { RankController } from './crud/rankController'
-import { StatisticStudentController } from './crud/statisticStudentController'
-import { StatisticClassController } from './crud/statisticClassController'
-import { SliderController } from './crud/sliderController'
+import { RoomController } from './crud/room.controller'
+import { ClassTimeTableController } from './crud/classTimeTable.controller'
+import { StudentTimeTableController } from './crud/studentTimeTable.controller'
+import { RankController } from './crud/rank.controller'
+import { StatisticStudentController } from './crud/statisticStudent.controller'
+import { StatisticClassController } from './crud/statisticClass.controller'
+import { SliderController } from './crud/slider.controller'
 
+const webhookController = new WebhookController()
 
 
 const blogController = new BlogController()
@@ -33,7 +35,7 @@ const checkinController = new CheckinController()
 const classController = new ClassController()
 const contactController = new ContactController()
 const courseController = new CourseController()
-const classStudentController = new ClassStudentController()
+const courseStudentController = new CourseStudentController()
 const newCategoryController = new NewCategoryController()
 const packageController = new PackageController()
 const skillController = new SkillController()
@@ -52,6 +54,8 @@ const sliderController = new SliderController()
 export {
     CrudController,
 
+    webhookController,
+
     blogController,
     newsController,
     adminController,
@@ -59,7 +63,7 @@ export {
     classController,
     contactController,
     courseController,
-    classStudentController,
+    courseStudentController,
     newCategoryController,
     packageController,
     skillController,

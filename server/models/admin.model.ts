@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import { BaseModel } from './base';
+import { BaseModel } from './base.model';
 import * as bcrypt from 'bcryptjs'
 
 const SALT_WORK_FACTOR = 10
