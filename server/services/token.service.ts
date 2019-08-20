@@ -31,4 +31,10 @@ export class TokenService {
         const expiredAt = moment().add(1, "days").format()
         return jwt.encode({ role: "student", _id: payload._id, expiredAt }, secret)
     }
+    async getCheckinToken(payload: {
+        cardId: string
+        timestamps: string
+    }) {
+        return jwt.encode(payload, config.token.checkinSecret)
+    }
 }

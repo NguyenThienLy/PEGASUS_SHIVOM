@@ -1,4 +1,4 @@
-import { classService, studentService, checkinService } from '../index'
+import { classService, studentService, checkinService, courseService } from '../index'
 import * as moment from 'moment'
 
 export class UpdateStatisticClassCronJob {
@@ -30,13 +30,17 @@ export class UpdateStatisticClassCronJob {
         //Góm nhóm học viên theo type [đúng, trễ, vắng, thừa]
         // on_time, late, redundant
         await listCheckin.forEach(function (course) {
+            // Lấy id của khóa học đó
             const idCourse = course._id;
 
-            console.log(course.students)
+            // Lấy ra danh sách học viên của khóa học đó
+            //const listStudentOfCourse = 
 
-            for (const student of course.students) {
-                console.log(student.type)
-            }
+            // Gom nhóm các học viên của một khóa học theo type
+
+            // for (const student of course.students) {
+            //     const typeStudent = student.type;
+            // }
         })
     }
 }

@@ -36,7 +36,8 @@ class Server {
 
     async initDB() {
         mongoose.connect(config.database.mongo, {
-            useNewUrlParser: true
+            useNewUrlParser: true,
+            useFindAndModify: false
         });
     }
 

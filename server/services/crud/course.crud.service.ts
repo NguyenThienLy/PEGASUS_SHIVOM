@@ -1,5 +1,5 @@
 import { CrudService } from '../crud.service'
-import { Course, CourseModel } from '../../models/index.model'
+import { Course, CourseModel } from '../../models'
 
 export class CourseService extends CrudService<typeof Course> {
     constructor(){

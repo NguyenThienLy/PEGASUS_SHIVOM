@@ -12,7 +12,7 @@ import { CheckinService } from './crud/checkin.crud.service'
 import { ClassService } from './crud/class.crud.service'
 import { ContactService } from './crud/contact.crud.service'
 import { CourseService } from './crud/course.crud.service'
-import { ClassStudentService } from './crud/classStudent.crud.service'
+import { CourseStudentService } from './crud/courseStudent.crud.service'
 import { NewCategoryService } from './crud/newCategory.crud.service'
 import { PackageService } from './crud/package.crud.service'
 import { SkillService } from './crud/skill.crud.service'
@@ -40,7 +40,7 @@ const checkinService = new CheckinService()
 const classService = new ClassService()
 const contactService = new ContactService()
 const courseService = new CourseService()
-const classStudentService = new ClassStudentService()
+const courseStudentService = new CourseStudentService()
 const newCategoryService = new NewCategoryService()
 const packageService = new PackageService()
 const skillService = new SkillService()
@@ -69,7 +69,7 @@ export {
     classService,
     contactService,
     courseService,
-    classStudentService,
+    courseStudentService,
     newCategoryService,
     packageService,
     skillService,

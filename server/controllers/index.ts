@@ -1,5 +1,6 @@
 
 import { CrudController } from './crud.controller';
+import { WebhookController } from './webhook/webhook.controller'
 
 import { BlogController } from './crud/blog.controller'
 import { NewsController } from './crud/news.controller'
@@ -8,7 +9,7 @@ import { CheckinController } from './crud/checkin.controller'
 import { ClassController } from './crud/class.controller'
 import { ContactController } from './crud/contact.controller'
 import { CourseController } from './crud/course.controller'
-import { ClassStudentController } from './crud/classStudent.controller'
+import { CourseStudentController } from './crud/courseStudent.controller'
 import { NewCategoryController } from './crud/newCategory.controller'
 import { PackageController } from './crud/package.controller'
 import { SkillController } from './crud/skill.controller'
@@ -24,6 +25,7 @@ import { StatisticStudentController } from './crud/statisticStudent.controller'
 import { StatisticClassController } from './crud/statisticClass.controller'
 import { SliderController } from './crud/slider.controller'
 
+const webhookController = new WebhookController()
 
 
 const blogController = new BlogController()
@@ -33,7 +35,7 @@ const checkinController = new CheckinController()
 const classController = new ClassController()
 const contactController = new ContactController()
 const courseController = new CourseController()
-const classStudentController = new ClassStudentController()
+const courseStudentController = new CourseStudentController()
 const newCategoryController = new NewCategoryController()
 const packageController = new PackageController()
 const skillController = new SkillController()
@@ -52,6 +54,8 @@ const sliderController = new SliderController()
 export {
     CrudController,
 
+    webhookController,
+
     blogController,
     newsController,
     adminController,
@@ -59,7 +63,7 @@ export {
     classController,
     contactController,
     courseController,
-    classStudentController,
+    courseStudentController,
     newCategoryController,
     packageController,
     skillController,

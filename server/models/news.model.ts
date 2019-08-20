@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 import { BaseModel } from './base.model';
-import { AdminModel, NewCategoryModel } from './index.model';
+import { AdminModel, NewCategoryModel } from '.';
 import { SliderModel } from './slider.model';
 
 const Schema = mongoose.Schema;

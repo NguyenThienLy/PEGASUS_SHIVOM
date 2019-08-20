@@ -1,5 +1,5 @@
 import { CrudService } from '../crud.service'
-import { StudentTimeTable, StudentTimeTableModel } from '../../models/index.model'
+import { StudentTimeTable, StudentTimeTableModel } from '../../models'
 
 export class StudentTimeTableService extends CrudService<typeof StudentTimeTable> {
     constructor(){
