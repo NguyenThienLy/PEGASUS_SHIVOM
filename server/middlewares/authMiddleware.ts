@@ -12,21 +12,16 @@ export class AuthInfoMiddleware extends BaseMiddleware {
             const token = req.headers["x-token"]
             if (!token) throw errorService.auth.unauthonized()
             const tokenPayload = await tokenService.decode(token, config.token.secret)
-            if (providers.indexOf("admin") !== -1) {
-                if (tokenPayload.role === "admin") {
-                    const admin: AdminModel = await adminService.getItem({ filter: { _id: tokenPayload._id } })
-                    req.authInfo = { admin }
-                } else {
-                    throw errorService.auth.permissionDenied()
-                }
+            if (providers.indexOf(tokenPayload.role) !== -1 && tokenPayload.role === "admin") {
+                const admin: AdminModel = await adminService.getItem({ filter: { _id: tokenPayload._id } })
+                req.authInfo = { admin }
             }
-            if (providers.indexOf("student")) {
-                if (tokenPayload.role === "student") {
-                    const student: StudentModel = await studentService.getItem({ filter: { _id: tokenPayload._id } })
-                    req.authInfo = { student }
-                } else {
-                    throw errorService.auth.permissionDenied()
-                }
+            else if (providers.indexOf(tokenPayload.role) !== -1 && tokenPayload.role === "student") {
+                const student: StudentModel = await studentService.getItem({ filter: { _id: tokenPayload._id } })
+                req.authInfo = { student }
+            }
+            else {
+                throw errorService.auth.permissionDenied()
             }
             next()
         } catch (err) {
