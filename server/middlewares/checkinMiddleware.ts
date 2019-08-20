@@ -10,6 +10,7 @@ export class CheckInMiddleware extends BaseMiddleware {
     async use(req: Request, res: Response, next: express.NextFunction, providers: string[]) {
         try {
             const token = req.headers["x-token"]
+            if (!token) throw errorService.auth.permissionDenied()
             const payload = await tokenService.decode(token, config.token.checkinSecret)
             req.checkInPayload = {
                 cardId: payload.cardId,
