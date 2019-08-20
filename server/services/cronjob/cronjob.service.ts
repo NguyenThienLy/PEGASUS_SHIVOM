@@ -11,10 +11,12 @@ export class CronJobService {
     // Hàm ghi nhận dữ liệu để thông kê
     async updateStatisticClass() {
         cron.schedule('* * * * *', () => {
-            UpdateStatisticClassCronJob.getInstance().updateStatisticClass();
-        });
+            UpdateStatisticClassCronJob.getInstance().updateStatisticClass()
+        })
 
-        //await UpdateStatisticClassCronJob.getInstance().updateStatisticClass();
+       // await UpdateStatisticClassCronJob.getInstance().updateStatisticClass();
+
+       // await UpdateStatisticClassCronJob.getInstance().updateStatisticClass()
     }
 
     // Hàm ghi nhận dữ liệu để thông kê

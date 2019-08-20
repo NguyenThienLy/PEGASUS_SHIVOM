@@ -3,7 +3,7 @@ import { Request, Response } from '../routers/base'
 import { errorService, tokenService, adminService, studentService } from '../services'
 import { BaseMiddleware } from './baseMiddleware'
 import { config } from '../config';
-import { AdminModel, StudentModel } from '../models';
+import { AdminModel, StudentModel } from '../models/index.model';
 
 export class AuthInfoMiddleware extends BaseMiddleware {
 

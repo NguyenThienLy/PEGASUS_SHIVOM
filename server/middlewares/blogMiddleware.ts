@@ -2,7 +2,7 @@ import * as express from 'express'
 import { Request, Response } from '../routers/base'
 import { errorService, tokenService, blogService } from '../services'
 import { BaseMiddleware } from './baseMiddleware'
-import { Blog, BlogModel } from '../models'
+import { Blog, BlogModel } from '../models/index.model'
 
 export class BookingInfoMiddleware extends BaseMiddleware {
 

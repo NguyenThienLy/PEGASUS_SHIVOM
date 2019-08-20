@@ -3,7 +3,7 @@ import * as _ from 'lodash';
 import { utilService } from '../services/index';
 import { ICrudExecOption, ICrudOption, errorService } from '../services'
 import { config } from '../config'
-import {  } from '../models'
+import {  } from '../models/index.model'
 
 export interface Request extends express.Request {
     queryInfo?:ICrudOption
