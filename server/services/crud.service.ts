@@ -1,4 +1,4 @@
-import { Model, BaseModel, DocumentQuery } from '../models/index.model'
+import { Model, BaseModel, DocumentQuery } from '../models'
 import { errorService } from '.';
 import { config } from '../config';
 import { BaseError } from './error/base';
