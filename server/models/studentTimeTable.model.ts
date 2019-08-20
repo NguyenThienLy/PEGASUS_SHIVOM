@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
-import { BaseModel } from './base';
-import { ClassModel, CourseModel, TimeTableItemModel, StudentModel } from '.';
+import { BaseModel } from './base.model';
+import { ClassModel, CourseModel, TimeTableItemModel, StudentModel } from './index.model';
 
 const Schema = mongoose.Schema;
 

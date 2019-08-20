@@ -1,5 +1,5 @@
-import { CrudService } from '../crudService'
-import { StatisticStudent, StatisticStudentModel } from '../../models'
+import { CrudService } from '../crud.service'
+import { StatisticStudent, StatisticStudentModel } from '../../models/index.model'
 
 export class StatisticStudentService extends CrudService<typeof StatisticStudent> {
     constructor(){

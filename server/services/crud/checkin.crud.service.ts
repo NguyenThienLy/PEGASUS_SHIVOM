@@ -1,5 +1,5 @@
-import { CrudService } from '../crudService'
-import { Checkin, CheckinModel } from '../../models'
+import { CrudService } from '../crud.service'
+import { Checkin, CheckinModel } from '../../models/index.model'
 
 export class CheckinService extends CrudService<typeof Checkin> {
     constructor(){
