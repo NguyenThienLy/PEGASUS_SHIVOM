@@ -30,10 +30,11 @@ export default class TimeTableItemRouter extends CrudRouter<typeof timeTableItem
     }
     updateMiddlewares(): any[] {
         return [
-            authInfoMiddleware.run(["admin"]),
+            // authInfoMiddleware.run(["admin"]),
             queryInfoMiddleware.run()
         ]
     }
+    
     deleteMiddlewares(): any[] {
         return [
             authInfoMiddleware.run(["admin"]),

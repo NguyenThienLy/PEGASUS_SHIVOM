@@ -1,25 +1,23 @@
 import * as express from 'express';
 import { CrudRouter } from '../crud';
 import { Request, Response } from '../base'
-import { classStudentController } from '../../controllers'
+import { courseStudentController } from '../../controllers'
 import { queryInfoMiddleware, authInfoMiddleware, blockMiddleware } from '../../middlewares'
 
-export default class ClassStudentRouter extends CrudRouter<typeof classStudentController> {
+export default class CourseStudentRouter extends CrudRouter<typeof courseStudentController> {
     constructor() {
-        super(classStudentController);
+        super(courseStudentController);
     }
     customRouter() {
 
     }
     getListMiddlewares(): any[] {
         return [
-            authInfoMiddleware.run(["admin"]),
             queryInfoMiddleware.run()
         ]
     }
     getItemMiddlewares(): any[] {
         return [
-            authInfoMiddleware.run(["admin", "student"]),
             queryInfoMiddleware.run()
         ]
     }

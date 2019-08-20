@@ -60,7 +60,6 @@ const timeTableItemSchema = new Schema({
 
 timeTableItemSchema.pre('save', function (next) {
     var timeTableItem = this as TimeTableItemModel
-
     if (timeTableItem.isModified('startTime')){
         timeTableItem.startTime.number = timeTableItem.startTime.hour*60 + timeTableItem.startTime.minute
     }
