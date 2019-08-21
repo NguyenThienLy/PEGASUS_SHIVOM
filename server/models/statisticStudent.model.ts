@@ -13,21 +13,21 @@ export type StatisticStudentModel = BaseModel & {
         year: number
     },
     absent: {
-        class: string
+        course: string
         time: string
     }[]
-    correct: {
-        class: string
+    onTime: {
+        course: string
         time: string
     }[]
-    wrong: {
-        class: string
+    redundant: {
+        course: string
         time: string
-    }
-    delay: {
-        class: string
+    }[]
+    late: {
+        course: string
         time: string
-    }
+    }[]
 }
 
 const statisticStudentSchema = new Schema({
@@ -39,9 +39,9 @@ const statisticStudentSchema = new Schema({
         year: { type: Number }
     },
     absent: { type: [{ type: Schema.Types.Mixed }], default: [] },
-    correct: { type: [{ type: Schema.Types.Mixed }], default: [] },
-    wrong: { type: [{ type: Schema.Types.Mixed }], default: [] },
-    delay: { type: [{ type: Schema.Types.Mixed }], default: [] },
+    onTime: { type: [{ type: Schema.Types.Mixed }], default: [] },
+    redundant: { type: [{ type: Schema.Types.Mixed }], default: [] },
+    late: { type: [{ type: Schema.Types.Mixed }], default: [] },
     status: { type: String, enum: ["active", "deactive"], default: "active" }
 }, { timestamps: true })
 
