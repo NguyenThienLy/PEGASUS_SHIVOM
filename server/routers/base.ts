@@ -3,11 +3,11 @@ import * as _ from 'lodash';
 import { utilService } from '../services/index';
 import { ICrudExecOption, ICrudOption, errorService } from '../services'
 import { config } from '../config'
-import {  } from '../models'
+import { } from '../models'
 
 export interface Request extends express.Request {
-    queryInfo?:ICrudOption
- 
+    queryInfo?: ICrudOption
+
     [x: string]: any
     firebaseUserInfo: any
 }
@@ -32,14 +32,14 @@ export class BaseRouter {
     onError(res: Response, error: any) {
         const options = error.options || error.errorInfo;
         if (!options) {
-          console.log("UNKNOW ERROR", error)
-         
-          const err = errorService.router.somethingWentWrong()
-          res.status(err.options.code).json(err.options)
+            console.log("UNKNOW ERROR", error)
+
+            const err = errorService.router.somethingWentWrong()
+            res.status(err.options.code).json(err.options)
         } else {
-          res.status(_.get(options.code) || 500).json(options)
+            res.status(_.get(options.code) || 500).json(options)
         }
-      }
+    }
     onSuccess(res: Response, object: any = {}, extras: any = {}) {
         object = object || {}
         if (Object.keys(object).length === 0) {
@@ -75,16 +75,16 @@ export class BaseRouter {
         })
     }
     async validateJSON(body: any, schema: IValidateSchema) {
-        const validate = await utilService.validateJSON(schema, body)
+        const validate = utilService.validateJSON(schema, body)
         if (!validate.isValid) {
-            console.log("Body isValid");
+            throw errorService.router.requestDataInvalid(validate.message);
         }
     }
     route(func: (req: Request, rep: Response) => Promise<any>) {
         return (req: Request, res: Response) => func
-          .bind(this)(req, res)
-          .catch((error: any) => {
-            this.onError(res, error)
-          })
+            .bind(this)(req, res)
+            .catch((error: any) => {
+                this.onError(res, error)
+            })
     }
 }

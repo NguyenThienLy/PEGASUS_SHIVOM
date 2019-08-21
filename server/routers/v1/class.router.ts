@@ -9,7 +9,67 @@ export default class ClassRouter extends CrudRouter<typeof classController> {
         super(classController);
     }
     customRouter() {
-        
+        this.router.get("/:_id/timeTable", this.getTimeTableMiddlewares(), this.route(this.getTimeTable))
+        this.router.post("/:_id/timeTable", this.addTimeTableItemForClassMiddlewares(), this.route(this.addTimeTableItemForClass))
+        this.router.delete("/:_id/timeTable/:timeTableItemId", this.deleteTimeTableItemForClassMiddlewares(), this.route(this.deleteTimeTableItemForClass))
+    }
+    getTimeTableMiddlewares(): any[] {
+        return [
+            queryInfoMiddleware.run()
+        ]
+    }
+    async getTimeTable(req: Request, res: Response) {
+        const result = await this.controller.getTimeTable({
+            classId: req.params._id
+        }, req.queryInfo)
+        this.onSuccess(res, result)
+    }
+    deleteTimeTableItemForClassMiddlewares(): any[] {
+        return [
+            authInfoMiddleware.run(["admin"])
+        ]
+    }
+    async deleteTimeTableItemForClass(req: Request, res: Response) {
+
+        const result = await this.controller.deleteTimeTableItem({
+            classId: req.params._id,
+            timeTableItemId: req.params.timeTableItemId
+        })
+        this.onSuccess(res, result)
+    }
+    addTimeTableItemForClassMiddlewares(): any[] {
+        return [
+            authInfoMiddleware.run(["admin"])
+        ]
+    }
+    async addTimeTableItemForClass(req: Request, res: Response) {
+        const timeSchema = {
+            type: "object",
+            properties: {
+                hour: { type: "number", min: 0, max: 23 },
+                minute: { type: "number", min: 0, max: 59 }
+            },
+            required: ["hour", "minute"]
+        }
+        await this.validateJSON(req.body, {
+            type: "object",
+            properties: {
+                startTime: timeSchema,
+                endTime: timeSchema,
+                startAvailableCheckinTime: timeSchema,
+                endAvailableCheckinTime: timeSchema,
+                dayOfWeek: {
+                    type: "string", enum: ["monday", "tuesday", "webnesday", "thursday", "friday", "saturday", "sunday"]
+                },
+                room: { type: "string" }
+            },
+            required: ["startTime", "endTime", "startAvailableCheckinTime", "dayOfWeek", "room"]
+        })
+        const result = await this.controller.addTimeTableItem({
+            classId: req.params._id,
+            timeTableItem: req.body
+        })
+        this.onSuccess(res, result)
     }
     getListMiddlewares(): any[] {
         return [

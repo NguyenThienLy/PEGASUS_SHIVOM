@@ -1,15 +1,15 @@
 import { BaseError } from './error/base'
-import { CompanyErrorService } from './error/companyErrorService'
-import { CustomerErrorService} from './error/customerErrorService'
+import { StudentErrorService } from './error/studentErrorService'
+import { CustomerErrorService } from './error/customerErrorService'
 import { FirebaseErrorService } from './error/firebaseErrorService'
 import { TicketErrorService } from './error/ticketErrorService'
 import { RouterErrorService } from './error/routerErrorService'
-import { AuthErrorService} from './error/authErrorService'
+import { AuthErrorService } from './error/authErrorService'
 import { DatabaseErrorService } from './error/databaseErrorService'
 
 export class ErrorService {
-    constructor(){
-        this.company = new CompanyErrorService()
+    constructor() {
+        this.student = new StudentErrorService()
         this.customer = new CustomerErrorService()
         this.firebase = new FirebaseErrorService()
         this.ticket = new TicketErrorService()
@@ -17,7 +17,7 @@ export class ErrorService {
         this.auth = new AuthErrorService()
         this.database = new DatabaseErrorService()
     }
-    company: CompanyErrorService
+    student: StudentErrorService
     customer: CustomerErrorService
     firebase: FirebaseErrorService
     ticket: TicketErrorService
