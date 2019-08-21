@@ -228,6 +228,9 @@ class Home extends React.Component {
           <Table > </Table>
           <LineChart > </LineChart>
           <PieChart > </PieChart>
+          <RingingPhone></RingingPhone>
+          <RelatedPost></RelatedPost>
+          <Feedback></Feedback>
           <ImageShow></ImageShow>
         </React.Fragment>
         <Footer />

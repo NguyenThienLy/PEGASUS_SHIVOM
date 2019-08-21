@@ -11,6 +11,10 @@
   -webkit-box-shadow: 0 0 15px rgba(131, 204, 210, 0.2);
   box-shadow: 0 0 15px rgba(131, 204, 210, 0.2);
   padding: 3em 0;
+  background-image: url("https://images.squarespace-cdn.com/content/v1/523c8cd7e4b0cc256b0f8746/1503656828390-8AVA7X34APK0YB393UF5/ke17ZwdGBToddI8pDm48kMWB_b-n6a50YzIZsjMYkmt7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0hveExjbswnAj1UrRPScjfAsZste21sIDg4hzF3IoAd0gcytUQrJ8Q9Y5sp8n9LlOw/minea-berg-design-yoga-illustration.jpg?format=1000w");
+  background-position: -112% 9px;
+  background-repeat: no-repeat;
+
   @include e("form") {
     margin: 0 2em;
     display: flex;
@@ -18,6 +22,7 @@
     flex-basis: 50%;
     align-items: center;
     justify-content: center;
+
     @include e("input") {
       width: 70%;
       background: #fff; //#fcfcfc;
@@ -29,6 +34,7 @@
       padding: 1em 0.875em;
       margin: 2px;
     }
+
     @include e("select-box") {
       width: 70%;
       background: #fff; //#fcfcfc;
@@ -39,6 +45,7 @@
       padding: 1em 0.875em;
       margin: 2px;
       outline: 0;
+
       @include e("select") {
         width: 100%;
         border: none;
@@ -49,6 +56,7 @@
         color: inherit;
       }
     }
+
     @include e("btn") {
       text-transform: uppercase;
       display: inline-block;
@@ -60,26 +68,31 @@
       padding: 0;
       transition: all 200ms ease-in;
       cursor: pointer;
+
       @include m("primary") {
         background: $main-color;
         color: #fff;
         border-radius: 2px;
         padding: 12px 36px;
         margin-top: 10px;
+
         &:hover {
           background: darken($main-color, 4%);
         }
+
         &:active {
           background: $main-color;
           // box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, .2);
-          box-shadow: 2px 2px 20px 0 $main-color;                           
+          box-shadow: 2px 2px 20px 0 $main-color;
         }
       }
     }
   }
+
   @include e("sub-info") {
     flex-basis: 50%;
     margin: 0 2em;
+
     // display: flex;
     // flex-direction: column;
     // justify-content: flex-start;
@@ -88,6 +101,7 @@
       text-transform: uppercase;
       font-size: 0.9em;
       letter-spacing: 0.15em;
+
       &::before {
         content: "";
         height: 1px;
@@ -98,6 +112,7 @@
         vertical-align: middle;
       }
     }
+
     @include e("title") {
       font-family: "Noto Serif SC", serif;
       letter-spacing: 0.05em;
@@ -106,6 +121,7 @@
       font-size: 2.6em;
       margin: 0.2em 0;
     }
+
     @include e("content") {
       letter-spacing: 0.05em;
       word-spacing: 0.025em;
@@ -114,16 +130,20 @@
       margin-bottom: 1.5em;
       font-size: 1.1em;
     }
+
     @include e("contact-info") {
       @include e("item") {
         margin: 1em 0;
+
         a {
           text-decoration: none;
           color: $font-color;
+
           &:hover {
             color: $main-color;
           }
         }
+
         .icon {
           font-size: 1.3em;
           width: 2em;
