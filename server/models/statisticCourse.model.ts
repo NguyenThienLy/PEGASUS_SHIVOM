@@ -1,11 +1,11 @@
 import * as mongoose from 'mongoose';
 import { BaseModel } from './base.model';
-import { ClassModel } from '.';
+import { CourseModel } from '.';
 
 const Schema = mongoose.Schema;
 
-export type StatisticClassModel = BaseModel & {
-    class: string | ClassModel
+export type StatisticCourseModel = BaseModel & {
+    course: string | CourseModel
     type: "week" | "month" | "year"
     time: {
         week: number
@@ -14,12 +14,13 @@ export type StatisticClassModel = BaseModel & {
     },
     totalAbsent: number
     totalStudent: number
-    totalCorrect: number
+    totalOnTime: number
     totalLate: number
+    totalRedundant: number
 }
 
-const statisticClassSchema = new Schema({
-    class: { type: Schema.Types.ObjectId, ref: "Class" },
+const statisticCourseSchema = new Schema({
+    course: { type: Schema.Types.ObjectId, ref: "Course" },
     type: { type: String, enum: ["week", "month", "year"] },
     time: {
         week: { type: Number },
@@ -28,11 +29,12 @@ const statisticClassSchema = new Schema({
     },
     totalAbsent: { type: Number },
     totalStudent: { type: Number },
-    totalCorrect: { type: Number },
+    totalOnTime: { type: Number },
     totalLate: { type: Number },
+    totalRedundant: {type: Number},
     status: { type: String, enum: ["active", "deactive"], default: "active" }
 }, { timestamps: true })
 
-export let StatisticClass: mongoose.Model<StatisticClassModel> = mongoose.model('StatisticClass', statisticClassSchema);
+export let StatisticCourse: mongoose.Model<StatisticCourseModel> = mongoose.model('StatisticCourse', statisticCourseSchema);
 
 

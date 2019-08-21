@@ -22,7 +22,7 @@ import { ClassTimeTableController } from './crud/classTimeTable.controller'
 import { StudentTimeTableController } from './crud/studentTimeTable.controller'
 import { RankController } from './crud/rank.controller'
 import { StatisticStudentController } from './crud/statisticStudent.controller'
-import { StatisticClassController } from './crud/statisticClass.controller'
+import { StatisticCourseController } from './crud/statisticCourse.controller'
 import { SliderController } from './crud/slider.controller'
 
 const webhookController = new WebhookController()
@@ -48,7 +48,7 @@ const classTimeTableController = new ClassTimeTableController()
 const studentTimeTableController = new StudentTimeTableController()
 const rankController = new RankController()
 const statisticStudentController = new StatisticStudentController()
-const statisticClassController = new StatisticClassController()
+const statisticCourseController = new StatisticCourseController()
 const sliderController = new SliderController()
 
 export {
@@ -76,6 +76,6 @@ export {
     studentTimeTableController,
     rankController,
     statisticStudentController,
-    statisticClassController,
+    statisticCourseController,
     sliderController
 }
