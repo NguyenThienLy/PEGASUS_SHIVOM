@@ -9,7 +9,31 @@ export default class StudentRouter extends CrudRouter<typeof studentController> 
         super(studentController);
     }
     customRouter() {
-        
+        this.router.get("/:_id/timeTable", this.getTimeTableOfStudentMiddlewares(), this.route(this.getTimeTableOfStudent))
+        this.router.get("/:_id/timeTable/:courseId", this.getTimeTableOfStudentByCourseMiddlewares(), this.route(this.getTimeTableOfStudentByCourse))
+    }
+    getTimeTableOfStudentByCourseMiddlewares(): any[] {
+        return [
+            queryInfoMiddleware.run()
+        ]
+    }
+    async getTimeTableOfStudentByCourse(req: Request, res: Response) {
+        const result = await this.controller.getTimeTableOfStudentByCourse({
+            studentId: req.params._id,
+            courseId: req.params.courseId
+        }, req.queryInfo)
+        this.onSuccess(res, result)
+    }
+    getTimeTableOfStudentMiddlewares(): any[] {
+        return [
+            queryInfoMiddleware.run()
+        ]
+    }
+    async getTimeTableOfStudent(req: Request, res: Response) {
+        const result = await this.controller.getTimeTableOfStudent({
+            studentId: req.params._id
+        }, req.queryInfo)
+        this.onSuccess(res, result)
     }
     getListMiddlewares(): any[] {
         return [
@@ -47,4 +71,3 @@ export default class StudentRouter extends CrudRouter<typeof studentController> 
     }
 }
 
-                                                             
