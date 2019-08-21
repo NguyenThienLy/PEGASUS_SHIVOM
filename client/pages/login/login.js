@@ -28,7 +28,7 @@ class Login extends React.Component {
     render() {
 
         return (
-            <div>
+            <div className="login-page">
                 <Head>
                     <title>Login</title>
                     <meta name="title" content="Login" />
