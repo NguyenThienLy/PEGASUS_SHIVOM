@@ -62,3 +62,4 @@ export * from "./table/table";
 export * from "./lineChart/lineChart";
 export * from "./pieChart/pieChart";
 export * from "./feedback/feedback";
+export * from "./imageShow/imageShow";

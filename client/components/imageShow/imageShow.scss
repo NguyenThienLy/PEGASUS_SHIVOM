@@ -1,0 +1,76 @@
+@import "../../default.scss";
+
+.image-show {
+    margin: 1em 0px;
+    position: relative;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 350px;
+    grid-template-areas:
+        "img1 img1 img4 img5"
+        "img2 img3 img4 img6";
+
+    @include e("item") {
+        overflow: hidden;
+        margin: 6px;
+
+        &:hover {
+            img {
+                transform: scale(1);
+            }
+        }
+
+        img {
+            transform: scale(1.1);
+            transition: 500ms ease-in;
+        }
+    }
+
+    @include e("img1") {
+        img {
+            height: 350px;
+        }
+
+        grid-area: img1;
+    }
+
+    @include e("img2") {
+        img {
+            height: 350px;
+        }
+
+        grid-area: img2;
+    }
+
+    @include e("img3") {
+        img {
+            height: 350px;
+        }
+
+        grid-area: img3;
+    }
+
+    @include e("img4") {
+        img {
+            height: 700px;
+        }
+
+        grid-area: img4;
+    }
+
+    @include e("img5") {
+        img {
+            height: 350px;
+        }
+
+        grid-area: img5;
+    }
+
+    @include e("img6") {
+        img {
+            height: 350px;
+        }
+
+        grid-area: img6;
+    }
+}
