@@ -2,13 +2,13 @@ import { CrudService, ICrudOption } from '../services'
 import { BaseController } from './base.controller'
 
 
-export class CrudController<T extends CrudService<any>> extends BaseController  {
+export class CrudController<T extends CrudService<any>> extends BaseController {
     service: T;
-    constructor(service :T){
+    constructor(service: T) {
         super();
         this.service = service;
     }
-  
+
     async getList(option?: ICrudOption) {
         return await this.service.getList(option)
     }
@@ -16,7 +16,6 @@ export class CrudController<T extends CrudService<any>> extends BaseController  
         return await this.service.getItem(option)
     }
     async create(params: any, option?: ICrudOption) {
-        console.log("tao du lieu: ", params)
         return await this.service.create(params, option)
     }
     async update(params: any, option?: ICrudOption) {
