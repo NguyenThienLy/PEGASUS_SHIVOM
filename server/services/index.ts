@@ -4,6 +4,7 @@ import { UtilService } from './util.service'
 import { ErrorService } from './error.service'
 import { TokenService } from './token.service'
 import { CronJobService } from './cronjob/cronjob.service'
+import { CacheService } from './cache/cache.service'
 
 import { BlogService } from './crud/blog.crud.service'
 import { NewsService } from './crud/news.crud.service'
@@ -32,6 +33,7 @@ const utilService = new UtilService()
 const errorService = new ErrorService()
 const tokenService = new TokenService()
 const cronJobService = new CronJobService()
+const cacheService = new CacheService()
 
 const blogService = new BlogService()
 const newsService = new NewsService()
@@ -61,6 +63,7 @@ export {
     errorService,
     tokenService,
     cronJobService,
+    cacheService,
 
     blogService,
     newsService,
