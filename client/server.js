@@ -4,7 +4,8 @@ const path = require('path');
 const LRUCache = require('lru-cache')
 
 const ssrCache = new LRUCache({
-	max: 100 * 1024 * 1024, /* cache size will be 100 MB using `return n.length` as length() function */
+	max: 100 * 1024 * 1024,
+	/* cache size will be 100 MB using `return n.length` as length() function */
 	length: function (n, key) {
 		return n.length
 	},
@@ -15,7 +16,11 @@ class Server {
 	constructor() {
 		this.dev = process.env.NODE_ENV === 'production' ? false : true;
 		this.quiet = process.env.NODE_ENV === 'production' ? false : true;
-		this.app = next({ dev: this.dev, dir: './client', quiet: this.quiet });
+		this.app = next({
+			dev: this.dev,
+			dir: './client',
+			quiet: this.quiet
+		});
 		this.handle = this.app.getRequestHandler();
 		this.port = process.env.PORT || 3000;
 		this.server = express();
@@ -23,7 +28,9 @@ class Server {
 		this.init();
 	}
 	async initStatisFolder() {
-		this.server.use(express.static(path.join(__dirname, './assets'), { maxAge: 31557600000 }));
+		this.server.use(express.static(path.join(__dirname, './assets'), {
+			maxAge: 31557600000
+		}));
 	}
 
 	async init() {
@@ -44,13 +51,18 @@ class Server {
 			this.app.render(req, res, '/blog/blog');
 		});
 		this.server.get('/bai-viet/:slug', (req, res) => {
-			this.app.render(req, res, '/post/post', { slug: req.params.slug });
+			this.app.render(req, res, '/post/post', {
+				slug: req.params.slug
+			});
 		});
 		this.server.get('/du-an', (req, res) => {
 			this.app.render(req, res, '/project/project');
 		});
 		this.server.get('/gioi-thieu', (req, res) => {
 			this.app.render(req, res, '/about/about');
+		});
+		this.server.get('/dang-nhap', (req, res) => {
+			this.app.render(req, res, '/login/login');
 		});
 		this.server.get('/lien-he', (req, res) => {
 			this.app.render(req, res, '/contact/contact');
