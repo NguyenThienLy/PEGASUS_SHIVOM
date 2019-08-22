@@ -37,6 +37,7 @@ import {
   Table,
   LineChart,
   PieChart,
+  Sidebar,
   Feedback,
   ImageShow,
 } from "../../components";
@@ -176,16 +177,13 @@ class Home extends React.Component {
             content="Công ty Pegasus" />
           <meta name="description" content="Công ty công nghệ lớn nhất thế giới" />
         </Head>
-        <Header {
-          ...this.props
-        }
-        />
-        <Slider />
         <React.Fragment>
-
-          <div className="body" >
-
-            <h1 > Trang chủ </h1>
+        <Sidebar></Sidebar>
+        <div className="content">
+        <Header {...this.props} />
+        <Slider />
+          <div className="body">
+            <h1>Trang chủ</h1>
           </div>
           <TimeTable /> {
             this.state.trainingClasses.map(trainingClass => {
@@ -201,37 +199,26 @@ class Home extends React.Component {
           } />
           <ContactUs />
           <PostAuthor />
-          <NumberSection /> {
-            this.state.trainers.map(trainer => {
-              return <Trainer trainer={
-                trainer
-              }
-              />;
-            })}
-          <Review review={
-            this.state.review
-          } /> <IntroHome introHome={
-            this.state.introHome
-          } /> <EventHour eventHour={
-            this.state.eventHour
-          } /> <LatestPost latestPost={
-            this.state.latestPost
-          } /> <IntroHome2 introHome2={
-            this.state.introHome2
-          } /> <News2 news2={
-            this.state.news2
-          } /> <NumberAdmin numberAdmin={
-            this.state.numberAdmin
-          } /> <ProfileAdmin profileAdmin={
-            this.state.profileAdmin
-          } > </ProfileAdmin>
-          <Table > </Table>
-          <LineChart > </LineChart>
-          <PieChart > </PieChart>
+          <NumberSection />
+          {this.state.trainers.map(trainer => {
+            return <Trainer trainer={trainer} />;
+          })}
+          <Review review={this.state.review} />
+          <IntroHome introHome={this.state.introHome} />
+          <EventHour eventHour={this.state.eventHour} />
+          <LatestPost latestPost={this.state.latestPost} />
+          <IntroHome2 introHome2={this.state.introHome2} />
+          <News2 news2={this.state.news2} />
+          <NumberAdmin numberAdmin={this.state.numberAdmin} />
+          <ProfileAdmin profileAdmin={this.state.profileAdmin}></ProfileAdmin>
+          <Table></Table>
+          <LineChart></LineChart>
+          <PieChart></PieChart>
           <RingingPhone></RingingPhone>
           <RelatedPost></RelatedPost>
           <Feedback></Feedback>
           <ImageShow></ImageShow>
+          </div>
         </React.Fragment>
         <Footer />
       </div>
