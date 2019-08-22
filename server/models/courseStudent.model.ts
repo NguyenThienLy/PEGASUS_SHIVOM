@@ -16,6 +16,9 @@ export type CourseStudentModel = BaseModel & {
     totalAbsent: number
     bonus: number
     totalAbsentPermitted: number
+    startTime: Date
+    endTime: Date
+    isPayFee: boolean
 }
 
 const courseStudentSchema = new Schema({
@@ -30,6 +33,9 @@ const courseStudentSchema = new Schema({
     totalAbsent: { type: Number, default: 0 },
     totalAbsentPermitted: { type: Number, default: 0 },
     bonus: { type: Number, default: 0 },
+    startTime: { type: Date },
+    endTime: { type: Date },
+    isPayFee: { type: Boolean, default: false },
     status: { type: String, enum: ["active", "deactive"], default: "active" }
 }, { timestamps: true })
 
