@@ -24,6 +24,8 @@ import { RankController } from './crud/rank.controller'
 import { StatisticStudentController } from './crud/statisticStudent.controller'
 import { StatisticClassController } from './crud/statisticClass.controller'
 import { SliderController } from './crud/slider.controller'
+import { FeedbackController } from './crud/feedback.controller'
+import { RegisCourseController } from './crud/regisCourse.controller'
 
 const webhookController = new WebhookController()
 
@@ -50,6 +52,8 @@ const rankController = new RankController()
 const statisticStudentController = new StatisticStudentController()
 const statisticClassController = new StatisticClassController()
 const sliderController = new SliderController()
+const feedbackController = new FeedbackController()
+const regisCourseController = new RegisCourseController()
 
 export {
     CrudController,
@@ -77,5 +81,7 @@ export {
     rankController,
     statisticStudentController,
     statisticClassController,
-    sliderController
+    sliderController,
+    feedbackController,
+    regisCourseController
 }
