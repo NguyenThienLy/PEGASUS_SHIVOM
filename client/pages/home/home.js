@@ -37,7 +37,11 @@ import {
   Table,
   LineChart,
   PieChart,
+  Sidebar,
   Feedback,
+  ImageShow,
+  FeedbackNoti,
+  Activity,
 } from "../../components";
 
 class Home extends React.Component {
@@ -110,17 +114,17 @@ class Home extends React.Component {
           link: "#"
         },
         tags: [{
-            name: "business",
-            link: "#"
-          },
-          {
-            name: "city break",
-            link: "#"
-          },
-          {
-            name: "vacations",
-            link: "#"
-          }
+          name: "business",
+          link: "#"
+        },
+        {
+          name: "city break",
+          link: "#"
+        },
+        {
+          name: "vacations",
+          link: "#"
+        }
         ],
         title: "almond butter fig healthy hair smoothie",
         image: "https://dalia.elated-themes.com/wp-content/uploads/2018/06/nutrition-home-blog-img-5-768x569.jpg",
@@ -164,97 +168,66 @@ class Home extends React.Component {
   }) {
     return {};
   }
-  async componentDidMount() {}
+  async componentDidMount() { }
 
   render() {
-    return ( <
-      div >
-      <
-      Head >
-      <
-      title > Trang chủ < /title> <
-      meta name = "title"
-      content = "Công ty Pegasus" / >
-      <
-      meta name = "description"
-      content = "Công ty công nghệ lớn nhất thế giới" / >
-      <
-      /Head> <
-      Header {
-        ...this.props
-      }
-      /> <
-      Slider / >
-      <
-      React.Fragment >
-
-      <
-      div className = "body" >
-
-      <
-      h1 > Trang chủ < /h1> < /
-      div > <
-      TimeTable / > {
-        this.state.trainingClasses.map(trainingClass => {
-          return <TrainingClass trainingClass = {
-            trainingClass
+    return (
+      <div >
+        <Head>
+          <title> Trang chủ </title>
+          <meta name="title"
+            content="Công ty Pegasus" />
+          <meta name="description" content="Công ty công nghệ lớn nhất thế giới" />
+        </Head>
+        <React.Fragment>
+        <Sidebar></Sidebar>
+        <div className="content">
+        <Header {...this.props} />
+        <Slider />
+          <div className="body">
+            <h1>Trang chủ</h1>
+          </div>
+          <TimeTable /> {
+            this.state.trainingClasses.map(trainingClass => {
+              return <TrainingClass trainingClass={
+                trainingClass
+              }
+              />;
+            })
           }
-          />;
-        })
-      } <
-      TrainerInfo / >
-      <
-      News news = {
-        this.state.news
-      }
-      /> <
-      ContactUs / >
-      <
-      PostAuthor / >
-      <
-      NumberSection / > {
-        this.state.trainers.map(trainer => {
-          return <Trainer trainer = {
-            trainer
-          }
-          />;
-        })
-      } <
-      Review review = {
-        this.state.review
-      }
-      /> <IntroHome introHome={
-      this.state.introHome
-    }
-    /> <EventHour eventHour={
-    this.state.eventHour
+          <TrainerInfo />
+          <News news={
+            this.state.news
+          } />
+          <ContactUs />
+          <PostAuthor />
+          <NumberSection />
+          {this.state.trainers.map(trainer => {
+            return <Trainer trainer={trainer} />;
+          })}
+          <Review review={this.state.review} />
+          <IntroHome introHome={this.state.introHome} />
+          <EventHour eventHour={this.state.eventHour} />
+          <LatestPost latestPost={this.state.latestPost} />
+          <IntroHome2 introHome2={this.state.introHome2} />
+          <News2 news2={this.state.news2} />
+          <NumberAdmin numberAdmin={this.state.numberAdmin} />
+          <ProfileAdmin profileAdmin={this.state.profileAdmin}></ProfileAdmin>
+          <Table></Table>
+          <LineChart></LineChart>
+          <PieChart></PieChart>
+          <RingingPhone></RingingPhone>
+          <RelatedPost></RelatedPost>
+          <Feedback></Feedback>
+          <FeedbackNoti></FeedbackNoti>
+          <Activity></Activity>
+          <ImageShow></ImageShow>
+          </div>
+        </React.Fragment>
+        <Footer />
+      </div>
+    );
   }
-  /> <LatestPost latestPost={
-  this.state.latestPost
-}
-/> <IntroHome2 introHome2={
-this.state.introHome2
-}
-/> <News2 news2={
-this.state.news2
-}
-/> <NumberAdmin numberAdmin={
-this.state.numberAdmin
-}
-/> <ProfileAdmin profileAdmin={
-this.state.profileAdmin
-} > < /ProfileAdmin> <
-Table > < /Table> <
-LineChart > < /LineChart> <
-PieChart > < /PieChart> <
-Feedback / >
-  <
-  /React.Fragment> <
-Footer / >
-  <
-  /div>
-);
-}
 }
 
 const mapStateToProps = state => {
