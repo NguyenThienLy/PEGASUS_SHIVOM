@@ -41,6 +41,7 @@ import {
   Feedback,
   ImageShow,
   FeedbackNoti,
+  Activity,
 } from "../../components";
 
 class Home extends React.Component {
@@ -219,6 +220,7 @@ class Home extends React.Component {
           <RelatedPost></RelatedPost>
           <Feedback></Feedback>
           <FeedbackNoti></FeedbackNoti>
+          <Activity></Activity>
           <ImageShow></ImageShow>
           </div>
         </React.Fragment>
