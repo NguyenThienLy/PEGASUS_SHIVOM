@@ -21,7 +21,7 @@ export type ClassModel = BaseModel & {
 const classSchema = new Schema({
     course: { type: Schema.Types.ObjectId, ref: "Course" },
     name: { type: String, required: true },
-    code: { type: String, unique: true },
+    code: { type: String },
     shortDescription: { type: String },
     description: { type: String },
     quantity: { type: Number, default: 0, required: true },

@@ -9,7 +9,7 @@ import { CheckinController } from './crud/checkin.controller'
 import { ClassController } from './crud/class.controller'
 import { ContactController } from './crud/contact.controller'
 import { CourseController } from './crud/course.controller'
-import { ClassStudentController } from './crud/classStudent.controller'
+import { CourseStudentController } from './crud/courseStudent.controller'
 import { NewCategoryController } from './crud/newCategory.controller'
 import { PackageController } from './crud/package.controller'
 import { SkillController } from './crud/skill.controller'
@@ -22,7 +22,7 @@ import { ClassTimeTableController } from './crud/classTimeTable.controller'
 import { StudentTimeTableController } from './crud/studentTimeTable.controller'
 import { RankController } from './crud/rank.controller'
 import { StatisticStudentController } from './crud/statisticStudent.controller'
-import { StatisticClassController } from './crud/statisticClass.controller'
+import { StatisticCourseController } from './crud/statisticCourse.controller'
 import { SliderController } from './crud/slider.controller'
 
 const webhookController = new WebhookController()
@@ -35,7 +35,7 @@ const checkinController = new CheckinController()
 const classController = new ClassController()
 const contactController = new ContactController()
 const courseController = new CourseController()
-const classStudentController = new ClassStudentController()
+const courseStudentController = new CourseStudentController()
 const newCategoryController = new NewCategoryController()
 const packageController = new PackageController()
 const skillController = new SkillController()
@@ -48,7 +48,7 @@ const classTimeTableController = new ClassTimeTableController()
 const studentTimeTableController = new StudentTimeTableController()
 const rankController = new RankController()
 const statisticStudentController = new StatisticStudentController()
-const statisticClassController = new StatisticClassController()
+const statisticCourseController = new StatisticCourseController()
 const sliderController = new SliderController()
 
 export {
@@ -63,7 +63,7 @@ export {
     classController,
     contactController,
     courseController,
-    classStudentController,
+    courseStudentController,
     newCategoryController,
     packageController,
     skillController,
@@ -76,6 +76,6 @@ export {
     studentTimeTableController,
     rankController,
     statisticStudentController,
-    statisticClassController,
+    statisticCourseController,
     sliderController
 }

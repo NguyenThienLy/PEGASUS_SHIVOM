@@ -1,9 +1,15 @@
 import * as React from "react";
-import { connect } from "react-redux";
+import {
+  connect
+} from "react-redux";
 import Head from "next/head";
 import Link from "next/link";
-import { action } from "../../actions";
-import { api } from "../../services";
+import {
+  action
+} from "../../actions";
+import {
+  api
+} from "../../services";
 
 import "./home.scss";
 import {
@@ -26,65 +32,57 @@ import {
   News2,
   NumberAdmin,
   ProfileAdmin,
+  RingingPhone,
+  RelatedPost,
   Table,
   LineChart,
   PieChart,
   Sidebar,
+  Feedback,
+  ImageShow,
 } from "../../components";
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      trainingClasses: [
-        {
-          category: "fitness",
-          name: "chạy bộ",
-          detail: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-          time: "1 Giờ",
-          star: 1,
-          love: 800,
-          image:
-            "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-event-list-2a.jpg",
-          link: "#"
-        }
-      ],
+      trainingClasses: [{
+        category: "fitness",
+        name: "chạy bộ",
+        detail: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+        time: "1 Giờ",
+        star: 1,
+        love: 800,
+        image: "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-event-list-2a.jpg",
+        link: "#"
+      }],
       news: {
-        image:
-          "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-img-1.jpg",
+        image: "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-img-1.jpg",
         link: "#",
         category: "lorem ipsum",
         title: "certified health professionals",
-        content:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum. Nisi nam corporis alias quo qui.",
+        content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum. Nisi nam corporis alias quo qui.",
         button: "read more"
       },
-      trainers: [
-        {
-          image:
-            "https://dalia.elated-themes.com/wp-content/uploads/2018/06/team2-img-8.jpg",
-          link: "#",
-          type: "physiotherapist",
-          name: "jessica fox",
-          facebook: "facebook.com",
-          twitter: "twitter.com",
-          instagram: "instagram.com"
-        }
-      ],
+      trainers: [{
+        image: "https://dalia.elated-themes.com/wp-content/uploads/2018/06/team2-img-8.jpg",
+        link: "#",
+        type: "physiotherapist",
+        name: "jessica fox",
+        facebook: "facebook.com",
+        twitter: "twitter.com",
+        instagram: "instagram.com"
+      }],
       review: {
-        image:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlp9UWxfO8gXd-LjSk2RhNeCrWXwJy69ruhejIsIY9Zw_HqDsxBQ",
-        content:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum.",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlp9UWxfO8gXd-LjSk2RhNeCrWXwJy69ruhejIsIY9Zw_HqDsxBQ",
+        content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum.",
         owner: "callie hern"
       },
       introHome: {
         link: "#",
-        image:
-          "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-icon-img-1.png",
+        image: "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-icon-img-1.png",
         title: "run outdoors",
-        content:
-          "Lorem ipsum dolor sit amet, ad duo adipisci imperdiet, eum eu fugit."
+        content: "Lorem ipsum dolor sit amet, ad duo adipisci imperdiet, eum eu fugit."
       },
       eventHour: {
         weekday: "monday",
@@ -94,35 +92,54 @@ class Home extends React.Component {
       },
       latestPost: {
         link: "#",
-        image:
-          "https://dalia.elated-themes.com/wp-content/uploads/2018/05/blog-img-6-150x150.jpg",
+        image: "https://dalia.elated-themes.com/wp-content/uploads/2018/05/blog-img-6-150x150.jpg",
         title: "clean beauty",
         date: "13th jun"
       },
       introHome2: {
-        image:
-          "https://dalia.elated-themes.com/wp-content/uploads/2018/05/h1-icon-img-1.png",
+        image: "https://dalia.elated-themes.com/wp-content/uploads/2018/05/h1-icon-img-1.png",
         title: "relaxing massage",
-        content:
-          "Lorem ipsum dolor sit amet, ad duo adipisci imperdiet, eum eu fugit."
+        content: "Lorem ipsum dolor sit amet, ad duo adipisci imperdiet, eum eu fugit."
       },
       news2: {
         link: "#",
-        author: { name: "jessica smith", link: "#" },
-        category: { name: "post", link: "#" },
-        tags: [
-          { name: "business", link: "#" },
-          { name: "city break", link: "#" },
-          { name: "vacations", link: "#" }
+        author: {
+          name: "jessica smith",
+          link: "#"
+        },
+        category: {
+          name: "post",
+          link: "#"
+        },
+        tags: [{
+          name: "business",
+          link: "#"
+        },
+        {
+          name: "city break",
+          link: "#"
+        },
+        {
+          name: "vacations",
+          link: "#"
+        }
         ],
         title: "almond butter fig healthy hair smoothie",
-        image:
-          "https://dalia.elated-themes.com/wp-content/uploads/2018/06/nutrition-home-blog-img-5-768x569.jpg",
-        dateCreated: { link: "#", day: "7th", month: "jun" },
-        content:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae feugiat magna, ut mattis ligula. Aliquam ut rutrum est. Maecenas sit amet scelerisque orci. Aenean et ex ut elit tincidunt rutrum vitae eleifend metus. Nunc tincidunt venenatis tellus euismod fermentum. Maecenas sed dapibus eros. Phasellus eu mi metus. Nunc mi nisl, viverra id sollicitudin et, auctor sit amet augue. Morbi blandit dolor ac rhoncus semper. Donec rutrum risus vitae arcu interdum condimentum. Pellentesque eu ex metus. Maecenas facilisis est at aliquet blandit. Nullam volutpat ultricies enim, ut pulvinar enim placerat non. Aenean facilisis aliquam felis in fermentum. Aenean ullamcorper pharetra purus.",
-        comment: { link: "#", quantity: 3 },
-        love: { link: "#", quantity: 0 },
+        image: "https://dalia.elated-themes.com/wp-content/uploads/2018/06/nutrition-home-blog-img-5-768x569.jpg",
+        dateCreated: {
+          link: "#",
+          day: "7th",
+          month: "jun"
+        },
+        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae feugiat magna, ut mattis ligula. Aliquam ut rutrum est. Maecenas sit amet scelerisque orci. Aenean et ex ut elit tincidunt rutrum vitae eleifend metus. Nunc tincidunt venenatis tellus euismod fermentum. Maecenas sed dapibus eros. Phasellus eu mi metus. Nunc mi nisl, viverra id sollicitudin et, auctor sit amet augue. Morbi blandit dolor ac rhoncus semper. Donec rutrum risus vitae arcu interdum condimentum. Pellentesque eu ex metus. Maecenas facilisis est at aliquet blandit. Nullam volutpat ultricies enim, ut pulvinar enim placerat non. Aenean facilisis aliquam felis in fermentum. Aenean ullamcorper pharetra purus.",
+        comment: {
+          link: "#",
+          quantity: 3
+        },
+        love: {
+          link: "#",
+          quantity: 0
+        },
         button: "read more"
       },
       numberAdmin: {
@@ -131,8 +148,7 @@ class Home extends React.Component {
         quantity: 184
       },
       profileAdmin: {
-        image:
-          "https://dalia.elated-themes.com/wp-content/uploads/2018/06/team2-img-8.jpg",
+        image: "https://dalia.elated-themes.com/wp-content/uploads/2018/06/team2-img-8.jpg",
         name: "nisha sharma",
         phone: "0947161096",
         email: "nisha_sharma@gmail.com",
@@ -144,23 +160,23 @@ class Home extends React.Component {
       }
     };
   }
-  static async getInitialProps({ req, query }) {
+  static async getInitialProps({
+    req,
+    query
+  }) {
     return {};
   }
-  async componentDidMount() {}
+  async componentDidMount() { }
 
   render() {
     return (
-      <div>
+      <div >
         <Head>
-          <title>Trang chủ</title>
-          <meta name="title" content="Công ty Pegasus" />
-          <meta
-            name="description"
-            content="Công ty công nghệ lớn nhất thế giới"
-          />
+          <title> Trang chủ </title>
+          <meta name="title"
+            content="Công ty Pegasus" />
+          <meta name="description" content="Công ty công nghệ lớn nhất thế giới" />
         </Head>
-        
         <React.Fragment>
         <Sidebar></Sidebar>
         <div className="content">
@@ -169,12 +185,18 @@ class Home extends React.Component {
           <div className="body">
             <h1>Trang chủ</h1>
           </div>
-          <TimeTable />
-          {this.state.trainingClasses.map(trainingClass => {
-            return <TrainingClass trainingClass={trainingClass} />;
-          })}
+          <TimeTable /> {
+            this.state.trainingClasses.map(trainingClass => {
+              return <TrainingClass trainingClass={
+                trainingClass
+              }
+              />;
+            })
+          }
           <TrainerInfo />
-          <News news={this.state.news} />
+          <News news={
+            this.state.news
+          } />
           <ContactUs />
           <PostAuthor />
           <NumberSection />
@@ -192,6 +214,10 @@ class Home extends React.Component {
           <Table></Table>
           <LineChart></LineChart>
           <PieChart></PieChart>
+          <RingingPhone></RingingPhone>
+          <RelatedPost></RelatedPost>
+          <Feedback></Feedback>
+          <ImageShow></ImageShow>
           </div>
         </React.Fragment>
         <Footer />

@@ -11,13 +11,16 @@ export class RouterException extends BaseError {
 }
 
 export class RouterErrorService {
-    constructor(){
-        
+    constructor() {
+
     }
-    somethingWentWrong(){
-        return new RouterException('something_went_wrong',"Something went wrong!")
+    requestDataInvalid(message: string) {
+        return new RouterException('data_invalid', message, 403)
     }
-    googleMapApiWrong(error){
-        return new RouterException('google_map_api',error)
+    somethingWentWrong() {
+        return new RouterException('something_went_wrong', "Something went wrong!")
+    }
+    googleMapApiWrong(error) {
+        return new RouterException('google_map_api', error)
     }
 }

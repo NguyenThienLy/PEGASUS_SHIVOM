@@ -9,11 +9,11 @@ export default class TimeTableItemRouter extends CrudRouter<typeof timeTableItem
         super(timeTableItemController);
     }
     customRouter() {
-        
+
     }
     getListMiddlewares(): any[] {
         return [
-            authInfoMiddleware.run(["admin","student"]),
+            authInfoMiddleware.run(["admin", "student"]),
             queryInfoMiddleware.run()
         ]
     }
@@ -30,14 +30,14 @@ export default class TimeTableItemRouter extends CrudRouter<typeof timeTableItem
     }
     updateMiddlewares(): any[] {
         return [
-            authInfoMiddleware.run(["admin"]),
+            // authInfoMiddleware.run(["admin"]),
             queryInfoMiddleware.run()
         ]
     }
+
     deleteMiddlewares(): any[] {
         return [
-            authInfoMiddleware.run(["admin"]),
-            queryInfoMiddleware.run()
+            blockMiddleware.run()
         ]
     }
     deleteAllMiddlewares(): any[] {

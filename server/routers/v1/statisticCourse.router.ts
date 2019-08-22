@@ -1,12 +1,12 @@
 import * as express from 'express';
 import { CrudRouter } from '../crud';
 import { Request, Response } from '../base'
-import { statisticClassController } from '../../controllers'
+import { statisticCourseController } from '../../controllers'
 import { authInfoMiddleware, queryInfoMiddleware, blockMiddleware } from '../../middlewares'
 
-export default class StatisticClassRouter extends CrudRouter<typeof statisticClassController> {
+export default class StatisticClassRouter extends CrudRouter<typeof statisticCourseController> {
     constructor() {
-        super(statisticClassController);
+        super(statisticCourseController);
     }
     customRouter() {
         

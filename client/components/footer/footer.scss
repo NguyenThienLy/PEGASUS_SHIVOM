@@ -1,73 +1,84 @@
 @import '../../default.scss';
+
 //block-element
-@mixin e($element){
+@mixin e($element) {
     &__#{$element} {
         @content;
     }
 }
+
 //block modifier
-@mixin m($modifier){
+@mixin m($modifier) {
     &--#{$modifier} {
         @content;
     }
 }
+
 $box-shadow: 0 0 10px 2px $main-color;
 
-.footer-wrapper{
+.footer-wrapper {
     font-family: $font-title;
     font-size: $font-size;
     background-color: $background-color;
-    @include e('first-floor'){
+
+    @include e('first-floor') {
         padding: 2.5em 2em;
-        @include e('logo'){
+
+        @include e('logo') {
             display: flex;
             align-items: center;
             justify-content: center;
-            @include e('a'){
-                @include e('img'){
+
+            @include e('a') {
+                @include e('img') {
                     height: 160px;
                 }
             }
         }
-        @include e('contact'){
+
+        @include e('contact') {
             display: flex;
             justify-content: center;
             align-items: center;
             color: $color-grey;
             font-size: 0.8em;
-            @include e('item'){            
+
+            @include e('item') {
                 padding: 1em 1em;
                 text-decoration: none;
-                color:$sub-main-color;
-                border-radius:30px;
+                color: $sub-main-color;
+                border-radius: 30px;
+
                 &:hover {
-                   color: darken( $main-color, 4%);
-                 
-                } 
+                    color: darken($main-color, 4%);
+
+                }
             }
         }
-        @include e('social-group'){
-           
-        }
-        @include e('email-regis'){
+
+        @include e('social-group') {}
+
+        @include e('email-regis') {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 1em 0;
-            @include e('form'){
-                @include e('input'){    
+
+            @include e('form') {
+                @include e('input') {
                     width: 360px;
                     background: #fcfcfc;
-                    color:  $font-color;
+                    color: $font-color;
                     font: inherit;
                     font-size: 0.875em;
-                    box-shadow: 0 0 10px 0 rgba(0, 0, 0 , 0.03);
+                    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.03);
                     border: 0;
                     outline: 0;
                     padding: 22px 18px;
                 }
-                @include e('btn'){
+
+                @include e('btn') {
                     text-transform: uppercase;
                     display: inline-block;
                     background: transparent;
@@ -78,44 +89,50 @@ $box-shadow: 0 0 10px 2px $main-color;
                     padding: 0;
                     transition: all 200ms ease-in;
                     cursor: pointer;
+
                     @include m('primary') {
-                        background:  $main-color;
-                        color:  #fff;
+                        background: $main-color;
+                        color: #fff;
                         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
                         border-radius: 2px;
                         padding: 12px 36px;
+
                         &:hover {
-                            background: darken( $main-color, 4%);
-                        } 
+                            background: darken($main-color, 4%);
+                        }
+
                         &:active {
-                            background:  $main-color;
+                            background: $main-color;
                             // box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, .2);
-                            box-shadow: 2px 2px 20px 0 $main-color;                            
+                            box-shadow: 2px 2px 20px 0 $main-color;
                         }
                     }
+
                     @include m('inside') {
                         margin-left: -96px;
                     }
                 }
             }
-        }    
+        }
     }
-    
-    @include e('divider'){
-        display: block; 
+
+    @include e('divider') {
+        display: block;
         height: 1px;
-        border: 0; 
+        border: 0;
         border-top: 1px solid $sub-main-color;
-        margin: 0; 
+        margin: 0;
         padding: 0;
     }
-    @include e('second-floor'){
+
+    @include e('second-floor') {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 70px;
         font-size: 0.875em;
-        @include e('item'){
+
+        @include e('item') {
             z-index: 2;
         }
     }
