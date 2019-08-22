@@ -39,6 +39,7 @@ import {
   PieChart,
   Feedback,
   ImageShow,
+  FeedbackNoti,
 } from "../../components";
 
 class Home extends React.Component {
@@ -231,6 +232,7 @@ class Home extends React.Component {
           <RingingPhone></RingingPhone>
           <RelatedPost></RelatedPost>
           <Feedback></Feedback>
+          <FeedbackNoti></FeedbackNoti>
           <ImageShow></ImageShow>
         </React.Fragment>
         <Footer />
