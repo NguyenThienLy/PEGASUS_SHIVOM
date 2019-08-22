@@ -29,6 +29,7 @@ import {
   Table,
   LineChart,
   PieChart,
+  Sidebar,
 } from "../../components";
 
 class Home extends React.Component {
@@ -159,9 +160,12 @@ class Home extends React.Component {
             content="Công ty công nghệ lớn nhất thế giới"
           />
         </Head>
+        
+        <React.Fragment>
+        <Sidebar></Sidebar>
+        <div className="content">
         <Header {...this.props} />
         <Slider />
-        <React.Fragment>
           <div className="body">
             <h1>Trang chủ</h1>
           </div>
@@ -188,6 +192,7 @@ class Home extends React.Component {
           <Table></Table>
           <LineChart></LineChart>
           <PieChart></PieChart>
+          </div>
         </React.Fragment>
         <Footer />
       </div>
