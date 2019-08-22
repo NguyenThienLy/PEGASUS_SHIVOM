@@ -1,0 +1,57 @@
+@import '../../default.scss';
+
+.feedback-noti {
+    display: flex;
+    flex-direction: row;
+
+    @include e("avt") {
+        img {
+            height: 48px;
+            width: 48px;
+        }
+    }
+
+    @include e("info") {
+        margin-left: 10px;
+
+        @include e("short-description") {
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+
+        @include e("func-group") {
+            display: flex;
+
+            @include e("item") {
+                cursor: pointer;
+                border-radius: 4px;
+                background: #ffffff;
+                border: 1px solid $sub-main-color;
+                -webkit-box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+                box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+                margin: 10px 10px 10px 0;
+                padding: 4px 10px;
+
+                .fa-check {
+                    color: green;
+                }
+
+                .fa-times {
+                    color: red;
+                }
+            }
+
+            .accept {
+                &:hover {
+                    color: $main-color;
+                }
+            }
+
+            .decline {
+                &:hover {
+                    color: lighten($color: red, $amount: 20);
+                }
+            }
+        }
+    }
+}

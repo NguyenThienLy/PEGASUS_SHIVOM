@@ -29,10 +29,10 @@
         bottom: 0;
         left: 0;
         background-repeat: no-repeat;
-        background-position: 50% 95%;
+        background-position: 33% 95%;
         background-size: 500px;
         // background-image: url('https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bf884ad570b50659c5fa2dc2cfb20ecf&auto=format&fit=crop&w=1000&q=100');
-        background-image: url("https://i.pinimg.com/564x/72/43/39/7243392a8f83f00fc2947c8d9d1f0306.jpg");
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://i.pinimg.com/564x/72/43/39/7243392a8f83f00fc2947c8d9d1f0306.jpg");
     }
 
     .signup {
@@ -70,9 +70,9 @@
         }
 
         .form-title {
-            color: #fff;
+            color: #ffffff;
             font-size: 1.7em;
-            text-align: center;
+
 
             span {
                 color: rgba(0, 0, 0, 0.4);
