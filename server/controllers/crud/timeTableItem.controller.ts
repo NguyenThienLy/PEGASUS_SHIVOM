@@ -7,6 +7,7 @@ export class TimeTableItemController extends CrudController<typeof timeTableItem
         super(timeTableItemService);
     }
     async update(params: any, option?: ICrudOption) {
+        // Cap nhat lai thoi gian theo so phut cho cac thuoc tinh startTime, endTime, startAvailableCheckinTime, endAvailabelCheckinTime
         if (params.startTime && params.startTime.hour && params.startTime.minute !== undefined) {
             params.startTime.number = params.startTime.hour * 60 + params.startTime.minute
         }

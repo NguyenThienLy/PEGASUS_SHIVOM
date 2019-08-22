@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import { BaseModel } from './base';
+import { BaseModel } from './base.model';
 
 const Schema = mongoose.Schema;
 
@@ -12,5 +12,7 @@ const {name}Schema = new Schema({
 }, { timestamps: true })
 
 export let {Name}: mongoose.Model<{Name}Model> = mongoose.model('{Name}', {name}Schema);
+
+
 
 

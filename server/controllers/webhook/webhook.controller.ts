@@ -23,17 +23,15 @@ export class WebhookController extends BaseController {
         })
         this.checkStudentTimeTable({
             student,
-            cardId,
             timestamps
         })
         return student
     }
     async checkStudentTimeTable(params: {
         student: StudentModel,
-        cardId: string,
         timestamps: string
     }) {
-        const { student, cardId, timestamps } = params
+        const { student, timestamps } = params
         const checkInAtHours = moment(Number(timestamps)).hours()
         const checkInAtMinute = moment(Number(timestamps)).minute()
         const timestampAtNumber = checkInAtHours * 60 + checkInAtMinute
@@ -67,15 +65,17 @@ export class WebhookController extends BaseController {
                     timeTableItem
                 })
                 // Neu da checkin vao lich nay roi thi khong tao nua
-                checkinService.getItem({
+                const checkinData = await checkinService.getItem({
                     filter: {
                         student: student._id,
                         class: classTimeTable.class,
                         course: classTimeTable.course,
                         timeTableItem: timeTableItem._id
                     }
+                }).then(result => {
+                    return result
                 }).catch(err => {
-                    checkinService.create({
+                    return checkinService.create({
                         student: student._id,
                         class: classTimeTable.class,
                         course: classTimeTable.course,
@@ -84,7 +84,7 @@ export class WebhookController extends BaseController {
                         type: checkInType
                     })
                 })
-
+                return checkinData
 
 
             } catch (err) {
