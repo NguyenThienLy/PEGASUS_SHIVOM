@@ -35,3 +35,4 @@ export * from "./imageShow/imageShow";
 export * from "./sidebar/sidebar";
 export * from "./ringingPhone/ringingPhone";
 export * from "./relatedPost/relatedPost";
+export * from "./activity/activity";

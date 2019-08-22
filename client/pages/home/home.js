@@ -33,7 +33,9 @@ import {
   PieChart,
   Sidebar,
   Feedback,
-  ImageShow
+  ImageShow,
+  FeedbackNoti,
+  Activity,
 } from "../../components";
 
 class Home extends React.Component {
@@ -284,15 +286,17 @@ class Home extends React.Component {
           <IntroHome2 introHome2={this.state.introHome2} />
           <News2 news2={this.state.news2} />
           <NumberAdmin numberAdmin={this.state.numberAdmin} />
-          <ProfileAdmin profileAdmin={this.state.profileAdmin} />
-          <Table />
-          <LineChart />
-          <PieChart />
-          <RingingPhone />
-          <RelatedPost />
-          <Feedback />
-
-          {/* </div> */}
+          <ProfileAdmin profileAdmin={this.state.profileAdmin}></ProfileAdmin>
+          <Table></Table>
+          <LineChart></LineChart>
+          <PieChart></PieChart>
+          <RingingPhone></RingingPhone>
+          <RelatedPost></RelatedPost>
+          <Feedback></Feedback>
+          <FeedbackNoti></FeedbackNoti>
+          <Activity></Activity>
+          <ImageShow></ImageShow>
+          </div>
         </React.Fragment>
         <Footer />
       </div>
