@@ -11,6 +11,7 @@ export class ClassController extends CrudController<typeof classService>{
     }
     async create(params: any, option?: ICrudOption) {
         const classData: ClassModel = await this.service.create(params, option)
+        // Tao lop dong thoi tao luon lich thoi khoa bieu cho lop do luon
         const classTimeTable: ClassTimeTableModel = await classTimeTableService.create({
             class: classData._id,
             course: classData.course,
@@ -25,6 +26,7 @@ export class ClassController extends CrudController<typeof classService>{
         classId: string
     }, option: ICrudOption) {
         const { classId } = params
+        // Lay lich thoi khoa bieu cua lop do
         return await classTimeTableService.getItem(_.merge({
             filter: {
                 class: classId
@@ -56,7 +58,9 @@ export class ClassController extends CrudController<typeof classService>{
         }
     }) {
         const { classId, timeTableItem } = params
+        // Tao mot item thoi khoa bieu
         const timeTableItemData: TimeTableItemModel = await timeTableItemService.create(timeTableItem)
+        // Cap nhat lich thoi khoa bieu them item vao danh sach cac item
         return await classTimeTableService.update({
             $push: { items: timeTableItemData._id }
         }, {
@@ -70,6 +74,7 @@ export class ClassController extends CrudController<typeof classService>{
         timeTableItemId: string
     }) {
         const { classId, timeTableItemId } = params
+        // Chuyen trang thai item ve deactive xoa mem khong co xoa cung
         return await timeTableItemService.update({
             status: "deactive"
         }, {
