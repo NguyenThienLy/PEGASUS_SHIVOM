@@ -10,6 +10,7 @@ export type RegisCourseModel = BaseModel & {
     package: string | PackageModel
     totalMonth: number
     startTime: Date
+    type: "new" | "extend"
 }
 
 const regisCourseSchema = new Schema({
@@ -18,6 +19,7 @@ const regisCourseSchema = new Schema({
     package: { type: Schema.Types.ObjectId, ref: "Package" },
     totalMonth: { type: Number },
     startTime: { type: Date, required: true },
+    type: { type: String, enum: ["new", "extend"] },
     status: { type: String, enum: ["active", "deactive"], default: "active" }
 }, { timestamps: true })
 
