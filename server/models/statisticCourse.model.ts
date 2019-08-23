@@ -27,11 +27,11 @@ const statisticCourseSchema = new Schema({
         month: { type: Number },
         year: { type: Number }
     },
-    totalAbsent: { type: Number },
-    totalStudent: { type: Number },
-    totalOnTime: { type: Number },
-    totalLate: { type: Number },
-    totalRedundant: {type: Number},
+    totalAbsent: { type: Number, default: 0 },
+    totalStudent: { type: Number, default: 0 },
+    totalOnTime: { type: Number, default: 0 },
+    totalLate: { type: Number, default: 0 },
+    totalRedundant: { type: Number, default: 0 },
     status: { type: String, enum: ["active", "deactive"], default: "active" }
 }, { timestamps: true })
 
