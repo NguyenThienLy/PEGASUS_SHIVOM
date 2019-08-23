@@ -109,9 +109,9 @@ export class UpdateStatisticCourseCronJob {
     }) {
         // Cập nhật tuần cho khóa học
         statisticCourseService.model.
-            findOneAndUpdate({ course: params.course, "time.week": params.week, "time.month": params.month, "time.year": params.year, type: "week" },
+            findOneAndUpdate({ course: params.course, "time.week": params.week, "time.month": params.month, "time.year": params.year, type: "week", status: "active" },
                 {
-                    course: params.course, "time.week": params.week, "time.month": params.month, "time.year": params.year, type: "week",
+                    course: params.course, "time.week": params.week, "time.month": params.month, "time.year": params.year, type: "week", status: "active",
                     $inc: {
                         totalAbsent: params.totalAbsent, totalLate: params.totalLate,
                         totalOnTime: params.totalOnTime, totalRedundant: params.totalRedundant
@@ -124,9 +124,9 @@ export class UpdateStatisticCourseCronJob {
 
         // Cập nhật tháng cho khóa học
         statisticCourseService.model.
-            findOneAndUpdate({ course: params.course, "time.week": null, "time.month": params.month, "time.year": params.year, type: "month" },
+            findOneAndUpdate({ course: params.course, "time.week": null, "time.month": params.month, "time.year": params.year, type: "month", status: "active" },
                 {
-                    course: params.course, "time.week": null, "time.month": params.month, "time.year": params.year, type: "month",
+                    course: params.course, "time.week": null, "time.month": params.month, "time.year": params.year, type: "month", status: "active",
                     $inc: {
                         totalAbsent: params.totalAbsent, totalLate: params.totalLate,
                         totalOnTime: params.totalOnTime, totalRedundant: params.totalRedundant
@@ -139,9 +139,9 @@ export class UpdateStatisticCourseCronJob {
 
         // Cập nhật năm cho khóa học
         statisticCourseService.model.
-            findOneAndUpdate({ course: params.course, "time.week": null, "time.month": null, "time.year": params.year, type: "year" },
+            findOneAndUpdate({ course: params.course, "time.week": null, "time.month": null, "time.year": params.year, type: "year", status: "active" },
                 {
-                    course: params.course, "time.week": null, "time.month": null, "time.year": params.year, type: "year",
+                    course: params.course, "time.week": null, "time.month": null, "time.year": params.year, type: "year", status: "active",
                     $inc: {
                         totalAbsent: params.totalAbsent, totalLate: params.totalLate,
                         totalOnTime: params.totalOnTime, totalRedundant: params.totalRedundant
@@ -154,15 +154,27 @@ export class UpdateStatisticCourseCronJob {
     }
 
     // Cập nhật loại học sinh vắng vào bảng checkin
-    async addStudentTypeAbsentInCheckin(params: {
+    addStudentTypeAbsentInCheckin(params: {
         course: string,
         listStudentTypeAbsent: any,
         endTime: Date
     }) {
-        const checkinAbsents = _.map(params.listStudentTypeAbsent, function (item) {
-            return { student: item.student, course: item.course, checkinAt: params.endTime, type: "absent" }
-        })
-
-        checkinService.model.insertMany(checkinAbsents)
+        for (const studentTypeAbsent of params.listStudentTypeAbsent) {
+            checkinService.model.
+                findOneAndUpdate({ student: studentTypeAbsent.student, course: studentTypeAbsent.course, checkinAt: params.endTime, type: "absent", status: "active" },
+                    {
+                        student: studentTypeAbsent.student,
+                        class: null,
+                        course: studentTypeAbsent.course,
+                        checkinAt: params.endTime,
+                        type: "absent",
+                        status: "active",
+                        timeTableItem: null
+                    },
+                    {
+                        upsert: true,
+                        new: true
+                    }).exec()
+        }
     }
 }

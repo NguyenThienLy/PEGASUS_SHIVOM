@@ -12,22 +12,13 @@ export class UpdateCheckInsCronJob {
         }
         return this.instance
     }
-    // Hàm ghi nhận dữ liệu để thông kê cho khóa học
+
+    // Hàm cập nhật cho bảng checkin
     async updateCheckIns() {
+        // Lấy ngày thứ 7 kể từ ngày hôm này
+        const time = moment().subtract(7, "days").endOf("days").toDate()
 
-    }
-
-    // Cập nhật dữ liệu biểu đồ cho khóa học
-    updateDataStatisticCourse(params: {
-        course: string,
-        week: number,
-        month: number,
-        year: number,
-        totalAbsent: number,
-        totalLate: number,
-        totalOnTime: number,
-        totalRedundant: number
-    }) {
-
+        // Các dữ liệu muộn hơn 7 ngày trong bảng check in
+        checkinService.model.remove({ checkinAt: { $lte: time } }).exec()
     }
 }

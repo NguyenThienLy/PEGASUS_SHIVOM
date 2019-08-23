@@ -40,8 +40,6 @@ export class UpdateStatisticStudentCronJob {
             }
         ])
 
-        //console.log("listCheckin", listCheckin)
-
         // Góm nhóm học viên theo type [đúng, trễ, thừa, vắng]
         // on_time, late, redundant, absent
         for (const student of listCheckin) {
@@ -94,9 +92,9 @@ export class UpdateStatisticStudentCronJob {
 
         // Cập nhật theo tuần cho học sinh
         statisticStudentService.model.
-            findOneAndUpdate({ student: params.student, "time.week": params.week, "time.month": params.month, "time.year": params.year, type: "week" },
+            findOneAndUpdate({ student: params.student, "time.week": params.week, "time.month": params.month, "time.year": params.year, type: "week", status: "active" },
                 {
-                    student: params.student, "time.week": params.week, "time.month": params.month, "time.year": params.year, type: "week",
+                    student: params.student, "time.week": params.week, "time.month": params.month, "time.year": params.year, type: "week", status: "active",
                     $push: {
                         absent: params.objAbsent, late: params.objLate,
                         onTime: params.objOnTime, redundant: params.objRedundant
@@ -109,9 +107,9 @@ export class UpdateStatisticStudentCronJob {
 
         // Cập nhật theo tháng cho học sinh
         statisticStudentService.model.
-            findOneAndUpdate({ student: params.student, "time.week": null, "time.month": params.month, "time.year": params.year, type: "month" },
+            findOneAndUpdate({ student: params.student, "time.week": null, "time.month": params.month, "time.year": params.year, type: "month", status: "active" },
                 {
-                    student: params.student, "time.week": null, "time.month": params.month, "time.year": params.year, type: "month",
+                    student: params.student, "time.week": null, "time.month": params.month, "time.year": params.year, type: "month", status: "active",
                     $push: {
                         absent: params.objAbsent, late: params.objLate,
                         onTime: params.objOnTime, redundant: params.objRedundant
@@ -124,9 +122,9 @@ export class UpdateStatisticStudentCronJob {
 
         // Cập nhật theo năm cho học sinh
         statisticStudentService.model.
-            findOneAndUpdate({ student: params.student, "time.week": null, "time.month": null, "time.year": params.year, type: "year" },
+            findOneAndUpdate({ student: params.student, "time.week": null, "time.month": null, "time.year": params.year, type: "year", status: "active" },
                 {
-                    student: params.student, "time.week": null, "time.month": null, "time.year": params.year, type: "year",
+                    student: params.student, "time.week": null, "time.month": null, "time.year": params.year, type: "year", status: "active",
                     $push: {
                         absent: params.objAbsent, late: params.objLate,
                         onTime: params.objOnTime, redundant: params.objRedundant
