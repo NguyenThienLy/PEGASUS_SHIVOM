@@ -19,7 +19,7 @@ const checkinSchema = new Schema({
     class: { type: Schema.Types.ObjectId, ref: "Class" },
     course: { type: Schema.Types.ObjectId, ref: "Course" },
     timeTableItem: { type: Schema.Types.ObjectId, ref: "TimeTableItem" },
-    type: { type: String, enum: ["on_time", "redundant", "late"] },
+    type: { type: String, enum: ["on_time", "redundant", "late", "absent"] },
     status: { type: String, enum: ["active", "deactive"], default: "active" }
 }, { timestamps: true })
 

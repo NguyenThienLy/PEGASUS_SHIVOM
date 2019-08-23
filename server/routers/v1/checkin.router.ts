@@ -25,7 +25,7 @@ export default class CheckinRouter extends CrudRouter<typeof checkinController> 
     }
     createMiddlewares(): any[] {
         return [
-            authInfoMiddleware.run(["admin"])
+            // authInfoMiddleware.run(["admin"])
         ]
     }
     updateMiddlewares(): any[] {
