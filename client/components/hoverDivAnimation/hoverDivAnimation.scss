@@ -13,9 +13,7 @@
   }
 }
 
-
 $hover-color: lighten($sub-main-color, 25%);
-
 
 // /* Safari 4.0 - 8.0 */
 // @-webkit-keyframes in {
@@ -57,38 +55,40 @@ $hover-color: lighten($sub-main-color, 25%);
 //   }
 // }
 
-.hover-div {
-  position: relative;
-  display: inline-block;
-  @include m("hover") {
-    position: absolute;
-    left: 0;
-    bottom: -0.5em;
-    background-color: $hover-color;
-    z-index: -1;
-    -webkit-transition: width 0.5s ease;
-    transition: width 0.5s ease;
-  }
-  a {
+.hoverDiv {
+  @include e("link") {
     color: $font-color;
     text-transform: uppercase;
     display: block;
-    text-align: center;
-    padding: 0em 0.4em;
     text-decoration: none;
-   
+    //line-height: 28px;
+    //letter-spacing: 0.1em;
+    @include e("content") {
+      position: relative;
+      display: inline;
+      padding: 0 0.5em;
+      @include m("hover") {
+        position: absolute;
+        left: 0;
+        bottom: -0.5em;
+        background-color: $hover-color;
+        z-index: -1;
+        -webkit-transition: width 0.5s ease;
+        transition: width 0.5s ease;
+      }
+    }
   }
-  &:hover a {
+  &:hover .hoverDiv__link {
     color: $main-color;
     transition: 200ms;
   }
-  &:hover .hover-div--hover {
+  &:hover .hoverDiv__link__content--hover {
     height: 1.1em;
     width: 100%;
     // -webkit-animation: in 0.5s 1 forwards;
     // animation: in 0.5s 1 forwards;
   }
-  &:not(:hover) .hover-div--hover {
+  &:not(:hover) .hoverDiv__link__content--hover {
     height: 1.1em;
     width: 0%;
     // -webkit-animation: out 0.5s 1 forwards;

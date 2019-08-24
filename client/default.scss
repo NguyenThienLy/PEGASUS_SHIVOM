@@ -1,25 +1,27 @@
 @import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
-@import url('https://fonts.googleapis.com/css?family=Cormorant:400,700&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Cormorant:400,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap");
-@mixin e($element){
+@mixin e($element) {
   &__#{$element} {
-      @content;
+    @content;
   }
 }
 //block modifier
-@mixin m($modifier){
+@mixin m($modifier) {
   &--#{$modifier} {
-      @content;
+    @content;
   }
 }
 $main-color: #00a3af;
 $sub-main-color: #83ccd2;
 $background-color: #eff7fc;
 $border-color: #edf7fc;
+$light-border-color: rgba(131, 204, 210, 0.4);
 $table-border-color: lighten($sub-main-color, 10%); //#e5e5e5;
 
 $font-title: "Quicksand", sans-serif;
 $font-body: "Quicksand", sans-serif;
+$font-family-special: "Noto Serif SC", serif;
 $font-size: 16px;
 $font-size-title-item: 1.2em;
 $font-color: rgba(0, 0, 0, 0.6);
