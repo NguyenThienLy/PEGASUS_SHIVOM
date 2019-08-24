@@ -3,7 +3,7 @@ import { CrudRouter } from '../crud';
 import { Request, Response } from '../base'
 import { adminController } from '../../controllers'
 import { queryInfoMiddleware, blockMiddleware, authInfoMiddleware } from '../../middlewares'
-import { UpdateStatisticCronJob } from '../../services/cronjob/updateStatistic.cronjob.service';
+import { UpdateStatisticCourseCronJob } from '../../services/cronjob/updateStatisticCourse.cronjob.service';
 
 export default class AdminRouter extends CrudRouter<typeof adminController> {
     constructor() {

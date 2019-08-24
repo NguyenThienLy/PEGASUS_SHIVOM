@@ -1,30 +1,33 @@
 import * as cron from 'node-cron'
-import { UpdateStatisticCronJob  } from './updateStatistic.cronjob.service'
+import { UpdateStatisticCourseCronJob } from './updateStatisticCourse.cronjob.service'
 import { UpdateStatisticStudentCronJob } from './updateStatisticStudent.cronjob.service'
+import { UpdateCheckInsCronJob } from './updateCheckIns.cronjob.service'
 
 export class CronJobService {
     constructor() {
-        this.updateStatistic()
+        this.updateStatisticCourse()
         this.updateStatisticStudent()
+        this.updateCheckIns()
     }
 
-    // Hàm ghi nhận dữ liệu để thông kê
-    async updateStatistic() {
+    // Hàm ghi nhận dữ liệu để thống kê
+    async updateStatisticCourse() {
         cron.schedule('* * * * *', () => {
-            UpdateStatisticCronJob.getInstance().updateStatistic()
+            UpdateStatisticCourseCronJob.getInstance().updateStatisticCourse()
         })
-
-       // await UpdateStatisticClassCronJob.getInstance().updateStatisticClass();
-
-       // await UpdateStatisticClassCronJob.getInstance().updateStatisticClass()
     }
 
-    // Hàm ghi nhận dữ liệu để thông kê
+    // Hàm ghi nhận dữ liệu để thống kê
     async updateStatisticStudent() {
-        // cron.schedule('* * * * *', () => {
-        //     UpdateStatisticStudentCronJob.getInstance().updateStatisticStudent();
-        // });
+        cron.schedule('* * * * *', () => {
+            UpdateStatisticStudentCronJob.getInstance().updateStatisticStudent();
+        });
+    }
 
-        //UpdateStatisticStudentCronJob.getInstance().updateStatisticStudent();
+    // Hàm xóa dữ liệu sau 7 ngày tồn tại trong bảng checkin
+    async updateCheckIns() {
+        cron.schedule('* * * * *', () => {
+            UpdateCheckInsCronJob.getInstance().updateCheckIns();
+        });
     }
 }
