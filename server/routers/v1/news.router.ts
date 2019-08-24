@@ -9,7 +9,28 @@ export default class NewsRouter extends CrudRouter<typeof newsController> {
         super(newsController);
     }
     customRouter() {
-        
+        this.router.post("/:_id/slider", this.setNewsAtSliderMiddlewares(), this.route(this.setNewsAtSlider))
+    }
+    setNewsAtSliderMiddlewares(): any[] {
+        return [
+            authInfoMiddleware.run(["admin"])
+        ]
+    }
+    async setNewsAtSlider(req: Request, res: Response) {
+        await this.validateJSON(req.body, {
+            type: "object",
+            properties: {
+                title: { type: "string" },
+                image: { type: "string" },
+                description: { type: "string" },
+                buttonTitle: { type: "string" }
+            },
+            required: ["title", "image", "description", "buttonTitle"],
+            additionalProperties: false
+        })
+        req.body.newsId = req.params._id
+        const result = await this.controller.setNewsAtSlider(req.body)
+        this.onSuccess(res, result)
     }
     getListMiddlewares(): any[] {
         return [
