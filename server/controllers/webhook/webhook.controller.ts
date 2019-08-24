@@ -1,6 +1,6 @@
 import { BaseController } from '../base.controller'
 import { StudentModel, ClassTimeTableModel, StudentTimeTableModel, CourseStudentModel } from '../../models';
-import { studentService, timeTableItemService, classTimeTableService, studentTimeTableService, checkinService, courseStudentService } from '../../services';
+import { studentService, timeTableItemService, classTimeTableService, studentTimeTableService, checkinService, courseStudentService, errorService } from '../../services';
 
 import * as moment from 'moment'
 import { WebhookControllerHelper } from './webhook.helper';
@@ -37,14 +37,40 @@ export class WebhookController extends BaseController {
         const timestampAtNumber = checkInAtHours * 60 + checkInAtMinute
         // Tìm kiếm thời khoá biểu
         const dayOfWeek = this.helper.getDayOfWeek(moment(Number(timestamps)).format())
-        const { rows: timeTableItems } = await timeTableItemService.getList({
-            filter: {
-                'startAvailableCheckinTime.number': { $lte: timestampAtNumber },
-                'endTime.number': { $gte: timestampAtNumber },
-                dayOfWeek
-            }
-        })
+        // let { rows: timeTableItems } = await timeTableItemService.getList({
+        //     filter: {
+        //         'startAvailableCheckinTime.number': { $lte: timestampAtNumber },
+        //         'endTime.number': { $gte: timestampAtNumber },
+        //         dayOfWeek
+        //     }
+        // })
+        let timeTableItems = await timeTableItemService.model.aggregate(
+            [
+                {
+                    $project: {
+                        endTimeNumber: "$endTime.number",
+                        startAvailableCheckinTimeNumber: "$startAvailableCheckinTime.number",
+                        dayOfWeek: 1,
+                        startTime: 1
+                    }
+                }, {
+                    $match: {
+                        'startAvailableCheckinTimeNumber': { $lte: timestampAtNumber },
+                        'endTimeNumber': { $gte: timestampAtNumber },
+                        dayOfWeek
+                    }
+                }, {
+                    $sort: {
+                        endTimeNumber: 1
+                    }
+                }
+            ]
+        )
+        timeTableItems = this.helper.sortByCheckinTime(timestampAtNumber, timeTableItems)
         // Kiem tra khoa hoc, hoc sinh co trong khoa hoc khong, da checkin chua 
+        if (timeTableItems.length === 0) {
+            throw errorService.student.courseHaventApplied()
+        }
         for (const timeTableItem of timeTableItems) {
             try {
                 const classTimeTable: ClassTimeTableModel = await classTimeTableService.getItem({
@@ -62,8 +88,9 @@ export class WebhookController extends BaseController {
                     timestampAtNumber: timestampAtNumber,
                     student,
                     courseId: classTimeTable.course as string,
-                    timeTableItem
+                    timeTableItem: timeTableItem
                 })
+
                 // Neu da checkin vao lich nay roi thi khong tao nua
                 const checkinData = await checkinService.getItem({
                     filter: {
@@ -74,8 +101,8 @@ export class WebhookController extends BaseController {
                     }
                 }).then(result => {
                     return result
-                }).catch(err => {
-                    return checkinService.create({
+                }).catch(async err => {
+                    return await checkinService.create({
                         student: student._id,
                         class: classTimeTable.class,
                         course: classTimeTable.course,
