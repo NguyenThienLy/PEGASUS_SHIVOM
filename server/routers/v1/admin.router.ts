@@ -10,16 +10,19 @@ export default class AdminRouter extends CrudRouter<typeof adminController> {
         super(adminController);
     }
     customRouter() {
-        this.router.get("/test", this.route(this.test))
-
         this.router.post("/login", [], this.route(this.login))
-        
-    }
-    async test(req: Request, res: Response){
-        const result = await UpdateStatisticCronJob.getInstance().updateStatistic()
-        this.onSuccess(res, result)
+
     }
     async login(req: Request, res: Response) {
+        await this.validateJSON(req.body, {
+            type: "object",
+            properties: {
+                username: { type: "string" },
+                password: { type: "string" }
+            },
+            required: ["username", "password"],
+            additionalProperties: false
+        })
         const result = await this.controller.login(req.body)
         this.onSuccess(res, result)
     }
