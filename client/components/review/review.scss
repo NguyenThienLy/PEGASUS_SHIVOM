@@ -21,17 +21,15 @@ $font-family-icon: "IM Fell French Canon", serif;
 $color-icon: lighten($sub-main-color, 15%);
 
 .review {
-  width: 17em;
-  height: 21em;
-  margin: 2em 2em;
+  background-color: #fff;
   -webkit-box-shadow: 0 10px 20px rgba(131, 204, 210, 0.05),
-  0 -1px 5px rgba(131, 204, 210, 0.05),  -3px 0 20px rgba(131, 204, 210, 0.05),
-  3px 0 20px rgba(131, 204, 210, 0.05);
-    box-shadow: 0 10px 20px rgba(131, 204, 210, 0.05),
-    0 -1px 5px rgba(131, 204, 210, 0.05),  -3px 0 20px rgba(131, 204, 210, 0.05),
+    0 -1px 5px rgba(131, 204, 210, 0.05), -3px 0 20px rgba(131, 204, 210, 0.05),
     3px 0 20px rgba(131, 204, 210, 0.05);
-  @include e("blankTop") { 
-    height: 7%;
+  box-shadow: 0 10px 20px rgba(131, 204, 210, 0.1),
+    0 -1px 5px rgba(131, 204, 210, 0.1), -3px 0 20px rgba(131, 204, 210, 0.1),
+    3px 0 20px rgba(131, 204, 210, 0.1);
+  @include e("blankTop") {
+    height: 6%;
   }
   @include e("image") {
     height: 40%;
@@ -60,9 +58,9 @@ $color-icon: lighten($sub-main-color, 15%);
     }
   }
   @include e("info") {
-    height: 53%;
+    height: 54%;
     text-align: center;
-    padding: 0 1.5em;
+    padding: 0 1.5em 0;
     @include e("content") {
       font-size: 0.9em;
       color: $font-color;
