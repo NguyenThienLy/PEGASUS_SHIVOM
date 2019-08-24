@@ -18,15 +18,14 @@ $font-family-number: "Cormorant", serif;
 
 .number-section {
   font-family: $font-family-number;
-  margin: 2em 4em;
   display: inline-block;
   text-align: center;
   position: relative;
   @include e("number") {
-    font-size: 12em;
+    font-size: 10em;
     color: $sub-main-color;
     font-weight: 700;
-    opacity: 0.2;
+    opacity: 0.18;
     z-index: -1;
   }
   @include e("content") {

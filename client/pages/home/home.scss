@@ -21,7 +21,7 @@
 .home {
   @include e("trainingClass") {
     width: 80%;
-    margin: auto;
+    margin: 0 auto;
     margin-top: 2em;
     @include e("title") {
       @include e("inner") {
@@ -34,7 +34,7 @@
         }
         p {
           margin: 0.8em 0 1em;
-          font-size: 0.95em;
+          font-size: 0.9em;
           color: $font-color;
           // word-spacing: 0.05em;
           line-height: 1.5em;
@@ -59,7 +59,7 @@
   }
   @include e("timeTable") {
     width: 80%;
-    margin: auto;
+    margin: 0 auto;
     @include e("title") {
       padding: 4em 0 0.8em;
       @include e("inner") {
@@ -85,10 +85,242 @@
   }
   @include e("news") {
     width: 80%;
-    margin: auto;
+    margin: 0 auto;
     margin-top: 10em;
     @include e("container") {
       padding: 0 1%;
     }
+  }
+  @include e("reviews") {
+    width: 100%;
+    margin-top: 8em;
+    @include e("introduction") {
+      height: 21em;
+      background-color: $light-border-color;
+      @include e("inner") {
+        padding: 5em 25% 0em;
+        text-align: center;
+        div {
+          text-transform: capitalize;
+          font-family: $font-family-special;
+          font-size: 2.4em;
+          color: $main-color;
+        }
+        p {
+          margin: 0.8em 0 1em;
+          font-size: 1em;
+          color: $font-color;
+          line-height: 1.5em;
+        }
+      }
+    }
+    @include e("slick-autoplay") {
+      width: 100%;
+      margin-top: -6em;
+      padding: 0 8%;
+      @include e("item") {
+        .review {
+          //height: 20em;
+        }
+      }
+      .slick-dots {
+        text-align: center;
+        padding: 0;
+        margin-top: 1em;
+      }
+      button {
+        padding: 0;
+        text-shadow: none;
+        color: transparent;
+        background-color: transparent;
+        border: 1px solid $sub-main-color;
+        outline: none;
+        border-radius: 50%;
+        width: 0.8em;
+        height: 0.8em;
+        cursor: pointer;
+      }
+      li {
+        display: inline-block;
+        margin-left: 4px;
+        margin-right: 4px;
+      }
+      .slick-active button {
+        background-color: $sub-main-color;
+      }
+      .slick-track {
+        padding: 1em 0;
+      }
+      .slick-slide {
+        margin: 0 1em;
+        height: auto;
+        width: 100%;
+      }
+    }
+  }
+  @include e("numbers") {
+    width: 80%;
+    margin: 2em auto 0em;
+    display: grid;
+    grid-template-columns: 24% 24% 24% 24%;
+    grid-column-gap: 1%;
+    grid-row-gap: 1em;
+    @include e("item") {
+      text-align: center;
+    }
+  }
+  @include e("trainers") {
+    margin: 6em 0 0;
+    @include e("introduction") {
+      width: 80%;
+      margin: 0 auto;
+      @include e("inner") {
+        padding: 1em 30% 0 0;
+        div {
+          text-transform: capitalize;
+          font-family: $font-family-special;
+          font-size: 2.3em;
+          color: $main-color;
+        }
+        p {
+          margin: 0.8em 0 1em;
+          font-size: 0.9em;
+          color: $font-color;
+          line-height: 1.5em;
+        }
+      }
+    }
+    @include e("background") {
+      width: 100%;
+      margin: 0 auto;
+      margin-top: -2em;
+      text-align: end;
+      div {
+        display: inline-block;
+        text-transform: capitalize;
+        font-size: 12em;
+        font-family: $font-family-number;
+        color: $sub-main-color;
+        font-weight: 700;
+        opacity: 0.18;
+      }
+    }
+    @include e("list") {
+      width: 80%;
+      margin: 0 auto;
+      margin-top: -4.25em;
+      .trainer {
+        display: inline-block;
+        width: 32%;
+        margin-right: 2%;
+        &:nth-child(3) {
+          margin-right: 0% !important;
+        }
+      }
+    }
+  }
+  @include e("brands") {
+    width: 100%;
+    margin-top: 6em;
+    background-color: #faf3ed;
+    @include e("slick-autoplay") {
+      padding: 6em 8%;
+      @include e("item") {
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+      .slick-track {
+        padding: 0;
+      }
+      .slick-slide {
+        margin: 0 0.3em;
+      }
+    }
+  }
+  @include e("contactUs") {
+    width: 80%;
+    margin: 4em auto 0;
+  }
+}
+
+@media only screen and (max-width: 2000px) {
+  html {
+    font-size: 20px !important;
+  }
+  .home__reviews__slick-autoplay__item .review {
+    height: 21.5em;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .home__reviews__slick-autoplay__item .review {
+    height: 25em;
+  }
+}
+
+@media only screen and (max-width: 1199px) {
+  html {
+    font-size: 20px !important;
+  }
+}
+
+@media only screen and (max-width: 1124px) {
+  .home__reviews__slick-autoplay__item .review {
+    height: 18em;
+  }
+  .home__numbers {
+    grid-template-columns: 49% 49%;
+    grid-column-gap: 2%;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  html {
+    font-size: 19px !important;
+  }
+
+  .home__reviews__slick-autoplay__item .review {
+    height: 15em;
+  }
+
+  .home__reviews__slick-autoplay__item .review .review__blankTop {
+    height: 10%;
+  }
+
+  .home__reviews__slick-autoplay__item .review .review__info {
+    padding-top: 1em;
+    height: 50%;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  html {
+    font-size: 19px !important;
+  }
+
+  .home__reviews__slick-autoplay__item .review {
+    height: 18em;
+  }
+
+  .home__reviews__slick-autoplay__item .review .review__blankTop {
+    height: 10%;
+  }
+
+  .home__reviews__slick-autoplay__item .review .review__info {
+    padding-top: 0.5em;
+    height: 50%;
+  }
+
+  .home__numbers {
+    grid-template-columns: 100%;
+    grid-column-gap: 0%;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  html {
+    font-size: 18px !important;
   }
 }

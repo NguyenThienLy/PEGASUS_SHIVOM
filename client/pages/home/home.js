@@ -35,7 +35,7 @@ import {
   Feedback,
   ImageShow,
   FeedbackNoti,
-  Activity,
+  Activity
 } from "../../components";
 
 class Home extends React.Component {
@@ -101,22 +101,79 @@ class Home extends React.Component {
       trainers: [
         {
           image:
-            "https://dalia.elated-themes.com/wp-content/uploads/2018/06/team2-img-8.jpg",
+            "https://dalia.elated-themes.com/wp-content/uploads/2018/06/team2-img-8-768x766.jpg",
           link: "#",
           type: "physiotherapist",
           name: "jessica fox",
           facebook: "facebook.com",
           twitter: "twitter.com",
           instagram: "instagram.com"
+        },
+        {
+          image:
+            "https://dalia.elated-themes.com/wp-content/uploads/2018/06/team2-img-2-768x766.jpg",
+          link: "#",
+          type: "fitness trainer",
+          name: "christine johanson",
+          facebook: "facebook.com",
+          twitter: "twitter.com",
+          instagram: "instagram.com"
+        },
+        {
+          image:
+            "https://dalia.elated-themes.com/wp-content/uploads/2018/06/team2-img-3-768x766.jpg",
+          link: "#",
+          type: "personal trainer",
+          name: "lana tailor",
+          facebook: "facebook.com",
+          twitter: "twitter.com",
+          instagram: "instagram.com"
         }
       ],
-      review: {
-        image:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlp9UWxfO8gXd-LjSk2RhNeCrWXwJy69ruhejIsIY9Zw_HqDsxBQ",
-        content:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum.",
-        owner: "callie hern"
-      },
+      reviews: [
+        {
+          image:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlp9UWxfO8gXd-LjSk2RhNeCrWXwJy69ruhejIsIY9Zw_HqDsxBQ",
+          content:
+            "1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum.",
+          owner: "callie hern"
+        },
+        {
+          image:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlp9UWxfO8gXd-LjSk2RhNeCrWXwJy69ruhejIsIY9Zw_HqDsxBQ",
+          content:
+            "2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum.",
+          owner: "callie hern"
+        },
+        {
+          image:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlp9UWxfO8gXd-LjSk2RhNeCrWXwJy69ruhejIsIY9Zw_HqDsxBQ",
+          content:
+            "3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum.",
+          owner: "callie hern"
+        },
+        {
+          image:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlp9UWxfO8gXd-LjSk2RhNeCrWXwJy69ruhejIsIY9Zw_HqDsxBQ",
+          content:
+            "4 Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum.",
+          owner: "callie hern"
+        },
+        {
+          image:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlp9UWxfO8gXd-LjSk2RhNeCrWXwJy69ruhejIsIY9Zw_HqDsxBQ",
+          content:
+            "5 Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum.",
+          owner: "callie hern"
+        },
+        {
+          image:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlp9UWxfO8gXd-LjSk2RhNeCrWXwJy69ruhejIsIY9Zw_HqDsxBQ",
+          content:
+            "6 Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum.",
+          owner: "callie hern"
+        }
+      ],
       introHome: {
         link: "#",
         image:
@@ -211,7 +268,104 @@ class Home extends React.Component {
   static async getInitialProps({ req, query }) {
     return {};
   }
-  async componentDidMount() {}
+  async componentDidMount() {
+    $(".home__reviews__slick-autoplay").slick({
+      dots: true,
+      arrows: false,
+      slidesToShow: 3,
+      slidesToScroll: 3,
+      autoplay: true,
+      autoplaySpeed: 5000,
+      responsive: [
+        {
+          breakpoint: 1124,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            infinite: true,
+            dots: true
+          }
+        },
+        {
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+        // You can unslick at a given breakpoint now by adding:
+        // settings: "unslick"
+        // instead of a settings object
+      ]
+    });
+    $(".home__reviews__slick-autoplay").on("beforeChange", function(
+      event,
+      slick,
+      currentSlide,
+      nextSlide
+    ) {
+      $(".home__reviews__slick-autoplay .slick-dots li").removeClass(
+        "slick-active"
+      );
+      $(".home__reviews__slick-autoplay .slick-dots li button")
+        .attr("aria-pressed", "false")
+        .focus(function() {
+          this.blur();
+        });
+    });
+
+    $(".home__brands__slick-autoplay").slick({
+      dots: false,
+      arrows: false,
+      slidesToShow: 5,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      responsive: [
+        {
+          breakpoint: 1300,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            infinite: true,
+            dots: true
+          }
+        },
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 767,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2
+          }
+        }
+        // You can unslick at a given breakpoint now by adding:
+        // settings: "unslick"
+        // instead of a settings object
+      ]
+    });
+    $(".home__brands__slick-autoplay").on("beforeChange", function(
+      event,
+      slick,
+      currentSlide,
+      nextSlide
+    ) {
+      $(".home__brands__slick-autoplay .slick-dots li").removeClass(
+        "slick-active"
+      );
+      $(".home__brands__slick-autoplay .slick-dots li button")
+        .attr("aria-pressed", "false")
+        .focus(function() {
+          this.blur();
+        });
+    });
+  }
 
   render() {
     return (
@@ -271,16 +425,89 @@ class Home extends React.Component {
               <News news={this.state.news} />
             </div>
           </div>
+          <div className="home__reviews">
+            <div className="home__reviews__introduction">
+              <div className="home__reviews__introduction__inner">
+                <div>what they say</div>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                  in enim neque. Vestibulum volutpat purus id nibh.
+                </p>
+              </div>
+            </div>
+            <div className="home__reviews__slick-autoplay">
+              {this.state.reviews.map(review => {
+                return (
+                  <div className="home__reviews__slick-autoplay__item">
+                    <Review review={review} />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <div className="home__numbers">
+            <div className="home__numbers__item">
+              <NumberSection />
+            </div>
+            <div className="home__numbers__item">
+              <NumberSection />
+            </div>
+            <div className="home__numbers__item">
+              <NumberSection />
+            </div>
+            <div className="home__numbers__item">
+              <NumberSection />
+            </div>
+          </div>
+          <div className="home__trainers">
+            <div className="home__trainers__introduction">
+              <div className="home__trainers__introduction__inner">
+                <div>our strong team</div>
+                <p>
+                  Lorem ipsum dolor sit amet, animal utamur id nec, clita doming
+                  oblique usu cu, utroque omittam ex sea inani eleifend.
+                </p>
+              </div>
+            </div>
+            <div className="home__trainers__background">
+              <div>instructor</div>
+            </div>
+            <div className="home__trainers__list">
+              {this.state.trainers.map(trainer => {
+                return <Trainer trainer={trainer} />;
+              })}
+            </div>
+          </div>
+          <div className="home__brands">
+            <div className="home__brands__slick-autoplay">
+              <div className="home__brands__slick-autoplay__item">
+                <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-6.png"></img>
+              </div>
+              <div className="home__brands__slick-autoplay__item">
+                <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-7.png"></img>
+              </div>
+              <div className="home__brands__slick-autoplay__item">
+                <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-8.png"></img>
+              </div>
+              <div className="home__brands__slick-autoplay__item">
+                <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-5.png"></img>
+              </div>
+              <div className="home__brands__slick-autoplay__item">
+                <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-2.png"></img>
+              </div>
+              <div className="home__brands__slick-autoplay__item">
+                <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-3.png"></img>
+              </div>
+            </div>
+          </div>
+          <div className="home__contactUs">
+            <ContactUs />
+          </div>
+          {/* <TrainerInfo /> */}
 
-          <TrainerInfo />
-          <ContactUs />
-          <PostAuthor />
-          <NumberSection />
-          {this.state.trainers.map(trainer => {
-            return <Trainer trainer={trainer} />;
-          })}
-          <Review review={this.state.review} />
-          <IntroHome introHome={this.state.introHome} />
+          {/* <PostAuthor /> */}
+
+          {/* <IntroHome introHome={this.state.introHome} />
           <EventHour eventHour={this.state.eventHour} />
           <LatestPost latestPost={this.state.latestPost} />
           <IntroHome2 introHome2={this.state.introHome2} />
@@ -294,9 +521,7 @@ class Home extends React.Component {
           <RelatedPost></RelatedPost>
           <Feedback></Feedback>
           <FeedbackNoti></FeedbackNoti>
-          <Activity></Activity>
-          <ImageShow></ImageShow>
-          </div>
+          <Activity></Activity> */}
         </React.Fragment>
         <Footer />
       </div>

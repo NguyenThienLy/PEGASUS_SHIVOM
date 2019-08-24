@@ -1,21 +1,28 @@
 @import "../../default.scss";
 
 .contact-us {
-  width: 80em;
   position: relative;
-  margin: 0 auto;
   font-family: $font-title;
   font-size: $font-size;
+  // -webkit-box-shadow: 0 0 15px rgba(131, 204, 210, 0.2);
+  // box-shadow: 0 0 15px rgba(131, 204, 210, 0.2);
+  padding: 3em 0;
+  // background-image: url("https://images.squarespace-cdn.com/content/v1/523c8cd7e4b0cc256b0f8746/1503656828390-8AVA7X34APK0YB393UF5/ke17ZwdGBToddI8pDm48kMWB_b-n6a50YzIZsjMYkmt7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0hveExjbswnAj1UrRPScjfAsZste21sIDg4hzF3IoAd0gcytUQrJ8Q9Y5sp8n9LlOw/minea-berg-design-yoga-illustration.jpg?format=1000w");
+  // background-position: -112% 9px;
+  // background-repeat: no-repeat;
   display: flex;
   flex-direction: row;
-  -webkit-box-shadow: 0 0 15px rgba(131, 204, 210, 0.2);
-  box-shadow: 0 0 15px rgba(131, 204, 210, 0.2);
-  padding: 3em 0;
-  background-image: url("https://images.squarespace-cdn.com/content/v1/523c8cd7e4b0cc256b0f8746/1503656828390-8AVA7X34APK0YB393UF5/ke17ZwdGBToddI8pDm48kMWB_b-n6a50YzIZsjMYkmt7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0hveExjbswnAj1UrRPScjfAsZste21sIDg4hzF3IoAd0gcytUQrJ8Q9Y5sp8n9LlOw/minea-berg-design-yoga-illustration.jpg?format=1000w");
-  background-position: -112% 9px;
-  background-repeat: no-repeat;
-
+  @include e("overlay") {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    //z-index: -1;
+  }
   @include e("form") {
+    z-index: 1;
     margin: 0 2em;
     display: flex;
     flex-direction: column;
@@ -24,7 +31,7 @@
     justify-content: center;
 
     @include e("input") {
-      width: 70%;
+      width: 100%;
       background: #fff; //#fcfcfc;
       color: $font-color;
       font-size: 0.875em;
@@ -32,18 +39,18 @@
       border: 1px solid $table-border-color;
       outline: 0;
       padding: 1em 0.875em;
-      margin: 2px;
+      margin: 0.5em 0;
     }
 
     @include e("select-box") {
-      width: 70%;
+      width: 100%;
       background: #fff; //#fcfcfc;
       color: $font-color;
       font-size: 0.875em;
       //box-shadow: 0 0 10px 0 rgba(0, 0, 0 , 0.03);
       border: 1px solid $table-border-color;
       padding: 1em 0.875em;
-      margin: 2px;
+      margin: 0.5em 0;
       outline: 0;
 
       @include e("select") {
@@ -59,21 +66,20 @@
 
     @include e("btn") {
       text-transform: uppercase;
-      display: inline-block;
+      width: 100%;
+      display: block;
       background: transparent;
       color: inherit;
       font: inherit;
       border: 0;
       outline: 0;
-      padding: 0;
+      padding: 1em 0.875em;
       transition: all 200ms ease-in;
       cursor: pointer;
-
       @include m("primary") {
         background: $main-color;
         color: #fff;
         border-radius: 2px;
-        padding: 12px 36px;
         margin-top: 10px;
 
         &:hover {
@@ -83,7 +89,7 @@
         &:active {
           background: $main-color;
           // box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, .2);
-          box-shadow: 2px 2px 20px 0 $main-color;
+          box-shadow: 1px 1px 10px 0 $sub-main-color;
         }
       }
     }
@@ -92,7 +98,7 @@
   @include e("sub-info") {
     flex-basis: 50%;
     margin: 0 2em;
-
+    z-index: 1;
     // display: flex;
     // flex-direction: column;
     // justify-content: flex-start;
