@@ -7,6 +7,7 @@ type NewsSliderOption = {
     title: string
     description: string
     buttonTitle: string
+    image: string
     newsId: string
 }
 type PromotionCourseSliderOption = {

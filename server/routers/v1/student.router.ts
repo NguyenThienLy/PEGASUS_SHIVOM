@@ -17,6 +17,21 @@ export default class StudentRouter extends CrudRouter<typeof studentController> 
         this.router.get("/search", this.searchMiddlewares(), this.route(this.search))
         this.router.get("/upcommingExpired", this.getListStudentUpcommingExpiredMiddlewares(), this.route(this.getListStudentUpcommingExpired))
         this.router.post("/sendMailUpcommingExpired", this.sendMailUpcommingExpiredMiddlewares(), this.route(this.sendMailUpcommingExpired))
+        this.router.post("/login", [], this.route(this.login))
+
+    }
+    async login(req: Request, res: Response) {
+        await this.validateJSON(req.body, {
+            type: "object",
+            properties: {
+                phone: { type: "string" },
+                password: { type: "string" }
+            },
+            required: ["phone", "password"],
+            additionalProperties: false
+        })
+        const result = await this.controller.login(req.body)
+        this.onSuccess(res, result)
     }
     sendMailUpcommingExpiredMiddlewares(): any[] {
         return [
