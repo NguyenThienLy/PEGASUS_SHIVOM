@@ -328,7 +328,7 @@ class Home extends React.Component {
             slidesToShow: 4,
             slidesToScroll: 1,
             infinite: true,
-            dots: true
+            dots: false
           }
         },
         {
@@ -365,6 +365,8 @@ class Home extends React.Component {
           this.blur();
         });
     });
+    var heightOfFooter = $(".home__footer .footer-wrapper").height();
+    $(".home__contactUs").css("margin-bottom", heightOfFooter + "px");
   }
 
   render() {
@@ -381,7 +383,10 @@ class Home extends React.Component {
         <React.Fragment>
           {/* <Sidebar /> */}
           {/* <div className="content"> */}
-          <Header {...this.props} />
+          <div className="home__header">
+            <Header {...this.props} />
+          </div>
+
           <Slider />
           {/* <div className="body">
             <h1>Trang chủ</h1>
@@ -523,7 +528,9 @@ class Home extends React.Component {
           <FeedbackNoti></FeedbackNoti>
           <Activity></Activity> */}
         </React.Fragment>
-        <Footer />
+        <div className="home__footer">
+          <Footer />
+        </div>
       </div>
     );
   }

@@ -13,7 +13,7 @@
   }
 }
 
-$hover-color: lighten($sub-main-color, 25%);
+$hover-color: lighten($sub-main-color, 27%);
 
 // /* Safari 4.0 - 8.0 */
 // @-webkit-keyframes in {
@@ -67,6 +67,7 @@ $hover-color: lighten($sub-main-color, 25%);
       position: relative;
       display: inline;
       padding: 0 0.5em;
+      z-index: 1000;
       @include m("hover") {
         position: absolute;
         left: 0;
