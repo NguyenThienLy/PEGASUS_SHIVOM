@@ -19,6 +19,9 @@
 // }
 
 .home {
+  background-color: #fff;
+  @include e("header") {
+  }
   @include e("trainingClass") {
     width: 80%;
     margin: 0 auto;
@@ -242,6 +245,7 @@
   @include e("contactUs") {
     width: 80%;
     margin: 4em auto 0;
+    padding: 3em 0 7em;
   }
 }
 

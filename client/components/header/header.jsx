@@ -77,7 +77,7 @@ export class Header extends React.Component {
   // }
 
   componentDidMount() {
-    // $(".header-wrapper__page-menu-area__left__navbar__list-items__item").hover(
+    // $(".header__wrapper__page-menu-area__left__navbar__list-items__item").hover(
     //   function() {
     //     var navBarWrapper = $(this)
     //       .children()
@@ -94,59 +94,168 @@ export class Header extends React.Component {
     //     }
     //   }
     // );
+    var prevScrollpos = window.pageYOffset;
+    var posToExpose = 300;
+    if (prevScrollpos < posToExpose) {
+      $(".header__sub-wrapper").css({
+        maxHeight: "0px",
+        overflow: "hidden",
+        MozTransition: "max-height 500ms ease-out",
+        MsTransition: "max-height 500ms ease-out",
+        OTransition: "max-height 500ms ease-out",
+        WebkitTransition: "max-height 500ms ease-out",
+        transition: "max-height 500ms ease-out"
+      });
+    } else if (prevScrollpos >= posToExpose) {
+      $(".header__sub-wrapper").css({
+        maxHeight: "500px",
+        MozTransition: "max-height 500ms ease-in",
+        MsTransition: "max-height 500ms ease-in",
+        OTransition: "max-height 500ms ease-in",
+        WebkitTransition: "max-height 500ms ease-in",
+        transition: "max-height 500ms ease-in",
+        overflow: "visible"
+      });
+    }
+
+    window.onscroll = function() {
+      var currentScrollPos = window.pageYOffset;
+      if (prevScrollpos > currentScrollPos && currentScrollPos < posToExpose) {
+        $(".header__sub-wrapper").css({
+          maxHeight: "0px",
+          overflow: "hidden",
+          MozTransition: "max-height 500ms ease-out",
+          MsTransition: "max-height 500ms ease-out",
+          OTransition: "max-height 500ms ease-out",
+          WebkitTransition: "max-height 500ms ease-out",
+          transition: "max-height 500ms ease-out"
+        });
+      } else if (
+        prevScrollpos <= currentScrollPos &&
+        currentScrollPos >= posToExpose
+      ) {
+        $(".header__sub-wrapper").css({
+          maxHeight: "500px",
+          MozTransition: "max-height 500ms ease-in",
+          MsTransition: "max-height 500ms ease-in",
+          OTransition: "max-height 500ms ease-in",
+          WebkitTransition: "max-height 500ms ease-in",
+          transition: "max-height 500ms ease-in",
+          overflow: "visible"
+        });
+      }
+      prevScrollpos = currentScrollPos;
+    };
   }
 
   render() {
     return (
-      <div className="header-wrapper">
-        <div className="header-wrapper__page-menu-area">
-          <div className="header-wrapper__page-menu-area__left">
-            <div className="header-wrapper__page-menu-area__left__logo-wrapper">
-              <a
-                href="#"
-                className="header-wrapper__page-menu-area__left__logo-wrapper__a"
-              >
-                <img
-                  src="https://i.etsystatic.com/13665876/d/il/d5b7d0/1363979907/il_340x270.1363979907_ic0j.jpg?version=0"
-                  className="header-wrapper__page-menu-area__left__logo-wrapper__a__img"
-                />
-              </a>
+      <div className="header">
+        <div className="header__wrapper">
+          <div className="header__wrapper__page-menu-area">
+            <div className="header__wrapper__page-menu-area__left">
+              <div className="header__wrapper__page-menu-area__left__logo-wrapper">
+                <a
+                  href="#"
+                  className="header__wrapper__page-menu-area__left__logo-wrapper__a"
+                >
+                  <img
+                    src="https://i.etsystatic.com/13665876/d/il/d5b7d0/1363979907/il_340x270.1363979907_ic0j.jpg?version=0"
+                    className="header__wrapper__page-menu-area__left__logo-wrapper__a__img"
+                  />
+                </a>
+              </div>
+              <div>
+                <div className="header__wrapper__page-menu-area__left__navbar">
+                  <ul className="header__wrapper__page-menu-area__left__navbar__list-items">
+                    {this.state.categories.map(category => {
+                      return category.subCategories ? (
+                        <li className="header__wrapper__page-menu-area__left__navbar__list-items__item">
+                          <HoverDivAnimation title={category.name} />
+                          <div className="header__wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper">
+                            <ul className="header__wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper__sub-navbar">
+                              {category.subCategories.map(subCategory => {
+                                return (
+                                  <li className="header__wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper__sub-navbar__item">
+                                    <HoverDivAnimation
+                                      title={subCategory.name}
+                                    />
+                                  </li>
+                                );
+                              })}
+                            </ul>
+                          </div>
+                        </li>
+                      ) : (
+                        <li className="header__wrapper__page-menu-area__left__navbar__list-items__item">
+                          <HoverDivAnimation title={category.name} />
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </div>
             </div>
-            <div>
-              <div className="header-wrapper__page-menu-area__left__navbar">
-                <ul className="header-wrapper__page-menu-area__left__navbar__list-items">
-                  {this.state.categories.map(category => {
-                    return category.subCategories ? (
-                      <li className="header-wrapper__page-menu-area__left__navbar__list-items__item">
-                        <HoverDivAnimation title={category.name} />
-                        <div className="header-wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper">
-                          <ul className="header-wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper__sub-navbar">
-                            {category.subCategories.map(subCategory => {
-                              return (
-                                <li className="header-wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper__sub-navbar__item">
-                                  <HoverDivAnimation title={subCategory.name} />
-                                </li>
-                              );
-                            })}
-                          </ul>
-                        </div>
-                      </li>
-                    ) : (
-                      <li className="header-wrapper__page-menu-area__left__navbar__list-items__item">
-                        <HoverDivAnimation title={category.name} />
-                      </li>
-                    );
-                  })}
-                  ;
-                </ul>
+            <div className="header__wrapper__page-menu-area__right">
+              <div className="header__wrapper__page-menu-area__right__more-btn">
+                <i class="far fa-circle" />
+                <i class="far fa-circle" />
+                <i class="far fa-circle" />
               </div>
             </div>
           </div>
-          <div className="header-wrapper__page-menu-area__right">
-            <div className="header-wrapper__page-menu-area__right__more-btn">
-              <i class="far fa-circle" />
-              <i class="far fa-circle" />
-              <i class="far fa-circle" />
+        </div>
+        <div className="header__sub-wrapper">
+          <div className="header__sub-wrapper__page-menu-area">
+            <div className="header__sub-wrapper__page-menu-area__left">
+              <div className="header__sub-wrapper__page-menu-area__left__logo-wrapper">
+                <a
+                  href="#"
+                  className="header__sub-wrapper__page-menu-area__left__logo-wrapper__a"
+                >
+                  <img
+                    src="https://i.etsystatic.com/13665876/d/il/d5b7d0/1363979907/il_340x270.1363979907_ic0j.jpg?version=0"
+                    className="header__sub-wrapper__page-menu-area__left__logo-wrapper__a__img"
+                  />
+                </a>
+              </div>
+              <div>
+                <div className="header__sub-wrapper__page-menu-area__left__navbar">
+                  <ul className="header__sub-wrapper__page-menu-area__left__navbar__list-items">
+                    {this.state.categories.map(category => {
+                      return category.subCategories ? (
+                        <li className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item">
+                          <HoverDivAnimation title={category.name} />
+                          <div className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper">
+                            <ul className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper__sub-navbar">
+                              {category.subCategories.map(subCategory => {
+                                return (
+                                  <li className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper__sub-navbar__item">
+                                    <HoverDivAnimation
+                                      title={subCategory.name}
+                                    />
+                                  </li>
+                                );
+                              })}
+                            </ul>
+                          </div>
+                        </li>
+                      ) : (
+                        <li className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item">
+                          <HoverDivAnimation title={category.name} />
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className="header__sub-wrapper__page-menu-area__right">
+              <div className="header__sub-wrapper__page-menu-area__right__more-btn">
+                <i class="far fa-circle" />
+                <i class="far fa-circle" />
+                <i class="far fa-circle" />
+              </div>
             </div>
           </div>
         </div>
