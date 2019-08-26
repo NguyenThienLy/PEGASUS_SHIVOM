@@ -26,6 +26,7 @@ import { StatisticCourseController } from './crud/statisticCourse.controller'
 import { SliderController } from './crud/slider.controller'
 import { FeedbackController } from './crud/feedback.controller'
 import { RegisCourseController } from './crud/regisCourse.controller'
+import { SettingController } from './crud/setting.controller'
 
 const webhookController = new WebhookController()
 
@@ -54,6 +55,7 @@ const statisticCourseController = new StatisticCourseController()
 const sliderController = new SliderController()
 const feedbackController = new FeedbackController()
 const regisCourseController = new RegisCourseController()
+const settingController = new SettingController()
 
 export {
     CrudController,
@@ -83,5 +85,6 @@ export {
     feedbackController,
     regisCourseController,
     statisticCourseController,
-    sliderController
+    sliderController,
+    settingController
 }
