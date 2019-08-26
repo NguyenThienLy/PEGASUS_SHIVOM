@@ -10,6 +10,16 @@ export default class NewsRouter extends CrudRouter<typeof newsController> {
     }
     customRouter() {
         this.router.post("/:_id/slider", this.setNewsAtSliderMiddlewares(), this.route(this.setNewsAtSlider))
+        this.router.get("/:_id/client", this.getItemFromClientMiddlewares(), this.route(this.getItemFromClient))
+    }
+    getItemFromClientMiddlewares(): any[] {
+        return [
+            queryInfoMiddleware.run()
+        ]
+    }
+    async getItemFromClient(req: Request, res: Response) {
+        const result = await this.controller.getItemFromClient(req.queryInfo)
+        this.onSuccess(res, result)
     }
     setNewsAtSliderMiddlewares(): any[] {
         return [
@@ -39,6 +49,7 @@ export default class NewsRouter extends CrudRouter<typeof newsController> {
     }
     getItemMiddlewares(): any[] {
         return [
+            authInfoMiddleware.run(["admin"]),
             queryInfoMiddleware.run()
         ]
     }
