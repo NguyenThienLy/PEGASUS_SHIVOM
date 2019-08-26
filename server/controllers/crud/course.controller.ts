@@ -2,11 +2,26 @@ import * as _ from 'lodash'
 import * as hash from 'object-hash'
 
 import { CrudController } from '../crud.controller'
-import { courseService, classTimeTableService, ICrudOption, cacheService } from '../../services/index'
+import { courseService, classTimeTableService, ICrudOption, cacheService, classService, teacherService } from '../../services/index'
+import { ClassModel } from '../../models';
 
 export class CourseController extends CrudController<typeof courseService>{
     constructor() {
         super(courseService);
+    }
+    async getTeachersOfCourse(courseId: string, option: ICrudOption) {
+        const classies: ClassModel[] = await classService.model.find({
+            course: courseId
+        }).select("teacher")
+        return await teacherService.getList(_.merge(option, {
+            filter: {
+                _id: {
+                    $in: classies.map((item: any) => {
+                        return item.teacher
+                    })
+                }
+            }
+        }))
     }
     async getAllTimeTable(option: ICrudOption) {
         // Lay ma hash duy nhat de query cache

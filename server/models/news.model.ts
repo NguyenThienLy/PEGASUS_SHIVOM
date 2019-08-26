@@ -17,6 +17,7 @@ export type NewsModel = BaseModel & {
     thumb: string
     isUseAtSlider: boolean
     slider: string | SliderModel
+    view: number
 }
 
 const newsSchema = new Schema({
@@ -31,6 +32,7 @@ const newsSchema = new Schema({
     thumb: { type: String, required: true },
     slider: { type: Schema.Types.ObjectId, ref: "Slider" },
     isUseAtSlider: { type: Boolean, default: false },
+    view: { type: Number, default: 0, required: true },
     status: { type: String, enum: ["active", "deactive"], default: "active" }
 }, { timestamps: true })
 
