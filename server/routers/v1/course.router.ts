@@ -11,6 +11,16 @@ export default class CourseRouter extends CrudRouter<typeof courseController> {
     customRouter() {
         this.router.get("/:_id/timeTable", this.getTimeTableOfCourseMiddlewares(), this.route(this.getTimeTableOfCourse))
         this.router.get("/timeTable", this.getAllTimeTableMiddlewares(), this.route(this.getAllTimeTable))
+        this.router.get("/:_id/teacher", this.getTeachersOfCourseMiddlewares(), this.route(this.getTeachersOfCourse))
+    }
+    getTeachersOfCourseMiddlewares(): any[] {
+        return [
+            queryInfoMiddleware.run()
+        ]
+    }
+    async getTeachersOfCourse(req: Request, res: Response) {
+        const result = await this.controller.getTeachersOfCourse(req.params._id, req.queryInfo)
+        this.onSuccess(res, result)
     }
     getAllTimeTableMiddlewares(): any[] {
         return [
