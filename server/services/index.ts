@@ -30,6 +30,7 @@ import { StatisticCourseService } from './crud/statisticCourse.crud.service'
 import { SliderService } from './crud/slider.crud.service'
 import { FeedbackService } from './crud/feedback.crud.service'
 import { RegisCourseService } from './crud/regisCourse.crud.service'
+import { SettingService } from './crud/setting.crud.service'
 
 
 const utilService = new UtilService()
@@ -62,6 +63,7 @@ const statisticCourseService = new StatisticCourseService()
 const sliderService = new SliderService()
 const feedbackService = new FeedbackService()
 const regisCourseService = new RegisCourseService()
+const settingService = new SettingService()
 
 export {
     CrudService, ICrudExecOption, ICrudOption,
@@ -94,5 +96,6 @@ export {
     regisCourseService,
     feedbackService,
     statisticCourseService,
-    sliderService
+    sliderService,
+    settingService
 }
