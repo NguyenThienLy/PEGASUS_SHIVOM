@@ -8,12 +8,21 @@ export default class StatisticClassRouter extends CrudRouter<typeof statisticCou
     constructor() {
         super(statisticCourseController);
     }
+
     statisticLineMiddlewares(): any[] {
         return []
     }
+
+    statisticPieMiddlewares(): any[] {
+        return []
+    }
+
     customRouter() {
         this.router.get("/statisticLine/", this.statisticLineMiddlewares(), this.route(this.statisticLine))
+        this.router.get("/statisticPie/", this.statisticPieMiddlewares(), this.route(this.statisticPie))
     }
+
+    // Lấy dữ liệu cho khóa học biểu đồ đường
     async statisticLine(req: Request, res: Response) {
         await this.validateJSON(req.query, {
             type: "object",
@@ -26,6 +35,22 @@ export default class StatisticClassRouter extends CrudRouter<typeof statisticCou
             additionalProperties: false
         })
         const result = await this.controller.statisticLine(req.query)
+        this.onSuccess(res, result)
+    }
+
+    // Lấy dữ liệu cho khóa học dạng biểu đồ tròn
+    async statisticPie(req: Request, res: Response) {
+        await this.validateJSON(req.query, {
+            type: "object",
+            properties: {
+                course: { type: "string" },
+                type: { type: "string", enum: ["week", "month", "year", "realTime"] },
+                startTime: { type: "string", format: "date-time" },
+                endTime: { type: "string", format: "date-time" }
+            },
+            additionalProperties: false
+        })
+        const result = await this.controller.statisticPie(req.query)
         this.onSuccess(res, result)
     }
 
