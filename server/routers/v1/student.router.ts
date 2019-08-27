@@ -19,6 +19,26 @@ export default class StudentRouter extends CrudRouter<typeof studentController> 
         this.router.post("/sendMailUpcommingExpired", this.sendMailUpcommingExpiredMiddlewares(), this.route(this.sendMailUpcommingExpired))
         this.router.post("/login", [], this.route(this.login))
         this.router.post("/:_id/card", this.updateCardMiddlewares(), this.route(this.updateCard))
+        this.router.post("/:_id/sendGift", this.sendGiftMiddlewares(), this.route(this.sendGift))
+    }
+    sendGiftMiddlewares(): any[] {
+        return [
+            authInfoMiddleware.run(["admin"])
+        ]
+    }
+    async sendGift(req: Request, res: Response) {
+        await this.validateJSON(req.body, {
+            type: "object",
+            properties: {
+                gift: { type: "string" },
+                amount: { type: "number" }
+            },
+            required: ["gift", "amount"],
+            additionalProperties: false
+        })
+        req.body.studentId = req.params._id
+        const result = await this.controller.sendGift(req.body)
+        this.onSuccess(res, result)
     }
     updateCardMiddlewares(): any[] {
         return [
