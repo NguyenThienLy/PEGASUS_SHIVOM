@@ -12,6 +12,18 @@ export class StudentController extends CrudController<typeof studentService>{
     constructor() {
         super(studentService);
     }
+    async updateCard(params: {
+        studentId: string,
+        code: string
+    }) {
+        return await this.service.update({
+            cardId: params.code
+        }, {
+                filter: {
+                    _id: params.studentId
+                }
+            })
+    }
     async login(params: {
         phone: string
         password: string
