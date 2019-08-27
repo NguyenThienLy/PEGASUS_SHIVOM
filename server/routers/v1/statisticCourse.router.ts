@@ -8,18 +8,36 @@ export default class StatisticClassRouter extends CrudRouter<typeof statisticCou
     constructor() {
         super(statisticCourseController);
     }
-    customRouter() {
-        
+    statisticLineMiddlewares(): any[] {
+        return []
     }
+    customRouter() {
+        this.router.get("/statisticLine/", this.statisticLineMiddlewares(), this.route(this.statisticLine))
+    }
+    async statisticLine(req: Request, res: Response) {
+        await this.validateJSON(req.query, {
+            type: "object",
+            properties: {
+                course: { type: "string" },
+                type: { type: "string", enum: ["week", "month", "year", "realTime"] },
+                startTime: { type: "string", format: "date-time" },
+                endTime: { type: "string", format: "date-time" }
+            },
+            additionalProperties: false
+        })
+        const result = await this.controller.statisticLine(req.query)
+        this.onSuccess(res, result)
+    }
+
     getListMiddlewares(): any[] {
         return [
-            authInfoMiddleware.run(["admin"]),
+            //authInfoMiddleware.run(["admin"]),
             queryInfoMiddleware.run()
         ]
     }
     getItemMiddlewares(): any[] {
         return [
-            authInfoMiddleware.run(["admin"]),
+            // authInfoMiddleware.run(["admin"]),
             queryInfoMiddleware.run()
         ]
     }

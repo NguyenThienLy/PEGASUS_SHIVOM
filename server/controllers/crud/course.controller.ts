@@ -3,6 +3,8 @@ import * as hash from 'object-hash'
 
 import { CrudController } from '../crud.controller'
 import { courseService, classTimeTableService, ICrudOption, cacheService } from '../../services/index'
+import { timeTableItemController } from '..'
+import { Collection } from 'mongoose'
 
 export class CourseController extends CrudController<typeof courseService>{
     constructor() {
