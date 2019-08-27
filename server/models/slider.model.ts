@@ -17,13 +17,20 @@ type PromotionCourseSliderOption = {
     courseId: string
 }
 
+type EventSliderOption = {
+    title: string
+    description: string
+    buttonTile: string
+    eventId: string
+}
+
 export type SliderModel = BaseModel & {
-    type: "news" | "promotion"
-    option: NewsSliderOption | PromotionCourseSliderOption
+    type: "news" | "promotion" | "event"
+    option: NewsSliderOption | PromotionCourseSliderOption | EventSliderOption
 }
 
 const sliderSchema = new Schema({
-    type: { type: String, enum: ["news", "promotion"] },
+    type: { type: String, enum: ["news", "promotion", "event"] },
     option: { type: Schema.Types.Mixed },
     status: { type: String, enum: ["active", "deactive"], default: "active" }
 }, { timestamps: true })

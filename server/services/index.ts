@@ -34,6 +34,7 @@ import { SettingService } from './crud/setting.crud.service'
 import { GiftService } from './crud/gift.crud.service'
 import { EventService } from './crud/event.crud.service'
 import { PromotionService } from './crud/promotion.crud.service'
+import { GiftReceiveService } from './crud/giftReceive.crud.service'
 
 
 const utilService = new UtilService()
@@ -70,6 +71,7 @@ const settingService = new SettingService()
 const promotionService = new PromotionService()
 const eventService = new EventService()
 const giftService = new GiftService()
+const giftReceiveService = new GiftReceiveService()
 
 
 export {
@@ -107,5 +109,6 @@ export {
     settingService,
     promotionService,
     giftService,
-    eventService
+    eventService,
+    giftReceiveService
 }
