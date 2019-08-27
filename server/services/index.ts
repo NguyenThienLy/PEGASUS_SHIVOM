@@ -31,6 +31,9 @@ import { SliderService } from './crud/slider.crud.service'
 import { FeedbackService } from './crud/feedback.crud.service'
 import { RegisCourseService } from './crud/regisCourse.crud.service'
 import { SettingService } from './crud/setting.crud.service'
+import { GiftService } from './crud/gift.crud.service'
+import { EventService } from './crud/event.crud.service'
+import { PromotionService } from './crud/promotion.crud.service'
 
 
 const utilService = new UtilService()
@@ -64,6 +67,10 @@ const sliderService = new SliderService()
 const feedbackService = new FeedbackService()
 const regisCourseService = new RegisCourseService()
 const settingService = new SettingService()
+const promotionService = new PromotionService()
+const eventService = new EventService()
+const giftService = new GiftService()
+
 
 export {
     CrudService, ICrudExecOption, ICrudOption,
@@ -97,5 +104,8 @@ export {
     feedbackService,
     statisticCourseService,
     sliderService,
-    settingService
+    settingService,
+    promotionService,
+    giftService,
+    eventService
 }
