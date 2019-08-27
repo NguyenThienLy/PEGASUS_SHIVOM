@@ -2,8 +2,11 @@ import * as _ from 'lodash'
 import * as hash from 'object-hash'
 
 import { CrudController } from '../crud.controller'
+
 import { courseService, classTimeTableService, ICrudOption, cacheService, classService, teacherService } from '../../services/index'
 import { ClassModel } from '../../models';
+import { Collection } from 'mongoose'
+
 
 export class CourseController extends CrudController<typeof courseService>{
     constructor() {
