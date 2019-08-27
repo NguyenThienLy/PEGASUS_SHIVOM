@@ -1,6 +1,7 @@
 import * as mongoose from 'mongoose';
 import { BaseModel } from './base.model';
 import * as bcrypt from 'bcryptjs'
+import { utilService } from '../services';
 
 const SALT_WORK_FACTOR = 10
 
@@ -37,6 +38,15 @@ adminSchema.pre('save', function (next) {
             next();
         });
     });
+});
+adminSchema.pre('findOneAndUpdate', async function (next) {
+    const dataUpdate = this.getUpdate()
+    //  only hash the password if it has been modified (or is new)
+    if (dataUpdate.password) {
+        const hash = await utilService.hashPassword(dataUpdate.password)
+        this.update({}, { password: hash })
+    }
+    next()
 });
 
 adminSchema.methods.comparePassword = async function (candidatePassword) {

@@ -17,6 +17,39 @@ export default class StudentRouter extends CrudRouter<typeof studentController> 
         this.router.get("/search", this.searchMiddlewares(), this.route(this.search))
         this.router.get("/upcommingExpired", this.getListStudentUpcommingExpiredMiddlewares(), this.route(this.getListStudentUpcommingExpired))
         this.router.post("/sendMailUpcommingExpired", this.sendMailUpcommingExpiredMiddlewares(), this.route(this.sendMailUpcommingExpired))
+        this.router.post("/login", [], this.route(this.login))
+        this.router.post("/:_id/card", this.updateCardMiddlewares(), this.route(this.updateCard))
+    }
+    updateCardMiddlewares(): any[] {
+        return [
+            authInfoMiddleware.run(["admin"])
+        ]
+    }
+    async updateCard(req: Request, res: Response) {
+        await this.validateJSON(req.body, {
+            type: "object",
+            properties: {
+                code: { type: "string" }
+            },
+            required: ["code"],
+            additionalProperties: false
+        })
+        req.body.studentId = req.params._id
+        const result = await this.controller.updateCard(req.body)
+        this.onSuccess(res, result)
+    }
+    async login(req: Request, res: Response) {
+        await this.validateJSON(req.body, {
+            type: "object",
+            properties: {
+                phone: { type: "string" },
+                password: { type: "string" }
+            },
+            required: ["phone", "password"],
+            additionalProperties: false
+        })
+        const result = await this.controller.login(req.body)
+        this.onSuccess(res, result)
     }
     sendMailUpcommingExpiredMiddlewares(): any[] {
         return [

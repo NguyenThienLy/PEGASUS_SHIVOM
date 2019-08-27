@@ -17,13 +17,12 @@ $font-family-name: "Noto Serif SC", serif;
 
 .news {
   height: 24em;
-  margin: 2em 3em;
   display: flex;
   @include e("info") {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 45%;
+    width: 40%;
     margin-right: 4%;
     @include e("category") {
       text-transform: uppercase;
@@ -37,8 +36,8 @@ $font-family-name: "Noto Serif SC", serif;
         background-color: $main-color;
       }
       a {
-        font-size: 0.8em;
-        letter-spacing: 0.3em;
+        font-size: 0.7em;
+        letter-spacing: 0.15em;
         margin-left: 1.3em;
         text-decoration: none;
         transition: 300ms;
@@ -65,6 +64,7 @@ $font-family-name: "Noto Serif SC", serif;
       font-size: 0.9em;
       word-spacing: 0.05em;
       letter-spacing: 0.025em;
+      color: $font-color;
     }
     @include e("more") {
       margin-top: 1.5em;
@@ -74,7 +74,7 @@ $font-family-name: "Noto Serif SC", serif;
     }
   }
   @include e("image") {
-    width: 55%;
+    width: 60%;
     position: relative;
     img {
       width: 100%;

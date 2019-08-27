@@ -1,6 +1,6 @@
 import * as express from 'express'
 import { Request, Response } from '../routers/base'
-import {  errorService, tokenService } from '../services'
+import { errorService, tokenService } from '../services'
 import { BaseMiddleware } from './baseMiddleware'
 import * as _ from 'lodash'
 import { config } from '../config'
@@ -13,13 +13,13 @@ export class QueryInfoMiddleware extends BaseMiddleware {
         const offset = Number(req.query['offset']) || (page - 1) * limit
         const fields = this._parseFields(req)
         const populates = this._parsePopulates(req)
-
         req.queryInfo = {
             filter,
             limit,
             offset,
             fields,
-            populates
+            populates,
+            order
         }
         next()
     }
@@ -39,14 +39,14 @@ export class QueryInfoMiddleware extends BaseMiddleware {
         } catch (ignore) {
             order = undefined
         }
-        return order || ['updated_at', 'asc']
+        return order || { 'updatedAt': -1 }
     }
-    
+
     _parseFields(req: Request) {
         let fields = req.query['fields']
         try {
             fields = JSON.parse(fields)
-        } catch(ignore) {
+        } catch (ignore) {
             fields = undefined
         }
         return fields

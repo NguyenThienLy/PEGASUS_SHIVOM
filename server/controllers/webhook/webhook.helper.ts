@@ -7,6 +7,29 @@ export class WebhookControllerHelper {
     constructor() {
 
     }
+    sortByCheckinTime(checkInAtNumber, timeTableItems) {
+        let subtractArray = []
+        let desArray = []
+        for (const index in timeTableItems) {
+            subtractArray.push({
+                index: Number(index),
+                value: timeTableItems[Number(index)].endTimeNumber - checkInAtNumber
+            })
+        }
+        subtractArray = subtractArray.sort(function (a, b) {
+            if (a.value > b.value) {
+                return -1
+            }
+            if (a.value < b.value) {
+                return 1
+            }
+            return 0
+        })
+        desArray = subtractArray.map((item) => {
+            return timeTableItems[item.index]
+        })
+        return desArray
+    }
     getDayOfWeek(timestamps: string) {
         const day = moment(timestamps).day()
         switch (day) {
@@ -26,6 +49,7 @@ export class WebhookControllerHelper {
         courseId: string
     }) {
         const { timestampAtNumber, timeTableItem, student, courseId } = params
+        console.log(timeTableItem)
         const startDay = moment().utcOffset("+07:00").startOf("days").format()
         const minuteDiff = timestampAtNumber - timeTableItem.startTime.number
         let checkInType: string

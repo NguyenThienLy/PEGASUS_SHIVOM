@@ -3,7 +3,9 @@ import * as crypto from 'crypto'
 import * as Ajv from 'ajv'
 import * as AjvError from 'ajv-errors'
 import * as AjvKeyWords from 'ajv-keywords'
+import * as bcrypt from 'bcryptjs'
 
+const SALT_WORK_FACTOR = 10
 export class UtilService {
     validateJSON(schema: any, json: any = {}) {
         const ajv = new Ajv({ allErrors: true, jsonPointers: true });
@@ -14,6 +16,11 @@ export class UtilService {
             isValid: valid,
             message: ajv.errorsText()
         }
+    }
+    async hashPassword(data) {
+        const salt = await bcrypt.genSalt(SALT_WORK_FACTOR)
+        const hash = await bcrypt.hash(data, salt)
+        return hash
     }
     async hashParams(info: string) {
         return crypto.createHash('sha256').update(info, 'utf8').digest('hex')

@@ -10,7 +10,7 @@ export class ImageShow extends React.Component {
       <div className="image-show">
         <div className="image-show__img1 image-show__item">
           <img
-            src="https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-gallery-img-1a-600x300.jpg"
+            src="https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-gallery-img-1a-768x384.jpg"
             alt=""
           />
         </div>

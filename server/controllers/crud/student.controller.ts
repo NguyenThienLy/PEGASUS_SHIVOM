@@ -2,7 +2,7 @@ import * as _ from 'lodash'
 import * as moment from 'moment'
 
 import { CrudController } from '../crud.controller'
-import { studentService, ICrudOption, courseStudentService, classTimeTableService, errorService, classService, checkinService, mailService } from '../../services'
+import { studentService, ICrudOption, courseStudentService, classTimeTableService, errorService, classService, checkinService, mailService, tokenService } from '../../services'
 import { CourseStudentModel, StudentModel, CourseModel } from '../../models';
 import { webhookController } from '..';
 import { replyFeedbackEmail, remindExtendCourseEmail } from '../../mailTemplate';
@@ -11,6 +11,35 @@ import { replyFeedbackEmail, remindExtendCourseEmail } from '../../mailTemplate'
 export class StudentController extends CrudController<typeof studentService>{
     constructor() {
         super(studentService);
+    }
+    async updateCard(params: {
+        studentId: string,
+        code: string
+    }) {
+        return await this.service.update({
+            cardId: params.code
+        }, {
+                filter: {
+                    _id: params.studentId
+                }
+            })
+    }
+    async login(params: {
+        phone: string
+        password: string
+    }) {
+        const { phone, password } = params
+        const student = await this.service.getItem({
+            filter: {
+                phone: phone
+            }
+        })
+        const isMatch: boolean = await student.comparePassword(password)
+        if (!isMatch) throw errorService.auth.permissionDenied()
+        const token = await tokenService.getStudentToken({ _id: student._id })
+        const json = student.toJSON()
+        json.accessToken = token
+        return json
     }
     async sendMailUpcommingExpired(params: {
         courseStudentIds: string[]
