@@ -2,15 +2,88 @@ import * as _ from 'lodash'
 import * as moment from 'moment'
 
 import { CrudController } from '../crud.controller'
-import { studentService, ICrudOption, courseStudentService, classTimeTableService, errorService, classService, checkinService, mailService, tokenService } from '../../services'
-import { CourseStudentModel, StudentModel, CourseModel } from '../../models';
+import { studentService, ICrudOption, courseStudentService, classTimeTableService, errorService, classService, checkinService, mailService, tokenService, giftService, giftReceiveService } from '../../services'
+import { CourseStudentModel, StudentModel, CourseModel, GiftModel, GiftReceiveModel } from '../../models';
 import { webhookController } from '..';
-import { replyFeedbackEmail, remindExtendCourseEmail } from '../../mailTemplate';
+import { replyFeedbackEmail, remindExtendCourseEmail, notifyReceiveGiftEmail } from '../../mailTemplate';
+import { ObjectID } from 'bson';
 
 
 export class StudentController extends CrudController<typeof studentService>{
     constructor() {
         super(studentService);
+    }
+    async sendGift(params: {
+        studentId: string
+        gift: string
+        amount: number
+    }) {
+        const timenow: string = moment().format()
+        const gift: GiftModel = await giftService.getItem({
+            filter: {
+                _id: params.gift
+            }
+        })
+        const student: StudentModel = await studentService.getItem({ filter: { _id: params.studentId }, fields: ["email", "firstName", "lastName", "point", "rank"] })
+        const giftReceivedOfstudents: any = await giftReceiveService.model.aggregate([
+            {
+                $match: {
+                    student: new ObjectID(params.studentId),
+                    gift: new ObjectID(params.gift)
+                }
+            }, {
+                $group: {
+                    _id: "$student",
+                    count: { $sum: "$amount" }
+                }
+            }
+        ])
+
+        // Kiem tra cac dieu kien de nhan qua
+        if ((gift.amount - gift.used) < params.amount) {
+            throw errorService.gift.giftNotEnough()
+        } else if (gift.limit !== 0) {
+            if (
+                (giftReceivedOfstudents.length > 0 && gift.limit < (giftReceivedOfstudents[0].count + params.amount)) ||
+                (gift.limit < params.amount)
+            ) {
+                throw errorService.gift.giftLimited()
+            }
+        } else if (gift.startTime && moment(gift.startTime).isAfter(timenow)) {
+            throw errorService.gift.premature()
+        } else if (gift.endTime && moment(gift.endTime).isBefore(timenow)) {
+            throw errorService.gift.late()
+        } else if (gift.condition.minPoint !== -1 && student.point < gift.condition.minPoint) {
+            throw errorService.gift.notAchievedCondition()
+        } else if (gift.condition.maxPoint !== -1 && student.point > gift.condition.maxPoint) {
+            throw errorService.gift.notAchievedCondition()
+        } else if (gift.condition.rank.length > 0 && gift.condition.rank.indexOf(student.rank as string) == -1) {
+            throw errorService.gift.notAchievedCondition()
+        } else if (gift.point * params.amount > student.point) {
+            throw errorService.gift.notEnoughPoint()
+        }
+        const result: GiftReceiveModel = await giftReceiveService.model.findOneAndUpdate({ isReceived: false, student: params.studentId, gift: params.gift }, {
+            $inc: { amount: params.amount },
+            student: params.studentId,
+            gift: params.gift
+        }, {
+                upsert: true,
+                new: true
+            })
+        // Gửi mail toi nguoi dung
+
+        try {
+
+            const mailTemplate = await notifyReceiveGiftEmail.buildTemplate([student.email], {
+                name: `${student.firstName} ${student.lastName}`,
+                giftName: gift.name,
+                amount: params.amount
+            })
+            mailService.sendMail({ mailOption: mailTemplate })
+        } catch (err) {
+
+        }
+        return result
     }
     async updateCard(params: {
         studentId: string,
