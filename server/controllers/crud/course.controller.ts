@@ -10,9 +10,12 @@ export class CourseController extends CrudController<typeof courseService>{
         super(courseService);
     }
     async getTeachersOfCourse(courseId: string, option: ICrudOption) {
+        // Lay tat ca lop hoc cua khoa do voi trang thai active 
         const classies: ClassModel[] = await classService.model.find({
-            course: courseId
+            course: courseId,
+            status: "active"
         }).select("teacher")
+
         return await teacherService.getList(_.merge(option, {
             filter: {
                 _id: {
@@ -47,7 +50,8 @@ export class CourseController extends CrudController<typeof courseService>{
         // Lay thoi khoa bieu cua mot khoa voi thong tin lop va giao vien cua lop
         const { rows: classTimeTables } = await classTimeTableService.getList(_.merge({
             filter: {
-                course: courseId
+                course: courseId,
+                status: "active"
             },
             populates: ["items", { path: "class", populate: ["teacher"] }]
         }, option))
