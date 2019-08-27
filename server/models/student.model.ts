@@ -39,7 +39,7 @@ const studentSchema = new Schema({
     avatar: { type: String },
     point: { type: Number, default: 0 },
     rank: { type: Schema.Types.ObjectId, ref: "Rank" },
-    cardId: { type: String },
+    cardId: { type: String, unique: true },
     otherInfo: { type: Schema.Types.Mixed },
     status: { type: String, enum: ["active", "deactive"], default: "active" }
 }, { timestamps: true })
