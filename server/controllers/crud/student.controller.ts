@@ -138,8 +138,8 @@ export class StudentController extends CrudController<typeof studentService>{
     }, option: ICrudOption) {
         if (!params.startTime) params.startTime = moment().format()
         if (!params.endTime) params.endTime = moment().add(7, "days").format()
-        const startDay = moment(params.startTime).dayOfYear()
-        const endDay = moment(params.endTime).dayOfYear()
+        // const startDay = moment(params.startTime).dayOfYear()
+        // const endDay = moment(params.endTime).dayOfYear()
         return await courseStudentService.getList(_.merge(option, {
             filter: {
                 endTime: { $gte: params.startTime, $lte: params.endTime }
