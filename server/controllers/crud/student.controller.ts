@@ -1,9 +1,10 @@
 import * as _ from 'lodash'
 import * as moment from 'moment'
+import * as hash from 'object-hash'
 
 import { CrudController } from '../crud.controller'
-import { studentService, ICrudOption, courseStudentService, classTimeTableService, errorService, classService, checkinService, mailService, tokenService, giftService, giftReceiveService } from '../../services'
-import { CourseStudentModel, StudentModel, CourseModel, GiftModel, GiftReceiveModel } from '../../models';
+import { studentService, ICrudOption, courseStudentService, classTimeTableService, errorService, classService, checkinService, mailService, tokenService, giftService, giftReceiveService, studentTimeTableService, cacheService } from '../../services'
+import { CourseStudentModel, StudentModel, CourseModel, GiftModel, GiftReceiveModel, StudentTimeTableModel } from '../../models';
 import { webhookController } from '..';
 import { replyFeedbackEmail, remindExtendCourseEmail, notifyReceiveGiftEmail } from '../../mailTemplate';
 import { ObjectID } from 'bson';
@@ -212,40 +213,108 @@ export class StudentController extends CrudController<typeof studentService>{
         courseId: string
         studentId: string
     }, option: ICrudOption) {
-        const { courseId, studentId } = params
-        // Kiem tra hoc vien co dang ky hoc khoa hoc do khong
-        const courseOfStudent = await courseStudentService.model.findOne({
-            student: studentId,
-            course: courseId
-        })
-        if (!courseOfStudent) {
-            throw errorService.student.courseHaventApplied()
-        }
-        // Lay danh sach thoi khoa bieu cua hoc sinh theo mot khoa hoc nao do voi day du thong tin ve cac lop, giao vien cua lop
-        const { rows: classTimeTables } = await classTimeTableService.getList(_.merge({
-            filter: {
+        const hashCode = hash(JSON.stringify(_.merge(params, option)))
+        // Lay du lieu trong cache
+        const cacheData = await cacheService.get(hashCode)
+        // Kiem tra cache co thi tra ve cache khong thi query lay va tao cache moi co thoi han
+        if (cacheData) {
+            return cacheData
+        } else {
+            const { courseId, studentId } = params
+
+            // Kiem tra hoc vien co dang ky hoc khoa hoc do khong
+            const courseOfStudent = await courseStudentService.model.findOne({
+                student: studentId,
                 course: courseId
-            },
-            populates: ["items", { path: "class", populate: ["teacher"] }]
-        }, option))
-        return classTimeTables
+            })
+            if (!courseOfStudent) {
+                throw errorService.student.courseHaventApplied()
+            }
+            const studentTimeTable: StudentTimeTableModel = await studentTimeTableService.getItem({
+                filter: {
+                    course: courseId,
+                    student: studentId
+                },
+                // fields: ["_id items teacher class"],
+                populates: [
+                    {
+                        path: "items",
+                        select: "startTime endTime dayOfWeek",
+                        populate: [{
+                            path: "class",
+                            select: "name",
+                            populate: [{ path: "teacher", select: "firstName lastName" }]
+                        }]
+                    }
+                ]
+            })
+            // Lay danh sach thoi khoa bieu cua hoc sinh theo mot khoa hoc nao do voi day du thong tin ve cac lop, giao vien cua lop
+            // const { rows: classTimeTables } = await classTimeTableService.getList(_.merge({
+            //     filter: {
+            //         course: courseId
+            //     },
+            //     populates: [
+            //         {
+            //             path: "items",
+            //             select: "startTime endTime dayOfWeek",
+
+            //         }, {
+            //             path: "class",
+            //             select: "name",
+            //             populate: [{ path: "teacher", select: "firstName lastName" }]
+            //         }
+            //     ]
+            // }, option))
+            function setCache() {
+                cacheService.set(hashCode, studentTimeTable.toJSON(), { ttl: 3600 })
+            }
+            setCache()
+            return studentTimeTable
+        }
     }
     async getTimeTableOfStudent(params: {
         studentId: string
     }, option: ICrudOption) {
-        const { studentId } = params
-        // Lay danh sach khoa hoc ma hoc vien co tham gia
-        const coursesOfStudent = await courseStudentService.model.find({
-            student: studentId
-        })
-        // Lay danh sach tat ca thoi khoa bieu cua hoc sinh voi day du thong tin ve cac lop, giao vien cua lop
-        const { rows: classTimeTables } = await classTimeTableService.getList(_.merge({
-            filter: {
-                course: coursesOfStudent.map((coursesOfStudent: CourseStudentModel) => { return coursesOfStudent.course })
-            },
-            populates: ["items", { path: "class", populate: ["teacher"] }]
-        }, option))
-        return classTimeTables
+        const hashCode = hash(JSON.stringify(_.merge(params, option)))
+        // Lay du lieu trong cache
+        const cacheData = await cacheService.get(hashCode)
+        // Kiem tra cache co thi tra ve cache khong thi query lay va tao cache moi co thoi han
+        if (cacheData) {
+            return cacheData
+        } else {
+            const { studentId } = params
+            // Lay danh sach khoa hoc ma hoc vien co tham gia
+            const coursesOfStudent = await courseStudentService.model.find({
+                student: studentId
+            })
+            // Lay danh sach tat ca thoi khoa bieu cua hoc sinh voi day du thong tin ve cac lop, giao vien cua lop
+            const { rows: studentTimeTables } = await studentTimeTableService.getList(_.merge({
+                filter: {
+                    course: coursesOfStudent.map((coursesOfStudent: CourseStudentModel) => { return coursesOfStudent.course })
+                },
+                populates: [
+                    {
+                        path: "course",
+                        select: "name"
+                    },
+                    {
+                        path: "items",
+                        select: "startTime endTime dayOfWeek",
+                        populate: [{
+                            path: "class",
+                            select: "name",
+                            populate: [{ path: "teacher", select: "firstName lastName" }]
+                        }]
+                    }
+                ]
+            }, option))
+            function setCache() {
+                const studentTimeTableAsJson = studentTimeTables.map((item: any) => { return item.toJSON() })
+                cacheService.set(hashCode, studentTimeTableAsJson, { ttl: 3600 })
+            }
+            setCache()
+            return studentTimeTables
+        }
     }
 
 }
