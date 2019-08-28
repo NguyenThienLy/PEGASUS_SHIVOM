@@ -3,6 +3,7 @@ import { CrudRouter } from '../crud';
 import { Request, Response } from '../base'
 import { studentController } from '../../controllers'
 import { authInfoMiddleware, queryInfoMiddleware, blockMiddleware } from '../../middlewares'
+import { StudentCronjobService } from '../../services/cronjob/student.cronjob.service';
 
 export default class StudentRouter extends CrudRouter<typeof studentController> {
     constructor() {
