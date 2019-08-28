@@ -9,7 +9,28 @@ export default class NewCategoryRouter extends CrudRouter<typeof newCategoryCont
         super(newCategoryController);
     }
     customRouter() {
-        
+        this.router.get("/countNews", this.countNewsMiddlewares(), this.route(this.countNews))
+        this.router.get("/:_id/countNews", this.countNewsOfCategoryMiddlewares(), this.route(this.countNewsOfCategory))
+    }
+    countNewsOfCategoryMiddlewares(): any[] {
+        return [
+            authInfoMiddleware.run(["admin"])
+        ]
+    }
+    async countNewsOfCategory(req: Request, res: Response) {
+        const result = await this.controller.countNewsOfCategory({
+            categoryId: req.params._id
+        })
+        this.onSuccess(res, result)
+    }
+    countNewsMiddlewares(): any[] {
+        return [
+            authInfoMiddleware.run(["admin"])
+        ]
+    }
+    async countNews(req: Request, res: Response) {
+        const result = await this.controller.countNews()
+        this.onSuccess(res, result)
     }
     getListMiddlewares(): any[] {
         return [
