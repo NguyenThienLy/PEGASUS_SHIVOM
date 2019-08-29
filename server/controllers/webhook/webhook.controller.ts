@@ -13,7 +13,7 @@ export class WebhookController extends BaseController {
     helper: WebhookControllerHelper
     async onCheckInEvent(params: {
         cardId: string,
-        timestamps: string
+        timestamps: number
     }) {
         const { cardId, timestamps } = params
         const student: StudentModel = await studentService.getItem({
@@ -29,11 +29,12 @@ export class WebhookController extends BaseController {
     }
     async checkStudentTimeTable(params: {
         student: StudentModel,
-        timestamps: string
+        timestamps: number,
+        isFromAdmin?: boolean
     }) {
-        const { student, timestamps } = params
-        const checkInAtHours = moment(Number(timestamps)).hours()
-        const checkInAtMinute = moment(Number(timestamps)).minute()
+        const { student, timestamps, isFromAdmin = false } = params
+        const checkInAtHours = moment.unix(Number(timestamps)).utcOffset("+07:00").hours()
+        const checkInAtMinute = moment.unix(Number(timestamps)).utcOffset("+07:00").minute()
         const timestampAtNumber = checkInAtHours * 60 + checkInAtMinute
         // Tìm kiếm thời khoá biểu
         const dayOfWeek = this.helper.getDayOfWeek(moment(Number(timestamps)).format())
@@ -69,7 +70,11 @@ export class WebhookController extends BaseController {
         timeTableItems = this.helper.sortByCheckinTime(timestampAtNumber, timeTableItems)
         // Kiem tra khoa hoc, hoc sinh co trong khoa hoc khong, da checkin chua 
         if (timeTableItems.length === 0) {
-            throw errorService.student.courseHaventApplied()
+            if (isFromAdmin) {
+                throw errorService.student.courseHaventApplied()
+            } else {
+                return
+            }
         }
         for (const timeTableItem of timeTableItems) {
             try {
