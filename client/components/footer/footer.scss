@@ -25,15 +25,19 @@ $box-shadow: 0 0 10px 2px $main-color;
   width: 100%;
   box-sizing: border-box;
   z-index: -1;
+
   @include e("first-floor") {
     padding: 2.5em 2em;
+
     @include e("logo") {
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 3em;
+
       @include e("a") {
         width: 12em;
+
         @include e("img") {
           width: 100%;
           height: auto;
@@ -46,6 +50,7 @@ $box-shadow: 0 0 10px 2px $main-color;
       justify-content: center;
       align-items: center;
       margin-bottom: 2em;
+
       @include e("item") {
         letter-spacing: 0.025em;
         font-size: 1em;
@@ -53,6 +58,7 @@ $box-shadow: 0 0 10px 2px $main-color;
         text-decoration: none;
         color: $font-color;
         transition: 200ms;
+
         &:hover {
           color: $main-color;
         }
@@ -69,6 +75,7 @@ $box-shadow: 0 0 10px 2px $main-color;
       align-items: center;
       justify-content: center;
       margin-bottom: 2em;
+
       @include e("form") {
         @include e("input") {
           width: 20em;
@@ -98,9 +105,11 @@ $box-shadow: 0 0 10px 2px $main-color;
           padding: 1em 2em;
           transition: all 200ms ease-in;
           cursor: pointer;
+
           @include m("primary") {
             background: $main-color;
             color: #fff;
+
             &:hover {
               background: darken($main-color, 4%);
             }
@@ -128,12 +137,14 @@ $box-shadow: 0 0 10px 2px $main-color;
     margin: 0;
     padding: 0;
   }
+
   @include e("second-floor") {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 70px;
     font-size: 0.875em;
+
     @include e("item") {
       margin: 0 1em;
       z-index: 2;

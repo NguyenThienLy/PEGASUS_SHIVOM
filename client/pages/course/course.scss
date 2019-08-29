@@ -1,0 +1,209 @@
+@import "../../default.scss";
+
+$font-fam: "Noto Serif SC",
+serif;
+
+.course {
+    background-color: #fff;
+    font-size: $font-size;
+
+    .course-ringing-phone {
+        position: fixed;
+        right: 50px;
+        bottom: 80px;
+    }
+
+    @include e('contact-us') {
+        width: 80%;
+        margin: 1em auto 0;
+        padding: 1em 0 7em;
+    }
+
+    .course-title {
+        color: #363738;
+        font-family: $font-fam;
+        background-color: $background-color;
+        padding: 3em 0 3em 5.5em;
+    }
+
+    .course-wrapper {
+        display: flex;
+        flex-direction: row;
+
+
+        @include e('main-content') {
+            margin: 4em 0 4em 4em;
+            padding: 0 1.5em;
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+            width: 70%;
+
+            @include e("image") {
+                width: 100%;
+                margin-bottom: 27px;
+                position: relative;
+
+                @include e("dateCreated") {
+                    position: absolute;
+                    top: 0;
+                    text-align: center;
+                    margin-left: 1.1em;
+
+
+                    span {
+                        color: $main-color;
+                        font-size: 1.2em;
+                        display: block;
+
+                        font-family: $font-fam;
+                        font-weight: 500;
+                        text-align: center;
+                        background-color: #fff;
+                    }
+
+                    @include e("day") {
+                        padding: 5px 10px;
+                        width: 3em;
+                        font-size: 1.2em;
+                        line-height: 3em;
+                    }
+
+                    @include e("month") {
+                        padding: 0 10px;
+                        font-size: 0.9em;
+                        line-height: 2em;
+                        margin-top: 0.1em;
+                        text-transform: capitalize;
+                    }
+                }
+
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+
+            @include e('author') {
+                text-transform: uppercase;
+                margin-top: 2em;
+                color: $sub-main-color;
+                font-size: 0.875em;
+
+                font-family: $font-fam;
+            }
+
+            @include e('title') {
+                font-family: $font-fam;
+                font-size: 2.5em;
+                padding: 8px 0 20px 0;
+            }
+
+            @include e('content') {
+                margin: 10px 0;
+                color: rgba(0, 0, 0, 0.6);
+                font-size: 1em;
+                line-height: 26px;
+            }
+
+            @include e('targets') {
+                color: rgba(0, 0, 0, 0.6);
+                font-size: 1em;
+                display: flex;
+                flex-wrap: wrap;
+                margin-top: 20px;
+
+                @include e('target') {
+                    width: 30%;
+                    margin: 10px 0;
+                    text-transform: capitalize;
+
+                    .fas {
+                        &:hover {
+                            color: $sub-main-color;
+                        }
+
+                        color: $main-color;
+                        margin-right: 4px;
+                    }
+                }
+            }
+
+            @include e('classes') {
+                display: flex;
+                flex-wrap: wrap;
+
+                @include e('yogaclass') {
+                    border: 1px solid $main-color;
+                    width: 15em;
+                    margin-right: 20px;
+                    margin-bottom: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 2em;
+                    font-family: $font-fam;
+
+                    h4 {
+                        color: #363738;
+
+                        margin: 0 0 9px 0;
+                    }
+
+                    p {
+                        margin: 10px;
+                        color: rgba(0, 0, 0, 0.6);
+                    }
+                }
+            }
+
+            @include e('text') {
+                text-transform: capitalize;
+                font-size: 2.5em;
+                margin: 0.5em 0 30px 0;
+                color: #363738;
+                font-family: "Noto Serif SC", serif;
+
+                span {
+                    color: $main-color;
+                }
+            }
+
+            @include e('trainer-info') {
+                margin-bottom: 40px;
+            }
+        }
+
+        @include e('sub-content') {
+            margin: 4em 0 4em 1em;
+
+            @include e('social-group') {
+                margin: 30px 0;
+            }
+
+            @include e('other-courses') {
+
+                margin-bottom: 30px;
+
+                @include e('text') {
+                    font-family: $font-fam;
+                    font-size: 1.7em;
+                    font-color: #363738;
+                    margin-bottom: 20px;
+                    text-transform: capitalize;
+                }
+
+                @include e('course') {
+                    font-family: $font-fam;
+                    text-transform: uppercase;
+                    color: $main-color;
+                    font-size: 0.8em;
+                    margin-bottom: 12px;
+                }
+            }
+
+            @include e('related-post') {}
+        }
+    }
+}

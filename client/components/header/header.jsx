@@ -168,15 +168,15 @@ export class Header extends React.Component {
               <div>
                 <div className="header__wrapper__page-menu-area__left__navbar">
                   <ul className="header__wrapper__page-menu-area__left__navbar__list-items">
-                    {this.state.categories.map(category => {
+                    {this.state.categories.map((category,index) => {
                       return category.subCategories ? (
-                        <li className="header__wrapper__page-menu-area__left__navbar__list-items__item">
+                        <li key={index} className="header__wrapper__page-menu-area__left__navbar__list-items__item">
                           <HoverDivAnimation title={category.name} />
                           <div className="header__wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper">
                             <ul className="header__wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper__sub-navbar">
-                              {category.subCategories.map(subCategory => {
+                              {category.subCategories.map((subCategory,index) => {
                                 return (
-                                  <li className="header__wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper__sub-navbar__item">
+                                  <li key={index} className="header__wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper__sub-navbar__item">
                                     <HoverDivAnimation
                                       title={subCategory.name}
                                     />
@@ -198,9 +198,9 @@ export class Header extends React.Component {
             </div>
             <div className="header__wrapper__page-menu-area__right">
               <div className="header__wrapper__page-menu-area__right__more-btn">
-                <i class="far fa-circle" />
-                <i class="far fa-circle" />
-                <i class="far fa-circle" />
+                <i className="far fa-circle" />
+                <i className="far fa-circle" />
+                <i className="far fa-circle" />
               </div>
             </div>
           </div>
@@ -222,15 +222,15 @@ export class Header extends React.Component {
               <div>
                 <div className="header__sub-wrapper__page-menu-area__left__navbar">
                   <ul className="header__sub-wrapper__page-menu-area__left__navbar__list-items">
-                    {this.state.categories.map(category => {
+                    {this.state.categories.map((category,index) => {
                       return category.subCategories ? (
-                        <li className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item">
+                        <li key={index} className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item">
                           <HoverDivAnimation title={category.name} />
                           <div className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper">
                             <ul className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper__sub-navbar">
-                              {category.subCategories.map(subCategory => {
+                              {category.subCategories.map((subCategory,index) => {
                                 return (
-                                  <li className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper__sub-navbar__item">
+                                  <li key={index} className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper__sub-navbar__item">
                                     <HoverDivAnimation
                                       title={subCategory.name}
                                     />
@@ -252,9 +252,9 @@ export class Header extends React.Component {
             </div>
             <div className="header__sub-wrapper__page-menu-area__right">
               <div className="header__sub-wrapper__page-menu-area__right__more-btn">
-                <i class="far fa-circle" />
-                <i class="far fa-circle" />
-                <i class="far fa-circle" />
+                <i className="far fa-circle" />
+                <i className="far fa-circle" />
+                <i className="far fa-circle" />
               </div>
             </div>
           </div>
