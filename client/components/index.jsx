@@ -36,3 +36,4 @@ export * from "./ringingPhone/ringingPhone";
 export * from "./relatedPost/relatedPost";
 export * from "./activity/activity";
 export * from "./feedbackNoti/feedbackNoti";
+export * from './map/map'
