@@ -193,7 +193,7 @@ export class StudentController extends CrudController<typeof studentService>{
                 _id: params.studentId
             }
         })
-        const timestamps = moment().format("x")
+        const timestamps = moment().unix()
         const result = await webhookController.checkStudentTimeTable({
             student, timestamps
         })
