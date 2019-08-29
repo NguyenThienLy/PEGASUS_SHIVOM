@@ -12,6 +12,7 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    // this.onLoginClick = this.onLoginClick.bind(this);
   }
   static async getInitialProps({ req, query }) {
     return {};
@@ -45,7 +46,20 @@ class Login extends React.Component {
       });
     });
   }
-
+  //   onLoginClick() {
+  //     const loginBtn = document.getElementById("login");
+  //     loginBtn.addEventListener("click", e => {
+  //       let parent = e.target.parentNode.parentNode;
+  //       Array.from(e.target.parentNode.parentNode.classList).find(element => {
+  //         if (element !== "slide-up") {
+  //           parent.classList.add("slide-up");
+  //         } else {
+  //           signupBtn.parentNode.classList.add("slide-up");
+  //           parent.classList.remove("slide-up");
+  //         }
+  //       });
+  //     });
+  //   }
   render() {
     return (
       <div className="login-page">
@@ -74,7 +88,11 @@ class Login extends React.Component {
             </div>
             <div className="login slide-up">
               <div className="center">
-                <h2 className="form-title" id="login">
+                <h2
+                  className="form-title"
+                  id="login"
+                  //   onClick={this.onLoginClick}
+                >
                   Đăng nhập
                 </h2>
                 <div className="form-holder">

@@ -1,14 +1,15 @@
 @import "../../default.scss";
 
 .class-trainer {
-  width: 40em;
-  height: 18em;
+  width: 100%;
+  height: 22em;
   display: flex;
   flex-direction: row;
-  margin: auto;
+  font-size: 16px;
+  // margin: auto;
 
   @include e("img") {
-    width: 45%;
+    width: 22em;
     overflow: hidden;
 
     img {
@@ -19,6 +20,7 @@
         transition: transform 1s ease-in;
         transform: scale(1);
       }
+
       &:not(:hover) {
         transition: transform 1s ease-out;
         transform: scale(1.03);
@@ -31,7 +33,8 @@
     padding-left: 2em;
 
     @include e("name") {
-      font-size: 1.3em;
+      font-size: 2em;
+      text-transform: capitalize;
       color: $main-color;
       font-family: $font-family-special;
       margin: 0.8em 0;
@@ -40,7 +43,7 @@
     }
 
     @include e("description") {
-      font-size: 0.9em;
+      font-size: 1.1em;
       color: $font-color;
       line-height: 140%;
       word-spacing: 0.05em;
@@ -72,7 +75,8 @@
 
           @include e("content") {
             color: $font-color;
-            font-size: 0.85em;
+            font-size: 1.1em;
+            text-transform: capitalize;
           }
         }
       }

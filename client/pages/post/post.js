@@ -6,7 +6,10 @@ import { api } from '../../services'
 import { action } from '../../actions';
 
 import './post.scss'
-import { Header, Footer } from '../../components'
+import { 
+    Header,
+    Footer 
+} from '../../components'
 
 class Post extends React.Component {
     constructor(props) {

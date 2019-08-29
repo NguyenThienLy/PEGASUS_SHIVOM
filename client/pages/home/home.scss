@@ -6,6 +6,7 @@
     @content;
   }
 }
+
 //block modifier
 @mixin m($modifier) {
   &--#{$modifier} {
@@ -89,12 +90,14 @@
     @include e("title") {
       @include e("inner") {
         padding: 6em 50% 0 0;
+
         div {
           text-transform: capitalize;
           font-family: $font-family-special;
           font-size: 2.3em;
           color: $main-color;
         }
+
         p {
           margin: 0.8em 0 1em;
           font-size: 0.9em;
@@ -104,36 +107,44 @@
         }
       }
     }
+
     @include e("content") {
       display: grid;
       grid-template-columns: 48% 48%;
       grid-column-gap: 4%;
       grid-row-gap: 2em;
       padding-bottom: 6em;
+
       .training-class:nth-child(2n + 1) {
         margin-top: 4.5em;
       }
+
       .training-class:nth-child(2n) {
         margin-bottom: 4.5em;
       }
     }
   }
-  @include e("imageShow") {
-  }
+
+  @include e("imageShow") {}
+
   @include e("timeTable") {
     width: 80%;
     margin: 0 auto;
+
     @include e("title") {
       padding: 4em 0 0.8em;
+
       @include e("inner") {
         padding: 0 20%;
         text-align: center;
+
         div {
           text-transform: capitalize;
           font-family: $font-family-special;
           font-size: 2.3em;
           color: $main-color;
         }
+
         p {
           margin: 0.8em 0 1em;
           font-size: 0.9em;
@@ -143,32 +154,39 @@
         }
       }
     }
-    @include e("content") {
-    }
+
+    @include e("content") {}
   }
+
   @include e("news") {
     width: 80%;
     margin: 0 auto;
     margin-top: 10em;
+
     @include e("container") {
       padding: 0 1%;
     }
   }
+
   @include e("reviews") {
     width: 100%;
     margin-top: 8em;
+
     @include e("introduction") {
       height: 21em;
       background-color: $light-border-color;
+
       @include e("inner") {
         padding: 5em 25% 0em;
         text-align: center;
+
         div {
           text-transform: capitalize;
           font-family: $font-family-special;
           font-size: 2.4em;
           color: $main-color;
         }
+
         p {
           margin: 0.8em 0 1em;
           font-size: 1em;
@@ -177,20 +195,24 @@
         }
       }
     }
+
     @include e("slick-autoplay") {
       width: 100%;
       margin-top: -6em;
       padding: 0 8%;
+
       @include e("item") {
         .review {
           //height: 20em;
         }
       }
+
       .slick-dots {
         text-align: center;
         padding: 0;
         margin-top: 1em;
       }
+
       button {
         padding: 0;
         text-shadow: none;
@@ -203,17 +225,21 @@
         height: 0.8em;
         cursor: pointer;
       }
+
       li {
         display: inline-block;
         margin-left: 4px;
         margin-right: 4px;
       }
+
       .slick-active button {
         background-color: $sub-main-color;
       }
+
       .slick-track {
         padding: 1em 0;
       }
+
       .slick-slide {
         margin: 0 1em;
         height: auto;
@@ -221,6 +247,7 @@
       }
     }
   }
+
   @include e("numbers") {
     width: 80%;
     margin: 2em auto 0em;
@@ -228,23 +255,29 @@
     grid-template-columns: 24% 24% 24% 24%;
     grid-column-gap: 1%;
     grid-row-gap: 1em;
+
     @include e("item") {
       text-align: center;
     }
   }
+
   @include e("trainers") {
     margin: 6em 0 0;
+
     @include e("introduction") {
       width: 80%;
       margin: 0 auto;
+
       @include e("inner") {
         padding: 1em 30% 0 0;
+
         div {
           text-transform: capitalize;
           font-family: $font-family-special;
           font-size: 2.3em;
           color: $main-color;
         }
+
         p {
           margin: 0.8em 0 1em;
           font-size: 0.9em;
@@ -253,11 +286,13 @@
         }
       }
     }
+
     @include e("background") {
       width: 100%;
       margin: 0 auto;
       margin-top: -2em;
       text-align: end;
+
       div {
         display: inline-block;
         text-transform: capitalize;
@@ -268,24 +303,29 @@
         opacity: 0.18;
       }
     }
+
     @include e("list") {
       width: 80%;
       margin: 0 auto;
       margin-top: -4.25em;
+
       .trainer {
         display: inline-block;
         width: 32%;
         margin-right: 2%;
+
         &:nth-child(3) {
           margin-right: 0% !important;
         }
       }
     }
   }
+
   @include e("brands") {
     width: 100%;
     margin-top: 6em;
     background-color: #faf3ed;
+
     @include e("slick-autoplay") {
       padding: 6em 10%;
       @include e("item") {
@@ -294,9 +334,11 @@
           height: auto;
         }
       }
+
       .slick-track {
         padding: 0;
       }
+
       .slick-slide {
         margin: 0 0.3em;
       }
@@ -351,6 +393,7 @@
   .home__reviews__slick-autoplay__item .review {
     height: 18em;
   }
+
   .home__numbers {
     grid-template-columns: 49% 49%;
     grid-column-gap: 2%;

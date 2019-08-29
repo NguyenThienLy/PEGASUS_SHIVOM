@@ -9,8 +9,10 @@
   width: 100%;
   box-sizing: border-box;
   z-index: -1;
+
   @include e("first-floor") {
     padding: 2.5em 2em;
+
     @include e("logo") {
       display: flex;
       align-items: center;
@@ -30,6 +32,7 @@
       justify-content: center;
       align-items: center;
       margin-bottom: 2em;
+
       @include e("item") {
         letter-spacing: 0.025em;
         font-size: 1em;
@@ -37,6 +40,7 @@
         text-decoration: none;
         color: $font-color;
         transition: 200ms;
+
         &:hover {
           color: $main-color;
         }
@@ -53,6 +57,7 @@
       align-items: center;
       justify-content: center;
       margin-bottom: 2em;
+
       @include e("form") {
         @include e("input") {
           width: 20em;
@@ -82,9 +87,11 @@
           padding: 1em 2em;
           transition: all 200ms ease-in;
           cursor: pointer;
+
           @include m("primary") {
             background: $main-color;
             color: #fff;
+
             &:hover {
               background: darken($main-color, 4%);
             }
@@ -112,12 +119,14 @@
     margin: 0;
     padding: 0;
   }
+
   @include e("second-floor") {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 70px;
     font-size: 0.875em;
+
     @include e("item") {
       .hoverDiv__link__content--hover {
         background-color: $light-border-color;

@@ -616,7 +616,7 @@ class Home extends React.Component {
           <RelatedPost></RelatedPost>
           <Feedback></Feedback>
           <FeedbackNoti></FeedbackNoti>
-          <Activity></Activity> */}
+            <Activity></Activity> */}
         </React.Fragment>
         <div className="home__footer">
           <Footer />
