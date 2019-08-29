@@ -29,7 +29,7 @@ export class CronJobService {
 
     // Hàm ghi nhận dữ liệu để thống kê
     async updateStatisticStudent() {
-        cron.schedule('0 1 * * *', () => {
+        cron.schedule('0 2 * * *', () => {
             UpdateStatisticStudentCronJob.getInstance().updateStatisticStudent();
         });
     }
