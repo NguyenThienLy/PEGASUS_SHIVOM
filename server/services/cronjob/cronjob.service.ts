@@ -5,9 +5,9 @@ import { UpdateCheckInsCronJob } from './updateCheckIns.cronjob.service'
 
 export class CronJobService {
     constructor() {
-        this.updateStatisticCourse()
-        this.updateStatisticStudent()
-        this.updateCheckIns()
+        // this.updateStatisticCourse()
+        // this.updateStatisticStudent()
+        // this.updateCheckIns()
     }
 
     // Hàm ghi nhận dữ liệu để thống kê
