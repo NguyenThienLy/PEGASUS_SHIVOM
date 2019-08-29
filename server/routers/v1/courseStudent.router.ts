@@ -9,7 +9,26 @@ export default class CourseStudentRouter extends CrudRouter<typeof courseStudent
         super(courseStudentController);
     }
     customRouter() {
-
+        this.router.post("/:_id/extend", this.extendMiddlewares(), this.route(this.extend))
+    }
+    extendMiddlewares(): any[] {
+        return [
+            authInfoMiddleware.run(["admin"])
+        ]
+    }
+    async extend(req: Request, res: Response) {
+        await this.validateJSON(req.body, {
+            type: "object",
+            properties: {
+                isPayFee: { type: "boolean" },
+                endTime: { type: "string", format: "date-time" }
+            },
+            required: ["isPayFee", "endTime"],
+            additionalProperties: false
+        })
+        req.body.courseStudentId = req.params._id
+        const result = await this.controller.extend(req.body)
+        this.onSuccess(res, result)
     }
     getListMiddlewares(): any[] {
         return [
