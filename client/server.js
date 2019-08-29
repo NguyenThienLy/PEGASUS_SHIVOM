@@ -55,6 +55,9 @@ class Server {
 				slug: req.params.slug
 			});
 		});
+		this.server.get('/khoa-hoc', (req, res) => {
+			this.app.render(req, res, '/course/course');
+		});
 		this.server.get('/du-an', (req, res) => {
 			this.app.render(req, res, '/project/project');
 		});

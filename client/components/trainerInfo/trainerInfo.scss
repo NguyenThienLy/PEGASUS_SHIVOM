@@ -1,16 +1,18 @@
 @import "../../default.scss";
 
-$font-family-name: "Noto Serif SC", serif;
+$font-family-name: "Noto Serif SC",
+serif;
 
 .class-trainer {
-  width: 40em;
-  height: 18em;
+  width: 100%;
+  height: 22em;
   display: flex;
   flex-direction: row;
-  margin: auto;
+  font-size: 16px;
+  // margin: auto;
 
   @include e("img") {
-    width: 45%;
+    width: 22em;
     overflow: hidden;
 
     img {
@@ -21,6 +23,7 @@ $font-family-name: "Noto Serif SC", serif;
         transition: transform 1s ease-in;
         transform: scale(1);
       }
+
       &:not(:hover) {
         transition: transform 1s ease-out;
         transform: scale(1.03);
@@ -33,7 +36,8 @@ $font-family-name: "Noto Serif SC", serif;
     padding-left: 2em;
 
     @include e("name") {
-      font-size: 1.3em;
+      font-size: 2em;
+      text-transform: capitalize;
       color: $main-color;
       font-family: $font-family-name;
       margin: 0.8em 0;
@@ -42,7 +46,7 @@ $font-family-name: "Noto Serif SC", serif;
     }
 
     @include e("description") {
-      font-size: 0.9em;
+      font-size: 1.1em;
       color: $font-color;
       line-height: 140%;
       word-spacing: 0.05em;
@@ -66,7 +70,7 @@ $font-family-name: "Noto Serif SC", serif;
 
           @include e("name") {
             letter-spacing: 0.05em;
-            font-size: 0.9em;
+            font-size: 1.1em;
             font-family: $font-family-name;
             width: 40%;
             color: $main-color;
@@ -74,7 +78,8 @@ $font-family-name: "Noto Serif SC", serif;
 
           @include e("content") {
             color: $font-color;
-            font-size: 0.85em;
+            font-size: 1.1em;
+            text-transform: capitalize;
           }
         }
       }
