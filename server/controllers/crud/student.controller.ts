@@ -14,6 +14,35 @@ export class StudentController extends CrudController<typeof studentService>{
     constructor() {
         super(studentService);
     }
+    async enrollToCourse(params: {
+        studentId: string
+        courseId: string
+        startTime: string
+        endTime: string
+        isPayFee: string
+    }) {
+        const currentCourseStudent: CourseStudentModel = await courseStudentService.model.findOne({
+            course: params.courseId,
+            student: params.studentId
+        })
+        if (currentCourseStudent) {
+            throw errorService.student.courseHaveApplied()
+        }
+        const courseStudent: CourseStudentModel = await courseStudentService.create({
+            student: params.studentId,
+            course: params.courseId,
+            startTime: params.startTime,
+            endTime: params.endTime,
+            isPayFee: params.isPayFee
+        })
+        const studentTimeTable: StudentTimeTableModel = await studentTimeTableService.create({
+            course: params.courseId,
+            student: params.studentId
+        })
+        return {
+            courseStudent, studentTimeTable
+        }
+    }
     async sendGift(params: {
         studentId: string
         gift: string

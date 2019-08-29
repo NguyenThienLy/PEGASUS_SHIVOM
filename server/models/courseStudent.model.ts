@@ -39,6 +39,8 @@ const courseStudentSchema = new Schema({
     status: { type: String, enum: ["active", "deactive"], default: "active" }
 }, { timestamps: true })
 
+courseStudentSchema.index({ student: 1, course: 1 }, { unique: true });
+
 export let CourseStudent: mongoose.Model<CourseStudentModel> = mongoose.model('CourseStudent', courseStudentSchema);
 
 

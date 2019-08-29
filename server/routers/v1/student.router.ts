@@ -21,6 +21,28 @@ export default class StudentRouter extends CrudRouter<typeof studentController> 
         this.router.post("/login", [], this.route(this.login))
         this.router.post("/:_id/card", this.updateCardMiddlewares(), this.route(this.updateCard))
         this.router.post("/:_id/sendGift", this.sendGiftMiddlewares(), this.route(this.sendGift))
+        this.router.post("/:_id/enroll", this.enrollToCourseMiddlewares(), this.route(this.enrollToCourse))
+    }
+    enrollToCourseMiddlewares(): any[] {
+        return [
+            authInfoMiddleware.run(["admin"])
+        ]
+    }
+    async enrollToCourse(req: Request, res: Response) {
+        await this.validateJSON(req.body, {
+            type: "object",
+            properties: {
+                courseId: { type: "string" },
+                isPayFee: { type: "boolean" },
+                startTime: { type: "string", format: "date-time" },
+                endTime: { type: "string", format: "date-time" }
+            },
+            required: ["courseId", "isPayFee", "startTime", "endTime"],
+            additionalProperties: false
+        })
+        req.body.studentId = req.params._id
+        const result = await this.controller.enrollToCourse(req.body)
+        this.onSuccess(res, result)
     }
     sendGiftMiddlewares(): any[] {
         return [
