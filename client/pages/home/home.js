@@ -35,13 +35,19 @@ import {
   Feedback,
   ImageShow,
   FeedbackNoti,
-  Activity
+  Activity,
+  Map
 } from "../../components";
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      center: {
+        lat: 59.95,
+        lng: 30.33
+      },
+      zoom: 11,
       trainingClasses: [
         {
           category: "fitness",
@@ -328,7 +334,7 @@ class Home extends React.Component {
     $(".home__brands__slick-autoplay").slick({
       dots: false,
       arrows: false,
-      slidesToShow: 5,
+      slidesToShow: 6,
       slidesToScroll: 1,
       autoplay: true,
       autoplaySpeed: 3000,
@@ -336,7 +342,7 @@ class Home extends React.Component {
         {
           breakpoint: 1300,
           settings: {
-            slidesToShow: 4,
+            slidesToShow: 5,
             slidesToScroll: 1,
             infinite: true,
             dots: false
@@ -353,7 +359,7 @@ class Home extends React.Component {
           breakpoint: 767,
           settings: {
             slidesToShow: 2,
-            slidesToScroll: 2
+            slidesToScroll: 1
           }
         }
         // You can unslick at a given breakpoint now by adding:
@@ -573,6 +579,22 @@ class Home extends React.Component {
                 <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-3.png"></img>
               </div>
             </div>
+          </div>
+          <div className="home__map">
+            <Map
+              id="myMap"
+              options={{
+                center: { lat: 21.3518757, lng: 105.9701969 },
+                zoom: 15
+              }}
+              onMapLoad={map => {
+                var marker = new window.google.maps.Marker({
+                  position: { lat: 21.3518757, lng: 105.9701969 },
+                  map: map,
+                  title: "Hiệp Hoà Yoga"
+                });
+              }}
+            />
           </div>
           <div className="home__contactUs">
             <ContactUs />

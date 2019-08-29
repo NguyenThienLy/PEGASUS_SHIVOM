@@ -287,7 +287,7 @@
     margin-top: 6em;
     background-color: #faf3ed;
     @include e("slick-autoplay") {
-      padding: 6em 8%;
+      padding: 6em 10%;
       @include e("item") {
         img {
           width: 100%;
@@ -301,6 +301,9 @@
         margin: 0 0.3em;
       }
     }
+  }
+  @include e("map") {
+    width: 100%;
   }
   @include e("contactUs") {
     width: 80%;

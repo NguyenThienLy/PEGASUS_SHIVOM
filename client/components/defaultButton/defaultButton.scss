@@ -9,11 +9,11 @@
     font-size: 16px;
     font-weight: 400;
     text-decoration: none;
-    padding: 1em 2em;
+
     @include e("content") {
+      // padding: 1em 2em;
       letter-spacing: 0.2em;
       font-size: 0.8em;
-      margin: 0;
       display: inline-block;
       &::first-letter {
         text-transform: capitalize;
