@@ -1,21 +1,8 @@
 @import "../../default.scss";
-//block-element
-@mixin e($element) {
-  &__#{$element} {
-    @content;
-  }
-}
-//block modifier
-@mixin m($modifier) {
-  &--#{$modifier} {
-    @content;
-  }
-}
 
 .header {
   @include e("wrapper") {
     font-size: 0.7em;
-    border-bottom: 1px solid $light-border-color;
     background-color: #fff; //#fcfcfc;
     // position: fixed;
     // top: 0;
@@ -31,7 +18,7 @@
       @include e("left") {
         display: flex;
         align-items: center;
-        height: 100%;
+        //height: 100%;
         font-weight: 400;
         font-size: 1em;
         // z-index: 2;
@@ -64,33 +51,34 @@
               //   }
               // }
               & > .hoverDiv {
-                padding: 1.8em 1em;
+                padding: 2.6em 1em;
                 cursor: pointer;
               }
               &:hover
                 .header__wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper {
                 max-height: 500px;
-                -moz-transition: max-height 300ms ease-in;
-                -ms-transition: max-height 300ms ease-in;
-                -o-transition: max-height 300ms ease-in;
-                -webkit-transition: max-height 300ms ease-in;
-                transition: max-height 300ms ease-in;
+                -moz-transition: max-height 700ms ease;
+                -ms-transition: max-height 700ms ease;
+                -o-transition: max-height 700ms ease;
+                -webkit-transition: max-height 700ms ease;
+                transition: max-height 700ms ease;
                 transition-delay: 0.3s;
               }
               &:not(:hover)
                 .header__wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper {
                 max-height: 0px;
-                -moz-transition: max-height 300ms ease-out;
-                -ms-transition: max-height 300ms ease-out;
-                -o-transition: max-height 300ms ease-out;
-                -webkit-transition: max-height 300ms ease-out;
-                transition: max-height 300ms ease-out;
+                -moz-transition: max-height 300ms ease;
+                -ms-transition: max-height 300ms ease;
+                -o-transition: max-height 300ms ease;
+                -webkit-transition: max-height 300ms ease;
+                transition: max-height 300ms ease;
               }
               @include e("sub-navbar-wrapper") {
                 overflow: hidden;
                 position: absolute;
-                top: 5.1em;
+                top: 6.5em;
                 left: -1em;
+                z-index: 1;
                 @include e("sub-navbar") {
                   list-style-type: none;
                   margin: 0;
@@ -129,8 +117,6 @@
     }
   }
   @include e("sub-wrapper") {
-    max-height: 0px;
-    overflow: hidden;
     font-size: 0.7em;
     border-bottom: 1px solid $light-border-color;
     background-color: #fff; //#fcfcfc;
@@ -187,21 +173,21 @@
               &:hover
                 .header__sub-wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper {
                 max-height: 500px;
-                -moz-transition: max-height 300ms ease-in;
-                -ms-transition: max-height 300ms ease-in;
-                -o-transition: max-height 300ms ease-in;
-                -webkit-transition: max-height 300ms ease-in;
-                transition: max-height 300ms ease-in;
+                -moz-transition: max-height 700ms ease;
+                -ms-transition: max-height 700ms ease;
+                -o-transition: max-height 700ms ease;
+                -webkit-transition: max-height 700ms ease;
+                transition: max-height 700ms ease;
                 transition-delay: 0.3s;
               }
               &:not(:hover)
                 .header__sub-wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper {
                 max-height: 0px;
-                -moz-transition: max-height 300ms ease-out;
-                -ms-transition: max-height 300ms ease-out;
-                -o-transition: max-height 300ms ease-out;
-                -webkit-transition: max-height 300ms ease-out;
-                transition: max-height 300ms ease-out;
+                -moz-transition: max-height 300ms ease;
+                -ms-transition: max-height 300ms ease;
+                -o-transition: max-height 300ms ease;
+                -webkit-transition: max-height 300ms ease;
+                transition: max-height 300ms ease;
               }
               @include e("sub-navbar-wrapper") {
                 overflow: hidden;
@@ -244,5 +230,23 @@
         }
       }
     }
+  }
+}
+
+@keyframes delay-overflow-visible {
+  from {
+    overflow: hidden;
+  }
+  to {
+    overflow: visible;
+  }
+}
+
+@keyframes delay-overflow-hidden {
+  from {
+    overflow: visible;
+  }
+  to {
+    overflow: hidden;
   }
 }

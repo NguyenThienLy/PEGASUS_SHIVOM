@@ -1,20 +1,5 @@
 @import "../../default.scss";
 
-//block-element
-@mixin e($element) {
-  &__#{$element} {
-    @content;
-  }
-}
-//block modifier
-@mixin m($modifier) {
-  &--#{$modifier} {
-    @content;
-  }
-}
-
-$font-family-time: "Noto Serif SC", serif;
-
 .eventHour {
   margin: 2em 2em;
   width: 14em;
@@ -85,13 +70,13 @@ $font-family-time: "Noto Serif SC", serif;
       letter-spacing: 0.05em;
       color: $main-color;
       font-size: 0.9em;
-      font-family: $font-family-time;
+      font-family: $font-family-special;
       text-transform: capitalize;
     }
     @include e("time") {
       margin-top: 1em;
       font-size: 0.7em;
-      font-family: $font-family-time;
+      font-family: $font-family-special;
       letter-spacing: 0.075em;
     }
     @include e("trainer") {

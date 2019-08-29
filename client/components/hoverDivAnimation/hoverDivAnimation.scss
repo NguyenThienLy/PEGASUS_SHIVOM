@@ -1,18 +1,5 @@
 @import "../../default.scss";
 
-//block-element
-@mixin e($element) {
-  &__#{$element} {
-    @content;
-  }
-}
-//block modifier
-@mixin m($modifier) {
-  &--#{$modifier} {
-    @content;
-  }
-}
-
 $hover-color: lighten($sub-main-color, 27%);
 
 // /* Safari 4.0 - 8.0 */
@@ -67,7 +54,7 @@ $hover-color: lighten($sub-main-color, 27%);
       position: relative;
       display: inline;
       padding: 0 0.5em;
-      z-index: 1000;
+      z-index: 0;
       @include m("hover") {
         position: absolute;
         left: 0;

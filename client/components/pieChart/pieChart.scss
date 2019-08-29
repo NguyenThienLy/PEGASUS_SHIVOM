@@ -1,18 +1,5 @@
 @import "../../default.scss";
 
-//block-element
-@mixin e($element) {
-  &__#{$element} {
-    @content;
-  }
-}
-//block modifier
-@mixin m($modifier) {
-  &--#{$modifier} {
-    @content;
-  }
-}
-
 $background-color: lighten($sub-main-color, 30%);
 
 .pieChart {
@@ -45,7 +32,7 @@ $background-color: lighten($sub-main-color, 30%);
     justify-content: space-between;
     padding: 1em;
     background-color: $background-color;
-    
+
     @include e("date") {
     }
     @include e("full") {

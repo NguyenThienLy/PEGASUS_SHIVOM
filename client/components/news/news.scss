@@ -1,20 +1,5 @@
 @import "../../default.scss";
 
-//block-element
-@mixin e($element) {
-  &__#{$element} {
-    @content;
-  }
-}
-//block modifier
-@mixin m($modifier) {
-  &--#{$modifier} {
-    @content;
-  }
-}
-
-$font-family-name: "Noto Serif SC", serif;
-
 .news {
   height: 24em;
   display: flex;
@@ -48,7 +33,7 @@ $font-family-name: "Noto Serif SC", serif;
     }
     @include e("title") {
       font-size: 2.1em;
-      font-family: $font-family-name;
+      font-family: $font-family-special;
       letter-spacing: 0.08em;
       margin-top: 0.3em;
       margin-bottom: 0;
@@ -76,6 +61,7 @@ $font-family-name: "Noto Serif SC", serif;
   @include e("image") {
     width: 60%;
     position: relative;
+    z-index: 0;
     img {
       width: 100%;
       height: 100%;

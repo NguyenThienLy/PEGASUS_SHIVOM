@@ -1,21 +1,5 @@
 @import "../../default.scss";
 
-//block-element
-@mixin e($element) {
-  &__#{$element} {
-    @content;
-  }
-}
-//block modifier
-@mixin m($modifier) {
-  &--#{$modifier} {
-    @content;
-  }
-}
-
-$font-family-content: "Noto Serif SC", serif;
-$font-family-number: "Cormorant", serif;
-
 .number-section {
   font-family: $font-family-number;
   display: inline-block;
@@ -30,7 +14,7 @@ $font-family-number: "Cormorant", serif;
   }
   @include e("content") {
     width: 100%;
-    font-family: $font-family-content;
+    font-family: $font-family-special;
     color: $main-color;
     text-transform: capitalize;
     font-size: 1.5em;

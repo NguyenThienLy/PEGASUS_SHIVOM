@@ -94,57 +94,62 @@ export class Header extends React.Component {
     //     }
     //   }
     // );
-    var prevScrollpos = window.pageYOffset;
-    var posToExpose = 300;
-    if (prevScrollpos < posToExpose) {
-      $(".header__sub-wrapper").css({
+
+    var prevScrollPos = window.pageYOffset;
+    var posToExpose = 600;
+    if (prevScrollPos < posToExpose) {
+      $(".header .header__sub-wrapper").css({
         maxHeight: "0px",
-        overflow: "hidden",
-        MozTransition: "max-height 500ms ease-out",
-        MsTransition: "max-height 500ms ease-out",
-        OTransition: "max-height 500ms ease-out",
-        WebkitTransition: "max-height 500ms ease-out",
-        transition: "max-height 500ms ease-out"
+        MozTransition: "max-height 1000ms ease",
+        MsTransition: "max-height 1000ms ease",
+        OTransition: "max-height 1000ms ease",
+        WebkitTransition: "max-height 1000ms ease",
+        transition: "max-height 1000ms ease",
+        animation: "500ms delay-overflow-hidden",
+        animationFillMode: "forwards"
       });
-    } else if (prevScrollpos >= posToExpose) {
-      $(".header__sub-wrapper").css({
+    } else if (prevScrollPos >= posToExpose) {
+      $(".header .header__sub-wrapper").css({
         maxHeight: "500px",
-        MozTransition: "max-height 500ms ease-in",
-        MsTransition: "max-height 500ms ease-in",
-        OTransition: "max-height 500ms ease-in",
-        WebkitTransition: "max-height 500ms ease-in",
-        transition: "max-height 500ms ease-in",
-        overflow: "visible"
+        MozTransition: "max-height 1500ms ease 200ms",
+        MsTransition: "max-height 1500ms ease 200ms",
+        OTransition: "max-height 1500ms ease 200ms",
+        WebkitTransition: "max-height 1500ms ease 200ms",
+        transition: "max-height 1500ms ease 200ms",
+        animation: "2000ms delay-overflow-visible",
+        animationFillMode: "forwards"
       });
     }
 
     window.onscroll = function() {
       var currentScrollPos = window.pageYOffset;
-      if (prevScrollpos > currentScrollPos && currentScrollPos < posToExpose) {
-        $(".header__sub-wrapper").css({
+      if (prevScrollPos > currentScrollPos && currentScrollPos < posToExpose) {
+        $(".header .header__sub-wrapper").css({
           maxHeight: "0px",
-          overflow: "hidden",
-          MozTransition: "max-height 500ms ease-out",
-          MsTransition: "max-height 500ms ease-out",
-          OTransition: "max-height 500ms ease-out",
-          WebkitTransition: "max-height 500ms ease-out",
-          transition: "max-height 500ms ease-out"
+          MozTransition: "max-height 1000ms ease",
+          MsTransition: "max-height 1000ms ease",
+          OTransition: "max-height 1000ms ease",
+          WebkitTransition: "max-height 1000ms ease",
+          transition: "max-height 1000ms ease",
+          animation: "100ms delay-overflow-hidden",
+          animationFillMode: "forwards"
         });
       } else if (
-        prevScrollpos <= currentScrollPos &&
+        prevScrollPos <= currentScrollPos &&
         currentScrollPos >= posToExpose
       ) {
-        $(".header__sub-wrapper").css({
+        $(".header .header__sub-wrapper").css({
           maxHeight: "500px",
-          MozTransition: "max-height 500ms ease-in",
-          MsTransition: "max-height 500ms ease-in",
-          OTransition: "max-height 500ms ease-in",
-          WebkitTransition: "max-height 500ms ease-in",
-          transition: "max-height 500ms ease-in",
-          overflow: "visible"
+          MozTransition: "max-height 1500ms ease 200ms",
+          MsTransition: "max-height 1500ms ease 200ms",
+          OTransition: "max-height 1500ms ease 200ms",
+          WebkitTransition: "max-height 1500ms ease 200ms",
+          transition: "max-height 1500ms ease 200ms",
+          animation: "2000ms delay-overflow-visible",
+          animationFillMode: "forwards"
         });
       }
-      prevScrollpos = currentScrollPos;
+      prevScrollPos = currentScrollPos;
     };
   }
 

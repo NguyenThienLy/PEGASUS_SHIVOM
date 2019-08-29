@@ -1,21 +1,5 @@
 @import "../../default.scss";
 
-//block-element
-@mixin e($element) {
-  &__#{$element} {
-    @content;
-  }
-}
-
-//block modifier
-@mixin m($modifier) {
-  &--#{$modifier} {
-    @content;
-  }
-}
-
-$box-shadow: 0 0 10px 2px $main-color;
-
 .footer-wrapper {
   font-family: $font-title;
   font-size: $font-size;
@@ -33,11 +17,9 @@ $box-shadow: 0 0 10px 2px $main-color;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 3em;
-
+      margin-bottom: 2em;
       @include e("a") {
-        width: 12em;
-
+        width: 8em;
         @include e("img") {
           width: 100%;
           height: auto;
@@ -66,7 +48,7 @@ $box-shadow: 0 0 10px 2px $main-color;
     }
 
     @include e("social-group") {
-      margin-bottom: 3em;
+      margin-bottom: 2em;
     }
 
     @include e("email-regis") {
@@ -146,6 +128,9 @@ $box-shadow: 0 0 10px 2px $main-color;
     font-size: 0.875em;
 
     @include e("item") {
+      .hoverDiv__link__content--hover {
+        background-color: $light-border-color;
+      }
       margin: 0 1em;
       z-index: 2;
     }

@@ -1,24 +1,8 @@
 @import "../../default.scss";
 
-//block-element
-@mixin e($element) {
-  &__#{$element} {
-    @content;
-  }
-}
-//block modifier
-@mixin m($modifier) {
-  &--#{$modifier} {
-    @content;
-  }
-}
-
-$font-family-name: "Noto Serif SC", serif;
-
 .introHome2 {
-  width: 15em;
-  height: 16em;
-  margin: 2em 2em;
+  //width: 15em;
+  height: auto;
   display: flex;
   align-items: center;
   transition: 400ms;
@@ -35,9 +19,10 @@ $font-family-name: "Noto Serif SC", serif;
       }
     }
     @include e("title") {
+      white-space: nowrap;
       margin-top: 1.5em;
       font-size: 1.2em;
-      font-family: $font-family-name;
+      font-family: $font-family-special;
       color: $color-grey;
       letter-spacing: 0.05em;
       &::first-letter {

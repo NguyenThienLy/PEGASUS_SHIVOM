@@ -1,31 +1,16 @@
 @import "../../default.scss";
 
-//block-element
-@mixin e($element) {
-  &__#{$element} {
-    @content;
-  }
-}
-//block modifier
-@mixin m($modifier) {
-  &--#{$modifier} {
-    @content;
-  }
-}
-
-$font-family-name: "Noto Serif SC", serif;
-
 .introHome {
-  width: 17em;
-  height: 18em;
-  margin: 2em 2em;
+  // width: 17em;
+  // height: auto;
   -webkit-box-shadow: 0 0 20px rgba(131, 204, 210, 0.2);
   box-shadow: 0 4px 20px rgba(131, 204, 210, 0.2);
   display: flex;
   align-items: center;
   transition: 400ms;
+  background-color: #fff;
   @include e("inner") {
-    padding: 2em 1.5em;
+    padding: 3em 1.7em;
     text-align: center;
     @include e("image") {
       margin: auto;
@@ -38,10 +23,11 @@ $font-family-name: "Noto Serif SC", serif;
     }
     @include e("title") {
       margin-top: 1em;
+      white-space: nowrap;
       a {
         font-size: 1.2em;
         text-decoration: none;
-        font-family: $font-family-name;
+        font-family: $font-family-special;
         color: $color-grey;
         letter-spacing: 0.05em;
         text-transform: capitalize;
@@ -59,11 +45,12 @@ $font-family-name: "Noto Serif SC", serif;
     }
   }
   &:hover {
-    -webkit-box-shadow: 0 10px 15px rgba(131, 204, 210, 0.2),
-    0 -1px 30px rgba(131, 204, 210, 0.05), -1px 0 30px rgba(131, 204, 210, 0.05),
-    1px 0 30px rgba(131, 204, 210, 0.05);
-    box-shadow: 0 10px 15px rgba(131, 204, 210, 0.2),
-      0 -1px 30px rgba(131, 204, 210, 0.05), -1px 0 30px rgba(131, 204, 210, 0.05),
+    -webkit-box-shadow: 0 10px 10px rgba(131, 204, 210, 0.2),
+      0 -1px 30px rgba(131, 204, 210, 0.05),
+      -1px 0 30px rgba(131, 204, 210, 0.05),
       1px 0 30px rgba(131, 204, 210, 0.05);
+    box-shadow: 0 10px 10px rgba(131, 204, 210, 0.2),
+      0 -1px 30px rgba(131, 204, 210, 0.05),
+      -1px 0 30px rgba(131, 204, 210, 0.1), 1px 0 30px rgba(131, 204, 210, 0.1);
   }
 }

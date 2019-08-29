@@ -1,19 +1,5 @@
 @import "../../default.scss";
 
-//block-element
-@mixin e($element) {
-  &__#{$element} {
-    @content;
-  }
-}
-//block modifier
-@mixin m($modifier) {
-  &--#{$modifier} {
-    @content;
-  }
-}
-
-$font-family-name: "Noto Serif SC", serif;
 $color-line: rgba(187, 184, 184, 0.5);
 
 .profileAdmin {
@@ -67,7 +53,7 @@ $color-line: rgba(187, 184, 184, 0.5);
     text-align: center;
     margin: 1em 0;
     @include e("name") {
-      font-family: $font-family-name;
+      font-family: $font-family-special;
       font-size: 1.2em;
       color: $main-color;
       text-transform: capitalize;
