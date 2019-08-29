@@ -9,17 +9,28 @@ export default class RegisCourseRouter extends CrudRouter<typeof regisCourseCont
         super(regisCourseController);
     }
     customRouter() {
-        this.router.post("/:_id/accept", this.acceptRegisMiddlewares(), this.route(this.acceptRegis))
+        this.router.post("/:_id/enroll", this.enrollToCourseMiddlewares(), this.route(this.enrollToCourse))
     }
-    acceptRegisMiddlewares(): any[] {
+    enrollToCourseMiddlewares(): any[] {
         return [
             authInfoMiddleware.run(["admin"])
         ]
     }
-    async acceptRegis(req: Request, res: Response) {
-        const result = await this.controller.acceptRegis({
-            regisCourseId: req.params._id
+    async enrollToCourse(req: Request, res: Response) {
+        await this.validateJSON(req.body, {
+            type: "object",
+            properties: {
+                student: { type: "string" },
+                package: { type: "string" },
+                totalMonth: { type: "number", min: 0, max: 0 },
+                startTime: { type: "string", format: "date-time" },
+
+            },
+            required: ["student", "totalMonth", "startTime"],
+            additionalProperties: false
         })
+        req.body.regisCourseId = req.params._id
+        const result = await this.controller.enrollToCourse(req.body)
         this.onSuccess(res, result)
     }
 

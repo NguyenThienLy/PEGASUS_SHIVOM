@@ -9,6 +9,18 @@ export class ClassController extends CrudController<typeof classService>{
     constructor() {
         super(classService);
     }
+    async changeClassStatus(params: {
+        classId: string
+        status: "active" | "deactive"
+    }) {
+        // const classInfo = await classService.getItem({ filter: { _id: classId } })
+        const classTimeTable: ClassTimeTableModel = await classTimeTableService.getItem({ filter: { class: params.classId } })
+        await timeTableItemService.model.update({ _id: { $in: classTimeTable.items } }, { status: params.status }, { multi: true })
+        await classTimeTable.update({ status: params.status }).exec()
+        return await this.service.update({
+            status: params.status
+        }, { filter: { _id: params.classId } })
+    }
     async create(params: any, option?: ICrudOption) {
         const classData: ClassModel = await this.service.create(params, option)
         // Tao lop dong thoi tao luon lich thoi khoa bieu cho lop do luon
@@ -55,10 +67,12 @@ export class ClassController extends CrudController<typeof classService>{
                 minute: number
             },
             room: string
+            class?: string
         }
     }) {
         const { classId, timeTableItem } = params
         // Tao mot item thoi khoa bieu
+        timeTableItem.class = classId
         const timeTableItemData: TimeTableItemModel = await timeTableItemService.create(timeTableItem)
         // Cap nhat lich thoi khoa bieu them item vao danh sach cac item
         return await classTimeTableService.update({

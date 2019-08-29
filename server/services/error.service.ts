@@ -6,6 +6,8 @@ import { TicketErrorService } from './error/ticketErrorService'
 import { RouterErrorService } from './error/routerErrorService'
 import { AuthErrorService } from './error/authErrorService'
 import { DatabaseErrorService } from './error/databaseErrorService'
+import { GiftErrorService } from './error/giftErrorService'
+import { GiftReceiveErrorService } from './error/giftReceiveErrorService'
 
 export class ErrorService {
     constructor() {
@@ -16,6 +18,8 @@ export class ErrorService {
         this.router = new RouterErrorService()
         this.auth = new AuthErrorService()
         this.database = new DatabaseErrorService()
+        this.gift = new GiftErrorService()
+        this.giftReceive = new GiftReceiveErrorService()
     }
     student: StudentErrorService
     customer: CustomerErrorService
@@ -24,5 +28,7 @@ export class ErrorService {
     router: RouterErrorService
     auth: AuthErrorService
     database: DatabaseErrorService
+    gift: GiftErrorService
+    giftReceive: GiftReceiveErrorService
 
 }

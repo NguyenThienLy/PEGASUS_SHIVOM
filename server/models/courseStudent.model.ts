@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 
 export type CourseStudentModel = BaseModel & {
     student: string | StudentModel
-    package: string | PackageModel
+    package?: string | PackageModel
     course: string | CourseModel
     totalFeeAmount: number
     totalDiscountAmount: number
@@ -23,7 +23,7 @@ export type CourseStudentModel = BaseModel & {
 
 const courseStudentSchema = new Schema({
     student: { type: Schema.Types.ObjectId, ref: "Student", required: true },
-    package: { type: Schema.Types.ObjectId, ref: "Package", required: true },
+    package: { type: Schema.Types.ObjectId, ref: "Package" },
     course: { type: Schema.Types.ObjectId, ref: "Course", required: true },
     totalFeeAmount: { type: Number, required: true, default: 0 },
     totalDiscountAmount: { type: Number, default: 0 },
@@ -38,6 +38,8 @@ const courseStudentSchema = new Schema({
     isPayFee: { type: Boolean, default: false },
     status: { type: String, enum: ["active", "deactive"], default: "active" }
 }, { timestamps: true })
+
+courseStudentSchema.index({ student: 1, course: 1 }, { unique: true });
 
 export let CourseStudent: mongoose.Model<CourseStudentModel> = mongoose.model('CourseStudent', courseStudentSchema);
 

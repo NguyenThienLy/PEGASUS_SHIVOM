@@ -12,6 +12,25 @@ export default class ClassRouter extends CrudRouter<typeof classController> {
         this.router.get("/:_id/timeTable", this.getTimeTableMiddlewares(), this.route(this.getTimeTable))
         this.router.post("/:_id/timeTable", this.addTimeTableItemForClassMiddlewares(), this.route(this.addTimeTableItemForClass))
         this.router.delete("/:_id/timeTable/:timeTableItemId", this.deleteTimeTableItemForClassMiddlewares(), this.route(this.deleteTimeTableItemForClass))
+        this.router.put("/:_id/status", this.changeClassStatusMiddlewares(), this.route(this.changeClassStatus))
+    }
+    changeClassStatusMiddlewares(): any[] {
+        return [
+            authInfoMiddleware.run(["admin"])
+        ]
+    }
+    async changeClassStatus(req: Request, res: Response) {
+        await this.validateJSON(req.body, {
+            type: "object",
+            properties: {
+                status: { type: "string", enum: ["active", "deactive"] }
+            },
+            required: ["status"],
+            additionalProperties: false
+        })
+        req.body.classId = req.params._id
+        const result = await this.controller.changeClassStatus(req.body)
+        this.onSuccess(res, result)
     }
     getTimeTableMiddlewares(): any[] {
         return [

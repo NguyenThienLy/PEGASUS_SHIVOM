@@ -3,6 +3,7 @@ import { CrudRouter } from '../crud';
 import { Request, Response } from '../base'
 import { studentController } from '../../controllers'
 import { authInfoMiddleware, queryInfoMiddleware, blockMiddleware } from '../../middlewares'
+import { StudentCronjobService } from '../../services/cronjob/student.cronjob.service';
 
 export default class StudentRouter extends CrudRouter<typeof studentController> {
     constructor() {
@@ -18,7 +19,67 @@ export default class StudentRouter extends CrudRouter<typeof studentController> 
         this.router.get("/upcommingExpired", this.getListStudentUpcommingExpiredMiddlewares(), this.route(this.getListStudentUpcommingExpired))
         this.router.post("/sendMailUpcommingExpired", this.sendMailUpcommingExpiredMiddlewares(), this.route(this.sendMailUpcommingExpired))
         this.router.post("/login", [], this.route(this.login))
-
+        this.router.post("/:_id/card", this.updateCardMiddlewares(), this.route(this.updateCard))
+        this.router.post("/:_id/sendGift", this.sendGiftMiddlewares(), this.route(this.sendGift))
+        this.router.post("/:_id/enroll", this.enrollToCourseMiddlewares(), this.route(this.enrollToCourse))
+    }
+    enrollToCourseMiddlewares(): any[] {
+        return [
+            authInfoMiddleware.run(["admin"])
+        ]
+    }
+    async enrollToCourse(req: Request, res: Response) {
+        await this.validateJSON(req.body, {
+            type: "object",
+            properties: {
+                courseId: { type: "string" },
+                isPayFee: { type: "boolean" },
+                startTime: { type: "string", format: "date-time" },
+                endTime: { type: "string", format: "date-time" }
+            },
+            required: ["courseId", "isPayFee", "startTime", "endTime"],
+            additionalProperties: false
+        })
+        req.body.studentId = req.params._id
+        const result = await this.controller.enrollToCourse(req.body)
+        this.onSuccess(res, result)
+    }
+    sendGiftMiddlewares(): any[] {
+        return [
+            authInfoMiddleware.run(["admin"])
+        ]
+    }
+    async sendGift(req: Request, res: Response) {
+        await this.validateJSON(req.body, {
+            type: "object",
+            properties: {
+                gift: { type: "string" },
+                amount: { type: "number" }
+            },
+            required: ["gift", "amount"],
+            additionalProperties: false
+        })
+        req.body.studentId = req.params._id
+        const result = await this.controller.sendGift(req.body)
+        this.onSuccess(res, result)
+    }
+    updateCardMiddlewares(): any[] {
+        return [
+            authInfoMiddleware.run(["admin"])
+        ]
+    }
+    async updateCard(req: Request, res: Response) {
+        await this.validateJSON(req.body, {
+            type: "object",
+            properties: {
+                code: { type: "string" }
+            },
+            required: ["code"],
+            additionalProperties: false
+        })
+        req.body.studentId = req.params._id
+        const result = await this.controller.updateCard(req.body)
+        this.onSuccess(res, result)
     }
     async login(req: Request, res: Response) {
         await this.validateJSON(req.body, {

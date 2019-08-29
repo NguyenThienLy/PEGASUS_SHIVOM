@@ -10,6 +10,7 @@ export interface ICrudOption {
     fields?: string[]
     populates?: any
     lean?: boolean
+    order?: any
 }
 export interface ICrudExecOption {
     allowNull?: boolean
@@ -92,6 +93,7 @@ export class CrudService<T extends Model> {
         if (option.limit) query.limit(option.limit)
         if (option.offset) query.skip(option.offset)
         if (option.fields) query.select(option.fields)
+        if (option.order) query.sort(option.order)
         if (option.populates) {
             for (const populate of option.populates) {
                 query.populate(populate)

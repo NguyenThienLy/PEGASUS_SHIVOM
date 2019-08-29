@@ -175,6 +175,10 @@ export class UpdateStatisticCourseCronJob {
                         upsert: true,
                         new: true
                     }).exec()
+            // Cap nhat so ngay vang cua hoc sinh trong  course student
+            courseStudentService.model.update({ student: studentTypeAbsent.course, course: studentTypeAbsent.course }, {
+                $inc: { totalAbsent: 1 }
+            }).exec()
         }
     }
 }

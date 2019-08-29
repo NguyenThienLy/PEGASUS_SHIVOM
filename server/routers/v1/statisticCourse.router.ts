@@ -9,17 +9,56 @@ export default class StatisticClassRouter extends CrudRouter<typeof statisticCou
         super(statisticCourseController);
     }
     customRouter() {
-        
+        this.router.get("/statisticForLineChart/", this.statisticForLineChartMiddlewares(), this.route(this.statisticForLineChart))
+        this.router.get("/statisticForPieChart/", this.statisticForPieChartMiddlewares(), this.route(this.statisticForPieChart))
     }
+    statisticForLineChartMiddlewares(): any[] {
+        return []
+    }
+    statisticForPieChartMiddlewares(): any[] {
+        return []
+    }
+    // Lấy dữ liệu cho khóa học biểu đồ đường
+    async statisticForLineChart(req: Request, res: Response) {
+        await this.validateJSON(req.query, {
+            type: "object",
+            properties: {
+                course: { type: "string" },
+                type: { type: "string", enum: ["week", "month", "year", "realTime"] },
+                startTime: { type: "string", format: "date-time" },
+                endTime: { type: "string", format: "date-time" }
+            },
+            additionalProperties: false
+        })
+        const result = await this.controller.statisticForLineChart(req.query)
+        this.onSuccess(res, result)
+    }
+
+    // Lấy dữ liệu cho khóa học dạng biểu đồ tròn
+    async statisticForPieChart(req: Request, res: Response) {
+        await this.validateJSON(req.query, {
+            type: "object",
+            properties: {
+                course: { type: "string" },
+                type: { type: "string", enum: ["week", "month", "year", "realTime"] },
+                startTime: { type: "string", format: "date-time" },
+                endTime: { type: "string", format: "date-time" }
+            },
+            additionalProperties: false
+        })
+        const result = await this.controller.statisticForPieChart(req.query)
+        this.onSuccess(res, result)
+    }
+
     getListMiddlewares(): any[] {
         return [
-            authInfoMiddleware.run(["admin"]),
+            //authInfoMiddleware.run(["admin"]),
             queryInfoMiddleware.run()
         ]
     }
     getItemMiddlewares(): any[] {
         return [
-            authInfoMiddleware.run(["admin"]),
+            // authInfoMiddleware.run(["admin"]),
             queryInfoMiddleware.run()
         ]
     }

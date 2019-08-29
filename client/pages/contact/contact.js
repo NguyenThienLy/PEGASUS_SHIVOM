@@ -7,7 +7,7 @@ import { api } from "../../services";
 import { action } from "../../actions";
 
 import "./contact.scss";
-import { Header, Footer, IntroHome2, ContactUs } from "../../components";
+import { Header, Footer, IntroHome2, ContactUs, Map } from "../../components";
 import GoogleMapReact from "google-map-react";
 
 export class Contact extends React.Component {
@@ -71,7 +71,7 @@ export class Contact extends React.Component {
     $(".contact__brands__slick-autoplay").slick({
       dots: false,
       arrows: false,
-      slidesToShow: 5,
+      slidesToShow: 6,
       slidesToScroll: 1,
       autoplay: true,
       autoplaySpeed: 3000,
@@ -79,7 +79,7 @@ export class Contact extends React.Component {
         {
           breakpoint: 1300,
           settings: {
-            slidesToShow: 4,
+            slidesToShow: 5,
             slidesToScroll: 1,
             infinite: true,
             dots: false
@@ -96,7 +96,7 @@ export class Contact extends React.Component {
           breakpoint: 767,
           settings: {
             slidesToShow: 2,
-            slidesToScroll: 2
+            slidesToScroll: 1
           }
         }
         // You can unslick at a given breakpoint now by adding:
@@ -183,6 +183,22 @@ export class Contact extends React.Component {
                 <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-3.png"></img>
               </div>
             </div>
+          </div>
+          <div className="contact__map">
+            <Map
+              id="myMap"
+              options={{
+                center: { lat: 21.3518757, lng: 105.9701969 },
+                zoom: 15
+              }}
+              onMapLoad={map => {
+                var marker = new window.google.maps.Marker({
+                  position: { lat: 21.3518757, lng: 105.9701969 },
+                  map: map,
+                  title: "Hiệp Hoà Yoga"
+                });
+              }}
+            />
           </div>
           <div className="contact__contactUs">
             <ContactUs />
