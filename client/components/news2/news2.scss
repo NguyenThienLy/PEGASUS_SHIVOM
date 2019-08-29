@@ -1,20 +1,5 @@
 @import "../../default.scss";
 
-//block-element
-@mixin e($element) {
-  &__#{$element} {
-    @content;
-  }
-}
-//block modifier
-@mixin m($modifier) {
-  &--#{$modifier} {
-    @content;
-  }
-}
-
-$font-family-title: "Noto Serif SC", serif;
-
 .news2 {
   width: 80%;
   margin: auto;
@@ -67,7 +52,7 @@ $font-family-title: "Noto Serif SC", serif;
       a {
         text-decoration: none;
         color: $color-grey;
-        font-family: $font-family-title;
+        font-family: $font-family-special;
         font-size: 1.5em;
         line-height: 1.25em;
         text-transform: capitalize;
@@ -95,7 +80,7 @@ $font-family-title: "Noto Serif SC", serif;
           }
           span {
             display: block;
-            font-family: $font-family-title;
+            font-family: $font-family-special;
             font-weight: 500;
             text-align: center;
             background-color: #fff;
@@ -124,12 +109,12 @@ $font-family-title: "Noto Serif SC", serif;
       color: $font-color;
     }
     @include e("more") {
-        padding: 0.8em 0 3em;
-        display: flex;
-        align-items: center;
+      padding: 0.8em 0 3em;
+      display: flex;
+      align-items: center;
       text-align: center;
       @include e("comments-and-loves") {
-        width:25%;
+        width: 25%;
         font-size: 0.65em;
         color: $main-color;
         text-align: left !important;
@@ -147,15 +132,15 @@ $font-family-title: "Noto Serif SC", serif;
         }
       }
       @include e("button") {
-        width:50%;
-          margin: 1.5em 0 0.25em 0;
+        width: 50%;
+        margin: 1.5em 0 0.25em 0;
         .default-button__link__content {
           text-transform: uppercase;
           padding: 1em 1.25em;
         }
       }
       @include e("other") {
-          width: 25%;
+        width: 25%;
       }
     }
   }

@@ -1,20 +1,5 @@
 @import "../../default.scss";
 
-//block-element
-@mixin e($element) {
-  &__#{$element} {
-    @content;
-  }
-}
-//block modifier
-@mixin m($modifier) {
-  &--#{$modifier} {
-    @content;
-  }
-}
-
-$font-family-title: "Noto Serif SC", serif;
-
 .latestPost {
   width: 15em;
   height: 7em;
@@ -46,7 +31,7 @@ $font-family-title: "Noto Serif SC", serif;
     margin: auto;
     @include e("title") {
       font-size: 0.9em;
-      font-family: $font-family-title;
+      font-family: $font-family-special;
       letter-spacing: 0.05em;
       text-transform: capitalize;
       a {

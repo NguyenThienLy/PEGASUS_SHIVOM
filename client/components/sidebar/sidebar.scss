@@ -1,19 +1,5 @@
 @import "../../default.scss";
 
-//block-element
-@mixin e($element) {
-  &__#{$element} {
-    @content;
-  }
-}
-//block modifier
-@mixin m($modifier) {
-  &--#{$modifier} {
-    @content;
-  }
-}
-
-$font-family-title: "Noto Serif SC", serif;
 $background-color: lighten($sub-main-color, 30%);
 $color-line: rgba(187, 184, 184, 0.5);
 
@@ -41,7 +27,7 @@ $color-line: rgba(187, 184, 184, 0.5);
       @include e("title") {
         text-transform: capitalize;
         font-weight: bold;
-        font-family: $font-family-title;
+        font-family: $font-family-special;
         font-size: 0.9em;
         color: $color-grey;
         padding: 1em 1.5em;

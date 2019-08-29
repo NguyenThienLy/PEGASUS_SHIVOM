@@ -1,1 +1,154 @@
 @import "../../default.scss";
+
+.contact {
+  background-color: #fff;
+  @include e("header") {
+  }
+  @include e("title") {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include e("inner") {
+      padding: 0 32%;
+      text-align: center;
+      color: #fff;
+      div {
+        text-transform: capitalize;
+        font-family: $font-family-special;
+        font-size: 3.6em;
+        letter-spacing: 0.025em;
+      }
+      p {
+        margin: 0.8em 0 1em;
+        font-size: 0.9em;
+        line-height: 1.5em;
+      }
+    }
+    @include e("image") {
+      position: relative;
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      @include e("info") {
+        position: absolute;
+        top: 50%;
+        text-align: center;
+        padding: 0 20%;
+        color: #fff;
+        transform: translateY(-50%);
+        div {
+          text-transform: capitalize;
+          font-family: $font-family-special;
+          font-size: 3.6em;
+          letter-spacing: 0.025em;
+        }
+        p {
+          margin: 0.8em 0 1em;
+          font-size: 0.9em;
+          line-height: 1.5em;
+        }
+      }
+    }
+  }
+  @include e("intro") {
+    width: 85%;
+    margin: 5em auto 0em;
+    display: grid;
+    grid-template-columns: 23% 23% 23% 23%;
+    grid-column-gap: 2%;
+    grid-row-gap: 1em;
+    .introHome2 {
+      margin: auto;
+    }
+  }
+  @include e("brands") {
+    width: 100%;
+    margin-top: 5em;
+    background-color: #faf3ed;
+    @include e("slick-autoplay") {
+      padding: 6em 8%;
+      @include e("item") {
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+      .slick-track {
+        padding: 0;
+      }
+      .slick-slide {
+        margin: 0 0.3em;
+      }
+    }
+  }
+  @include e("contactUs") {
+    width: 80%;
+    margin: 4em auto 0;
+    padding: 3em 0 5em;
+  }
+  @include e("footer") {
+  }
+}
+
+@media only screen and (max-width: 2000px) {
+  html {
+    font-size: 20px !important;
+  }
+  .contact__title__image {
+    display: none;
+  }
+  .contact__title {
+    padding: 8em 0em;
+    background-image: url(https://dalia.elated-themes.com/wp-content/uploads/2018/06/about-us-title-img.jpg);
+    //background-attachment: fixed;
+    background-position: center 0px;
+    background-repeat: no-repeat;
+  }
+  .contact__title__inner {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 1199px) {
+  html {
+    font-size: 20px !important;
+  }
+  .contact__intro {
+    grid-template-columns: 49% 49%;
+    grid-column-gap: 2%;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  html {
+    font-size: 19px !important;
+  }
+  .contact__title__image {
+    display: block;
+  }
+  .contact__title {
+    padding: 0;
+    background: none;
+  }
+  .contact__title__inner {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  html {
+    font-size: 19px !important;
+  }
+  .contact__intro {
+    grid-template-columns: 100%;
+    grid-column-gap: 0%;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  html {
+    font-size: 18px !important;
+  }
+}

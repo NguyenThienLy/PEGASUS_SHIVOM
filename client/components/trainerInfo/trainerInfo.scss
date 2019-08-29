@@ -1,7 +1,5 @@
 @import "../../default.scss";
 
-$font-family-name: "Noto Serif SC", serif;
-
 .class-trainer {
   width: 40em;
   height: 18em;
@@ -35,7 +33,7 @@ $font-family-name: "Noto Serif SC", serif;
     @include e("name") {
       font-size: 1.3em;
       color: $main-color;
-      font-family: $font-family-name;
+      font-family: $font-family-special;
       margin: 0.8em 0;
       letter-spacing: 0.05em;
       font-weight: 600;
@@ -67,7 +65,7 @@ $font-family-name: "Noto Serif SC", serif;
           @include e("name") {
             letter-spacing: 0.05em;
             font-size: 0.9em;
-            font-family: $font-family-name;
+            font-family: $font-family-special;
             width: 40%;
             color: $main-color;
           }

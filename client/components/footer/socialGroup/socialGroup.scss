@@ -1,18 +1,5 @@
 @import "../../../default.scss";
 
-//block-element
-@mixin e($element) {
-  &__#{$element} {
-    @content;
-  }
-}
-//block modifier
-@mixin m($modifier) {
-  &--#{$modifier} {
-    @content;
-  }
-}
-
 .media-buttons {
   text-align: center;
   @include e("media-icons") {

@@ -1,18 +1,5 @@
 @import "../../default.scss";
 
-//block-element
-@mixin e($element) {
-    &__#{$element} {
-      @content;
-    }
-  }
-  //block modifier
-  @mixin m($modifier) {
-    &--#{$modifier} {
-      @content;
-    }
-  }
-
 .post-author {
   width: 35em;
   height: 11em;
@@ -48,7 +35,7 @@
       }
     }
     @include e("name") {
-      font-family: "Noto Serif SC", serif;
+      font-family: $font-family-special;
       text-transform: capitalize;
       font-size: 1.3em;
       margin: 5px 0 15px 0;

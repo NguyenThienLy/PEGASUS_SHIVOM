@@ -174,14 +174,32 @@ class Home extends React.Component {
           owner: "callie hern"
         }
       ],
-      introHome: {
-        link: "#",
-        image:
-          "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-icon-img-1.png",
-        title: "run outdoors",
-        content:
-          "Lorem ipsum dolor sit amet, ad duo adipisci imperdiet, eum eu fugit."
-      },
+      introHome: [
+        {
+          link: "#",
+          image:
+            "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-icon-img-1.png",
+          title: "run outdoors",
+          content:
+            "Lorem ipsum dolor sit amet, ad duo adipisci imperdiet, eum eu fugit."
+        },
+        {
+          link: "#",
+          image:
+            "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-icon-img-4.png",
+          title: "rollerblading",
+          content:
+            "Lorem ipsum dolor sit amet, ad duo adipisci imperdiet, eum eu fugit."
+        },
+        {
+          link: "#",
+          image:
+            "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-icon-img-5.png",
+          title: "mountain biking",
+          content:
+            "Lorem ipsum dolor sit amet, ad duo adipisci imperdiet, eum eu fugit."
+        }
+      ],
       eventHour: {
         weekday: "monday",
         timeStart: "15.00",
@@ -194,13 +212,6 @@ class Home extends React.Component {
           "https://dalia.elated-themes.com/wp-content/uploads/2018/05/blog-img-6-150x150.jpg",
         title: "clean beauty",
         date: "13th jun"
-      },
-      introHome2: {
-        image:
-          "https://dalia.elated-themes.com/wp-content/uploads/2018/05/h1-icon-img-1.png",
-        title: "relaxing massage",
-        content:
-          "Lorem ipsum dolor sit amet, ad duo adipisci imperdiet, eum eu fugit."
       },
       news2: {
         link: "#",
@@ -365,6 +376,45 @@ class Home extends React.Component {
           this.blur();
         });
     });
+
+    $(".home__intro-slick-autoplay").slick({
+      dots: true,
+      arrows: false,
+      slidesToShow: 2,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 5000,
+      responsive: [
+        {
+          breakpoint: 767,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            infinite: true,
+            dots: true
+          }
+        }
+        // You can unslick at a given breakpoint now by adding:
+        // settings: "unslick"
+        // instead of a settings object
+      ]
+    });
+    $(".home__intro-slick-autoplay").on("beforeChange", function(
+      event,
+      slick,
+      currentSlide,
+      nextSlide
+    ) {
+      $(".home__intro-slick-autoplay .slick-dots li").removeClass(
+        "slick-active"
+      );
+      $(".home__intro-slick-autoplay .slick-dots li button")
+        .attr("aria-pressed", "false")
+        .focus(function() {
+          this.blur();
+        });
+    });
+
     var heightOfFooter = $(".home__footer .footer-wrapper").height();
     $(".home__contactUs").css("margin-bottom", heightOfFooter + "px");
   }
@@ -387,7 +437,26 @@ class Home extends React.Component {
             <Header {...this.props} />
           </div>
 
-          <Slider />
+          <div className="home__slider">
+            <Slider />
+          </div>
+
+          <div className="home__intro">
+            {this.state.introHome.map(intro => {
+              return <IntroHome introHome={intro}></IntroHome>;
+            })}
+          </div>
+
+          <div className="home__intro-slick-autoplay">
+            {this.state.introHome.map(intro => {
+              return (
+                <div className="home__intro-slick-autoplay__item">
+                  <IntroHome introHome={intro}></IntroHome>
+                </div>
+              );
+            })}
+          </div>
+
           {/* <div className="body">
             <h1>Trang chủ</h1>
           </div> */}
@@ -512,10 +581,9 @@ class Home extends React.Component {
 
           {/* <PostAuthor /> */}
 
-          {/* <IntroHome introHome={this.state.introHome} />
+          {/* 
           <EventHour eventHour={this.state.eventHour} />
           <LatestPost latestPost={this.state.latestPost} />
-          <IntroHome2 introHome2={this.state.introHome2} />
           <News2 news2={this.state.news2} />
           <NumberAdmin numberAdmin={this.state.numberAdmin} />
           <ProfileAdmin profileAdmin={this.state.profileAdmin}></ProfileAdmin>

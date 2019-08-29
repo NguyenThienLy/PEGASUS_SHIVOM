@@ -1,89 +1,83 @@
 @import "../../default.scss";
 
-
-
 .related-post {
-    font-size: $font-size;
-    font-family: "Noto Serif SC", serif;
-    width: 20em;
-    // height: 20em;
-    display: flex;
-    flex-direction: column;
-    margin-left: 1em;
+  font-size: $font-size;
+  font-family: $font-family-special;
+  width: 20em;
+  // height: 20em;
+  display: flex;
+  flex-direction: column;
+  margin-left: 1em;
 
-    @include e("img") {
-        position: relative;
+  @include e("img") {
+    position: relative;
 
-        img {
-            width: 100%;
-            height: auto;
-        }
-
-        @include e("created-date") {
-            position: absolute;
-            top: 0;
-            text-align: center;
-            margin-left: 1.1em;
-            text-align: center;
-            margin-left: 1.1em;
-            color: $main-color;
-
-            &:hover {
-                color: darken($main-color, 20%);
-            }
-
-            div {
-
-                display: block;
-                font-weight: 500;
-                text-align: center;
-                background-color: #fff;
-
-            }
-
-            @include e("day") {
-                width: 3em;
-                font-size: 1.2em;
-                line-height: 3em;
-            }
-
-            @include e("month") {
-                font-size: 0.9em;
-                line-height: 2em;
-                margin-top: 0.1em;
-                text-transform: capitalize;
-            }
-        }
+    img {
+      width: 100%;
+      height: auto;
     }
 
-    @include e("author") {
-        a {
-            text-decoration: none;
+    @include e("created-date") {
+      position: absolute;
+      top: 0;
+      text-align: center;
+      margin-left: 1.1em;
+      color: $main-color;
 
-            color: $sub-main-color;
+      &:hover {
+        color: darken($main-color, 20%);
+      }
 
-            &:hover {
-                color: $color-grey;
-            }
-        }
+      div {
+        display: block;
+        font-weight: 500;
+        text-align: center;
+        background-color: #fff;
+      }
 
-        text-transform: uppercase;
+      @include e("day") {
+        width: 3em;
+        font-size: 1.2em;
+        line-height: 3em;
+      }
+
+      @include e("month") {
+        font-size: 0.9em;
         line-height: 2em;
-        font-size: 0.875em;
-        margin: 1em 0;
-    }
-
-    @include e("title") {
-        a {
-            text-decoration: none;
-            color: $color-grey;
-
-            &:hover {
-                color: $main-color;
-            }
-        }
-
+        margin-top: 0.1em;
         text-transform: capitalize;
-        font-size: 2em;
+      }
     }
+  }
+
+  @include e("author") {
+    a {
+      text-decoration: none;
+
+      color: $sub-main-color;
+
+      &:hover {
+        color: $color-grey;
+      }
+    }
+
+    text-transform: uppercase;
+    line-height: 2em;
+    font-size: 0.875em;
+    margin: 1em 0;
+  }
+
+  @include e("title") {
+    a {
+      text-decoration: none;
+      color: $color-grey;
+
+      &:hover {
+        color: $main-color;
+      }
+    }
+
+    text-transform: capitalize;
+    font-size: 2em;
+  }
 }

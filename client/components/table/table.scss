@@ -1,19 +1,5 @@
 @import "../../default.scss";
 
-//block-element
-@mixin e($element) {
-  &__#{$element} {
-    @content;
-  }
-}
-//block modifier
-@mixin m($modifier) {
-  &--#{$modifier} {
-    @content;
-  }
-}
-
-$font-family-th: "Noto Serif SC", serif;
 $hover-color: lighten($sub-main-color, 30%);
 
 .table {
@@ -70,7 +56,7 @@ $hover-color: lighten($sub-main-color, 30%);
       th {
         font-weight: normal;
         font-size: 0.9em;
-        font-family: $font-family-th;
+        font-family: $font-family-special;
       }
       td {
         font-size: 0.8em;
