@@ -1,8 +1,8 @@
 import * as moment from 'moment'
 
 import { CrudController } from '../crud.controller'
-import { regisCourseService, courseStudentService, mailService, studentService } from '../../services/index'
-import { RegisCourseModel, CourseStudentModel, StudentModel, CourseModel } from '../../models';
+import { regisCourseService, courseStudentService, mailService, studentService, studentTimeTableService } from '../../services/index'
+import { RegisCourseModel, CourseStudentModel, StudentModel, CourseModel, StudentTimeTableModel } from '../../models';
 import { notifyRegisCourseSuccessEmail } from '../../mailTemplate';
 
 
@@ -30,7 +30,12 @@ export class RegisCourseController extends CrudController<typeof regisCourseServ
             }
         })
         let result: any
+        let studentTimeTable: StudentTimeTableModel
         const currentCourseStudent = await courseStudentService.model.findOne({
+            student: params.student,
+            course: regisCourse.course
+        })
+        studentTimeTable = await studentTimeTableService.model.findOne({
             student: params.student,
             course: regisCourse.course
         })
@@ -59,6 +64,10 @@ export class RegisCourseController extends CrudController<typeof regisCourseServ
                 startTime: params.startTime,
                 endTime
             })
+            studentTimeTable = await studentTimeTableService.create({
+                course: regisCourse.course,
+                student: params.student
+            })
         }
         // Gui email den hoc vien dang ky khoa hoc thanh cong
         if (student.email) {
@@ -71,7 +80,10 @@ export class RegisCourseController extends CrudController<typeof regisCourseServ
             mailService.sendMail({ mailOption: mailTemplate })
         }
         await regisCourse.update({ isEnrolled: true }).exec()
-        return result
+        return {
+            courseStudent: result,
+            studentTimeTable
+        }
 
     }
 
