@@ -7,7 +7,7 @@ export class StatisticCourseService extends CrudService<typeof StatisticCourse> 
         super(StatisticCourse);
     }
 
-    async getDateInStatisticLine(params: {
+    async getDataInStatisticForLineChart(params: {
         course: string,
         type: "week" | "month" | "year",
         totalWeekStartTime: number,
@@ -72,7 +72,7 @@ export class StatisticCourseService extends CrudService<typeof StatisticCourse> 
         ])
     }
 
-    async getDateInStatisticPie(params: {
+    async getDataInStatisticForPieChart(params: {
         course: string,
         type: "week" | "month" | "year",
         totalWeekStartTime: number,

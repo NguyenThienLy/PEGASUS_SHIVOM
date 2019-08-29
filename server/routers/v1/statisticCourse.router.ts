@@ -8,22 +8,18 @@ export default class StatisticClassRouter extends CrudRouter<typeof statisticCou
     constructor() {
         super(statisticCourseController);
     }
-
-    statisticLineMiddlewares(): any[] {
-        return []
-    }
-
-    statisticPieMiddlewares(): any[] {
-        return []
-    }
-
     customRouter() {
-        this.router.get("/statisticLine/", this.statisticLineMiddlewares(), this.route(this.statisticLine))
-        this.router.get("/statisticPie/", this.statisticPieMiddlewares(), this.route(this.statisticPie))
+        this.router.get("/statisticForLineChart/", this.statisticForLineChartMiddlewares(), this.route(this.statisticForLineChart))
+        this.router.get("/statisticForPieChart/", this.statisticForPieChartMiddlewares(), this.route(this.statisticForPieChart))
     }
-
+    statisticForLineChartMiddlewares(): any[] {
+        return []
+    }
+    statisticForPieChartMiddlewares(): any[] {
+        return []
+    }
     // Lấy dữ liệu cho khóa học biểu đồ đường
-    async statisticLine(req: Request, res: Response) {
+    async statisticForLineChart(req: Request, res: Response) {
         await this.validateJSON(req.query, {
             type: "object",
             properties: {
@@ -34,12 +30,12 @@ export default class StatisticClassRouter extends CrudRouter<typeof statisticCou
             },
             additionalProperties: false
         })
-        const result = await this.controller.statisticLine(req.query)
+        const result = await this.controller.statisticForLineChart(req.query)
         this.onSuccess(res, result)
     }
 
     // Lấy dữ liệu cho khóa học dạng biểu đồ tròn
-    async statisticPie(req: Request, res: Response) {
+    async statisticForPieChart(req: Request, res: Response) {
         await this.validateJSON(req.query, {
             type: "object",
             properties: {
@@ -50,7 +46,7 @@ export default class StatisticClassRouter extends CrudRouter<typeof statisticCou
             },
             additionalProperties: false
         })
-        const result = await this.controller.statisticPie(req.query)
+        const result = await this.controller.statisticForPieChart(req.query)
         this.onSuccess(res, result)
     }
 

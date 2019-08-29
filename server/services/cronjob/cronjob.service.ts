@@ -6,9 +6,9 @@ import { StudentCronjobService } from './student.cronjob.service';
 
 export class CronJobService {
     constructor() {
-        this.updateStatisticCourse()
-        this.updateStatisticStudent()
-        this.updateCheckIns()
+        // this.updateStatisticCourse()
+        // this.updateStatisticStudent()
+        // this.updateCheckIns()
     }
     async checkStudentBirthdayAndSendMail() {
         cron.schedule('0 9 * * *', () => {
