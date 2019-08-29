@@ -195,7 +195,7 @@ export class StudentController extends CrudController<typeof studentService>{
         })
         const timestamps = moment().unix()
         const result = await webhookController.checkStudentTimeTable({
-            student, timestamps
+            student, timestamps, isFromAdmin: true
         })
         return await checkinService.getItem({
             filter: {
