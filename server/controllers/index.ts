@@ -31,6 +31,9 @@ import { EventController } from './crud/event.controller'
 import { PromotionController } from './crud/promotion.controller'
 import { GiftController } from './crud/gift.controller'
 import { GiftReceiveController } from './crud/giftReceive.controller'
+import { GalleryController } from './crud/gallery.controller'
+import { MasonryHomeController } from './crud/masonryHome.controller'
+import { TesmonialController } from './crud/tesmonial.controller'
 
 const webhookController = new WebhookController()
 
@@ -64,6 +67,9 @@ const promotionController = new PromotionController()
 const eventController = new EventController()
 const giftController = new GiftController()
 const giftReceiveController = new GiftReceiveController()
+const galleryController = new GalleryController()
+const masonryHomeController = new MasonryHomeController()
+const tesmonialController = new TesmonialController()
 
 export {
     CrudController,
@@ -98,5 +104,8 @@ export {
     promotionController,
     eventController,
     giftController,
-    giftReceiveController
+    giftReceiveController,
+    galleryController,
+    masonryHomeController,
+    tesmonialController
 }
