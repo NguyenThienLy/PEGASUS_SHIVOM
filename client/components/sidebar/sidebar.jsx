@@ -9,9 +9,7 @@ export class Sidebar extends React.Component {
   componentDidMount() {
     $(".sidebar__inner__main-menu__sub-menu").click(function(e) {
       e.preventDefault();
-      $(".sidebar__inner__main-menu__sub-menu").toggleClass(
-        "sidebar__inner__main-menu--item-active"
-      );
+      $(this).toggleClass("sidebar__inner__main-menu--item-active");
 
       var dropdownContent = this.nextElementSibling;
       if (dropdownContent.style.display === "block") {
@@ -20,18 +18,21 @@ export class Sidebar extends React.Component {
         dropdownContent.style.display = "block";
       }
 
+      var dropdownIcon = $(this).find(
+        ".sidebar__inner__main-menu__sub-menu__dropdown-icon"
+      );
       if (dropdownContent.style.display === "block") {
-        $(".sidebar__inner__main-menu__sub-menu__dropdown-icon").removeClass(
+        dropdownIcon.removeClass(
           "sidebar__inner__main-menu__sub-menu__dropdown-icon--transform-left"
         );
-        $(".sidebar__inner__main-menu__sub-menu__dropdown-icon").addClass(
+        dropdownIcon.addClass(
           "sidebar__inner__main-menu__sub-menu__dropdown-icon--transform-down"
         );
       } else {
-        $(".sidebar__inner__main-menu__sub-menu__dropdown-icon").removeClass(
+        dropdownIcon.removeClass(
           "sidebar__inner__main-menu__sub-menu__dropdown-icon--transform-down"
         );
-        $(".sidebar__inner__main-menu__sub-menu__dropdown-icon").addClass(
+        dropdownIcon.addClass(
           "sidebar__inner__main-menu__sub-menu__dropdown-icon--transform-left"
         );
       }
@@ -41,7 +42,7 @@ export class Sidebar extends React.Component {
   render() {
     return (
       <div className="sidebar">
-        <div className="sidebar__inner sidebar__style-scrollbar">
+        <div className="sidebar__inner">
           <div className="sidebar__inner__top-menu">
             <div className="sidebar__inner__top-menu__logo">
               <img
@@ -57,11 +58,13 @@ export class Sidebar extends React.Component {
             <li>
               <a href="#">
                 <i class="fas fa-user" />
-                Giới thiệu
+                Trang chủ
               </a>
             </li>
             <li className="sidebar__inner__main-menu__sub-menu">
-              <a href="#">Sản phẩm</a>
+              <a href="#">
+                <i class="far fa-list-alt"></i>Khóa học
+              </a>
               <div className="sidebar__inner__main-menu__sub-menu__dropdown-icon">
                 <i class="fas fa-caret-left" />
               </div>
@@ -69,24 +72,41 @@ export class Sidebar extends React.Component {
             <div className="sidebar__inner__main-menu__sub-menu__dropdown-container">
               <ul>
                 <li>
-                  <a href="#">
-                    Combo
-                    <span>5</span>
-                  </a>
+                  <a href="#">Khóa học 1{/* <span>5</span> */}</a>
                 </li>
                 <li>
-                  <a href="#">
-                    Tất cả
-                    <span>3</span>
-                  </a>
+                  <a href="#">Khóa học 2{/* <span>3</span> */}</a>
+                </li>
+                <li>
+                  <a href="#">Khóa học 3{/* <span>3</span> */}</a>
+                </li>
+              </ul>
+            </div>
+            <li className="sidebar__inner__main-menu__sub-menu">
+              <a href="#">
+                <i class="far fa-newspaper"></i>Tin tức
+              </a>
+              <div className="sidebar__inner__main-menu__sub-menu__dropdown-icon">
+                <i class="fas fa-caret-left" />
+              </div>
+            </li>
+            <div className="sidebar__inner__main-menu__sub-menu__dropdown-container">
+              <ul>
+                <li>
+                  <a href="#">Tin tức 1{/* <span>5</span> */}</a>
+                </li>
+                <li>
+                  <a href="#">Tin tức 2{/* <span>3</span> */}</a>
+                </li>
+                <li>
+                  <a href="#">Tin tức 3{/* <span>3</span> */}</a>
                 </li>
               </ul>
             </div>
             <li>
-              <a href="#">Tin tức</a>
-            </li>
-            <li>
-              <a href="#">Tags</a>
+              <a href="#">
+                <i class="fas fa-info"></i>Về chúng tôi
+              </a>
             </li>
           </ul>
         </div>

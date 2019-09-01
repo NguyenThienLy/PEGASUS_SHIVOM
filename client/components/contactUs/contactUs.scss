@@ -23,7 +23,7 @@
   }
 
   @include e("form") {
-    z-index: 1;
+    z-index: 0;
     margin: 0 2em 0 0;
     display: flex;
     flex-direction: column;
@@ -111,7 +111,7 @@
   @include e("sub-info") {
     flex-basis: 50%;
     margin: 0 0 0 2em;
-    z-index: 1;
+    z-index: 0;
 
     // display: flex;
     // flex-direction: column;

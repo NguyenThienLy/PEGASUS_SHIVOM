@@ -286,7 +286,7 @@ class Home extends React.Component {
     return {};
   }
   async componentDidMount() {
-    $(".home__reviews__slick-autoplay").slick({
+    $(".home__body__reviews__slick-autoplay").slick({
       dots: true,
       arrows: false,
       slidesToShow: 3,
@@ -295,7 +295,7 @@ class Home extends React.Component {
       autoplaySpeed: 5000,
       responsive: [
         {
-          breakpoint: 1124,
+          breakpoint: 1200,
           settings: {
             slidesToShow: 2,
             slidesToScroll: 2,
@@ -307,31 +307,30 @@ class Home extends React.Component {
           breakpoint: 992,
           settings: {
             slidesToShow: 1,
-            slidesToScroll: 1
+            slidesToScroll: 1,
+            infinite: true,
+            dots: true
           }
         }
-        // You can unslick at a given breakpoint now by adding:
-        // settings: "unslick"
-        // instead of a settings object
       ]
     });
-    $(".home__reviews__slick-autoplay").on("beforeChange", function(
+    $(".home__body__reviews__slick-autoplay").on("beforeChange", function(
       event,
       slick,
       currentSlide,
       nextSlide
     ) {
-      $(".home__reviews__slick-autoplay .slick-dots li").removeClass(
+      $(".home__body__reviews__slick-autoplay .slick-dots li").removeClass(
         "slick-active"
       );
-      $(".home__reviews__slick-autoplay .slick-dots li button")
+      $(".home__body__reviews__slick-autoplay .slick-dots li button")
         .attr("aria-pressed", "false")
         .focus(function() {
           this.blur();
         });
     });
 
-    $(".home__brands__slick-autoplay").slick({
+    $(".home__body__brands__slick-autoplay").slick({
       dots: false,
       arrows: false,
       slidesToShow: 6,
@@ -340,7 +339,7 @@ class Home extends React.Component {
       autoplaySpeed: 3000,
       responsive: [
         {
-          breakpoint: 1300,
+          breakpoint: 1400,
           settings: {
             slidesToShow: 5,
             slidesToScroll: 1,
@@ -349,41 +348,45 @@ class Home extends React.Component {
           }
         },
         {
-          breakpoint: 1024,
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 768,
           settings: {
             slidesToShow: 3,
             slidesToScroll: 1
           }
         },
         {
-          breakpoint: 767,
+          breakpoint: 600,
           settings: {
             slidesToShow: 2,
             slidesToScroll: 1
           }
         }
-        // You can unslick at a given breakpoint now by adding:
-        // settings: "unslick"
-        // instead of a settings object
       ]
     });
-    $(".home__brands__slick-autoplay").on("beforeChange", function(
+    $(".home__body__brands__slick-autoplay").on("beforeChange", function(
       event,
       slick,
       currentSlide,
       nextSlide
     ) {
-      $(".home__brands__slick-autoplay .slick-dots li").removeClass(
+      $(".home__body__brands__slick-autoplay .slick-dots li").removeClass(
         "slick-active"
       );
-      $(".home__brands__slick-autoplay .slick-dots li button")
+      $(".home__body__brands__slick-autoplay .slick-dots li button")
         .attr("aria-pressed", "false")
         .focus(function() {
           this.blur();
         });
     });
 
-    $(".home__intro-slick-autoplay").slick({
+    $(".home__body__intro-slick-autoplay").slick({
       dots: true,
       arrows: false,
       slidesToShow: 2,
@@ -392,29 +395,27 @@ class Home extends React.Component {
       autoplaySpeed: 5000,
       responsive: [
         {
-          breakpoint: 767,
+          breakpoint: 768,
           settings: {
             slidesToShow: 1,
             slidesToScroll: 1,
             infinite: true,
-            dots: true
+            dots: true,
+            arrows: false
           }
         }
-        // You can unslick at a given breakpoint now by adding:
-        // settings: "unslick"
-        // instead of a settings object
       ]
     });
-    $(".home__intro-slick-autoplay").on("beforeChange", function(
+    $(".home__body__intro-slick-autoplay").on("beforeChange", function(
       event,
       slick,
       currentSlide,
       nextSlide
     ) {
-      $(".home__intro-slick-autoplay .slick-dots li").removeClass(
+      $(".home__body__intro-slick-autoplay .slick-dots li").removeClass(
         "slick-active"
       );
-      $(".home__intro-slick-autoplay .slick-dots li button")
+      $(".home__body__intro-slick-autoplay .slick-dots li button")
         .attr("aria-pressed", "false")
         .focus(function() {
           this.blur();
@@ -422,7 +423,12 @@ class Home extends React.Component {
     });
 
     var heightOfFooter = $(".home__footer .footer-wrapper").height();
-    $(".home__contactUs").css("margin-bottom", heightOfFooter + "px");
+    $(".home__body").css("margin-bottom", heightOfFooter + "px");
+
+    $(window).on("resize", function() {
+      heightOfFooter = $(".home__footer .footer-wrapper").height();
+      $(".home__body").css("margin-bottom", heightOfFooter + "px");
+    });
   }
 
   render() {
@@ -437,190 +443,181 @@ class Home extends React.Component {
           />
         </Head>
         <React.Fragment>
-          {/* <Sidebar /> */}
-          {/* <div className="content"> */}
+          <div class="background-overlay"></div>
           <div className="home__header">
             <Header {...this.props} />
           </div>
 
-          <div className="home__slider">
-            <Slider />
-          </div>
-
-          <div className="home__intro">
-            {this.state.introHome.map(intro => {
-              return <IntroHome introHome={intro}></IntroHome>;
-            })}
-          </div>
-
-          <div className="home__intro-slick-autoplay">
-            {this.state.introHome.map(intro => {
-              return (
-                <div className="home__intro-slick-autoplay__item">
-                  <IntroHome introHome={intro}></IntroHome>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* <div className="body">
-            <h1>Trang chủ</h1>
-          </div> */}
-          <div className="home__trainingClass">
-            <div className="home__trainingClass__title">
-              <div className="home__trainingClass__title__inner">
-                <div>training programs</div>
-                <p>
-                  Lorem ipsum dolor sit amet, animal utamur id nec, clita doming
-                  oblique usu cu, utroque omittam summ.
-                </p>
-              </div>
+          <div className="home__body">
+            <div className="home__body__slider">
+              <Slider />
             </div>
-            <div className="home__trainingClass__content">
-              {this.state.trainingClasses.map(trainingClass => {
-                return <TrainingClass trainingClass={trainingClass} />;
+
+            <div className="home__body__intro">
+              {this.state.introHome.map(intro => {
+                return <IntroHome introHome={intro}></IntroHome>;
               })}
             </div>
-          </div>
-          <div className="home__imageShow">
-            <ImageShow />
-          </div>
-          <div className="home__timeTable">
-            <div className="home__timeTable__title">
-              <div className="home__timeTable__title__inner">
-                <div>amazing classes</div>
-                <p>
-                  Lorem ipsum dolor sit amet, quod gloriatur inciderint at vel,
-                  ei justo dolore virtute duo. Movet quaeque probatus an sit,
-                  mel iisque facilisi et.
-                </p>
-              </div>
-            </div>
-            <div className="home__timeTable__content">
-              <TimeTable />
-            </div>
-          </div>
-          <div className="home__news">
-            <div className="home__news__container">
-              <News news={this.state.news} />
-            </div>
-          </div>
-          <div className="home__reviews">
-            <div className="home__reviews__introduction">
-              <div className="home__reviews__introduction__inner">
-                <div>what they say</div>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                  in enim neque. Vestibulum volutpat purus id nibh.
-                </p>
-              </div>
-            </div>
-            <div className="home__reviews__slick-autoplay">
-              {this.state.reviews.map(review => {
+
+            <div className="home__body__intro-slick-autoplay">
+              {this.state.introHome.map(intro => {
                 return (
-                  <div className="home__reviews__slick-autoplay__item">
-                    <Review review={review} />
+                  <div className="home__body__intro-slick-autoplay__item">
+                    <IntroHome introHome={intro}></IntroHome>
                   </div>
                 );
               })}
             </div>
-          </div>
-          <div className="home__numbers">
-            <div className="home__numbers__item">
-              <NumberSection />
-            </div>
-            <div className="home__numbers__item">
-              <NumberSection />
-            </div>
-            <div className="home__numbers__item">
-              <NumberSection />
-            </div>
-            <div className="home__numbers__item">
-              <NumberSection />
-            </div>
-          </div>
-          <div className="home__trainers">
-            <div className="home__trainers__introduction">
-              <div className="home__trainers__introduction__inner">
-                <div>our strong team</div>
-                <p>
-                  Lorem ipsum dolor sit amet, animal utamur id nec, clita doming
-                  oblique usu cu, utroque omittam ex sea inani eleifend.
-                </p>
-              </div>
-            </div>
-            <div className="home__trainers__background">
-              <div>instructor</div>
-            </div>
-            <div className="home__trainers__list">
-              {this.state.trainers.map(trainer => {
-                return <Trainer trainer={trainer} />;
-              })}
-            </div>
-          </div>
-          <div className="home__brands">
-            <div className="home__brands__slick-autoplay">
-              <div className="home__brands__slick-autoplay__item">
-                <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-6.png"></img>
-              </div>
-              <div className="home__brands__slick-autoplay__item">
-                <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-7.png"></img>
-              </div>
-              <div className="home__brands__slick-autoplay__item">
-                <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-8.png"></img>
-              </div>
-              <div className="home__brands__slick-autoplay__item">
-                <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-5.png"></img>
-              </div>
-              <div className="home__brands__slick-autoplay__item">
-                <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-2.png"></img>
-              </div>
-              <div className="home__brands__slick-autoplay__item">
-                <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-3.png"></img>
-              </div>
-            </div>
-          </div>
-          <div className="home__map">
-            <Map
-              id="myMap"
-              options={{
-                center: { lat: 21.3518757, lng: 105.9701969 },
-                zoom: 15
-              }}
-              onMapLoad={map => {
-                var marker = new window.google.maps.Marker({
-                  position: { lat: 21.3518757, lng: 105.9701969 },
-                  map: map,
-                  title: "Hiệp Hoà Yoga"
-                });
-              }}
-            />
-          </div>
-          <div className="home__contactUs">
-            <ContactUs />
-          </div>
-          {/* <TrainerInfo /> */}
 
-          {/* <PostAuthor /> */}
+            <div className="home__body__trainingClass">
+              <div className="home__body__trainingClass__title">
+                <div className="home__body__trainingClass__title__inner">
+                  <div>training programs</div>
+                  <p>
+                    Lorem ipsum dolor sit amet, animal utamur id nec, clita
+                    doming oblique usu cu, utroque omittam summ.
+                  </p>
+                </div>
+              </div>
+              <div className="home__body__trainingClass__content">
+                {this.state.trainingClasses.map(trainingClass => {
+                  return <TrainingClass trainingClass={trainingClass} />;
+                })}
+              </div>
+            </div>
 
-          {/* 
-          <EventHour eventHour={this.state.eventHour} />
-          <LatestPost latestPost={this.state.latestPost} />
-          <News2 news2={this.state.news2} />
-          <NumberAdmin numberAdmin={this.state.numberAdmin} />
-          <ProfileAdmin profileAdmin={this.state.profileAdmin}></ProfileAdmin>
-          <Table></Table>
-          <LineChart></LineChart>
-          <PieChart></PieChart>
-          <RingingPhone></RingingPhone>
-          <RelatedPost></RelatedPost>
-          <Feedback></Feedback>
-          <FeedbackNoti></FeedbackNoti>
-            <Activity></Activity> */}
+            <div className="home__body__imageShow">
+              <ImageShow />
+            </div>
+
+            <div className="home__body__timeTable">
+              <div className="home__body__timeTable__title">
+                <div className="home__body__timeTable__title__inner">
+                  <div>amazing classes</div>
+                  <p>
+                    Lorem ipsum dolor sit amet, quod gloriatur inciderint at
+                    vel, ei justo dolore virtute duo. Movet quaeque probatus an
+                    sit, mel iisque facilisi et.
+                  </p>
+                </div>
+              </div>
+              <div className="home__body__timeTable__content">
+                <TimeTable />
+              </div>
+            </div>
+
+            <div className="home__body__news">
+              <div className="home__body__news__container">
+                <News news={this.state.news} />
+              </div>
+            </div>
+
+            <div className="home__body__reviews">
+              <div className="home__body__reviews__introduction">
+                <div className="home__body__reviews__introduction__inner">
+                  <div>what they say</div>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                    in enim neque. Vestibulum volutpat purus id nibh.
+                  </p>
+                </div>
+              </div>
+              <div className="home__body__reviews__slick-autoplay">
+                {this.state.reviews.map(review => {
+                  return (
+                    <div className="home__body__reviews__slick-autoplay__item">
+                      <Review review={review} />
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="home__body__numbers">
+              <div className="home__body__numbers__item">
+                <NumberSection />
+              </div>
+              <div className="home__body__numbers__item">
+                <NumberSection />
+              </div>
+              <div className="home__body__numbers__item">
+                <NumberSection />
+              </div>
+              <div className="home__body__numbers__item">
+                <NumberSection />
+              </div>
+            </div>
+
+            <div className="home__body__trainers">
+              <div className="home__body__trainers__introduction">
+                <div className="home__body__trainers__introduction__inner">
+                  <div>our strong team</div>
+                  <p>
+                    Lorem ipsum dolor sit amet, animal utamur id nec, clita
+                    doming oblique usu cu, utroque omittam ex sea inani
+                    eleifend.
+                  </p>
+                </div>
+              </div>
+              <div className="home__body__trainers__background">
+                <div>instructor</div>
+              </div>
+              <div className="home__body__trainers__list">
+                {this.state.trainers.map(trainer => {
+                  return <Trainer trainer={trainer} />;
+                })}
+              </div>
+            </div>
+
+            <div className="home__body__brands">
+              <div className="home__body__brands__slick-autoplay">
+                <div className="home__body__brands__slick-autoplay__item">
+                  <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-6.png"></img>
+                </div>
+                <div className="home__body__brands__slick-autoplay__item">
+                  <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-7.png"></img>
+                </div>
+                <div className="home__body__brands__slick-autoplay__item">
+                  <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-8.png"></img>
+                </div>
+                <div className="home__body__brands__slick-autoplay__item">
+                  <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-5.png"></img>
+                </div>
+                <div className="home__body__brands__slick-autoplay__item">
+                  <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-2.png"></img>
+                </div>
+                <div className="home__body__brands__slick-autoplay__item">
+                  <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-3.png"></img>
+                </div>
+              </div>
+            </div>
+
+            <div className="home__body__map">
+              <Map
+                id="myMap"
+                options={{
+                  center: { lat: 21.3518757, lng: 105.9701969 },
+                  zoom: 15
+                }}
+                onMapLoad={map => {
+                  var marker = new window.google.maps.Marker({
+                    position: { lat: 21.3518757, lng: 105.9701969 },
+                    map: map,
+                    title: "Hiệp Hoà Yoga"
+                  });
+                }}
+              />
+            </div>
+
+            <div className="home__body__contactUs">
+              <ContactUs />
+            </div>
+          </div>
+
+          <div className="home__footer">
+            <Footer />
+          </div>
         </React.Fragment>
-        <div className="home__footer">
-          <Footer />
-        </div>
       </div>
     );
   }

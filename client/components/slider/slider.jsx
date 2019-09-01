@@ -160,12 +160,12 @@ export class Slider extends React.Component {
                 iisque facilisi et.
               </p>
 
-              <button
-                type="button"
+              <a
+                href="#"
                 className="slider__slick-autoplay__item__caption__btn slider__slick-autoplay__item__caption--hidden"
               >
-                join us
-              </button>
+                <span>join us</span>
+              </a>
               <div className="slider__slick-autoplay__item__caption__btn-default slider__slick-autoplay__item__caption--hidden">
                 <DefaultButton link="#" content="read more"></DefaultButton>
               </div>
@@ -184,12 +184,12 @@ export class Slider extends React.Component {
                 iisque facilisi et.
               </p>
 
-              <button
-                type="button"
+              <a
+                href="#"
                 className="slider__slick-autoplay__item__caption__btn slider__slick-autoplay__item__caption--hidden"
               >
-                join us
-              </button>
+                <span>join us</span>
+              </a>
               <div className="slider__slick-autoplay__item__caption__btn-default slider__slick-autoplay__item__caption--hidden">
                 <DefaultButton link="#" content="read more"></DefaultButton>
               </div>
@@ -208,12 +208,12 @@ export class Slider extends React.Component {
                 iisque facilisi et.
               </p>
 
-              <button
-                type="button"
+              <a
+                href="#"
                 className="slider__slick-autoplay__item__caption__btn slider__slick-autoplay__item__caption--hidden"
               >
-                join us
-              </button>
+                <span>join us</span>
+              </a>
               <div className="slider__slick-autoplay__item__caption__btn-default slider__slick-autoplay__item__caption--hidden">
                 <DefaultButton link="#" content="read more"></DefaultButton>
               </div>

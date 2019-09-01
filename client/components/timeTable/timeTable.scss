@@ -13,19 +13,56 @@ $background-table-header-color: lighten($sub-main-color, 25%);
     padding: 2em 0em;
     font-size: $font-size;
     display: flex;
-    justify-content: center;
     ul {
+      width: 100%;
       list-style-type: none;
       margin: 0;
       padding: 0;
+      display: flex;
+      justify-content: center;
       li {
         margin-right: 2em;
-        float: left;
         font-size: 0.9em;
+        &:nth-last-child(1) {
+          margin-right: 0em;
+        }
       }
     }
   }
-  @include e("events") {
+  @include e("list-events") {
+    display: none;
+    margin-bottom: 1em;
+    color: $color-grey;
+    @include e("event") {
+      margin-bottom: 1em;
+      @include e("date") {
+        text-transform: capitalize;
+        font-size: 0.95em;
+        font-family: $font-family-special;
+      }
+      @include e("class-info") {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid $light-border-color;
+        padding: 0.8em 0;
+        @include e("class-name") {
+          font-size: 0.9em;
+          text-decoration: none;
+          transition: all 200ms ease;
+          color: $color-grey;
+          &:hover {
+            color: $main-color;
+          }
+        }
+        @include e("class-time") {
+          font-size: 0.8em;
+          color: $font-color;
+        }
+      }
+    }
+  }
+  @include e("table-events") {
+    display: block;
     position: relative;
     @include e("background") {
       width: 100%;
@@ -61,10 +98,10 @@ $background-table-header-color: lighten($sub-main-color, 25%);
       }
       tbody {
         td {
-          .time-table__events__class-time {
+          .time-table__table-events__class-time {
             color: $font-color;
           }
-          .time-table__events__class-info {
+          .time-table__table-events__class-info {
             display: flex;
             flex-direction: column;
             padding: 1em 1em;
@@ -79,7 +116,7 @@ $background-table-header-color: lighten($sub-main-color, 25%);
               color: $font-color;
             }
           }
-          .time-table__events__my-tooltip {
+          .time-table__table-events__my-tooltip {
             @include e("content") {
               max-width: fit-content;
               top: 0;
@@ -117,7 +154,7 @@ $background-table-header-color: lighten($sub-main-color, 25%);
                 }
               }
             }
-            &:hover .time-table__events__my-tooltip__content {
+            &:hover .time-table__table-events__my-tooltip__content {
               visibility: visible;
               opacity: 1;
             }

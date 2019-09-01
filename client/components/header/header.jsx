@@ -2,6 +2,7 @@ import * as React from "react";
 import "./header.scss";
 import Link from "next/link";
 import { HoverDivAnimation } from "../hoverDivAnimation/hoverDivAnimation";
+import { Sidebar } from "../sidebar/sidebar";
 // import Router from 'next/router'
 // import Head from 'next/head'
 // import * as _ from "lodash"
@@ -94,8 +95,8 @@ export class Header extends React.Component {
     //     }
     //   }
     // );
-
     var prevScrollPos = window.pageYOffset;
+    var currentScrollPos = window.pageYOffset;
     var posToExpose = 600;
     if (prevScrollPos < posToExpose) {
       $(".header .header__sub-wrapper").css({
@@ -105,24 +106,17 @@ export class Header extends React.Component {
         OTransition: "max-height 1000ms ease",
         WebkitTransition: "max-height 1000ms ease",
         transition: "max-height 1000ms ease",
-        animation: "500ms delay-overflow-hidden",
+        animation: "0ms delay-overflow-hidden",
         animationFillMode: "forwards"
       });
     } else if (prevScrollPos >= posToExpose) {
       $(".header .header__sub-wrapper").css({
-        maxHeight: "500px",
-        MozTransition: "max-height 1500ms ease 200ms",
-        MsTransition: "max-height 1500ms ease 200ms",
-        OTransition: "max-height 1500ms ease 200ms",
-        WebkitTransition: "max-height 1500ms ease 200ms",
-        transition: "max-height 1500ms ease 200ms",
-        animation: "2000ms delay-overflow-visible",
-        animationFillMode: "forwards"
+        maxHeight: "500px"
       });
     }
 
     window.onscroll = function() {
-      var currentScrollPos = window.pageYOffset;
+      currentScrollPos = window.pageYOffset;
       if (prevScrollPos > currentScrollPos && currentScrollPos < posToExpose) {
         $(".header .header__sub-wrapper").css({
           maxHeight: "0px",
@@ -136,7 +130,8 @@ export class Header extends React.Component {
         });
       } else if (
         prevScrollPos <= currentScrollPos &&
-        currentScrollPos >= posToExpose
+        currentScrollPos >= posToExpose &&
+        !$(".header > .sidebar").hasClass("sidebar__show-menu")
       ) {
         $(".header .header__sub-wrapper").css({
           maxHeight: "500px",
@@ -151,14 +146,75 @@ export class Header extends React.Component {
       }
       prevScrollPos = currentScrollPos;
     };
+
+    $(".header__wrapper__page-menu-area__left__sidebar").click(function(e) {
+      e.stopPropagation();
+      $(".header > .sidebar").addClass("sidebar__show-menu");
+      $(".background-overlay").css("display", "block");
+    });
+
+    $(".header__sub-wrapper__page-menu-area__left__sidebar").click(function(e) {
+      e.stopPropagation();
+      $(".header > .sidebar").addClass("sidebar__show-menu");
+      $(".background-overlay").css("display", "block");
+
+      $(".header .header__sub-wrapper").css({
+        maxHeight: "0px",
+        MozTransition: "max-height 300ms ease",
+        MsTransition: "max-height 300ms ease",
+        OTransition: "max-height 300ms ease",
+        WebkitTransition: "max-height 300ms ease",
+        transition: "max-height 300ms ease",
+        animation: "100ms delay-overflow-hidden",
+        animationFillMode: "forwards"
+      });
+    });
+
+    $(".header > .sidebar").click(function(e) {
+      e.stopPropagation();
+    });
+
+    $("body,html").click(function(e) {
+      $(".header > .sidebar").removeClass("sidebar__show-menu");
+      if (
+        prevScrollPos <= currentScrollPos &&
+        currentScrollPos >= posToExpose
+      ) {
+        $(".header .header__sub-wrapper").css({
+          maxHeight: "500px",
+          MozTransition: "max-height 1500ms ease 200ms",
+          MsTransition: "max-height 1500ms ease 200ms",
+          OTransition: "max-height 1500ms ease 200ms",
+          WebkitTransition: "max-height 1500ms ease 200ms",
+          transition: "max-height 1500ms ease 200ms",
+          animation: "2000ms delay-overflow-visible",
+          animationFillMode: "forwards"
+        });
+      }
+      $(".background-overlay").css("display", "none");
+    });
+
+    $(window).on("resize", function() {
+      var win = $(this);
+      if (win.outerWidth() > 991) {
+        if ($(".sidebar").hasClass("show-menu")) {
+          $(".sidebar").removeClass("show-menu");
+          $(".background-overlay").css("display", "none");
+        }
+      }
+    });
   }
 
   render() {
     return (
       <div className="header">
+        <Sidebar></Sidebar>
         <div className="header__wrapper">
           <div className="header__wrapper__page-menu-area">
             <div className="header__wrapper__page-menu-area__left">
+              <div className="header__wrapper__page-menu-area__left__sidebar">
+                <i class="fas fa-bars"></i>
+              </div>
               <div className="header__wrapper__page-menu-area__left__logo-wrapper">
                 <a
                   href="#"
@@ -173,21 +229,29 @@ export class Header extends React.Component {
               <div>
                 <div className="header__wrapper__page-menu-area__left__navbar">
                   <ul className="header__wrapper__page-menu-area__left__navbar__list-items">
-                    {this.state.categories.map((category,index) => {
+                    {this.state.categories.map((category, index) => {
                       return category.subCategories ? (
-                        <li key={index} className="header__wrapper__page-menu-area__left__navbar__list-items__item">
+                        <li
+                          key={index}
+                          className="header__wrapper__page-menu-area__left__navbar__list-items__item"
+                        >
                           <HoverDivAnimation title={category.name} />
                           <div className="header__wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper">
                             <ul className="header__wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper__sub-navbar">
-                              {category.subCategories.map((subCategory,index) => {
-                                return (
-                                  <li key={index} className="header__wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper__sub-navbar__item">
-                                    <HoverDivAnimation
-                                      title={subCategory.name}
-                                    />
-                                  </li>
-                                );
-                              })}
+                              {category.subCategories.map(
+                                (subCategory, index) => {
+                                  return (
+                                    <li
+                                      key={index}
+                                      className="header__wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper__sub-navbar__item"
+                                    >
+                                      <HoverDivAnimation
+                                        title={subCategory.name}
+                                      />
+                                    </li>
+                                  );
+                                }
+                              )}
                             </ul>
                           </div>
                         </li>
@@ -213,6 +277,9 @@ export class Header extends React.Component {
         <div className="header__sub-wrapper">
           <div className="header__sub-wrapper__page-menu-area">
             <div className="header__sub-wrapper__page-menu-area__left">
+              <div className="header__sub-wrapper__page-menu-area__left__sidebar">
+                <i class="fas fa-bars"></i>
+              </div>
               <div className="header__sub-wrapper__page-menu-area__left__logo-wrapper">
                 <a
                   href="#"
@@ -227,21 +294,29 @@ export class Header extends React.Component {
               <div>
                 <div className="header__sub-wrapper__page-menu-area__left__navbar">
                   <ul className="header__sub-wrapper__page-menu-area__left__navbar__list-items">
-                    {this.state.categories.map((category,index) => {
+                    {this.state.categories.map((category, index) => {
                       return category.subCategories ? (
-                        <li key={index} className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item">
+                        <li
+                          key={index}
+                          className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item"
+                        >
                           <HoverDivAnimation title={category.name} />
                           <div className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper">
                             <ul className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper__sub-navbar">
-                              {category.subCategories.map((subCategory,index) => {
-                                return (
-                                  <li key={index} className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper__sub-navbar__item">
-                                    <HoverDivAnimation
-                                      title={subCategory.name}
-                                    />
-                                  </li>
-                                );
-                              })}
+                              {category.subCategories.map(
+                                (subCategory, index) => {
+                                  return (
+                                    <li
+                                      key={index}
+                                      className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper__sub-navbar__item"
+                                    >
+                                      <HoverDivAnimation
+                                        title={subCategory.name}
+                                      />
+                                    </li>
+                                  );
+                                }
+                              )}
                             </ul>
                           </div>
                         </li>
