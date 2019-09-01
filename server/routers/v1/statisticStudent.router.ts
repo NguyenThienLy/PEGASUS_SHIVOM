@@ -13,7 +13,7 @@ export default class StatisticStudentRouter extends CrudRouter<typeof statisticS
         this.router.get("/statisticForListDetail/", this.statisticForListDetailMiddlewares(), this.route(this.statisticForListDetail))
         this.router.get("/statisticForCalendarChart/", this.statisticForCalendarChartMiddlewares(), this.route(this.statisticForCalendarChart))
         // this.router.get("/statisticForSingleDetail/", this.statisticForSingleDetailMiddlewares(), this.route(this.statisticForCalendarChart))
-        this.router.get("/statisticForPieChart/", this.statisticForPieChartMiddlewares(), this.route(this.statisticForCalendarChart))
+        this.router.get("/statisticForPieChart/", this.statisticForPieChartMiddlewares(), this.route(this.statisticForPieChart))
     }
 
     statisticForListDetailMiddlewares(): any[] {
