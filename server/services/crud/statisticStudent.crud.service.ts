@@ -264,8 +264,6 @@ export class StatisticStudentService extends CrudService<typeof StatisticStudent
         totalWeekEndTime: number
     }) {
 
-        console.log(params)
-
         return await this.model.aggregate([
             // Lọc ra theo khóa học và type phù hợp
             {
@@ -277,7 +275,6 @@ export class StatisticStudentService extends CrudService<typeof StatisticStudent
             // Lấy ra các thuộc tính cần thiết
             {
                 $project: {
-                    student: 1,
                     absent: {
                         // Lọc theo lớp học
                         $filter: {
@@ -327,20 +324,23 @@ export class StatisticStudentService extends CrudService<typeof StatisticStudent
                     }
                 }
             },
+            // Tính số lượng phần tử của array
             {
-                totalAbsent: { $sum: "$absent" },
-                totalLate: { $sum: "$late" },
-                totalOnTime: { $sum: "$onTime" },
-                totalRedundat: { $sum: "$Redundant" },
+                $project: {
+                    totalAbsent: { $size: "$absent" },
+                    totalLate: { $size: "$late" },
+                    totalOnTime: { $size: "$onTime" },
+                    totalRedundat: { $size: "$redundant" }
+                }
             },
             // Group theo nhóm
             {
                 $group: {
-                    _id: "$student",
-                    absent: { $push: "$absent.time" },
-                    late: { $push: "$late.time" },
-                    onTime: { $push: "$onTime.time" },
-                    redundant: { $push: "$redundant.time" },
+                    _id: null,
+                    totalAbsent: { $sum: "$totalAbsent" },
+                    totalLate: { $sum: "$totalLate" },
+                    totalOnTime: { $sum: "$totalOnTime" },
+                    totalRedundat: { $sum: "$totalRedundant" },
                 }
             },
             // Bỏ id
