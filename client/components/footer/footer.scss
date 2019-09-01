@@ -131,7 +131,7 @@
 }
 
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 599px) {
   .footer-wrapper {
     .footer-wrapper__first-floor {
       .footer-wrapper__first-floor__contact {
@@ -143,7 +143,7 @@
       .footer-wrapper__first-floor__email-regis {
         .footer-wrapper__first-floor__email-regis__form {
           .footer-wrapper__first-floor__email-regis__form__input {
-            width: 13em;
+            width: 12em;
           }
         }
       }
