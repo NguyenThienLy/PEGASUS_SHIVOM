@@ -11,13 +11,24 @@ export default class StatisticStudentRouter extends CrudRouter<typeof statisticS
 
     customRouter() {
         this.router.get("/statisticForListDetail/", this.statisticForListDetailMiddlewares(), this.route(this.statisticForListDetail))
+        this.router.get("/statisticForCalendarChart/", this.statisticForCalendarChartMiddlewares(), this.route(this.statisticForCalendarChart))
+        // this.router.get("/statisticForSingleDetail/", this.statisticForSingleDetailMiddlewares(), this.route(this.statisticForCalendarChart))
+        this.router.get("/statisticForPieChart/", this.statisticForPieChartMiddlewares(), this.route(this.statisticForCalendarChart))
     }
 
     statisticForListDetailMiddlewares(): any[] {
         return []
     }
 
-    // Lấy dữ liệu cho khóa học dạng biểu đồ tròn
+    statisticForCalendarChartMiddlewares(): any[] {
+        return []
+    }
+
+    statisticForPieChartMiddlewares(): any[] {
+        return []
+    }
+
+    // Lấy dữ liệu cho khóa học dạng danh sách chi tiết
     async statisticForListDetail(req: Request, res: Response) {
         await this.validateJSON(req.query, {
             type: "object",
@@ -31,6 +42,40 @@ export default class StatisticStudentRouter extends CrudRouter<typeof statisticS
             additionalProperties: false
         })
         const result = await this.controller.statisticForListDetail(req.query)
+        this.onSuccess(res, result)
+    }
+
+    // Lấy dữ liệu cho học sinh dạng biểu đồ ngày tháng
+    async statisticForCalendarChart(req: Request, res: Response) {
+        await this.validateJSON(req.query, {
+            type: "object",
+            properties: {
+                student: { type: "string" },
+                course: { type: "string" },
+                type: { type: "string", enum: ["week", "month", "year", "realTime"] },
+                startTime: { type: "string", format: "date-time" },
+                endTime: { type: "string", format: "date-time" }
+            },
+            additionalProperties: false
+        })
+        const result = await this.controller.statisticForCalendarChart(req.query)
+        this.onSuccess(res, result)
+    }
+
+    // Lấy dữ liệu cho khóa học dạng biểu đồ tròn
+    async statisticForPieChart(req: Request, res: Response) {
+        await this.validateJSON(req.query, {
+            type: "object",
+            properties: {
+                student: { type: "string" },
+                course: { type: "string" },
+                type: { type: "string", enum: ["week", "month", "year", "realTime"] },
+                startTime: { type: "string", format: "date-time" },
+                endTime: { type: "string", format: "date-time" }
+            },
+            additionalProperties: false
+        })
+        const result = await this.controller.statisticForPieChart(req.query)
         this.onSuccess(res, result)
     }
 
