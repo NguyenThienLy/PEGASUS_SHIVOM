@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./map.scss";
 
 export class Map extends Component {
   constructor(props) {
@@ -32,6 +33,6 @@ export class Map extends Component {
   }
 
   render() {
-    return <div style={{ height: 600 }} id={this.props.id} />;
+    return <div className="map" id={this.props.id} />;
   }
 }

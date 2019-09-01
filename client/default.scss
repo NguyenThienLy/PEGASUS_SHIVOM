@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Cormorant:400,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap");
+
 @mixin e($element) {
   &__#{$element} {
     @content;
@@ -61,6 +62,18 @@ $color-grey: #363738;
 .my-container {
   max-width: 1180px;
   margin: 0px auto;
+}
+
+.background-overlay {
+  position: fixed;
+  overflow: hidden;
+  display: none;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 2;
 }
 
 //#89c3eb
