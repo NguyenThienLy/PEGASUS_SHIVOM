@@ -1,0 +1,283 @@
+@import "../../default.scss";
+
+.all-courses {
+    background-color: #fff;
+
+    @include e("header") {}
+
+    @include e("title") {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        @include e("inner") {
+            padding: 0 32%;
+            text-align: center;
+            color: #fff;
+
+            div {
+                text-transform: capitalize;
+                font-family: $font-family-special;
+                font-size: 3.6em;
+                letter-spacing: 0.025em;
+            }
+
+            p {
+                margin: 0.8em 0 1em;
+                font-size: 0.9em;
+                line-height: 1.5em;
+            }
+        }
+
+        @include e("image") {
+            position: relative;
+
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            @include e("info") {
+                position: absolute;
+                top: 50%;
+                text-align: center;
+                padding: 0 20%;
+                color: #fff;
+                transform: translateY(-50%);
+
+                div {
+                    text-transform: capitalize;
+                    font-family: $font-family-special;
+                    font-size: 2em;
+                    letter-spacing: 0.025em;
+                }
+
+                p {
+                    margin: 0.8em 0 1em;
+                    font-size: 0.9em;
+                    line-height: 1.5em;
+                }
+            }
+        }
+    }
+
+    @include e("main-content") {
+
+        margin: 2em 4em;
+        display: flex;
+        flex-direction: row;
+
+        flex-wrap: wrap;
+
+        @include e('item') {
+            width: 30em;
+            margin: 1em 0 1em 1em;
+        }
+    }
+
+    @include e("intro") {
+        width: 85%;
+        margin: 5em auto 0em;
+        display: grid;
+        grid-template-columns: 23% 23% 23% 23%;
+        grid-column-gap: 2%;
+        grid-row-gap: 1em;
+
+        .introHome2 {
+            margin: auto;
+        }
+    }
+
+    @include e("contactUs") {
+        width: 80%;
+        margin: 2em auto 0;
+        padding: 3em 0 5em;
+    }
+
+    @include e("footer") {}
+}
+
+@media only screen and (max-width: 2000px) {
+    html {
+        font-size: 20px !important;
+    }
+
+    .all-courses__title__image {
+        display: none;
+    }
+
+    .all-courses__title {
+        padding: 8em 0em;
+        background-image: url('https://dalia.elated-themes.com/wp-content/uploads/2018/07/spa-slider-1.jpg');
+        //background-attachment: fixed;
+        background-position: center 0px;
+        background-repeat: no-repeat;
+    }
+
+    .all-courses__title__inner {
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 1199px) {
+    html {
+        font-size: 20px !important;
+    }
+
+    .all-courses {
+        @include e('main-content') {
+            margin: 0.5em;
+
+            @include e('item') {
+                width: 45%;
+                margin: 1em 0 1em 1em;
+            }
+        }
+    }
+
+    .all-courses__intro {
+        grid-template-columns: 49% 49%;
+        grid-column-gap: 2%;
+    }
+
+}
+
+@media only screen and (max-width: 991px) {
+    html {
+        font-size: 19px !important;
+    }
+
+    .all-courses {
+        @include e('main-content') {
+            margin: 0.5em;
+
+            @include e('item') {
+                width: 45em;
+                margin: 1em 0 1em 1em;
+            }
+        }
+
+        .all-courses__title__image {
+            display: block;
+        }
+
+        .all-courses__title {
+            padding: 0;
+            background: none;
+        }
+
+        .all-courses__title__inner {
+            display: none;
+        }
+
+        .all-courses__contactUs {
+            width: 90%;
+
+            .contact-us {
+
+                //   flex-direction: column;
+                //   .contact-us__form {
+                //     flex-basis: 100%;
+                //     margin: 0 0 4em 0;
+                //   }
+                .contact-us__sub-info {
+                    margin-left: 0;
+                }
+
+                .contact-us__sub-info__title {
+                    font-size: 2em;
+                    margin: 0;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    html {
+        font-size: 19px !important;
+    }
+
+    .all-courses {
+        @include e('intro') {
+            grid-template-columns: 100%;
+            grid-column-gap: 0%;
+        }
+
+        @include e('main-content') {
+            margin: 0.5em;
+
+            @include e('item') {
+                width: 40em;
+                margin: 1em 0 1em 1em;
+            }
+        }
+
+        @include e('contactUs') {
+            padding: 0;
+
+            .contact-us {
+                flex-direction: column-reverse;
+
+                @include e('form ') {
+                    flex-basis: 100%;
+                    margin: 0 0em 4em 0em;
+                }
+
+                @include e('sub-info') {
+                    flex-basis: 100%;
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+}
+
+@media only screen and (max-width: 599px) {
+    html {
+        font-size: 18px !important;
+    }
+
+    .all-courses {
+        .all-courses__title__image__info {
+            p {
+                display: none;
+            }
+        }
+
+        @include e('main-content') {
+            margin: 0.5em;
+
+            @include e('item') {
+
+                .training-class__info__detail {
+                    display: none;
+                }
+            }
+        }
+
+
+
+        @include e('contactUs') {
+            padding: 0;
+
+            .contact-us {
+                flex-direction: column-reverse;
+                margin: 0;
+
+
+                @include e('form') {
+                    flex-basis: 100%;
+                    margin: 0 0 4em 0;
+                }
+
+                @include e('sub-info') {
+                    flex-basis: 100%;
+                    margin: 0;
+                }
+            }
+        }
+    }
+}

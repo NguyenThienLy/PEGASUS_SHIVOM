@@ -37,3 +37,4 @@ export * from "./relatedPost/relatedPost";
 export * from "./activity/activity";
 export * from "./feedbackNoti/feedbackNoti";
 export * from './map/map'
+export * from './searchBox/searchBox'

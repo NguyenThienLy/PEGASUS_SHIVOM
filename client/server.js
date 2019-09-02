@@ -58,6 +58,9 @@ class Server {
 		this.server.get('/khoa-hoc', (req, res) => {
 			this.app.render(req, res, '/course/course');
 		});
+		this.server.get('/cac-khoa-hoc', (req, res) => {
+			this.app.render(req, res, '/allCourses/allCourses');
+		});
 		this.server.get('/du-an', (req, res) => {
 			this.app.render(req, res, '/project/project');
 		});

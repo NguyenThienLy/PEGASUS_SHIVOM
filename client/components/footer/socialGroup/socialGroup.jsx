@@ -22,7 +22,7 @@ export class SocialGroup extends React.Component {
                     <a className="media-buttons__media-icons" href="#" >
                         <i className="fab fa-twitter media-buttons__media-icons--hover"></i>
                     </a>
-                    */}
+                */}
                 <a class="media-buttons__media-icons" href="#">
                     <i className="fab fa-instagram media-buttons__media-icons--hover"></i>
                 </a>

@@ -104,7 +104,7 @@ export class Contact extends React.Component {
         // instead of a settings object
       ]
     });
-    $(".contact__brands__slick-autoplay").on("beforeChange", function(
+    $(".contact__brands__slick-autoplay").on("beforeChange", function (
       event,
       slick,
       currentSlide,
@@ -115,7 +115,7 @@ export class Contact extends React.Component {
       );
       $(".contact__brands__slick-autoplay .slick-dots li button")
         .attr("aria-pressed", "false")
-        .focus(function() {
+        .focus(function () {
           this.blur();
         });
     });
