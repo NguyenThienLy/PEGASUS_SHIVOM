@@ -150,7 +150,7 @@ export class Course extends React.Component {
 					<meta name="title" content="Khoá học" />
 					<meta name="description" content="Khoá học về yoga" />
 				</Head>
-				{/* <Header {...this.props} />  */}
+				<Header {...this.props} />
 				<React.Fragment>
 					<div className="course-title">
 						{this.state.course.title}
