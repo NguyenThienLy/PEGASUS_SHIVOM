@@ -1,1 +1,39 @@
 @import "../../default.scss";
+
+.search-box {
+    form {
+        position: relative;
+        box-shadow: 1px 1px 10px 0 $sub-main-color;
+        width: 17em;
+
+        input {
+            width: 16em;
+            height: 4em;
+            border: none;
+            margin-left: 1em;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        .fas {
+            color: $sub-main-color;
+            position: absolute;
+            left: 14em;
+            top: 1em;
+
+
+            &:hover {
+                color: $main-color;
+            }
+
+            &::before {
+                border-left: 1px solid $sub-main-color;
+                padding: 0.3em 0 0.3em 0.8em;
+            }
+        }
+    }
+
+
+}

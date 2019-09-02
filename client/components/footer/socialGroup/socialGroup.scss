@@ -2,11 +2,12 @@
 
 .media-buttons {
   text-align: center;
+
   @include e("media-icons") {
     display: inline-block;
     width: 50px;
     background: #fcfcfc;
-    margin: 10px;
+    margin: 10px 20px 10px 0;
     border-radius: 30%;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.04);
     color: $main-color;
@@ -18,10 +19,12 @@
       font-size: 1.4em;
       transition: 0.3s linear;
     }
-    &:hover > &--hover {
+
+    &:hover>&--hover {
       transform: scale(1.2);
       color: $background-color;
     }
+
     &::before {
       content: "";
       position: absolute;
@@ -32,20 +35,24 @@
       left: -110%;
       top: 90%;
     }
+
     &:hover::before {
       animation: aaa 0.7s 1;
       top: -10%;
       left: -10%;
     }
+
     @keyframes aaa {
       0% {
         left: -110%;
         top: 90%;
       }
+
       50% {
         left: 10%;
         top: -30%;
       }
+
       100% {
         left: -10%;
         top: -10%;
