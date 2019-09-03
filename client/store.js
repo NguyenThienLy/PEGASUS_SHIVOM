@@ -14,7 +14,7 @@ const error = (store) => (next) => (action) => {
     }
 }
 
-const createAppStore = applyMiddleware(logger, error, thunk)(createStore)
+const createAppStore = applyMiddleware(thunk, logger, error)(createStore)
 
 export function configureStore(initialState) {
     return createAppStore(appReducer, initialState)

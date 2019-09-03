@@ -1,7 +1,8 @@
 import { BaseAction } from './base'
+import { api } from '../services'
 
 export class TesmonialAction extends BaseAction {
     constructor() {
-        super("tesmonial")
+        super("tesmonial", api.tesmonial)
     }
 }

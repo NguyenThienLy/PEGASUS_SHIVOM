@@ -4,6 +4,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { action } from "../../actions";
 import { api } from "../../services";
+import { bindActionCreators } from 'redux';
 
 import "./home.scss";
 import {
@@ -286,21 +287,21 @@ class Home extends React.Component {
     return {};
   }
   async classApiExample() {
-    // Luôn luôn phải catch lỗi và xử lý nhằm tránh crash web
     // Cách 1
-    api.class
-      .getList()
+    this.props.fetchClass()
+    // Luôn luôn phải catch lỗi và xử lý nhằm tránh crash web
+    // Cách 2
+    api.class.getList()
       .then(result => {
-        console.log("result: ", result);
-        this.setState({ class: result });
+        console.log("result: ", result)
       })
       .catch(err => {
-        console.log("Err: ", err);
-      });
-    // Cách 2
+        console.log("Err: ", err)
+      })
+    // Cách 3
     try {
       const result = await api.class.getList();
-    } catch (err) {}
+    } catch (err) { }
   }
   async componentDidMount() {
     this.classApiExample();
@@ -332,7 +333,7 @@ class Home extends React.Component {
         }
       ]
     });
-    $(".home__body__reviews__slick-autoplay").on("beforeChange", function(
+    $(".home__body__reviews__slick-autoplay").on("beforeChange", function (
       event,
       slick,
       currentSlide,
@@ -343,7 +344,7 @@ class Home extends React.Component {
       );
       $(".home__body__reviews__slick-autoplay .slick-dots li button")
         .attr("aria-pressed", "false")
-        .focus(function() {
+        .focus(function () {
           this.blur();
         });
     });
@@ -388,7 +389,7 @@ class Home extends React.Component {
         }
       ]
     });
-    $(".home__body__brands__slick-autoplay").on("beforeChange", function(
+    $(".home__body__brands__slick-autoplay").on("beforeChange", function (
       event,
       slick,
       currentSlide,
@@ -399,7 +400,7 @@ class Home extends React.Component {
       );
       $(".home__body__brands__slick-autoplay .slick-dots li button")
         .attr("aria-pressed", "false")
-        .focus(function() {
+        .focus(function () {
           this.blur();
         });
     });
@@ -424,7 +425,7 @@ class Home extends React.Component {
         }
       ]
     });
-    $(".home__body__intro-slick-autoplay").on("beforeChange", function(
+    $(".home__body__intro-slick-autoplay").on("beforeChange", function (
       event,
       slick,
       currentSlide,
@@ -435,7 +436,7 @@ class Home extends React.Component {
       );
       $(".home__body__intro-slick-autoplay .slick-dots li button")
         .attr("aria-pressed", "false")
-        .focus(function() {
+        .focus(function () {
           this.blur();
         });
     });
@@ -634,4 +635,8 @@ const mapStateToProps = state => {
   return state;
 };
 
-export default connect(mapStateToProps)(Home);
+const mapDispatchToProps = dispatch => bindActionCreators({
+  fetchClass: action.class.fetch
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
