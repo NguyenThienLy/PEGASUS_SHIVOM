@@ -9,6 +9,7 @@ export class News2 extends React.Component {
 
   render() {
     const { news2 } = this.props;
+    console.log(news2)
     return (
       <div className="news2">
         <div className="news2__inner">
@@ -22,8 +23,8 @@ export class News2 extends React.Component {
             </div>
             <div className="news2__inner__info__tags">
               {news2.tags.map(tag => {
-              return ([<a href={tag.link}>{tag.name}</a>,
-                        <span>,&nbsp;</span> ]);
+                return ([<a href={tag.link}>{tag.name}</a>,
+                <span>,&nbsp;</span>]);
               })}
             </div>
           </div>
@@ -51,12 +52,12 @@ export class News2 extends React.Component {
           <div className="news2__inner__more">
             <div className="news2__inner__more__comments-and-loves">
               <a href={news2.comment.link}>
-              <i class="far fa-comment"></i>
+                <i class="far fa-comment"></i>
                 <span>{news2.comment.quantity}</span>
               </a>
               <span>&nbsp;/&nbsp;</span>
               <a href={news2.love.link}>
-              <i class="far fa-heart"></i>
+                <i class="far fa-heart"></i>
                 <span>{news2.love.quantity}</span>
               </a>
             </div>

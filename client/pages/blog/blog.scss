@@ -1,1 +1,129 @@
 @import "../../default.scss";
+
+$font-fam: "Noto Serif SC",
+serif;
+
+.blog {
+    background-color: #fff;
+    font-size: $font-size;
+
+    @include e('path') {
+        color: #363738;
+        font-family: $font-fam;
+        background-color: $background-color;
+        padding: 3em 0 3em 6.5em;
+
+        a {
+            text-transform: capitalize;
+            text-decoration: none;
+        }
+    }
+
+    @include e('wrapper') {
+        display: flex;
+
+        @include e('main-content') {
+            width: 55%;
+            margin-left: 5.5em;
+            padding: 1.5em;
+            margin-right: 2em;
+
+            .news2 {
+                width: 100%;
+            }
+        }
+
+        @include e('sub-content') {
+            margin: 4em 0 4em;
+            width: 25%;
+
+            @include e('social-group') {
+                margin: 40px 0 30px 0;
+
+                .media-buttons__media-icons {
+                    width: 55px;
+                    margin-right: 30px;
+                }
+            }
+
+            @include e('latest-posts') {
+                @include e('post') {
+                    width: 75%;
+                }
+            }
+
+            @include e('categories') {
+
+                margin-bottom: 30px;
+
+                @include e('text') {
+                    font-family: $font-fam;
+                    font-size: 1.7em;
+                    font-color: #363738;
+                    margin-bottom: 20px;
+                    text-transform: capitalize;
+                }
+
+                @include e('category') {
+                    font-family: $font-fam;
+                    text-transform: uppercase;
+                    color: $main-color;
+                    font-size: 0.8em;
+                    margin-bottom: 12px;
+                }
+            }
+
+            @include e('search') {
+                p {
+                    line-height: 26px;
+                    color: rgba(0, 0, 0, 0.6);
+                }
+
+                .search-box {
+                    form {
+                        width: 100%;
+
+                        input {
+                            width: 85%;
+                        }
+
+                        i {
+                            top: 33%;
+                            right: 1em !important;
+                        }
+                    }
+                }
+            }
+
+            @include e('email') {
+                margin: 40px 0 30px 0;
+
+                p {
+                    line-height: 26px;
+                    color: rgba(0, 0, 0, 0.6);
+                }
+
+                .search-box {
+                    form {
+                        width: 100%;
+
+                        input {
+                            width: 85%;
+                        }
+
+                        i {
+                            top: 33%;
+                            right: 1em !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @include e('contact-us') {
+        width: 80%;
+        margin: 1em auto 0;
+        padding: 1em 0 7em;
+    }
+}
