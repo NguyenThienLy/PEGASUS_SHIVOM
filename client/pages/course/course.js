@@ -241,13 +241,13 @@ export class Course extends React.Component {
 							<div className="course-wrapper__sub-content__other-courses">
 								<div className="course-wrapper__sub-content__other-courses__text">
 									Các khoá học
-                </div>
+                				</div>
 								{
 									this.state.otherCourses.map((course) => {
 										return (
 											<div className="course-wrapper__sub-content__other-courses__course">
 												{course.name} ({course.classes})
-                      </div>
+                      						</div>
 										)
 									})
 								}
@@ -255,7 +255,7 @@ export class Course extends React.Component {
 							<div className="course-wrapper__sub-content__latest-posts">
 								<div className="course-wrapper__sub-content__other-courses__text">
 									bài viết
-                </div>
+                				</div>
 								{
 									this.state.latestPost.map((post, index) => {
 										return (
@@ -269,7 +269,7 @@ export class Course extends React.Component {
 							<div className="course-wrapper__sub-content__email">
 								<div className="course-wrapper__sub-content__other-courses__text">
 									Liên hệ
-                </div>
+               					 </div>
 								<p>Liên hệ để biết thêm thông tin về khoá học của chúng tôi.</p>
 								<SearchBox type='email' />
 							</div>

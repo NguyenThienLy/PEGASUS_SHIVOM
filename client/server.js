@@ -47,7 +47,7 @@ class Server {
 		this.server.get('/', (req, res) => {
 			this.app.render(req, res, '/index');
 		});
-		this.server.get('/bai-viet', (req, res) => {
+		this.server.get('/cac-bai-viet', (req, res) => {
 			this.app.render(req, res, '/blog/blog');
 		});
 		this.server.get('/bai-viet/:slug', (req, res) => {
