@@ -288,24 +288,22 @@ class Home extends React.Component {
   async classApiExample() {
     // Luôn luôn phải catch lỗi và xử lý nhằm tránh crash web
     // Cách 1
-    api.class.getList()
+    api.class
+      .getList()
       .then(result => {
-        console.log("result: ", result)
-        this.setState({ class: result })
+        console.log("result: ", result);
+        this.setState({ class: result });
       })
       .catch(err => {
-        console.log("Err: ", err)
-      })
+        console.log("Err: ", err);
+      });
     // Cách 2
     try {
-      const result = await api.class.getList()
-    } catch (err) {
-
-    }
-
+      const result = await api.class.getList();
+    } catch (err) {}
   }
   async componentDidMount() {
-    this.classApiExample()
+    this.classApiExample();
     $(".home__body__reviews__slick-autoplay").slick({
       dots: true,
       arrows: false,
@@ -334,7 +332,7 @@ class Home extends React.Component {
         }
       ]
     });
-    $(".home__body__reviews__slick-autoplay").on("beforeChange", function (
+    $(".home__body__reviews__slick-autoplay").on("beforeChange", function(
       event,
       slick,
       currentSlide,
@@ -345,7 +343,7 @@ class Home extends React.Component {
       );
       $(".home__body__reviews__slick-autoplay .slick-dots li button")
         .attr("aria-pressed", "false")
-        .focus(function () {
+        .focus(function() {
           this.blur();
         });
     });
@@ -390,7 +388,7 @@ class Home extends React.Component {
         }
       ]
     });
-    $(".home__body__brands__slick-autoplay").on("beforeChange", function (
+    $(".home__body__brands__slick-autoplay").on("beforeChange", function(
       event,
       slick,
       currentSlide,
@@ -401,7 +399,7 @@ class Home extends React.Component {
       );
       $(".home__body__brands__slick-autoplay .slick-dots li button")
         .attr("aria-pressed", "false")
-        .focus(function () {
+        .focus(function() {
           this.blur();
         });
     });
@@ -426,7 +424,7 @@ class Home extends React.Component {
         }
       ]
     });
-    $(".home__body__intro-slick-autoplay").on("beforeChange", function (
+    $(".home__body__intro-slick-autoplay").on("beforeChange", function(
       event,
       slick,
       currentSlide,
@@ -437,17 +435,9 @@ class Home extends React.Component {
       );
       $(".home__body__intro-slick-autoplay .slick-dots li button")
         .attr("aria-pressed", "false")
-        .focus(function () {
+        .focus(function() {
           this.blur();
         });
-    });
-
-    var heightOfFooter = $(".home__footer .footer-wrapper").height();
-    $(".home__body").css("margin-bottom", heightOfFooter + "px");
-
-    $(window).on("resize", function () {
-      heightOfFooter = $(".home__footer .footer-wrapper").height();
-      $(".home__body").css("margin-bottom", heightOfFooter + "px");
     });
   }
 
@@ -456,17 +446,16 @@ class Home extends React.Component {
       <div className="home">
         <Head>
           <title> Trang chủ </title>
-          <meta name="title" content="Công ty Pegasus" />
+          <meta name="title" content="Trang chủ" />
+          <meta name="description" content="Trung tâm yoga Hiệp Hòa" />
           <meta
-            name="description"
-            content="Công ty công nghệ lớn nhất thế giới"
-          />
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          ></meta>
         </Head>
         <React.Fragment>
           <div class="background-overlay"></div>
-          <div className="home__header">
-            <Header {...this.props} />
-          </div>
+          <Header {...this.props} />
 
           <div className="home__body">
             <div className="home__body__slider">
@@ -634,9 +623,7 @@ class Home extends React.Component {
             </div>
           </div>
 
-          <div className="home__footer">
-            <Footer />
-          </div>
+          <Footer />
         </React.Fragment>
       </div>
     );

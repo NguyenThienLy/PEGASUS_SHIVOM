@@ -42,10 +42,10 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"
           />
-          <meta
+          {/* <meta
             name="viewport"
             content="initial-scale=1.0, width=device-width"
-          />
+          /> */}
         </Head>
         <body className="custom_class">
           <script
