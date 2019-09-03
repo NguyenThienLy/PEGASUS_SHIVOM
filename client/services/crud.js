@@ -71,8 +71,8 @@ export class CrudApi {
       )
     };
     const res = await this.exec(url, options);
-    if (res.code === 200) {
-      return res.results.objects.rows;
+    if (res.code && res.code === 200) {
+      return res;
     } else {
       throw res
     }
@@ -92,8 +92,8 @@ export class CrudApi {
       )
     }
     const res = await this.exec(url, options);
-    if (res.code === 200) {
-      return res.result.object;
+    if (res.code && res.code === 200) {
+      return res;
     } else {
       throw res
     }
@@ -114,8 +114,8 @@ export class CrudApi {
     };
 
     const res = await this.exec(url, options);
-    if (res.code === 200) {
-      return res.result.object;
+    if (res.code && res.code === 200) {
+      return res;
     } else {
       throw res
     }
@@ -135,8 +135,8 @@ export class CrudApi {
       )
     };
     const res = await this.exec(url, options);
-    if (res.code === 200) {
-      return res.result.object;
+    if (res.code && res.code === 200) {
+      return res;
     } else {
       throw res
     }
@@ -158,8 +158,8 @@ export class CrudApi {
       body: JSON.stringify(body)
     };
     const res = await this.exec(url, options);
-    if (res.code === 200) {
-      return res.result.object;
+    if (res.code && res.code === 200) {
+      return res;
     } else {
       throw res
     }
@@ -180,8 +180,8 @@ export class CrudApi {
       body: JSON.stringify(body)
     };
     const res = await this.exec(url, options);
-    if (res.code === 200) {
-      return res.result.object;
+    if (res.code && res.code === 200) {
+      return res;
     } else {
       throw res
     }

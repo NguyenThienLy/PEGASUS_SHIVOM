@@ -2,7 +2,7 @@ import * as _ from 'lodash'
 
 export class BaseReducer {
     constructor(name) {
-        this.name = name
+        this.name = name.toUpperCase()
         this.initState = []
         this.actions = {
             fetch: `FETCH_${this.name}`,

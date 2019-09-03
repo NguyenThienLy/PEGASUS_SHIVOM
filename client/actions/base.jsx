@@ -1,4 +1,4 @@
-export default class BaseAction {
+export class BaseAction {
     constructor(name) {
         this.name = name.toUpperCase()
     }
