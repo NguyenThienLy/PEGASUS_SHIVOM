@@ -9,9 +9,25 @@ export class Sidebar extends React.Component {
   componentDidMount() {
     $(".sidebar__inner__main-menu__sub-menu").click(function(e) {
       e.preventDefault();
+
+      $(".sidebar__inner__main-menu__sub-menu").removeClass(
+        "sidebar__inner__main-menu--item-active"
+      );
+      $(".sidebar__inner__main-menu__sub-menu__dropdown-container").css(
+        "display",
+        "none"
+      );
+      $(".sidebar__inner__main-menu__sub-menu__dropdown-icon").removeClass(
+        "sidebar__inner__main-menu__sub-menu__dropdown-icon--transform-down"
+      );
+      $(".sidebar__inner__main-menu__sub-menu__dropdown-icon").addClass(
+        "sidebar__inner__main-menu__sub-menu__dropdown-icon--transform-left"
+      );
+
       $(this).toggleClass("sidebar__inner__main-menu--item-active");
 
       var dropdownContent = this.nextElementSibling;
+
       if (dropdownContent.style.display === "block") {
         dropdownContent.style.display = "none";
       } else {
@@ -45,10 +61,12 @@ export class Sidebar extends React.Component {
         <div className="sidebar__inner">
           <div className="sidebar__inner__top-menu">
             <div className="sidebar__inner__top-menu__logo">
-              <img
-                src="https://i.etsystatic.com/13665876/d/il/d5b7d0/1363979907/il_340x270.1363979907_ic0j.jpg?version=0"
-                alt=""
-              />
+              <a href="#">
+                <img
+                  src="https://i.etsystatic.com/13665876/d/il/d5b7d0/1363979907/il_340x270.1363979907_ic0j.jpg?version=0"
+                  alt=""
+                />
+              </a>
             </div>
             <div className="sidebar__inner__top-menu__title">
               shivom dashboard

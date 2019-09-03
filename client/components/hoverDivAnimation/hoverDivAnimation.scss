@@ -52,7 +52,7 @@ $hover-color: lighten($sub-main-color, 27%);
     //letter-spacing: 0.1em;
     @include e("content") {
       position: relative;
-      display: inline;
+      display: inline-block;
       padding: 0 0.5em;
       z-index: 0;
       @include m("hover") {

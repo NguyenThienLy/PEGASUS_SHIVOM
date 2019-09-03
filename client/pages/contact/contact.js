@@ -56,7 +56,7 @@ export class Contact extends React.Component {
   }
   handleScroll = () => {
     var x = $(window).scrollTop();
-    $(".contact .contact__title").css(
+    $(".contact .contact__body__title").css(
       "background-position",
       "center " + parseInt(-x / 2.8) + "px"
     );
@@ -68,7 +68,7 @@ export class Contact extends React.Component {
     this.handleScroll();
     window.addEventListener("scroll", this.handleScroll);
 
-    $(".contact__brands__slick-autoplay").slick({
+    $(".contact__body__brands__slick-autoplay").slick({
       dots: false,
       arrows: false,
       slidesToShow: 6,
@@ -77,7 +77,7 @@ export class Contact extends React.Component {
       autoplaySpeed: 3000,
       responsive: [
         {
-          breakpoint: 1300,
+          breakpoint: 1400,
           settings: {
             slidesToShow: 5,
             slidesToScroll: 1,
@@ -86,42 +86,43 @@ export class Contact extends React.Component {
           }
         },
         {
-          breakpoint: 1024,
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 768,
           settings: {
             slidesToShow: 3,
             slidesToScroll: 1
           }
         },
         {
-          breakpoint: 767,
+          breakpoint: 600,
           settings: {
             slidesToShow: 2,
             slidesToScroll: 1
           }
         }
-        // You can unslick at a given breakpoint now by adding:
-        // settings: "unslick"
-        // instead of a settings object
       ]
     });
-    $(".contact__brands__slick-autoplay").on("beforeChange", function (
+    $(".contact__body__brands__slick-autoplay").on("beforeChange", function(
       event,
       slick,
       currentSlide,
       nextSlide
     ) {
-      $(".contact__brands__slick-autoplay .slick-dots li").removeClass(
+      $(".contact__body__brands__slick-autoplay .slick-dots li").removeClass(
         "slick-active"
       );
-      $(".contact__brands__slick-autoplay .slick-dots li button")
+      $(".contact__body__brands__slick-autoplay .slick-dots li button")
         .attr("aria-pressed", "false")
-        .focus(function () {
+        .focus(function() {
           this.blur();
         });
     });
-
-    var heightOfFooter = $(".contact__footer .footer-wrapper").height();
-    $(".contact__contactUs").css("margin-bottom", heightOfFooter + "px");
   }
   render() {
     return (
@@ -129,19 +130,29 @@ export class Contact extends React.Component {
         <Head>
           <title>Liên hệ</title>
           <meta name="title" content="Liên hệ" />
+          <meta name="description" content="Liên hệ trung tâm yoga Hiệp Hòa" />
           <meta
-            name="description"
-            content="Liên hệ công ty công nghệ Pegasus"
-          />
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          ></meta>
         </Head>
         <React.Fragment>
-          <div className="contact__header">
-            <Header {...this.props} />
-          </div>
-          <div className="contact__title">
-            <div className="contact__title__image">
-              <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/06/about-us-title-img.jpg"></img>
-              <div className="contact__title__image__info">
+          <div class="background-overlay"></div>
+          <Header {...this.props} />
+
+          <div className="contact__body">
+            <div className="contact__body__title">
+              <div className="contact__body__title__image">
+                <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/06/about-us-title-img.jpg"></img>
+                <div className="contact__body__title__image__info">
+                  <div>about us</div>
+                  <p>
+                    Lorem ipsum dolor sit amet, animal utamur id nec, clita
+                    doming oblique usu cu, utroque omittam summ.
+                  </p>
+                </div>
+              </div>
+              <div className="contact__body__title__inner">
                 <div>about us</div>
                 <p>
                   Lorem ipsum dolor sit amet, animal utamur id nec, clita doming
@@ -149,72 +160,55 @@ export class Contact extends React.Component {
                 </p>
               </div>
             </div>
-            <div className="contact__title__inner">
-              <div>about us</div>
-              <p>
-                Lorem ipsum dolor sit amet, animal utamur id nec, clita doming
-                oblique usu cu, utroque omittam summ.
-              </p>
+            <div className="contact__body__intro">
+              {this.state.intro.map(intro => {
+                return <IntroHome2 introHome2={intro}></IntroHome2>;
+              })}
             </div>
-          </div>
-          <div className="contact__intro">
-            {this.state.intro.map(intro => {
-              return <IntroHome2 introHome2={intro}></IntroHome2>;
-            })}
-          </div>
-          <div className="contact__brands">
-            <div className="contact__brands__slick-autoplay">
-              <div className="contact__brands__slick-autoplay__item">
-                <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-6.png"></img>
-              </div>
-              <div className="contact__brands__slick-autoplay__item">
-                <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-7.png"></img>
-              </div>
-              <div className="contact__brands__slick-autoplay__item">
-                <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-8.png"></img>
-              </div>
-              <div className="contact__brands__slick-autoplay__item">
-                <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-5.png"></img>
-              </div>
-              <div className="contact__brands__slick-autoplay__item">
-                <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-2.png"></img>
-              </div>
-              <div className="contact__brands__slick-autoplay__item">
-                <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-3.png"></img>
+            <div className="contact__body__brands">
+              <div className="contact__body__brands__slick-autoplay">
+                <div className="contact__body__brands__slick-autoplay__item">
+                  <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-6.png"></img>
+                </div>
+                <div className="contact__body__brands__slick-autoplay__item">
+                  <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-7.png"></img>
+                </div>
+                <div className="contact__body__brands__slick-autoplay__item">
+                  <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-8.png"></img>
+                </div>
+                <div className="contact__body__brands__slick-autoplay__item">
+                  <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-5.png"></img>
+                </div>
+                <div className="contact__body__brands__slick-autoplay__item">
+                  <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-2.png"></img>
+                </div>
+                <div className="contact__body__brands__slick-autoplay__item">
+                  <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-3.png"></img>
+                </div>
               </div>
             </div>
+            <div className="contact__body__map">
+              <Map
+                id="myMap"
+                options={{
+                  center: { lat: 21.3518757, lng: 105.9701969 },
+                  zoom: 15
+                }}
+                onMapLoad={map => {
+                  var marker = new window.google.maps.Marker({
+                    position: { lat: 21.3518757, lng: 105.9701969 },
+                    map: map,
+                    title: "Hiệp Hoà Yoga"
+                  });
+                }}
+              />
+            </div>
+            <div className="contact__body__contactUs">
+              <ContactUs />
+            </div>
           </div>
-          <div className="contact__map">
-            <Map
-              id="myMap"
-              options={{
-                center: { lat: 21.3518757, lng: 105.9701969 },
-                zoom: 15
-              }}
-              onMapLoad={map => {
-                var marker = new window.google.maps.Marker({
-                  position: { lat: 21.3518757, lng: 105.9701969 },
-                  map: map,
-                  title: "Hiệp Hoà Yoga"
-                });
-              }}
-            />
-          </div>
-          <div className="contact__contactUs">
-            <ContactUs />
-          </div>
-          {/* <div>
-            <GoogleMapReact
-              bootstrapURLKeys={{
-                key: "AIzaSyARRlQaEH15TgxFmDliRLH-NpQNAEqcJps"
-              }}
-              defaultCenter={this.state.center}
-              defaultZoom={this.state.zoom}
-            />
-          </div> */}
-          <div className="contact__footer">
-            <Footer />
-          </div>
+
+          <Footer />
         </React.Fragment>
       </div>
     );

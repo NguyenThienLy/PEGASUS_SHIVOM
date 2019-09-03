@@ -29,6 +29,42 @@ export class Footer extends React.Component {
     };
   }
 
+  componentDidMount() {
+    let heightOfFooter = $(".footer-wrapper").height();
+    let body = $(".footer-wrapper").prev();
+
+    if ($(window).outerWidth() > 599) {
+      $(".footer-wrapper").css({
+        position: "fixed",
+        zIndex: "-1"
+      });
+      body.css("margin-bottom", heightOfFooter + "px");
+    } else {
+      $(".footer-wrapper").css({
+        position: "static",
+        zIndex: "0"
+      });
+      body.css("margin-bottom", "0px");
+    }
+
+    $(window).on("resize", function() {
+      if ($(window).outerWidth() > 599) {
+        heightOfFooter = $(".footer-wrapper").height();
+        $(".footer-wrapper").css({
+          position: "fixed",
+          zIndex: "-1"
+        });
+        body.css("margin-bottom", heightOfFooter + "px");
+      } else {
+        $(".footer-wrapper").css({
+          position: "static",
+          zIndex: "0"
+        });
+        body.css("margin-bottom", "0px");
+      }
+    });
+  }
+
   render() {
     return (
       <div className="footer-wrapper">

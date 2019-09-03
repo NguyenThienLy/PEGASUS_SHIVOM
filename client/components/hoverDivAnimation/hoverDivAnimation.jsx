@@ -11,7 +11,7 @@ export class HoverDivAnimation extends React.Component {
       <div className="hoverDiv">
         <a className="hoverDiv__link" href="#" title={this.props.title}>
           <div className="hoverDiv__link__content">
-            {this.props.title}
+            <div>{this.props.title}</div>
             <div className="hoverDiv__link__content--hover" />
           </div>
         </a>

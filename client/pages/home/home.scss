@@ -2,8 +2,6 @@
 
 .home {
   background-color: #fff;
-  @include e("header") {
-  }
   @include e("body") {
     @include e("slider") {
     }
@@ -320,8 +318,6 @@
       padding: 3em 0 7em;
     }
   }
-  @include e("footer") {
-  }
 }
 
 /* Extra small devices (phones, 600px and down) */
@@ -503,7 +499,7 @@
       margin-top: -6em;
       .home__body__reviews__slick-autoplay__item {
         .review {
-          height: 20em;
+          height: 21em;
           .review__blankTop {
             height: 5%;
           }
@@ -550,10 +546,10 @@
 
   .home__body__contactUs {
     .contact-us {
-      flex-direction: column;
+      flex-direction: column-reverse;
       .contact-us__form {
         flex-basis: 100%;
-        margin: 0 0 4em 0;
+        margin: 3em 0 0 0;
       }
       .contact-us__sub-info {
         flex-basis: 100%;
@@ -782,10 +778,10 @@
 
   .home__body__contactUs {
     .contact-us {
-      flex-direction: column;
+      flex-direction: column-reverse;
       .contact-us__form {
         flex-basis: 100%;
-        margin: 0 0 4em 0;
+        margin: 3em 0 0 0;
       }
       .contact-us__sub-info {
         flex-basis: 100%;
@@ -1013,10 +1009,10 @@
 
   .home__body__contactUs {
     .contact-us {
-      flex-direction: column;
+      flex-direction: column-reverse;
       .contact-us__form {
         flex-basis: 100%;
-        margin: 0 0 4em 0;
+        margin: 3em 0 0 0;
       }
       .contact-us__sub-info {
         flex-basis: 100%;
