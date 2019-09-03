@@ -160,10 +160,10 @@ class Blog extends React.Component {
         </Head>
         <Header {...this.props} />
         <React.Fragment>
+          <div className="blog__path">
+            <a>trang chủ</a> / <a>các bài viết</a>
+          </div>
           <div className="blog">
-            <div className="blog__path">
-              <a>trang chủ</a> / <a>các bài viết</a>
-            </div>
             <div className="blog__wrapper">
               <div className="blog__wrapper__main-content">
                 {

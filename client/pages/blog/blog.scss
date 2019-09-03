@@ -1,5 +1,53 @@
 @import "../../default.scss";
 
+@mixin for-phone-only {
+    @media (max-width: 599px) {
+        @content;
+    }
+}
+
+@mixin for-tablet-portrait-up {
+    @media (min-width: 600px) {
+        @content;
+    }
+}
+
+@mixin for-tablet-portrait-only {
+    @media (min-width: 600px) and (max-width: 899px) {
+        @content;
+    }
+}
+
+@mixin for-tablet-landscape-up {
+    @media (min-width: 900px) {
+        @content;
+    }
+}
+
+@mixin for-tablet-landscape-only {
+    @media (min-width: 900px) and (max-width: 1199px) {
+        @content;
+    }
+}
+
+@mixin for-desktop-up {
+    @media (min-width: 1200px) {
+        @content;
+    }
+}
+
+@mixin for-desktop-only {
+    @media (min-width: 1200px) and (max-width: 1799px) {
+        @content;
+    }
+}
+
+@mixin for-big-desktop-up {
+    @media (min-width: 1800px) {
+        @content;
+    }
+}
+
 $font-fam: "Noto Serif SC",
 serif;
 
@@ -16,11 +64,38 @@ serif;
         a {
             text-transform: capitalize;
             text-decoration: none;
+            cursor: pointer;
+
+            &:hover {
+                color: $main-color;
+            }
         }
+
+        @include for-phone-only {
+            padding: 0.5em 0 0.5em 2.5em;
+
+            a {
+                font-size: 0.8em;
+            }
+        }
+
+        @include for-tablet-portrait-only {
+            padding: 1em 0 1em 6.5em;
+        }
+
+        @include for-tablet-landscape-only {
+            padding: 1.5em 0 1.5em 6.5em;
+        }
+
+        @include for-big-desktop-up {
+            padding-left: 13em;
+        }
+
     }
 
     @include e('wrapper') {
         display: flex;
+        flex-direction: row;
 
         @include e('main-content') {
             width: 55%;
@@ -30,6 +105,47 @@ serif;
 
             .news2 {
                 width: 100%;
+            }
+
+            @include for-phone-only {
+                width: auto;
+                margin-left: 0;
+                margin-right: 0;
+
+                .news2__inner {
+                    padding-bottom: 0;
+                    padding-top: 0;
+
+                    @include e('title') {
+                        padding: 0 0;
+                    }
+
+                    @include e('content') {
+                        font-size: 1em;
+                    }
+
+                    @include e('more') {
+                        padding-top: 0em;
+                        padding-bottom: 1em;
+                    }
+
+                }
+            }
+
+            @include for-tablet-portrait-only {
+                width: auto;
+                margin-left: 3.5em;
+                margin-right: 3.5em;
+            }
+
+            @include for-tablet-landscape-only {
+                margin-left: 2em;
+                margin-right: 1em;
+                width: 60%;
+            }
+
+            @include for-big-desktop-up {
+                margin-right: 5.5em;
             }
         }
 
@@ -49,6 +165,14 @@ serif;
             @include e('latest-posts') {
                 @include e('post') {
                     width: 75%;
+
+                    @include for-tablet-portrait-only {
+                        width: 20em;
+                    }
+
+                    @include for-tablet-landscape-only {
+                        width: 17em;
+                    }
                 }
             }
 
@@ -118,6 +242,28 @@ serif;
                     }
                 }
             }
+
+            @include for-phone-only {
+                width: auto;
+                margin: 0em 1.5em 1em;
+            }
+
+            @include for-tablet-portrait-only {
+                width: auto;
+                margin: 2em 5.5em;
+            }
+
+            @include for-tablet-landscape-only {
+                margin: 4em auto 0 0;
+            }
+        }
+
+        @include for-phone-only {
+            flex-direction: column;
+        }
+
+        @include for-tablet-portrait-only {
+            flex-direction: column;
         }
     }
 
@@ -125,5 +271,50 @@ serif;
         width: 80%;
         margin: 1em auto 0;
         padding: 1em 0 7em;
+
+        @include for-phone-only {
+            padding-bottom: 4em;
+
+            .contact-us {
+                flex-direction: column-reverse;
+
+                @include e('sub-info') {
+                    margin-left: 0;
+
+                    @include e('title') {
+                        font-size: 2em;
+                    }
+
+                    @include e('content') {
+                        font-size: 1em;
+                    }
+                }
+
+                form {
+                    margin-right: 0;
+                }
+            }
+        }
+
+        @include for-tablet-portrait-only {
+            padding-bottom: 4em;
+
+            .contact-us {
+                flex-direction: column-reverse;
+
+                @include e('sub-info') {
+                    margin-left: 1em;
+                }
+
+                form {
+                    margin-right: 1em;
+                }
+            }
+        }
+
+    }
+
+    @include for-big-desktop-up {
+        padding: 0 10em;
     }
 }

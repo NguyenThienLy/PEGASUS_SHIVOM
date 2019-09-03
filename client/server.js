@@ -50,10 +50,8 @@ class Server {
 		this.server.get('/cac-bai-viet', (req, res) => {
 			this.app.render(req, res, '/blog/blog');
 		});
-		this.server.get('/bai-viet/:slug', (req, res) => {
-			this.app.render(req, res, '/post/post', {
-				slug: req.params.slug
-			});
+		this.server.get('/bai-viet', (req, res) => {
+			this.app.render(req, res, '/post/post');
 		});
 		this.server.get('/khoa-hoc', (req, res) => {
 			this.app.render(req, res, '/course/course');
