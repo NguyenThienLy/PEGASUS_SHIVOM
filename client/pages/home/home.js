@@ -300,14 +300,11 @@ class Home extends React.Component {
       })
     // Cách 3
     try {
-      const result = await api.class.getList()
-    } catch (err) {
-
-    }
-
+      const result = await api.class.getList();
+    } catch (err) { }
   }
   async componentDidMount() {
-    this.classApiExample()
+    this.classApiExample();
     $(".home__body__reviews__slick-autoplay").slick({
       dots: true,
       arrows: false,
@@ -443,14 +440,6 @@ class Home extends React.Component {
           this.blur();
         });
     });
-
-    var heightOfFooter = $(".home__footer .footer-wrapper").height();
-    $(".home__body").css("margin-bottom", heightOfFooter + "px");
-
-    $(window).on("resize", function () {
-      heightOfFooter = $(".home__footer .footer-wrapper").height();
-      $(".home__body").css("margin-bottom", heightOfFooter + "px");
-    });
   }
 
   render() {
@@ -458,17 +447,17 @@ class Home extends React.Component {
       <div className="home">
         <Head>
           <title> Trang chủ </title>
-          <meta name="title" content="Công ty Pegasus" />
+          <meta name="title" content="Trang chủ" />
+          <meta name="description" content="Trung tâm yoga Hiệp Hòa" />
           <meta
-            name="description"
-            content="Công ty công nghệ lớn nhất thế giới"
-          />
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          ></meta>
         </Head>
         <React.Fragment>
           <div class="background-overlay"></div>
-          <div className="home__header">
-            <Header {...this.props} />
-          </div>
+          <Header {...this.props} />
+
           <div className="home__body">
             <div className="home__body__slider">
               <Slider />
@@ -635,9 +624,7 @@ class Home extends React.Component {
             </div>
           </div>
 
-          <div className="home__footer">
-            <Footer />
-          </div>
+          <Footer />
         </React.Fragment>
       </div>
     );
