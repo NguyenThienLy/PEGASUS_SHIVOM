@@ -4,6 +4,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { action } from "../../actions";
 import { api } from "../../services";
+import { bindActionCreators } from 'redux';
 
 import "./home.scss";
 import {
@@ -286,17 +287,18 @@ class Home extends React.Component {
     return {};
   }
   async classApiExample() {
-    // Luôn luôn phải catch lỗi và xử lý nhằm tránh crash web
     // Cách 1
+    this.props.fetchClass()
+    // Luôn luôn phải catch lỗi và xử lý nhằm tránh crash web
+    // Cách 2
     api.class.getList()
       .then(result => {
         console.log("result: ", result)
-        this.setState({ class: result })
       })
       .catch(err => {
         console.log("Err: ", err)
       })
-    // Cách 2
+    // Cách 3
     try {
       const result = await api.class.getList()
     } catch (err) {
@@ -467,7 +469,6 @@ class Home extends React.Component {
           <div className="home__header">
             <Header {...this.props} />
           </div>
-
           <div className="home__body">
             <div className="home__body__slider">
               <Slider />
@@ -647,4 +648,8 @@ const mapStateToProps = state => {
   return state;
 };
 
-export default connect(mapStateToProps)(Home);
+const mapDispatchToProps = dispatch => bindActionCreators({
+  fetchClass: action.class.fetch
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
