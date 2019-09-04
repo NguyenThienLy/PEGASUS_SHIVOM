@@ -1,59 +1,69 @@
 @import "../../default.scss";
 
 .post-author {
-  width: 35em;
-  height: 11em;
-  margin: 2em 2em;
+  // width: 35em;
+  height: auto;
   display: flex;
   justify-content: center;
+
   @include e("avatar") {
     margin: auto;
+
     img {
-      width: 9em;
-      height: 9em;
+      width: 12.25em;
+      height: auto;
       border-radius: 50%;
     }
   }
+
   @include e("info") {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-left: 1.5em;
-    @include e("type") {
+    margin-left: 1.875em;
+
+    @include e("position") {
       color: $font-color;
       text-transform: uppercase;
       letter-spacing: 0.15em;
-      font-size: 0.7em;
+      font-size: 0.75em;
+      line-height: 1.625em;
+
       &::before {
         content: "";
         height: 1px;
-        width: 10%;
+        width: 51px;
         margin-right: 3%;
         background: $main-color;
         display: inline-block;
         vertical-align: middle;
       }
     }
+
     @include e("name") {
       font-family: $font-family-special;
       text-transform: capitalize;
-      font-size: 1.3em;
-      margin: 5px 0 15px 0;
+      font-size: 1.875em;
+      margin: 4px 0 14px 0;
+
       a {
         color: $color-grey;
         text-decoration: none;
         transition: 300ms;
+
         &:hover {
           color: $main-color;
         }
       }
     }
+
     @include e("description") {
-      font-size: 0.85em;
+      font-size: 0.9375em;
       color: $font-color;
       letter-spacing: 0.025em;
       word-spacing: 0.05em;
-      line-height: 1.5em;
+      line-height: 1.625em;
+      margin-bottom: 10px;
     }
   }
 }

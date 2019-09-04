@@ -161,7 +161,7 @@ class Blog extends React.Component {
         <Header {...this.props} />
         <React.Fragment>
           <div className="blog__path">
-            <a>trang chủ</a> / <a>các bài viết</a>
+            <a href="http://hiephoayoga.com">trang chủ</a> / <a>các bài viết</a>
           </div>
           <div className="blog">
             <div className="blog__wrapper">

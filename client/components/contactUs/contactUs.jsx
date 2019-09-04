@@ -50,7 +50,7 @@ export class ContactUs extends React.Component {
         </form>
 
         <div className="contact-us__sub-info">
-          <div className="contact-us__sub-info__brand">shivom hiep hoa</div>
+          <div className="contact-us__sub-info__brand">hiệp hoà yoga</div>
           <div className="contact-us__sub-info__title">
             liên hệ với chúng tôi
           </div>
@@ -63,15 +63,15 @@ export class ContactUs extends React.Component {
           <div className="contact-us__sub-info__contact-info">
             <div className="contact-us__sub-info__contact-info__item">
               <i className="far fa-envelope icon"></i>
-              <a href="mailto:minhle140198@gmail.com">minhle140198@gmail.com</a>
+              <a href="mailto:hiephoayoga@gmail.com">hiephoayoga@gmail.com</a>
             </div>
             <div className="contact-us__sub-info__contact-info__item">
               <i className="fas fa-headset icon"></i>
-              <a href="#">0934952396</a>
+              <a href="#">0966 685 293</a>
             </div>
             <div className="contact-us__sub-info__contact-info__item">
               <i className="fas fa-map-marker-alt icon"></i>
-              <a>145/51/41 Le Duc Tho Phuong 17 Go Vap</a>
+              <a>Khu đô thị số 3, Trung Đông, Đức Thắng, Hiệp Hoà, Bắc Giang</a>
             </div>
           </div>
         </div>
