@@ -4,4 +4,5 @@ export class TeacherApi extends CrudApi {
     constructor() {
         super("teacher")
     }
+
 }

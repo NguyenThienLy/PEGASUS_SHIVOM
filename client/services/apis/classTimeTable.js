@@ -4,4 +4,5 @@ export class ClassTimeTableApi extends CrudApi {
     constructor() {
         super("classTimeTable")
     }
+
 }

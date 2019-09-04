@@ -17,7 +17,6 @@ export class BaseAction {
         // this.fetch.prototype.customBind(store.getState())
     }
     fetch = (option = {}) => {
-
         return dispatch => {
             dispatch(this.fetchPending())
             api.class.getList(option)
