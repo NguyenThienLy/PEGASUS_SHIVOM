@@ -12,7 +12,6 @@ export class StatisticStudentController extends CrudController<typeof statisticS
     async statisticForListDetail(params: {
         course: string,
         type: "week" | "month" | "year" | "realTime",
-        format: "absent" | "late" | "on_time" | "redundant",
         startTime: Date,
         endTime: Date
     }) {
@@ -24,7 +23,7 @@ export class StatisticStudentController extends CrudController<typeof statisticS
         if (cacheData) {
             return cacheData
         } else {
-            const { course, type, format, startTime, endTime } = params
+            const { course, type, startTime, endTime } = params
             let totalWeekStartTime, totalWeekEndTime
 
             // Đổi sang tuần theo type
@@ -48,15 +47,13 @@ export class StatisticStudentController extends CrudController<typeof statisticS
             // Thống kê theo kiểu realTime
             if (type === "realTime")
                 return checkinService.getDataInStatisticForListDetail({
-                    course,
-                    format
+                    course
                 })
 
             // Thống kê theo kiểu week, month, year
             return this.service.getDateInStatisticForListDetail({
                 course,
                 type,
-                format,
                 totalWeekStartTime,
                 totalWeekEndTime
             })

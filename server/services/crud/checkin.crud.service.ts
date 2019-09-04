@@ -1,7 +1,8 @@
 import { CrudService } from '../crud.service'
 import { Checkin } from '../../models'
 import { ObjectId } from 'bson'
-import { format } from 'util';
+import { format } from 'util'
+import * as _ from 'lodash'
 
 export class CheckinService extends CrudService<typeof Checkin> {
     constructor() {
@@ -110,21 +111,24 @@ export class CheckinService extends CrudService<typeof Checkin> {
     }
 
     async getDataInStatisticForListDetail(params: {
-        course: string,
-        format: string
+        course: string
     }) {
-        return this.model.aggregate([
-            // Lọc ra theo khóa học và type phù hợp
+
+        let absents = [], lates = [], onTimes = [], redundants = []
+
+        const tempListStudent = await this.model.aggregate([
             {
-                // Theo loại absent, late, on_time, redundant
                 $match: {
-                    type: params.format
+                    // Chỉ lấy ra khóa học truyền vào
+                    course: { $eq: new ObjectId(params.course) }
                 }
             },
             {
                 $group: {
                     _id: "$student",
-                    formats: { $push: { time: "$checkinAt" } }
+                    formats: {
+                        $push: { time: "$checkinAt", type: "$type" }
+                    }
                 }
             },
             // Kết với docs courseStudents
@@ -145,18 +149,46 @@ export class CheckinService extends CrudService<typeof Checkin> {
                     as: "students_docs"
                 }
             },
-            {
-                $match: {
-                    // Chỉ lấy ra khóa học truyền vào
-                    "coursesStudents_docs.course": { $eq: new ObjectId(params.course) }
-                }
-            },
             // Lấy ra các thuộc tính cần thiết
             {
                 $project: {
                     student: "$_id",
                     _id: 0,
+                    absents: {
+                        // Lọc theo lớp học
+                        $filter: {
+                            input: "$formats",
+                            as: "element",
+                            cond: { $eq: ["$$element.type", "absent"] }
+                        }
+                    },
+                    lates: {
+                        // Lọc theo lớp học
+                        $filter: {
+                            input: "$formats",
+                            as: "element",
+                            cond: { $eq: ["$$element.type", "late"] }
+                        }
+                    },
+                    onTimes: {
+                        // Lọc theo lớp học
+                        $filter: {
+                            input: "$formats",
+                            as: "element",
+                            cond: { $eq: ["$$element.type", "on_time"] }
+                        }
+                    },
+                    redundants: {
+                        // Lọc theo lớp học
+                        $filter: {
+                            input: "$formats",
+                            as: "element",
+                            cond: { $eq: ["$$element.type", "redundant"] }
+                        }
+                    },
                     // Lấy các trường của khóa học của học sinh
+                    "coursesStudents_docs.student": 1,
+                    "coursesStudents_docs.course": 1,
                     "coursesStudents_docs.totalFeeAmount": 1,
                     "coursesStudents_docs.totalDiscountAmount": 1,
                     "coursesStudents_docs.totalMonthAmount": 1,
@@ -171,9 +203,52 @@ export class CheckinService extends CrudService<typeof Checkin> {
                     "students_docs.phone": 1,
                     "students_docs.email": 1,
                     "students_docs.rank": 1,
-                    formats: 1
+                    //  formats: 0
+                }
+            },
+            {
+                $unwind: "$coursesStudents_docs"
+            },
+            {
+                $match: {
+                    // Chỉ lấy ra khóa học truyền vào
+                    "coursesStudents_docs.course": { $eq: new ObjectId(params.course) }
+                }
+            },
+            {
+                $project: {
+                    "absents.type": 0,
+                    "lates.type": 0,
+                    "onTimes.type": 0,
+                    "redundants.type": 0,
                 }
             }
         ])
+
+        // Phân loại theo format: absent, late, onTime, redundant
+        tempListStudent.forEach(item => {
+            if (item.absents.length > 0) {
+                absents.push(_.omit(item, ['lates', 'onTimes', 'redundants']))
+            }
+
+            if (item.lates.length > 0) {
+                lates.push(_.omit(item, ['absents', 'onTimes', 'redundants']))
+            }
+
+            if (item.onTimes.length > 0) {
+                onTimes.push(_.omit(item, ['absents', 'lates', 'redundants']))
+            }
+
+            if (item.redundants.length > 0) {
+                redundants.push(_.omit(item, ['absents', 'lates', 'onTimes']))
+            }
+        })
+
+        return {
+            absents: absents,
+            lates: lates,
+            onTimes: onTimes,
+            redundants: redundants
+        }
     }
 }
