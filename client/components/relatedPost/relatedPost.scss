@@ -7,10 +7,12 @@
   // height: 20em;
   display: flex;
   flex-direction: column;
-  margin-left: 1em;
+  padding-right: 2em;
+  margin-bottom: 1.873em;
 
   @include e("img") {
     position: relative;
+    margin-bottom: 1.6em;
 
     img {
       width: 100%;
@@ -36,15 +38,15 @@
       }
 
       @include e("day") {
-        width: 3em;
+        width: 4em;
         font-size: 1.2em;
-        line-height: 3em;
+        line-height: 4em;
       }
 
       @include e("month") {
         font-size: 0.9em;
         line-height: 2em;
-        margin-top: 0.1em;
+        margin-top: 2px;
         text-transform: capitalize;
       }
     }
@@ -53,7 +55,6 @@
   @include e("author") {
     a {
       text-decoration: none;
-
       color: $sub-main-color;
 
       &:hover {
@@ -63,8 +64,8 @@
 
     text-transform: uppercase;
     line-height: 2em;
-    font-size: 0.875em;
-    margin: 1em 0;
+    font-size: 0.75em;
+    margin-bottm: 0.375em;
   }
 
   @include e("title") {
@@ -78,6 +79,6 @@
     }
 
     text-transform: capitalize;
-    font-size: 2em;
+    font-size: 1.875em;
   }
 }
