@@ -151,13 +151,14 @@ export class Header extends React.Component {
       e.stopPropagation();
       $(".header > .sidebar").addClass("sidebar__show-menu");
       $(".background-overlay").css("display", "block");
+      $("body, html").css("cursor", "pointer");
     });
 
     $(".header__sub-wrapper__page-menu-area__left__sidebar").click(function (e) {
       e.stopPropagation();
       $(".header > .sidebar").addClass("sidebar__show-menu");
       $(".background-overlay").css("display", "block");
-
+      $("body, html").css("cursor", "pointer");
       $(".header .header__sub-wrapper").css({
         maxHeight: "0px",
         MozTransition: "max-height 300ms ease",
@@ -175,6 +176,7 @@ export class Header extends React.Component {
     });
 
     $("body,html").click(function (e) {
+      $("body, html").css("cursor", "default");
       $(".header > .sidebar").removeClass("sidebar__show-menu");
       if (
         prevScrollPos <= currentScrollPos &&
@@ -197,8 +199,8 @@ export class Header extends React.Component {
     $(window).on("resize", function () {
       var win = $(this);
       if (win.outerWidth() > 991) {
-        if ($(".sidebar").hasClass("show-menu")) {
-          $(".sidebar").removeClass("show-menu");
+        if ($(".sidebar").hasClass("sidebar__show-menu")) {
+          $(".sidebar").removeClass("sidebar__show-menu");
           $(".background-overlay").css("display", "none");
         }
       }

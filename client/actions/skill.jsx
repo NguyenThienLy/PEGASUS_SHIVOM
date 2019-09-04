@@ -1,7 +1,8 @@
 import { BaseAction } from './base'
+import { api } from '../services'
 
 export class SkillAction extends BaseAction {
     constructor() {
-        super("skill")
+        super("skill", api.skill)
     }
 }

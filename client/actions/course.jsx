@@ -1,7 +1,8 @@
 import { BaseAction } from './base'
+import { api } from '../services'
 
 export class CourseAction extends BaseAction {
     constructor() {
-        super("course")
+        super("course", api.course)
     }
 }

@@ -12,11 +12,12 @@ export class StatisticStudentService extends CrudService<typeof StatisticStudent
     async getDateInStatisticForListDetail(params: {
         course: string,
         type: "week" | "month" | "year",
-        format: "absent" | "late" | "on_time" | "redundant"
         totalWeekStartTime: number,
         totalWeekEndTime: number
     }) {
-        return await this.model.aggregate([
+        let absents = [], lates = [], onTimes = [], redundants = []
+
+        const tempListStudent = await this.model.aggregate([
             // Kết với docs courseStudents
             {
                 $lookup: {
@@ -63,46 +64,32 @@ export class StatisticStudentService extends CrudService<typeof StatisticStudent
                     "students_docs.email": 1,
                     "students_docs.rank": 1,
                     // Lấy ra đúng cột theo format và lọc ra theo khóa học truyền vào
-                    formats: {
-                        $switch: {
-                            branches: [
-                                {
-                                    case: { $eq: [params.format, "absent"] }, then: {
-                                        $filter: {
-                                            input: "$absent",
-                                            as: "element",
-                                            cond: { $eq: ["$$element.course", new ObjectId(params.course)] }
-                                        }
-                                    }
-                                },
-                                {
-                                    case: { $eq: [params.format, "late"] }, then: {
-                                        $filter: {
-                                            input: "$late",
-                                            as: "element",
-                                            cond: { $eq: ["$$element.course", new ObjectId(params.course)] }
-                                        }
-                                    }
-                                },
-                                {
-                                    case: { $eq: [params.format, "on_time"] }, then: {
-                                        $filter: {
-                                            input: "$onTime",
-                                            as: "element",
-                                            cond: { $eq: ["$$element.course", new ObjectId(params.course)] }
-                                        }
-                                    }
-                                },
-                                {
-                                    case: { $eq: [params.format, "redundant"] }, then: {
-                                        $filter: {
-                                            input: "$redundant",
-                                            as: "element",
-                                            cond: { $eq: ["$$element.course", new ObjectId(params.course)] }
-                                        }
-                                    }
-                                }
-                            ]
+                    absents: {
+                        $filter: {
+                            input: "$absent",
+                            as: "element",
+                            cond: { $eq: ["$$element.course", new ObjectId(params.course)] }
+                        }
+                    },
+                    lates: {
+                        $filter: {
+                            input: "$late",
+                            as: "element",
+                            cond: { $eq: ["$$element.course", new ObjectId(params.course)] }
+                        }
+                    },
+                    onTimes: {
+                        $filter: {
+                            input: "$onTime",
+                            as: "element",
+                            cond: { $eq: ["$$element.course", new ObjectId(params.course)] }
+                        }
+                    },
+                    redundants: {
+                        $filter: {
+                            input: "$redundant",
+                            as: "element",
+                            cond: { $eq: ["$$element.course", new ObjectId(params.course)] }
                         }
                     },
                     time: {
@@ -125,7 +112,7 @@ export class StatisticStudentService extends CrudService<typeof StatisticStudent
                         $lte: params.totalWeekEndTime
                     },
                     // Không lấy các giá trị rỗng
-                    formats: { $ne: [] }
+                    //formats: { $ne: [] }
                 }
             },
             // Loại bỏ các field thừa
@@ -133,10 +120,41 @@ export class StatisticStudentService extends CrudService<typeof StatisticStudent
                 $project: {
                     _id: 0,
                     time: 0,
-                    "formats.course": 0
+                    "absents.course": 0,
+                    "lates.course": 0,
+                    "onTimes.course": 0,
+                    "redundants.course": 0
                 }
             }
         ])
+
+        // Phân loại theo format: absent, late, onTime, redundant
+        tempListStudent.forEach(item => {
+            //console.log(item.absents.length)
+
+            if (item.absents.length > 0) {
+                absents.push(_.omit(item, ['lates', 'onTimes', 'redundants']))
+            }
+
+            if (item.lates.length > 0) {
+                lates.push(_.omit(item, ['absents', 'onTimes', 'redundants']))
+            }
+
+            if (item.onTimes.length > 0) {
+                onTimes.push(_.omit(item, ['absents', 'lates', 'redundants']))
+            }
+
+            if (item.redundants.length > 0) {
+                redundants.push(_.omit(item, ['absents', 'lates', 'onTimes']))
+            }
+        })
+
+        return {
+            absents: absents,
+            lates: lates,
+            onTimes: onTimes,
+            redundants: redundants
+        }
     }
 
     async getDateInStatisticForCalendarChart(params: {
@@ -228,22 +246,22 @@ export class StatisticStudentService extends CrudService<typeof StatisticStudent
         ])
 
         // Đẩy element type absent vào arr timeLine
-        _.map(_.flatten(tempTimeLine[0].absent), function (item) {
+        _.flatten(tempTimeLine[0].absent).forEach(item => {
             timeLine.push({ time: item, type: "absent" })
         })
 
         // Đẩy element type late vào arr timeLine
-        _.map(_.flatten(tempTimeLine[0].late), function (item) {
+        _.flatten(tempTimeLine[0].late).forEach(item => {
             timeLine.push({ time: item, type: "late" })
         })
 
         // Đẩy element type on_time vào arr timeLine
-        _.map(_.flatten(tempTimeLine[0].onTime), function (item) {
+        _.flatten(tempTimeLine[0].onTime).forEach(item => {
             timeLine.push({ time: item, type: "on_time" })
         })
 
         // Đẩy element type redundant vào arr timeLine
-        _.map(_.flatten(tempTimeLine[0].redundant), function (item) {
+        _.fltten(tempTimeLine[0].redundant).forEach(item => {
             timeLine.push({ time: item, type: "redundant" })
         })
 

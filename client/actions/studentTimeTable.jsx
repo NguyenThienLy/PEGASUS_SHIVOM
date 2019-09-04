@@ -1,7 +1,8 @@
 import { BaseAction } from './base'
+import { api } from '../services'
 
 export class StudentTimeTableAction extends BaseAction {
     constructor() {
-        super("studentTimeTable")
+        super("studentTimeTable", api.studentTimeTable)
     }
 } 
