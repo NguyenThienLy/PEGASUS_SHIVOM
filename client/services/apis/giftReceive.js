@@ -1,11 +1,11 @@
 import { CrudApi } from '../crud'
 
-export class FeedbackApi extends CrudApi {
+export class GiftReceiveApi extends CrudApi {
     constructor() {
-        super("feedback")
+        super("giftReceive")
     }
-    async replyByEmail(feedbackId, content, option) {
-        let url = this.baseUrl(`${feedbackId}`);
+    async receive(giftReceiveId, option = {}) {
+        let url = this.baseUrl(`${giftReceiveId}/receive`);
         const query = this._serialize(option.query || {});
         url += `${query}`;
         const options = {
@@ -16,11 +16,7 @@ export class FeedbackApi extends CrudApi {
                     "Content-Type": "Application/json"
                 },
                 option.headers || {}
-
-            ),
-            body: JSON.stringify({
-                content
-            })
+            )
         }
         const res = await this.exec(url, options);
         if (res.code && res.code === 200) {
