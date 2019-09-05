@@ -47,7 +47,7 @@ export class Footer extends React.Component {
       body.css("margin-bottom", "0px");
     }
 
-    $(window).on("resize", function() {
+    $(window).on("resize", function () {
       if ($(window).outerWidth() > 599) {
         heightOfFooter = $(".footer-wrapper").height();
         $(".footer-wrapper").css({
@@ -72,23 +72,23 @@ export class Footer extends React.Component {
           <div className="footer-wrapper__first-floor__logo">
             <a className="footer-wrapper__first-floor__logo__a">
               <img
-                src="https://i.etsystatic.com/13665876/d/il/d5b7d0/1363979907/il_340x270.1363979907_ic0j.jpg?version=0"
+                src="/logo.png"
                 className="footer-wrapper__first-floor__logo__a__img"
               />
             </a>
           </div>
           <div className="footer-wrapper__first-floor__contact">
             <a className="footer-wrapper__first-floor__contact__item" href="#">
-              145/51/41 Le Duc Tho Go Vap
+              Khu đô thi số 3, Trung Đông, Đức Thắng, Hiệp Hoà, Bắc Giang
             </a>
             <a
               className="footer-wrapper__first-floor__contact__item"
-              href="mailto:minhle140198@gmail.com"
+              href="mailto:hiephoayoga@gmail.com"
             >
-              Email: minhle140198@gmail
+              Email: hiephoayoga@gmail.com
             </a>
             <a className="footer-wrapper__first-floor__contact__item" href="#">
-              Phone: +(84)934952396
+              SĐT: 0966 685 293
             </a>
           </div>
           <div className="footer-wrapper__first-floor__social-group">

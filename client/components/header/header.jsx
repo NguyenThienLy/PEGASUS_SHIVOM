@@ -3,6 +3,7 @@ import "./header.scss";
 import Link from "next/link";
 import { HoverDivAnimation } from "../hoverDivAnimation/hoverDivAnimation";
 import { Sidebar } from "../sidebar/sidebar";
+import { CloudImage } from '../../components';
 // import Router from 'next/router'
 // import Head from 'next/head'
 // import * as _ from "lodash"
@@ -223,7 +224,7 @@ export class Header extends React.Component {
                   className="header__wrapper__page-menu-area__left__logo-wrapper__a"
                 >
                   <img
-                    src="https://i.etsystatic.com/13665876/d/il/d5b7d0/1363979907/il_340x270.1363979907_ic0j.jpg?version=0"
+                    src="/logo.png"
                     className="header__wrapper__page-menu-area__left__logo-wrapper__a__img"
                   />
                 </a>
@@ -288,7 +289,7 @@ export class Header extends React.Component {
                   className="header__sub-wrapper__page-menu-area__left__logo-wrapper__a"
                 >
                   <img
-                    src="https://i.etsystatic.com/13665876/d/il/d5b7d0/1363979907/il_340x270.1363979907_ic0j.jpg?version=0"
+                    src="/logo.png"
                     className="header__sub-wrapper__page-menu-area__left__logo-wrapper__a__img"
                   />
                 </a>

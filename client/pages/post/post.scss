@@ -76,7 +76,7 @@ serif;
         }
 
         @include for-phone-only {
-            padding: 0.5em 0 0.5em 2.5em;
+            padding: 1em 1.5em;
 
             a {
                 font-size: 0.8em;
@@ -84,7 +84,7 @@ serif;
         }
 
         @include for-tablet-portrait-only {
-            padding: 1em 0 1em 6.5em;
+            padding: 1em 5.5em;
         }
 
         @include for-tablet-landscape-only {
@@ -171,10 +171,20 @@ serif;
                         color: $main-color;
                     }
                 }
+
+                @include for-phone-only {
+                    padding: 0;
+                    font-size: 1.1em;
+                    margin-bottom: 1.5em;
+                }
             }
 
             @include e('content') {
                 padding-bottom: 2.5em;
+
+                @include for-phone-only {
+                    padding-bottom: 1.5em;
+                }
             }
 
             @include e('post-author') {
@@ -182,6 +192,31 @@ serif;
                 padding: 3.625em 0 3.25em;
                 border-top: 1px solid #ebebeb;
                 border-bottom: 1px solid #ebebeb;
+
+                @include for-phone-only {
+                    padding: 1.5em 0 1.5em;
+                    margin-bottom: 1.5em;
+
+                    .post-author {
+                        flex-direction: column;
+
+                        @include e("avatar") {
+                            padding-bottom: 1em;
+
+                            img {
+                                width: 10em;
+                            }
+                        }
+
+                        @include e('info') {
+                            margin-left: 0;
+
+                            @include e('name') {
+                                font-size: 1.5em;
+                            }
+                        }
+                    }
+                }
             }
 
             @include e('text-divider') {
@@ -193,6 +228,10 @@ serif;
                     font-weight: 500;
                     font-size: 2.625em;
                     margin: 0;
+
+                    @include for-phone-only {
+                        font-size: 1.5em;
+                    }
                 }
             }
 
@@ -206,6 +245,30 @@ serif;
 
                     .related-post {
                         width: auto;
+                    }
+
+                    @include for-phone-only {
+                        width: 100%;
+
+                        .related-post {
+                            padding-right: 0;
+
+                            @include e('img') {
+                                margin-bottom: 0.5em;
+                            }
+
+                            @include e('author') {
+                                font-size: 0.7em;
+                            }
+
+                            @include e('title') {
+                                font-size: 1.2em;
+                            }
+                        }
+                    }
+
+                    @include for-tablet-portrait-only {
+                        padding-right: 1em;
                     }
                 }
             }
@@ -223,9 +286,9 @@ serif;
             }
 
             @include for-tablet-landscape-only {
-                margin-left: 2em;
-                margin-right: 1em;
-                width: 60%;
+                margin-left: 3.5em;
+                margin-right: 3.5em;
+                width: auto;
             }
 
             @include for-big-desktop-up {
@@ -342,7 +405,8 @@ serif;
             }
 
             @include for-tablet-landscape-only {
-                margin: 4em auto 0 0;
+                width: auto;
+                margin: 4em 5.5em;
             }
         }
 
@@ -351,6 +415,10 @@ serif;
         }
 
         @include for-tablet-portrait-only {
+            flex-direction: column;
+        }
+
+        @include for-tablet-landscape-only {
             flex-direction: column;
         }
     }
@@ -362,9 +430,11 @@ serif;
 
         @include for-phone-only {
             padding-bottom: 4em;
+            margin-bottom: 0 !important;
 
             .contact-us {
                 flex-direction: column-reverse;
+
 
                 @include e('sub-info') {
                     margin-left: 0;
@@ -400,6 +470,22 @@ serif;
             }
         }
 
+        @include for-tablet-landscape-only {
+            .contact-us {
+                @include e('sub-info') {
+                    margin: 0;
+                }
+            }
+        }
+
+    }
+
+    @include for-phone-only {
+        padding: 0;
+    }
+
+    @include for-tablet-portrait-only {
+        padding: auto 0;
     }
 
     @include for-big-desktop-up {
