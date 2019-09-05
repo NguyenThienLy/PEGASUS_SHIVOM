@@ -13,6 +13,10 @@ export type TeacherModel = BaseModel & {
     phone: string
     email: string
     avatar?: string
+    social: {
+        facebook: string
+        instagram: string
+    }
     otherInfo: {
         [x: string]: any
     }
@@ -28,6 +32,10 @@ const teacherSchema = new Schema({
     phone: { type: String, required: true },
     email: { type: String, required: true },
     avatar: { type: String },
+    social: {
+        facebook: { type: String },
+        instagram: { type: String }
+    },
     otherInfo: { type: Schema.Types.Mixed },
     skills: { type: [{ type: Schema.Types.ObjectId, ref: "Skill" }], default: [] },
     status: { type: String, enum: ["active", "deactive"], default: "active" }

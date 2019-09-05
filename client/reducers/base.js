@@ -44,7 +44,7 @@ export class BaseReducer {
                 state = { ...state, fetching: false, items: action.payload };
                 break
             case this.actions.fetchError:
-                state = { ...state, fetching: false, items: action.payload };
+                state = { ...state, fetching: false, fetchError: action.payload };
                 break
             case this.actions.addPending:
                 state.unshift(action.payload)

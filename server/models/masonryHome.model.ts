@@ -7,14 +7,14 @@ const Schema = mongoose.Schema;
 export type MasonryHomeModel = BaseModel & {
     name: string
     description?: string
-    images: string[] | GalleryModel[]
+    image: string
 }
 
 const masonryHomeSchema = new Schema({
     name: { type: String },
     description: { type: String },
-    images: { type: [{ type: Schema.Types.ObjectId, ref: "Gallery" }], default: [] },
-    status: { type: String, enum: ["active", "deactive"], default: "deactive" }
+    image: { type: String, required: true },
+    status: { type: String, enum: ["active", "deactive"], default: "active" }
 }, { timestamps: true })
 
 export let MasonryHome: mongoose.Model<MasonryHomeModel> = mongoose.model('MasonryHome', masonryHomeSchema);

@@ -47,7 +47,7 @@ export class Footer extends React.Component {
       body.css("margin-bottom", "0px");
     }
 
-    $(window).on("resize", function() {
+    $(window).on("resize", function () {
       if ($(window).outerWidth() > 599) {
         heightOfFooter = $(".footer-wrapper").height();
         $(".footer-wrapper").css({
@@ -72,23 +72,23 @@ export class Footer extends React.Component {
           <div className="footer-wrapper__first-floor__logo">
             <a className="footer-wrapper__first-floor__logo__a">
               <img
-                src="https://i.etsystatic.com/13665876/d/il/d5b7d0/1363979907/il_340x270.1363979907_ic0j.jpg?version=0"
+                src={this.props.logo}
                 className="footer-wrapper__first-floor__logo__a__img"
               />
             </a>
           </div>
           <div className="footer-wrapper__first-floor__contact">
             <a className="footer-wrapper__first-floor__contact__item" href="#">
-              145/51/41 Le Duc Tho Go Vap
+              {this.props.address}
             </a>
             <a
               className="footer-wrapper__first-floor__contact__item"
-              href="mailto:minhle140198@gmail.com"
+              href={`mailto:${this.props.email}`}
             >
-              Email: minhle140198@gmail
+              Email: {this.props.email}
             </a>
             <a className="footer-wrapper__first-floor__contact__item" href="#">
-              Phone: +(84)934952396
+              Phone: {this.props.phone}
             </a>
           </div>
           <div className="footer-wrapper__first-floor__social-group">

@@ -3,6 +3,7 @@ import * as React from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { connect } from "react-redux";
+import { bindActionCreators } from 'redux'
 import { api } from "../../services";
 import { action } from "../../actions";
 
@@ -136,17 +137,27 @@ export class Course extends React.Component {
 		};
 	}
 	static async getInitialProps({ req, query }) {
-		return {};
+		const slug = query.slug
+		const course = await api.course.getCourseBySlug(slug)
+		console.log("course in: ", course)
+		return {
+			course: course
+		}
 	}
 	async componentDidMount() {
+		this.fetchData()
 		var heightOfFooter = $(".course__footer .footer-wrapper").height();
 		$(".course__contact-us").css("margin-bottom", heightOfFooter + "px");
+	}
+	fetchData() {
+		this.props.fetchCourse()
+		this.props.fetchSetting()
 	}
 	render() {
 		return (
 			<div className="course">
 				<Head>
-					<title>Khoá học</title>
+					<title>{this.props.course.name}</title>
 					<meta name="title" content="Khoá học" />
 					<meta name="description" content="Khoá học về yoga" />
 				</Head>
@@ -277,11 +288,11 @@ export class Course extends React.Component {
 						</div>
 					</div>
 					<div className="course__contact-us">
-						<ContactUs />
+						<ContactUs {...this.props.setting.contact} addContact={this.addContact} courses={this.props.courses.items} />
 					</div>
 				</React.Fragment>
 				<div className="course__footer">
-					<Footer />
+					<Footer {...this.props.setting.contact} logo={this.props.setting.logo} />
 				</div>
 			</div>
 		);
@@ -291,5 +302,10 @@ export class Course extends React.Component {
 const mapStateToProps = state => {
 	return state;
 };
+const mapDispatchToProps = dispatch => bindActionCreators({
+	fetchCourse: action.course.fetch,
+	fetchSetting: action.setting.fetch,
+	addContact: action.contact.add
+}, dispatch)
 
-export default connect(mapStateToProps)(Course);
+export default connect(mapStateToProps, mapDispatchToProps)(Course);

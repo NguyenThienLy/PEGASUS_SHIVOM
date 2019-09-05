@@ -1,4 +1,4 @@
-import * as express from  'express';
+import * as express from 'express';
 import * as _ from 'lodash';
 import { BaseRouter, Request, Response } from './base';
 import { CrudController } from '../controllers/index'
@@ -7,7 +7,7 @@ import { queryInfoMiddleware } from '../middlewares'
 export class CrudRouter<T extends CrudController<any>> extends BaseRouter {
     router: express.Router;
     controller: T;
-    constructor(controller: T){
+    constructor(controller: T) {
         super();
         this.controller = controller;
         this.router = express.Router();
@@ -15,18 +15,26 @@ export class CrudRouter<T extends CrudController<any>> extends BaseRouter {
         this.defaultRouter();
     }
     defaultRouter() {
-        this.router.get('/', this.getListMiddlewares(),this.route(this.getList));
-        this.router.get('/:_id' ,this.getItemMiddlewares(),this.route(this.getItem));
-        this.router.post('/',this.createMiddlewares(), this.route(this.create));
-        this.router.put('/:_id',this.updateMiddlewares(), this.route(this.update));
-        this.router.delete('/:_id', this.deleteMiddlewares(),this.route(this.delete));
-        this.router.delete('/', this.deleteAllMiddlewares(),this.route(this.deleteAll));
+        this.router.get('/', this.getListMiddlewares(), this.route(this.getList));
+        this.router.get('/:_id', this.getItemMiddlewares(), this.route(this.getItem));
+        this.router.post('/', this.createMiddlewares(), this.route(this.create));
+        this.router.put('/:_id', this.updateMiddlewares(), this.route(this.update));
+        this.router.delete('/:_id', this.deleteMiddlewares(), this.route(this.delete));
+        this.router.delete('/', this.deleteAllMiddlewares(), this.route(this.deleteAll));
+        this.router.get("/find", this.findMiddlewares(), this.route(this.find))
     }
     customRouter() {
         this.router.get('/me')
     }
+    findMiddlewares(): any[] {
+        return [queryInfoMiddleware.run()]
+    }
+    async find(req: Request, res: Response) {
+        const result = await this.controller.getItem(req.queryInfo)
+        this.onSuccess(res, result)
+    }
     getListMiddlewares(): any[] {
-        return [ queryInfoMiddleware.run()]
+        return [queryInfoMiddleware.run()]
     }
     async getList(req: Request, res: Response) {
         const result = await this.controller.getList(req.queryInfo)
@@ -44,14 +52,14 @@ export class CrudRouter<T extends CrudController<any>> extends BaseRouter {
         this.onSuccess(res, result)
     }
     createMiddlewares(): any[] {
-        return [ ]
+        return []
     }
     async create(req: Request, res: Response) {
         const result = await this.controller.create(req.body)
         this.onSuccess(res, result)
     }
     updateMiddlewares(): any[] {
-        return [ queryInfoMiddleware.run()]
+        return [queryInfoMiddleware.run()]
     }
     async update(req: Request, res: Response) {
         const { _id } = req.params
@@ -61,7 +69,7 @@ export class CrudRouter<T extends CrudController<any>> extends BaseRouter {
         this.onSuccess(res, result)
     }
     deleteMiddlewares(): any[] {
-        return [ queryInfoMiddleware.run()]
+        return [queryInfoMiddleware.run()]
     }
     async delete(req: Request, res: Response) {
         const { _id } = req.params
@@ -71,7 +79,7 @@ export class CrudRouter<T extends CrudController<any>> extends BaseRouter {
         this.onSuccess(res, result)
     }
     deleteAllMiddlewares(): any[] {
-        return [ queryInfoMiddleware.run()]
+        return [queryInfoMiddleware.run()]
     }
     async deleteAll(req: Request, res: Response) {
         if (_.has(req.query, "items")) {
@@ -84,7 +92,7 @@ export class CrudRouter<T extends CrudController<any>> extends BaseRouter {
                     type: 'array',
                     uniqueItems: true,
                     minItems: 1,
-                    items: { type: "string" } 
+                    items: { type: "string" }
                 }
             },
             required: ['items'],
@@ -92,7 +100,7 @@ export class CrudRouter<T extends CrudController<any>> extends BaseRouter {
         })
         const { items } = req.query
         const result = await this.controller.deleteAll({
-            filter: { _id: { $in: items}}
+            filter: { _id: { $in: items } }
         })
         this.onSuccess(res, result)
     }

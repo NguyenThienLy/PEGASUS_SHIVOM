@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 
 export type CourseModel = BaseModel & {
     name: string
+    slug: string
     shortDescription: string
     description: string
     metaTitle: string
@@ -14,6 +15,7 @@ export type CourseModel = BaseModel & {
 
 const courseSchema = new Schema({
     name: { type: String, required: true },
+    slug: { type: String, unique: true },
     shortDescription: { type: String },
     description: { type: String },
     metaTitle: { type: String },
