@@ -63,7 +63,7 @@ export class Sidebar extends React.Component {
             <div className="sidebar__inner__top-menu__logo">
               <a href="#">
                 <img
-                  src="https://i.etsystatic.com/13665876/d/il/d5b7d0/1363979907/il_340x270.1363979907_ic0j.jpg?version=0"
+                  src="/logo.png"
                   alt=""
                 />
               </a>

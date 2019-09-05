@@ -136,7 +136,7 @@ class Post extends React.Component {
                 <Header {...this.props} />
                 <React.Fragment>
                     <div className="post__path">
-                        <a href="http://hiephoayoga.com">trang chủ</a> / <a href="http://hiephoayoga.com/cac-bai-viet">các bài viết</a> / <a>abc</a>
+                        <a href="http://hiephoayoga.com">trang chủ</a> / <a href="http://hiephoayoga.com/cac-bai-viet">các bài viết</a> / <a>{this.state.postContent.title}</a>
                     </div>
                     <div className="post">
                         <div className="post__wrapper">
