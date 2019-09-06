@@ -153,7 +153,7 @@ export class Course extends React.Component {
 				<Header {...this.props} />
 				<React.Fragment>
 					<div className="course-title">
-						{this.state.course.title}
+						<a href="/">trang chủ</a>&nbsp;&nbsp;<i className="fas fa-chevron-right"></i>&nbsp;&nbsp;<a href="cac-khoa-hoc">các khoá học</a>&nbsp;&nbsp;<i className="fas fa-chevron-right"></i>&nbsp;&nbsp;<a>{this.state.course.title}</a>
 					</div>
 					<div className="course-ringing-phone">
 						<RingingPhone />
