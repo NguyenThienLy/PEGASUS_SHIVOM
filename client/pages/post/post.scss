@@ -59,6 +59,7 @@ serif;
     @include e('path') {
         color: #363738;
         font-family: $font-fam;
+        font-size: $font-size;
         background-color: $background-color;
         padding: 3em 0 3em 10em;
 
