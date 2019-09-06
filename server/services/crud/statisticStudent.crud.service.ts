@@ -130,8 +130,6 @@ export class StatisticStudentService extends CrudService<typeof StatisticStudent
 
         // Phân loại theo format: absent, late, onTime, redundant
         tempListStudent.forEach(item => {
-            //console.log(item.absents.length)
-
             if (item.absents.length > 0) {
                 absents.push(_.omit(item, ['lates', 'onTimes', 'redundants']))
             }
