@@ -11,6 +11,7 @@ export type CourseModel = BaseModel & {
     metaTitle: string
     metaDescription: string
     thumb: string
+    benefits: string[]
 }
 
 const courseSchema = new Schema({
@@ -21,6 +22,7 @@ const courseSchema = new Schema({
     metaTitle: { type: String },
     metaDescription: { type: String },
     thumb: { type: String },
+    benefits: { type: [{ type: String }], default: [] },
     status: { type: String, enum: ["active", "deactive"], default: "active" }
 }, { timestamps: true })
 

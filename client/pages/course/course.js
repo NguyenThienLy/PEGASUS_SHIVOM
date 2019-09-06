@@ -139,10 +139,28 @@ export class Course extends React.Component {
 	static async getInitialProps({ req, query }) {
 		const slug = query.slug
 		const course = await api.course.getCourseBySlug(slug)
-		console.log("course in: ", course)
+
 		return {
 			course: course
 		}
+	}
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.courses.items.length > 0) {
+			this.props.fetchTimeTableOfCourse(this.props.course._id)
+		}
+		const courseItemIndex = nextProps.courses.items.findIndex(item => { return item._id === this.props.course._id })
+		if (courseItemIndex !== -1 && nextProps.courses.items[courseItemIndex].timeTables) {
+			this.props.course.timeTables = nextProps.courses.items[courseItemIndex].timeTables
+			console.log(nextProps.courses.items[courseItemIndex].timeTables)
+		}
+
+		return true
+	}
+	shouldComponentUpdate(nextProps, nextState) {
+		console.log(nextProps, nextState);
+		console.log(this.props, this.state);
+
+		return false;
 	}
 	async componentDidMount() {
 		this.fetchData()
@@ -152,6 +170,7 @@ export class Course extends React.Component {
 	fetchData() {
 		this.props.fetchCourse()
 		this.props.fetchSetting()
+
 	}
 	render() {
 		return (
@@ -164,7 +183,7 @@ export class Course extends React.Component {
 				<Header {...this.props} />
 				<React.Fragment>
 					<div className="course-title">
-						{this.state.course.title}
+						{this.props.course.name}
 					</div>
 					<div className="course-ringing-phone">
 						<RingingPhone />
@@ -187,27 +206,27 @@ export class Course extends React.Component {
 										</span>
 									</a>
 								</div>
-								<img src={this.state.course.image} alt="" />
+								<img src={this.props.course.thumb} alt={this.props.course.name} />
 							</div>
 
 
 
-							<div className="course-wrapper__main-content__author">
+							{/* <div className="course-wrapper__main-content__author">
 								{this.state.course.author}
-							</div>
+							</div> */}
 							<div className="course-wrapper__main-content__title">
-								{this.state.course.title}
+								{this.props.course.name}
 							</div>
-							<div className="course-wrapper__main-content__content">
-								{this.state.course.content}
+							<div className="course-wrapper__main-content__content" dangerouslySetInnerHTML={{ __html: this.props.course.description }}>
+
 							</div>
 							<div className="course-wrapper__main-content__targets">
 								{
-									this.state.course.targets.map((target, index) => {
+									this.props.course.benefits.map((benefit, index) => {
 										return (
 											<div className="course-wrapper__main-content__targets__target" key={index}>
 												<i className="fas fa-check"></i>
-												{target}
+												{benefit}
 											</div>
 										)
 									})
@@ -254,11 +273,16 @@ export class Course extends React.Component {
 									Các khoá học
                 				</div>
 								{
-									this.state.otherCourses.map((course) => {
+									this.props.courses.items.map((course) => {
 										return (
 											<div className="course-wrapper__sub-content__other-courses__course">
-												{course.name} ({course.classes})
-                      						</div>
+												<Link href={`/course/course?slug=${course.slug}`} as={`/khoa-hoc/${course.slug}`}>
+													<a href={`/khoa-hoc/${course.slug}`} >
+														{course.name}
+													</a>
+													{/* {course.name} ({course.classes}) */}
+												</Link>
+											</div>
 										)
 									})
 								}
@@ -305,6 +329,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => bindActionCreators({
 	fetchCourse: action.course.fetch,
 	fetchSetting: action.setting.fetch,
+	fetchTimeTableOfCourse: action.course.getTimeTableOfCourse,
 	addContact: action.contact.add
 }, dispatch)
 

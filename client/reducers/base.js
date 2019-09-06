@@ -16,7 +16,8 @@ export class BaseReducer {
             deleting: false,
             deleteError: null
         }
-        this.actions = {
+        this.customActions = {}
+        this.actions = _.merge({
             fetchPending: `FETCH_${this.name}_PENDING`,
             fetchSuccess: `FETCH_${this.name}_SUCCESS`,
             fetchError: `FETCH_${this.name}_ERROR`,
@@ -32,7 +33,7 @@ export class BaseReducer {
             concatPending: `CONCAT_${this.name}_PENDING`,
             concatSuccess: `CONCAT_${this.name}_SUCCESS`,
             concatError: `CONCAT_${this.name}_ERROR`,
-        }
+        }, this.customActions)
     }
     reducer = (state = this.initState, action) => {
         let itemIndex = -1
@@ -83,7 +84,14 @@ export class BaseReducer {
                 break
             case this.actions.concatError:
                 break
+            default:
+                return this.customReducer(state, action)
         }
+        return state
+    }
+
+    customReducer(state, action) {
+
         return state
     }
 }
