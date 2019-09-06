@@ -19,7 +19,7 @@ export class BaseAction {
     fetch = (option = {}) => {
         return dispatch => {
             dispatch(this.fetchPending())
-            api.class.getList(option)
+            this.api.getList(option)
                 .then(res => {
                     console.log("result: ", res)
                     dispatch(this.fetchSuccess(res.results.objects.rows))
@@ -31,7 +31,6 @@ export class BaseAction {
                 })
         }
     }
-
     fetchPending() {
         return {
             type: `FETCH_${this.name}_PENDING`

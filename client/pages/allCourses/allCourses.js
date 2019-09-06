@@ -5,6 +5,7 @@ import Link from "next/link";
 import { connect } from "react-redux";
 import { api } from "../../services";
 import { action } from "../../actions";
+import { bindActionCreators } from 'redux'
 
 import "./allCourses.scss";
 import {
@@ -122,7 +123,11 @@ export class AllCourses extends React.Component {
 	componentWillUnmount() {
 		window.removeEventListener("scroll", this.handleScroll);
 	}
+	fetchData() {
+		this.props.fetchCourses()
+	}
 	componentDidMount() {
+		this.fetchData()
 		this.handleScroll();
 		window.addEventListener("scroll", this.handleScroll);
 
@@ -164,7 +169,7 @@ export class AllCourses extends React.Component {
 					<div className="all-courses__wrapper">
 						<div className="all-courses__wrapper__main-content">
 							{
-								this.state.trainingClasses.map(trainingClass => {
+								this.props.courses.items.map(trainingClass => {
 									return (
 										<div className="all-courses__wrapper__main-content__item">
 											<TrainingClass trainingClass={trainingClass} />
@@ -236,4 +241,8 @@ const mapStateToProps = state => {
 	return state;
 };
 
-export default connect(mapStateToProps)(AllCourses);
+const mapDispatchToProps = dispatch => bindActionCreators({
+	fetchCourses: action.course.fetch
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(AllCourses);
