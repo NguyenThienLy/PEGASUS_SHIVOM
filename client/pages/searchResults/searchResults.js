@@ -29,7 +29,7 @@ class SearchResults extends Component {
 
     async componentDidMount() {
         var heightOfFooter = $(".search-page__footer .footer-wrapper").height();
-        $(".search-page__wrapper__results").css("margin-bottom", heightOfFooter + "px");
+        $(".search-page__wrapper").css("margin-bottom", heightOfFooter + "px");
     }
     render() {
         return (
