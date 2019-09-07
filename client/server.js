@@ -49,18 +49,6 @@ class Server {
     this.server.get("/", (req, res) => {
       this.app.render(req, res, "/index");
     });
-
-     this.server.get("/:categorySlug", (req, res) => {
-      this.app.render(req, res, "/blog/blog", {
-        categorySlug: req.params.categorySlug
-      });
-    });
-    this.server.get("/:categorySlug/:newsSlug", (req, res) => {
-      this.app.render(req, res, "/post/post", {
-        categorySlug: req.params.categorySlug,
-        newSlug: req.params.newSlug
-      });
-    });
     this.server.get("/khoa-hoc", (req, res) => {
       this.app.render(req, res, "/course/course");
     });
@@ -82,17 +70,28 @@ class Server {
     this.server.get("/search", (req, res) => {
       this.app.render(req, res, "/searchResults/searchResults");
     });
-    this.server.get("/dashboard", (req, res) => {
+    this.server.get("/tong-quan", (req, res) => {
       this.app.render(req, res, "/dashboard/dashboard");
     });
-    this.server.get("/courseDetails", (req, res) => {
+    this.server.get("/thong-ke-khoa-hoc", (req, res) => {
       this.app.render(req, res, "/courseDetails/courseDetails");
     });
-    this.server.get("/memberDetails", (req, res) => {
+    this.server.get("/thong-ke-hoc-vien", (req, res) => {
       this.app.render(req, res, "/memberDetails/memberDetails");
     });
     this.server.get("*", (req, res) => {
       this.app.render(req, res, "/_error/_error");
+    });
+    this.server.get("/:categorySlug", (req, res) => {
+      this.app.render(req, res, "/blog/blog", {
+        categorySlug: req.params.categorySlug
+      });
+    });
+    this.server.get("/:categorySlug/:newsSlug", (req, res) => {
+      this.app.render(req, res, "/post/post", {
+        categorySlug: req.params.categorySlug,
+        newSlug: req.params.newSlug
+      });
     });
   }
   getCacheKey(req) {

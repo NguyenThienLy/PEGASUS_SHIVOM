@@ -57,7 +57,29 @@ export class Dashboard extends React.Component {
       customSelect: {
         placeholder: "Chọn năm...",
         options: [2015, 2016, 2017, 2018, 2019]
-      }
+      },
+      activitiesAdmin: [
+        {
+          time: "20 phút trước",
+          content: "Hoàng Hạnh đã đăng nhập vào hệ thống"
+        },
+        {
+          time: "20 phút trước",
+          content: "Hoàng Hạnh đã đăng nhập vào hệ thống"
+        },
+        {
+          time: "20 phút trước",
+          content: "Hoàng Hạnh đã đăng nhập vào hệ thống"
+        },
+        {
+          time: "20 phút trước",
+          content: "Hoàng Hạnh đã đăng nhập vào hệ thống"
+        },
+        {
+          time: "20 phút trước",
+          content: "Hoàng Hạnh đã đăng nhập vào hệ thống"
+        }
+      ]
     };
   }
   static async getInitialProps({ req, query }) {
@@ -122,9 +144,9 @@ export class Dashboard extends React.Component {
               <Table></Table>
             </div>
             <div className="dashboard__body__activities">
-              <Activity></Activity>
-              <Activity></Activity>
-              <Activity></Activity>
+              <Activity activities={this.state.activitiesAdmin}></Activity>
+              <Activity activities={this.state.activitiesAdmin}></Activity>
+              {/* <Activity activities={this.state.activitiesAdmin}></Activity> */}
             </div>
           </div>
         </React.Fragment>

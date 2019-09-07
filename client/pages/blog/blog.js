@@ -6,8 +6,6 @@ import { connect } from "react-redux";
 import { api } from "../../services";
 import { action } from "../../actions";
 import { bindActionCreators } from "redux";
-import Router from "next/router";
-import { Redirect } from "react-router-dom";
 
 import {
   Header,
@@ -169,9 +167,9 @@ class Blog extends React.Component {
       });
 
       return { lstNews: res.results.objects.rows, category: category };
-    } catch (error) {
-      <Redirect to="*" />;
-    }
+    } catch (error) {}
+
+    return {};
   }
   async componentDidMount() {
     var heightOfFooter = $(".blog__footer .footer-wrapper").height();
