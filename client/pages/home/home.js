@@ -324,7 +324,7 @@ class Home extends React.Component {
   }
   async componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.tesmonials.fetching === false) {
-      $(".home__body__reviews__slick-autoplay").slick({
+      $(".home__body__reviews__slick-autoplay").not('.slick-initialized').slick({
         dots: true,
         arrows: false,
         slidesToShow: 3,
@@ -374,7 +374,7 @@ class Home extends React.Component {
     this.fetchData();
 
 
-    $(".home__body__brands__slick-autoplay").slick({
+    $(".home__body__brands__slick-autoplay").not('.slick-initialized').slick({
       dots: false,
       arrows: false,
       slidesToShow: 6,
@@ -430,7 +430,7 @@ class Home extends React.Component {
         });
     });
 
-    $(".home__body__intro-slick-autoplay").slick({
+    $(".home__body__intro-slick-autoplay").not('.slick-initialized').slick({
       dots: true,
       arrows: false,
       slidesToShow: 2,

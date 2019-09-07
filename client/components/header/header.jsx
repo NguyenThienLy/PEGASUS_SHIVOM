@@ -69,7 +69,7 @@ export class Header extends React.Component {
       const subCategories = this.props.courses.items.map((item) => {
         return {
           name: item.name,
-          linkHref: `/course/course?courseId=${item.slug}`,
+          linkHref: `/course/course?slug=${item.slug}`,
           linkAs: `/khoa-hoc/${item.slug}`
         }
       })

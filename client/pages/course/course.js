@@ -140,14 +140,16 @@ export class Course extends React.Component {
 	static async getInitialProps({ req, query }) {
 		const slug = query.slug
 		const course = await api.course.getCourseBySlug(slug)
-
 		return {
 			course: course
 		}
 	}
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.courses.items.length > 0) {
-			this.props.fetchTimeTableOfCourse(this.props.course._id)
+		if (this.props.course._id !== nextProps.course._id) {
+			this.setState({ timeTables: [] })
+		}
+		if (nextProps.courses.items.length > 0 || this.props.course._id !== nextProps.course._id) {
+			this.props.fetchTimeTableOfCourse(nextProps.course._id)
 		}
 
 		return true
@@ -169,7 +171,7 @@ export class Course extends React.Component {
 	}
 
 	async componentDidMount() {
-		this.setState({ timeTables: [] })
+
 		this.fetchData()
 		var heightOfFooter = $(".course__footer .footer-wrapper").height();
 		$(".course__contact-us").css("margin-bottom", heightOfFooter + "px");
