@@ -7,6 +7,8 @@ export class Activity extends React.Component {
   }
   render() {
     const { activities } = this.props;
+
+    // console.log("activities", activities);
     return (
       <div className="activity">
         <div className="activity__title">Hoạt động</div>
