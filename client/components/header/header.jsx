@@ -4,6 +4,7 @@ import Link from "next/link";
 import { HoverDivAnimation } from "../hoverDivAnimation/hoverDivAnimation";
 import { Sidebar } from "../sidebar/sidebar";
 import * as _ from 'lodash'
+import { CloudImage } from '../../components';
 // import Router from 'next/router'
 // import Head from 'next/head'
 // import * as _ from "lodash"

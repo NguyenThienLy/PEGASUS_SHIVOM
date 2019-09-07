@@ -27,7 +27,6 @@ export class BaseAction {
                 })
         }
     }
-
     fetchPending() {
         return {
             type: `FETCH_${this.name}_PENDING`

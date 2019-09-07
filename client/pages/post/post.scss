@@ -1,1 +1,496 @@
 @import "../../default.scss";
+
+@mixin for-phone-only {
+    @media (max-width: 599px) {
+        @content;
+    }
+}
+
+@mixin for-tablet-portrait-up {
+    @media (min-width: 600px) {
+        @content;
+    }
+}
+
+@mixin for-tablet-portrait-only {
+    @media (min-width: 600px) and (max-width: 899px) {
+        @content;
+    }
+}
+
+@mixin for-tablet-landscape-up {
+    @media (min-width: 900px) {
+        @content;
+    }
+}
+
+@mixin for-tablet-landscape-only {
+    @media (min-width: 900px) and (max-width: 1199px) {
+        @content;
+    }
+}
+
+@mixin for-desktop-up {
+    @media (min-width: 1200px) {
+        @content;
+    }
+}
+
+@mixin for-desktop-only {
+    @media (min-width: 1200px) and (max-width: 1799px) {
+        @content;
+    }
+}
+
+@mixin for-big-desktop-up {
+    @media (min-width: 1800px) {
+        @content;
+    }
+}
+
+$font-fam: "Noto Serif SC",
+serif;
+
+.post {
+    background-color: #fff;
+    font-size: $font-size;
+    padding: 3em 3em 0;
+
+    @include e('path') {
+        color: #363738;
+        font-family: $font-fam;
+        font-size: $font-size;
+        background-color: $background-color;
+        padding: 3em 0 3em 10em;
+
+        a {
+            color: #363738;
+            text-transform: capitalize;
+            text-decoration: none;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 1.125em;
+
+            &:hover {
+                color: $main-color;
+            }
+        }
+
+        @include for-phone-only {
+            padding: 1em 1.5em;
+
+            a {
+                font-size: 0.8em;
+            }
+        }
+
+        @include for-tablet-portrait-only {
+            padding: 1em 5.5em;
+        }
+
+        @include for-tablet-landscape-only {
+            padding: 1.5em 0 1.5em 6.5em;
+        }
+
+        @include for-big-desktop-up {
+            padding-left: 13em;
+        }
+
+    }
+
+    @include e('wrapper') {
+        display: flex;
+        flex-direction: row;
+
+        @include e('main-content') {
+            width: 55%;
+            margin-left: 5.5em;
+            padding: 1.5em;
+            margin-right: 2em;
+
+            @include e("info") {
+                text-transform: uppercase;
+                font-weight: 400;
+                line-height: 1.5em;
+                font-size: 0.6em;
+                text-align: center;
+                color: $main-color;
+                letter-spacing: 0.1em;
+
+                a {
+                    text-decoration: none;
+                    color: $main-color;
+                    transition: 300ms;
+
+                    &:hover {
+                        color: $color-grey;
+                    }
+                }
+
+                @include e("author") {
+                    display: inline-block;
+
+                    &::after {
+                        content: "/";
+                        display: inline-block;
+                        margin: 0 3px;
+                    }
+                }
+
+                @include e("category") {
+                    display: inline-block;
+
+                    &::after {
+                        content: "/";
+                        display: inline-block;
+                        margin: 0 3px;
+                    }
+                }
+
+                @include e("tags") {
+                    display: inline-block;
+                }
+            }
+
+            @include e("title") {
+                text-align: center;
+                font-weight: 400;
+                margin-top: 0.5em;
+                margin-bottom: 2em;
+                padding: 0 4em;
+
+                a {
+                    text-decoration: none;
+                    color: $color-grey;
+                    font-family: $font-family-special;
+                    font-size: 1.3125em;
+                    line-height: 1.25em;
+                    text-transform: capitalize;
+                    transition: 300ms;
+
+                    &:hover {
+                        color: $main-color;
+                    }
+                }
+
+                @include for-phone-only {
+                    padding: 0;
+                    font-size: 1.1em;
+                    margin-bottom: 1.5em;
+                    padding: 0;
+                }
+            }
+
+            @include e('content') {
+                padding-bottom: 2.5em;
+
+                @include for-phone-only {
+                    padding-bottom: 1.5em;
+                }
+            }
+
+            @include e('post-author') {
+                margin-bottom: 3.25em;
+                padding: 3.625em 0 3.25em;
+                border-top: 1px solid #ebebeb;
+                border-bottom: 1px solid #ebebeb;
+
+                @include for-phone-only {
+                    padding: 1.5em 0 1.5em;
+                    margin-bottom: 1.5em;
+
+                    .post-author {
+                        flex-direction: column;
+
+                        @include e("avatar") {
+                            padding-bottom: 1em;
+
+                            img {
+                                width: 10em;
+                            }
+                        }
+
+                        @include e('info') {
+                            margin-left: 0;
+
+                            @include e('name') {
+                                font-size: 1.5em;
+                            }
+                        }
+                    }
+                }
+            }
+
+            @include e('text-divider') {
+                font-family: $font-family-special;
+                color: $main-color;
+                margin-bottom: 2em;
+
+                h3 {
+                    font-weight: 500;
+                    font-size: 2.625em;
+                    margin: 0;
+
+                    @include for-phone-only {
+                        font-size: 1.5em;
+                    }
+                }
+            }
+
+            @include e('related-posts') {
+                display: flex;
+                flex-wrap: wrap;
+                margin-top: 2em;
+
+                @include e('post') {
+                    width: 50%;
+
+                    .related-post {
+                        width: auto;
+                    }
+
+                    @include for-phone-only {
+                        width: 100%;
+
+                        .related-post {
+                            padding-right: 0;
+
+                            @include e('img') {
+                                margin-bottom: 0.5em;
+                            }
+
+                            @include e('author') {
+                                font-size: 0.7em;
+                            }
+
+                            @include e('title') {
+                                font-size: 1.2em;
+                            }
+                        }
+                    }
+
+                    @include for-tablet-portrait-only {
+                        padding-right: 1em;
+                    }
+                }
+            }
+
+            @include for-phone-only {
+                width: auto;
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            @include for-tablet-portrait-only {
+                width: auto;
+                margin-left: 3.5em;
+                margin-right: 3.5em;
+            }
+
+            @include for-tablet-landscape-only {
+                margin-left: 3.5em;
+                margin-right: 3.5em;
+                width: auto;
+            }
+
+            @include for-big-desktop-up {
+                margin-right: 5.5em;
+            }
+        }
+
+        @include e('sub-content') {
+            margin: 4em 0 4em;
+            width: 25%;
+
+            @include e('social-group') {
+                margin: 40px 0 30px 0;
+
+                .media-buttons__media-icons {
+                    width: 55px;
+                    margin-right: 20px;
+                }
+            }
+
+            @include e('latest-posts') {
+                @include e('post') {
+                    width: 80%;
+
+                    @include for-phone-only {
+                        width: 20em;
+                    }
+
+                    @include for-tablet-portrait-only {
+                        width: 20em;
+                    }
+
+                    @include for-tablet-landscape-only {
+                        width: 17em;
+                    }
+                }
+            }
+
+            @include e('categories') {
+
+                margin-bottom: 30px;
+
+                @include e('text') {
+                    font-family: $font-fam;
+                    font-size: 1.7em;
+                    font-color: #363738;
+                    margin-bottom: 20px;
+                    text-transform: capitalize;
+                }
+
+                @include e('category') {
+                    font-family: $font-fam;
+                    text-transform: uppercase;
+                    color: $main-color;
+                    font-size: 0.8em;
+                    margin-bottom: 12px;
+                }
+            }
+
+            @include e('search') {
+                p {
+                    line-height: 26px;
+                    color: rgba(0, 0, 0, 0.6);
+                }
+
+                .search-box {
+                    form {
+                        width: 100%;
+
+                        input {
+                            width: 85%;
+                        }
+
+                        i {
+                            top: 33%;
+                            right: 1em !important;
+                        }
+                    }
+                }
+            }
+
+            @include e('email') {
+                margin: 40px 0 30px 0;
+
+                p {
+                    line-height: 26px;
+                    color: rgba(0, 0, 0, 0.6);
+                }
+
+                .search-box {
+                    form {
+                        width: 100%;
+
+                        input {
+                            width: 85%;
+                        }
+
+                        i {
+                            top: 33%;
+                            right: 1em !important;
+                        }
+                    }
+                }
+            }
+
+            @include for-phone-only {
+                width: auto;
+                margin: 0em 1.5em 1em;
+            }
+
+            @include for-tablet-portrait-only {
+                width: auto;
+                margin: 2em 5.5em;
+            }
+
+            @include for-tablet-landscape-only {
+                width: auto;
+                margin: 4em 5.5em;
+            }
+        }
+
+        @include for-phone-only {
+            flex-direction: column;
+        }
+
+        @include for-tablet-portrait-only {
+            flex-direction: column;
+        }
+
+        @include for-tablet-landscape-only {
+            flex-direction: column;
+        }
+    }
+
+    @include e('contact-us') {
+        width: 80%;
+        margin: 1em auto 0;
+        padding: 1em 0 7em;
+
+        @include for-phone-only {
+            padding-bottom: 4em;
+            margin-bottom: 0 !important;
+
+            .contact-us {
+                flex-direction: column-reverse;
+
+
+                @include e('sub-info') {
+                    margin-left: 0;
+
+                    @include e('title') {
+                        font-size: 2em;
+                    }
+
+                    @include e('content') {
+                        font-size: 1em;
+                    }
+                }
+
+                form {
+                    margin-right: 0;
+                }
+            }
+        }
+
+        @include for-tablet-portrait-only {
+            padding-bottom: 4em;
+
+            .contact-us {
+                flex-direction: column-reverse;
+
+                @include e('sub-info') {
+                    margin-left: 1em;
+                }
+
+                form {
+                    margin-right: 1em;
+                }
+            }
+        }
+
+        @include for-tablet-landscape-only {
+            .contact-us {
+                @include e('sub-info') {
+                    margin: 0;
+                }
+            }
+        }
+
+    }
+
+    @include for-phone-only {
+        padding: 0;
+    }
+
+    @include for-tablet-portrait-only {
+        padding: auto 0;
+    }
+
+    @include for-big-desktop-up {
+        padding: 0 10em;
+    }
+}

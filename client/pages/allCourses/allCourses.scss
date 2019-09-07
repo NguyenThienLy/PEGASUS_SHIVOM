@@ -1,5 +1,56 @@
 @import "../../default.scss";
 
+@mixin for-phone-only {
+    @media (max-width: 599px) {
+        @content;
+    }
+}
+
+@mixin for-tablet-portrait-up {
+    @media (min-width: 600px) {
+        @content;
+    }
+}
+
+@mixin for-tablet-portrait-only {
+    @media (min-width: 600px) and (max-width: 899px) {
+        @content;
+    }
+}
+
+@mixin for-tablet-landscape-up {
+    @media (min-width: 900px) {
+        @content;
+    }
+}
+
+@mixin for-tablet-landscape-only {
+    @media (min-width: 900px) and (max-width: 1199px) {
+        @content;
+    }
+}
+
+@mixin for-desktop-up {
+    @media (min-width: 1200px) {
+        @content;
+    }
+}
+
+@mixin for-desktop-only {
+    @media (min-width: 1200px) and (max-width: 1799px) {
+        @content;
+    }
+}
+
+@mixin for-big-desktop-up {
+    @media (min-width: 1800px) {
+        @content;
+    }
+}
+
+$font-fam : "Noto Serif SC",
+serif;
+
 .all-courses {
     background-color: #fff;
 
@@ -10,6 +61,11 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 8em 0em;
+        background-image: url('https://dalia.elated-themes.com/wp-content/uploads/2018/07/spa-slider-1.jpg');
+        //background-attachment: fixed;
+        background-position: center 0px;
+        background-repeat: no-repeat;
 
         @include e("inner") {
             padding: 0 32%;
@@ -58,22 +114,167 @@
                     font-size: 0.9em;
                     line-height: 1.5em;
                 }
+
+                @include for-phone-only {
+                    p {
+                        display: none;
+                    }
+                }
             }
         }
     }
 
-    @include e("main-content") {
-
-        margin: 2em 4em;
+    @include e('wrapper') {
         display: flex;
         flex-direction: row;
+        margin: 1.5em 6em;
 
-        flex-wrap: wrap;
+        @include e("main-content") {
+            display: flex;
+            flex-direction: row;
+            width: 70%;
+            flex-wrap: wrap;
 
-        @include e('item') {
-            width: 30em;
-            margin: 1em 0 1em 1em;
+            @include e('item') {
+                width: 30em;
+                margin: 0 0 0 1em;
+                padding: 1em 0;
+                border-bottom: 1px solid #ebebeb;
+            }
+
+            @include for-phone-only {
+                width: auto;
+            }
         }
+
+        @include e('sub-content') {
+            font-size: 16px;
+            margin: 1em 0 4em;
+            width: 30%;
+
+            @include e('social-group') {
+                margin: 40px 0 30px 0;
+
+                .media-buttons__media-icons {
+                    width: 55px;
+                    margin-right: 20px;
+                }
+            }
+
+            @include e('latest-posts') {
+                @include e('post') {
+                    width: 80%;
+
+                    @include for-phone-only {
+                        width: 20em;
+                    }
+
+                    @include for-tablet-portrait-only {
+                        width: 20em;
+                    }
+
+                    @include for-tablet-landscape-only {
+                        width: 17em;
+                    }
+                }
+            }
+
+            @include e('categories') {
+
+                margin-bottom: 30px;
+
+                @include e('text') {
+                    font-family: $font-fam;
+                    font-size: 1.7em;
+                    font-color: #363738;
+                    margin-bottom: 20px;
+                    text-transform: capitalize;
+                }
+
+                @include e('category') {
+                    font-family: $font-fam;
+                    text-transform: uppercase;
+                    color: $main-color;
+                    font-size: 0.8em;
+                    margin-bottom: 12px;
+                }
+            }
+
+            @include e('search') {
+                p {
+                    line-height: 26px;
+                    color: rgba(0, 0, 0, 0.6);
+                }
+
+                .search-box {
+                    form {
+                        width: 100%;
+
+                        input {
+                            width: 85%;
+                        }
+
+                        i {
+                            top: 33%;
+                            right: 1em !important;
+                        }
+                    }
+                }
+            }
+
+            @include e('email') {
+                margin: 40px 0 30px 0;
+
+                p {
+                    line-height: 26px;
+                    color: rgba(0, 0, 0, 0.6);
+                }
+
+                .search-box {
+                    form {
+                        width: 100%;
+
+                        input {
+                            width: 85%;
+                        }
+
+                        i {
+                            top: 33%;
+                            right: 1em !important;
+                        }
+                    }
+                }
+            }
+
+            @include for-phone-only {
+                width: auto;
+                margin: 0em 1.5em 0em;
+            }
+
+            @include for-tablet-portrait-only {
+                width: auto;
+                margin: 2em 5.5em;
+            }
+
+            @include for-tablet-landscape-only {
+                width: auto;
+                margin: 4em 5.5em;
+            }
+        }
+
+        @include for-phone-only {
+            flex-direction: column;
+            margin: 1.5em 0 0 0;
+        }
+
+        @include for-tablet-portrait-only {
+            flex-direction: column;
+        }
+
+        @include for-tablet-landscape-only {
+            flex-direction: column;
+        }
+
     }
 
     @include e("intro") {
@@ -93,6 +294,31 @@
         width: 80%;
         margin: 2em auto 0;
         padding: 3em 0 5em;
+
+        @include for-phone-only {
+            margin-bottom: 0 !important;
+            padding: 0 0 3em;
+
+            .contact-us {
+                flex-direction: column-reverse;
+
+                @include e('sub-info') {
+                    margin-left: 0;
+
+                    @include e('title') {
+                        font-size: 2em;
+                    }
+
+                    @include e('content') {
+                        font-size: 1em;
+                    }
+                }
+
+                form {
+                    margin-right: 0;
+                }
+            }
+        }
     }
 
     @include e("footer") {}
@@ -126,12 +352,14 @@
     }
 
     .all-courses {
-        @include e('main-content') {
-            margin: 0.5em;
+        @include e('wrapper') {
+            @include e('main-content') {
+                margin: 0.5em;
 
-            @include e('item') {
-                width: 45%;
-                margin: 1em 0 1em 1em;
+                @include e('item') {
+                    width: 45%;
+                    margin: 0 1em 0 0;
+                }
             }
         }
     }
@@ -143,18 +371,24 @@
 
 }
 
-@media only screen and (max-width: 991px) {
+@media only screen and (max-width: 1199px) {
     html {
         font-size: 19px !important;
     }
 
     .all-courses {
-        @include e('main-content') {
-            margin: 0.5em;
+        @include e('wrapper') {
+            @include e('main-content') {
+                margin: 0.5em;
 
-            @include e('item') {
-                width: 45em;
-                margin: 1em 0 1em 1em;
+                @include e('item') {
+                    width: 45em;
+                    margin: 0 1em 0 0;
+                }
+            }
+
+            @include e('sub-content') {
+                margin: 1.5em;
             }
         }
 
@@ -170,31 +404,10 @@
         .all-courses__title__inner {
             display: none;
         }
-
-        .all-courses__contactUs {
-            width: 90%;
-
-            .contact-us {
-
-                //   flex-direction: column;
-                //   .contact-us__form {
-                //     flex-basis: 100%;
-                //     margin: 0 0 4em 0;
-                //   }
-                .contact-us__sub-info {
-                    margin-left: 0;
-                }
-
-                .contact-us__sub-info__title {
-                    font-size: 2em;
-                    margin: 0;
-                }
-            }
-        }
     }
 }
 
-@media only screen and (max-width: 767px) {
+@media (min-width: 600px) and (max-width: 899px) {
     html {
         font-size: 19px !important;
     }
@@ -205,40 +418,28 @@
             grid-column-gap: 0%;
         }
 
-        @include e('main-content') {
-            margin: 0.5em;
+        @include e('wrapper') {
+            @include e('main-content') {
+                width: 100%;
+                margin: 0.5em;
 
-            @include e('item') {
-                width: 40em;
-                margin: 1em 0 1em 1em;
+                @include e('item') {
+                    width: 40em;
+                    margin: 1em 1em 1em 0;
+                }
             }
-        }
 
-        @include e('contactUs') {
-            padding: 0;
-
-            .contact-us {
-                flex-direction: column-reverse;
-
-                @include e('form ') {
-                    flex-basis: 100%;
-                    margin: 0 0em 4em 0em;
-                }
-
-                @include e('sub-info') {
-                    flex-basis: 100%;
-                    margin: 0;
-                }
+            @include e('sub-content') {
+                margin: 0;
             }
         }
     }
-
 }
 
 @media only screen and (max-width: 599px) {
-    html {
-        font-size: 18px !important;
-    }
+    //     html {
+    //         font-size: 18px !important;
+    //     }
 
     .all-courses {
         .all-courses__title__image__info {
@@ -247,35 +448,17 @@
             }
         }
 
-        @include e('main-content') {
-            margin: 0.5em;
+        @include e('wrapper') {
+            margin: 0;
 
-            @include e('item') {
+            @include e('main-content') {
+                margin: 0.5em 1em;
 
-                .training-class__info__detail {
-                    display: none;
-                }
-            }
-        }
+                @include e('item') {
 
-
-
-        @include e('contactUs') {
-            padding: 0;
-
-            .contact-us {
-                flex-direction: column-reverse;
-                margin: 0;
-
-
-                @include e('form') {
-                    flex-basis: 100%;
-                    margin: 0 0 4em 0;
-                }
-
-                @include e('sub-info') {
-                    flex-basis: 100%;
-                    margin: 0;
+                    .training-class__info__detail {
+                        display: none;
+                    }
                 }
             }
         }

@@ -23,7 +23,23 @@ serif;
         color: #363738;
         font-family: $font-fam;
         background-color: $background-color;
-        padding: 3em 0 3em 5.5em;
+        padding: 3em 0 3em 10em;
+        font-size: $font-size;
+
+        a {
+            font-size: 1.125em;
+            color: #363738;
+            text-transform: capitalize;
+
+            &:hover {
+                color: $main-color;
+            }
+        }
+
+        i {
+            font-size: 0.75em;
+            color: $main-color;
+        }
     }
 
     .course-wrapper {
@@ -320,11 +336,15 @@ serif;
 
             @include e('main-content') {
                 width: auto;
-                margin-right: 4em;
+                margin: 3em 4.5em;
+
+                @include e('image') {
+                    margin-bottom: 0;
+                }
 
                 @include e('classes') {
                     @include e('yogaclass') {
-                        width: 9em;
+                        width: 8em;
                         margin-right: 15px;
                         padding: 1em;
                     }
@@ -337,6 +357,8 @@ serif;
                 }
 
                 @include e('trainer-info') {
+                    margin-bottom: 1em;
+
                     .class-trainer {
                         height: auto;
                         flex-direction: column;
@@ -350,11 +372,15 @@ serif;
                             padding-left: 0;
 
                             @include e('name') {
-                                padding: 9.5% 5% 0 0;
+                                padding: 0.5em 5% 0 0;
                             }
 
                             @include e('description') {
                                 margin: 18px 0 0;
+                            }
+
+                            @include e('detail') {
+                                margin-top: 18px;
                             }
                         }
                     }
@@ -441,7 +467,8 @@ serif;
 
     .course {
         .course-title {
-            padding: 1em 0 1em 5.5em;
+            padding: 1em 0 1em 1.5em;
+            font-size: 0.8em;
         }
 
         .course-wrapper {
@@ -564,13 +591,14 @@ serif;
 }
 
 @media only screen and (max-width: 575px) {
-    html {
-        font-size: 18px !important;
-    }
+    // html {
+    //     font-size: 18px !important;
+    // }
 
     .course {
         .course-title {
-            padding: 1em 0 1em 5.5em;
+            padding: 1em 0 1em 1.5em;
+            font-size: 0.8em;
         }
 
         .course-wrapper {
@@ -580,6 +608,15 @@ serif;
                 width: auto;
                 margin-right: 0em;
                 margin-left: 0em;
+                margin-top: 1.5em;
+
+                @include e('image') {
+                    margin-bottom: 0;
+                }
+
+                @include e('title') {
+                    font-size: 1.4375em;
+                }
 
                 @include e('classes') {
                     @include e('yogaclass') {
@@ -683,6 +720,7 @@ serif;
 
         @include e('contact-us') {
             padding: 0;
+            margin-bottom: 0 !important;
 
             .contact-us {
                 flex-direction: column-reverse;

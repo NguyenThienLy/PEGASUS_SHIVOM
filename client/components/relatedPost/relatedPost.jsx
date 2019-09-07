@@ -6,20 +6,21 @@ export class RelatedPost extends React.Component {
     super(props);
   }
   render() {
+    const { relatedPost } = this.props;
     return (
       <div className="related-post">
         <div className="related-post__img">
-          <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/06/blog-list-img-1.jpg" />
+          <img src={relatedPost.image} />
           <div className="related-post__img__created-date">
-            <div className="related-post__img__created-date__day">ngay</div>
-            <div className="related-post__img__created-date__month">th2</div>
+            <div className="related-post__img__created-date__day">{relatedPost.createdDate.day}</div>
+            <div className="related-post__img__created-date__month">{relatedPost.createdDate.month}</div>
           </div>
         </div>
         <div className="related-post__author">
-          <a href="#">khach</a>
+          <a href="#">{relatedPost.name}</a>
         </div>
         <div className="related-post__title">
-          <a href="#">Ăn thịt chó có lợi gì cho tập luyện yoga</a>
+          <a href="#">{relatedPost.title}</a>
         </div>
       </div>
     );

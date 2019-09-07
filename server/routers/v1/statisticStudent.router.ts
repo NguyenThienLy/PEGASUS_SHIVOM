@@ -35,7 +35,6 @@ export default class StatisticStudentRouter extends CrudRouter<typeof statisticS
             properties: {
                 course: { type: "string" },
                 type: { type: "string", enum: ["week", "month", "year", "realTime"] },
-                format: { type: "string", enum: ["absent", "late", "on_time", "redundant"] },
                 startTime: { type: "string", format: "date-time" },
                 endTime: { type: "string", format: "date-time" }
             },

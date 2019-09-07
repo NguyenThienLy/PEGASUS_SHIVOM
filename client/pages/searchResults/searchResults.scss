@@ -1,0 +1,60 @@
+@import "../../default.scss";
+
+.search-page {
+    font-size: $font-size;
+    background-color: #fff;
+
+    @include e('path') {
+
+        font-family: $font-family-special;
+        background-color: $background-color;
+        padding: 2.5em 0 2.5em 5.5em;
+
+        span {
+            font-size: 1.5em;
+            font-weight: 500;
+            color: #363738;
+        }
+    }
+
+    @include e('wrapper') {
+        margin: 0 5.5em;
+        padding: 4em 0 3em 0;
+
+        @include e('form') {
+            @include e('text') {
+                font-family: $font-family-special;
+                font-size: 1.5em;
+                font-weight: 500;
+                color: #363738;
+                margin-bottom: 1.25em;
+            }
+
+            @include e('search') {
+                .search-box {
+                    form {
+                        width: auto;
+                        box-shadow: none;
+                        border-bottom: 1px solid $main-color;
+
+                        input {
+                            width: 90%;
+                            margin-left: 0em;
+
+                            &::placeholder {
+                                font-size: 1.5em;
+                                font-family: $font-body;
+                            }
+                        }
+                    }
+                }
+            }
+
+            @include e('small-text') {
+                span {
+                    color: $font-color;
+                }
+            }
+        }
+    }
+}

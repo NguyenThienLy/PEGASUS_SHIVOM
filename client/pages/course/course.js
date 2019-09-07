@@ -180,7 +180,6 @@ export class Course extends React.Component {
 
 	}
 	render() {
-		console.log("time table: ", this.state.timeTables)
 		return (
 			<div className="course">
 				<Head>
@@ -191,7 +190,8 @@ export class Course extends React.Component {
 				<Header {...this.props} />
 				<React.Fragment>
 					<div className="course-title">
-						{this.props.course.name}
+
+						<a href="/">trang chủ</a>&nbsp;&nbsp;<i className="fas fa-chevron-right"></i>&nbsp;&nbsp;<a href="cac-khoa-hoc">các khoá học</a>&nbsp;&nbsp;<i className="fas fa-chevron-right"></i>&nbsp;&nbsp;<a>{this.props.course.name}</a>
 					</div>
 					<div className="course-ringing-phone">
 						<RingingPhone />

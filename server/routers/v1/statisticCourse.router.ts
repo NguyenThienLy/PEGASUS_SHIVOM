@@ -12,12 +12,15 @@ export default class StatisticClassRouter extends CrudRouter<typeof statisticCou
         this.router.get("/statisticForLineChart/", this.statisticForLineChartMiddlewares(), this.route(this.statisticForLineChart))
         this.router.get("/statisticForPieChart/", this.statisticForPieChartMiddlewares(), this.route(this.statisticForPieChart))
     }
+
     statisticForLineChartMiddlewares(): any[] {
         return []
     }
+
     statisticForPieChartMiddlewares(): any[] {
         return []
     }
+
     // Lấy dữ liệu cho khóa học biểu đồ đường
     async statisticForLineChart(req: Request, res: Response) {
         await this.validateJSON(req.query, {
@@ -56,29 +59,34 @@ export default class StatisticClassRouter extends CrudRouter<typeof statisticCou
             queryInfoMiddleware.run()
         ]
     }
+
     getItemMiddlewares(): any[] {
         return [
             // authInfoMiddleware.run(["admin"]),
             queryInfoMiddleware.run()
         ]
     }
+
     createMiddlewares(): any[] {
         return [
             authInfoMiddleware.run(["admin"])
         ]
     }
+
     updateMiddlewares(): any[] {
         return [
             authInfoMiddleware.run(["admin"]),
             queryInfoMiddleware.run()
         ]
     }
+
     deleteMiddlewares(): any[] {
         return [
             authInfoMiddleware.run(["admin"]),
             queryInfoMiddleware.run()
         ]
     }
+
     deleteAllMiddlewares(): any[] {
         return [
             blockMiddleware.run()
