@@ -75,7 +75,7 @@ export class CourseController extends CrudController<typeof courseService>{
                     }, {
                         path: "class",
                         select: "name shortDescription",
-                        populate: [{ path: "teacher", select: "firstName lastName" }]
+                        populate: [{ path: "teacher", select: "firstName lastName avatar shortDescription" }]
                     }
                 ]
             }, option))

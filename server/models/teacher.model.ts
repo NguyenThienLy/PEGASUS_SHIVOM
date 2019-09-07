@@ -9,6 +9,8 @@ export type TeacherModel = BaseModel & {
     lastName: string
     birthday: Date
     gender: "male" | "female"
+    shortDescription: string
+    description: string
     address?: string
     phone: string
     email: string
@@ -28,6 +30,8 @@ const teacherSchema = new Schema({
     lastName: { type: String, required: true },
     birthday: { type: Date, required: true },
     gender: { type: String, enum: ["male", "female"] },
+    shortDescription: { type: String },
+    description: { type: String },
     address: { type: String },
     phone: { type: String, required: true },
     email: { type: String, required: true },

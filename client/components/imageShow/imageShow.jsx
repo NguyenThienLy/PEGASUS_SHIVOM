@@ -6,7 +6,6 @@ export class ImageShow extends React.Component {
     super(props);
   }
   render() {
-    console.log("image show : ", this.props)
     return (
       <div className="image-show">
         {this.props.items.map((item, index) => {

@@ -11,7 +11,6 @@ export class TimeTableAction extends BaseAction {
             dispatch(this.fetchPending())
             api.course.getAllTimeTable(option)
                 .then(res => {
-                    console.log("response: ", res)
                     dispatch(this.fetchSuccess(res.results.objects.rows))
                     return res
                 })

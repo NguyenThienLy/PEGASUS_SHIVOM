@@ -16,6 +16,7 @@ export class Course extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			timeTables: [],
 			course: {
 				image:
 					'https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-event-list-3a.jpg',
@@ -148,21 +149,27 @@ export class Course extends React.Component {
 		if (nextProps.courses.items.length > 0) {
 			this.props.fetchTimeTableOfCourse(this.props.course._id)
 		}
-		const courseItemIndex = nextProps.courses.items.findIndex(item => { return item._id === this.props.course._id })
-		if (courseItemIndex !== -1 && nextProps.courses.items[courseItemIndex].timeTables) {
-			this.props.course.timeTables = nextProps.courses.items[courseItemIndex].timeTables
-			console.log(nextProps.courses.items[courseItemIndex].timeTables)
-		}
 
 		return true
 	}
 	shouldComponentUpdate(nextProps, nextState) {
-		console.log(nextProps, nextState);
-		console.log(this.props, this.state);
 
-		return false;
+		return true;
 	}
+	componentDidUpdate(prevProps, prevState, snapshot) {
+		const courseItemIndex = this.props.courses.items.findIndex(item => { return item._id === this.props.course._id })
+		if (courseItemIndex != -1 && (this.state.timeTables == undefined || (this.state.timeTables && this.state.timeTables.length === 0))) {
+			setTimeout(() => {
+				const courseData = this.props.courses.items[courseItemIndex]
+				if (courseData.timeTables !== undefined) {
+					this.setState({ timeTables: courseData.timeTables })
+				}
+			}, 1000);
+		}
+	}
+
 	async componentDidMount() {
+		this.setState({ timeTables: [] })
 		this.fetchData()
 		var heightOfFooter = $(".course__footer .footer-wrapper").height();
 		$(".course__contact-us").css("margin-bottom", heightOfFooter + "px");
@@ -173,6 +180,7 @@ export class Course extends React.Component {
 
 	}
 	render() {
+		console.log("time table: ", this.state.timeTables)
 		return (
 			<div className="course">
 				<Head>
@@ -233,16 +241,18 @@ export class Course extends React.Component {
 								}
 							</div>
 							{
-								this.state.moreCourses.map((course, index) => {
+								this.state.timeTables && this.state.timeTables.length > 0 ? this.state.timeTables.map((classData, index) => {
+									console.log("Class data: ", classData)
 									return (
 										<div>
 											<div className="course-wrapper__main-content__text">
-												{course.name} <RegisterBtn />
+												{classData.name}
+												{/* <RegisterBtn /> */}
 											</div>
 											<div className="course-wrapper__main-content__trainer-info">
-												<TrainerInfo trainerInfo={course.trainerInfo} />
+												{classData.class.teacher ? <TrainerInfo trainerInfo={classData.class.teacher} /> : null}
 											</div>
-											<div className="course-wrapper__main-content__classes">
+											{/* <div className="course-wrapper__main-content__classes">
 												{
 													course.classes.map((yogaclass, index) => {
 														return (
@@ -254,17 +264,17 @@ export class Course extends React.Component {
 														);
 													})
 												}
-											</div>
+											</div> */}
 										</div>
 									);
-								})
+								}) : null
 							}
 						</div>
 
 						<div className="course-wrapper__sub-content">
-							<div className="course-wrapper__sub-content__search">
+							{/* <div className="course-wrapper__sub-content__search">
 								<SearchBox type='search' />
-							</div>
+							</div> */}
 							<div className="course-wrapper__sub-content__social-group">
 								<SocialGroup />
 							</div>
@@ -330,7 +340,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 	fetchCourse: action.course.fetch,
 	fetchSetting: action.setting.fetch,
 	fetchTimeTableOfCourse: action.course.getTimeTableOfCourse,
-	addContact: action.contact.add
+	addContact: action.contact.add,
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Course);

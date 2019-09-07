@@ -18,7 +18,6 @@ export class ContactUs extends React.Component {
     this.props.addContact(body)
   }
   render() {
-    console.log("contact form props: ", this.props)
     return (
       <div className="contact-us">
         <div className="contact-us__overlay"></div>

@@ -13,7 +13,7 @@ export class CourseAction extends BaseAction {
             })
             this.api.getTimeTableOfCourse(courseId, option)
                 .then(res => {
-                    console.log("res get course timetable: ", res)
+
                     dispatch({
                         type: `${this.name}_GET_TIME_TABLE_OF_COURSE_SUCCESS`,
                         payload: res.result.object
