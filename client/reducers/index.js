@@ -1,5 +1,4 @@
 import { combineReducers } from "redux";
-
 import { PostReducer } from './post'
 import { AdminReducer } from './admin'
 import { ClassReducer } from './class'
@@ -59,6 +58,7 @@ const store = combineReducers({
     galleries: galleryReducer.reducer,
     masonryHomes: masonryHomeReducer.reducer,
     newCategories: newCategoryReducer.reducer,
+    news: newsReducer.reducer,
     promotions: promotionReducer.reducer,
     ranks: rankReducer.reducer,
     skills: skillReducer.reducer,
@@ -72,4 +72,4 @@ const store = combineReducers({
     timeTable: timeTableReducer.reducer
 })
 
-export default store
+export default store;

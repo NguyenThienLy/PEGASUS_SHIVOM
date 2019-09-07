@@ -6,11 +6,13 @@ const Schema = mongoose.Schema;
 export type NewCategoryModel = BaseModel & {
     name: string
     description: string
+    slug: string
     thumb?: string
 }
 
 const newCategorySchema = new Schema({
     name: { type: String, required: true },
+    slug: { type: String, required: true },
     description: { type: String },
     thumb: { type: String },
     status: { type: String, enum: ["active", "deactive"], default: "active" }

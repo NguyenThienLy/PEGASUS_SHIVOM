@@ -49,11 +49,17 @@ class Server {
     this.server.get("/", (req, res) => {
       this.app.render(req, res, "/index");
     });
-    this.server.get("/cac-bai-viet", (req, res) => {
-      this.app.render(req, res, "/blog/blog");
+
+     this.server.get("/:categorySlug", (req, res) => {
+      this.app.render(req, res, "/blog/blog", {
+        categorySlug: req.params.categorySlug
+      });
     });
-    this.server.get("/bai-viet", (req, res) => {
-      this.app.render(req, res, "/post/post");
+    this.server.get("/:categorySlug/:newsSlug", (req, res) => {
+      this.app.render(req, res, "/post/post", {
+        categorySlug: req.params.categorySlug,
+        newSlug: req.params.newSlug
+      });
     });
     this.server.get("/khoa-hoc", (req, res) => {
       this.app.render(req, res, "/course/course");

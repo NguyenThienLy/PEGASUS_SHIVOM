@@ -5,9 +5,19 @@ import Link from "next/link";
 import { connect } from "react-redux";
 import { api } from "../../services";
 import { action } from "../../actions";
+import { bindActionCreators } from "redux";
+import Router from "next/router";
+import { Redirect } from "react-router-dom";
 
-import { Header, Footer, ContactUs, News2, SearchBox, LatestPost } from "../../components";
-import { SocialGroup } from "../../components/footer/socialGroup/socialGroup"
+import {
+  Header,
+  Footer,
+  ContactUs,
+  News2,
+  SearchBox,
+  LatestPost
+} from "../../components";
+import { SocialGroup } from "../../components/footer/socialGroup/socialGroup";
 import "./blog.scss";
 
 class Blog extends React.Component {
@@ -57,7 +67,7 @@ class Blog extends React.Component {
             link: "#",
             quantity: 0
           },
-          button: 'đọc thêm'
+          button: "đọc thêm"
         },
         {
           link: "#",
@@ -101,22 +111,22 @@ class Blog extends React.Component {
             link: "#",
             quantity: 0
           },
-          button: 'đọc thêm'
-        },
+          button: "đọc thêm"
+        }
       ],
       categories: [
         {
-          name: 'Course 1',
-          classes: 3,
+          name: "Course 1",
+          classes: 3
         },
         {
-          name: 'Course 2',
-          classes: 2,
+          name: "Course 2",
+          classes: 2
         },
         {
-          name: 'Course 3',
-          classes: 3,
-        },
+          name: "Course 3",
+          classes: 3
+        }
       ],
       latestPost: [
         {
@@ -141,10 +151,27 @@ class Blog extends React.Component {
           date: "13th jun"
         }
       ]
-    }
+    };
   }
   static async getInitialProps({ req, query }) {
-    return {};
+    // Lấy slug của danh mục tin tức
+    const slug = query.categorySlug;
+    try {
+      // Lấy ra object category theo slug
+      const category = await api.newCategory.getNewsCategoryBySlug(slug);
+
+      // Lấy danh sách các tin tức theo category
+      const res = await api.news.getList({
+        query: {
+          filter: { category: category._id }
+        },
+        populates: [{ path: "author", select: "firstName%20lastName" }]
+      });
+
+      return { lstNews: res.results.objects.rows, category: category };
+    } catch (error) {
+      <Redirect to="*" />;
+    }
   }
   async componentDidMount() {
     var heightOfFooter = $(".blog__footer .footer-wrapper").height();
@@ -166,19 +193,26 @@ class Blog extends React.Component {
           <div className="blog">
             <div className="blog__wrapper">
               <div className="blog__wrapper__main-content">
-                {
-                  this.state.new2.map((item, index) => {
-                    return (
-                      <div key={index}>
-                        <News2 news2={item}></News2>
-                      </div>
-                    );
-                  })
-                }
+                {this.props.lstNews.map((news2, index) => {
+                  news2.category = this.props.category;
+
+                  return (
+                    <div>
+                      <News2 key={index} news2={news2}></News2>
+                    </div>
+                  );
+                })}
+                {/* {this.state.new2.map((item, index) => {
+                  return (
+                    <div key={index}>
+                      <News2 news2={item}></News2>
+                    </div>
+                  );
+                })} */}
               </div>
               <div className="blog__wrapper__sub-content">
                 <div className="blog__wrapper__sub-content__search">
-                  <SearchBox type='search' />
+                  <SearchBox type="search" />
                 </div>
                 <div className="blog__wrapper__sub-content__social-group">
                   <SocialGroup />
@@ -186,39 +220,42 @@ class Blog extends React.Component {
                 <div className="blog__wrapper__sub-content__categories">
                   <div className="blog__wrapper__sub-content__categories__text">
                     Thể loại
-                	</div>
-                  {
-                    this.state.categories.map((category) => {
-                      return (
-                        <div className="blog__wrapper__sub-content__categories__category">
-                          {category.name} ({category.classes})
+                  </div>
+                  {this.state.categories.map((category, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="blog__wrapper__sub-content__categories__category"
+                      >
+                        {category.name} ({category.classes})
                       </div>
-                      )
-                    })
-                  }
+                    );
+                  })}
                 </div>
                 <div className="blog__wrapper__sub-content__latest-posts">
                   <div className="blog__wrapper__sub-content__categories__text">
                     bài viết
-                	</div>
-                  {
-                    this.state.latestPost.map((post, index) => {
-                      return (
-                        <div key={index} className="blog__wrapper__sub-content__latest-posts__post">
-                          <LatestPost latestPost={post} />
-                        </div>
-                      );
-                    })
-                  }
+                  </div>
+                  {this.state.latestPost.map((post, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="blog__wrapper__sub-content__latest-posts__post"
+                      >
+                        <LatestPost latestPost={post} />
+                      </div>
+                    );
+                  })}
                 </div>
                 <div className="blog__wrapper__sub-content__email">
                   <div className="blog__wrapper__sub-content__categories__text">
                     Liên hệ
-               		</div>
-                  <p>Liên hệ để biết thêm thông tin về khoá học của chúng tôi.</p>
-                  <SearchBox type='email' />
+                  </div>
+                  <p>
+                    Liên hệ để biết thêm thông tin về khoá học của chúng tôi.
+                  </p>
+                  <SearchBox type="email" />
                 </div>
-
               </div>
             </div>
             <div className="blog__contact-us">
@@ -238,4 +275,9 @@ const mapStateToProps = state => {
   return state;
 };
 
-export default connect(mapStateToProps)(Blog);
+const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Blog);
