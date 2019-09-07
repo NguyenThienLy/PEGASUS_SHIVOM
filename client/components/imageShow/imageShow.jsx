@@ -8,13 +8,16 @@ export class ImageShow extends React.Component {
   render() {
     return (
       <div className="image-show">
-        <div className="image-show__img1 image-show__item">
-          <img
-            src="https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-gallery-img-1a-768x384.jpg"
-            alt=""
-          />
-        </div>
-        <div className="image-show__img2 image-show__item">
+        {this.props.items.map((item, index) => {
+          return (<div className={`image-show__img${index} image-show__item`}>
+            <img
+              src={item.image}
+              alt={item.name}
+            />
+          </div>)
+        })}
+
+        {/* <div className="image-show__img2 image-show__item">
           <img
             src="https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-gallery-img-3a.jpg"
             alt=""
@@ -44,7 +47,7 @@ export class ImageShow extends React.Component {
             src="https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-gallery-img-6a.jpg"
             alt=""
           />
-        </div>
+        </div> */}
       </div>
     );
   }

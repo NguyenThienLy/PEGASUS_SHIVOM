@@ -9,7 +9,8 @@ export type SettingModel = BaseModel & {
     },
     logo: string
     contact: {
-        branch: string
+        brand: string
+        title: string
         description: string
         phone: string
         hotline: string
@@ -17,7 +18,7 @@ export type SettingModel = BaseModel & {
         address: string
         long: number
         lat: number
-    },
+    }
     email: {
         host: string
         post: number
@@ -32,6 +33,23 @@ const settingSchema = new Schema({
         feedback: { type: Number, default: 0 }
     },
     logo: { type: String },
+    contact: {
+        brand: { type: String },
+        title: { type: String },
+        description: { type: String },
+        phone: { type: String },
+        hotline: { type: String },
+        email: { type: String },
+        address: { type: String },
+        long: { type: String },
+        lat: { type: String }
+    },
+    email: {
+        type: { type: String, hideJSON: true },
+        port: { type: String, hideJSON: true },
+        user: { type: String, hideJSON: true },
+        pass: { type: String, hideJSON: true }
+    },
     status: { type: String, enum: ["active", "deactive"], default: "active" }
 }, { timestamps: true })
 

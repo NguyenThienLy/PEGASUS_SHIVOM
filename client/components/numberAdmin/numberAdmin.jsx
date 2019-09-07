@@ -5,6 +5,9 @@ export class NumberAdmin extends React.Component {
   constructor(props) {
     super(props);
   }
+
+  componentDidMount() {}
+
   render() {
     const { numberAdmin } = this.props;
 
@@ -13,8 +16,10 @@ export class NumberAdmin extends React.Component {
         <div className="numberAdmin__inner">
           <div
             className="numberAdmin__inner__icon"
-            dangerouslySetInnerHTML={{ __html: numberAdmin.icon }}
-          />
+            style={{ backgroundColor: numberAdmin.colorIcon }}
+          >
+            <div dangerouslySetInnerHTML={{ __html: numberAdmin.icon }}></div>
+          </div>
           <div className="numberAdmin__inner__info">
             <div className="numberAdmin__inner__info__about">
               {numberAdmin.about}

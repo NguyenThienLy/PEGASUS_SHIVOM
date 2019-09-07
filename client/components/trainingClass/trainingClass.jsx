@@ -15,7 +15,7 @@ export class TrainingClass extends React.Component {
           <a href={trainingClass.link}>
             <img
               src={trainingClass.thumb}
-              alt=""
+              alt={trainingClass.name}
             />
           </a>
         </div>
@@ -28,8 +28,8 @@ export class TrainingClass extends React.Component {
           <h4 className="training-class__info__name">
             <a href={trainingClass.link}>{trainingClass.name}</a>
           </h4>
-          <p className="training-class__info__detail" dangerouslySetInnerHTML={{ __html: trainingClass.description }}>
-            {/* {trainingClass.description} */}
+          <p className="training-class__info__detail" dangerouslySetInnerHTML={{ __html: (trainingClass.description || "").slice(0, 100) + "..." }}>
+
           </p>
           <div className="training-class__info__other">
             <div className="training-class__info__other__time">

@@ -6,20 +6,31 @@ export class Activity extends React.Component {
     super(props);
   }
   render() {
+    const { activities } = this.props;
     return (
       <div className="activity">
-        <div className="activity__title">hoạt động</div>
+        <div className="activity__title">Hoạt động</div>
         <hr className="divider" />
         <ul className="activity__actions">
-          <li className="activity__actions__detail">
-            <span className="activity__actions__detail__time">
-              23 mins trước
-            </span>{" "}
-            <br />
-            <a href="#" className="activity__actions__detail__content">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </a>
-          </li>
+          {
+            activities.map((activity, index) => {
+              return (
+                <li className="activity__actions__detail" key={index}>
+                  <div className="activity__actions__detail__icon">
+                    <i className="fab fa-pagelines"></i>
+                  </div>
+                  <a
+                    href='#'
+                    className='activity__actions__detail__content'
+                  >
+                    <div className="activity__actions__detail__content__time">{activity.time} trước</div>
+                    <div className="activity__actions__detail__content__text">{activity.content}</div>
+                  </a>
+                  <button className="activity__actions__detail__btn">Chi tiết</button>
+                </li>
+              )
+            })
+          }
         </ul>
       </div>
     );

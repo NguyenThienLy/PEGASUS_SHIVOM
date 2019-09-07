@@ -9,10 +9,16 @@ export type TeacherModel = BaseModel & {
     lastName: string
     birthday: Date
     gender: "male" | "female"
+    shortDescription: string
+    description: string
     address?: string
     phone: string
     email: string
     avatar?: string
+    social: {
+        facebook: string
+        instagram: string
+    }
     otherInfo: {
         [x: string]: any
     }
@@ -24,10 +30,16 @@ const teacherSchema = new Schema({
     lastName: { type: String, required: true },
     birthday: { type: Date, required: true },
     gender: { type: String, enum: ["male", "female"] },
+    shortDescription: { type: String },
+    description: { type: String },
     address: { type: String },
     phone: { type: String, required: true },
     email: { type: String, required: true },
     avatar: { type: String },
+    social: {
+        facebook: { type: String },
+        instagram: { type: String }
+    },
     otherInfo: { type: Schema.Types.Mixed },
     skills: { type: [{ type: Schema.Types.ObjectId, ref: "Skill" }], default: [] },
     status: { type: String, enum: ["active", "deactive"], default: "active" }
