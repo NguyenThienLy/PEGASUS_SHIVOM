@@ -71,7 +71,7 @@ class Server {
 		this.server.get('/lien-he', (req, res) => {
 			this.app.render(req, res, '/contact/contact');
 		});
-		this.server.get('/search', (req, res) => {
+		this.server.get('/tim-kiem', (req, res) => {
 			this.app.render(req, res, '/searchResults/searchResults');
 		});
 		this.server.get('*', (req, res) => {
