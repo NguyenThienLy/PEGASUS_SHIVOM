@@ -5,6 +5,7 @@ import Link from "next/link";
 import { connect } from "react-redux";
 import { api } from "../../services";
 import { action } from "../../actions";
+import { bindActionCreators } from 'redux';
 
 import "./contact.scss";
 import { Header, Footer, IntroHome2, ContactUs, Map } from "../../components";
@@ -64,7 +65,12 @@ export class Contact extends React.Component {
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
   }
+  fetchData() {
+    this.props.fetchCourse()
+    this.props.fetchSetting()
+  }
   componentDidMount() {
+    this.fetchData()
     this.handleScroll();
     window.addEventListener("scroll", this.handleScroll);
 
@@ -108,7 +114,7 @@ export class Contact extends React.Component {
         }
       ]
     });
-    $(".contact__body__brands__slick-autoplay").on("beforeChange", function(
+    $(".contact__body__brands__slick-autoplay").on("beforeChange", function (
       event,
       slick,
       currentSlide,
@@ -119,10 +125,14 @@ export class Contact extends React.Component {
       );
       $(".contact__body__brands__slick-autoplay .slick-dots li button")
         .attr("aria-pressed", "false")
-        .focus(function() {
+        .focus(function () {
           this.blur();
         });
     });
+  }
+
+  addContact = (body) => {
+    this.props.addContact(body)
   }
   render() {
     return (
@@ -138,7 +148,7 @@ export class Contact extends React.Component {
         </Head>
         <React.Fragment>
           <div class="background-overlay"></div>
-          <Header {...this.props} />
+          <Header {...this.props} logo={this.props.setting.logo} />
 
           <div className="contact__body">
             <div className="contact__body__title">
@@ -204,11 +214,11 @@ export class Contact extends React.Component {
               />
             </div>
             <div className="contact__body__contactUs">
-              <ContactUs />
+              <ContactUs {...this.props.setting.contact} addContact={this.addContact} courses={this.props.courses.items} />
             </div>
           </div>
 
-          <Footer />
+          <Footer {...this.props.setting.contact} logo={this.props.setting.logo} />
         </React.Fragment>
       </div>
     );
@@ -218,5 +228,11 @@ export class Contact extends React.Component {
 const mapStateToProps = state => {
   return state;
 };
+const mapDispatchToProps = dispatch => bindActionCreators({
+  fetchCourse: action.course.fetch,
+  fetchSetting: action.setting.fetch,
+  addContact: action.contact.add
+}, dispatch)
 
-export default connect(mapStateToProps)(Contact);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Contact);

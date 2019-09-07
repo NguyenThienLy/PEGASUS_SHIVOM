@@ -3,6 +3,7 @@ import "./header.scss";
 import Link from "next/link";
 import { HoverDivAnimation } from "../hoverDivAnimation/hoverDivAnimation";
 import { Sidebar } from "../sidebar/sidebar";
+import * as _ from 'lodash'
 import { CloudImage } from '../../components';
 // import Router from 'next/router'
 // import Head from 'next/head'
@@ -17,43 +18,65 @@ export class Header extends React.Component {
     this.state = {
       categories: [
         {
-          name: "trang chủ"
+          name: "trang chủ",
+          linkHref: "/home/home",
+          linkAs: "/",
+          key: "home"
         },
         {
           name: "khoá học",
+          key: "course",
           subCategories: [
-            {
-              name: "khoá học môt"
-            },
-            {
-              name: "khoá học hai"
-            },
-            {
-              name: "khoá học ba"
-            }
+
           ]
         },
         {
           name: "tin tức",
+          key: "news",
           subCategories: [
             {
-              name: "khoá học môt"
+              name: "khoá học môt",
+              linkHref: "/home/home",
+              linkAs: "/",
             },
             {
-              name: "khoá học hai"
+              name: "khoá học hai",
+              linkHref: "/home/home",
+              linkAs: "/",
             },
             {
-              name: "khoá học ba"
+              name: "khoá học ba",
+              linkHref: "/home/home",
+              linkAs: "/",
             }
           ]
         },
         {
-          name: "về chúng tôi"
+          name: "về chúng tôi",
+          linkHref: "/contact/contact",
+          linkAs: "/lien-he",
+          key: "about"
         }
-      ]
+      ],
     };
   }
-
+  shouldComponentUpdate(nextProps, nextState) {
+    return true
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.courses.items.length === 0 && this.props.courses.items.length > 0) {
+      const courseCategoryIndex = this.state.categories.findIndex(item => { return item.key === "course" })
+      const subCategories = this.props.courses.items.map((item) => {
+        return {
+          name: item.name,
+          linkHref: `/course/course?courseId=${item.slug}`,
+          linkAs: `/khoa-hoc/${item.slug}`
+        }
+      })
+      this.state.categories[courseCategoryIndex].subCategories = subCategories
+      this.setState({ categories: this.state.categories })
+    }
+  }
   // async componentWillMount() {
   // }
   // async componentDidMount() {
@@ -79,6 +102,18 @@ export class Header extends React.Component {
   // }
 
   componentDidMount() {
+    if (this.props.courses.items.length > 0) {
+      const courseCategoryIndex = this.state.categories.findIndex(item => { return item.key === "course" })
+      const subCategories = this.props.courses.items.map((item) => {
+        return {
+          name: item.name,
+          linkHref: `/course/course?slug=${item.slug}`,
+          linkAs: `/khoa-hoc/${item.slug}`
+        }
+      })
+      this.state.categories[courseCategoryIndex].subCategories = subCategories
+      this.setState({ categories: this.state.categories })
+    }
     // $(".header__wrapper__page-menu-area__left__navbar__list-items__item").hover(
     //   function() {
     //     var navBarWrapper = $(this)
@@ -224,7 +259,7 @@ export class Header extends React.Component {
                   className="header__wrapper__page-menu-area__left__logo-wrapper__a"
                 >
                   <img
-                    src="/logo.png"
+                    src={this.props.setting.logo}
                     className="header__wrapper__page-menu-area__left__logo-wrapper__a__img"
                   />
                 </a>
@@ -244,14 +279,17 @@ export class Header extends React.Component {
                               {category.subCategories.map(
                                 (subCategory, index) => {
                                   return (
-                                    <li
-                                      key={index}
-                                      className="header__wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper__sub-navbar__item"
-                                    >
-                                      <HoverDivAnimation
-                                        title={subCategory.name}
-                                      />
-                                    </li>
+
+                                    <Link href={subCategory.linkHref} as={subCategory.linkAs}>
+                                      <li
+                                        key={index}
+                                        className="header__wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper__sub-navbar__item"
+                                      >
+                                        <HoverDivAnimation
+                                          title={subCategory.name}
+                                        />
+                                      </li>
+                                    </Link>
                                   );
                                 }
                               )}
@@ -259,9 +297,11 @@ export class Header extends React.Component {
                           </div>
                         </li>
                       ) : (
-                          <li className="header__wrapper__page-menu-area__left__navbar__list-items__item">
-                            <HoverDivAnimation title={category.name} />
-                          </li>
+                          <Link href={category.linkHref} as={category.linkAs}>
+                            <li className="header__wrapper__page-menu-area__left__navbar__list-items__item">
+                              <HoverDivAnimation title={category.name} />
+                            </li>
+                          </Link>
                         );
                     })}
                   </ul>
@@ -289,7 +329,7 @@ export class Header extends React.Component {
                   className="header__sub-wrapper__page-menu-area__left__logo-wrapper__a"
                 >
                   <img
-                    src="/logo.png"
+                    src={this.props.setting.logo}
                     className="header__sub-wrapper__page-menu-area__left__logo-wrapper__a__img"
                   />
                 </a>

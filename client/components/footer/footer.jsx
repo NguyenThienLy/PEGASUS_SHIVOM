@@ -72,23 +72,23 @@ export class Footer extends React.Component {
           <div className="footer-wrapper__first-floor__logo">
             <a className="footer-wrapper__first-floor__logo__a">
               <img
-                src="/logo.png"
+                src={this.props.logo}
                 className="footer-wrapper__first-floor__logo__a__img"
               />
             </a>
           </div>
           <div className="footer-wrapper__first-floor__contact">
             <a className="footer-wrapper__first-floor__contact__item" href="#">
-              Khu đô thi số 3, Trung Đông, Đức Thắng, Hiệp Hoà, Bắc Giang
+              {this.props.address}
             </a>
             <a
               className="footer-wrapper__first-floor__contact__item"
-              href="mailto:hiephoayoga@gmail.com"
+              href={`mailto:${this.props.email}`}
             >
-              Email: hiephoayoga@gmail.com
+              Email: {this.props.email}
             </a>
             <a className="footer-wrapper__first-floor__contact__item" href="#">
-              SĐT: 0966 685 293
+              Phone: {this.props.phone}
             </a>
           </div>
           <div className="footer-wrapper__first-floor__social-group">

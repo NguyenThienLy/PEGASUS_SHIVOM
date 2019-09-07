@@ -9,7 +9,6 @@ export class News2 extends React.Component {
 
   render() {
     const { news2 } = this.props;
-    console.log(news2)
     return (
       <div className="news2">
         <div className="news2__inner">
