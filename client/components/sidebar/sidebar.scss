@@ -41,7 +41,7 @@ $color-line: rgba(187, 184, 184, 0.5);
         padding: 1em 1.5em;
         letter-spacing: 0.05em;
       }
-      border-bottom: 0.05em solid $color-line;
+      border-bottom: 0.05em solid $table-border-color;
     }
     @include e("main-menu") {
       list-style: none;
