@@ -1,13 +1,14 @@
 @import "../../default.scss";
 
-$background-color: lighten($sub-main-color, 30%);
+$background-color-chart: lighten($sub-main-color, 30%);
 
 .pieChart {
-  margin: 2em 2em;
-  width: 17em;
+  width: 30%;
   border-radius: 5px;
-  -webkit-box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
-  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+  // -webkit-box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+  // box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid $table-border-color;
+  background-color: #fff;
   @include e("title") {
     display: flex;
     justify-content: left;
@@ -31,8 +32,11 @@ $background-color: lighten($sub-main-color, 30%);
     display: flex;
     justify-content: space-between;
     padding: 1em;
-    background-color: $background-color;
-
+    background-color: $background-color-chart;
+    @include e("info") {
+      color: $font-color;
+      font-size: 0.8em;
+    }
     @include e("date") {
     }
     @include e("full") {

@@ -31,7 +31,6 @@ export class Activity extends React.Component {
               )
             })
           }
-
         </ul>
       </div>
     );

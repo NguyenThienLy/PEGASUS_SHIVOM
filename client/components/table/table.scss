@@ -3,7 +3,6 @@
 $hover-color: lighten($sub-main-color, 30%);
 
 .table {
-  margin: 2em 2em;
   border-radius: 5px;
   background-color: #fff;
   -webkit-box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
@@ -18,7 +17,7 @@ $hover-color: lighten($sub-main-color, 30%);
     @include e("icon") {
       background-color: $main-color;
       border-radius: 5px;
-      box-shadow: 1px 1px 5px rgba(0, 163, 175, 0.5);
+      -webkit-box-shadow: 1px 1px 5px rgba(0, 163, 175, 0.5);
       box-shadow: 1px 1px 5px rgba(0, 163, 175, 0.5);
       i {
         padding: 1em 1.1em;
