@@ -21,7 +21,7 @@ export class TrainerInfo extends React.Component {
                     <div className="class-trainer__info__description">
                         {trainerInfo.shortDescription}
                     </div>
-                    <div className="class-trainer__info__detail">
+                    {/* <div className="class-trainer__info__detail">
                         <ul className="list-items">
                             <li className="list-items__item">
                                 <div className="list-items__item__name">Tuổi</div>
@@ -40,7 +40,7 @@ export class TrainerInfo extends React.Component {
                                 <div className="list-items__item__content">{trainerInfo.position}</div>
                             </li>
                         </ul>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         );

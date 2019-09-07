@@ -19,7 +19,7 @@ export class Review extends React.Component {
         </div>
         <div className="review__info">
           <div className="review__info__content">{review.content}</div>
-          <div className="review__info__owner">{review.owner}</div>
+          <div className="review__info__owner">{review.name}</div>
         </div>
       </div>
     );

@@ -11,27 +11,22 @@ export class BaseAction {
         this.name = name.toUpperCase()
         this.api = api
         this.store = store.getState()
-        // this.fetch.prototype.customBind = (store) => {
-        //     this.store = store
-        // }
-        // this.fetch.prototype.customBind(store.getState())
     }
+
     fetch = (option = {}) => {
+
         return dispatch => {
             dispatch(this.fetchPending())
-            api.class.getList(option)
+            this.api.getList(option)
                 .then(res => {
-                    console.log("result: ", res)
                     dispatch(this.fetchSuccess(res.results.objects.rows))
                     return res
                 })
                 .catch(error => {
-                    console.log("err: ", error)
                     dispatch(this.fetchError(error))
                 })
         }
     }
-
     fetchPending() {
         return {
             type: `FETCH_${this.name}_PENDING`
@@ -55,9 +50,8 @@ export class BaseAction {
                 type: `DELETE_${this.name}_PENDING`,
                 payload: id
             })
-            api.class.delete(id, option)
+            this.api.delete(id, option)
                 .then(res => {
-                    console.log("result: ", res)
                     dispatch({
                         type: `DELETE_${this.name}_SUCCESS`,
                         payload: res.result.object
@@ -65,7 +59,6 @@ export class BaseAction {
                     return res
                 })
                 .catch(error => {
-                    console.log("err: ", error)
                     dispatch({
                         type: `DELETE_${this.name}_ERROR`,
                         payload: error
@@ -75,15 +68,13 @@ export class BaseAction {
         }
 
     }
-    add(body, option = {}) {
+    add = (body, option = {}) => {
         return dispatch => {
             dispatch({
-                type: `ADD_${this.name}_PENDING`,
-                payload: id
+                type: `ADD_${this.name}_PENDING`
             })
-            api.class.add(body, option)
+            this.api.create(body, option)
                 .then(res => {
-                    console.log("result: ", res)
                     dispatch({
                         type: `ADD_${this.name}_SUCCESS`,
                         payload: res.result.object
@@ -91,7 +82,6 @@ export class BaseAction {
                     return res
                 })
                 .catch(error => {
-                    console.log("err: ", error)
                     dispatch({
                         type: `ADD_${this.name}_ERROR`,
                         payload: error
@@ -112,9 +102,8 @@ export class BaseAction {
                 type: `GET_${this.name}_PENDING`,
                 payload: id
             })
-            api.class.getItem(id, option)
+            this.api.getItem(id, option)
                 .then(res => {
-                    console.log("result: ", res)
                     dispatch({
                         type: `GET_${this.name}_SUCCESS`,
                         payload: res.result.object
@@ -122,7 +111,6 @@ export class BaseAction {
                     return res
                 })
                 .catch(error => {
-                    console.log("err: ", error)
                     dispatch({
                         type: `GET_${this.name}_ERROR`,
                         payload: error
@@ -137,9 +125,8 @@ export class BaseAction {
                 type: `UPDATE_${this.name}_PENDING`,
                 payload: id
             })
-            api.class.update(id, body, option)
+            this.api.update(id, body, option)
                 .then(res => {
-                    console.log("result: ", res)
                     dispatch({
                         type: `UPDATE_${this.name}_SUCCESS`,
                         payload: res.result.object
@@ -147,7 +134,6 @@ export class BaseAction {
                     return res
                 })
                 .catch(error => {
-                    console.log("err: ", error)
                     dispatch({
                         type: `UPDATE_${this.name}_ERROR`,
                         payload: error
@@ -162,9 +148,8 @@ export class BaseAction {
                 type: `CONCAT_${this.name}_PENDING`,
                 payload: id
             })
-            api.class.getList(option)
+            this.api.getList(option)
                 .then(res => {
-                    console.log("result: ", res)
                     dispatch({
                         type: `CONCAT_${this.name}_SUCCESS`,
                         payload: res.result.object
@@ -172,7 +157,6 @@ export class BaseAction {
                     return res
                 })
                 .catch(error => {
-                    console.log("err: ", error)
                     dispatch({
                         type: `CONCAT_${this.name}_ERROR`,
                         payload: error

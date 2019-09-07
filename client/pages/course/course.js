@@ -3,6 +3,7 @@ import * as React from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { connect } from "react-redux";
+import { bindActionCreators } from 'redux'
 import { api } from "../../services";
 import { action } from "../../actions";
 
@@ -15,6 +16,7 @@ export class Course extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			timeTables: [],
 			course: {
 				image:
 					'https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-event-list-3a.jpg',
@@ -136,24 +138,60 @@ export class Course extends React.Component {
 		};
 	}
 	static async getInitialProps({ req, query }) {
-		return {};
+		const slug = query.slug
+		const course = await api.course.getCourseBySlug(slug)
+
+		return {
+			course: course
+		}
 	}
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.courses.items.length > 0) {
+			this.props.fetchTimeTableOfCourse(this.props.course._id)
+		}
+
+		return true
+	}
+	shouldComponentUpdate(nextProps, nextState) {
+
+		return true;
+	}
+	componentDidUpdate(prevProps, prevState, snapshot) {
+		const courseItemIndex = this.props.courses.items.findIndex(item => { return item._id === this.props.course._id })
+		if (courseItemIndex != -1 && (this.state.timeTables == undefined || (this.state.timeTables && this.state.timeTables.length === 0))) {
+			setTimeout(() => {
+				const courseData = this.props.courses.items[courseItemIndex]
+				if (courseData.timeTables !== undefined) {
+					this.setState({ timeTables: courseData.timeTables })
+				}
+			}, 1000);
+		}
+	}
+
 	async componentDidMount() {
+		this.setState({ timeTables: [] })
+		this.fetchData()
 		var heightOfFooter = $(".course__footer .footer-wrapper").height();
 		$(".course__contact-us").css("margin-bottom", heightOfFooter + "px");
+	}
+	fetchData() {
+		this.props.fetchCourse()
+		this.props.fetchSetting()
+
 	}
 	render() {
 		return (
 			<div className="course">
 				<Head>
-					<title>Khoá học</title>
+					<title>{this.props.course.name}</title>
 					<meta name="title" content="Khoá học" />
 					<meta name="description" content="Khoá học về yoga" />
 				</Head>
 				<Header {...this.props} />
 				<React.Fragment>
 					<div className="course-title">
-						<a href="/">trang chủ</a>&nbsp;&nbsp;<i className="fas fa-chevron-right"></i>&nbsp;&nbsp;<a href="cac-khoa-hoc">các khoá học</a>&nbsp;&nbsp;<i className="fas fa-chevron-right"></i>&nbsp;&nbsp;<a>{this.state.course.title}</a>
+
+						<a href="/">trang chủ</a>&nbsp;&nbsp;<i className="fas fa-chevron-right"></i>&nbsp;&nbsp;<a href="cac-khoa-hoc">các khoá học</a>&nbsp;&nbsp;<i className="fas fa-chevron-right"></i>&nbsp;&nbsp;<a>{this.props.course.name}</a>
 					</div>
 					<div className="course-ringing-phone">
 						<RingingPhone />
@@ -176,43 +214,45 @@ export class Course extends React.Component {
 										</span>
 									</a>
 								</div>
-								<img src={this.state.course.image} alt="" />
+								<img src={this.props.course.thumb} alt={this.props.course.name} />
 							</div>
 
 
 
-							<div className="course-wrapper__main-content__author">
+							{/* <div className="course-wrapper__main-content__author">
 								{this.state.course.author}
-							</div>
+							</div> */}
 							<div className="course-wrapper__main-content__title">
-								{this.state.course.title}
+								{this.props.course.name}
 							</div>
-							<div className="course-wrapper__main-content__content">
-								{this.state.course.content}
+							<div className="course-wrapper__main-content__content" dangerouslySetInnerHTML={{ __html: this.props.course.description }}>
+
 							</div>
 							<div className="course-wrapper__main-content__targets">
 								{
-									this.state.course.targets.map((target, index) => {
+									this.props.course.benefits.map((benefit, index) => {
 										return (
 											<div className="course-wrapper__main-content__targets__target" key={index}>
 												<i className="fas fa-check"></i>
-												{target}
+												{benefit}
 											</div>
 										)
 									})
 								}
 							</div>
 							{
-								this.state.moreCourses.map((course, index) => {
+								this.state.timeTables && this.state.timeTables.length > 0 ? this.state.timeTables.map((classData, index) => {
+									console.log("Class data: ", classData)
 									return (
 										<div>
 											<div className="course-wrapper__main-content__text">
-												{course.name} <RegisterBtn />
+												{classData.name}
+												{/* <RegisterBtn /> */}
 											</div>
 											<div className="course-wrapper__main-content__trainer-info">
-												<TrainerInfo trainerInfo={course.trainerInfo} />
+												{classData.class.teacher ? <TrainerInfo trainerInfo={classData.class.teacher} /> : null}
 											</div>
-											<div className="course-wrapper__main-content__classes">
+											{/* <div className="course-wrapper__main-content__classes">
 												{
 													course.classes.map((yogaclass, index) => {
 														return (
@@ -224,17 +264,17 @@ export class Course extends React.Component {
 														);
 													})
 												}
-											</div>
+											</div> */}
 										</div>
 									);
-								})
+								}) : null
 							}
 						</div>
 
 						<div className="course-wrapper__sub-content">
-							<div className="course-wrapper__sub-content__search">
+							{/* <div className="course-wrapper__sub-content__search">
 								<SearchBox type='search' />
-							</div>
+							</div> */}
 							<div className="course-wrapper__sub-content__social-group">
 								<SocialGroup />
 							</div>
@@ -243,11 +283,16 @@ export class Course extends React.Component {
 									Các khoá học
                 				</div>
 								{
-									this.state.otherCourses.map((course) => {
+									this.props.courses.items.map((course) => {
 										return (
 											<div className="course-wrapper__sub-content__other-courses__course">
-												{course.name} ({course.classes})
-                      						</div>
+												<Link href={`/course/course?slug=${course.slug}`} as={`/khoa-hoc/${course.slug}`}>
+													<a href={`/khoa-hoc/${course.slug}`} >
+														{course.name}
+													</a>
+													{/* {course.name} ({course.classes}) */}
+												</Link>
+											</div>
 										)
 									})
 								}
@@ -277,11 +322,11 @@ export class Course extends React.Component {
 						</div>
 					</div>
 					<div className="course__contact-us">
-						<ContactUs />
+						<ContactUs {...this.props.setting.contact} addContact={this.addContact} courses={this.props.courses.items} />
 					</div>
 				</React.Fragment>
 				<div className="course__footer">
-					<Footer />
+					<Footer {...this.props.setting.contact} logo={this.props.setting.logo} />
 				</div>
 			</div>
 		);
@@ -291,5 +336,11 @@ export class Course extends React.Component {
 const mapStateToProps = state => {
 	return state;
 };
+const mapDispatchToProps = dispatch => bindActionCreators({
+	fetchCourse: action.course.fetch,
+	fetchSetting: action.setting.fetch,
+	fetchTimeTableOfCourse: action.course.getTimeTableOfCourse,
+	addContact: action.contact.add,
+}, dispatch)
 
-export default connect(mapStateToProps)(Course);
+export default connect(mapStateToProps, mapDispatchToProps)(Course);
