@@ -19,6 +19,9 @@ import { StudentTimeTableAction } from './studentTimeTable'
 import { TeacherAction } from './teacher'
 import { TesmonialAction } from './tesmonial'
 import { TimeTableItemAction } from './timeTableItem'
+import { SliderAction } from './slider'
+import { SettingAction } from './setting'
+import { TimeTableAction } from './timeTable'
 class action {
     constructor() {
     }
@@ -41,6 +44,9 @@ class action {
     static teacher = new TeacherAction()
     static tesmonial = new TesmonialAction()
     static timeTableItem = new TimeTableItemAction()
+    static slider = new SliderAction()
+    static setting = new SettingAction()
+    static timeTable = new TimeTableAction()
 }
 
 export {

@@ -57,7 +57,6 @@ export class CrudApi {
     }
   }
   async getList(option = {}) {
-    console.log("goi api get list")
     let url = this.baseUrl();
     const query = this._serialize(option.query || {});
     url += `${query}`;

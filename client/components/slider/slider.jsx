@@ -4,10 +4,10 @@ import { DefaultButton } from "../../components";
 export class Slider extends React.Component {
   constructor(props) {
     super(props);
+    this.settingSlider = this.settingSlider.bind(this)
   }
-
-  componentDidMount() {
-    $(".slider__slick-autoplay").on("init", function(event, slick) {
+  settingSlider() {
+    $(".slider__slick-autoplay").on("init", function (event, slick) {
       $(
         ".slick-active .slider__slick-autoplay__item__caption__title"
       ).removeClass("slider__slick-autoplay__item__caption--hidden");
@@ -50,15 +50,15 @@ export class Slider extends React.Component {
       cssEase: "linear"
     });
 
-    $(".slider__prevArrow").click(function() {
+    $(".slider__prevArrow").click(function () {
       $(".slider__slick-autoplay").slick("slickPrev");
     });
 
-    $(".slider__nextArrow").click(function() {
+    $(".slider__nextArrow").click(function () {
       $(".slider__slick-autoplay").slick("slickNext");
     });
 
-    $(".slider__slick-autoplay").on("beforeChange", function(
+    $(".slider__slick-autoplay").on("beforeChange", function (
       event,
       slick,
       currentSlide,
@@ -95,12 +95,12 @@ export class Slider extends React.Component {
       $(".slider__slick-autoplay .slick-dots li").removeClass("slick-active");
       $(".slider__slick-autoplay .slick-dots li button")
         .attr("aria-pressed", "false")
-        .focus(function() {
+        .focus(function () {
           this.blur();
         });
     });
 
-    $(".slider__slick-autoplay").on("afterChange", function(
+    $(".slider__slick-autoplay").on("afterChange", function (
       event,
       slick,
       currentSlide,
@@ -135,7 +135,9 @@ export class Slider extends React.Component {
       ).addClass("slider__slick-autoplay__item__caption__ani--4");
     });
   }
-
+  componentDidMount() {
+    this.settingSlider()
+  }
   render() {
     return (
       <div className="slider">
@@ -146,7 +148,31 @@ export class Slider extends React.Component {
           <i class="fas fa-chevron-right"></i>
         </div>
         <div className="slider__slick-autoplay">
-          <div className="slider__slick-autoplay__item">
+          {this.props.items.map((item, key) => {
+            return (< div className="slider__slick-autoplay__item" >
+              <img src={item.option.image}></img>
+              <div className="slider__slick-autoplay__item__caption">
+                <div className="slider__slick-autoplay__item__caption__title slider__slick-autoplay__item__caption--hidden">
+                  {item.option.title}
+                </div>
+
+                <p className="slider__slick-autoplay__item__caption__content slider__slick-autoplay__item__caption--hidden">
+                  {item.option.description}
+                </p>
+
+                <a
+                  href="#"
+                  className="slider__slick-autoplay__item__caption__btn slider__slick-autoplay__item__caption--hidden"
+                >
+                  <span>{item.option.buttonTitle}</span>
+                </a>
+                <div className="slider__slick-autoplay__item__caption__btn-default slider__slick-autoplay__item__caption--hidden">
+                  <DefaultButton link="#" content="Tập thử ngay"></DefaultButton>
+                </div>
+              </div>
+            </div>)
+          })}
+          {/* <div className="slider__slick-autoplay__item">
             <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/07/fitness-slider-2.jpg"></img>
             <div className="slider__slick-autoplay__item__caption">
               <div className="slider__slick-autoplay__item__caption__title slider__slick-autoplay__item__caption--hidden">
@@ -218,7 +244,7 @@ export class Slider extends React.Component {
                 <DefaultButton link="#" content="read more"></DefaultButton>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     );

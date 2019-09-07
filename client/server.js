@@ -53,10 +53,10 @@ class Server {
 		this.server.get('/bai-viet', (req, res) => {
 			this.app.render(req, res, '/post/post');
 		});
-		this.server.get('/khoa-hoc', (req, res) => {
-			this.app.render(req, res, '/course/course');
+		this.server.get('/khoa-hoc/:slug', (req, res) => {
+			this.app.render(req, res, '/course/course', { slug: req.params.slug });
 		});
-		this.server.get('/cac-khoa-hoc', (req, res) => {
+		this.server.get('/khoa-hoc', (req, res) => {
 			this.app.render(req, res, '/allCourses/allCourses');
 		});
 		this.server.get('/du-an', (req, res) => {

@@ -20,6 +20,7 @@ import { StudentTimeTableApi } from './apis/studentTimeTable'
 import { TeacherApi } from './apis/teacher'
 import { TesmonialApi } from './apis/tesmonial'
 import { TimeTableItemApi } from './apis/timeTableItem'
+import { SettingApi } from './apis/setting'
 
 const crudApi = new CrudApi()
 
@@ -47,6 +48,7 @@ class api {
     static teacher = new TeacherApi()
     static tesmonial = new TesmonialApi()
     static timeTableItem = new TimeTableItemApi()
+    static setting = new SettingApi()
 }
 
 export {

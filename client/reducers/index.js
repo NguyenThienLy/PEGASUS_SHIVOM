@@ -21,7 +21,8 @@ import { StudentTimeTableReducer } from './studentTimeTable'
 import { TeacherReducer } from './teacher'
 import { TesmonialReducer } from './tesmonial'
 import { TimeTableItemReducer } from './timeTableItem'
-import { ClassTimeTableApi } from "../services/apis/classTimeTable";
+import { SettingReducer } from './setting'
+import { TimeTableReducer } from './timeTable'
 
 const postReducer = new PostReducer()
 const adminReducer = new AdminReducer()
@@ -44,6 +45,8 @@ const studentTimeTableReducer = new StudentTimeTableReducer()
 const teacherReducer = new TeacherReducer()
 const tesmonialReducer = new TesmonialReducer()
 const timeTableItemReducer = new TimeTableItemReducer()
+const settingReducer = new SettingReducer()
+const timeTableReducer = new TimeTableReducer()
 
 const store = combineReducers({
     admin: adminReducer.reducer,
@@ -54,7 +57,7 @@ const store = combineReducers({
     events: eventReducer.reducer,
     feedbacks: feedbackReducer.reducer,
     galleries: galleryReducer.reducer,
-    masonryHomes: masonryHomeReducer,
+    masonryHomes: masonryHomeReducer.reducer,
     newCategories: newCategoryReducer.reducer,
     promotions: promotionReducer.reducer,
     ranks: rankReducer.reducer,
@@ -64,7 +67,9 @@ const store = combineReducers({
     studentTimeTables: studentTimeTableReducer.reducer,
     teachers: teacherReducer.reducer,
     tesmonials: tesmonialReducer.reducer,
-    timeTableItems: timeTableItemReducer.reducer
+    timeTableItems: timeTableItemReducer.reducer,
+    setting: settingReducer.reducer,
+    timeTable: timeTableReducer.reducer
 })
 
 export default store
