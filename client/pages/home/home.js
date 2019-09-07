@@ -4,7 +4,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { action } from "../../actions";
 import { api } from "../../services";
-import { bindActionCreators } from 'redux';
+import { bindActionCreators } from "redux";
 
 import "./home.scss";
 import {
@@ -288,26 +288,26 @@ class Home extends React.Component {
   }
   fetchData = () => {
     // Cách 1
-    this.props.fetchSlider()
-    this.props.fetchCourse()
+    this.props.fetchSlider();
+    this.props.fetchCourse();
     this.props.fetchTesmonial({
       query: {
         filter: { status: "active" }
       }
-    })
-    this.props.fetchTeacher()
+    });
+    this.props.fetchTeacher();
     this.props.fetchMasonryHome({
       query: {
         filter: { status: "active" },
         limit: 6
       }
-    })
-    this.props.fetchSetting()
+    });
+    this.props.fetchSetting();
     this.props.fetchTimeTable({
       query: {
         limit: 0
       }
-    })
+    });
     // Luôn luôn phải catch lỗi và xử lý nhằm tránh crash web
     // Cách 2
     // api.class.getList()
@@ -321,7 +321,7 @@ class Home extends React.Component {
     // try {
     //   const result = await api.class.getList();
     // } catch (err) { }
-  }
+  };
   async componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.tesmonials.fetching === false) {
       $(".home__body__reviews__slick-autoplay").slick({
@@ -352,7 +352,7 @@ class Home extends React.Component {
           }
         ]
       });
-      $(".home__body__reviews__slick-autoplay").on("beforeChange", function (
+      $(".home__body__reviews__slick-autoplay").on("beforeChange", function(
         event,
         slick,
         currentSlide,
@@ -363,16 +363,14 @@ class Home extends React.Component {
         );
         $(".home__body__reviews__slick-autoplay .slick-dots li button")
           .attr("aria-pressed", "false")
-          .focus(function () {
+          .focus(function() {
             this.blur();
           });
       });
     }
   }
   async componentDidMount() {
-
     this.fetchData();
-
 
     $(".home__body__brands__slick-autoplay").slick({
       dots: false,
@@ -414,7 +412,7 @@ class Home extends React.Component {
         }
       ]
     });
-    $(".home__body__brands__slick-autoplay").on("beforeChange", function (
+    $(".home__body__brands__slick-autoplay").on("beforeChange", function(
       event,
       slick,
       currentSlide,
@@ -425,7 +423,7 @@ class Home extends React.Component {
       );
       $(".home__body__brands__slick-autoplay .slick-dots li button")
         .attr("aria-pressed", "false")
-        .focus(function () {
+        .focus(function() {
           this.blur();
         });
     });
@@ -450,7 +448,7 @@ class Home extends React.Component {
         }
       ]
     });
-    $(".home__body__intro-slick-autoplay").on("beforeChange", function (
+    $(".home__body__intro-slick-autoplay").on("beforeChange", function(
       event,
       slick,
       currentSlide,
@@ -461,16 +459,19 @@ class Home extends React.Component {
       );
       $(".home__body__intro-slick-autoplay .slick-dots li button")
         .attr("aria-pressed", "false")
-        .focus(function () {
+        .focus(function() {
           this.blur();
         });
     });
+
+    let heightOfFooter = $(".home .footer-wrapper").height();
+    console.log(heightOfFooter);
+    $(".home__body").css("margin-bottom", heightOfFooter + "px");
   }
 
-  addContact = (body) => {
-    this.props.addContact(body)
-  }
-
+  addContact = body => {
+    this.props.addContact(body);
+  };
 
   render() {
     return (
@@ -478,7 +479,10 @@ class Home extends React.Component {
         <Head>
           <title> Trang chủ </title>
           <meta name="title" content="Trang chủ" />
-          <meta name="description" content="Hiệp Hoà Yoga nơi yoga chính thống được hội tụ cùng đội ngũ giáo viên tâm huyết" />
+          <meta
+            name="description"
+            content="Hiệp Hoà Yoga nơi yoga chính thống được hội tụ cùng đội ngũ giáo viên tâm huyết"
+          />
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0"
@@ -490,7 +494,9 @@ class Home extends React.Component {
 
           <div className="home__body">
             <div className="home__body__slider">
-              {this.props.sliders.fetching === false ? <Slider {...this.props.sliders} /> : null}
+              {this.props.sliders.fetching === false ? (
+                <Slider {...this.props.sliders} />
+              ) : null}
             </div>
 
             <div className="home__body__intro">
@@ -519,9 +525,11 @@ class Home extends React.Component {
                 </div>
               </div>
               <div className="home__body__trainingClass__content">
-                {this.props.courses.fetching === false ? this.props.courses.items.map(trainingClass => {
-                  return <TrainingClass trainingClass={trainingClass} />;
-                }) : null}
+                {this.props.courses.fetching === false
+                  ? this.props.courses.items.map(trainingClass => {
+                      return <TrainingClass trainingClass={trainingClass} />;
+                    })
+                  : null}
                 {/* {this.state.trainingClasses.map(trainingClass => {
                   return <TrainingClass trainingClass={trainingClass} />;
                 })} */}
@@ -544,7 +552,9 @@ class Home extends React.Component {
                 </div>
               </div>
               <div className="home__body__timeTable__content">
-                {this.props.timeTable.fetching === false ? <TimeTable {...this.props.timeTable.items} /> : null}
+                {this.props.timeTable.fetching === false ? (
+                  <TimeTable {...this.props.timeTable.items} />
+                ) : null}
               </div>
             </div>
 
@@ -559,13 +569,14 @@ class Home extends React.Component {
                 <div className="home__body__reviews__introduction__inner">
                   <div>Học viên nói gì</div>
                   <p>
-                    Những lời chia sẻ từ kinh nghiệm của học viên trung tâm hy vọng sẽ giúp các bạn
-                    hiểu hơn về Hiệp Hoà Yoga, nơi yoga chính thống được phát triển và truyền đạt bởi
-                    những người tâm huyết
+                    Những lời chia sẻ từ kinh nghiệm của học viên trung tâm hy
+                    vọng sẽ giúp các bạn hiểu hơn về Hiệp Hoà Yoga, nơi yoga
+                    chính thống được phát triển và truyền đạt bởi những người
+                    tâm huyết
                   </p>
                 </div>
               </div>
-              {this.props.tesmonials.fetching === false ?
+              {this.props.tesmonials.fetching === false ? (
                 <div className="home__body__reviews__slick-autoplay">
                   {this.props.tesmonials.items.map(review => {
                     return (
@@ -581,7 +592,8 @@ class Home extends React.Component {
                     </div>
                   );
                 })} */}
-                </div> : null}
+                </div>
+              ) : null}
             </div>
 
             <div className="home__body__numbers">
@@ -614,9 +626,11 @@ class Home extends React.Component {
                 <div>instructor</div>
               </div>
               <div className="home__body__trainers__list">
-                {this.props.teachers.fetching === false ? this.props.teachers.items.map(trainer => {
-                  return <Trainer trainer={trainer} />
-                }) : null}
+                {this.props.teachers.fetching === false
+                  ? this.props.teachers.items.map(trainer => {
+                      return <Trainer trainer={trainer} />;
+                    })
+                  : null}
                 {/* {this.state.trainers.map(trainer => {
                   return <Trainer trainer={trainer} />;
                 })} */}
@@ -664,11 +678,18 @@ class Home extends React.Component {
             </div>
 
             <div className="home__body__contactUs">
-              <ContactUs {...this.props.setting.contact} addContact={this.addContact} courses={this.props.courses.items} />
+              <ContactUs
+                {...this.props.setting.contact}
+                addContact={this.addContact}
+                courses={this.props.courses.items}
+              />
             </div>
           </div>
 
-          <Footer {...this.props.setting.contact} logo={this.props.setting.logo} />
+          <Footer
+            {...this.props.setting.contact}
+            logo={this.props.setting.logo}
+          />
         </React.Fragment>
       </div>
     );
@@ -693,17 +714,23 @@ const mapStateToProps = state => {
 //   }
 // }
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  addContact: action.contact.add,
-  fetchClass: action.class.fetch,
-  fetchSlider: action.slider.fetch,
-  fetchCourse: action.course.fetch,
-  fetchTesmonial: action.tesmonial.fetch,
-  fetchTeacher: action.teacher.fetch,
-  fetchMasonryHome: action.masonryHome.fetch,
-  fetchSetting: action.setting.fetch,
-  fetchTimeTable: action.timeTable.fetch,
-}, dispatch)
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      addContact: action.contact.add,
+      fetchClass: action.class.fetch,
+      fetchSlider: action.slider.fetch,
+      fetchCourse: action.course.fetch,
+      fetchTesmonial: action.tesmonial.fetch,
+      fetchTeacher: action.teacher.fetch,
+      fetchMasonryHome: action.masonryHome.fetch,
+      fetchSetting: action.setting.fetch,
+      fetchTimeTable: action.timeTable.fetch
+    },
+    dispatch
+  );
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);

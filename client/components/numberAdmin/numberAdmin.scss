@@ -32,7 +32,7 @@ $color-icon: rgba(0, 163, 175, 0.7);
         justify-content: center;
         color: #fff;
         i {
-          font-size: 1.8em;
+          font-size: 1.7em;
         }
       }
     }
@@ -48,7 +48,6 @@ $color-icon: rgba(0, 163, 175, 0.7);
       @include e("quantity") {
         color: $color-grey;
         font-size: 1.3em;
-        letter-spacing: 0.05em;
         font-weight: bold;
       }
     }

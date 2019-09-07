@@ -28,9 +28,9 @@ export class Activity extends React.Component {
                     {activity.content}
                   </div>
                 </a>
-                <button className="activity__actions__detail__btn">
+                <a href="#" className="activity__actions__detail__btn">
                   Chi tiết
-                </button>
+                </a>
               </li>
             );
           })}

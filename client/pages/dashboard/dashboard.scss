@@ -58,6 +58,7 @@ body {
           @include e("row") {
             margin: 2em 0 1em;
             display: flex;
+            justify-content: space-between;
           }
           @include e("single") {
             .lineChart {

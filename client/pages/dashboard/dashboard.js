@@ -58,27 +58,49 @@ export class Dashboard extends React.Component {
         placeholder: "Chọn năm...",
         options: [2015, 2016, 2017, 2018, 2019]
       },
-      activitiesAdmin: [
-        {
-          time: "20 phút trước",
-          content: "Hoàng Hạnh đã đăng nhập vào hệ thống"
-        },
-        {
-          time: "20 phút trước",
-          content: "Hoàng Hạnh đã đăng nhập vào hệ thống"
-        },
-        {
-          time: "20 phút trước",
-          content: "Hoàng Hạnh đã đăng nhập vào hệ thống"
-        },
-        {
-          time: "20 phút trước",
-          content: "Hoàng Hạnh đã đăng nhập vào hệ thống"
-        },
-        {
-          time: "20 phút trước",
-          content: "Hoàng Hạnh đã đăng nhập vào hệ thống"
-        }
+      activitiesArr: [
+        [
+          {
+            time: "15 phút",
+            content: "bình luận"
+          },
+          {
+            time: "5 phút",
+            content: "like ảnh"
+          },
+          {
+            time: "45 phút",
+            content: "cập nhật thời khóa biểu"
+          }
+        ],
+        [
+          {
+            time: "15 phút",
+            content: "bình luận"
+          },
+          {
+            time: "5 phút",
+            content: "like ảnh"
+          },
+          {
+            time: "45 phút",
+            content: "cập nhật thời khóa biểu"
+          }
+        ],
+        [
+          {
+            time: "15 phút",
+            content: "bình luận"
+          },
+          {
+            time: "5 phút",
+            content: "like ảnh"
+          },
+          {
+            time: "45 phút",
+            content: "cập nhật thời khóa biểu"
+          }
+        ]
       ]
     };
   }
@@ -144,9 +166,9 @@ export class Dashboard extends React.Component {
               <Table></Table>
             </div>
             <div className="dashboard__body__activities">
-              <Activity activities={this.state.activitiesAdmin}></Activity>
-              <Activity activities={this.state.activitiesAdmin}></Activity>
-              {/* <Activity activities={this.state.activitiesAdmin}></Activity> */}
+              {this.state.activitiesArr.map(activities => {
+                return <Activity activities={activities}></Activity>;
+              })}
             </div>
           </div>
         </React.Fragment>
