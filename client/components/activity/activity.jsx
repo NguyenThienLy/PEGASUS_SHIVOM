@@ -20,6 +20,24 @@ export class Activity extends React.Component {
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
             </a>
           </li>
+          <li className="activity__actions__detail">
+            <span className="activity__actions__detail__time">
+              23 mins trước
+            </span>{" "}
+            <br />
+            <a href="#" className="activity__actions__detail__content">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </a>
+          </li>
+          <li className="activity__actions__detail">
+            <span className="activity__actions__detail__time">
+              23 mins trước
+            </span>{" "}
+            <br />
+            <a href="#" className="activity__actions__detail__content">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </a>
+          </li>
         </ul>
       </div>
     );
