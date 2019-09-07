@@ -1,6 +1,8 @@
 import * as React from "react";
 import "./news2.scss";
 import { DefaultButton } from "../../components";
+import moment from "moment";
+import Link from "next/link";
 
 export class News2 extends React.Component {
   constructor(props) {
@@ -9,60 +11,73 @@ export class News2 extends React.Component {
 
   render() {
     const { news2 } = this.props;
-    console.log(news2)
+    console.log(news2);
     return (
       <div className="news2">
         <div className="news2__inner">
           <div className="news2__inner__info">
             <div className="news2__inner__info__author">
               <span>By&nbsp;</span>
-              <a href={news2.author.link}>{news2.author.name}</a>
+              <a href="#">
+                {news2.author.firstName}&nbsp;
+                {news2.author.lastName}
+              </a>
             </div>
             <div className="news2__inner__info__category">
-              <a href={news2.category.link}>{news2.category.name}</a>
+              <Link
+                href={`/blog/blog?slug=${news2.category.slug}`}
+                as={`/${news2.category.slug}`}
+              >
+                <a href={news2.category.slug}>{news2.category.name}</a>
+              </Link>
             </div>
-            <div className="news2__inner__info__tags">
+            {/* <div className="news2__inner__info__tags">
               {news2.tags.map(tag => {
-                return ([<a href={tag.link}>{tag.name}</a>,
-                <span>,&nbsp;</span>]);
+                return [
+                  <a href={tag.link}>{tag.name}</a>,
+                  <span>,&nbsp;</span>
+                ];
               })}
-            </div>
+            </div> */}
           </div>
           <h3 className="news2__inner__title">
             <a href={news2.link}>{news2.title}</a>
           </h3>
           <div className="news2__inner__image">
             <div className="news2__inner__image__dateCreated">
-              <a href={news2.dateCreated.link}>
+              <a href="#">
                 <span className="news2__inner__image__dateCreated__day">
-                  {news2.dateCreated.day}
+                  {moment(news2.createdAt).day()}
                 </span>
                 <span className="news2__inner__image__dateCreated__month">
-                  {news2.dateCreated.month}
+                  {moment(news2.createdAt).month()}
                 </span>
               </a>
             </div>
-            <a href={news2.link}>
-              <img src={news2.image} alt="" />
+            <a href="#">
+              <img src={news2.thumb} alt="" />
             </a>
           </div>
-          <div className="news2__inner__content">
-            <p>{news2.content}</p>
+          <div
+            className="news2__inner__content"
+            dangerouslySetInnerHTML={{ __html: news2.content }}
+          >
+            {/* <p > </p> */}
           </div>
           <div className="news2__inner__more">
             <div className="news2__inner__more__comments-and-loves">
-              <a href={news2.comment.link}>
+              <a href="#">
                 <i class="far fa-comment"></i>
-                <span>{news2.comment.quantity}</span>
+                <span>56</span>
               </a>
               <span>&nbsp;/&nbsp;</span>
-              <a href={news2.love.link}>
+              <a href="#">
                 <i class="far fa-heart"></i>
-                <span>{news2.love.quantity}</span>
+                <span>66</span>
               </a>
             </div>
             <div className="news2__inner__more__button">
-              <DefaultButton link={news2.link} content={news2.button} />
+              <DefaultButton link={news2.slug} content="Xem thêm" />
             </div>
             <div className="news2__inner__more__other" />
           </div>
