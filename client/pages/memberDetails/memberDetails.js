@@ -13,6 +13,7 @@ import {
   Table,
   CustomSelect
 } from "../../components";
+import { MemberInfo } from "../../components/memberInfo/memberInfo";
 
 export class MemberDetails extends React.Component {
   constructor(props) {
@@ -49,9 +50,9 @@ export class MemberDetails extends React.Component {
           colorIcon: "#11cdef"
         }
       ],
-      customSelect: {
-        placeholder: "Chọn năm...",
-        options: [2015, 2016, 2017, 2018, 2019]
+      customSelectMember: {
+        placeholder: "Chọn học viên...",
+        options: ["Nguyễn Thiên Lý", "Hoàng Thị Ngọc Hạnh"]
       }
     };
   }
@@ -97,17 +98,56 @@ export class MemberDetails extends React.Component {
                 return <NumberAdmin numberAdmin={number}></NumberAdmin>;
               })}
             </div>
-            <div className="memberDetails__body__chart">
-              <div className="memberDetails__body__chart__filter">
-                <CustomSelect
-                  customSelect={this.state.customSelect}
-                ></CustomSelect>
+            <div className="memberDetails__body__card">
+              <div className="memberDetails__body__card__title">
+                Thông tin học viên
               </div>
-              <div className="memberDetails__body__chart__row">
-                <LineChart></LineChart>
+              <div className="memberDetails__body__card__content">
+                <div className="memberDetails__body__card__content__member">
+                  <div className="memberDetails__body__card__content__member__filter">
+                    <CustomSelect
+                      customSelect={this.state.customSelectMember}
+                    ></CustomSelect>
+                  </div>
+                  <div className="memberDetails__body__card__content__member__info">
+                    <MemberInfo></MemberInfo>
+                  </div>
+                </div>
               </div>
-              <div className="memberDetails__body__chart__row">
-                <PieChart></PieChart>
+            </div>
+            <div className="memberDetails__body__card">
+              <div className="memberDetails__body__card__title">
+                Thống kê khóa học
+              </div>
+              <div className="memberDetails__body__card__content">
+                <div className="memberDetails__body__card__content__chart">
+                  <div className="memberDetails__body__card__content__chart__filter">
+                    <form className="memberDetails__body__card__content__chart__filter__form">
+                      <input
+                        type="text"
+                        className="memberDetails__body__card__content__chart__filter__form__input"
+                        placeholder="Chọn ngày bắt đầu"
+                      />
+                      <input
+                        type="text"
+                        className="memberDetails__body__card__content__chart__filter__form__input"
+                        placeholder="Chọn ngày kết thúc"
+                      />
+                      <button
+                        type="button"
+                        className="memberDetails__body__card__content__chart__filter__form__btn memberDetails__body__card__content__chart__filter__form__btn--primary"
+                      >
+                        thống kê
+                      </button>
+                    </form>
+                  </div>
+                  <div className="memberDetails__body__card__content__chart__row">
+                    <LineChart></LineChart>
+                  </div>
+                  <div className="memberDetails__body__card__content__chart__row">
+                    <PieChart></PieChart>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="memberDetails__body__table">

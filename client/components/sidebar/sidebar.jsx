@@ -60,9 +60,9 @@ export class Sidebar extends React.Component {
     });
 
     $(".sidebar__inner__main-menu__none-sub-menu").click(function() {
-      $(".sidebar__inner__main-menu__sub-menu").removeClass(
-        "sidebar__inner__main-menu--item-active"
-      );
+      $(
+        ".sidebar__inner__main-menu__sub-menu, .sidebar__inner__main-menu__none-sub-menu"
+      ).removeClass("sidebar__inner__main-menu--item-active");
       $(".sidebar__inner__main-menu__sub-menu__dropdown-container").css(
         "display",
         "none"

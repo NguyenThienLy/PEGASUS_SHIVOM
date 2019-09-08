@@ -51,9 +51,9 @@ export class CourseDetails extends React.Component {
           colorIcon: "#11cdef"
         }
       ],
-      customSelect: {
-        placeholder: "Chọn năm...",
-        options: [2015, 2016, 2017, 2018, 2019]
+      customSelectCourse: {
+        placeholder: "Chọn khóa học...",
+        options: ["Yoga cho người cao tuổi", "Yoga cộng đồng"]
       },
       profileAdmin: {
         image:
@@ -119,7 +119,7 @@ export class CourseDetails extends React.Component {
                 <div className="courseDetails__body__card__content__course">
                   <div className="courseDetails__body__card__content__course__filter">
                     <CustomSelect
-                      customSelect={this.state.customSelect}
+                      customSelect={this.state.customSelectCourse}
                     ></CustomSelect>
                   </div>
                   <div className="courseDetails__body__card__content__course__info">
@@ -138,9 +138,24 @@ export class CourseDetails extends React.Component {
               <div className="courseDetails__body__card__content">
                 <div className="courseDetails__body__card__content__chart">
                   <div className="courseDetails__body__card__content__chart__filter">
-                    <CustomSelect
-                      customSelect={this.state.customSelect}
-                    ></CustomSelect>
+                    <form className="courseDetails__body__card__content__chart__filter__form">
+                      <input
+                        type="text"
+                        className="courseDetails__body__card__content__chart__filter__form__input"
+                        placeholder="Chọn ngày bắt đầu"
+                      />
+                      <input
+                        type="text"
+                        className="courseDetails__body__card__content__chart__filter__form__input"
+                        placeholder="Chọn ngày kết thúc"
+                      />
+                      <button
+                        type="button"
+                        className="courseDetails__body__card__content__chart__filter__form__btn courseDetails__body__card__content__chart__filter__form__btn--primary"
+                      >
+                        thống kê
+                      </button>
+                    </form>
                   </div>
                   <div className="courseDetails__body__card__content__chart__row">
                     <LineChart></LineChart>

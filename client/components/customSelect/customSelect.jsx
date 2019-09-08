@@ -9,7 +9,7 @@ export class CustomSelect extends React.Component {
   render() {
     const { customSelect } = this.props;
     return (
-      <div className="customSelect animated fadeIn">
+      <div className="customSelect">
         <label>
           <input type="checkbox" name="placeholder" />
           <i className="customSelect__toggle customSelect__icon-plus fas fa-caret-down"></i>
