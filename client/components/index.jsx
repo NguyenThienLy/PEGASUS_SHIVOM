@@ -40,3 +40,4 @@ export * from "./map/map";
 export * from "./searchBox/searchBox";
 export * from "./headerAdmin/headerAdmin";
 export * from "./customSelect/customSelect";
+export * from "./alert/alert";

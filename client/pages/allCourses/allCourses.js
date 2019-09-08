@@ -113,6 +113,7 @@ export class AllCourses extends React.Component {
 	static async getInitialProps({ req, query }) {
 		return {};
 	}
+
 	handleScroll = () => {
 		var x = $(window).scrollTop();
 		$(".all-courses .all-courses__title").css(
@@ -120,6 +121,7 @@ export class AllCourses extends React.Component {
 			"center " + parseInt(-x / 2.8) + "px"
 		);
 	};
+
 	componentWillUnmount() {
 		window.removeEventListener("scroll", this.handleScroll);
 	}
@@ -127,13 +129,15 @@ export class AllCourses extends React.Component {
 		this.props.fetchCourses()
 	}
 	componentDidMount() {
-		this.fetchData()
 		this.handleScroll();
 		window.addEventListener("scroll", this.handleScroll);
 
 		var heightOfFooter = $(".all-courses__footer .footer-wrapper").height();
 		$(".all-courses__contactUs").css("margin-bottom", heightOfFooter + "px");
 	}
+	addContact = body => {
+		this.props.addContact(body);
+	};
 	render() {
 		return (
 			<div className="all-courses">
@@ -225,7 +229,11 @@ export class AllCourses extends React.Component {
 
 					</div>
 					<div className="all-courses__contactUs">
-						<ContactUs />
+						<ContactUs
+							{...this.props.setting.contact}
+							addContact={this.addContact}
+							courses={this.props.courses.items}
+						/>
 					</div>
 
 					<div className="all-courses__footer">
