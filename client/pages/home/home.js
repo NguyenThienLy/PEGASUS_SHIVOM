@@ -463,10 +463,6 @@ class Home extends React.Component {
           this.blur();
         });
     });
-
-    let heightOfFooter = $(".home .footer-wrapper").height();
-    console.log(heightOfFooter);
-    $(".home__body").css("margin-bottom", heightOfFooter + "px");
   }
 
   addContact = body => {
