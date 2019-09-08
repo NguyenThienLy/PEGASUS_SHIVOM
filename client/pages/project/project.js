@@ -7,7 +7,7 @@ import { api } from '../../services'
 import { action } from '../../actions'
 
 import './project.scss'
-import { Header, Footer, Activity } from '../../components/'
+import { Header, Footer, Activity, Alert } from '../../components/'
 
 class Project extends Component {
     constructor(props) {
@@ -49,6 +49,7 @@ class Project extends Component {
                 <React.Fragment>
                     <div className="project__body">
                         <Activity activities={this.state.activities} />
+                        <Alert type='error' />
                     </div>
                 </React.Fragment>
                 <div className="project-footer">

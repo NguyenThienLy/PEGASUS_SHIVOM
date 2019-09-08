@@ -1,0 +1,116 @@
+@import "../../default.scss";
+
+$error-color: #ee827c;
+$success-color: #88cb7f;
+$warning-color: #ee827c;
+
+.alert-wrapper {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.04);
+    width: 18em;
+    height: 15em;
+    background-color: #fff;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 2em 2em;
+
+    @include e('exit') {
+        position: absolute;
+        right: 1em;
+        top: 1em;
+        color: $color-grey;
+        cursor: pointer;
+
+        &:hover {
+            color: #ee827c;
+        }
+    }
+
+    @include e('icon') {
+        border: 2px solid;
+        border-radius: 999px;
+        width: 4.5em;
+        height: 4.5em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        @include m('error') {
+            border-color: $error-color;
+            color: $error-color;
+
+            .fas {
+                font-size: 2.5em;
+            }
+        }
+
+        @include m('success') {
+            border-color: $success-color;
+            color: $success-color;
+
+            .fas {
+                font-size: 2.5em;
+            }
+        }
+    }
+
+    @include e('title') {
+        font-size: 1.5em;
+        color: $color-grey;
+    }
+
+    @include e('content') {
+        color: $font-color;
+    }
+
+    @include e('action') {
+        width: 70%;
+        display: flex;
+        justify-content: space-between;
+
+        @include e('button') {
+            width: 45%;
+            height: fit-content;
+            font-size: 0.8em;
+            padding: 0.5em 1em;
+            border-radius: 5px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: $font-color; //rgba(0, 0, 0, 0.7);
+            background: none;
+            text-align: center;
+            letter-spacing: 0.4px;
+            font-family: $font-family-special;
+            text-decoration: none;
+            outline: none;
+            transition: 200ms ease;
+            cursor: pointer;
+
+            @include m('cancel') {
+                &:hover {
+                    background: #ebebeb;
+                }
+            }
+
+            @include m('error') {
+                background: $error-color;
+                color: #fff;
+
+                &:hover {
+                    background: darken($error-color, 10%);
+                }
+            }
+
+            @include m('success') {
+                background: $success-color;
+                color: #fff;
+
+                &:hover {
+                    background: darken($success-color, 10%);
+                }
+            }
+        }
+    }
+}
