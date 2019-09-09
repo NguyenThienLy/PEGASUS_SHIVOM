@@ -97,9 +97,9 @@ export class StudentController extends CrudController<typeof studentService>{
             student: params.studentId,
             gift: params.gift
         }, {
-                upsert: true,
-                new: true
-            })
+            upsert: true,
+            new: true
+        })
         // Gửi mail toi nguoi dung
 
         try {
@@ -122,10 +122,10 @@ export class StudentController extends CrudController<typeof studentService>{
         return await this.service.update({
             cardId: params.code
         }, {
-                filter: {
-                    _id: params.studentId
-                }
-            })
+            filter: {
+                _id: params.studentId
+            }
+        })
     }
     async login(params: {
         phone: string
@@ -345,5 +345,37 @@ export class StudentController extends CrudController<typeof studentService>{
             return studentTimeTables
         }
     }
+    async statisticForColumnChart(params: {
+        course: string,
+        startTime: Date,
+        endTime: Date
+    }) {
+        // Lay ma hash duy nhat de query cache
+        const hashCode = hash(JSON.stringify(params))
+        // Lay du lieu trong cache
+        const cacheData = await cacheService.get(hashCode)
 
+        if (cacheData) {
+            return cacheData
+        } else {
+            const { course, startTime, endTime } = params
+
+            // Đổi sang tuần theo type
+            const totalWeekStartTime = (moment(startTime).month() - 1) * 4 + moment(startTime).year() * 52
+            const totalWeekEndTime = (moment(endTime).month() - 1) * 4 + moment(endTime).year() * 52
+
+            // // Thống kê theo kiểu realTime
+            // if (type === "realTime")
+            //     return checkinService.getDataInStatisticForListDetail({
+            //         course
+            //     })
+
+            // Thống kê theo kiểu week, month, year
+            return this.service.getDateInStatisticForColumnChart({
+                course,
+                totalWeekStartTime,
+                totalWeekEndTime
+            })
+        }
+    }
 }
