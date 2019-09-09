@@ -1,0 +1,231 @@
+@import "../../default.scss";
+
+.student-info {
+    .student-info__title-text {
+        color: $main-color;
+        font-family: $font-family-special;
+        font-size: 1.1em;
+
+        span {
+            color: #ee827c;
+            font-style: italic;
+            font-size: 0.8em;
+        }
+    }
+
+    .student-info__input-box {
+        background: none;
+        border-radius: 0;
+        border: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        height: 2.5em;
+        font-size: 1em;
+        font-family: $font-family-special;
+
+        &::placeholder {
+            color: rgba(0, 0, 0, 0.3);
+            font-size: 0.9em;
+        }
+
+        &:focus {
+            outline: none;
+            border: none;
+            border-bottom: 1px solid $main-color;
+        }
+    }
+
+    .divider {
+        height: 1px;
+        background-color: $table-border-color; //rgba(0, 0, 0, 0.1);
+        border: none;
+        margin: 0px;
+    }
+
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.04);
+    //   width: 35em;
+    width: 70%;
+    background-color: #fff;
+    border-radius: 5px;
+
+    @include e("title") {
+        font-size: 1em;
+        color: $color-grey; //rgba(0, 0, 0, 0.7);
+        margin-left: 1.5em;
+        letter-spacing: 0.2px;
+        padding: 1em 0;
+        // font-weight: 700;
+    }
+
+    @include e("form") {
+        padding-left: 0;
+        margin: 0 0 0 2em;
+        padding-bottom: 1em;
+
+        @include e('member-info') {
+            position: relative;
+            border-left: 1px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 1em 5em 1em 3em;
+            justify-content: space-between;
+            align-items: center;
+
+            @include e('card-number') {
+                display: flex;
+                margin-bottom: 1em;
+                justify-content: space-between;
+                align-items: center;
+
+                input {
+                    flex-basis: 50%;
+                }
+            }
+
+            @include e('member-point') {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                input {
+                    flex-basis: 50%;
+                }
+            }
+
+            @include e("icon") {
+                position: absolute;
+                left: -1.05em;
+                top: 1.5em;
+                width: 2.1em;
+                height: 2.1em;
+                border-radius: 999px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: lighten($sub-main-color, 25%); //#ebebeb;
+                box-shadow: 1px 1px 10px #ebebeb;
+
+                i {
+                    color: $main-color;
+                }
+            }
+
+            @include e('full-name') {
+                display: flex;
+                margin-bottom: 1em;
+                justify-content: space-between;
+
+                @include e('last-name') {
+                    flex-basis: 45%;
+
+                    input {
+                        width: 100%;
+                    }
+                }
+
+                @include e('first-name') {
+                    flex-basis: 50%;
+
+                    input {
+                        width: 100%;
+                    }
+                }
+            }
+
+            @include e('phone-number') {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 1em;
+                align-items: center;
+
+                input {
+                    flex-basis: 50%;
+                }
+            }
+
+            @include e('date-of-birth') {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1em;
+
+
+                input[type=date] {
+                    // color: rgba(0, 0, 0, 0.2);
+
+                    &::-webkit-datetime-edit-month-field {
+                        color: rgba(0, 0, 0, 0.2);
+                    }
+
+                    &::-webkit-datetime-edit-day-field {
+                        color: rgba(0, 0, 0, 0.2);
+                    }
+
+                    &::-webkit-datetime-edit-year-field {
+                        color: rgba(0, 0, 0, 0.2);
+                    }
+
+                    flex-basis: 50%;
+                }
+            }
+
+            @include e('address') {
+
+                input {
+                    width: 100%;
+                }
+            }
+
+            @include e('add-photo') {
+                justify-content: center;
+                align-items: center;
+                display: flex;
+
+                button {
+                    font-size: 2.5em;
+                    background: none;
+                    border: none;
+                    color: $sub-main-color;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: $main-color;
+                    }
+
+                    &:focus {
+                        outline: none;
+                    }
+
+                }
+            }
+        }
+
+        @include e('button') {
+            display: flex;
+            justify-content: center;
+            padding: 1em 5em 1em 3em;
+
+            // width: 5em;
+            // height: 1em;
+            button {
+                font-size: 1.1em;
+                border-radius: 5px;
+                height: fit-content;
+                padding: 0.5em 2em;
+                text-align: center;
+                border: 1px solid lighten($sub-main-color, 25%); //#ebebeb;
+                color: $main-color;
+                outline: none;
+                letter-spacing: 0.4px;
+                transition: 200ms ease;
+                background: lighten($sub-main-color, 25%); //#ebebeb;
+                box-shadow: 2px 2px 10px #ebebeb;
+                text-transform: uppercase;
+                cursor: pointer;
+
+                &:hover {
+                    background: $main-color;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
