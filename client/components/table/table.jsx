@@ -18,117 +18,128 @@ export class Table extends React.Component {
         </div>
         <div className="table__content">
           <table>
-            <tr>
-              <th className="table__content__center">#</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Points</th>
-              <th className="table__content__right">Actions</th>
-            </tr>
-            <tr>
-              <td className="table__content__center">1</td>
-              <td>Peter</td>
-              <td>Griffin</td>
-              <td>$100</td>
-              <td className="table__content__right">
-                <button
-                  type="button"
-                  className="table__content__btn table__content__btn--primary"
-                >
-                  <i class="fas fa-info" />
-                </button>
-                <button
-                  type="button"
-                  className="table__content__btn table__content__btn--success"
-                >
-                  <i class="fas fa-pen" />
-                </button>
-                <button
-                  type="button"
-                  className="table__content__btn table__content__btn--warning"
-                >
-                  <i class="fas fa-trash-alt" />
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td className="table__content__center">2</td>
-              <td>Lois</td>
-              <td>Griffin</td>
-              <td>$150</td>
-              <td className="table__content__right">
-                <button
-                  type="button"
-                  className="table__content__btn table__content__btn--primary"
-                >
-                  <i class="fas fa-info" />
-                </button>
-                <button
-                  type="button"
-                  className="table__content__btn table__content__btn--success"
-                >
-                  <i class="fas fa-pen" />
-                </button>
-                <button
-                  type="button"
-                  className="table__content__btn table__content__btn--warning"
-                >
-                  <i class="fas fa-trash-alt" />
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td className="table__content__center">3</td>
-              <td>Joe</td>
-              <td>Swanson</td>
-              <td>$300</td>
-              <td className="table__content__right">
-                <button
-                  type="button"
-                  className="table__content__btn table__content__btn--primary"
-                >
-                  <i class="fas fa-info" />
-                </button>
-                <button
-                  type="button"
-                  className="table__content__btn table__content__btn--success"
-                >
-                  <i class="fas fa-pen" />
-                </button>
-                <button
-                  type="button"
-                  className="table__content__btn table__content__btn--warning"
-                >
-                  <i class="fas fa-trash-alt" />
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td className="table__content__center">4</td>
-              <td>Cleveland</td>
-              <td>Brown</td>
-              <td>$250</td>
-              <td className="table__content__right">
-                <button
-                  type="button"
-                  className="table__content__btn table__content__btn--primary"
-                >
-                  <i class="fas fa-info" />
-                </button>
-                <button
-                  type="button"
-                  className="table__content__btn table__content__btn--success"
-                >
-                  <i class="fas fa-pen" />
-                </button>
-                <button
-                  type="button"
-                  className="table__content__btn table__content__btn--warning"
-                >
-                  <i class="fas fa-trash-alt" />
-                </button>
-              </td>
-            </tr>
+            <colgroup>
+              <col className="table__content__firstCol" />
+              <col />
+              <col />
+              <col />
+              <col />
+            </colgroup>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Points</th>
+                <th className="table__content__right">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-title="#">1</td>
+                <td data-title="First Name">Peter</td>
+                <td data-title="Last Name">Griffin</td>
+                <td data-title="Points">$100</td>
+                <td data-title="Actions" className="table__content__right">
+                  <button
+                    type="button"
+                    className="table__content__btn table__content__btn--primary"
+                  >
+                    <i class="fas fa-info" />
+                  </button>
+                  <button
+                    type="button"
+                    className="table__content__btn table__content__btn--success"
+                  >
+                    <i class="fas fa-pen" />
+                  </button>
+                  <button
+                    type="button"
+                    className="table__content__btn table__content__btn--warning"
+                  >
+                    <i class="fas fa-trash-alt" />
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td data-title="#">2</td>
+                <td data-title="First Name">Lois</td>
+                <td data-title="Last Name">Griffin</td>
+                <td data-title="Points">$150</td>
+                <td data-title="Actions" className="table__content__right">
+                  <button
+                    type="button"
+                    className="table__content__btn table__content__btn--primary"
+                  >
+                    <i class="fas fa-info" />
+                  </button>
+                  <button
+                    type="button"
+                    className="table__content__btn table__content__btn--success"
+                  >
+                    <i class="fas fa-pen" />
+                  </button>
+                  <button
+                    type="button"
+                    className="table__content__btn table__content__btn--warning"
+                  >
+                    <i class="fas fa-trash-alt" />
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td data-title="#">3</td>
+                <td data-title="First Name">Joe</td>
+                <td data-title="Last Name">Swanson</td>
+                <td data-title="Points">$300</td>
+                <td data-title="Actions" className="table__content__right">
+                  <button
+                    type="button"
+                    className="table__content__btn table__content__btn--primary"
+                  >
+                    <i class="fas fa-info" />
+                  </button>
+                  <button
+                    type="button"
+                    className="table__content__btn table__content__btn--success"
+                  >
+                    <i class="fas fa-pen" />
+                  </button>
+                  <button
+                    type="button"
+                    className="table__content__btn table__content__btn--warning"
+                  >
+                    <i class="fas fa-trash-alt" />
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td data-title="#">4</td>
+                <td data-title="First Name">Cleveland</td>
+                <td data-title="Last Name">Brown</td>
+                <td data-title="Points">$250</td>
+                <td data-title="Actions" className="table__content__right">
+                  <button
+                    type="button"
+                    className="table__content__btn table__content__btn--primary"
+                  >
+                    <i class="fas fa-info" />
+                  </button>
+                  <button
+                    type="button"
+                    className="table__content__btn table__content__btn--success"
+                  >
+                    <i class="fas fa-pen" />
+                  </button>
+                  <button
+                    type="button"
+                    className="table__content__btn table__content__btn--warning"
+                  >
+                    <i class="fas fa-trash-alt" />
+                  </button>
+                </td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>

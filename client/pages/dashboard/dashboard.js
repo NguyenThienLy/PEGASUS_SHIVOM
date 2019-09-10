@@ -28,6 +28,61 @@ export class Dashboard extends React.Component {
           "https://cdn1.iconfinder.com/data/icons/avatars-1-5/136/87-512.png",
         name: "Avril Lavigne"
       },
+      sidebar: {
+        homeLink: "#",
+        logoSource: "/logo.png",
+        title: "Shivom Dashboard",
+        listItems: [
+          {
+            link: "#",
+            icon: "<i class='fas fa-user'></i>",
+            name: "Trang chủ"
+          },
+          {
+            link: "#",
+            icon: "<i class='far fa-list-alt'></i>",
+            name: "Khóa học",
+            subItems: [
+              {
+                link: "#",
+                name: "Khóa học 1"
+              },
+              {
+                link: "#",
+                name: "Khóa học 2"
+              },
+              {
+                link: "#",
+                name: "Khóa học 3"
+              }
+            ]
+          },
+          {
+            link: "#",
+            icon: "<i class='far fa-newspaper'></i>",
+            name: "Tin tức",
+            subItems: [
+              {
+                link: "#",
+                name: "Tin tức 1"
+              },
+              {
+                link: "#",
+                name: "Tin tức 2"
+              },
+              {
+                link: "#",
+                name: "Tin tức 3"
+              }
+            ]
+          },
+          {
+            link: "#",
+            icon: "<i class='fas fa-info'></i>",
+            name: "Về chúng tôi"
+          }
+        ]
+      },
       numberAdmins: [
         {
           icon: '<i class="fas fa-id-card-alt"></i>',
@@ -111,7 +166,7 @@ export class Dashboard extends React.Component {
   componentWillUnmount() {}
   componentDidMount() {
     var heightOfHeader = $(
-      ".dashboard .dashboard__header .headerAdmin"
+      ".dashboard .dashboard__header .headerAdmin__wrapper"
     ).height();
     $(".dashboard .dashboard__body").css("margin-top", heightOfHeader + "px");
   }
@@ -131,11 +186,15 @@ export class Dashboard extends React.Component {
           ></meta>
         </Head>
         <React.Fragment>
+          <div class="background-overlay"></div>
           <div className="dashboard__header">
-            <HeaderAdmin headerAdmin={this.state.headerAdmin}></HeaderAdmin>
+            <HeaderAdmin
+              sidebar={this.state.sidebar}
+              headerAdmin={this.state.headerAdmin}
+            ></HeaderAdmin>
           </div>
           <div className="dashboard__sidebar">
-            <Sidebar></Sidebar>
+            <Sidebar sidebar={this.state.sidebar}></Sidebar>
           </div>
           <div className="dashboard__body">
             <div className="dashboard__body__numbers">
