@@ -17,6 +17,7 @@ export default class StudentRouter extends CrudRouter<typeof studentController> 
         this.router.get("/:_id/checkin", this.checkinMiddlewares(), this.route(this.checkin))
         this.router.get("/search", this.searchMiddlewares(), this.route(this.search))
         this.router.get("/upcommingExpired", this.getListStudentUpcommingExpiredMiddlewares(), this.route(this.getListStudentUpcommingExpired))
+        this.router.get("/statisticForColumnChart", this.statisticForColumnChartMiddlewares(), this.route(this.statisticForColumnChart))
         this.router.post("/sendMailUpcommingExpired", this.sendMailUpcommingExpiredMiddlewares(), this.route(this.sendMailUpcommingExpired))
         this.router.post("/login", [], this.route(this.login))
         this.router.post("/:_id/card", this.updateCardMiddlewares(), this.route(this.updateCard))
@@ -128,6 +129,25 @@ export default class StudentRouter extends CrudRouter<typeof studentController> 
         })
         const result = await this.controller.getListStudentUpcommingExpired(req.query, req.queryInfo)
         this.onSuccessAsList(res, result, null, req.queryInfo)
+    }
+    statisticForColumnChartMiddlewares(): any[] {
+        return [
+            // authInfoMiddleware.run(["admin"]),
+            queryInfoMiddleware.run()
+        ]
+    }    // Lấy dữ liệu thông kê sĩ số học sinh theo tháng
+    async statisticForColumnChart(req: Request, res: Response) {
+        await this.validateJSON(req.query, {
+            type: "object",
+            properties: {
+                course: { type: "string" },
+                startTime: { type: "string", format: "date-time" },
+                endTime: { type: "string", format: "date-time" }
+            },
+            additionalProperties: false
+        })
+        const result = await this.controller.statisticForColumnChart(req.query)
+        this.onSuccess(res, result)
     }
     searchMiddlewares(): any[] {
         return [

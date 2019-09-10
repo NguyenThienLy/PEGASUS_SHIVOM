@@ -3,43 +3,57 @@
 $color-icon: rgba(0, 163, 175, 0.7);
 
 .numberAdmin {
-  width: 12em;
+  width: 23%;
   height: 7em;
-  margin: 3em 3em;
   border-radius: 5px;
   background-color: #fff;
-  -webkit-box-shadow: 4px 4px 20px rgba(131, 204, 210, 0.15);
-  box-shadow: 4px 4px 20px rgba(131, 204, 210, 0.15);
+  -webkit-box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
   transition: 300ms;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
   @include e("inner") {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
     align-items: center;
+    justify-content: space-between;
     @include e("icon") {
-      color: $color-icon;
-      margin-right: 0.6em;
-      font-size: 2.5em;
+      margin-left: 1em;
+      padding: 1em;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      div {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        i {
+          font-size: 1.7em;
+        }
+      }
     }
     @include e("info") {
-      color: $font-color;
+      margin-right: 1.5em;
       @include e("about") {
-        font-family: $font-family-special;
-        text-transform: capitalize;
+        color: #8898aa;
+        text-transform: uppercase;
         font-size: 0.8em;
         margin-bottom: 0.5em;
+        font-weight: bold;
       }
       @include e("quantity") {
+        color: $color-grey;
         font-size: 1.3em;
-        letter-spacing: 0.05em;
-        color: $main-color;
+        font-weight: bold;
       }
     }
   }
   &:hover {
-    -webkit-box-shadow: 3px 3px 30px rgba(131, 204, 210, 0.25);
-    box-shadow: 3px 3px 30px rgba(131, 204, 210, 0.25);
+    -webkit-box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.15);
   }
 }

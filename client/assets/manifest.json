@@ -1,8 +1,7 @@
 {
     "short_name": "PG",
     "name": "Pegasus",
-    "icons": [
-        {
+    "icons": [{
             "src": "/bookFeeling.jpg",
             "type": "image/jpg",
             "sizes": "192x192"

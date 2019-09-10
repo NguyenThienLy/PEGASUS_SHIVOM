@@ -33,7 +33,8 @@
         @include e("logo-wrapper") {
           @include e("a") {
             @include e("img") {
-              height: 70px;
+              max-width: 5em;
+              height: auto;
             }
           }
         }
@@ -157,7 +158,8 @@
         @include e("logo-wrapper") {
           @include e("a") {
             @include e("img") {
-              height: 70px;
+              max-width: 4em;
+              height: auto;
             }
           }
         }

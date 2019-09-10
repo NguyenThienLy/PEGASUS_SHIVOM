@@ -7,24 +7,43 @@ import { api } from '../../services'
 import { action } from '../../actions'
 
 import './project.scss'
-import { Header, Footer } from '../../components/'
+import {
+    Header,
+    Footer,
+    Activity,
+    Alert,
+    StudentInfo,
+    AddStudent,
+} from '../../components/'
+import { StudentAction } from '../../actions/student'
 
 class Project extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            
+            activities: [
+                {
+                    time: '23 phút',
+                    content: 'has change password has change password',
+                },
+                {
+                    time: '24 phút',
+                    content: 'has change password aaa has change password',
+                }
+            ]
         };
     }
     static async getInitialProps({ req, query }) {
-        
+
         return {
-            
+
         }
     }
-    
+
     async componentDidMount() {
-        
+        var heightOfFooter = $(".project-footer .footer-wrapper").height();
+        $(".project__body").css("margin-bottom", heightOfFooter + "px");
+
     }
     render() {
         return (
@@ -36,11 +55,17 @@ class Project extends Component {
                 </Head>
                 <Header {...this.props} />
                 <React.Fragment>
-                <div className="body">
-                        <h1>Các dự án tại Pegasus</h1>
+                    <div className="project__body">
+                        <Activity activities={this.state.activities} />
+                        <Alert type='error' />
+                        <Alert type='success' />
+                        <Alert type='warn' />
+                        <AddStudent />
                     </div>
                 </React.Fragment>
-                <Footer />
+                <div className="project-footer">
+                    <Footer />
+                </div>
             </div>
         );
     }

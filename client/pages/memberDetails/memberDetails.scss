@@ -1,0 +1,129 @@
+@import "../../default.scss";
+
+html,
+body {
+  background-color: lighten($sub-main-color, 27%);
+}
+
+.memberDetails {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  @include e("header") {
+    z-index: 1;
+  }
+  @include e("sidebar") {
+    z-index: 2;
+    width: 20%;
+    .sidebar {
+      position: fixed;
+      max-width: 20%;
+    }
+  }
+  @include e("body") {
+    min-height: 100%;
+    width: 80%;
+    @include e("numbers") {
+      margin: 4em 1% 3em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    @include e("card") {
+      margin: 0 1% 3em;
+      background-color: #fff;
+      padding: 1em;
+      border-radius: 5px;
+      -webkit-box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+      position: relative;
+      @include e("title") {
+        width: 10em;
+        position: absolute;
+        top: -0.8em;
+        left: 0.8em;
+        padding: 1em 0;
+        text-align: center;
+        background-color: $main-color;
+        color: #fff;
+        border-radius: 5px;
+        -webkit-box-shadow: 1px 1px 5px rgba(0, 163, 175, 0.5);
+        box-shadow: 1px 1px 5px rgba(0, 163, 175, 0.5);
+      }
+      @include e("content") {
+        padding: 3em 0;
+        @include e("member") {
+          @include e("filter") {
+          }
+          @include e("info") {
+            margin: 2em 0 0;
+            display: flex;
+            justify-content: space-between;
+          }
+        }
+
+        @include e("chart") {
+          @include e("filter") {
+            @include e("form") {
+              @include e("input") {
+                width: 12em;
+                background: #fff;
+                color: $font-color;
+                font-family: $font-body;
+                font-size: 0.8em;
+                border: 1px solid $table-border-color;
+                border-radius: 5px;
+                outline: 0;
+                padding: 1em 2em;
+                margin-right: 1em;
+              }
+              @include e("btn") {
+                border: 0;
+                outline: 0;
+                padding: 0;
+                color: #fff;
+                border-radius: 5px;
+                padding: 1em 2em;
+                font-family: $font-body;
+                font-size: 0.8em;
+                transition: all 200ms ease;
+                cursor: pointer;
+                &::first-letter {
+                  text-transform: capitalize;
+                }
+                @include m("primary") {
+                  background: $main-color;
+                  box-shadow: 1px 1px 2px 0 rgba(0, 163, 175, 0.5);
+                  &:hover {
+                    background: darken($main-color, 5%);
+                  }
+                  &:active {
+                    background: $main-color;
+                    box-shadow: 1px 1px 5px 0 rgba(0, 163, 175, 0.3);
+                  }
+                  i {
+                    margin: 0 0.3em;
+                  }
+                }
+              }
+            }
+          }
+          @include e("row") {
+            margin: 2em 0 1em;
+            .lineChart {
+              width: 100%;
+              margin-right: 0;
+            }
+            .pieChart {
+              margin: auto;
+            }
+          }
+        }
+      }
+    }
+    @include e("table") {
+      margin: 0 1% 3em;
+    }
+  }
+}

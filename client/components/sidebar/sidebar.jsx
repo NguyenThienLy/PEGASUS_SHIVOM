@@ -8,11 +8,20 @@ export class Sidebar extends React.Component {
 
   componentDidMount() {
     $(".sidebar__inner__main-menu__sub-menu").click(function(e) {
-      e.preventDefault();
+      e.preventDefault(); // prevent the link from url
 
-      $(".sidebar__inner__main-menu__sub-menu").removeClass(
-        "sidebar__inner__main-menu--item-active"
-      );
+      var dropdownContent = this.nextElementSibling;
+      var isOpened = false;
+      if (dropdownContent.style.display === "block") {
+        dropdownContent.style.display = "none";
+      } else {
+        isOpened = true;
+        dropdownContent.style.display = "block";
+      }
+
+      $(
+        ".sidebar__inner__main-menu__sub-menu, .sidebar__inner__main-menu__none-sub-menu"
+      ).removeClass("sidebar__inner__main-menu--item-active");
       $(".sidebar__inner__main-menu__sub-menu__dropdown-container").css(
         "display",
         "none"
@@ -24,15 +33,11 @@ export class Sidebar extends React.Component {
         "sidebar__inner__main-menu__sub-menu__dropdown-icon--transform-left"
       );
 
-      $(this).toggleClass("sidebar__inner__main-menu--item-active");
-
-      var dropdownContent = this.nextElementSibling;
-
-      if (dropdownContent.style.display === "block") {
-        dropdownContent.style.display = "none";
-      } else {
+      if (isOpened) {
         dropdownContent.style.display = "block";
       }
+
+      $(this).toggleClass("sidebar__inner__main-menu--item-active");
 
       var dropdownIcon = $(this).find(
         ".sidebar__inner__main-menu__sub-menu__dropdown-icon"
@@ -53,6 +58,24 @@ export class Sidebar extends React.Component {
         );
       }
     });
+
+    $(".sidebar__inner__main-menu__none-sub-menu").click(function() {
+      $(
+        ".sidebar__inner__main-menu__sub-menu, .sidebar__inner__main-menu__none-sub-menu"
+      ).removeClass("sidebar__inner__main-menu--item-active");
+      $(".sidebar__inner__main-menu__sub-menu__dropdown-container").css(
+        "display",
+        "none"
+      );
+      $(".sidebar__inner__main-menu__sub-menu__dropdown-icon").removeClass(
+        "sidebar__inner__main-menu__sub-menu__dropdown-icon--transform-down"
+      );
+      $(".sidebar__inner__main-menu__sub-menu__dropdown-icon").addClass(
+        "sidebar__inner__main-menu__sub-menu__dropdown-icon--transform-left"
+      );
+
+      $(this).toggleClass("sidebar__inner__main-menu--item-active");
+    });
   }
 
   render() {
@@ -62,10 +85,7 @@ export class Sidebar extends React.Component {
           <div className="sidebar__inner__top-menu">
             <div className="sidebar__inner__top-menu__logo">
               <a href="#">
-                <img
-                  src="/logo.png"
-                  alt=""
-                />
+                <img src="/logo.png" alt="" />
               </a>
             </div>
             <div className="sidebar__inner__top-menu__title">
@@ -73,7 +93,7 @@ export class Sidebar extends React.Component {
             </div>
           </div>
           <ul className="sidebar__inner__main-menu">
-            <li>
+            <li className="sidebar__inner__main-menu__none-sub-menu">
               <a href="#">
                 <i class="fas fa-user" />
                 Trang chủ
@@ -121,7 +141,7 @@ export class Sidebar extends React.Component {
                 </li>
               </ul>
             </div>
-            <li>
+            <li className="sidebar__inner__main-menu__none-sub-menu">
               <a href="#">
                 <i class="fas fa-info"></i>Về chúng tôi
               </a>

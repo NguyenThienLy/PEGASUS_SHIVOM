@@ -36,5 +36,9 @@ export * from "./ringingPhone/ringingPhone";
 export * from "./relatedPost/relatedPost";
 export * from "./activity/activity";
 export * from "./feedbackNoti/feedbackNoti";
-export * from './map/map'
-export * from './searchBox/searchBox'
+export * from "./map/map";
+export * from "./searchBox/searchBox";
+export * from "./headerAdmin/headerAdmin";
+export * from "./customSelect/customSelect";
+export * from "./alert/alert";
+export * from "./addStudent/addStudent"

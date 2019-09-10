@@ -1,4 +1,5 @@
 import * as React from "react";
+import ReactDOM from "react-dom";
 import "./footer.scss";
 import Link from "next/link";
 import Head from "next/head";
@@ -28,9 +29,8 @@ export class Footer extends React.Component {
       ]
     };
   }
-
   componentDidMount() {
-    let heightOfFooter = $(".footer-wrapper").height();
+    let heightOfFooter = $(".footer-wrapper").outerHeight();
     let body = $(".footer-wrapper").prev();
 
     if ($(window).outerWidth() > 599) {
@@ -47,9 +47,9 @@ export class Footer extends React.Component {
       body.css("margin-bottom", "0px");
     }
 
-    $(window).on("resize", function () {
+    $(window).on("resize", function() {
       if ($(window).outerWidth() > 599) {
-        heightOfFooter = $(".footer-wrapper").height();
+        heightOfFooter = $(".footer-wrapper").outerHeight();
         $(".footer-wrapper").css({
           position: "fixed",
           zIndex: "-1"
@@ -88,7 +88,7 @@ export class Footer extends React.Component {
               Email: {this.props.email}
             </a>
             <a className="footer-wrapper__first-floor__contact__item" href="#">
-              Phone: {this.props.phone}
+              Điện thoại: {this.props.phone}
             </a>
           </div>
           <div className="footer-wrapper__first-floor__social-group">
