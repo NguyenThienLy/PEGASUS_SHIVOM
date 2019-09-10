@@ -37,7 +37,7 @@ export class Slider extends React.Component {
       ).addClass("slider__slick-autoplay__item__caption__ani--4");
     });
 
-    $(".slider__slick-autoplay").slick({
+    $(".slider__slick-autoplay").not('.slick-initialized').slick({
       dots: false,
       arrows: false,
       slidesToShow: 1,

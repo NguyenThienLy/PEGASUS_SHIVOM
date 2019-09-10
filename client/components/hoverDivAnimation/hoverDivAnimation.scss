@@ -44,6 +44,8 @@ $hover-color: lighten($sub-main-color, 27%);
 
 .hoverDiv {
   @include e("link") {
+    // pointer-events: none;
+    cursor: pointer;
     color: $font-color;
     text-transform: uppercase;
     display: block;
