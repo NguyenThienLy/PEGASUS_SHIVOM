@@ -186,25 +186,25 @@ class Home extends React.Component {
           link: "#",
           image:
             "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-icon-img-1.png",
-          title: "run outdoors",
+          title: "Tâm huyết",
           content:
-            "Lorem ipsum dolor sit amet, ad duo adipisci imperdiet, eum eu fugit."
+            "Đội ngũ giáo viên chuyên môn cao, luôn nhiệt tình và tâm huyết với những bài dạy - học viên của mình"
         },
         {
           link: "#",
           image:
             "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-icon-img-4.png",
-          title: "rollerblading",
+          title: "Chất lượng",
           content:
-            "Lorem ipsum dolor sit amet, ad duo adipisci imperdiet, eum eu fugit."
+            "Cơ sở vật chất hiện đại, trang thiết bị đầy đủ  - Giáo trình hướng dẫn khoa học, đạt chuẩn quốc tế"
         },
         {
           link: "#",
           image:
             "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-icon-img-5.png",
-          title: "mountain biking",
+          title: "Uy tín",
           content:
-            "Lorem ipsum dolor sit amet, ad duo adipisci imperdiet, eum eu fugit."
+            "Giáo viên có chứng chỉ giảng dạy - Cam kết chất lượng từng khoá học"
         }
       ],
       eventHour: {
@@ -535,16 +535,16 @@ class Home extends React.Component {
             <div className="home__body__timeTable">
               <div className="home__body__timeTable__title">
                 <div className="home__body__timeTable__title__inner">
-                  <div>amazing classes</div>
-                  <p>
+                  <div>Thời gian biểu</div>
+                  {/* <p>
                     Lorem ipsum dolor sit amet, quod gloriatur inciderint at
                     vel, ei justo dolore virtute duo. Movet quaeque probatus an
                     sit, mel iisque facilisi et.
-                  </p>
+                  </p> */}
                 </div>
               </div>
               <div className="home__body__timeTable__content">
-                {this.props.timeTable.fetching === false ? <TimeTable {...this.props.timeTable.items} /> : null}
+                {this.props.timeTable.fetching === false ? <TimeTable courses={this.props.courses} timeTables={this.props.timeTable.items} /> : null}
               </div>
             </div>
 
