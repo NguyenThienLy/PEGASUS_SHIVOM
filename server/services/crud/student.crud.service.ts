@@ -14,7 +14,7 @@ export class StudentService extends CrudService<typeof Student> {
         totalWeekStartTime: number,
         totalWeekEndTime: number
     }) {
-        let labels = ["Th 1", "Th 2", "Th 3", "Th 4", "Th 5", "Th 7", "Th 8", "Th 9", "Th 10", "Th 11", "Th 12"],
+        let labels = ["Th 1", "Th 2", "Th 3", "Th 4", "Th 5", "Th6", "Th 7", "Th 8", "Th 9", "Th 10", "Th 11", "Th 12"],
             data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
         const tempQuantityStudent = await this.model.aggregate([

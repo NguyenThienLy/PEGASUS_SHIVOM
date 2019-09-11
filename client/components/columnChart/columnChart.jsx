@@ -8,10 +8,9 @@ export class ColumnChart extends React.Component {
   }
 
   static defaultProps = {
-    displayTitle: true,
-    displayLegend: true,
-    legendPosition: "right",
-    location: "City"
+    //  displayTitle: true,
+    // displayLegend: true,
+    //legendPosition: "right"
   };
 
   render() {
@@ -39,17 +38,16 @@ export class ColumnChart extends React.Component {
         <div className="columnChart__content">
           <Bar
             data={dataColumnChart}
-            options={{
-              title: {
-                display: this.props.displayTitle,
-                text: "Largest Cities In " + this.props.location,
-                fontSize: 25
-              },
-              legend: {
-                display: this.props.displayLegend,
-                position: this.props.legendPosition
-              }
-            }}
+            // options={{
+            //   title: {
+            //     display: this.props.displayTitle,
+            //     fontSize: 25
+            //   },
+            //   legend: {
+            //     display: this.props.displayLegend,
+            //     position: this.props.legendPosition
+            //   }
+            // }}
           />
         </div>
       </div>

@@ -258,7 +258,7 @@ export class StudentApi extends CrudApi {
       endTime
     });
     url += `${query}`;
-    //console.log("url", url);
+    console.log("url", url);
     const options = {
       method: "GET",
       headers: _.merge({
@@ -270,7 +270,7 @@ export class StudentApi extends CrudApi {
     };
     const res = await this.exec(url, options);
     if (res.code && res.code === 200) {
-      //console.log("res", res);
+      console.log("res", res);
       return res;
     } else {
       throw res;
