@@ -24,61 +24,46 @@ export class MemberDetails extends React.Component {
           "https://cdn1.iconfinder.com/data/icons/avatars-1-5/136/87-512.png",
         name: "Avril Lavigne"
       },
-      sidebar: {
-        homeLink: "#",
-        logoSource: "/logo.png",
-        title: "Shivom Dashboard",
-        listItems: [
-          {
-            link: "#",
-            icon: "<i class='fas fa-user'></i>",
-            name: "Trang chủ"
-          },
-          {
-            link: "#",
-            icon: "<i class='far fa-list-alt'></i>",
-            name: "Khóa học",
-            subItems: [
-              {
-                link: "#",
-                name: "Khóa học 1"
-              },
-              {
-                link: "#",
-                name: "Khóa học 2"
-              },
-              {
-                link: "#",
-                name: "Khóa học 3"
-              }
-            ]
-          },
-          {
-            link: "#",
-            icon: "<i class='far fa-newspaper'></i>",
-            name: "Tin tức",
-            subItems: [
-              {
-                link: "#",
-                name: "Tin tức 1"
-              },
-              {
-                link: "#",
-                name: "Tin tức 2"
-              },
-              {
-                link: "#",
-                name: "Tin tức 3"
-              }
-            ]
-          },
-          {
-            link: "#",
-            icon: "<i class='fas fa-info'></i>",
-            name: "Về chúng tôi"
-          }
-        ]
-      },
+      categories: [
+        {
+          name: "trang chủ",
+          linkHref: "/home/home",
+          linkAs: "/",
+          key: "home"
+        },
+        {
+          name: "khoá học",
+          key: "course",
+          subCategories: []
+        },
+        {
+          name: "tin tức",
+          key: "news",
+          subCategories: [
+            {
+              name: "khoá học môt",
+              linkHref: "/blog/blog?categorySlug=khoa-hoc-not",
+              linkAs: "/khoa-hoc-mot"
+            },
+            {
+              name: "khoá học hai",
+              linkHref: "/home/home",
+              linkAs: "/"
+            },
+            {
+              name: "khoá học ba",
+              linkHref: "/home/home",
+              linkAs: "/"
+            }
+          ]
+        },
+        {
+          name: "về chúng tôi",
+          linkHref: "/contact/contact",
+          linkAs: "/lien-he",
+          key: "about"
+        }
+      ],
       numberAdmins: [
         {
           icon: '<i class="fas fa-id-card-alt"></i>',
@@ -117,6 +102,35 @@ export class MemberDetails extends React.Component {
   handleScroll = () => {};
   componentWillUnmount() {}
   componentDidMount() {
+    if (this.props.courses.items.length > 0) {
+      const courseCategoryIndex = this.state.categories.findIndex(item => {
+        return item.key === "course";
+      });
+      const subCategories = this.props.courses.items.map(item => {
+        return {
+          name: item.name,
+          linkHref: `/course/course?slug=${item.slug}`,
+          linkAs: `/khoa-hoc/${item.slug}`
+        };
+      });
+      this.state.categories[courseCategoryIndex].subCategories = subCategories;
+      this.setState({ categories: this.state.categories });
+    }
+    if (this.props.newCategories.items.length > 0) {
+      const newCategoryIndex = this.state.categories.findIndex(item => {
+        return item.key === "news";
+      });
+      const subCategories = this.props.newCategories.items.map(item => {
+        return {
+          name: item.name,
+          linkHref: `/blog/blog?categorySlug=${item.slug}`,
+          linkAs: `/${item.slug}`
+        };
+      });
+      this.state.categories[newCategoryIndex].subCategories = subCategories;
+      this.setState({ categories: this.state.categories });
+    }
+
     var heightOfHeader = $(
       ".memberDetails .memberDetails__header .headerAdmin__wrapper"
     ).height();
@@ -125,6 +139,62 @@ export class MemberDetails extends React.Component {
       heightOfHeader + "px"
     );
   }
+
+  shouldComponentUpdate() {
+    return true;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevProps.courses.items.length === 0 &&
+      this.props.courses.items.length > 0
+    ) {
+      const courseCategoryIndex = this.state.categories.findIndex(item => {
+        return item.key === "course";
+      });
+      const subCategories = this.props.courses.items.map(item => {
+        return {
+          name: item.name,
+          linkHref: `/course/course?slug=${item.slug}`,
+          linkAs: `/khoa-hoc/${item.slug}`
+        };
+      });
+      this.state.categories[courseCategoryIndex].subCategories = subCategories;
+      this.setState({ categories: this.state.categories });
+    }
+    if (
+      prevProps.newCategories.items.length === 0 &&
+      this.props.newCategories.items.length > 0
+    ) {
+      const newCategoryIndex = this.state.categories.findIndex(item => {
+        return item.key === "news";
+      });
+      const subCategories = this.props.newCategories.items.map(item => {
+        return {
+          name: item.name,
+          linkHref: `/blog/blog?categorySlug=${item.slug}`,
+          linkAs: `/${item.slug}`
+        };
+      });
+      this.state.categories[newCategoryIndex].subCategories = subCategories;
+      this.setState({ categories: this.state.categories });
+    }
+
+    if (
+      prevProps.statisticCourse.statisticForPieChart.fetching &&
+      !this.props.statisticCourse.statisticForPieChart.fetching
+    ) {
+      const newNumberAdmins = prevState.numberAdmins;
+      newNumberAdmins[0].quantity = this.props.statisticCourse.statisticForPieChart.data.totalOnTime;
+      newNumberAdmins[1].quantity = this.props.statisticCourse.statisticForPieChart.data.totalLate;
+      newNumberAdmins[2].quantity = this.props.statisticCourse.statisticForPieChart.data.totalAbsent;
+      newNumberAdmins[3].quantity = this.props.statisticCourse.statisticForPieChart.data.totalRedundant;
+
+      this.setState({ numberAdmins: newNumberAdmins });
+    }
+    return true;
+  }
+
   render() {
     return (
       <div className="memberDetails">
@@ -143,12 +213,12 @@ export class MemberDetails extends React.Component {
         <React.Fragment>
           <div className="memberDetails__header">
             <HeaderAdmin
-              sidebar={this.state.sidebar}
+              sidebar={this.state.categories}
               headerAdmin={this.state.headerAdmin}
             ></HeaderAdmin>
           </div>
           <div className="memberDetails__sidebar">
-            <Sidebar sidebar={this.state.sidebar}></Sidebar>
+            <Sidebar sidebar={this.state.categories}></Sidebar>
           </div>
           <div className="memberDetails__body">
             <div className="memberDetails__body__numbers">

@@ -94,7 +94,7 @@ export class Sidebar extends React.Component {
               </Link>
             </div>
             <div className="sidebar__inner__top-menu__title">
-              "Hiệp Hoà Yoga"
+              Hiệp Hoà Yoga
             </div>
           </div>
           <ul className="sidebar__inner__main-menu">

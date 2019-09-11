@@ -6,7 +6,7 @@ $color-line: rgba(187, 184, 184, 0.5);
 .sidebar {
   margin: 0;
   padding: 0;
-  max-width: 0em;
+  width: 0em;
   height: 100%;
   position: fixed;
   top: 0;
@@ -58,6 +58,7 @@ $color-line: rgba(187, 184, 184, 0.5);
           align-items: center;
           // width: 100%;
           transition: 100ms;
+            text-transform: capitalize;
           i {
             margin-right: 0.8em;
             font-size: 0.9em;
@@ -114,6 +115,7 @@ $color-line: rgba(187, 184, 184, 0.5);
                 color: #111;
                 display: block;
                 transition: 0.1s;
+                  text-transform: capitalize;
               }
               &:hover {
                 background-color: #fbfbfb;

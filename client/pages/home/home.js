@@ -50,61 +50,61 @@ class Home extends React.Component {
         lng: 30.33
       },
       zoom: 11,
-      sidebar: {
-        homeLink: "#",
-        logoSource: "/logo.png",
-        title: "Shivom Dashboard",
-        listItems: [
-          {
-            link: "#",
-            icon: "<i class='fas fa-user'></i>",
-            name: "Trang chủ"
-          },
-          {
-            link: "#",
-            icon: "<i class='far fa-list-alt'></i>",
-            name: "Khóa học",
-            subItems: [
-              {
-                link: "#",
-                name: "Khóa học 1"
-              },
-              {
-                link: "#",
-                name: "Khóa học 2"
-              },
-              {
-                link: "#",
-                name: "Khóa học 3"
-              }
-            ]
-          },
-          {
-            link: "#",
-            icon: "<i class='far fa-newspaper'></i>",
-            name: "Tin tức",
-            subItems: [
-              {
-                link: "#",
-                name: "Tin tức 1"
-              },
-              {
-                link: "#",
-                name: "Tin tức 2"
-              },
-              {
-                link: "#",
-                name: "Tin tức 3"
-              }
-            ]
-          },
-          {
-            link: "#",
-            icon: "<i class='fas fa-info'></i>",
-            name: "Về chúng tôi"
-          }
-        ]
-      },
+      // sidebar: {
+      //   homeLink: "#",
+      //   logoSource: "/logo.png",
+      //   title: "Shivom Dashboard",
+      //   listItems: [
+      //     {
+      //       link: "#",
+      //       icon: "<i class='fas fa-user'></i>",
+      //       name: "Trang chủ"
+      //     },
+      //     {
+      //       link: "#",
+      //       icon: "<i class='far fa-list-alt'></i>",
+      //       name: "Khóa học",
+      //       subItems: [
+      //         {
+      //           link: "#",
+      //           name: "Khóa học 1"
+      //         },
+      //         {
+      //           link: "#",
+      //           name: "Khóa học 2"
+      //         },
+      //         {
+      //           link: "#",
+      //           name: "Khóa học 3"
+      //         }
+      //       ]
+      //     },
+      //     {
+      //       link: "#",
+      //       icon: "<i class='far fa-newspaper'></i>",
+      //       name: "Tin tức",
+      //       subItems: [
+      //         {
+      //           link: "#",
+      //           name: "Tin tức 1"
+      //         },
+      //         {
+      //           link: "#",
+      //           name: "Tin tức 2"
+      //         },
+      //         {
+      //           link: "#",
+      //           name: "Tin tức 3"
+      //         }
+      //       ]
+      //     },
+      //     {
+      //       link: "#",
+      //       icon: "<i class='fas fa-info'></i>",
+      //       name: "Về chúng tôi"
+      //     }
+      //   ]
+      // },
       trainingClasses: [
         {
           category: "fitness",

@@ -15,12 +15,12 @@ body {
     width: 20%;
     .sidebar {
       position: fixed;
-      max-width: 20%;
+      width: 20%;
     }
   }
   @include e("body") {
     min-height: 100%;
-    width: 80%;
+    width: 78%;
     margin: 0 1%;
     @include e("numbers") {
       margin: 4em 0 3em;
@@ -29,8 +29,8 @@ body {
       // align-items: center;
       display: grid;
       grid-template-columns: auto auto auto auto;
-      grid-column-gap: 2em;
-      grid-row-gap: 1em;
+      column-gap: 2em;
+      row-gap: 1em;
     }
     @include e("card") {
       margin: 0 0 3em;
@@ -146,8 +146,8 @@ body {
   .courseDetails__sidebar {
     width: 0%;
     .sidebar {
-      position: static;
-      max-width: 0%;
+      position: fixed;
+      width: 0%;
     }
   }
 
@@ -158,7 +158,7 @@ body {
 
   .courseDetails__body__numbers {
     grid-template-columns: auto;
-    grid-column-gap: 0em;
+    column-gap: 0em;
     .numberAdmin__inner__info {
       .numberAdmin__inner__info__quantity {
         float: right;
@@ -195,8 +195,8 @@ body {
   .courseDetails__sidebar {
     width: 0%;
     .sidebar {
-      position: static;
-      max-width: 0%;
+      position: fixed;
+      width: 0%;
     }
   }
 
@@ -207,7 +207,7 @@ body {
 
   .courseDetails__body__numbers {
     grid-template-columns: auto auto;
-    grid-column-gap: 1em;
+    column-gap: 1em;
     .numberAdmin__inner__info {
       .numberAdmin__inner__info__quantity {
         float: right;
@@ -244,8 +244,8 @@ body {
   .courseDetails__sidebar {
     width: 0%;
     .sidebar {
-      position: static;
-      max-width: 0%;
+      position: fixed;
+      width: 0%;
     }
   }
 
@@ -256,7 +256,7 @@ body {
 
   .courseDetails__body__numbers {
     grid-template-columns: auto auto;
-    grid-column-gap: 2em;
+    column-gap: 2em;
     .numberAdmin__inner__info {
       .numberAdmin__inner__info__quantity {
         float: right;
@@ -294,7 +294,7 @@ body {
     width: 20%;
     .sidebar {
       position: fixed;
-      max-width: 20%;
+      width: 20%;
     }
   }
 
@@ -305,7 +305,7 @@ body {
 
   .courseDetails__body__numbers {
     grid-template-columns: auto auto auto auto;
-    grid-column-gap: 0.5em;
+    column-gap: 0.5em;
     .numberAdmin__inner__icon {
       margin-right: 0.5em;
     }
@@ -347,7 +347,7 @@ body {
     width: 20%;
     .sidebar {
       position: fixed;
-      max-width: 20%;
+      width: 20%;
     }
   }
 
@@ -358,7 +358,7 @@ body {
 
   .courseDetails__body__numbers {
     grid-template-columns: auto auto auto auto;
-    grid-column-gap: 1em;
+    column-gap: 1em;
     .numberAdmin__inner__info {
       .numberAdmin__inner__info__quantity {
         float: none;
