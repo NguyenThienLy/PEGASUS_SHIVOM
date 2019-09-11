@@ -36,8 +36,8 @@ export class Header extends React.Component {
           subCategories: [
             {
               name: "khoá học môt",
-              linkHref: "/home/home",
-              linkAs: "/",
+              linkHref: "/blog/blog?categorySlug=khoa-hoc-not",
+              linkAs: "/khoa-hoc-mot",
             },
             {
               name: "khoá học hai",
@@ -76,6 +76,18 @@ export class Header extends React.Component {
       this.state.categories[courseCategoryIndex].subCategories = subCategories
       this.setState({ categories: this.state.categories })
     }
+    if (prevProps.newCategories.items.length === 0 && this.props.newCategories.items.length > 0) {
+      const newCategoryIndex = this.state.categories.findIndex(item => { return item.key === "news" })
+      const subCategories = this.props.newCategories.items.map((item) => {
+        return {
+          name: item.name,
+          linkHref: `/blog/blog?categorySlug=${item.slug}`,
+          linkAs: `/${item.slug}`
+        }
+      })
+      this.state.categories[newCategoryIndex].subCategories = subCategories
+      this.setState({ categories: this.state.categories })
+    }
   }
   // async componentWillMount() {
   // }
@@ -112,6 +124,18 @@ export class Header extends React.Component {
         }
       })
       this.state.categories[courseCategoryIndex].subCategories = subCategories
+      this.setState({ categories: this.state.categories })
+    }
+    if (this.props.newCategories.items.length > 0) {
+      const newCategoryIndex = this.state.categories.findIndex(item => { return item.key === "news" })
+      const subCategories = this.props.newCategories.items.map((item) => {
+        return {
+          name: item.name,
+          linkHref: `/blog/blog?categorySlug=${item.slug}`,
+          linkAs: `/${item.slug}`
+        }
+      })
+      this.state.categories[newCategoryIndex].subCategories = subCategories
       this.setState({ categories: this.state.categories })
     }
     // $(".header__wrapper__page-menu-area__left__navbar__list-items__item").hover(
@@ -349,14 +373,16 @@ export class Header extends React.Component {
                               {category.subCategories.map(
                                 (subCategory, index) => {
                                   return (
-                                    <li
-                                      key={index}
-                                      className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper__sub-navbar__item"
-                                    >
-                                      <HoverDivAnimation
-                                        title={subCategory.name}
-                                      />
-                                    </li>
+                                    <Link href={subCategory.linkHref} as={subCategory.linkAs}>
+                                      <li
+                                        key={index}
+                                        className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper__sub-navbar__item"
+                                      >
+                                        <HoverDivAnimation
+                                          title={subCategory.name}
+                                        />
+                                      </li>
+                                    </Link>
                                   );
                                 }
                               )}
@@ -364,9 +390,11 @@ export class Header extends React.Component {
                           </div>
                         </li>
                       ) : (
-                          <li className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item">
-                            <HoverDivAnimation title={category.name} />
-                          </li>
+                          <Link href={category.linkHref} as={category.linkAs}>
+                            <li className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item">
+                              <HoverDivAnimation title={category.name} />
+                            </li>
+                          </Link>
                         );
                     })}
                   </ul>

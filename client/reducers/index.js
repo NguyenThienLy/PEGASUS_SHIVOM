@@ -22,6 +22,7 @@ import { TesmonialReducer } from './tesmonial'
 import { TimeTableItemReducer } from './timeTableItem'
 import { SettingReducer } from './setting'
 import { TimeTableReducer } from './timeTable'
+import { StudentAccountReducer } from './studentAccount'
 
 const postReducer = new PostReducer()
 const adminReducer = new AdminReducer()
@@ -46,6 +47,7 @@ const tesmonialReducer = new TesmonialReducer()
 const timeTableItemReducer = new TimeTableItemReducer()
 const settingReducer = new SettingReducer()
 const timeTableReducer = new TimeTableReducer()
+const studentAccountReducer = new StudentAccountReducer()
 
 const store = combineReducers({
     admin: adminReducer.reducer,
@@ -69,7 +71,8 @@ const store = combineReducers({
     tesmonials: tesmonialReducer.reducer,
     timeTableItems: timeTableItemReducer.reducer,
     setting: settingReducer.reducer,
-    timeTable: timeTableReducer.reducer
+    timeTable: timeTableReducer.reducer,
+    studentAccount: studentAccountReducer.reducer
 })
 
 export default store;

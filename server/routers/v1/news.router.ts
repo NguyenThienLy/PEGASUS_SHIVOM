@@ -10,14 +10,30 @@ export default class NewsRouter extends CrudRouter<typeof newsController> {
     }
     customRouter() {
         this.router.post("/:_id/slider", this.setNewsAtSliderMiddlewares(), this.route(this.setNewsAtSlider))
-        this.router.get("/:_id/client", this.getItemFromClientMiddlewares(), this.route(this.getItemFromClient))
+        this.router.get("/slug/:slug", this.getItemFromClientBySlugMiddlewares(), this.route(this.getItemFromClientBySlug))
+        this.router.get("/:_id/client", this.getItemFromClientByIdMiddlewares(), this.route(this.getItemFromClientById))
     }
-    getItemFromClientMiddlewares(): any[] {
+    getItemFromClientBySlugMiddlewares(): any[] {
         return [
             queryInfoMiddleware.run()
         ]
     }
-    async getItemFromClient(req: Request, res: Response) {
+    async getItemFromClientBySlug(req: Request, res: Response) {
+        req.queryInfo.filter = {
+            slug: req.params.slug
+        }
+        const result = await this.controller.getItemFromClient(req.queryInfo)
+        this.onSuccess(res, result)
+    }
+    getItemFromClientByIdMiddlewares(): any[] {
+        return [
+            queryInfoMiddleware.run()
+        ]
+    }
+    async getItemFromClientById(req: Request, res: Response) {
+        req.queryInfo.filter = {
+            _id: req.params._id
+        }
         const result = await this.controller.getItemFromClient(req.queryInfo)
         this.onSuccess(res, result)
     }

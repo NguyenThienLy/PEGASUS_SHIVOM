@@ -140,10 +140,8 @@ export class Course extends React.Component {
 				"friday": 5,
 				"saturday": 6,
 				"sunday": 7
-			}
-
-
-
+			},
+			latestNews: []
 		};
 	}
 	static async getInitialProps({ req, query }) {
@@ -183,12 +181,32 @@ export class Course extends React.Component {
 	async componentDidMount() {
 
 		this.fetchData()
+		this.getLatestNews()
 		var heightOfFooter = $(".course__footer .footer-wrapper").height();
 		$(".course__contact-us").css("margin-bottom", heightOfFooter + "px");
 	}
+	getLatestNews() {
+		api.news.getList({
+			query: {
+				order: { createdAt: -1 },
+				populates: [{ path: "category", select: "name slug" }]
+			}
+		}).then(res => {
+			this.setState({ latestNews: res.results.objects.rows })
+		}).catch(err => {
+
+		})
+	}
 	fetchData() {
-		this.props.fetchCourse()
-		this.props.fetchSetting()
+		if (this.props.courses.items.length === 0) {
+			this.props.fetchCourse()
+		}
+		if (!this.props.setting.fetched) {
+			this.props.fetchSetting();
+		}
+		if (this.props.newCategories.items.length === 0) {
+			this.props.fetchNewCategory()
+		}
 
 	}
 	sortNao = (array) => {
@@ -352,7 +370,7 @@ export class Course extends React.Component {
 									bài viết
                 				</div>
 								{
-									this.state.latestPost.map((post, index) => {
+									this.state.latestNews.map((post, index) => {
 										return (
 											<div key={index} className="course-wrapper__sub-content__latest-posts__post">
 												<LatestPost latestPost={post} />
@@ -390,6 +408,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 	fetchCourse: action.course.fetch,
 	fetchSetting: action.setting.fetch,
 	fetchTimeTableOfCourse: action.course.getTimeTableOfCourse,
+	fetchNewCategory: action.newCategory.fetch,
 	addContact: action.contact.add,
 }, dispatch)
 

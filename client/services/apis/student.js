@@ -110,7 +110,7 @@ export class StudentApi extends CrudApi {
             throw res
         }
     }
-    async login(email, password, option) {
+    async login(phone, password, option) {
         let url = this.baseUrl(`login`);
         const query = this._serialize(option.query || {});
         url += `${query}`;
@@ -124,7 +124,7 @@ export class StudentApi extends CrudApi {
                 option.headers || {}
             ),
             body: JSON.stringify({
-                email, password
+                phone, password
             })
         }
         const res = await this.exec(url, options);

@@ -1,9 +1,9 @@
 import { BaseAction } from './base'
 import { api } from '../services'
 
-export class AdminAction extends BaseAction {
+export class StudentAccountAction extends BaseAction {
     constructor() {
-        super("admin", api.admin, "admin")
+        super("studentAccount", api.student, "studentAccount")
     }
     login = (username, password) => {
         return dispatch => {
@@ -24,13 +24,6 @@ export class AdminAction extends BaseAction {
                         payload: err
                     })
                 })
-        }
-    }
-    loginClear = () => {
-        return dispatch => {
-            dispatch({
-                type: `${this.name}_LOGIN_CLEAR`
-            })
         }
     }
     logout = () => {

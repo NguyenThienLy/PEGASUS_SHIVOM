@@ -6,7 +6,7 @@ const LRUCache = require("lru-cache");
 const ssrCache = new LRUCache({
   max: 100 * 1024 * 1024,
   /* cache size will be 100 MB using `return n.length` as length() function */
-  length: function(n, key) {
+  length: function (n, key) {
     return n.length;
   },
   maxAge: 1000 * 60 * 60 * 24 * 30
@@ -49,10 +49,13 @@ class Server {
     this.server.get("/", (req, res) => {
       this.app.render(req, res, "/index");
     });
-    this.server.get("/khoa-hoc", (req, res) => {
-      this.app.render(req, res, "/course/course");
+    this.server.get("/bai-viet/:newsId", (req, res) => {
+      this.app.render(req, res, "/post/post", { newsId: req.params.newsId });
     });
-    this.server.get("/cac-khoa-hoc", (req, res) => {
+    this.server.get("/khoa-hoc/:slug", (req, res) => {
+      this.app.render(req, res, "/course/course", { slug: req.params.slug });
+    });
+    this.server.get("/khoa-hoc", (req, res) => {
       this.app.render(req, res, "/allCourses/allCourses");
     });
     this.server.get("/du-an", (req, res) => {
@@ -62,7 +65,10 @@ class Server {
       this.app.render(req, res, "/about/about");
     });
     this.server.get("/dang-nhap", (req, res) => {
-      this.app.render(req, res, "/login/login");
+      this.app.render(req, res, "/login/login", { type: "student" });
+    });
+    this.server.get("/dang-nhap/admin", (req, res) => {
+      this.app.render(req, res, "/login/login", { type: "admin" });
     });
     this.server.get("/lien-he", (req, res) => {
       this.app.render(req, res, "/contact/contact");
@@ -79,7 +85,7 @@ class Server {
     this.server.get("/thong-ke-hoc-vien", (req, res) => {
       this.app.render(req, res, "/memberDetails/memberDetails");
     });
-    this.server.get("*", (req, res) => {
+    this.server.get("404", (req, res) => {
       this.app.render(req, res, "/_error/_error");
     });
     this.server.get("/:categorySlug", (req, res) => {
@@ -89,10 +95,14 @@ class Server {
     });
     this.server.get("/:categorySlug/:newsSlug", (req, res) => {
       this.app.render(req, res, "/post/post", {
-        categorySlug: req.params.categorySlug,
-        newSlug: req.params.newSlug
+        newsSlug: req.params.newsSlug
       });
     });
+
+    this.server.get("*", (req, res) => {
+      this.app.render(req, res, "/_error/_error");
+    });
+
   }
   getCacheKey(req) {
     return `${req.path}`;

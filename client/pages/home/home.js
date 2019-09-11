@@ -39,6 +39,7 @@ import {
   Activity,
   Map
 } from "../../components";
+import { Tesmonials } from "./components/Tesmonials/tesmonials";
 
 class Home extends React.Component {
   constructor(props) {
@@ -288,26 +289,54 @@ class Home extends React.Component {
   }
   fetchData = () => {
     // Cách 1
-    this.props.fetchSlider();
-    this.props.fetchCourse();
-    this.props.fetchTesmonial({
-      query: {
-        filter: { status: "active" }
-      }
-    });
-    this.props.fetchTeacher();
-    this.props.fetchMasonryHome({
-      query: {
-        filter: { status: "active" },
-        limit: 6
-      }
-    });
-    this.props.fetchSetting();
-    this.props.fetchTimeTable({
-      query: {
-        limit: 0
-      }
-    });
+    if (this.props.sliders.items.length === 0) {
+      this.props.fetchSlider();
+    }
+    if (this.props.courses.items.length === 0) {
+      this.props.fetchCourse();
+    }
+    if (this.props.newCategories.items.length === 0) {
+      this.props.fetchNewCategory()
+    }
+    if (this.props.tesmonials.items.length === 0) {
+      this.props.fetchTesmonial({
+        query: {
+          filter: { status: "active" }
+        }
+      });
+    }
+    if (this.props.teachers.items.length === 0) {
+      this.props.fetchTeacher();
+    }
+    if (this.props.masonryHomes.items.length === 0) {
+      this.props.fetchMasonryHome({
+        query: {
+          filter: { status: "active" },
+          limit: 6
+        }
+      });
+    }
+    if (!this.props.setting.fetched) {
+      this.props.fetchSetting();
+    }
+    if (this.props.timeTable.items.length === 0) {
+      this.props.fetchTimeTable({
+        query: {
+          limit: 0
+        }
+      });
+    }
+    if (!this.props.news.pinned) {
+      this.props.fetchPinnedNews({
+        query: {
+          filter: {
+            isPin: true
+          },
+          populates: [{ path: "category", select: "name slug" }]
+        }
+      })
+    }
+
     // Luôn luôn phải catch lỗi và xử lý nhằm tránh crash web
     // Cách 2
     // api.class.getList()
@@ -324,56 +353,13 @@ class Home extends React.Component {
   };
   async componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.tesmonials.fetching === false) {
-      $(".home__body__reviews__slick-autoplay").not('.slick-initialized').slick({
-        dots: true,
-        arrows: false,
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        autoplay: true,
-        autoplaySpeed: 5000,
-        responsive: [
-          {
-            breakpoint: 1200,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 2,
-              infinite: true,
-              dots: true
-            }
-          },
-          {
-            breakpoint: 992,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1,
-              infinite: true,
-              dots: true
-            }
-          }
-        ]
-      });
-      $(".home__body__reviews__slick-autoplay").on("beforeChange", function (
-        event,
-        slick,
-        currentSlide,
-        nextSlide
-      ) {
-        $(".home__body__reviews__slick-autoplay .slick-dots li").removeClass(
-          "slick-active"
-        );
-        $(".home__body__reviews__slick-autoplay .slick-dots li button")
-          .attr("aria-pressed", "false")
-          .focus(function () {
-            this.blur();
-          });
-      });
+
     }
   }
   async componentDidMount() {
+    console.log("Tai sao lai vao day nua")
     this.fetchData();
-
-
-    $(".home__body__brands__slick-autoplay").not('.slick-initialized').slick({
+    $(".home__body__brands__slick-autoplay").slick({
       dots: false,
       arrows: false,
       slidesToShow: 6,
@@ -429,7 +415,7 @@ class Home extends React.Component {
         });
     });
 
-    $(".home__body__intro-slick-autoplay").not('.slick-initialized').slick({
+    $(".home__body__intro-slick-autoplay").slick({
       dots: true,
       arrows: false,
       slidesToShow: 2,
@@ -464,6 +450,7 @@ class Home extends React.Component {
           this.blur();
         });
     });
+
   }
 
   addContact = body => {
@@ -555,7 +542,7 @@ class Home extends React.Component {
 
             <div className="home__body__news">
               <div className="home__body__news__container">
-                <News news={this.state.news} />
+                {this.props.news.pinned ? <News news={this.props.news.pinned} /> : null}
               </div>
             </div>
 
@@ -571,24 +558,9 @@ class Home extends React.Component {
                   </p>
                 </div>
               </div>
-              {this.props.tesmonials.fetching === false ? (
-                <div className="home__body__reviews__slick-autoplay">
-                  {this.props.tesmonials.items.map(review => {
-                    return (
-                      <div className="home__body__reviews__slick-autoplay__item">
-                        <Review review={review} />
-                      </div>
-                    );
-                  })}
-                  {/* {this.state.reviews.map(review => {
-                  return (
-                    <div className="home__body__reviews__slick-autoplay__item">
-                      <Review review={review} />
-                    </div>
-                  );
-                })} */}
-                </div>
-              ) : null}
+
+              {this.props.tesmonials.fetching === false ? <Tesmonials tesmonials={this.props.tesmonials.items} /> : null}
+
             </div>
 
             <div className="home__body__numbers">
@@ -720,7 +692,9 @@ const mapDispatchToProps = dispatch =>
       fetchTeacher: action.teacher.fetch,
       fetchMasonryHome: action.masonryHome.fetch,
       fetchSetting: action.setting.fetch,
-      fetchTimeTable: action.timeTable.fetch
+      fetchTimeTable: action.timeTable.fetch,
+      fetchNewCategory: action.newCategory.fetch,
+      fetchPinnedNews: action.news.getPinnedNews
     },
     dispatch
   );

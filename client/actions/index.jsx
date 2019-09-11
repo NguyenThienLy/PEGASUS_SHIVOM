@@ -22,6 +22,8 @@ import { TimeTableItemAction } from './timeTableItem'
 import { SliderAction } from './slider'
 import { SettingAction } from './setting'
 import { TimeTableAction } from './timeTable'
+import { StudentAccountAction } from './studentAccount'
+
 class action {
     constructor() {
     }
@@ -47,6 +49,7 @@ class action {
     static slider = new SliderAction()
     static setting = new SettingAction()
     static timeTable = new TimeTableAction()
+    static studentAccount = new StudentAccountAction()
 }
 
 export {
