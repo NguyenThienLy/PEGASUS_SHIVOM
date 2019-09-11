@@ -57,8 +57,11 @@ class Server {
 
     }
     async initView() {
-
-        this.server.use(express.static('../client/assets'));
+        this.server.use(
+            express.static(path.join(__dirname, "../client/assets"), {
+                maxAge: 31557600000
+            })
+        );
         this.server.set('view engine', 'html');
     }
 
