@@ -74,32 +74,61 @@ class Server {
 
     async handleRequest() {
 
-        this.server.get('/', (req, res) => {
-            this.app.render(req, res, '/index');
+        this.server.get("/", (req, res) => {
+            this.app.render(req, res, "/index");
         });
-        this.server.get('/bai-viet', (req, res) => {
-            this.app.render(req, res, '/blog/blog');
+        this.server.get("/bai-viet/:newsId", (req, res) => {
+            this.app.render(req, res, "/post/post", { newsId: req.params.newsId });
         });
-        this.server.get('/bai-viet/:slug', (req, res) => {
-            this.app.render(req, res, '/post/post', { slug: req.params.slug });
+        this.server.get("/khoa-hoc/:slug", (req, res) => {
+            this.app.render(req, res, "/course/course", { slug: req.params.slug });
         });
-        this.server.get('/khoa-hoc/:slug', (req, res) => {
-            this.app.render(req, res, '/course/course', { slug: req.params.slug });
+        this.server.get("/khoa-hoc", (req, res) => {
+            this.app.render(req, res, "/allCourses/allCourses");
         });
-        this.server.get('/khoa-hoc', (req, res) => {
-            this.app.render(req, res, '/allCourses/allCourses');
+        this.server.get("/du-an", (req, res) => {
+            this.app.render(req, res, "/project/project");
         });
-        this.server.get('/du-an', (req, res) => {
-            this.app.render(req, res, '/project/project');
+        this.server.get("/gioi-thieu", (req, res) => {
+            this.app.render(req, res, "/about/about");
         });
-        this.server.get('/gioi-thieu', (req, res) => {
-            this.app.render(req, res, '/about/about');
+        this.server.get("/dang-nhap", (req, res) => {
+            this.app.render(req, res, "/login/login", { type: "student" });
         });
-        this.server.get('/lien-he', (req, res) => {
-            this.app.render(req, res, '/contact/contact');
+        this.server.get("/dang-nhap/admin", (req, res) => {
+            this.app.render(req, res, "/login/login", { type: "admin" });
         });
-        this.server.get('*', (req, res) => {
-            this.app.render(req, res, '/_error/_error');
+        this.server.get("/lien-he", (req, res) => {
+            this.app.render(req, res, "/contact/contact");
+        });
+        this.server.get("/search", (req, res) => {
+            this.app.render(req, res, "/searchResults/searchResults");
+        });
+        this.server.get("/tong-quan", (req, res) => {
+            this.app.render(req, res, "/dashboard/dashboard");
+        });
+        this.server.get("/thong-ke-khoa-hoc", (req, res) => {
+            this.app.render(req, res, "/courseDetails/courseDetails");
+        });
+        this.server.get("/thong-ke-hoc-vien", (req, res) => {
+            this.app.render(req, res, "/memberDetails/memberDetails");
+        });
+        this.server.get("404", (req, res) => {
+            this.app.render(req, res, "/_error/_error");
+        });
+        this.server.get("/:categorySlug", (req, res) => {
+            this.app.render(req, res, "/blog/blog", {
+                categorySlug: req.params.categorySlug
+            });
+        });
+        this.server.get("/:categorySlug/:newsSlug", (req, res) => {
+            this.app.render(req, res, "/post/post", {
+                newsSlug: req.params.newsSlug
+            });
+        });
+
+        this.server.get("*", (req, res) => {
+            this.app.render(req, res, "/_error/_error");
         });
     }
 

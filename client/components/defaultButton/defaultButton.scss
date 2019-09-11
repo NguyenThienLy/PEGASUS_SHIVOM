@@ -3,6 +3,7 @@
 .default-button {
   display: inline-block;
   @include e("link") {
+    pointer-events: none;
     display: flex;
     position: relative;
     border: none;

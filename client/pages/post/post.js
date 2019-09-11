@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { connect } from 'react-redux'
 import { api } from '../../services'
 import { action } from '../../actions';
+import { bindActionCreators } from 'redux'
+import Router from 'next/router'
 
 import './post.scss'
 import {
@@ -87,6 +89,7 @@ class Post extends React.Component {
                     classes: 3,
                 },
             ],
+            latestNews: [],
             latestPost: [
                 {
                     link: "#",
@@ -114,29 +117,81 @@ class Post extends React.Component {
         }
     }
     static async getInitialProps({ req, query }) {
-        return {
+        let news
+        if (query.newsId) {
+            news = await api.news.getItemFromClient(query.newsId, {
+                query: {
+                    populates: [
+                        { path: "category", select: "name slug" },
+                        { path: "author", select: "firstName lastName avatar" }
+                    ]
+                }
+            })
+        } else {
+            news = await api.news.getNewsFromClientBySlug(query.newsSlug, {
+                query: {
+                    populates: [
+                        { path: "category", select: "name slug" },
+                        { path: "author", select: "firstName lastName avatar" }
+                    ]
+                }
+            })
+        }
+        console.log("news: ", news)
+        return { newsData: news }
 
+    }
+    fetchData() {
+        if (this.props.courses.items.length === 0) {
+            this.props.fetchCourse()
+        }
+        if (!this.props.setting.fetched) {
+            this.props.fetchSetting();
+        }
+        if (this.props.newCategories.items.length === 0) {
+            this.props.fetchNewCategory()
         }
     }
-
     async componentDidMount() {
+        this.fetchData()
+        this.getLatestNews()
         var heightOfFooter = $(".post__footer .footer-wrapper").height();
         $(".post__contact-us").css("margin-bottom", heightOfFooter + "px");
     }
+    getLatestNews() {
+        api.news.getList({
+            query: {
+                order: { createdAt: -1 },
+                populates: [{ path: "category", select: "name slug" }]
+            }
+        }).then(res => {
+            this.setState({ latestNews: res.results.objects.rows })
+        }).catch(err => {
+
+        })
+    }
 
     render() {
-
         return (
             <div>
                 <Head>
-                    <title>Bài viết chi tiết</title>
-                    <meta name="title" content="Bài viết" />
-                    <meta name="description" content="Bài viết chi tiết" />
+                    <title>{this.props.newsData.title}</title>
+                    <meta name="title" content={this.props.newsData.title} />
+                    <meta name="description" content={this.props.newsData.description} />
                 </Head>
                 <Header {...this.props} />
                 <React.Fragment>
                     <div className="post__path">
-                        <a href="http://hiephoayoga.com">trang chủ</a> / <a href="http://hiephoayoga.com/cac-bai-viet">các bài viết</a> / <a>{this.state.postContent.title}</a>
+                        <span>
+                            <Link href="/home/home" as="/">
+                                <a href="/">Trang chủ</a>
+                            </Link> </span>/
+                        <span><Link href={`/blog/blog?categorySlug=${this.props.newsData.category.slug}`} as={`/${this.props.newsData.category.slug}`}>
+                            <a href={`/${this.props.newsData.category.slug}`}>{this.props.newsData.category.name}</a>
+                        </Link></span> /
+                        <span><Link href={`/post/post?categorySlug=${this.props.newsData.category.slug}&newsSlug=${this.props.newsData.slug}`} as={`/${this.props.newsData.category.slug}/${this.props.newsData.slug}`}>
+                            <a>{this.props.newsData.title}</a>
+                        </Link></span>
                     </div>
                     <div className="post">
                         <div className="post__wrapper">
@@ -144,28 +199,31 @@ class Post extends React.Component {
                                 <div className="post__wrapper__main-content__info">
                                     <div className="post__wrapper__main-content__info__author">
                                         <span>By&nbsp;</span>
-                                        <a href={this.state.postContent.author.link}>{this.state.postContent.author.name}</a>
+                                        <a href="#">{this.props.newsData.author.firstName} {this.props.newsData.author.lastName}</a>
                                     </div>
                                     <div className="post__wrapper__main-content__info__category">
-                                        <a href={this.state.postContent.category.link}>{this.state.postContent.category.name}</a>
+                                        <Link href={`/blog/blog?categorySlug=${this.props.news.category}`} as={`/${this.props.newsData.category.slug}`}>
+                                            <a href={`/${this.props.newsData.category.slug}`}>{this.props.newsData.category.name}</a>
+                                        </Link>
                                     </div>
                                     <div className="post__wrapper__main-content__info__tags">
                                         {
-                                            this.state.postContent.tags.map(tag => {
-                                                return ([<a href={tag.link}>{tag.name}</a>,
-                                                <span>,&nbsp;</span>]);
+                                            this.props.newsData.tags.map(tag => {
+                                                // return ([<a href={tag.link}>{tag.name}</a>,
+                                                // <span>,&nbsp;</span>]);
+                                                return ([tag,
+                                                    <span>,&nbsp;</span>]);
                                             })
                                         }
                                     </div>
                                 </div>
                                 <h1 className="post__wrapper__main-content__title">
-                                    <a href="#">{this.state.postContent.title}</a>
+                                    <a href="#">{this.props.news.title}</a>
                                 </h1>
-                                <div className="post__wrapper__main-content__content">
-                                // content of the post
+                                <div className="post__wrapper__main-content__content" dangerouslySetInnerHTML={{ __html: this.props.newsData.content }}>
                                 </div>
                                 <div className="post__wrapper__main-content__post-author">
-                                    <PostAuthor postAuthor={this.state.postAuthor} />
+                                    <PostAuthor postAuthor={this.props.newsData.author} />
                                 </div>
                                 <div className="post__wrapper__main-content__text-divider">
                                     <h3>Bài viết liên quan</h3>
@@ -199,10 +257,15 @@ class Post extends React.Component {
                                         Thể loại
                 	                </div>
                                     {
-                                        this.state.categories.map((category) => {
+                                        this.props.newCategories.items.map((category) => {
                                             return (
                                                 <div className="post__wrapper__sub-content__categories__category">
-                                                    {category.name} ({category.classes})
+                                                    <Link href={`/blog/blog?categorySlug=${category.slug}`} as={`/${category.slug}`}>
+                                                        <a href={`/${category.slug}`} >
+                                                            {category.name}
+                                                        </a>
+                                                        {/* {course.name} ({course.classes}) */}
+                                                    </Link>
                                                 </div>
                                             )
                                         })
@@ -214,7 +277,7 @@ class Post extends React.Component {
                                         bài viết
                 	                </div>
                                     {
-                                        this.state.latestPost.map((post, index) => {
+                                        this.state.latestNews.map((post, index) => {
                                             return (
                                                 <div key={index} className="post__wrapper__sub-content__latest-posts__post">
                                                     <LatestPost latestPost={post} />
@@ -234,12 +297,12 @@ class Post extends React.Component {
                             </div>
                         </div>
                         <div className="post__contact-us">
-                            <ContactUs />
+                            <ContactUs {...this.props.setting.contact} addContact={this.addContact} courses={this.props.courses.items} defaultCourse={this.props.course} />
                         </div>
                     </div>
                 </React.Fragment>
                 <div className="post__footer">
-                    <Footer />
+                    <Footer {...this.props.setting.contact} logo={this.props.setting.logo} />
                 </div>
             </div>
         )
@@ -250,5 +313,12 @@ const mapStateToProps = (state) => {
     return state;
 };
 
-export default connect(mapStateToProps)(Post);
+const mapDispatchToProps = dispatch => bindActionCreators({
+    fetchCourse: action.course.fetch,
+    fetchSetting: action.setting.fetch,
+    fetchNewCategory: action.newCategory.fetch,
+    addContact: action.contact.add,
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Post);
 

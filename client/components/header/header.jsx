@@ -34,8 +34,8 @@ export class Header extends React.Component {
           subCategories: [
             {
               name: "khoá học môt",
-              linkHref: "/home/home",
-              linkAs: "/"
+              linkHref: "/blog/blog?categorySlug=khoa-hoc-not",
+              linkAs: "/khoa-hoc-mot",
             },
             {
               name: "khoá học hai",
@@ -79,6 +79,18 @@ export class Header extends React.Component {
       this.state.categories[courseCategoryIndex].subCategories = subCategories;
       this.setState({ categories: this.state.categories });
     }
+    if (prevProps.newCategories.items.length === 0 && this.props.newCategories.items.length > 0) {
+      const newCategoryIndex = this.state.categories.findIndex(item => { return item.key === "news" })
+      const subCategories = this.props.newCategories.items.map((item) => {
+        return {
+          name: item.name,
+          linkHref: `/blog/blog?categorySlug=${item.slug}`,
+          linkAs: `/${item.slug}`
+        }
+      })
+      this.state.categories[newCategoryIndex].subCategories = subCategories
+      this.setState({ categories: this.state.categories })
+    }
   }
   // async componentWillMount() {
   // }
@@ -119,6 +131,18 @@ export class Header extends React.Component {
       this.state.categories[courseCategoryIndex].subCategories = subCategories;
       this.setState({ categories: this.state.categories });
     }
+    if (this.props.newCategories.items.length > 0) {
+      const newCategoryIndex = this.state.categories.findIndex(item => { return item.key === "news" })
+      const subCategories = this.props.newCategories.items.map((item) => {
+        return {
+          name: item.name,
+          linkHref: `/blog/blog?categorySlug=${item.slug}`,
+          linkAs: `/${item.slug}`
+        }
+      })
+      this.state.categories[newCategoryIndex].subCategories = subCategories
+      this.setState({ categories: this.state.categories })
+    }
     // $(".header__wrapper__page-menu-area__left__navbar__list-items__item").hover(
     //   function() {
     //     var navBarWrapper = $(this)
@@ -156,7 +180,7 @@ export class Header extends React.Component {
       });
     }
 
-    window.onscroll = function() {
+    window.onscroll = function () {
       currentScrollPos = window.pageYOffset;
       if (prevScrollPos > currentScrollPos && currentScrollPos < posToExpose) {
         $(".header .header__sub-wrapper").css({
@@ -188,14 +212,14 @@ export class Header extends React.Component {
       prevScrollPos = currentScrollPos;
     };
 
-    $(".header__wrapper__page-menu-area__left__sidebar").click(function(e) {
+    $(".header__wrapper__page-menu-area__left__sidebar").click(function (e) {
       e.stopPropagation();
       $(".header > .sidebar").addClass("sidebar__show-menu");
       $(".background-overlay").css("display", "block");
       $("body, html").css("cursor", "pointer");
     });
 
-    $(".header__sub-wrapper__page-menu-area__left__sidebar").click(function(e) {
+    $(".header__sub-wrapper__page-menu-area__left__sidebar").click(function (e) {
       e.stopPropagation();
       $(".header > .sidebar").addClass("sidebar__show-menu");
       $(".background-overlay").css("display", "block");
@@ -212,11 +236,11 @@ export class Header extends React.Component {
       });
     });
 
-    $(".header > .sidebar").click(function(e) {
+    $(".header > .sidebar").click(function (e) {
       e.stopPropagation();
     });
 
-    $("body,html").click(function(e) {
+    $("body,html").click(function (e) {
       $("body, html").css("cursor", "default");
       $(".header > .sidebar").removeClass("sidebar__show-menu");
       if (
@@ -237,7 +261,7 @@ export class Header extends React.Component {
       $(".background-overlay").css("display", "none");
     });
 
-    $(window).on("resize", function() {
+    $(window).on("resize", function () {
       var win = $(this);
       if (win.outerWidth() > 991) {
         if ($(".sidebar").hasClass("sidebar__show-menu")) {
@@ -305,12 +329,12 @@ export class Header extends React.Component {
                           </div>
                         </li>
                       ) : (
-                        <Link href={category.linkHref} as={category.linkAs}>
-                          <li className="header__wrapper__page-menu-area__left__navbar__list-items__item">
-                            <HoverDivAnimation title={category.name} />
-                          </li>
-                        </Link>
-                      );
+                          <Link href={category.linkHref} as={category.linkAs}>
+                            <li className="header__wrapper__page-menu-area__left__navbar__list-items__item">
+                              <HoverDivAnimation title={category.name} />
+                            </li>
+                          </Link>
+                        );
                     })}
                   </ul>
                 </div>
@@ -357,14 +381,16 @@ export class Header extends React.Component {
                               {category.subCategories.map(
                                 (subCategory, index) => {
                                   return (
-                                    <li
-                                      key={index}
-                                      className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper__sub-navbar__item"
-                                    >
-                                      <HoverDivAnimation
-                                        title={subCategory.name}
-                                      />
-                                    </li>
+                                    <Link href={subCategory.linkHref} as={subCategory.linkAs}>
+                                      <li
+                                        key={index}
+                                        className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper__sub-navbar__item"
+                                      >
+                                        <HoverDivAnimation
+                                          title={subCategory.name}
+                                        />
+                                      </li>
+                                    </Link>
                                   );
                                 }
                               )}
@@ -372,10 +398,12 @@ export class Header extends React.Component {
                           </div>
                         </li>
                       ) : (
-                        <li className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item">
-                          <HoverDivAnimation title={category.name} />
-                        </li>
-                      );
+                          <Link href={category.linkHref} as={category.linkAs}>
+                            <li className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item">
+                              <HoverDivAnimation title={category.name} />
+                            </li>
+                          </Link>
+                        );
                     })}
                   </ul>
                 </div>

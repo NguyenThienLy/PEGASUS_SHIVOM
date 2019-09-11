@@ -7,14 +7,12 @@ const store = configureStore()
 // }
 
 export class BaseAction {
-    constructor(name, api) {
+    constructor(name, api, storeName) {
         this.name = name.toUpperCase()
         this.api = api
-        this.store = store.getState()
     }
 
     fetch = (option = {}) => {
-
         return dispatch => {
             dispatch(this.fetchPending())
             this.api.getList(option)

@@ -5,6 +5,7 @@ export class SettingReducer extends BaseReducer {
     constructor() {
         super("setting")
         this.initState = {
+            fetched: false,
             fetching: false,
             fetchError: null,
             updating: false,
@@ -38,7 +39,7 @@ export class SettingReducer extends BaseReducer {
                 state = { ...state, fetching: true };
                 break
             case this.actions.fetchSuccess:
-                state = { ...state, logo: action.payload.logo, contact: action.payload.contact };
+                state = { ...state, logo: action.payload.logo, contact: action.payload.contact, fetched: true };
                 break
             case this.actions.fetchError:
                 state = { ...state, fetching: false, fetchError: action.payload };

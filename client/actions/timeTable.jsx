@@ -3,7 +3,7 @@ import { api } from '../services'
 
 export class TimeTableAction extends BaseAction {
     constructor() {
-        super("timeTable", api.tesmonial)
+        super("timeTable", null, "timeTable")
     }
     fetch = (option = {}) => {
 
