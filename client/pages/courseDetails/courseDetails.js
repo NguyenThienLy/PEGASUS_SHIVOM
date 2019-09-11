@@ -25,6 +25,61 @@ export class CourseDetails extends React.Component {
           "https://cdn1.iconfinder.com/data/icons/avatars-1-5/136/87-512.png",
         name: "Avril Lavigne"
       },
+      sidebar: {
+        homeLink: "#",
+        logoSource: "/logo.png",
+        title: "Shivom Dashboard",
+        listItems: [
+          {
+            link: "#",
+            icon: "<i class='fas fa-user'></i>",
+            name: "Trang chủ"
+          },
+          {
+            link: "#",
+            icon: "<i class='far fa-list-alt'></i>",
+            name: "Khóa học",
+            subItems: [
+              {
+                link: "#",
+                name: "Khóa học 1"
+              },
+              {
+                link: "#",
+                name: "Khóa học 2"
+              },
+              {
+                link: "#",
+                name: "Khóa học 3"
+              }
+            ]
+          },
+          {
+            link: "#",
+            icon: "<i class='far fa-newspaper'></i>",
+            name: "Tin tức",
+            subItems: [
+              {
+                link: "#",
+                name: "Tin tức 1"
+              },
+              {
+                link: "#",
+                name: "Tin tức 2"
+              },
+              {
+                link: "#",
+                name: "Tin tức 3"
+              }
+            ]
+          },
+          {
+            link: "#",
+            icon: "<i class='fas fa-info'></i>",
+            name: "Về chúng tôi"
+          }
+        ]
+      },
       numberAdmins: [
         {
           icon: '<i class="fas fa-id-card-alt"></i>',
@@ -51,9 +106,9 @@ export class CourseDetails extends React.Component {
           colorIcon: "#11cdef"
         }
       ],
-      customSelect: {
-        placeholder: "Chọn năm...",
-        options: [2015, 2016, 2017, 2018, 2019]
+      customSelectCourse: {
+        placeholder: "Chọn khóa học...",
+        options: ["Yoga cho người cao tuổi", "Yoga cộng đồng"]
       },
       profileAdmin: {
         image:
@@ -76,7 +131,7 @@ export class CourseDetails extends React.Component {
   componentWillUnmount() {}
   componentDidMount() {
     var heightOfHeader = $(
-      ".courseDetails .courseDetails__header .headerAdmin"
+      ".courseDetails .courseDetails__header .headerAdmin__wrapper"
     ).height();
     $(".courseDetails .courseDetails__body").css(
       "margin-top",
@@ -100,10 +155,13 @@ export class CourseDetails extends React.Component {
         </Head>
         <React.Fragment>
           <div className="courseDetails__header">
-            <HeaderAdmin headerAdmin={this.state.headerAdmin}></HeaderAdmin>
+            <HeaderAdmin
+              sidebar={this.state.sidebar}
+              headerAdmin={this.state.headerAdmin}
+            ></HeaderAdmin>
           </div>
           <div className="courseDetails__sidebar">
-            <Sidebar></Sidebar>
+            <Sidebar sidebar={this.state.sidebar}></Sidebar>
           </div>
           <div className="courseDetails__body">
             <div className="courseDetails__body__numbers">
@@ -119,7 +177,7 @@ export class CourseDetails extends React.Component {
                 <div className="courseDetails__body__card__content__course">
                   <div className="courseDetails__body__card__content__course__filter">
                     <CustomSelect
-                      customSelect={this.state.customSelect}
+                      customSelect={this.state.customSelectCourse}
                     ></CustomSelect>
                   </div>
                   <div className="courseDetails__body__card__content__course__info">
@@ -138,9 +196,24 @@ export class CourseDetails extends React.Component {
               <div className="courseDetails__body__card__content">
                 <div className="courseDetails__body__card__content__chart">
                   <div className="courseDetails__body__card__content__chart__filter">
-                    <CustomSelect
-                      customSelect={this.state.customSelect}
-                    ></CustomSelect>
+                    <form className="courseDetails__body__card__content__chart__filter__form">
+                      <input
+                        type="text"
+                        className="courseDetails__body__card__content__chart__filter__form__input"
+                        placeholder="Chọn ngày bắt đầu"
+                      />
+                      <input
+                        type="text"
+                        className="courseDetails__body__card__content__chart__filter__form__input"
+                        placeholder="Chọn ngày kết thúc"
+                      />
+                      <button
+                        type="button"
+                        className="courseDetails__body__card__content__chart__filter__form__btn courseDetails__body__card__content__chart__filter__form__btn--primary"
+                      >
+                        thống kê
+                      </button>
+                    </form>
                   </div>
                   <div className="courseDetails__body__card__content__chart__row">
                     <LineChart></LineChart>

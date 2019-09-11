@@ -5,9 +5,10 @@
   //   font-size: $font-size;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.04);
   //   width: 35em;
-  width: 32%;
+  width: 100%;
   background-color: #fff;
   border-radius: 5px;
+
   //   margin: 1em;
   .divider {
     height: 1px;
@@ -62,6 +63,7 @@
         width: 64%;
         margin-right: 1%;
         font-family: $font-family-special;
+
         @include e("time") {
           font-size: 0.75em;
           color: $font-color; //rgba(0, 0, 0, 0.6);
@@ -71,6 +73,7 @@
         @include e("text") {
           font-size: 0.9em;
           color: $color-grey; //rgba(0, 0, 0, 0.8);
+
           &::first-letter {
             text-transform: capitalize;
           }
@@ -92,9 +95,11 @@
         text-decoration: none;
         outline: none;
         transition: 200ms ease;
+
         &::first-letter {
           text-transform: capitalize;
         }
+
         &:hover {
           border: 1px solid lighten($sub-main-color, 25%); //#ebebeb;
           color: $main-color;

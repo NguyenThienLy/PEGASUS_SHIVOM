@@ -9,9 +9,9 @@ export class Sidebar extends React.Component {
   componentDidMount() {
     $(".sidebar__inner__main-menu__sub-menu").click(function(e) {
       e.preventDefault(); // prevent the link from url
-
       var dropdownContent = this.nextElementSibling;
       var isOpened = false;
+
       if (dropdownContent.style.display === "block") {
         dropdownContent.style.display = "none";
       } else {
@@ -60,9 +60,9 @@ export class Sidebar extends React.Component {
     });
 
     $(".sidebar__inner__main-menu__none-sub-menu").click(function() {
-      $(".sidebar__inner__main-menu__sub-menu").removeClass(
-        "sidebar__inner__main-menu--item-active"
-      );
+      $(
+        ".sidebar__inner__main-menu__sub-menu, .sidebar__inner__main-menu__none-sub-menu"
+      ).removeClass("sidebar__inner__main-menu--item-active");
       $(".sidebar__inner__main-menu__sub-menu__dropdown-container").css(
         "display",
         "none"
@@ -79,73 +79,59 @@ export class Sidebar extends React.Component {
   }
 
   render() {
+    const { sidebar } = this.props;
+
     return (
       <div className="sidebar">
         <div className="sidebar__inner">
           <div className="sidebar__inner__top-menu">
             <div className="sidebar__inner__top-menu__logo">
-              <a href="#">
-                <img src="/logo.png" alt="" />
+              <a href={sidebar.homeLink}>
+                <img src={sidebar.logoSource} alt="" />
               </a>
             </div>
             <div className="sidebar__inner__top-menu__title">
-              shivom dashboard
+              {sidebar.title}
             </div>
           </div>
           <ul className="sidebar__inner__main-menu">
-            <li className="sidebar__inner__main-menu__none-sub-menu">
-              <a href="#">
-                <i class="fas fa-user" />
-                Trang chủ
-              </a>
-            </li>
-            <li className="sidebar__inner__main-menu__sub-menu">
-              <a href="#">
-                <i class="far fa-list-alt"></i>Khóa học
-              </a>
-              <div className="sidebar__inner__main-menu__sub-menu__dropdown-icon">
-                <i class="fas fa-caret-left" />
-              </div>
-            </li>
-            <div className="sidebar__inner__main-menu__sub-menu__dropdown-container">
-              <ul>
-                <li>
-                  <a href="#">Khóa học 1{/* <span>5</span> */}</a>
+            {sidebar.listItems.map(item => {
+              return item.subItems ? (
+                <React.Fragment>
+                  <li className="sidebar__inner__main-menu__sub-menu">
+                    <a href={item.link}>
+                      <span
+                        dangerouslySetInnerHTML={{ __html: item.icon }}
+                      ></span>
+                      {item.name}
+                    </a>
+                    <div className="sidebar__inner__main-menu__sub-menu__dropdown-icon">
+                      <i class="fas fa-caret-left" />
+                    </div>
+                  </li>
+                  <div className="sidebar__inner__main-menu__sub-menu__dropdown-container">
+                    <ul>
+                      {item.subItems.map(subItem => {
+                        return (
+                          <li>
+                            <a href={subItem.link}>{subItem.name}</a>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                </React.Fragment>
+              ) : (
+                <li className="sidebar__inner__main-menu__none-sub-menu">
+                  <a href={item.link}>
+                    <span
+                      dangerouslySetInnerHTML={{ __html: item.icon }}
+                    ></span>
+                    {item.name}
+                  </a>
                 </li>
-                <li>
-                  <a href="#">Khóa học 2{/* <span>3</span> */}</a>
-                </li>
-                <li>
-                  <a href="#">Khóa học 3{/* <span>3</span> */}</a>
-                </li>
-              </ul>
-            </div>
-            <li className="sidebar__inner__main-menu__sub-menu">
-              <a href="#">
-                <i class="far fa-newspaper"></i>Tin tức
-              </a>
-              <div className="sidebar__inner__main-menu__sub-menu__dropdown-icon">
-                <i class="fas fa-caret-left" />
-              </div>
-            </li>
-            <div className="sidebar__inner__main-menu__sub-menu__dropdown-container">
-              <ul>
-                <li>
-                  <a href="#">Tin tức 1{/* <span>5</span> */}</a>
-                </li>
-                <li>
-                  <a href="#">Tin tức 2{/* <span>3</span> */}</a>
-                </li>
-                <li>
-                  <a href="#">Tin tức 3{/* <span>3</span> */}</a>
-                </li>
-              </ul>
-            </div>
-            <li className="sidebar__inner__main-menu__none-sub-menu">
-              <a href="#">
-                <i class="fas fa-info"></i>Về chúng tôi
-              </a>
-            </li>
+              );
+            })}
           </ul>
         </div>
       </div>

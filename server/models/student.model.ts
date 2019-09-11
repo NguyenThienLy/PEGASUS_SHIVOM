@@ -25,6 +25,11 @@ export type StudentModel = BaseModel & {
         [x: string]: any
     }
     password: string
+    time: {
+        week: number
+        month: number
+        year: number
+    }
 }
 
 const studentSchema = new Schema({
@@ -41,7 +46,12 @@ const studentSchema = new Schema({
     rank: { type: Schema.Types.ObjectId, ref: "Rank" },
     cardId: { type: String, unique: true },
     otherInfo: { type: Schema.Types.Mixed },
-    status: { type: String, enum: ["active", "deactive"], default: "active" }
+    status: { type: String, enum: ["active", "deactive"], default: "active" },
+    time: {
+        week: { type: Number },
+        month: { type: Number },
+        year: { type: Number }
+    }
 }, { timestamps: true })
 
 studentSchema.pre('save', function (next) {

@@ -7,7 +7,15 @@ import { api } from '../../services'
 import { action } from '../../actions'
 
 import './project.scss'
-import { Header, Footer, Activity, Alert } from '../../components/'
+import {
+    Header,
+    Footer,
+    Activity,
+    Alert,
+    StudentInfo,
+    AddStudent,
+} from '../../components/'
+import { StudentAction } from '../../actions/student'
 
 class Project extends Component {
     constructor(props) {
@@ -50,6 +58,9 @@ class Project extends Component {
                     <div className="project__body">
                         <Activity activities={this.state.activities} />
                         <Alert type='error' />
+                        <Alert type='success' />
+                        <Alert type='warn' />
+                        <AddStudent />
                     </div>
                 </React.Fragment>
                 <div className="project-footer">

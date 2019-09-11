@@ -6,7 +6,7 @@ import { ClassModel } from '.';
 const Schema = mongoose.Schema;
 
 export type TimeTableItemModel = BaseModel & {
-    dayOfWeek: "monday" | "tuesday" | "webnesday" | "thursday" | "friday" | "saturday" | "sunday",
+    dayOfWeek: "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday",
     startTime: {
         hour: number
         minute: number
@@ -33,7 +33,7 @@ export type TimeTableItemModel = BaseModel & {
 
 const timeTableItemSchema = new Schema({
     dayOfWeek: {
-        type: String, enum: ["monday", "tuesday", "webnesday", "thursday", "friday", "saturday", "sunday"], required: true
+        type: String, enum: ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"], required: true
     },
     startTime: {
         hour: { type: Number },

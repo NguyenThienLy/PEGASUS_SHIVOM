@@ -10,10 +10,8 @@ body {
   flex-direction: row;
   height: 100vh;
   @include e("header") {
-    z-index: 1;
   }
   @include e("sidebar") {
-    z-index: 2;
     width: 20%;
     .sidebar {
       position: fixed;
@@ -23,14 +21,19 @@ body {
   @include e("body") {
     min-height: 100%;
     width: 80%;
+    margin: 0 1%;
     @include e("numbers") {
-      margin: 4em 1% 3em;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      margin: 4em 0 3em;
+      // display: flex;
+      // justify-content: space-between;
+      // align-items: center;
+      display: grid;
+      grid-template-columns: auto auto auto auto;
+      grid-column-gap: 2em;
+      grid-row-gap: 1em;
     }
     @include e("card") {
-      margin: 0 1% 3em;
+      margin: 0 0 3em;
       background-color: #fff;
       padding: 1em;
       border-radius: 5px;
@@ -58,12 +61,59 @@ body {
           @include e("info") {
             margin: 2em 0 0;
             display: flex;
+            flex-direction: row;
             justify-content: space-between;
+            align-items: flex-start;
           }
         }
 
         @include e("chart") {
           @include e("filter") {
+            @include e("form") {
+              @include e("input") {
+                width: 12em;
+                background: #fff;
+                color: $font-color;
+                font-family: $font-body;
+                font-size: 0.8em;
+                border: 1px solid $table-border-color;
+                border-radius: 5px;
+                outline: 0;
+                padding: 1em 2em;
+                margin-right: 1em;
+                margin-top: 1em;
+              }
+              @include e("btn") {
+                border: 0;
+                outline: 0;
+                padding: 0;
+                color: #fff;
+                border-radius: 5px;
+                padding: 1em 2em;
+                margin-top: 1em;
+                font-family: $font-body;
+                font-size: 0.8em;
+                transition: all 200ms ease;
+                cursor: pointer;
+                &::first-letter {
+                  text-transform: capitalize;
+                }
+                @include m("primary") {
+                  background: $main-color;
+                  box-shadow: 1px 1px 2px 0 rgba(0, 163, 175, 0.5);
+                  &:hover {
+                    background: darken($main-color, 5%);
+                  }
+                  &:active {
+                    background: $main-color;
+                    box-shadow: 1px 1px 5px 0 rgba(0, 163, 175, 0.3);
+                  }
+                  i {
+                    margin: 0 0.3em;
+                  }
+                }
+              }
+            }
           }
           @include e("row") {
             margin: 2em 0 1em;
@@ -79,10 +129,259 @@ body {
       }
     }
     @include e("table") {
-      margin: 0 1% 3em;
+      margin: 0 0 3em;
       .table {
         margin: 3em 0;
       }
+    }
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 599px) {
+  html {
+    font-size: 18px !important;
+  }
+
+  .courseDetails__sidebar {
+    width: 0%;
+    .sidebar {
+      position: static;
+      max-width: 0%;
+    }
+  }
+
+  .courseDetails__body {
+    width: 90%;
+    margin: 0 5%;
+  }
+
+  .courseDetails__body__numbers {
+    grid-template-columns: auto;
+    grid-column-gap: 0em;
+    .numberAdmin__inner__info {
+      .numberAdmin__inner__info__quantity {
+        float: right;
+      }
+    }
+  }
+
+  .courseDetails__body__card__content__course__info {
+    flex-direction: column;
+    align-items: center;
+    .courseInfo {
+      width: 100%;
+      margin-right: 0%;
+    }
+    .profileAdmin {
+      margin-top: 2em;
+      width: 100%;
+    }
+  }
+
+  .courseDetails__body__card__content__chart__row {
+    .pieChart {
+      width: 100%;
+    }
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  html {
+    font-size: 18px !important;
+  }
+
+  .courseDetails__sidebar {
+    width: 0%;
+    .sidebar {
+      position: static;
+      max-width: 0%;
+    }
+  }
+
+  .courseDetails__body {
+    width: 90%;
+    margin: 0 5%;
+  }
+
+  .courseDetails__body__numbers {
+    grid-template-columns: auto auto;
+    grid-column-gap: 1em;
+    .numberAdmin__inner__info {
+      .numberAdmin__inner__info__quantity {
+        float: right;
+      }
+    }
+  }
+
+  .courseDetails__body__card__content__course__info {
+    flex-direction: column;
+    align-items: center;
+    .courseInfo {
+      width: 100%;
+      margin-right: 0%;
+    }
+    .profileAdmin {
+      margin-top: 2em;
+      width: 60%;
+    }
+  }
+
+  .courseDetails__body__card__content__chart__row {
+    .pieChart {
+      width: 100%;
+    }
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  html {
+    font-size: 19px !important;
+  }
+
+  .courseDetails__sidebar {
+    width: 0%;
+    .sidebar {
+      position: static;
+      max-width: 0%;
+    }
+  }
+
+  .courseDetails__body {
+    width: 90%;
+    margin: 0 5%;
+  }
+
+  .courseDetails__body__numbers {
+    grid-template-columns: auto auto;
+    grid-column-gap: 2em;
+    .numberAdmin__inner__info {
+      .numberAdmin__inner__info__quantity {
+        float: right;
+      }
+    }
+  }
+
+  .courseDetails__body__card__content__course__info {
+    flex-direction: row;
+    align-items: flex-start;
+    .courseInfo {
+      width: 55%;
+      margin-right: 3%;
+    }
+    .profileAdmin {
+      margin-top: 0em;
+      width: 42%;
+    }
+  }
+
+  .courseDetails__body__card__content__chart__row {
+    .pieChart {
+      width: 50%;
+    }
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  html {
+    font-size: 19px !important;
+  }
+
+  .courseDetails__sidebar {
+    width: 20%;
+    .sidebar {
+      position: fixed;
+      max-width: 20%;
+    }
+  }
+
+  .courseDetails__body {
+    width: 78%;
+    margin: 0 1%;
+  }
+
+  .courseDetails__body__numbers {
+    grid-template-columns: auto auto auto auto;
+    grid-column-gap: 0.5em;
+    .numberAdmin__inner__icon {
+      margin-right: 0.5em;
+    }
+    .numberAdmin__inner__info {
+      margin-right: 0.5em;
+      .numberAdmin__inner__info__quantity {
+        float: none;
+      }
+    }
+  }
+
+  .courseDetails__body__card__content__course__info {
+    flex-direction: row;
+    align-items: flex-start;
+    .courseInfo {
+      width: 55%;
+      margin-right: 3%;
+    }
+    .profileAdmin {
+      margin-top: 0em;
+      width: 42%;
+    }
+  }
+
+  .courseDetails__body__card__content__chart__row {
+    .pieChart {
+      width: 50%;
+    }
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  html {
+    font-size: 20px !important;
+  }
+
+  .courseDetails__sidebar {
+    width: 20%;
+    .sidebar {
+      position: fixed;
+      max-width: 20%;
+    }
+  }
+
+  .courseDetails__body {
+    width: 78%;
+    margin: 0 1%;
+  }
+
+  .courseDetails__body__numbers {
+    grid-template-columns: auto auto auto auto;
+    grid-column-gap: 1em;
+    .numberAdmin__inner__info {
+      .numberAdmin__inner__info__quantity {
+        float: none;
+      }
+    }
+  }
+
+  .courseDetails__body__card__content__course__info {
+    flex-direction: row;
+    align-items: flex-start;
+    .courseInfo {
+      width: 60%;
+      margin-right: 3%;
+    }
+    .profileAdmin {
+      margin-top: 0em;
+      width: 37%;
+    }
+  }
+
+  .courseDetails__body__card__content__chart__row {
+    .pieChart {
+      width: 30%;
     }
   }
 }
