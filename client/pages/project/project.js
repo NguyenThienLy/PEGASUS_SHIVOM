@@ -15,8 +15,10 @@ import {
     StudentInfo,
     AddStudent,
     CourseOptions,
+    AddCourse,
 } from '../../components/'
 import { StudentAction } from '../../actions/student'
+import { SummaryRegisForm } from '../../components/summaryRegisForm/summaryRegisForm'
 
 class Project extends Component {
     constructor(props) {
@@ -54,7 +56,7 @@ class Project extends Component {
                     <meta name="title" content="Dự án tại Pegasus" />
                     <meta name="description" content="Các dự án của Pegasus" />
                 </Head>
-                <Header {...this.props} />
+
                 <React.Fragment>
                     <div className="project__body">
                         <Activity activities={this.state.activities} />
@@ -63,6 +65,8 @@ class Project extends Component {
                         <Alert type='warn' />
                         <AddStudent />
                         <CourseOptions />
+                        <SummaryRegisForm />
+                        <AddCourse />
                     </div>
                 </React.Fragment>
                 <div className="project-footer">

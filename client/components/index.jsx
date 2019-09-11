@@ -44,3 +44,5 @@ export * from "./customSelect/customSelect";
 export * from "./alert/alert";
 export * from "./addStudent/addStudent"
 export * from "./courseOptions/courseOptions"
+export * from "./summaryRegisForm/summaryRegisForm"
+export * from "./addCourse/addCourse"
