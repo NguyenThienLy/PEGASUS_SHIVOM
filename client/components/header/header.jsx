@@ -273,10 +273,9 @@ export class Header extends React.Component {
   }
 
   render() {
-    const { sidebar } = this.props;
     return (
       <div className="header">
-        <Sidebar sidebar={sidebar}></Sidebar>
+        <Sidebar sidebar={this.state.categories} logo={this.props.setting.logo}></Sidebar>
         <div className="header__wrapper">
           <div className="header__wrapper__page-menu-area">
             <div className="header__wrapper__page-menu-area__left">

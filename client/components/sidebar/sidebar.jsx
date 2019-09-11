@@ -1,5 +1,6 @@
 import * as React from "react";
 import "./sidebar.scss";
+import Link from 'next/link'
 
 export class Sidebar extends React.Component {
   constructor(props) {
@@ -7,7 +8,7 @@ export class Sidebar extends React.Component {
   }
 
   componentDidMount() {
-    $(".sidebar__inner__main-menu__sub-menu").click(function(e) {
+    $(".sidebar__inner__main-menu__sub-menu").click(function (e) {
       e.preventDefault(); // prevent the link from url
       var dropdownContent = this.nextElementSibling;
       var isOpened = false;
@@ -59,7 +60,7 @@ export class Sidebar extends React.Component {
       }
     });
 
-    $(".sidebar__inner__main-menu__none-sub-menu").click(function() {
+    $(".sidebar__inner__main-menu__none-sub-menu").click(function () {
       $(
         ".sidebar__inner__main-menu__sub-menu, .sidebar__inner__main-menu__none-sub-menu"
       ).removeClass("sidebar__inner__main-menu--item-active");
@@ -80,29 +81,31 @@ export class Sidebar extends React.Component {
 
   render() {
     const { sidebar } = this.props;
-
+    console.log("side bar: ", sidebar)
     return (
       <div className="sidebar">
         <div className="sidebar__inner">
           <div className="sidebar__inner__top-menu">
             <div className="sidebar__inner__top-menu__logo">
-              <a href={sidebar.homeLink}>
-                <img src={sidebar.logoSource} alt="" />
-              </a>
+              <Link href="/home/home" as="/">
+                <a href="/">
+                  <img src={this.props.logo} alt="" />
+                </a>
+              </Link>
             </div>
             <div className="sidebar__inner__top-menu__title">
-              {sidebar.title}
+              "Hiệp Hoà Yoga"
             </div>
           </div>
           <ul className="sidebar__inner__main-menu">
-            {sidebar.listItems.map(item => {
-              return item.subItems ? (
+            {sidebar.map(item => {
+              return item.subCategories ? (
                 <React.Fragment>
                   <li className="sidebar__inner__main-menu__sub-menu">
-                    <a href={item.link}>
-                      <span
+                    <a href="#">
+                      {/* <span
                         dangerouslySetInnerHTML={{ __html: item.icon }}
-                      ></span>
+                      ></span> */}
                       {item.name}
                     </a>
                     <div className="sidebar__inner__main-menu__sub-menu__dropdown-icon">
@@ -111,26 +114,34 @@ export class Sidebar extends React.Component {
                   </li>
                   <div className="sidebar__inner__main-menu__sub-menu__dropdown-container">
                     <ul>
-                      {item.subItems.map(subItem => {
+                      {item.subCategories.map(subItem => {
                         return (
-                          <li>
-                            <a href={subItem.link}>{subItem.name}</a>
-                          </li>
+                          <Link href={subItem.linkHref} as={subItem.linkAs}>
+                            <li>
+
+                              <a href={subItem.linkAs}>{subItem.name}</a>
+
+                            </li>
+                          </Link>
                         );
                       })}
                     </ul>
                   </div>
                 </React.Fragment>
               ) : (
-                <li className="sidebar__inner__main-menu__none-sub-menu">
-                  <a href={item.link}>
-                    <span
-                      dangerouslySetInnerHTML={{ __html: item.icon }}
-                    ></span>
-                    {item.name}
-                  </a>
-                </li>
-              );
+                  <Link href={item.linkHref} as={item.linkAs}>
+                    <li className="sidebar__inner__main-menu__none-sub-menu">
+
+                      <a href={item.linkAs}>
+                        {/* <span
+                        dangerouslySetInnerHTML={{ __html: item.icon }}
+                      ></span> */}
+                        {item.name}
+                      </a>
+
+                    </li>
+                  </Link>
+                );
             })}
           </ul>
         </div>
