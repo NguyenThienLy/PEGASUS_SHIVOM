@@ -24,6 +24,9 @@ import { SettingReducer } from './setting'
 import { TimeTableReducer } from './timeTable'
 import { StudentAccountReducer } from './studentAccount'
 
+import { StatisticCourseReducer } from "./statisticCourse";
+import { StatisticStudentReducer } from "./statisticStudent";
+
 const postReducer = new PostReducer()
 const adminReducer = new AdminReducer()
 const classReducer = new ClassReducer()
@@ -49,30 +52,35 @@ const settingReducer = new SettingReducer()
 const timeTableReducer = new TimeTableReducer()
 const studentAccountReducer = new StudentAccountReducer()
 
+const statisticCourseReducer = new StatisticCourseReducer();
+const statisticStudentReducer = new StatisticStudentReducer();
+
 const store = combineReducers({
-    admin: adminReducer.reducer,
-    classes: classReducer.reducer,
-    classTimeTables: classTimeTableReducer.reducer,
-    contacts: contactReducer.reducer,
-    courses: courseReducer.reducer,
-    events: eventReducer.reducer,
-    feedbacks: feedbackReducer.reducer,
-    galleries: galleryReducer.reducer,
-    masonryHomes: masonryHomeReducer.reducer,
-    newCategories: newCategoryReducer.reducer,
-    news: newsReducer.reducer,
-    promotions: promotionReducer.reducer,
-    ranks: rankReducer.reducer,
-    skills: skillReducer.reducer,
-    sliders: sliderReducer.reducer,
-    students: studentReducer,
-    studentTimeTables: studentTimeTableReducer.reducer,
-    teachers: teacherReducer.reducer,
-    tesmonials: tesmonialReducer.reducer,
-    timeTableItems: timeTableItemReducer.reducer,
-    setting: settingReducer.reducer,
-    timeTable: timeTableReducer.reducer,
-    studentAccount: studentAccountReducer.reducer
+  admin: adminReducer.reducer,
+  classes: classReducer.reducer,
+  classTimeTables: classTimeTableReducer.reducer,
+  contacts: contactReducer.reducer,
+  courses: courseReducer.reducer,
+  events: eventReducer.reducer,
+  feedbacks: feedbackReducer.reducer,
+  galleries: galleryReducer.reducer,
+  masonryHomes: masonryHomeReducer.reducer,
+  newCategories: newCategoryReducer.reducer,
+  news: newsReducer.reducer,
+  promotions: promotionReducer.reducer,
+  ranks: rankReducer.reducer,
+  skills: skillReducer.reducer,
+  sliders: sliderReducer.reducer,
+  students: studentReducer.reducer,
+  studentTimeTables: studentTimeTableReducer.reducer,
+  teachers: teacherReducer.reducer,
+  tesmonials: tesmonialReducer.reducer,
+  timeTableItems: timeTableItemReducer.reducer,
+  setting: settingReducer.reducer,
+  timeTable: timeTableReducer.reducer,
+  studentAccount: studentAccountReducer.reducer,
+  statisticCourse: statisticCourseReducer.reducer,
+  statisticStudent: statisticStudentReducer.reducer
 })
 
 export default store;

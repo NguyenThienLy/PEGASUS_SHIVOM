@@ -25,6 +25,61 @@ export class CourseDetails extends React.Component {
           "https://cdn1.iconfinder.com/data/icons/avatars-1-5/136/87-512.png",
         name: "Avril Lavigne"
       },
+      sidebar: {
+        homeLink: "#",
+        logoSource: "/logo.png",
+        title: "Shivom Dashboard",
+        listItems: [
+          {
+            link: "#",
+            icon: "<i class='fas fa-user'></i>",
+            name: "Trang chủ"
+          },
+          {
+            link: "#",
+            icon: "<i class='far fa-list-alt'></i>",
+            name: "Khóa học",
+            subItems: [
+              {
+                link: "#",
+                name: "Khóa học 1"
+              },
+              {
+                link: "#",
+                name: "Khóa học 2"
+              },
+              {
+                link: "#",
+                name: "Khóa học 3"
+              }
+            ]
+          },
+          {
+            link: "#",
+            icon: "<i class='far fa-newspaper'></i>",
+            name: "Tin tức",
+            subItems: [
+              {
+                link: "#",
+                name: "Tin tức 1"
+              },
+              {
+                link: "#",
+                name: "Tin tức 2"
+              },
+              {
+                link: "#",
+                name: "Tin tức 3"
+              }
+            ]
+          },
+          {
+            link: "#",
+            icon: "<i class='fas fa-info'></i>",
+            name: "Về chúng tôi"
+          }
+        ]
+      },
       numberAdmins: [
         {
           icon: '<i class="fas fa-id-card-alt"></i>',
@@ -76,7 +131,7 @@ export class CourseDetails extends React.Component {
   componentWillUnmount() {}
   componentDidMount() {
     var heightOfHeader = $(
-      ".courseDetails .courseDetails__header .headerAdmin"
+      ".courseDetails .courseDetails__header .headerAdmin__wrapper"
     ).height();
     $(".courseDetails .courseDetails__body").css(
       "margin-top",
@@ -100,10 +155,13 @@ export class CourseDetails extends React.Component {
         </Head>
         <React.Fragment>
           <div className="courseDetails__header">
-            <HeaderAdmin headerAdmin={this.state.headerAdmin}></HeaderAdmin>
+            <HeaderAdmin
+              sidebar={this.state.sidebar}
+              headerAdmin={this.state.headerAdmin}
+            ></HeaderAdmin>
           </div>
           <div className="courseDetails__sidebar">
-            <Sidebar></Sidebar>
+            <Sidebar sidebar={this.state.sidebar}></Sidebar>
           </div>
           <div className="courseDetails__body">
             <div className="courseDetails__body__numbers">
