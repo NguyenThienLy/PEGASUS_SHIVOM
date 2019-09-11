@@ -28,6 +28,7 @@ export * from "./numberAdmin/numberAdmin";
 export * from "./profileAdmin/profileAdmin";
 export * from "./table/table";
 export * from "./lineChart/lineChart";
+export * from "./columnChart/columnChart";
 export * from "./pieChart/pieChart";
 export * from "./feedback/feedback";
 export * from "./imageShow/imageShow";
