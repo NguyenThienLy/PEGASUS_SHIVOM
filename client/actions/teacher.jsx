@@ -3,6 +3,6 @@ import { api } from '../services'
 
 export class TeacherAction extends BaseAction {
     constructor() {
-        super("teacher", api.teacher)
+        super("teacher", api.teacher, "teachers")
     }
 }

@@ -39,6 +39,7 @@ import {
   Activity,
   Map
 } from "../../components";
+import { Tesmonials } from "./components/Tesmonials/tesmonials";
 
 class Home extends React.Component {
   constructor(props) {
@@ -49,6 +50,61 @@ class Home extends React.Component {
         lng: 30.33
       },
       zoom: 11,
+      sidebar: {
+        homeLink: "#",
+        logoSource: "/logo.png",
+        title: "Shivom Dashboard",
+        listItems: [
+          {
+            link: "#",
+            icon: "<i class='fas fa-user'></i>",
+            name: "Trang chủ"
+          },
+          {
+            link: "#",
+            icon: "<i class='far fa-list-alt'></i>",
+            name: "Khóa học",
+            subItems: [
+              {
+                link: "#",
+                name: "Khóa học 1"
+              },
+              {
+                link: "#",
+                name: "Khóa học 2"
+              },
+              {
+                link: "#",
+                name: "Khóa học 3"
+              }
+            ]
+          },
+          {
+            link: "#",
+            icon: "<i class='far fa-newspaper'></i>",
+            name: "Tin tức",
+            subItems: [
+              {
+                link: "#",
+                name: "Tin tức 1"
+              },
+              {
+                link: "#",
+                name: "Tin tức 2"
+              },
+              {
+                link: "#",
+                name: "Tin tức 3"
+              }
+            ]
+          },
+          {
+            link: "#",
+            icon: "<i class='fas fa-info'></i>",
+            name: "Về chúng tôi"
+          }
+        ]
+      },
       trainingClasses: [
         {
           category: "fitness",
@@ -186,25 +242,25 @@ class Home extends React.Component {
           link: "#",
           image:
             "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-icon-img-1.png",
-          title: "run outdoors",
+          title: "Tâm huyết",
           content:
-            "Lorem ipsum dolor sit amet, ad duo adipisci imperdiet, eum eu fugit."
+            "Đội ngũ giáo viên chuyên môn cao, luôn nhiệt tình và tâm huyết với những bài dạy - học viên của mình"
         },
         {
           link: "#",
           image:
             "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-icon-img-4.png",
-          title: "rollerblading",
+          title: "Chất lượng",
           content:
-            "Lorem ipsum dolor sit amet, ad duo adipisci imperdiet, eum eu fugit."
+            "Cơ sở vật chất hiện đại, trang thiết bị đầy đủ  - Giáo trình hướng dẫn khoa học, đạt chuẩn quốc tế"
         },
         {
           link: "#",
           image:
             "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-icon-img-5.png",
-          title: "mountain biking",
+          title: "Uy tín",
           content:
-            "Lorem ipsum dolor sit amet, ad duo adipisci imperdiet, eum eu fugit."
+            "Giáo viên có chứng chỉ giảng dạy - Cam kết chất lượng từng khoá học"
         }
       ],
       eventHour: {
@@ -288,26 +344,54 @@ class Home extends React.Component {
   }
   fetchData = () => {
     // Cách 1
-    this.props.fetchSlider();
-    this.props.fetchCourse();
-    this.props.fetchTesmonial({
-      query: {
-        filter: { status: "active" }
-      }
-    });
-    this.props.fetchTeacher();
-    this.props.fetchMasonryHome({
-      query: {
-        filter: { status: "active" },
-        limit: 6
-      }
-    });
-    this.props.fetchSetting();
-    this.props.fetchTimeTable({
-      query: {
-        limit: 0
-      }
-    });
+    if (this.props.sliders.items.length === 0) {
+      this.props.fetchSlider();
+    }
+    if (this.props.courses.items.length === 0) {
+      this.props.fetchCourse();
+    }
+    if (this.props.newCategories.items.length === 0) {
+      this.props.fetchNewCategory()
+    }
+    if (this.props.tesmonials.items.length === 0) {
+      this.props.fetchTesmonial({
+        query: {
+          filter: { status: "active" }
+        }
+      });
+    }
+    if (this.props.teachers.items.length === 0) {
+      this.props.fetchTeacher();
+    }
+    if (this.props.masonryHomes.items.length === 0) {
+      this.props.fetchMasonryHome({
+        query: {
+          filter: { status: "active" },
+          limit: 6
+        }
+      });
+    }
+    if (!this.props.setting.fetched) {
+      this.props.fetchSetting();
+    }
+    if (this.props.timeTable.items.length === 0) {
+      this.props.fetchTimeTable({
+        query: {
+          limit: 0
+        }
+      });
+    }
+    if (!this.props.news.pinned) {
+      this.props.fetchPinnedNews({
+        query: {
+          filter: {
+            isPin: true
+          },
+          populates: [{ path: "category", select: "name slug" }]
+        }
+      })
+    }
+
     // Luôn luôn phải catch lỗi và xử lý nhằm tránh crash web
     // Cách 2
     // api.class.getList()
@@ -324,54 +408,12 @@ class Home extends React.Component {
   };
   async componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.tesmonials.fetching === false) {
-      $(".home__body__reviews__slick-autoplay").slick({
-        dots: true,
-        arrows: false,
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        autoplay: true,
-        autoplaySpeed: 5000,
-        responsive: [
-          {
-            breakpoint: 1200,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 2,
-              infinite: true,
-              dots: true
-            }
-          },
-          {
-            breakpoint: 992,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1,
-              infinite: true,
-              dots: true
-            }
-          }
-        ]
-      });
-      $(".home__body__reviews__slick-autoplay").on("beforeChange", function(
-        event,
-        slick,
-        currentSlide,
-        nextSlide
-      ) {
-        $(".home__body__reviews__slick-autoplay .slick-dots li").removeClass(
-          "slick-active"
-        );
-        $(".home__body__reviews__slick-autoplay .slick-dots li button")
-          .attr("aria-pressed", "false")
-          .focus(function() {
-            this.blur();
-          });
-      });
+
     }
   }
   async componentDidMount() {
+    console.log("Tai sao lai vao day nua")
     this.fetchData();
-
     $(".home__body__brands__slick-autoplay").slick({
       dots: false,
       arrows: false,
@@ -412,7 +454,7 @@ class Home extends React.Component {
         }
       ]
     });
-    $(".home__body__brands__slick-autoplay").on("beforeChange", function(
+    $(".home__body__brands__slick-autoplay").on("beforeChange", function (
       event,
       slick,
       currentSlide,
@@ -423,7 +465,7 @@ class Home extends React.Component {
       );
       $(".home__body__brands__slick-autoplay .slick-dots li button")
         .attr("aria-pressed", "false")
-        .focus(function() {
+        .focus(function () {
           this.blur();
         });
     });
@@ -448,7 +490,7 @@ class Home extends React.Component {
         }
       ]
     });
-    $(".home__body__intro-slick-autoplay").on("beforeChange", function(
+    $(".home__body__intro-slick-autoplay").on("beforeChange", function (
       event,
       slick,
       currentSlide,
@@ -459,10 +501,11 @@ class Home extends React.Component {
       );
       $(".home__body__intro-slick-autoplay .slick-dots li button")
         .attr("aria-pressed", "false")
-        .focus(function() {
+        .focus(function () {
           this.blur();
         });
     });
+
   }
 
   addContact = body => {
@@ -486,7 +529,11 @@ class Home extends React.Component {
         </Head>
         <React.Fragment>
           <div class="background-overlay"></div>
-          <Header {...this.props} logo={this.props.setting.logo} />
+          <Header
+            {...this.props}
+            sidebar={this.state.sidebar}
+            logo={this.props.setting.logo}
+          />
 
           <div className="home__body">
             <div className="home__body__slider">
@@ -523,8 +570,8 @@ class Home extends React.Component {
               <div className="home__body__trainingClass__content">
                 {this.props.courses.fetching === false
                   ? this.props.courses.items.map(trainingClass => {
-                      return <TrainingClass trainingClass={trainingClass} />;
-                    })
+                    return <TrainingClass trainingClass={trainingClass} />;
+                  })
                   : null}
                 {/* {this.state.trainingClasses.map(trainingClass => {
                   return <TrainingClass trainingClass={trainingClass} />;
@@ -539,24 +586,22 @@ class Home extends React.Component {
             <div className="home__body__timeTable">
               <div className="home__body__timeTable__title">
                 <div className="home__body__timeTable__title__inner">
-                  <div>amazing classes</div>
-                  <p>
+                  <div>Thời gian biểu</div>
+                  {/* <p>
                     Lorem ipsum dolor sit amet, quod gloriatur inciderint at
                     vel, ei justo dolore virtute duo. Movet quaeque probatus an
                     sit, mel iisque facilisi et.
-                  </p>
+                  </p> */}
                 </div>
               </div>
               <div className="home__body__timeTable__content">
-                {this.props.timeTable.fetching === false ? (
-                  <TimeTable {...this.props.timeTable.items} />
-                ) : null}
+                {this.props.timeTable.fetching === false ? <TimeTable courses={this.props.courses} timeTables={this.props.timeTable.items} /> : null}
               </div>
             </div>
 
             <div className="home__body__news">
               <div className="home__body__news__container">
-                <News news={this.state.news} />
+                {this.props.news.pinned ? <News news={this.props.news.pinned} /> : null}
               </div>
             </div>
 
@@ -572,24 +617,9 @@ class Home extends React.Component {
                   </p>
                 </div>
               </div>
-              {this.props.tesmonials.fetching === false ? (
-                <div className="home__body__reviews__slick-autoplay">
-                  {this.props.tesmonials.items.map(review => {
-                    return (
-                      <div className="home__body__reviews__slick-autoplay__item">
-                        <Review review={review} />
-                      </div>
-                    );
-                  })}
-                  {/* {this.state.reviews.map(review => {
-                  return (
-                    <div className="home__body__reviews__slick-autoplay__item">
-                      <Review review={review} />
-                    </div>
-                  );
-                })} */}
-                </div>
-              ) : null}
+
+              {this.props.tesmonials.fetching === false ? <Tesmonials tesmonials={this.props.tesmonials.items} /> : null}
+
             </div>
 
             <div className="home__body__numbers">
@@ -624,8 +654,8 @@ class Home extends React.Component {
               <div className="home__body__trainers__list">
                 {this.props.teachers.fetching === false
                   ? this.props.teachers.items.map(trainer => {
-                      return <Trainer trainer={trainer} />;
-                    })
+                    return <Trainer trainer={trainer} />;
+                  })
                   : null}
                 {/* {this.state.trainers.map(trainer => {
                   return <Trainer trainer={trainer} />;
@@ -721,7 +751,9 @@ const mapDispatchToProps = dispatch =>
       fetchTeacher: action.teacher.fetch,
       fetchMasonryHome: action.masonryHome.fetch,
       fetchSetting: action.setting.fetch,
-      fetchTimeTable: action.timeTable.fetch
+      fetchTimeTable: action.timeTable.fetch,
+      fetchNewCategory: action.newCategory.fetch,
+      fetchPinnedNews: action.news.getPinnedNews
     },
     dispatch
   );

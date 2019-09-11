@@ -3,8 +3,8 @@ import "./header.scss";
 import Link from "next/link";
 import { HoverDivAnimation } from "../hoverDivAnimation/hoverDivAnimation";
 import { Sidebar } from "../sidebar/sidebar";
-import * as _ from 'lodash'
-import { CloudImage } from '../../components';
+import * as _ from "lodash";
+import { CloudImage } from "../../components";
 // import Router from 'next/router'
 // import Head from 'next/head'
 // import * as _ from "lodash"
@@ -26,9 +26,7 @@ export class Header extends React.Component {
         {
           name: "khoá học",
           key: "course",
-          subCategories: [
-
-          ]
+          subCategories: []
         },
         {
           name: "tin tức",
@@ -36,18 +34,18 @@ export class Header extends React.Component {
           subCategories: [
             {
               name: "khoá học môt",
-              linkHref: "/home/home",
-              linkAs: "/",
+              linkHref: "/blog/blog?categorySlug=khoa-hoc-not",
+              linkAs: "/khoa-hoc-mot",
             },
             {
               name: "khoá học hai",
               linkHref: "/home/home",
-              linkAs: "/",
+              linkAs: "/"
             },
             {
               name: "khoá học ba",
               linkHref: "/home/home",
-              linkAs: "/",
+              linkAs: "/"
             }
           ]
         },
@@ -57,23 +55,40 @@ export class Header extends React.Component {
           linkAs: "/lien-he",
           key: "about"
         }
-      ],
+      ]
     };
   }
   shouldComponentUpdate(nextProps, nextState) {
-    return true
+    return true;
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.courses.items.length === 0 && this.props.courses.items.length > 0) {
-      const courseCategoryIndex = this.state.categories.findIndex(item => { return item.key === "course" })
-      const subCategories = this.props.courses.items.map((item) => {
+    if (
+      prevProps.courses.items.length === 0 &&
+      this.props.courses.items.length > 0
+    ) {
+      const courseCategoryIndex = this.state.categories.findIndex(item => {
+        return item.key === "course";
+      });
+      const subCategories = this.props.courses.items.map(item => {
         return {
           name: item.name,
-          linkHref: `/course/course?courseId=${item.slug}`,
+          linkHref: `/course/course?slug=${item.slug}`,
           linkAs: `/khoa-hoc/${item.slug}`
+        };
+      });
+      this.state.categories[courseCategoryIndex].subCategories = subCategories;
+      this.setState({ categories: this.state.categories });
+    }
+    if (prevProps.newCategories.items.length === 0 && this.props.newCategories.items.length > 0) {
+      const newCategoryIndex = this.state.categories.findIndex(item => { return item.key === "news" })
+      const subCategories = this.props.newCategories.items.map((item) => {
+        return {
+          name: item.name,
+          linkHref: `/blog/blog?categorySlug=${item.slug}`,
+          linkAs: `/${item.slug}`
         }
       })
-      this.state.categories[courseCategoryIndex].subCategories = subCategories
+      this.state.categories[newCategoryIndex].subCategories = subCategories
       this.setState({ categories: this.state.categories })
     }
   }
@@ -103,15 +118,29 @@ export class Header extends React.Component {
 
   componentDidMount() {
     if (this.props.courses.items.length > 0) {
-      const courseCategoryIndex = this.state.categories.findIndex(item => { return item.key === "course" })
-      const subCategories = this.props.courses.items.map((item) => {
+      const courseCategoryIndex = this.state.categories.findIndex(item => {
+        return item.key === "course";
+      });
+      const subCategories = this.props.courses.items.map(item => {
         return {
           name: item.name,
           linkHref: `/course/course?slug=${item.slug}`,
           linkAs: `/khoa-hoc/${item.slug}`
+        };
+      });
+      this.state.categories[courseCategoryIndex].subCategories = subCategories;
+      this.setState({ categories: this.state.categories });
+    }
+    if (this.props.newCategories.items.length > 0) {
+      const newCategoryIndex = this.state.categories.findIndex(item => { return item.key === "news" })
+      const subCategories = this.props.newCategories.items.map((item) => {
+        return {
+          name: item.name,
+          linkHref: `/blog/blog?categorySlug=${item.slug}`,
+          linkAs: `/${item.slug}`
         }
       })
-      this.state.categories[courseCategoryIndex].subCategories = subCategories
+      this.state.categories[newCategoryIndex].subCategories = subCategories
       this.setState({ categories: this.state.categories })
     }
     // $(".header__wrapper__page-menu-area__left__navbar__list-items__item").hover(
@@ -244,9 +273,10 @@ export class Header extends React.Component {
   }
 
   render() {
+    const { sidebar } = this.props;
     return (
       <div className="header">
-        <Sidebar></Sidebar>
+        <Sidebar sidebar={sidebar}></Sidebar>
         <div className="header__wrapper">
           <div className="header__wrapper__page-menu-area">
             <div className="header__wrapper__page-menu-area__left">
@@ -279,8 +309,10 @@ export class Header extends React.Component {
                               {category.subCategories.map(
                                 (subCategory, index) => {
                                   return (
-
-                                    <Link href={subCategory.linkHref} as={subCategory.linkAs}>
+                                    <Link
+                                      href={subCategory.linkHref}
+                                      as={subCategory.linkAs}
+                                    >
                                       <li
                                         key={index}
                                         className="header__wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper__sub-navbar__item"
@@ -349,14 +381,16 @@ export class Header extends React.Component {
                               {category.subCategories.map(
                                 (subCategory, index) => {
                                   return (
-                                    <li
-                                      key={index}
-                                      className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper__sub-navbar__item"
-                                    >
-                                      <HoverDivAnimation
-                                        title={subCategory.name}
-                                      />
-                                    </li>
+                                    <Link href={subCategory.linkHref} as={subCategory.linkAs}>
+                                      <li
+                                        key={index}
+                                        className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper__sub-navbar__item"
+                                      >
+                                        <HoverDivAnimation
+                                          title={subCategory.name}
+                                        />
+                                      </li>
+                                    </Link>
                                   );
                                 }
                               )}
@@ -364,9 +398,11 @@ export class Header extends React.Component {
                           </div>
                         </li>
                       ) : (
-                          <li className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item">
-                            <HoverDivAnimation title={category.name} />
-                          </li>
+                          <Link href={category.linkHref} as={category.linkAs}>
+                            <li className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item">
+                              <HoverDivAnimation title={category.name} />
+                            </li>
+                          </Link>
                         );
                     })}
                   </ul>

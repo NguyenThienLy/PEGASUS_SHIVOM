@@ -28,6 +28,7 @@ export * from "./numberAdmin/numberAdmin";
 export * from "./profileAdmin/profileAdmin";
 export * from "./table/table";
 export * from "./lineChart/lineChart";
+export * from "./columnChart/columnChart";
 export * from "./pieChart/pieChart";
 export * from "./feedback/feedback";
 export * from "./imageShow/imageShow";
@@ -42,4 +43,8 @@ export * from "./headerAdmin/headerAdmin";
 export * from "./customSelect/customSelect";
 export * from "./alert/alert";
 export * from "./addStudent/addStudent"
+<<<<<<< HEAD
 export * from "./courseOptions/courseOptions"
+=======
+
+>>>>>>> fdc5c366094aea4c42319099cac9e9548aa45d52

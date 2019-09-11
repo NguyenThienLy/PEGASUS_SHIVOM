@@ -1,6 +1,8 @@
 import * as React from "react";
 import "./slider.scss";
 import { DefaultButton } from "../../components";
+import Link from 'next/link'
+
 export class Slider extends React.Component {
   constructor(props) {
     super(props);
@@ -37,7 +39,7 @@ export class Slider extends React.Component {
       ).addClass("slider__slick-autoplay__item__caption__ani--4");
     });
 
-    $(".slider__slick-autoplay").slick({
+    $(".slider__slick-autoplay").not('.slick-initialized').slick({
       dots: false,
       arrows: false,
       slidesToShow: 1,
@@ -159,13 +161,14 @@ export class Slider extends React.Component {
                 <p className="slider__slick-autoplay__item__caption__content slider__slick-autoplay__item__caption--hidden">
                   {item.option.description}
                 </p>
-
-                <a
-                  href="#"
-                  className="slider__slick-autoplay__item__caption__btn slider__slick-autoplay__item__caption--hidden"
-                >
-                  <span>{item.option.buttonTitle}</span>
-                </a>
+                <Link href={`/post/post?newsId=${item.option.newsId}`} as={`/bai-viet/${item.option.newsId}`}>
+                  <a
+                    href={`/bai-viet/${item.option.newsId}`}
+                    className="slider__slick-autoplay__item__caption__btn slider__slick-autoplay__item__caption--hidden"
+                  >
+                    <span>{item.option.buttonTitle}</span>
+                  </a>
+                </Link>
                 <div className="slider__slick-autoplay__item__caption__btn-default slider__slick-autoplay__item__caption--hidden">
                   <DefaultButton link="#" content="Tập thử ngay"></DefaultButton>
                 </div>

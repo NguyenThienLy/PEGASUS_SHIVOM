@@ -28,6 +28,9 @@ $background-table-header-color: lighten($sub-main-color, 25%);
         }
       }
     }
+    @include e("active"){
+      color: $main-color !important;
+    }
   }
   @include e("list-events") {
     display: none;

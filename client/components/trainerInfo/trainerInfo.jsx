@@ -16,7 +16,7 @@ export class TrainerInfo extends React.Component {
                 </div>
                 <div className="class-trainer__info">
                     <div className="class-trainer__info__name">
-                        {trainerInfo.name}
+                        {trainerInfo.firstName} {trainerInfo.lastName}
                     </div>
                     <div className="class-trainer__info__description">
                         {trainerInfo.shortDescription}

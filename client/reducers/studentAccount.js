@@ -2,9 +2,9 @@
 import { BaseReducer } from './base'
 import * as _ from 'lodash'
 
-export class AdminReducer extends BaseReducer {
+export class StudentAccountReducer extends BaseReducer {
     constructor() {
-        super("admin")
+        super("studentAccount")
         this.initState = {
             data: null,
             login: {
@@ -54,8 +54,7 @@ export class AdminReducer extends BaseReducer {
                         isError: true,
                         error: action.payload,
                         isLogon: false
-                    },
-                    data: null
+                    }
                 })
                 break
             case this.customActions.loginClear:
@@ -65,8 +64,7 @@ export class AdminReducer extends BaseReducer {
                         isError: false,
                         error: null,
                         isLogon: false
-                    },
-                    data: null
+                    }
                 })
                 break
         }

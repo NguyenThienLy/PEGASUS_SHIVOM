@@ -131,23 +131,32 @@ export class Course extends React.Component {
 					title: "Be Smart-Eat Wise WISE",
 					date: "13th jun"
 				}
-			]
-
-
-
+			],
+			sorter: {
+				"monday": 1,
+				"tuesday": 2,
+				"wednesday": 3,
+				"thursday": 4,
+				"friday": 5,
+				"saturday": 6,
+				"sunday": 7
+			},
+			latestNews: []
 		};
 	}
 	static async getInitialProps({ req, query }) {
 		const slug = query.slug
 		const course = await api.course.getCourseBySlug(slug)
-
 		return {
 			course: course
 		}
 	}
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.courses.items.length > 0) {
-			this.props.fetchTimeTableOfCourse(this.props.course._id)
+		if (this.props.course._id !== nextProps.course._id) {
+			this.setState({ timeTables: [] })
+		}
+		if (nextProps.courses.items.length > 0 || this.props.course._id !== nextProps.course._id) {
+			this.props.fetchTimeTableOfCourse(nextProps.course._id)
 		}
 
 		return true
@@ -162,6 +171,7 @@ export class Course extends React.Component {
 			setTimeout(() => {
 				const courseData = this.props.courses.items[courseItemIndex]
 				if (courseData.timeTables !== undefined) {
+
 					this.setState({ timeTables: courseData.timeTables })
 				}
 			}, 1000);
@@ -169,15 +179,40 @@ export class Course extends React.Component {
 	}
 
 	async componentDidMount() {
-		this.setState({ timeTables: [] })
+
 		this.fetchData()
+		this.getLatestNews()
 		var heightOfFooter = $(".course__footer .footer-wrapper").height();
 		$(".course__contact-us").css("margin-bottom", heightOfFooter + "px");
 	}
-	fetchData() {
-		this.props.fetchCourse()
-		this.props.fetchSetting()
+	getLatestNews() {
+		api.news.getList({
+			query: {
+				order: { createdAt: -1 },
+				populates: [{ path: "category", select: "name slug" }]
+			}
+		}).then(res => {
+			this.setState({ latestNews: res.results.objects.rows })
+		}).catch(err => {
 
+		})
+	}
+	fetchData() {
+		if (this.props.courses.items.length === 0) {
+			this.props.fetchCourse()
+		}
+		if (!this.props.setting.fetched) {
+			this.props.fetchSetting();
+		}
+		if (this.props.newCategories.items.length === 0) {
+			this.props.fetchNewCategory()
+		}
+
+	}
+	sortNao = (array) => {
+		return array.sort(function (a, b) {
+			return this.state.sorter[a.key] - this.state.sorter[b.key]
+		})
 	}
 	render() {
 		return (
@@ -204,7 +239,7 @@ export class Course extends React.Component {
 
 
 							<div className="course-wrapper__main-content__image">
-								<div className="course-wrapper__main-content__image__dateCreated">
+								{/* <div className="course-wrapper__main-content__image__dateCreated">
 									<a>
 										<span className="course-wrapper__main-content__image__dateCreated__day">
 											{this.state.course.dateCreated.day}
@@ -213,7 +248,7 @@ export class Course extends React.Component {
 											{this.state.course.dateCreated.month}
 										</span>
 									</a>
-								</div>
+								</div> */}
 								<img src={this.props.course.thumb} alt={this.props.course.name} />
 							</div>
 
@@ -241,8 +276,38 @@ export class Course extends React.Component {
 								}
 							</div>
 							{
+
 								this.state.timeTables && this.state.timeTables.length > 0 ? this.state.timeTables.map((classData, index) => {
-									console.log("Class data: ", classData)
+									let sorter = {
+										"monday": {
+											value: 1,
+											text: "Thứ hai"
+										},
+										"tuesday": {
+											value: 2,
+											text: "Thứ ba"
+										},
+										"wednesday": {
+											value: 3,
+											text: "Thứ tư"
+										},
+										"thursday": {
+											value: 4,
+											text: "Thứ năm"
+										},
+										"friday": {
+											value: 5,
+											text: "Thứ sáu"
+										},
+										"saturday": {
+											value: 6,
+											text: "Thứ bảy"
+										},
+										"sunday": {
+											value: 7,
+											text: "Chủ nhật"
+										},
+									}
 									return (
 										<div>
 											<div className="course-wrapper__main-content__text">
@@ -252,19 +317,22 @@ export class Course extends React.Component {
 											<div className="course-wrapper__main-content__trainer-info">
 												{classData.class.teacher ? <TrainerInfo trainerInfo={classData.class.teacher} /> : null}
 											</div>
-											{/* <div className="course-wrapper__main-content__classes">
+											<div className="course-wrapper__main-content__classes">
 												{
-													course.classes.map((yogaclass, index) => {
+													classData.items.sort(function (a, b) {
+														return sorter[a.dayOfWeek].value - sorter[b.dayOfWeek].value
+													}).map((timeTableItem, index) => {
 														return (
 															<div key={index} className="course-wrapper__main-content__classes__yogaclass">
-																<h4>{yogaclass.date}</h4>
-																<h4>{yogaclass.starttime} - {yogaclass.endtime}</h4>
-																<p>{yogaclass.teacher}</p>
+																<h4>{sorter[timeTableItem.dayOfWeek].text}</h4>
+																<h4>{timeTableItem.startTime.hour}:{timeTableItem.startTime.minute === 0 ? "00" : timeTableItem.startTime.minute} - {timeTableItem.endTime.hour}:{timeTableItem.endTime.minute === 0 ? "00" : timeTableItem.endTime.minute}</h4>
+																{/* 			
+																<p>{yogaclass.teacher}</p> */}
 															</div>
 														);
 													})
 												}
-											</div> */}
+											</div>
 										</div>
 									);
 								}) : null
@@ -302,7 +370,7 @@ export class Course extends React.Component {
 									bài viết
                 				</div>
 								{
-									this.state.latestPost.map((post, index) => {
+									this.state.latestNews.map((post, index) => {
 										return (
 											<div key={index} className="course-wrapper__sub-content__latest-posts__post">
 												<LatestPost latestPost={post} />
@@ -322,7 +390,7 @@ export class Course extends React.Component {
 						</div>
 					</div>
 					<div className="course__contact-us">
-						<ContactUs {...this.props.setting.contact} addContact={this.addContact} courses={this.props.courses.items} />
+						<ContactUs {...this.props.setting.contact} addContact={this.addContact} courses={this.props.courses.items} defaultCourse={this.props.course} />
 					</div>
 				</React.Fragment>
 				<div className="course__footer">
@@ -340,6 +408,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 	fetchCourse: action.course.fetch,
 	fetchSetting: action.setting.fetch,
 	fetchTimeTableOfCourse: action.course.getTimeTableOfCourse,
+	fetchNewCategory: action.newCategory.fetch,
 	addContact: action.contact.add,
 }, dispatch)
 
