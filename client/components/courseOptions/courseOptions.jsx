@@ -65,7 +65,7 @@ export class CourseOptions extends React.Component {
                                     <div className="course-options__content__option__icon">
                                         <i className="fab fa-pagelines"></i>
                                     </div>
-                                    <div className="course-options__content__option__name">{item.title}</div>
+                                    <div className="course-options__content__option__name">{item.title} <span>{item.takenSlots} / {item.totalSlots}</span></div>
                                     <ul className="course-options__content__option__list">
                                         {
                                             item.options.map((option, index) => {
