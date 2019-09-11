@@ -14,6 +14,7 @@ import {
     Alert,
     StudentInfo,
     AddStudent,
+    CourseOptions,
 } from '../../components/'
 import { StudentAction } from '../../actions/student'
 
@@ -61,6 +62,7 @@ class Project extends Component {
                         <Alert type='success' />
                         <Alert type='warn' />
                         <AddStudent />
+                        <CourseOptions />
                     </div>
                 </React.Fragment>
                 <div className="project-footer">
