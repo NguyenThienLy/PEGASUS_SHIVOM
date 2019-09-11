@@ -1,5 +1,5 @@
 import * as React from "react";
-import "./activity.scss";
+import "./summaryRegisForm.scss";
 
 export class SummaryRegisForm extends React.Component {
     constructor(props) {

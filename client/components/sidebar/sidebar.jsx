@@ -7,7 +7,7 @@ export class Sidebar extends React.Component {
   }
 
   componentDidMount() {
-    $(".sidebar__inner__main-menu__sub-menu").click(function(e) {
+    $(".sidebar__inner__main-menu__sub-menu").click(function (e) {
       e.preventDefault(); // prevent the link from url
       var dropdownContent = this.nextElementSibling;
       var isOpened = false;
@@ -59,7 +59,7 @@ export class Sidebar extends React.Component {
       }
     });
 
-    $(".sidebar__inner__main-menu__none-sub-menu").click(function() {
+    $(".sidebar__inner__main-menu__none-sub-menu").click(function () {
       $(
         ".sidebar__inner__main-menu__sub-menu, .sidebar__inner__main-menu__none-sub-menu"
       ).removeClass("sidebar__inner__main-menu--item-active");
@@ -122,15 +122,15 @@ export class Sidebar extends React.Component {
                   </div>
                 </React.Fragment>
               ) : (
-                <li className="sidebar__inner__main-menu__none-sub-menu">
-                  <a href={item.link}>
-                    <span
-                      dangerouslySetInnerHTML={{ __html: item.icon }}
-                    ></span>
-                    {item.name}
-                  </a>
-                </li>
-              );
+                  <li className="sidebar__inner__main-menu__none-sub-menu">
+                    <a href={item.link}>
+                      <span
+                        dangerouslySetInnerHTML={{ __html: item.icon }}
+                      ></span>
+                      {item.name}
+                    </a>
+                  </li>
+                );
             })}
           </ul>
         </div>

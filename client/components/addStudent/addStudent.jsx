@@ -80,6 +80,7 @@ export class AddStudent extends React.Component {
                         <div className="student-info__form__member-info__icon"><i class="fas fa-user-alt"></i></div>
                     </div>
                     <div className="student-info__form__member-info">
+                        <div className="student-info__title-text">Thêm ảnh khoá học</div>
                         <div className="student-info__form__member-info__add-photo">
                             <button><i class="fas fa-plus-circle"></i></button>
                         </div>
