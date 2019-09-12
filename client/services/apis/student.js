@@ -222,6 +222,7 @@ export class StudentApi extends CrudApi {
         option.headers || {}
       )
     };
+    console.log("birthday url", url);
     const res = await this.exec(url, options);
     if (res.code && res.code === 200) {
       return res;
@@ -274,7 +275,7 @@ export class StudentApi extends CrudApi {
       throw res;
     }
   }
-  async statisticForColumnChart(course, startTime, endTime) {
+  async statisticForColumnChart(course, startTime, endTime, token) {
     let url = this.baseUrl("statisticForColumnChart");
     const query = this._serialize({
       course,
@@ -282,19 +283,18 @@ export class StudentApi extends CrudApi {
       endTime
     });
     url += `${query}`;
-    console.log("url", url);
+    //console.log("url", url);
     const options = {
       method: "GET",
       headers: _.merge({
         "User-Agent": "Request-Promise",
         "Content-Type": "Application/json",
-        "x-token":
-          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M"
+        "x-token": token
       })
     };
     const res = await this.exec(url, options);
     if (res.code && res.code === 200) {
-      console.log("res", res);
+      //console.log("res", res);
       return res;
     } else {
       throw res;

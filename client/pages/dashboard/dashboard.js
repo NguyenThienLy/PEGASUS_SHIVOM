@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as moment from "moment";
 
 import Head from "next/head";
 import Link from "next/link";
@@ -17,7 +18,8 @@ import {
   ColumnChart,
   Table,
   Activity,
-  CustomSelect
+  CustomSelect,
+  FeedbackAdmin
 } from "../../components";
 import GoogleMapReact from "google-map-react";
 
@@ -130,108 +132,207 @@ export class Dashboard extends React.Component {
           icon: '<i class="fas fa-id-card-alt"></i>',
           about: "Đi đúng giờ",
           quantity: 0,
-          colorIcon: "#f5365c"
+          colorIcon: "#f5365c",
+          isEmpty: true
         },
         {
           icon: '<i class="fas fa-id-card-alt"></i>',
           about: "Đi trễ",
           quantity: 0,
-          colorIcon: "#fb6340"
+          colorIcon: "#fb6340",
+          isEmpty: true
         },
         {
           icon: '<i class="fas fa-id-card-alt"></i>',
           about: "Vắng",
           quantity: 0,
-          colorIcon: "#ffd600"
+          colorIcon: "#ffd600",
+          isEmpty: true
         },
         {
           icon: '<i class="fas fa-id-card-alt"></i>',
           about: "Đi thừa",
           quantity: 0,
-          colorIcon: "#11cdef"
+          colorIcon: "#11cdef",
+          isEmpty: true
         }
       ],
       customSelect: {
         placeholder: "Chọn năm...",
-        options: [2015, 2016, 2017, 2018, 2019]
+        options: [2019, 2020, 2021, 2022, 2023]
       },
-      activitiesArr: [
-        [
+      birthday: {
+        nameTable: "Sinh nhật học viên",
+        content: "sắp tới ngày sinh nhật"
+      },
+      newStudent: {
+        nameTable: "Học viên mới tham gia",
+        content: "vừa nhập học"
+      },
+      topPoint: {
+        nameTable: "Bảng xếp hạng tích điểm",
+        content: null
+      },
+      feedbackAdmin: {
+        nameTable: "Phản hồi từ học viên",
+        content: null
+      },
+      columnChartData: {
+        labels: null,
+        datasets: [
           {
-            time: "15 phút",
-            content: "bình luận"
-          },
-          {
-            time: "5 phút",
-            content: "like ảnh"
-          },
-          {
-            time: "45 phút",
-            content: "cập nhật thời khóa biểu"
+            label: "Số học viên",
+            data: null,
+            backgroundColor: "rgba(75, 192, 192, 0.6)"
           }
         ],
-        [
+        isEmpty: true
+      },
+      pieChartData: {
+        labels: null,
+        datasets: [
           {
-            time: "15 phút",
-            content: "bình luận"
-          },
-          {
-            time: "5 phút",
-            content: "like ảnh"
-          },
-          {
-            time: "45 phút",
-            content: "cập nhật thời khóa biểu"
+            data: null,
+            backgroundColor: [
+              "rgba(255, 99, 132, 0.6)",
+              "rgba(255, 206, 86, 0.6)",
+              "rgba(75, 192, 192, 0.6)",
+              "rgba(153, 102, 255, 0.6)"
+            ]
           }
         ],
-        [
+        isEmpty: true
+      },
+      lineChartData: {
+        labels: null,
+        datasets: [
           {
-            time: "15 phút",
-            content: "bình luận"
+            label: "Vắng học",
+            fill: false,
+            data: null,
+            backgroundColor: "rgba(255, 99, 132, 0.6)",
+            borderColor: "rgba(255, 99, 132, 0.6)"
           },
           {
-            time: "5 phút",
-            content: "like ảnh"
+            label: "Trễ giờ",
+            fill: false,
+            data: null,
+            backgroundColor: "rgba(255, 206, 86, 0.6)",
+            borderColor: "rgba(255, 206, 86, 0.6)"
           },
           {
-            time: "45 phút",
-            content: "cập nhật thời khóa biểu"
+            label: "Đúng giờ",
+            fill: false,
+            data: null,
+            backgroundColor: "rgba(75, 192, 192, 0.6)",
+            borderColor: "rgba(75, 192, 192, 0.6)"
+          },
+          {
+            label: "Đi thừa",
+            fill: false,
+            data: null,
+            backgroundColor: "rgba(153, 102, 255, 0.6)",
+            borderColor: "rgba(153, 102, 255, 0.6)"
           }
-        ]
-      ]
+        ],
+        isEmpty: true
+      }
     };
   }
   static async getInitialProps({ req, query }) {
     return {};
   }
-  fetchData = () => {
+  fetchData = (startTime, endTime) => {
+    const token =
+      "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M";
+
     this.props.fetchLineChart(
       null,
       "week",
-      "2017-08-01T03:44:18.995Z",
-      "2022-08-01T03:44:18.995Z"
+      `${startTime}Z`,
+      `${endTime}Z`,
+      token
     );
 
     this.props.fetchPieChart(
       null,
       "year",
-      "2017-08-01T03:44:18.995Z",
-      "2022-08-01T03:44:18.995Z"
+      `${startTime}Z`,
+      `${endTime}Z`,
+      token
     );
 
-    this.props.fetchColumnChart(
-      null,
-      "2017-08-01T03:44:18.995Z",
-      "2022-08-01T03:44:18.995Z"
-    );
-    if (!this.props.setting.fetched) {
-      this.props.fetchSetting();
-    }
+    this.props.fetchColumnChart(null, `${startTime}Z`, `${endTime}Z`, token);
+
+    // this.props.fetchBirthday({
+    //   query: {
+    //     filter: { status: "active" },
+    //     limit: 10
+    //   },
+    //   order: {}
+    // })
+
+    this.props.fetchBirthday({
+      query: {
+        endTime: `${moment()
+          .endOf("year")
+          .subtract(7, "hours")
+          .format("YYYY-MM-DDTHH:mm:ss")}Z`
+      },
+      headers: {
+        "x-token": token
+      }
+    });
+
+    this.props.fetchNewStudent({
+      query: {
+        filter: { status: "active" },
+        limit: 10,
+        order: { createdAt: -1 }
+      },
+      //fields: ["avatar","firstName", "lastName", "createdAt"],
+      headers: {
+        "x-token": token
+      }
+    });
+
+    this.props.fetchTopPoint({
+      query: {
+        filter: { status: "active" },
+        limit: 10,
+        order: { point: -1 }
+      },
+      headers: {
+        "x-token": token
+      }
+    });
+
+    this.props.fetchFeedBack({
+      query: {
+        filter: { isReply: false },
+        order: { createdAt: -1 },
+        populates: ["student"]
+      },
+      headers: {
+        "x-token": token
+      }
+    });
+
   };
   handleScroll = () => {};
   componentWillUnmount() {}
   async componentDidMount() {
-    this.fetchData();
+    // Lấy năm
+    // startTime bắt đầu năm hiện tại
+    // endTime bắt đầu năm hiện tại
+    this.fetchData(
+      moment()
+        .startOf("year")
+        .format("YYYY-MM-DD HH:mm:ss"),
+      moment()
+        .endOf("year")
+        .format("YYYY-MM-DD HH:mm:ss")
+    );
 
     if (this.props.courses.items.length > 0) {
       const courseCategoryIndex = this.state.categories.findIndex(item => {
@@ -313,19 +414,66 @@ export class Dashboard extends React.Component {
       !this.props.statisticCourse.statisticForPieChart.fetching
     ) {
       const newNumberAdmins = prevState.numberAdmins;
+      const newPieChartData = prevState.pieChartData;
+
+      // Gán số lượng loại chuyên cần cho component admin
       newNumberAdmins[0].quantity = this.props.statisticCourse.statisticForPieChart.data.totalOnTime;
       newNumberAdmins[1].quantity = this.props.statisticCourse.statisticForPieChart.data.totalLate;
       newNumberAdmins[2].quantity = this.props.statisticCourse.statisticForPieChart.data.totalAbsent;
       newNumberAdmins[3].quantity = this.props.statisticCourse.statisticForPieChart.data.totalRedundant;
 
-      this.setState({ numberAdmins: newNumberAdmins });
+      newNumberAdmins[0].isEmpty = newNumberAdmins[1].isEmpty = newNumberAdmins[2].isEmpty = newNumberAdmins[3].isEmpty = this.props.statisticCourse.statisticForPieChart.data.isEmpty;
+      // Thống kê trên biểu đồ tròn
+      newPieChartData.datasets[0].data = this.props.statisticCourse.statisticForPieChart.data.data;
+      newPieChartData.labels = this.props.statisticCourse.statisticForPieChart.data.labels;
+      newPieChartData.isEmpty = this.props.statisticCourse.statisticForPieChart.data.isEmpty;
+
+      this.setState({
+        numberAdmins: newNumberAdmins,
+        pieChartData: newPieChartData
+      });
     }
+
+    if (
+      prevProps.students.statisticForColumnChart.fetching &&
+      !this.props.students.statisticForColumnChart.fetching
+    ) {
+      const newColumnChartData = prevState.columnChartData;
+
+      // Thống kê trên biểu đồ cột
+      newColumnChartData.datasets[0].data = this.props.students.statisticForColumnChart.data.data;
+      newColumnChartData.labels = this.props.students.statisticForColumnChart.data.labels;
+      newColumnChartData.isEmpty = this.props.students.statisticForColumnChart.data.isEmpty;
+
+      this.setState({
+        columnChartData: newColumnChartData
+      });
+    }
+
+    if (
+      prevProps.statisticCourse.statisticForLineChart.fetching &&
+      !this.props.statisticCourse.statisticForLineChart.fetching
+    ) {
+      const newLineChartData = prevState.lineChartData;
+
+      // Thông kê trên biểu đồ đường
+      newLineChartData.datasets[0].data = this.props.statisticCourse.statisticForLineChart.data.dataAbsents;
+      newLineChartData.datasets[1].data = this.props.statisticCourse.statisticForLineChart.data.dataLates;
+      newLineChartData.datasets[2].data = this.props.statisticCourse.statisticForLineChart.data.dataOnTimes;
+      newLineChartData.datasets[3].data = this.props.statisticCourse.statisticForLineChart.data.dataRedundants;
+
+      newLineChartData.labels = this.props.statisticCourse.statisticForLineChart.data.labels;
+      newLineChartData.isEmpty = this.props.statisticCourse.statisticForLineChart.data.isEmpty;
+
+      this.setState({
+        lineChartData: newLineChartData
+      });
+    }
+
     return true;
   }
 
   render() {
-    //console.log("render");
-    //console.log("this props: ", this.props);
     return (
       <div className="dashboard">
         <Head>
@@ -358,7 +506,7 @@ export class Dashboard extends React.Component {
           <div className="dashboard__body">
             <div className="dashboard__body__numbers">
               {this.props.statisticCourse.statisticForPieChart.fetching
-                ? "dang load"
+                ? "đang tải ..."
                 : this.state.numberAdmins.map((number, index) => {
                     return (
                       <NumberAdmin
@@ -375,25 +523,60 @@ export class Dashboard extends React.Component {
                   <div className="dashboard__body__card__content__chart__filter">
                     <CustomSelect
                       customSelect={this.state.customSelect}
+                      fetchData={this.fetchData}
                     ></CustomSelect>
                   </div>
                   <div className="dashboard__body__card__content__chart__row">
-                    <ColumnChart></ColumnChart>
-                    <PieChart></PieChart>
+                    <ColumnChart
+                      columnChartData={this.state.columnChartData}
+                      isFetching={
+                        this.props.students.statisticForColumnChart.fetching
+                      }
+                      isEmpty={this.state.columnChartData.isEmpty}
+                    ></ColumnChart>
+
+                    <PieChart
+                      pieChartData={this.state.pieChartData}
+                      isFetching={
+                        this.props.statisticCourse.statisticForPieChart.fetching
+                      }
+                      isEmpty={this.state.pieChartData.isEmpty}
+                    ></PieChart>
                   </div>
-                  <div className="dashboard__body__card__content__chart__row dashboard__body__card__content__chart__single">
-                    <LineChart></LineChart>
+                  <div className="dashboard__body__card__content__linechart__row">
+                    <LineChart
+                      lineChartData={this.state.lineChartData}
+                      isFetching={
+                        this.props.statisticCourse.statisticForLineChart
+                          .fetching
+                      }
+                      isEmpty={this.state.lineChartData.isEmpty}
+                    ></LineChart>
                   </div>
                 </div>
               </div>
             </div>
             <div className="dashboard__body__table">
-              <Table></Table>
+              <FeedbackAdmin
+                feedbackAdmins={this.props.feedbacks.items}
+                staticContent={this.state.feedbackAdmin}
+              ></FeedbackAdmin>
             </div>
             <div className="dashboard__body__activities">
-              {this.state.activitiesArr.map(activities => {
-                return <Activity activities={activities}></Activity>;
-              })}
+              <Activity
+                activities={this.props.students.itemsNewStudents.data}
+                staticContent={this.state.newStudent}
+              ></Activity>
+
+              <Activity
+                activities={this.props.students.itemsTopPoint.data}
+                staticContent={this.state.topPoint}
+              ></Activity>
+
+              <Activity
+                activities={this.props.students.itemsUpcommingBirthday.data}
+                staticContent={this.state.birthday}
+              ></Activity>
             </div>
           </div>
         </React.Fragment>
@@ -411,7 +594,11 @@ const mapDispatchToProps = dispatch =>
     {
       fetchLineChart: action.statisticCourse.fetchForLineChart,
       fetchPieChart: action.statisticCourse.fetchForPieChart,
-      fetchColumnChart: action.student.fetchForColumnChart
+      fetchColumnChart: action.student.fetchForColumnChart,
+      fetchBirthday: action.student.fetchForUpcommingBirthday,
+      fetchNewStudent: action.student.fetchForNewStudents,
+      fetchTopPoint: action.student.fetchForTopPoint,
+      fetchFeedBack: action.feedback.fetch
     },
     dispatch
   );

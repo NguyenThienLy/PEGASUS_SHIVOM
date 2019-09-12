@@ -43,6 +43,7 @@ export * from "./headerAdmin/headerAdmin";
 export * from "./customSelect/customSelect";
 export * from "./alert/alert";
 export * from "./addStudent/addStudent";
+export * from "./feedbackAdmin/feedbackAdmin";
 export * from "./courseOptions/courseOptions";
 export * from "./summaryRegisForm/summaryRegisForm";
 export * from "./addCourse/addCourse";

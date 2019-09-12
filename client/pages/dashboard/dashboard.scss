@@ -359,6 +359,14 @@ body {
     }
   }
 
+  .dashboard__body__card__content__linechart__row {
+    flex-direction: row;
+    .lineChart {
+      width: 100%;
+      margin-right: 2%;
+    }
+  }
+
   .dashboard__body__activities {
     grid-template-columns: auto auto auto;
     column-gap: 1em;

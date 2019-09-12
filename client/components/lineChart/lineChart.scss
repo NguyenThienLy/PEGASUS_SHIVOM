@@ -3,7 +3,7 @@
 $background-color-chart: lighten($sub-main-color, 30%);
 
 .lineChart {
-  width: 68%;
+  width: 100%;
   border-radius: 5px;
   // -webkit-box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
   // box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
@@ -59,7 +59,7 @@ $background-color-chart: lighten($sub-main-color, 30%);
   }
   @include e("content") {
     @include e("inner") {
-      height: 10em;
+      height: 80%;
       padding: 1em 2em;
       font-size: 0.9em;
     }

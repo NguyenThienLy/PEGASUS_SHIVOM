@@ -1,6 +1,6 @@
 @import "../../default.scss";
 
-.activity {
+.feedbackAdmin {
   //   font-family: $font-family-special;
   //   font-size: $font-size;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.04);
@@ -46,7 +46,6 @@
         left: 0;
         transform: translateX(-50%);
         top: 1em;
-        transform: translateX(-50%);
         width: 2em;
         height: 2em;
         border-radius: 999px;
@@ -61,7 +60,7 @@
       }
 
       @include e("content") {
-        width: 64%;
+        width: 75%;
         margin-right: 1%;
         font-family: $font-family-special;
 
@@ -82,10 +81,11 @@
       }
 
       @include e("btn") {
-        width: 35%;
+        width: 10%;
         height: fit-content;
         font-size: 0.7em;
         padding: 0.5em 1em;
+        margin-right: 0.5em;
         border-radius: 5px;
         border: 1px solid rgba(0, 0, 0, 0.1);
         color: $font-color; //rgba(0, 0, 0, 0.7);

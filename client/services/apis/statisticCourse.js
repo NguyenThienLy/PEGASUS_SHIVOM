@@ -6,7 +6,7 @@ export class StatisticCourseApi extends CrudApi {
     super("statisticCourse");
   }
 
-  async statisticForLineChart(course, type, startTime, endTime) {
+  async statisticForLineChart(course, type, startTime, endTime, token) {
     let url = this.baseUrl("statisticForLineChart");
     const query = this._serialize({
       course,
@@ -15,14 +15,13 @@ export class StatisticCourseApi extends CrudApi {
       endTime
     });
     url += `${query}`;
-    //console.log("url", url);
+    console.log("Lineurl", url);
     const options = {
       method: "GET",
       headers: _.merge({
         "User-Agent": "Request-Promise",
         "Content-Type": "Application/json",
-        "x-token":
-          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M"
+        "x-token": token
       })
     };
     const res = await this.exec(url, options);
@@ -34,7 +33,7 @@ export class StatisticCourseApi extends CrudApi {
     }
   }
 
-  async statisticForPieChart(course, type, startTime, endTime) {
+  async statisticForPieChart(course, type, startTime, endTime, token) {
     let url = this.baseUrl("statisticForPieChart");
     //console.log("url", url);
     const query = this._serialize({
@@ -49,12 +48,9 @@ export class StatisticCourseApi extends CrudApi {
       headers: _.merge({
         "User-Agent": "Request-Promise",
         "Content-Type": "Application/json",
-        "x-token":
-          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M"
+        "x-token": token
       })
     };
-
-    //console.log("url", url);
     const res = await this.exec(url, options);
     if (res.code && res.code === 200) {
       //console.log("result Api call", res);

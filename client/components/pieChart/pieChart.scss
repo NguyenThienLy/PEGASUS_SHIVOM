@@ -23,7 +23,7 @@ $background-color-chart: lighten($sub-main-color, 30%);
   @include e("content") {
     border-bottom: 1px solid $table-border-color;
     @include e("inner") {
-      height: 10em;
+      height: 20em;
       padding: 1em 2em;
       font-size: 0.9em;
     }
