@@ -21,6 +21,12 @@ export class SettingReducer extends BaseReducer {
                 long: null,
                 lat: null
             },
+            social: {
+                facebook: "",
+                google: "",
+                instagram: "",
+                youtube: ""
+            }
         }
         this.actions = {
             fetchPending: `FETCH_${this.name}_PENDING`,
@@ -39,7 +45,7 @@ export class SettingReducer extends BaseReducer {
                 state = { ...state, fetching: true };
                 break
             case this.actions.fetchSuccess:
-                state = { ...state, logo: action.payload.logo, contact: action.payload.contact, fetched: true };
+                state = { ...state, logo: action.payload.logo, contact: action.payload.contact, social: action.payload.social, fetched: true };
                 break
             case this.actions.fetchError:
                 state = { ...state, fetching: false, fetchError: action.payload };

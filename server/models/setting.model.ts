@@ -24,6 +24,12 @@ export type SettingModel = BaseModel & {
         post: number
         user: string
         pass: string
+    },
+    social: {
+        facebook: string
+        google: string
+        instagram: string
+        youtube: string
     }
 
 }
@@ -49,6 +55,12 @@ const settingSchema = new Schema({
         port: { type: String, hideJSON: true },
         user: { type: String, hideJSON: true },
         pass: { type: String, hideJSON: true }
+    },
+    social: {
+        facebook: { type: String },
+        google: { type: String },
+        instagram: { type: String },
+        youtube: { type: String },
     },
     status: { type: String, enum: ["active", "deactive"], default: "active" }
 }, { timestamps: true })

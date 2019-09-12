@@ -147,8 +147,13 @@ export class Course extends React.Component {
 	static async getInitialProps({ req, query }) {
 		const slug = query.slug
 		const course = await api.course.getCourseBySlug(slug)
+		const timeTableOfCourseRes = await api.course.getTimeTableOfCourse(course._id)
+		if (!timeTableOfCourseRes.result) {
+			return { course }
+		}
 		return {
-			course: course
+			course,
+			timeTableOfCourse: timeTableOfCourseRes.result.object
 		}
 	}
 	componentWillReceiveProps(nextProps) {
@@ -208,11 +213,6 @@ export class Course extends React.Component {
 			this.props.fetchNewCategory()
 		}
 
-	}
-	sortNao = (array) => {
-		return array.sort(function (a, b) {
-			return this.state.sorter[a.key] - this.state.sorter[b.key]
-		})
 	}
 	render() {
 		return (
@@ -277,7 +277,7 @@ export class Course extends React.Component {
 							</div>
 							{
 
-								this.state.timeTables && this.state.timeTables.length > 0 ? this.state.timeTables.map((classData, index) => {
+								this.props.timeTableOfCourse && this.props.timeTableOfCourse.length > 0 ? this.props.timeTableOfCourse.map((classData, index) => {
 									let sorter = {
 										"monday": {
 											value: 1,
@@ -344,7 +344,7 @@ export class Course extends React.Component {
 								<SearchBox type='search' />
 							</div> */}
 							<div className="course-wrapper__sub-content__social-group">
-								<SocialGroup />
+								{this.props.setting.social ? <SocialGroup social={this.props.setting.social} /> : null}
 							</div>
 							<div className="course-wrapper__sub-content__other-courses">
 								<div className="course-wrapper__sub-content__other-courses__text">
@@ -394,7 +394,7 @@ export class Course extends React.Component {
 					</div>
 				</React.Fragment>
 				<div className="course__footer">
-					<Footer {...this.props.setting.contact} logo={this.props.setting.logo} />
+					<Footer {...this.props.setting.contact} logo={this.props.setting.logo} social={this.props.setting.social} />
 				</div>
 			</div>
 		);

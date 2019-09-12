@@ -55,25 +55,8 @@ class Post extends React.Component {
                 avatar: 'https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-gallery-img-5a.jpg',
                 description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, distinctio, eveniet eaque et, sapiente hic tempora repellat deserunt odit iure recusandae? Architecto, quisquam."
             },
-            relatedPosts: [
-                {
-                    name: 'ngọc hạnh',
-                    createdDate: {
-                        day: 22,
-                        month: 'Th1'
-                    },
-                    image: 'https://dalia.elated-themes.com/wp-content/uploads/2018/06/blog-list-img-1.jpg',
-                    title: 'luyện tập yoga có lợi gì',
-                },
-                {
-                    name: 'ngọc hạnh',
-                    createdDate: {
-                        day: 22,
-                        month: 'Th1'
-                    },
-                    image: 'https://dalia.elated-themes.com/wp-content/uploads/2018/05/portfolio-img3.jpg',
-                    title: 'luyện tập yoga có lợi gì',
-                }
+            relatedNews: [
+
             ],
             categories: [
                 {
@@ -90,29 +73,7 @@ class Post extends React.Component {
                 },
             ],
             latestNews: [],
-            latestPost: [
-                {
-                    link: "#",
-                    image:
-                        "https://dalia.elated-themes.com/wp-content/uploads/2018/05/blog-img-6-150x150.jpg",
-                    title: "clean beauty",
-                    date: "13th jun"
-                },
-                {
-                    link: "#",
-                    image:
-                        "https://dalia.elated-themes.com/wp-content/uploads/2018/05/blog-img-8-150x150.jpg",
-                    title: "Daily Detox Frappé",
-                    date: "13th jun"
-                },
-                {
-                    link: "#",
-                    image:
-                        "https://dalia.elated-themes.com/wp-content/uploads/2018/05/blog-img-7-150x150.jpg",
-                    title: "Be Smart-Eat Wise WISE",
-                    date: "13th jun"
-                }
-            ]
+
 
         }
     }
@@ -137,7 +98,6 @@ class Post extends React.Component {
                 }
             })
         }
-        console.log("news: ", news)
         return { newsData: news }
 
     }
@@ -155,8 +115,25 @@ class Post extends React.Component {
     async componentDidMount() {
         this.fetchData()
         this.getLatestNews()
+        this.getRelatestNews()
         var heightOfFooter = $(".post__footer .footer-wrapper").height();
         $(".post__contact-us").css("margin-bottom", heightOfFooter + "px");
+    }
+    getRelatestNews() {
+        api.news.getList({
+            query: {
+                limit: 2,
+                filter: { category: this.props.newsData.category._id },
+                populates: [
+                    { path: "category", select: "name slug" },
+                    { path: "author", select: "firstName lastName avatar" }
+                ]
+            }
+        }).then(res => {
+            this.setState({ relatedNews: res.results.objects.rows })
+        }).catch(err => {
+
+        })
     }
     getLatestNews() {
         api.news.getList({
@@ -231,7 +208,7 @@ class Post extends React.Component {
                                 <div className="post__wrapper__main-content__related-posts">
 
                                     {
-                                        this.state.relatedPosts.map((post) => {
+                                        this.state.relatedNews.map((post) => {
                                             return (
                                                 <div className="post__wrapper__main-content__related-posts__post">
                                                     <RelatedPost relatedPost={post} />
@@ -249,7 +226,7 @@ class Post extends React.Component {
                                 </div>
 
                                 <div className="post__wrapper__sub-content__social-group">
-                                    <SocialGroup />
+                                    {this.props.setting.social ? <SocialGroup social={this.props.setting.social} /> : null}
                                 </div>
 
                                 <div className="post__wrapper__sub-content__categories">
@@ -302,7 +279,7 @@ class Post extends React.Component {
                     </div>
                 </React.Fragment>
                 <div className="post__footer">
-                    <Footer {...this.props.setting.contact} logo={this.props.setting.logo} />
+                    <Footer {...this.props.setting.contact} logo={this.props.setting.logo} social={this.props.setting.social} />
                 </div>
             </div>
         )
