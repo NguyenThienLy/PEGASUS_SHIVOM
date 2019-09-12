@@ -13,22 +13,55 @@ import { Header, Footer } from "../../components";
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      isLoading: true
+    };
     // this.onLoginClick = this.onLoginClick.bind(this);
     this.signup = this.signup.bind(this)
     this.login = this.login.bind(this)
     this.checkUserLogin = this.checkUserLogin.bind(this)
   }
   static async getInitialProps({ req, query }) {
-    console.log("type: ", query.type)
     return { type: query.type };
   }
-  checkUserLogin() {
-    if (this.props.type === "student" && this.props.studentAccount.login.isLogon) {
-      Router.push("/")
-    } else if (this.props.type === "admin" && this.props.admin.login.isLogon) {
-      Router.push("/tong-quan")
+  async checkUserLogin() {
+    const userType = localStorage.getItem("ut")
+    const token = localStorage.getItem("token")
+    const userId = localStorage.getItem("_id")
+    if (this.props.type === "student") {
+      if (this.props.studentAccount.login.isLogon) {
+        Router.push("/")
+      } else if (userType === "student") {
+        try {
+          await api.student.getItem(userId, {
+            headers: {
+              "x-token": token
+            }
+          })
+          Router.push("/")
+        } catch (err) {
+
+        }
+      }
+    } else if (this.props.type === "admin") {
+      if (this.props.admin.login.isLogon) {
+        Router.push("/tong-quan")
+      } else if (userType === "admin") {
+        try {
+          await api.admin.getItem(userId, {
+
+            headers: {
+              "x-token": token
+            }
+
+          })
+          Router.push("/tong-quan")
+        } catch (err) {
+
+        }
+      }
     }
+    this.setState({ isLoading: false })
   }
   async componentDidMount() {
     this.checkUserLogin()
@@ -106,6 +139,7 @@ class Login extends React.Component {
         </Head>
 
         <React.Fragment>
+          {this.state.isLoading ? "Đang kiểm tra" : ""}
           <div className="form-structor">
             <div className="signup">
               <h2 className="form-title" id="signup">
@@ -145,6 +179,7 @@ class Login extends React.Component {
             </div>
           </div>
         </React.Fragment>
+
       </div>
     );
   }

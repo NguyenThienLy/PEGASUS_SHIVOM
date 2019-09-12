@@ -46,6 +46,10 @@ export class StudentAccountReducer extends BaseReducer {
                     },
                     data: action.payload
                 })
+                localStorage.setItem("ut", "user")
+                localStorage.setItem("token", action.payload.accessToken)
+                localStorage.setItem("_id", action.payload._id)
+                localStorage.setItem("exp", moment().add(1, "days").format())
                 break
             case this.customActions.loginError:
                 state = _.merge({}, {
