@@ -2,76 +2,72 @@
 
 .default-button {
   display: inline-block;
-  @include e("link") {
-    pointer-events: none;
-    display: flex;
-    position: relative;
-    border: none;
-    color: $main-color;
-    font-weight: 400;
-    text-decoration: none;
-    padding: 0.9em 2.2em;
-    @include e("content") {
-      font-size: 0.6em;
-      white-space: nowrap;
-      letter-spacing: 0.2em;
-      &::first-letter {
-        text-transform: capitalize;
-      }
+  position: relative;
+  border: none;
+  color: $main-color;
+  font-weight: 400;
+  text-decoration: none;
+  padding: 0.8em 2.2em;
+  @include e("content") {
+    font-size: 0.8em;
+    white-space: nowrap;
+    letter-spacing: 0.2em;
+    &::first-letter {
+      text-transform: capitalize;
     }
-    @include e("btn") {
-      position: absolute;
-      background-color: $main-color;
-      -webkit-transition: width 0.8s ease;
-      transition: width 0.8s ease;
-    }
-    @include e("btn-left") {
-      top: 0;
-      left: 0;
-      width: 1px;
-      height: 100%;
-    }
-    @include e("btn-right") {
-      top: 0;
-      left: 100%;
-      width: 1px;
-      height: 100%;
-    }
-    @include e("btn-top-left") {
-      top: 0;
-      left: 0;
-      width: 75%;
-      height: 1px;
-    }
-    @include e("btn-top-right") {
-      top: 0;
-      right: 0;
-      width: 10%;
-      height: 1px;
-    }
-    @include e("btn-bottom-left") {
-      bottom: 0;
-      left: 0;
-      width: 10%;
-      height: 1px;
-    }
-    @include e("btn-bottom-right") {
-      bottom: 0;
-      right: 0;
-      width: 75%;
-      height: 1px;
-    }
-    &:hover .default-button__link__btn-top-left {
-      width: 10%;
-    }
-    &:hover .default-button__link__btn-top-right {
-      width: 75%;
-    }
-    &:hover .default-button__link__btn-bottom-left {
-      width: 75%;
-    }
-    &:hover .default-button__link__btn-bottom-right {
-      width: 10%;
-    }
+  }
+  @include e("border") {
+    position: absolute;
+    background-color: $main-color;
+    -webkit-transition: width 0.8s ease;
+    transition: width 0.8s ease;
+  }
+  @include e("border-left") {
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 100%;
+  }
+  @include e("border-right") {
+    top: 0;
+    left: 100%;
+    width: 1px;
+    height: 100%;
+  }
+  @include e("border-top-left") {
+    top: 0;
+    left: 0;
+    width: 75%;
+    height: 1px;
+  }
+  @include e("border-top-right") {
+    top: 0;
+    right: 0;
+    width: 10%;
+    height: 1px;
+  }
+  @include e("border-bottom-left") {
+    bottom: 0;
+    left: 0;
+    width: 10%;
+    height: 1px;
+  }
+  @include e("border-bottom-right") {
+    bottom: 0;
+    right: 0;
+    width: 75%;
+    height: 1px;
+  }
+  &:hover .default-button__border-top-left {
+    width: 10%;
+  }
+  &:hover .default-button__border-top-right {
+    width: 75%;
+  }
+  &:hover .default-button__border-bottom-left {
+    width: 75%;
+  }
+  &:hover .default-button__border-bottom-right {
+    width: 10%;
   }
 }

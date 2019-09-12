@@ -42,8 +42,9 @@ export * from "./searchBox/searchBox";
 export * from "./headerAdmin/headerAdmin";
 export * from "./customSelect/customSelect";
 export * from "./alert/alert";
-export * from "./addStudent/addStudent"
-export * from "./courseOptions/courseOptions"
-export * from "./summaryRegisForm/summaryRegisForm"
-export * from "./addCourse/addCourse"
-export * from "./stepsLine/stepsLine"
+export * from "./addStudent/addStudent";
+export * from "./courseOptions/courseOptions";
+export * from "./summaryRegisForm/summaryRegisForm";
+export * from "./addCourse/addCourse";
+export * from "./stepsLine/stepsLine";
+export * from "./tesmonials/tesmonials";
