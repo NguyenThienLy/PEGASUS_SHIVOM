@@ -1,6 +1,7 @@
 
 import { BaseReducer } from './base'
 import * as _ from 'lodash'
+import * as moment from 'moment'
 
 export class AdminReducer extends BaseReducer {
     constructor() {
@@ -45,6 +46,10 @@ export class AdminReducer extends BaseReducer {
                     },
                     data: action.payload
                 })
+                localStorage.setItem("ut", "admin")
+                localStorage.setItem("token", action.payload.accessToken)
+                localStorage.setItem("_id", action.payload._id)
+                localStorage.setItem("exp", moment().add(1, "days").format())
                 break
             case this.customActions.loginError:
                 state = _.merge({}, {
