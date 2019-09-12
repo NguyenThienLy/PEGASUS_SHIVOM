@@ -21,9 +21,9 @@ export class HeaderAdmin extends React.Component {
   }
 
   componentDidMount() {
-    var outHeightOfUser = $(".headerAdmin__wrapper__user").outerHeight();
+    var outerHeightOfUser = $(".headerAdmin__wrapper__user").outerHeight();
     $(".headerAdmin__wrapper__user__inner").css({
-      top: outHeightOfUser
+      top: outerHeightOfUser
     });
 
     $(".headerAdmin__wrapper__user").click(function(e) {

@@ -10,12 +10,13 @@ import "./project.scss";
 import {
   HeaderAdmin,
   Sidebar,
-  AddStudent,
+  NewMemberInfo,
   CourseOptions,
-  StepsLine
+  StepsLine,
+  TimeTableOptions,
+  ReviewAddMember
 } from "../../components/";
 import { StudentAction } from "../../actions/student";
-import { SummaryRegisForm } from "../../components/summaryRegisForm/summaryRegisForm";
 
 class Project extends Component {
   constructor(props) {
@@ -180,7 +181,7 @@ class Project extends Component {
                   <StepsLine></StepsLine>
                 </div>
                 <div className="addMember__body__card__content__info">
-                  <AddStudent />
+                  <NewMemberInfo />
                 </div>
               </div>
             </div>
@@ -195,8 +196,28 @@ class Project extends Component {
                 </div>
               </div>
             </div>
-
-            <SummaryRegisForm />
+            <div className="addMember__body__card">
+              <div className="addMember__body__card__title">Thêm học viên</div>
+              <div className="addMember__body__card__content">
+                <div className="addMember__body__card__content__steps">
+                  <StepsLine></StepsLine>
+                </div>
+                <div className="addMember__body__card__content__info">
+                  <TimeTableOptions></TimeTableOptions>
+                </div>
+              </div>
+            </div>
+            <div className="addMember__body__card">
+              <div className="addMember__body__card__title">Thêm học viên</div>
+              <div className="addMember__body__card__content">
+                <div className="addMember__body__card__content__steps">
+                  <StepsLine></StepsLine>
+                </div>
+                <div className="addMember__body__card__content__info">
+                  <ReviewAddMember />
+                </div>
+              </div>
+            </div>
           </div>
         </React.Fragment>
       </div>

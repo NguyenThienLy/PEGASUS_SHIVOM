@@ -11,7 +11,7 @@ $background-color-chart: lighten($sub-main-color, 30%);
   box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
   color: $color-grey;
   @include e("name") {
-    margin: 1em 0;
+    padding: 1em 0;
     text-align: center;
     font-family: $font-family-special;
     font-size: 1.2em;

@@ -12,9 +12,9 @@ import {
   LineChart,
   Table,
   CustomSelect,
-  ProfileAdmin
+  ProfileAdmin,
+  CourseInfo
 } from "../../components";
-import { CourseInfo } from "../../components/courseInfo/courseInfo";
 
 export class CourseDetails extends React.Component {
   constructor(props) {
@@ -115,10 +115,9 @@ export class CourseDetails extends React.Component {
 
   fetchData = () => {
     // Cách 1
-    if (!this.props.setting.fetched) {
-      this.props.fetchSetting();
-    }
-
+    // if (!this.props.setting.fetched) {
+    //   this.props.fetchSetting();
+    // }
     // Luôn luôn phải catch lỗi và xử lý nhằm tránh crash web
     // Cách 2
     // api.class.getList()
