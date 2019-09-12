@@ -109,10 +109,10 @@ export class HeaderAdmin extends React.Component {
   }
 
   render() {
-    const { headerAdmin, sidebar } = this.props;
+    const { headerAdmin, sidebar, logo } = this.props;
     return (
       <div className="headerAdmin">
-        <Sidebar sidebar={sidebar}></Sidebar>
+        <Sidebar sidebar={sidebar} logo={logo}></Sidebar>
         <div className="headerAdmin__wrapper">
           <div className="headerAdmin__wrapper__icon-sidebar">
             <i class="fas fa-bars"></i>

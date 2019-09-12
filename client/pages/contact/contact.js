@@ -66,8 +66,15 @@ export class Contact extends React.Component {
     window.removeEventListener("scroll", this.handleScroll);
   }
   fetchData() {
-    this.props.fetchCourse()
-    this.props.fetchSetting()
+    if (this.props.courses.items.length === 0) {
+      this.props.fetchCourse()
+    }
+    if (!this.props.setting.fetched) {
+      this.props.fetchSetting();
+    }
+    if (this.props.newCategories.items.length === 0) {
+      this.props.fetchNewCategory()
+    }
   }
   componentDidMount() {
     this.fetchData()
@@ -218,7 +225,7 @@ export class Contact extends React.Component {
             </div>
           </div>
 
-          <Footer {...this.props.setting.contact} logo={this.props.setting.logo} />
+          <Footer {...this.props.setting.contact} logo={this.props.setting.logo} social={this.props.setting.social} />
         </React.Fragment>
       </div>
     );
@@ -231,6 +238,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => bindActionCreators({
   fetchCourse: action.course.fetch,
   fetchSetting: action.setting.fetch,
+  fetchNewCategory: action.newCategory.fetch,
   addContact: action.contact.add
 }, dispatch)
 

@@ -47,6 +47,15 @@ $warning-color: #ee827c;
             }
         }
 
+        @include m('warn') {
+            border-color: $error-color;
+            color: $error-color;
+
+            .fas {
+                font-size: 2.5em;
+            }
+        }
+
         @include m('success') {
             border-color: $success-color;
             color: $success-color;
@@ -69,7 +78,8 @@ $warning-color: #ee827c;
     @include e('action') {
         width: 70%;
         display: flex;
-        justify-content: space-between;
+        align-items: center;
+        justify-content: space-around;
 
         @include e('button') {
             width: 45%;
@@ -95,6 +105,15 @@ $warning-color: #ee827c;
             }
 
             @include m('error') {
+                background: $error-color;
+                color: #fff;
+
+                &:hover {
+                    background: darken($error-color, 10%);
+                }
+            }
+
+            @include m('warn') {
                 background: $error-color;
                 color: #fff;
 

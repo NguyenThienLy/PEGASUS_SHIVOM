@@ -3,6 +3,6 @@ import { api } from '../services'
 
 export class TimeTableItemAction extends BaseAction {
     constructor() {
-        super("timeTableItem", api.timeTableItem)
+        super("timeTableItem", api.timeTableItem, "timeTableItems")
     }
 }

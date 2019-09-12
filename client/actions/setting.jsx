@@ -3,7 +3,7 @@ import { api } from '../services'
 
 export class SettingAction extends BaseAction {
     constructor() {
-        super("setting", api.setting)
+        super("setting", api.setting, "setting")
     }
     fetch = (option = {}) => {
         return dispatch => {

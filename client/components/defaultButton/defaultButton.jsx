@@ -8,23 +8,16 @@ export class DefaultButton extends React.Component {
   }
 
   render() {
-    const { link, content } = this.props;
-
-    console.log("NguyenThienLy", this.props);
-
+    const { content } = this.props;
     return (
       <div className="default-button">
-        <Link href={`/blog/blog?slug=${link}`} as={`/tin-tuc/${link}`}>
-          <a href={`/tin-tuc/${link}`} className="default-button__link">
-            <span className="default-button__link__content">{content}</span>
-            <span className="default-button__link__btn default-button__link__btn-left" />
-            <span className="default-button__link__btn default-button__link__btn-top-left" />
-            <span className="default-button__link__btn default-button__link__btn-top-right" />
-            <span className="default-button__link__btn default-button__link__btn-right" />
-            <span className="default-button__link__btn default-button__link__btn-bottom-left" />
-            <span className="default-button__link__btn default-button__link__btn-bottom-right" />
-          </a>
-        </Link>
+        <span className="default-button__content">{content}</span>
+        <span className="default-button__border default-button__border-left" />
+        <span className="default-button__border default-button__border-top-left" />
+        <span className="default-button__border default-button__border-top-right" />
+        <span className="default-button__border default-button__border-right" />
+        <span className="default-button__border default-button__border-bottom-left" />
+        <span className="default-button__border default-button__border-bottom-right" />
       </div>
     );
   }

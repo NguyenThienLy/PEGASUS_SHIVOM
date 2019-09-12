@@ -140,17 +140,20 @@ export class Course extends React.Component {
 				"friday": 5,
 				"saturday": 6,
 				"sunday": 7
-			}
-
-
-
+			},
+			latestNews: []
 		};
 	}
 	static async getInitialProps({ req, query }) {
 		const slug = query.slug
 		const course = await api.course.getCourseBySlug(slug)
+		const timeTableOfCourseRes = await api.course.getTimeTableOfCourse(course._id)
+		if (!timeTableOfCourseRes.result) {
+			return { course }
+		}
 		return {
-			course: course
+			course,
+			timeTableOfCourse: timeTableOfCourseRes.result.object
 		}
 	}
 	componentWillReceiveProps(nextProps) {
@@ -183,18 +186,33 @@ export class Course extends React.Component {
 	async componentDidMount() {
 
 		this.fetchData()
+		this.getLatestNews()
 		var heightOfFooter = $(".course__footer .footer-wrapper").height();
 		$(".course__contact-us").css("margin-bottom", heightOfFooter + "px");
 	}
-	fetchData() {
-		this.props.fetchCourse()
-		this.props.fetchSetting()
+	getLatestNews() {
+		api.news.getList({
+			query: {
+				order: { createdAt: -1 },
+				populates: [{ path: "category", select: "name slug" }]
+			}
+		}).then(res => {
+			this.setState({ latestNews: res.results.objects.rows })
+		}).catch(err => {
 
-	}
-	sortNao = (array) => {
-		return array.sort(function (a, b) {
-			return this.state.sorter[a.key] - this.state.sorter[b.key]
 		})
+	}
+	fetchData() {
+		if (this.props.courses.items.length === 0) {
+			this.props.fetchCourse()
+		}
+		if (!this.props.setting.fetched) {
+			this.props.fetchSetting();
+		}
+		if (this.props.newCategories.items.length === 0) {
+			this.props.fetchNewCategory()
+		}
+
 	}
 	render() {
 		return (
@@ -259,7 +277,7 @@ export class Course extends React.Component {
 							</div>
 							{
 
-								this.state.timeTables && this.state.timeTables.length > 0 ? this.state.timeTables.map((classData, index) => {
+								this.props.timeTableOfCourse && this.props.timeTableOfCourse.length > 0 ? this.props.timeTableOfCourse.map((classData, index) => {
 									let sorter = {
 										"monday": {
 											value: 1,
@@ -326,7 +344,7 @@ export class Course extends React.Component {
 								<SearchBox type='search' />
 							</div> */}
 							<div className="course-wrapper__sub-content__social-group">
-								<SocialGroup />
+								{this.props.setting.social ? <SocialGroup social={this.props.setting.social} /> : null}
 							</div>
 							<div className="course-wrapper__sub-content__other-courses">
 								<div className="course-wrapper__sub-content__other-courses__text">
@@ -352,7 +370,7 @@ export class Course extends React.Component {
 									bài viết
                 				</div>
 								{
-									this.state.latestPost.map((post, index) => {
+									this.state.latestNews.map((post, index) => {
 										return (
 											<div key={index} className="course-wrapper__sub-content__latest-posts__post">
 												<LatestPost latestPost={post} />
@@ -376,7 +394,7 @@ export class Course extends React.Component {
 					</div>
 				</React.Fragment>
 				<div className="course__footer">
-					<Footer {...this.props.setting.contact} logo={this.props.setting.logo} />
+					<Footer {...this.props.setting.contact} logo={this.props.setting.logo} social={this.props.setting.social} />
 				</div>
 			</div>
 		);
@@ -390,6 +408,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 	fetchCourse: action.course.fetch,
 	fetchSetting: action.setting.fetch,
 	fetchTimeTableOfCourse: action.course.getTimeTableOfCourse,
+	fetchNewCategory: action.newCategory.fetch,
 	addContact: action.contact.add,
 }, dispatch)
 

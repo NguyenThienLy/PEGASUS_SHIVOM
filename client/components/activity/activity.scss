@@ -43,8 +43,9 @@
 
       @include e("icon") {
         position: absolute;
-        left: -1em;
+        left: 0em;
         top: 1em;
+        transform: translateX(-50%);
         width: 2em;
         height: 2em;
         border-radius: 999px;

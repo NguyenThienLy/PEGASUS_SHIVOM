@@ -19,6 +19,7 @@ export class StudentService extends CrudService<typeof Student> {
             data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             isEmpty = true
 
+
         const tempDataColumnChart = await this.model.aggregate([
             {
                 $match: {

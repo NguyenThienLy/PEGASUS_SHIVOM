@@ -3,6 +3,6 @@ import { api } from '../services'
 
 export class MasonryHomeAction extends BaseAction {
     constructor() {
-        super("masonryHome", api.masonryHome)
+        super("masonryHome", api.masonryHome, "masonryHomes")
     }
 }

@@ -11,6 +11,14 @@ class MyDocument extends Document {
       <Html lang="vi">
         <Head>
           <style>{`body { margin: 0 } /* custom! */`}</style>
+          <script async src="https://www.googletagmanager.com/gtag/js?id=UA-80582137-5"></script>
+          <script dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments); }
+                        gtag('js', new Date());
+                      
+                        gtag('config', 'UA-80582137-5');`,
+          }} />
           <link rel="manifest" href="/manifest.json" />
           <link rel="icon" href="/bookFeeling.jpg" />
           <link rel="stylesheet" type="text/css" href="/css/nprogress.css" />

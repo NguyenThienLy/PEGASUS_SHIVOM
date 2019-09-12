@@ -1,6 +1,6 @@
 import { CrudApi } from "../crud";
 
-export class statisticStudentApi extends CrudApi {
+export class StatisticStudentApi extends CrudApi {
   constructor() {
     super("student");
   }

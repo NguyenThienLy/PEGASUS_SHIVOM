@@ -3,6 +3,6 @@ import { api } from '../services'
 
 export class TesmonialAction extends BaseAction {
     constructor() {
-        super("tesmonial", api.tesmonial)
+        super("tesmonial", api.tesmonial, "tesmonials")
     }
 }

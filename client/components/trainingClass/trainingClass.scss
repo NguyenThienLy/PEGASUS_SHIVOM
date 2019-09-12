@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: row;
   @include e("image") {
-    width: 50%;
+    width: 45%;
     height: fit-content;
     position: relative;
     z-index: 0;
@@ -35,7 +35,7 @@
   @include e("info") {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     width: 50%;
     margin-left: 5%;
     @include e("category") {
@@ -63,7 +63,7 @@
     @include e("name") {
       font-size: 1.4em;
       font-family: $font-family-special;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.025em;
       margin-top: 0.3em;
       margin-bottom: 0;
       font-weight: 100;

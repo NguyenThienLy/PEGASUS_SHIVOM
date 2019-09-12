@@ -21,6 +21,7 @@
     "bcryptjs": "^2.4.3",
     "bootstrap": "^4.3.1",
     "cacheman-mongo": "^1.0.4",
+    "chart.js": "^2.8.0",
     "cors": "^2.8.5",
     "cross-env": "^5.2.0",
     "custom-template-generator": "^0.1.2",
@@ -49,6 +50,7 @@
     "object-hash": "^1.3.1",
     "react": "^16.8.3",
     "react-awesome-modal": "^2.0.5",
+    "react-chartjs-2": "^2.7.6",
     "react-dom": "^16.8.3",
     "react-redux": "^6.0.1",
     "react-router": "^5.0.0",
@@ -78,7 +80,8 @@
     "watch-ts": "tsc -w",
     "watch-babel": "babel-watch ./build/app.js",
     "build-babel": "./node_modules/.bin/babel build --out-dir dist",
-    "start": "NODE_ENV=production node build/app.js"
+    "start": "NODE_ENV=production node build/app.js",
+    "deploy": "next build client && tsc && ./node_modules/.bin/babel build --out-dir dist"
   },
   "eslintConfig": {
     "extends": "react-app"
