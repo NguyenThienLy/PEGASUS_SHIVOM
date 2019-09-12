@@ -224,6 +224,9 @@ export class Dashboard extends React.Component {
       "2017-08-01T03:44:18.995Z",
       "2022-08-01T03:44:18.995Z"
     );
+    if (!this.props.setting.fetched) {
+      this.props.fetchSetting();
+    }
   };
   handleScroll = () => {};
   componentWillUnmount() {}
@@ -343,10 +346,14 @@ export class Dashboard extends React.Component {
             <HeaderAdmin
               sidebar={this.state.categories}
               headerAdmin={this.state.headerAdmin}
+              logo={this.props.setting.logo}
             ></HeaderAdmin>
           </div>
           <div className="dashboard__sidebar">
-            <Sidebar sidebar={this.state.categories}></Sidebar>
+            <Sidebar
+              sidebar={this.state.categories}
+              logo={this.props.setting.logo}
+            ></Sidebar>
           </div>
           <div className="dashboard__body">
             <div className="dashboard__body__numbers">

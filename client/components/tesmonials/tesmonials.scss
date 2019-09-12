@@ -1,0 +1,162 @@
+@import "../../default.scss";
+.tesmonials {
+  @include e("slick-autoplay") {
+    width: 100%;
+    margin-top: -6em;
+    padding: 0 8%;
+    @include e("item") {
+      .review {
+        //height: 20em;
+      }
+    }
+
+    .slick-dots {
+      text-align: center;
+      padding: 0;
+      margin-top: 1em;
+    }
+
+    button {
+      padding: 0;
+      text-shadow: none;
+      color: transparent;
+      background-color: transparent;
+      border: 1px solid $sub-main-color;
+      outline: none;
+      border-radius: 50%;
+      width: 0.8em;
+      height: 0.8em;
+      cursor: pointer;
+    }
+
+    li {
+      display: inline-block;
+      margin-left: 4px;
+      margin-right: 4px;
+    }
+
+    .slick-active button {
+      background-color: $sub-main-color;
+    }
+
+    .slick-track {
+      padding: 1em 0;
+    }
+
+    .slick-slide {
+      margin: 0 1em;
+      height: auto;
+      width: 100%;
+    }
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 599px) {
+  html {
+    font-size: 18px !important;
+  }
+
+  .tesmonials__slick-autoplay {
+    .tesmonials__slick-autoplay__item {
+      .review {
+        height: 24em;
+        .review__blankTop {
+          height: 3%;
+        }
+        .review__info {
+          padding-top: 0.5%;
+          height: 56.5%;
+        }
+      }
+    }
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  html {
+    font-size: 18px !important;
+  }
+
+  .tesmonials__slick-autoplay {
+    .tesmonials__slick-autoplay__item {
+      .review {
+        height: 19em;
+        .review__blankTop {
+          height: 9%;
+        }
+        .review__info {
+          padding-top: 1%;
+          height: 50%;
+        }
+      }
+    }
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  html {
+    font-size: 19px !important;
+  }
+
+  .tesmonials__slick-autoplay {
+    .tesmonials__slick-autoplay__item {
+      .review {
+        height: 17em;
+        .review__blankTop {
+          height: 10%;
+        }
+        .review__info {
+          padding-top: 1%;
+          height: 49%;
+        }
+      }
+    }
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  html {
+    font-size: 19px !important;
+  }
+
+  .tesmonials__slick-autoplay {
+    .tesmonials__slick-autoplay__item {
+      .review {
+        height: 20em;
+        .review__blankTop {
+          height: 6%;
+        }
+        .review__info {
+          padding-top: 1%;
+          height: 53%;
+        }
+      }
+    }
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  html {
+    font-size: 20px !important;
+  }
+
+  .tesmonials__slick-autoplay {
+    .tesmonials__slick-autoplay__item {
+      .review {
+        height: 26em;
+        .review__blankTop {
+          height: 5%;
+        }
+        .review__info {
+          padding-top: 0.5%;
+          height: 54.5%;
+        }
+      }
+    }
+  }
+}

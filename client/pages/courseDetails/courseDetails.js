@@ -112,9 +112,33 @@ export class CourseDetails extends React.Component {
   static async getInitialProps({ req, query }) {
     return {};
   }
+
+  fetchData = () => {
+    // Cách 1
+    if (!this.props.setting.fetched) {
+      this.props.fetchSetting();
+    }
+
+    // Luôn luôn phải catch lỗi và xử lý nhằm tránh crash web
+    // Cách 2
+    // api.class.getList()
+    //   .then(result => {
+    //     console.log("result: ", result)
+    //   })
+    //   .catch(err => {
+    //     console.log("Err: ", err)
+    //   })
+    // // Cách 3
+    // try {
+    //   const result = await api.class.getList();
+    // } catch (err) { }
+  };
+
   handleScroll = () => {};
   componentWillUnmount() {}
   componentDidMount() {
+    this.fetchData();
+
     if (this.props.courses.items.length > 0) {
       const courseCategoryIndex = this.state.categories.findIndex(item => {
         return item.key === "course";
@@ -214,10 +238,14 @@ export class CourseDetails extends React.Component {
             <HeaderAdmin
               sidebar={this.state.categories}
               headerAdmin={this.state.headerAdmin}
+              logo={this.props.setting.logo}
             ></HeaderAdmin>
           </div>
           <div className="courseDetails__sidebar">
-            <Sidebar sidebar={this.state.categories}></Sidebar>
+            <Sidebar
+              sidebar={this.state.categories}
+              logo={this.props.setting.logo}
+            ></Sidebar>
           </div>
           <div className="courseDetails__body">
             <div className="courseDetails__body__numbers">

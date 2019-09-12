@@ -15,31 +15,13 @@ import {
   News,
   ContactUs,
   Trainer,
-  Review,
   IntroHome,
   Slider,
-  TrainerInfo,
   NumberSection,
-  PostAuthor,
-  EventHour,
-  LatestPost,
-  IntroHome2,
-  News2,
-  NumberAdmin,
-  ProfileAdmin,
-  RingingPhone,
-  RelatedPost,
-  Table,
-  LineChart,
-  PieChart,
-  Sidebar,
-  Feedback,
   ImageShow,
-  FeedbackNoti,
-  Activity,
-  Map
+  Map,
+  Tesmonials
 } from "../../components";
-import { Tesmonials } from "./components/Tesmonials/tesmonials";
 
 class Home extends React.Component {
   constructor(props) {
@@ -351,7 +333,7 @@ class Home extends React.Component {
       this.props.fetchCourse();
     }
     if (this.props.newCategories.items.length === 0) {
-      this.props.fetchNewCategory()
+      this.props.fetchNewCategory();
     }
     if (this.props.tesmonials.items.length === 0) {
       this.props.fetchTesmonial({
@@ -389,7 +371,7 @@ class Home extends React.Component {
           },
           populates: [{ path: "category", select: "name slug" }]
         }
-      })
+      });
     }
 
     // Luôn luôn phải catch lỗi và xử lý nhằm tránh crash web
@@ -408,11 +390,10 @@ class Home extends React.Component {
   };
   async componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.tesmonials.fetching === false) {
-
     }
   }
   async componentDidMount() {
-    console.log("Tai sao lai vao day nua")
+    console.log("Tai sao lai vao day nua");
     this.fetchData();
     $(".home__body__brands__slick-autoplay").slick({
       dots: false,
@@ -454,7 +435,7 @@ class Home extends React.Component {
         }
       ]
     });
-    $(".home__body__brands__slick-autoplay").on("beforeChange", function (
+    $(".home__body__brands__slick-autoplay").on("beforeChange", function(
       event,
       slick,
       currentSlide,
@@ -465,7 +446,7 @@ class Home extends React.Component {
       );
       $(".home__body__brands__slick-autoplay .slick-dots li button")
         .attr("aria-pressed", "false")
-        .focus(function () {
+        .focus(function() {
           this.blur();
         });
     });
@@ -490,7 +471,7 @@ class Home extends React.Component {
         }
       ]
     });
-    $(".home__body__intro-slick-autoplay").on("beforeChange", function (
+    $(".home__body__intro-slick-autoplay").on("beforeChange", function(
       event,
       slick,
       currentSlide,
@@ -501,11 +482,10 @@ class Home extends React.Component {
       );
       $(".home__body__intro-slick-autoplay .slick-dots li button")
         .attr("aria-pressed", "false")
-        .focus(function () {
+        .focus(function() {
           this.blur();
         });
     });
-
   }
 
   addContact = body => {
@@ -529,11 +509,7 @@ class Home extends React.Component {
         </Head>
         <React.Fragment>
           <div class="background-overlay"></div>
-          <Header
-            {...this.props}
-            sidebar={this.state.sidebar}
-            logo={this.props.setting.logo}
-          />
+          <Header {...this.props} />
 
           <div className="home__body">
             <div className="home__body__slider">
@@ -570,8 +546,8 @@ class Home extends React.Component {
               <div className="home__body__trainingClass__content">
                 {this.props.courses.fetching === false
                   ? this.props.courses.items.map(trainingClass => {
-                    return <TrainingClass trainingClass={trainingClass} />;
-                  })
+                      return <TrainingClass trainingClass={trainingClass} />;
+                    })
                   : null}
                 {/* {this.state.trainingClasses.map(trainingClass => {
                   return <TrainingClass trainingClass={trainingClass} />;
@@ -595,13 +571,20 @@ class Home extends React.Component {
                 </div>
               </div>
               <div className="home__body__timeTable__content">
-                {this.props.timeTable.fetching === false ? <TimeTable courses={this.props.courses} timeTables={this.props.timeTable.items} /> : null}
+                {this.props.timeTable.fetching === false ? (
+                  <TimeTable
+                    courses={this.props.courses}
+                    timeTables={this.props.timeTable.items}
+                  />
+                ) : null}
               </div>
             </div>
 
             <div className="home__body__news">
               <div className="home__body__news__container">
-                {this.props.news.pinned ? <News news={this.props.news.pinned} /> : null}
+                {this.props.news.pinned ? (
+                  <News news={this.props.news.pinned} />
+                ) : null}
               </div>
             </div>
 
@@ -617,9 +600,9 @@ class Home extends React.Component {
                   </p>
                 </div>
               </div>
-
-              {this.props.tesmonials.fetching === false ? <Tesmonials tesmonials={this.props.tesmonials.items} /> : null}
-
+              {this.props.tesmonials.fetching === false ? (
+                <Tesmonials tesmonials={this.props.tesmonials.items} />
+              ) : null}
             </div>
 
             <div className="home__body__numbers">
@@ -654,8 +637,8 @@ class Home extends React.Component {
               <div className="home__body__trainers__list">
                 {this.props.teachers.fetching === false
                   ? this.props.teachers.items.map(trainer => {
-                    return <Trainer trainer={trainer} />;
-                  })
+                      return <Trainer trainer={trainer} />;
+                    })
                   : null}
                 {/* {this.state.trainers.map(trainer => {
                   return <Trainer trainer={trainer} />;

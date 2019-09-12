@@ -99,9 +99,18 @@ export class MemberDetails extends React.Component {
   static async getInitialProps({ req, query }) {
     return {};
   }
+
+  fetchData = () => {
+    if (!this.props.setting.fetched) {
+      this.props.fetchSetting();
+    }
+  };
+
   handleScroll = () => {};
   componentWillUnmount() {}
   componentDidMount() {
+    this.fetchData();
+
     if (this.props.courses.items.length > 0) {
       const courseCategoryIndex = this.state.categories.findIndex(item => {
         return item.key === "course";
@@ -215,10 +224,14 @@ export class MemberDetails extends React.Component {
             <HeaderAdmin
               sidebar={this.state.categories}
               headerAdmin={this.state.headerAdmin}
+              logo={this.props.setting.logo}
             ></HeaderAdmin>
           </div>
           <div className="memberDetails__sidebar">
-            <Sidebar sidebar={this.state.categories}></Sidebar>
+            <Sidebar
+              sidebar={this.state.categories}
+              logo={this.props.setting.logo}
+            ></Sidebar>
           </div>
           <div className="memberDetails__body">
             <div className="memberDetails__body__numbers">
