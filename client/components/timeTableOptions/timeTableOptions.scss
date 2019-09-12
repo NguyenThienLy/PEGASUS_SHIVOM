@@ -1,0 +1,180 @@
+@import "../../default.scss";
+
+$font-size-table-content: 0.9em;
+$hover-color: darken($sub-main-color, 10%);
+$background-table-header-color: lighten($sub-main-color, 25%);
+
+.time-table-options {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 1em;
+  .divider {
+    height: 1px;
+    background-color: $table-border-color;
+    border: none;
+    margin: 0px;
+  }
+  @include e("table-events") {
+    table,
+    th,
+    td {
+      border: 1px solid $table-border-color;
+      border-collapse: collapse;
+      text-align: center;
+    }
+    table {
+      font-size: $font-size-table-content;
+      width: 100%;
+      letter-spacing: normal;
+      line-height: normal;
+      background: #fff;
+      vertical-align: middle;
+      table-layout: fixed;
+      thead {
+        th {
+          color: $font-color;
+          font-weight: 600;
+          padding: 1em 0.5em;
+          background-color: $background-table-header-color;
+        }
+      }
+      tbody {
+        td {
+          padding: 0;
+          vertical-align: top;
+          &:nth-child(1) {
+            vertical-align: middle;
+          }
+          .time-table-options__table-events__class-time {
+            color: $font-color;
+          }
+          .time-table-options__table-events__class-info {
+            position: relative;
+            & > input[type="checkbox"] {
+              position: absolute;
+              left: 0px;
+              top: 0px;
+              z-index: 1;
+              width: 100%;
+              height: 100%;
+              display: block;
+              margin: 0;
+              opacity: 0;
+              cursor: pointer;
+              &:checked
+                + .time-table-options__table-events__class-info__wrapper {
+                background-color: $background-color;
+                .time-table-options__table-events__class-info__wrapper__class-name {
+                  color: $main-color;
+                }
+                .time-table-options__table-events__class-info__wrapper__class-teacher {
+                  color: $color-grey;
+                }
+              }
+              &:not(:checked)
+                + .time-table-options__table-events__class-info__wrapper {
+                background-color: #fff;
+                .time-table-options__table-events__class-info__wrapper__class-name {
+                  color: $color-grey;
+                }
+                .time-table-options__table-events__class-info__wrapper__class-teacher {
+                  color: $font-color;
+                }
+              }
+            }
+            @include e("wrapper") {
+              display: flex;
+              flex-direction: column;
+              padding: 1em 1em;
+              position: relative;
+              @include e("class-name") {
+                color: $color-grey;
+                text-decoration: none;
+                font-weight: 500;
+                margin-bottom: 1em;
+              }
+              @include e("class-teacher") {
+                color: $font-color;
+              }
+            }
+            @include e("my-tooltip") {
+              @include e("content") {
+                max-width: fit-content;
+                top: 0;
+                left: 50%;
+                transform: translate(-50%, -100%);
+                padding: 10px 20px;
+                color: #fff;
+                background-color: $hover-color;
+                font-weight: normal;
+                border-radius: 3px;
+                position: absolute;
+                z-index: 99999999;
+                box-sizing: border-box;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+                visibility: hidden;
+                opacity: 0;
+                transition: opacity 0.3s;
+                i {
+                  position: absolute;
+                  top: 100%;
+                  left: 50%;
+                  margin-left: -12px;
+                  width: 16px;
+                  height: 8px;
+                  overflow: hidden;
+                  &::after {
+                    content: "";
+                    position: absolute;
+                    width: 8px;
+                    height: 8px;
+                    left: 50%;
+                    transform: translate(-50%, -50%) rotate(45deg);
+                    background-color: $hover-color;
+                    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+                  }
+                }
+              }
+              &:hover
+                .time-table-options__table-events__class-info__my-tooltip__content {
+                visibility: visible;
+                opacity: 1;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  @include e("button") {
+    display: flex;
+    justify-content: center;
+    padding: 2em 0em 1em;
+    // width: 5em;
+    // height: 1em;
+    button {
+      font-size: 1em;
+      padding: 0.6em 1.8em;
+      text-align: center;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      // letter-spacing: 0.05em;
+      transition: 200ms ease;
+      color: $main-color;
+      background-color: lighten($sub-main-color, 25%);
+      box-shadow: 1px 1px 5px #ebebeb;
+      text-transform: uppercase;
+      cursor: pointer;
+      i {
+        font-size: 0.9em;
+        margin-left: 0.3em;
+      }
+      &:hover {
+        background-color: $main-color;
+        color: #fff;
+      }
+    }
+  }
+}

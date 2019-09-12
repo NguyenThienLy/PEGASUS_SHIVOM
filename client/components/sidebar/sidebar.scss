@@ -16,10 +16,10 @@ $color-line: rgba(187, 184, 184, 0.5);
   overflow: hidden;
   -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
-  -webkit-transition: max-width 300ms ease;
-  transition: max-width 300ms ease;
+  -webkit-transition: width 300ms ease;
+  transition: width 300ms ease;
   @include e("show-menu") {
-    max-width: 12em;
+    width: 12em;
   }
   @include e("inner") {
     @include e("top-menu") {
@@ -58,7 +58,7 @@ $color-line: rgba(187, 184, 184, 0.5);
           align-items: center;
           // width: 100%;
           transition: 100ms;
-            text-transform: capitalize;
+          text-transform: capitalize;
           i {
             margin-right: 0.8em;
             font-size: 0.9em;
@@ -115,7 +115,7 @@ $color-line: rgba(187, 184, 184, 0.5);
                 color: #111;
                 display: block;
                 transition: 0.1s;
-                  text-transform: capitalize;
+                text-transform: capitalize;
               }
               &:hover {
                 background-color: #fbfbfb;

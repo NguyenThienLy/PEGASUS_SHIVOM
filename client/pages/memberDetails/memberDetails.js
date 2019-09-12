@@ -11,9 +11,9 @@ import {
   PieChart,
   LineChart,
   Table,
-  CustomSelect
+  CustomSelect,
+  MemberInfo
 } from "../../components";
-import { MemberInfo } from "../../components/memberInfo/memberInfo";
 
 export class MemberDetails extends React.Component {
   constructor(props) {
@@ -100,11 +100,7 @@ export class MemberDetails extends React.Component {
     return {};
   }
 
-  fetchData = () => {
-    if (!this.props.setting.fetched) {
-      this.props.fetchSetting();
-    }
-  };
+  fetchData = () => {};
 
   handleScroll = () => {};
   componentWillUnmount() {}

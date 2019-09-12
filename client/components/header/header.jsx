@@ -167,6 +167,25 @@ export class Header extends React.Component {
     //     }
     //   }
     // );
+
+    var outerHeightOfHeader = $(
+      ".header__wrapper__page-menu-area__left__navbar__list-items__item"
+    ).outerHeight();
+    $(
+      ".header__wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper"
+    ).css({
+      top: outerHeightOfHeader + "px"
+    });
+
+    var outerHeightOfSubHeader = $(
+      ".header__sub-wrapper__page-menu-area__left__navbar__list-items__item"
+    ).outerHeight();
+    $(
+      ".header__sub-wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper"
+    ).css({
+      top: outerHeightOfSubHeader + "px"
+    });
+
     var prevScrollPos = window.pageYOffset;
     var currentScrollPos = window.pageYOffset;
     var posToExpose = 600;
@@ -351,9 +370,9 @@ export class Header extends React.Component {
             </div>
             <div className="header__wrapper__page-menu-area__right">
               <div className="header__wrapper__page-menu-area__right__more-btn">
+                {/* <i className="far fa-circle" />
                 <i className="far fa-circle" />
-                <i className="far fa-circle" />
-                <i className="far fa-circle" />
+                <i className="far fa-circle" /> */}
               </div>
             </div>
           </div>
@@ -423,9 +442,9 @@ export class Header extends React.Component {
             </div>
             <div className="header__sub-wrapper__page-menu-area__right">
               <div className="header__sub-wrapper__page-menu-area__right__more-btn">
+                {/* <i className="far fa-circle" />
                 <i className="far fa-circle" />
-                <i className="far fa-circle" />
-                <i className="far fa-circle" />
+                <i className="far fa-circle" /> */}
               </div>
             </div>
           </div>

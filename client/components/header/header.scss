@@ -63,29 +63,42 @@
                 padding: 2.6em 1em;
                 cursor: pointer;
               }
-              &:hover
+              &:hover {
                 .header__wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper {
-                max-height: 500px;
-                -moz-transition: max-height 700ms ease;
-                -ms-transition: max-height 700ms ease;
-                -o-transition: max-height 700ms ease;
-                -webkit-transition: max-height 700ms ease;
-                transition: max-height 700ms ease;
-                transition-delay: 0.3s;
+                  max-height: 500px;
+                  -moz-transition: max-height 700ms ease;
+                  -ms-transition: max-height 700ms ease;
+                  -o-transition: max-height 700ms ease;
+                  -webkit-transition: max-height 700ms ease;
+                  transition: max-height 700ms ease;
+                  transition-delay: 0.3s;
+                }
+                & > .hoverDiv {
+                  .hoverDiv__link {
+                    color: $main-color;
+                    transition: 200ms;
+                  }
+                  .hoverDiv__link__content--hover {
+                    height: 1.1em;
+                    width: 100%;
+                  }
+                }
               }
-              &:not(:hover)
+              &:not(:hover) {
                 .header__wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper {
-                max-height: 0px;
-                -moz-transition: max-height 300ms ease;
-                -ms-transition: max-height 300ms ease;
-                -o-transition: max-height 300ms ease;
-                -webkit-transition: max-height 300ms ease;
-                transition: max-height 300ms ease;
+                  max-height: 0px;
+                  -moz-transition: max-height 300ms ease;
+                  -ms-transition: max-height 300ms ease;
+                  -o-transition: max-height 300ms ease;
+                  -webkit-transition: max-height 300ms ease;
+                  transition: max-height 300ms ease;
+                }
               }
+
               @include e("sub-navbar-wrapper") {
+                max-height: 0px;
                 overflow: hidden;
                 position: absolute;
-                top: 6.5em;
                 left: -1em;
                 z-index: 1;
                 @include e("sub-navbar") {
@@ -106,7 +119,7 @@
                   // transition: height 0.5s ease;
                   @include e("item") {
                     padding: 0em;
-                    width: 16em;
+                    width: 20em;
                     .hoverDiv__link {
                       padding: 0.7em 2.2em;
                     }
@@ -188,15 +201,26 @@
                 padding: 1.8em 1em;
                 cursor: pointer;
               }
-              &:hover
+              &:hover {
                 .header__sub-wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper {
-                max-height: 500px;
-                -moz-transition: max-height 700ms ease;
-                -ms-transition: max-height 700ms ease;
-                -o-transition: max-height 700ms ease;
-                -webkit-transition: max-height 700ms ease;
-                transition: max-height 700ms ease;
-                transition-delay: 0.3s;
+                  max-height: 500px;
+                  -moz-transition: max-height 700ms ease;
+                  -ms-transition: max-height 700ms ease;
+                  -o-transition: max-height 700ms ease;
+                  -webkit-transition: max-height 700ms ease;
+                  transition: max-height 700ms ease;
+                  transition-delay: 0.3s;
+                }
+                & > .hoverDiv {
+                  .hoverDiv__link {
+                    color: $main-color;
+                    transition: 200ms;
+                  }
+                  .hoverDiv__link__content--hover {
+                    height: 1.1em;
+                    width: 100%;
+                  }
+                }
               }
               &:not(:hover)
                 .header__sub-wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper {
@@ -230,7 +254,7 @@
                   // transition: height 0.5s ease;
                   @include e("item") {
                     padding: 0em;
-                    width: 16em;
+                    width: 20em;
                     .hoverDiv__link {
                       padding: 0.7em 2.2em;
                     }
