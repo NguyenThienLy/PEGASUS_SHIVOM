@@ -1,23 +1,45 @@
 import * as React from "react";
 import "./pieChart.scss";
+import { Pie } from "react-chartjs-2";
 
 export class PieChart extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  static defaultProps = {
+    displayLegend: true,
+    legendPosition: "bottom"
+  };
+
   render() {
+    const { pieChartData, isFetching, isEmpty } = this.props;
+
     return (
       <div className="pieChart">
         <div className="pieChart__title">
-          <span>users by device</span>
+          <span>Tỉ lệ chuyên cần</span>
         </div>
         <div className="pieChart__content">
-          <div className="pieChart__content__inner">Pie Chart</div>
+          <div className="pieChart__content__inner">
+            {isFetching && isEmpty && "Đăng tải dữ liệu ..."}
+            {isEmpty && !isFetching && "Dữ liệu trống !!!"}
+            {!isFetching && !isEmpty && (
+              <Pie
+                data={pieChartData}
+                options={{
+                  legend: {
+                    display: this.props.displayLegend,
+                    position: this.props.legendPosition
+                  }
+                }}
+              />
+            )}
+          </div>
         </div>
         <div className="pieChart__select">
           <div className="pieChart__select__info">
-            <div>chart's info</div>
+            <div>Thống kê tỉ lệ chuyên cần trong năm</div>
           </div>
           {/* <div className="pieChart__select__date">
             <input type="date" />

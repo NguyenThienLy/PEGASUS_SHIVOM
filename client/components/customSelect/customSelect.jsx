@@ -1,9 +1,33 @@
 import * as React from "react";
+import * as moment from "moment";
+
 import "./customSelect.scss";
 
 export class CustomSelect extends React.Component {
   constructor(props) {
     super(props);
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(index) {
+    // console.log(
+    //   "startTime",
+    //   moment()
+    //     .year(this.props.customSelect.options[index])
+    //     .startOf("year")
+    //     .format("YYYY-MM-DDTHH:mm:ss")
+    // );
+
+    this.props.fetchData(
+      moment()
+        .year(this.props.customSelect.options[index])
+        .startOf("year")
+        .format("YYYY-MM-DDTHH:mm:ss"),
+      moment()
+        .year(this.props.customSelect.options[index])
+        .endOf("year")
+        .format("YYYY-MM-DDTHH:mm:ss")
+    );
   }
 
   render() {
@@ -17,10 +41,16 @@ export class CustomSelect extends React.Component {
           <span className="customSelect__placeholder">
             {customSelect.placeholder}
           </span>
-          {customSelect.options.map(option => {
+          {customSelect.options.map((option, index) => {
             return (
-              <label className="customSelect__option">
-                <input type="radio" name="option" />
+              <label className="customSelect__option" key={index}>
+                <input
+                  type="radio"
+                  name="option"
+                  onClick={() => {
+                    this.onChange(index);
+                  }}
+                />
                 <span className="customSelect__option__title animated fadeIn">
                   {option}
                 </span>

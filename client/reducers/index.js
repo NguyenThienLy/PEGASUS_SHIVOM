@@ -67,7 +67,7 @@ const store = combineReducers({
   ranks: rankReducer.reducer,
   skills: skillReducer.reducer,
   sliders: sliderReducer.reducer,
-  students: studentReducer,
+  students: studentReducer.reducer,
   studentTimeTables: studentTimeTableReducer.reducer,
   teachers: teacherReducer.reducer,
   tesmonials: tesmonialReducer.reducer,

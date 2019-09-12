@@ -6,13 +6,21 @@ export class StatisticCourseAction extends BaseAction {
     super("statisticCourse", api.statisticCourse);
   }
 
-  fetchForLineChart = (course, type, startTime, endTime) => {
+  fetchForLineChart = (course, type, startTime, endTime, token) => {
+    // console.log(
+    //   "course, type, startTime, endTime, token",
+    //   course,
+    //   type,
+    //   startTime,
+    //   endTime,
+    //   token
+    // );
     return dispatch => {
       dispatch({
         type: `FETCHLINECHART_${this.name}_PENDING`
       });
       this.api
-        .statisticForLineChart(course, type, startTime, endTime)
+        .statisticForLineChart(course, type, startTime, endTime, token)
         .then(res => {
           dispatch({
             type: `FETCHLINECHART_${this.name}_SUCCESS`,
@@ -29,17 +37,17 @@ export class StatisticCourseAction extends BaseAction {
     };
   };
 
-  fetchForPieChart = (course, type, startTime, endTime) => {
+  fetchForPieChart = (course, type, startTime, endTime, token) => {
     return dispatch => {
       dispatch({
         type: `FETCHPIECHART_${this.name}_PENDING`
       });
       this.api
-        .statisticForPieChart(course, type, startTime, endTime)
+        .statisticForPieChart(course, type, startTime, endTime, token)
         .then(res => {
           dispatch({
             type: `FETCHPIECHART_${this.name}_SUCCESS`,
-            payload: res.result.object[0]
+            payload: res.result.object
           });
           return res;
         })

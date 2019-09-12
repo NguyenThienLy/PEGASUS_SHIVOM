@@ -8,13 +8,12 @@ export class ColumnChart extends React.Component {
   }
 
   static defaultProps = {
-    //  displayTitle: true,
-    // displayLegend: true,
-    //legendPosition: "right"
+    displayLegend: true,
+    legendPosition: "bottom"
   };
 
   render() {
-    const { dataColumnChart } = this.props;
+    const { columnChartData, isFetching, isEmpty } = this.props;
 
     return (
       <div className="columnChart">
@@ -36,19 +35,19 @@ export class ColumnChart extends React.Component {
           </div> */}
         </div>
         <div className="columnChart__content">
-          <Bar
-            data={dataColumnChart}
-            // options={{
-            //   title: {
-            //     display: this.props.displayTitle,
-            //     fontSize: 25
-            //   },
-            //   legend: {
-            //     display: this.props.displayLegend,
-            //     position: this.props.legendPosition
-            //   }
-            // }}
-          />
+          {isFetching && isEmpty && "Đăng tải dữ liệu ..."}
+          {isEmpty && !isFetching && "Dữ liệu trống !!!"}
+          {!isFetching && !isEmpty && (
+            <Bar
+              data={columnChartData}
+              options={{
+                legend: {
+                  display: this.props.displayLegend,
+                  position: this.props.legendPosition
+                }
+              }}
+            />
+          )}
         </div>
       </div>
     );

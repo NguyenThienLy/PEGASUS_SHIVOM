@@ -319,13 +319,21 @@ body {
 
   .dashboard__body__card__content__chart__row {
     flex-direction: row;
-    .lineChart {
+    .columnChart {
       width: 68%;
       margin-right: 2%;
     }
     .pieChart {
       margin: auto;
       width: 30%;
+    }
+  }
+
+  .dashboard__body__card__content__linechart__row {
+    flex-direction: row;
+    .lineChart {
+      width: 100%;
+      margin-right: 2%;
     }
   }
 

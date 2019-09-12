@@ -1,20 +1,28 @@
 import * as React from "react";
 import "./lineChart.scss";
+import { Line } from "react-chartjs-2";
 
 export class LineChart extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  static defaultProps = {
+    displayLegend: true,
+    legendPosition: "bottom"
+  };
+
   render() {
+    const { lineChartData, isFetching, isEmpty } = this.props;
+    //console.log("lineChartData", lineChartData);
     return (
       <div className="lineChart">
         <div className="lineChart__title">
-          <span>users overview</span>
+          <span>Chuyên cần</span>
         </div>
         <div className="lineChart__select">
           <div className="lineChart__select__info">
-            <div>chart's info</div>
+            <div>Theo dõi chuyên cần theo tuần trong năm</div>
           </div>
           {/* <div className="lineChart__select__date">
             <input type="date" />
@@ -27,7 +35,21 @@ export class LineChart extends React.Component {
           </div> */}
         </div>
         <div className="lineChart__content">
-          <div className="lineChart__content__inner">Line Chart</div>
+          <div className="lineChart__content__inner">
+            {isFetching && isEmpty && "Đăng tải dữ liệu ..."}
+            {isEmpty && !isFetching && "Dữ liệu trống !!!"}
+            {!isFetching && !isEmpty && (
+              <Line
+                data={lineChartData}
+                options={{
+                  legend: {
+                    display: this.props.displayLegend,
+                    position: this.props.legendPosition
+                  }
+                }}
+              />
+            )}
+          </div>
         </div>
       </div>
     );
