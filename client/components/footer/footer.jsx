@@ -30,26 +30,12 @@ export class Footer extends React.Component {
     };
   }
   componentDidMount() {
-    let heightOfFooter = $(".footer-wrapper").outerHeight();
-    let body = $(".footer-wrapper").prev();
-
-    if ($(window).outerWidth() > 599) {
-      $(".footer-wrapper").css({
-        position: "fixed",
-        zIndex: "-1"
-      });
-      body.css("margin-bottom", heightOfFooter + "px");
-    } else {
-      $(".footer-wrapper").css({
-        position: "static",
-        zIndex: "0"
-      });
-      body.css("margin-bottom", "0px");
-    }
-
     $(window).on("resize", function() {
+      let body = $(".footer-wrapper").prev();
+      let heightOfFooter = $(".footer-wrapper").outerHeight();
+
       if ($(window).outerWidth() > 599) {
-        heightOfFooter = $(".footer-wrapper").outerHeight();
+        let heightOfFooter = $(".footer-wrapper").outerHeight();
         $(".footer-wrapper").css({
           position: "fixed",
           zIndex: "-1"
@@ -65,9 +51,29 @@ export class Footer extends React.Component {
     });
   }
 
+  handleLoad = () => {
+    // set margin-bottom for body
+    let heightOfFooter = $(".footer-wrapper").height();
+    let body = $(".footer-wrapper").prev();
+
+    if ($(window).outerWidth() > 599) {
+      $(".footer-wrapper").css({
+        position: "fixed",
+        zIndex: "-1"
+      });
+      body.css("margin-bottom", heightOfFooter + "px");
+    } else {
+      $(".footer-wrapper").css({
+        position: "static",
+        zIndex: "0"
+      });
+      body.css("margin-bottom", "0px");
+    }
+  };
+
   render() {
     return (
-      <div className="footer-wrapper">
+      <div className="footer-wrapper" onLoad={this.handleLoad}>
         <div className="footer-wrapper__first-floor">
           <div className="footer-wrapper__first-floor__logo">
             <a className="footer-wrapper__first-floor__logo__a">
@@ -92,7 +98,9 @@ export class Footer extends React.Component {
             </a>
           </div>
           <div className="footer-wrapper__first-floor__social-group">
-            <SocialGroup />
+            {this.props.social ? (
+              <SocialGroup social={this.props.social} />
+            ) : null}
           </div>
           <div className="footer-wrapper__first-floor__email-regis">
             <form className="footer-wrapper__first-floor__email-regis__form">

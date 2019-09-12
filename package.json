@@ -80,7 +80,8 @@
     "watch-ts": "tsc -w",
     "watch-babel": "babel-watch ./build/app.js",
     "build-babel": "./node_modules/.bin/babel build --out-dir dist",
-    "start": "NODE_ENV=production node build/app.js"
+    "start": "NODE_ENV=production node build/app.js",
+    "deploy": "next build client && tsc && ./node_modules/.bin/babel build --out-dir dist"
   },
   "eslintConfig": {
     "extends": "react-app"

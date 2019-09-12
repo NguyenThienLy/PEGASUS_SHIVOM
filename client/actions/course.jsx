@@ -3,7 +3,7 @@ import { api } from '../services'
 
 export class CourseAction extends BaseAction {
     constructor() {
-        super("course", api.course)
+        super("course", api.course, "courses")
     }
     getTimeTableOfCourse = (courseId, option = {}) => {
 

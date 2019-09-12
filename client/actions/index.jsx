@@ -24,31 +24,35 @@ import { SettingAction } from "./setting";
 import { TimeTableAction } from "./timeTable";
 import { StatisticCourseAction } from "./statisticCourse";
 import { StatisticStudentAction } from "./statisticStudent";
+import { StudentAccountAction } from './studentAccount'
+
 
 class action {
-  constructor() {}
-  static admin = new AdminAction();
-  static class = new ClassAction();
-  static classTimeTable = new ClassTimeTableAction();
-  static contact = new ContactAction();
-  static course = new CourseAction();
-  static event = new EventAction();
-  static feedback = new FeedbackAction();
-  static gallery = new GalleryAction();
-  static masonryHome = new MasonryHomeAction();
-  static newCategory = new NewCategoryAction();
-  static news = new NewsAction();
-  static promotion = new PromotionAction();
-  static rank = new RankAction();
-  static skill = new SkillAction();
-  static student = new StudentAction();
-  static studentTimeTable = new StudentTimeTableAction();
-  static teacher = new TeacherAction();
-  static tesmonial = new TesmonialAction();
-  static timeTableItem = new TimeTableItemAction();
-  static slider = new SliderAction();
-  static setting = new SettingAction();
-  static timeTable = new TimeTableAction();
+  constructor() {
+  }
+  static admin = new AdminAction()
+  static class = new ClassAction()
+  static classTimeTable = new ClassTimeTableAction()
+  static contact = new ContactAction()
+  static course = new CourseAction()
+  static event = new EventAction()
+  static feedback = new FeedbackAction()
+  static gallery = new GalleryAction()
+  static masonryHome = new MasonryHomeAction()
+  static newCategory = new NewCategoryAction()
+  static news = new NewsAction()
+  static promotion = new PromotionAction()
+  static rank = new RankAction()
+  static skill = new SkillAction()
+  static student = new StudentAction()
+  static studentTimeTable = new StudentTimeTableAction()
+  static teacher = new TeacherAction()
+  static tesmonial = new TesmonialAction()
+  static timeTableItem = new TimeTableItemAction()
+  static slider = new SliderAction()
+  static setting = new SettingAction()
+  static timeTable = new TimeTableAction()
+  static studentAccount = new StudentAccountAction()
   static statisticCourse = new StatisticCourseAction();
   static statisticStudent = new StatisticStudentAction();
 }
