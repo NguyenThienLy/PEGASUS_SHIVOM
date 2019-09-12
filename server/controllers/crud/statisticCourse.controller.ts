@@ -14,6 +14,7 @@ export class StatisticCourseController extends CrudController<typeof statisticCo
         startTime: Date,
         endTime: Date
     }) {
+        console.log("paramsControll", params)
 
         // Lay ma hash duy nhat de query cache
         const hashCode = hash(JSON.stringify(params))
@@ -43,6 +44,9 @@ export class StatisticCourseController extends CrudController<typeof statisticCo
                     totalWeekEndTime = moment(endTime).year() * 52
                     break
             }
+
+            console.log(moment(startTime).year(), moment(startTime).week())
+            console.log(moment(endTime).year(), moment(endTime).week())
 
             // Thống kê theo kiểu realTime
             if (type === "realTime")

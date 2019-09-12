@@ -220,7 +220,8 @@ export class StudentController extends CrudController<typeof studentService>{
                 $match: {
                     day: { $gte: startDay, $lte: endDay }
                 }
-            }
+            },
+            { $sort: { birthday: 1 } }
         ])
         return await this.service.getList(_.merge(option, {
             filter: {
