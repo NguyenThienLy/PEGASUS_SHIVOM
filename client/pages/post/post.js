@@ -195,7 +195,7 @@ class Post extends React.Component {
                                     </div>
                                 </div>
                                 <h1 className="post__wrapper__main-content__title">
-                                    <a href="#">{this.props.news.title}</a>
+                                    <a href="#">{this.props.newsData.title}</a>
                                 </h1>
                                 <div className="post__wrapper__main-content__content" dangerouslySetInnerHTML={{ __html: this.props.newsData.content }}>
                                 </div>
