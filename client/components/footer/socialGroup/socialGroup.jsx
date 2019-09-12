@@ -6,7 +6,6 @@ export class SocialGroup extends React.Component {
         super(props)
     }
     render() {
-        console.log("socal groual props: ", this.props)
         return (
 
             <div className="media-buttons">

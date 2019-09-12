@@ -12,6 +12,18 @@ export class TimeTable extends React.Component {
       dayOfWeekMapping: [
         "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"
       ],
+      dayOfWeekVietnamese: [
+        "Thứ hai", "Thứ ba", "Thứ tư", "Thứ năm", "Thứ sáu", "Thứ bảy", "Chủ nhật"
+      ],
+      timeTableListData: {
+        monday: [],
+        tuesday: [],
+        wednesday: [],
+        thursday: [],
+        friday: [],
+        saturday: [],
+        sunday: []
+      },
       timeTableData: {
         morning: {
           monday: [],
@@ -71,6 +83,15 @@ export class TimeTable extends React.Component {
         saturday: []
       }
     }
+    let timeTableListData = {
+      monday: [],
+      tuesday: [],
+      wednesday: [],
+      thursday: [],
+      friday: [],
+      saturday: [],
+      sunday: []
+    }
     const LAST_MORNING_HOUR = 720
     const LAST_AFTERNOON_HOUR = 1080
     let timeTableItems = this.props.timeTables.forEach(timeTable => {
@@ -79,16 +100,7 @@ export class TimeTable extends React.Component {
       const teacherName = timeTable.class.teacher ? timeTable.class.teacher.firstName + " " + timeTable.class.teacher.lastName : null
 
       timeTable.items.forEach(item => {
-        // let data = {
-        //   startTime: item.startTime,
-        //   endTime: item.endTime,
-        //   dayOfWeek: item.dayOfWeek,
-        //   dayOfweekText: sorter[item.dayOfWeek].text,
-        //   course: courseName,
-        //   class: className,
-        //   teacher: teacherName
-        // }
-        let data = (<div className={`time-table__table-events__class-info time-table__table-events__class-info-${timeTable.course._id} time-table__table-events__my-tooltip`}>
+        let data = (<div className={`time-table__table-events__class-info time-table__table-events__class-info-${timeTable.course._id} time-table__table-events__my-tooltip`} key={item._id}>
           <div className="time-table__table-events__my-tooltip__content" >
             {item.endTime.number - item.startTime.number} phút
           <i />
@@ -104,6 +116,18 @@ export class TimeTable extends React.Component {
             {teacherName}
           </div>
         </div>)
+        let listItemData = (<div className={`time-table__list-events__event__class-info time-table__list-events__event__class-info-${timeTable.course._id}`} key={item._id}>
+          <a
+            href="#"
+            className="time-table__list-events__event__class-info__class-name"
+          >
+            {courseName}
+          </a>
+          <div className="time-table__list-events__event__class-info__class-time">
+            {courseName} <br />{item.startTime.hour}:{item.startTime.minute === 0 ? "00" : item.startTime.minute} - {item.endTime.hour}:{item.endTime.minute === 0 ? "00" : item.endTime.minute}
+          </div>
+        </div>)
+        timeTableListData[item.dayOfWeek].push(listItemData)
         if (item.endTime.number < LAST_MORNING_HOUR) {
           timeTableData.morning[item.dayOfWeek].push(data)
         } else if (item.endTime.number < LAST_AFTERNOON_HOUR) {
@@ -113,21 +137,19 @@ export class TimeTable extends React.Component {
         }
       })
     })
-
-    console.log("Time table items: ", timeTableData)
-    this.setState({ timeTableData })
+    this.setState({ timeTableData, timeTableListData })
   }
   changeTab = (tabId) => {
-    console.log("change tab: ", tabId)
     this.setState({ currentTab: tabId })
     if (tabId === "all") {
       $("div[class*='time-table__table-events__class-info-']").show()
+      $("div[class*='time-table__list-events__event__class-info-']").show()
     } else {
-
-
       //$(`div:not(.time-table__table-events__class-info-${tabId})`).hide()
       $("div[class*='time-table__table-events__class-info-']").not($(`.time-table__table-events__class-info-${tabId}`)).hide()
       $(`.time-table__table-events__class-info-${tabId}`).show()
+      $("div[class*='time-table__list-events__event__class-info-']").not($(`.time-table__list-events__event__class-info-${tabId}`)).hide()
+      $(`.time-table__list-events__event__class-info-${tabId}`).show()
     }
   }
   render() {
@@ -148,73 +170,18 @@ export class TimeTable extends React.Component {
             })}
           </ul>
         </div>
-        {/* <div className="time-table__list-events">
-          <div className="time-table__list-events__event">
-            <div className="time-table__list-events__event__date">thứ hai</div>
-            <div className="time-table__list-events__event__class-info">
-              <a
-                href="#"
-                className="time-table__list-events__event__class-info__class-name"
-              >
-                Cân bằng cơ thể
-              </a>
-              <div className="time-table__list-events__event__class-info__class-time">
-                9.00 - 10.00
+        <div className="time-table__list-events">
+          {this.state.dayOfWeekMapping.map((dayOfWeek, index) => {
+            return (
+              <div className="time-table__list-events__event" key={index}>
+                <div className="time-table__list-events__event__date">{this.state.dayOfWeekVietnamese[Number(index)]}</div>
+                {this.state.timeTableListData[dayOfWeek].map(item => {
+                  return item
+                })}
               </div>
-            </div>
-          </div>
-          <div className="time-table__list-events__event">
-            <div className="time-table__list-events__event__date">thứ ba</div>
-            <div className="time-table__list-events__event__class-info">
-              <a
-                href="#"
-                className="time-table__list-events__event__class-info__class-name"
-              >
-                Duỗi người
-              </a>
-              <div className="time-table__list-events__event__class-info__class-time">
-                9.00 - 10.00
-              </div>
-            </div>
-          </div>
-          <div className="time-table__list-events__event">
-            <div className="time-table__list-events__event__date">thứ tư</div>
-          </div>
-          <div className="time-table__list-events__event">
-            <div className="time-table__list-events__event__date">thứ năm</div>
-            <div className="time-table__list-events__event__class-info">
-              <a
-                href="#"
-                className="time-table__list-events__event__class-info__class-name"
-              >
-                Cân bằng cơ thể
-              </a>
-              <div className="time-table__list-events__event__class-info__class-time">
-                9.00 - 10.00
-              </div>
-            </div>
-          </div>
-          <div className="time-table__list-events__event">
-            <div className="time-table__list-events__event__date">thứ sáu</div>
-          </div>
-          <div className="time-table__list-events__event">
-            <div className="time-table__list-events__event__date">thứ bảy</div>
-            <div className="time-table__list-events__event__class-info">
-              <a
-                href="#"
-                className="time-table__list-events__event__class-info__class-name"
-              >
-                Cân bằng cơ thể
-              </a>
-              <div className="time-table__list-events__event__class-info__class-time">
-                9.00 - 10.00
-              </div>
-            </div>
-          </div>
-          <div className="time-table__list-events__event">
-            <div className="time-table__list-events__event__date">chủ nhật</div>
-          </div>
-        </div> */}
+            )
+          })}
+        </div>
         <div className="time-table__table-events">
           <div className="time-table__table-events__background" />
           <table>
