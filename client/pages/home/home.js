@@ -714,6 +714,7 @@ class Home extends React.Component {
 
           <Footer
             {...this.props.setting.contact}
+            social={this.props.setting.social}
             logo={this.props.setting.logo}
           />
         </React.Fragment>

@@ -12,8 +12,7 @@ export class AdminReducer extends BaseReducer {
                 isError: false,
                 error: null,
                 isLogon: false
-            }
-
+            },
         }
         this.customActions = {
             loginPending: `${this.name}_LOGIN_PENDING`,

@@ -237,7 +237,7 @@ export class AllCourses extends React.Component {
 					</div>
 
 					<div className="all-courses__footer">
-						<Footer />
+						<Footer social={this.props.setting.social} />
 					</div>
 				</React.Fragment>
 			</div>

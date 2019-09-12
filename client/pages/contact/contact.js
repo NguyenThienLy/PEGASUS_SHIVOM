@@ -225,7 +225,7 @@ export class Contact extends React.Component {
             </div>
           </div>
 
-          <Footer {...this.props.setting.contact} logo={this.props.setting.logo} />
+          <Footer {...this.props.setting.contact} logo={this.props.setting.logo} social={this.props.setting.social} />
         </React.Fragment>
       </div>
     );

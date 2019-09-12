@@ -47,7 +47,7 @@ export class Footer extends React.Component {
       body.css("margin-bottom", "0px");
     }
 
-    $(window).on("resize", function() {
+    $(window).on("resize", function () {
       if ($(window).outerWidth() > 599) {
         heightOfFooter = $(".footer-wrapper").outerHeight();
         $(".footer-wrapper").css({
@@ -92,7 +92,7 @@ export class Footer extends React.Component {
             </a>
           </div>
           <div className="footer-wrapper__first-floor__social-group">
-            <SocialGroup />
+            {this.props.social ? <SocialGroup social={this.props.social} /> : null}
           </div>
           <div className="footer-wrapper__first-floor__email-regis">
             <form className="footer-wrapper__first-floor__email-regis__form">

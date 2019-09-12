@@ -237,7 +237,7 @@ class Blog extends React.Component {
                                     <SearchBox type="search" />
                                 </div>
                                 <div className="blog__wrapper__sub-content__social-group">
-                                    <SocialGroup />
+                                    {this.props.setting.social ? <SocialGroup social={this.props.setting.social} /> : null}
                                 </div>
                                 <div className="blog__wrapper__sub-content__categories">
                                     <div className="blog__wrapper__sub-content__categories__text">
@@ -297,6 +297,7 @@ class Blog extends React.Component {
                 <div className="blog__footer">
                     <Footer
                         {...this.props.setting.contact}
+                        social={this.props.setting.social}
                         logo={this.props.setting.logo}
                     />
                 </div>

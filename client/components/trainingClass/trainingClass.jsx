@@ -23,7 +23,7 @@ export class TrainingClass extends React.Component {
                 <div className="training-class__info">
                     <div className="training-class__info__category">
                         <a href={trainingClass.link}>
-                            {trainingClass.category}
+                            Yoga
                         </a>
                     </div>
                     <h4 className="training-class__info__name">

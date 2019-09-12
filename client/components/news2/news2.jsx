@@ -46,10 +46,10 @@ export class News2 extends React.Component {
                         <div className="news2__inner__image__dateCreated">
                             <a href="#">
                                 <span className="news2__inner__image__dateCreated__day">
-                                    {moment(news2.createdAt).day()}
+                                    {moment(news2.createdAt).date()}
                                 </span>
                                 <span className="news2__inner__image__dateCreated__month">
-                                    {moment(news2.createdAt).month()}
+                                    Th {moment(news2.createdAt).month() + 1}
                                 </span>
                             </a>
                         </div>
