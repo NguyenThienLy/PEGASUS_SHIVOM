@@ -162,10 +162,10 @@ class Post extends React.Component {
                         <span>
                             <Link href="/home/home" as="/">
                                 <a href="/">Trang chủ</a>
-                            </Link> </span>/
+                            </Link> </span>&nbsp;&nbsp;<i className="fas fa-chevron-right"></i>&nbsp;&nbsp;
                         <span><Link href={`/blog/blog?categorySlug=${this.props.newsData.category.slug}`} as={`/${this.props.newsData.category.slug}`}>
                             <a href={`/${this.props.newsData.category.slug}`}>{this.props.newsData.category.name}</a>
-                        </Link></span> /
+                        </Link></span> &nbsp;&nbsp;<i className="fas fa-chevron-right"></i>&nbsp;&nbsp;
                         <span><Link href={`/post/post?categorySlug=${this.props.newsData.category.slug}&newsSlug=${this.props.newsData.slug}`} as={`/${this.props.newsData.category.slug}/${this.props.newsData.slug}`}>
                             <a>{this.props.newsData.title}</a>
                         </Link></span>

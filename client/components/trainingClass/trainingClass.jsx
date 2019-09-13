@@ -13,18 +13,22 @@ export class TrainingClass extends React.Component {
             <div className="training-class">
                 <div className="training-class__image">
                     <div className="training-class__image__background" />
-                    <a href={trainingClass.link}>
-                        <img
-                            src={trainingClass.thumb}
-                            alt={trainingClass.name}
-                        />
-                    </a>
+                    <Link href={`/course/course?slug=${trainingClass.slug}`} as={`/khoa-hoc/${trainingClass.slug}`}>
+                        <a href={`/khoa-hoc/${trainingClass.slug}`}>
+                            <img
+                                src={trainingClass.thumb}
+                                alt={trainingClass.name}
+                            />
+                        </a>
+                    </Link>
                 </div>
                 <div className="training-class__info">
                     <div className="training-class__info__category">
-                        <a href={trainingClass.link}>
-                            Yoga
-                        </a>
+                        <Link href={`/course/course?slug=${trainingClass.slug}`} as={`/khoa-hoc/${trainingClass.slug}`}>
+                            <a href={`/khoa-hoc/${trainingClass.slug}`}>
+                                Yoga
+                            </a>
+                        </Link>
                     </div>
                     <h4 className="training-class__info__name">
                         <Link href={`/course/course?slug=${trainingClass.slug}`} as={`/khoa-hoc/${trainingClass.slug}`}>

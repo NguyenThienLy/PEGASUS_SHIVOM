@@ -216,7 +216,13 @@ class Blog extends React.Component {
                 <Header {...this.props} />
                 <React.Fragment>
                     <div className="blog__path">
-                        <a href="http://hiephoayoga.com">trang chủ</a> / <a>các bài viết</a>
+                        <span>
+                            <Link href="/home/home" as="/">
+                                <a href="/">Trang chủ</a>
+                            </Link> </span>&nbsp;&nbsp;<i className="fas fa-chevron-right"></i>&nbsp;&nbsp;
+                        <span><Link href={`/blog/blog?categorySlug=${this.props.category.slug}`} as={`/${this.props.category.slug}`}>
+                            <a href={`/${this.props.category.slug}`}>{this.props.category.name}</a>
+                        </Link></span>
                     </div>
                     <div className="blog">
                         <div className="blog__wrapper">
