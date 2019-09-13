@@ -9,7 +9,7 @@ export class TimeTableOptions extends React.Component {
     super(props);
     this.state = {};
   }
-  componentDidMount() {}
+  componentDidMount() { }
   render() {
     return (
       <div className="time-table-options">
@@ -343,7 +343,7 @@ export class TimeTableOptions extends React.Component {
         </div>
         <div className="time-table-options__button">
           <button>
-            Tiếp tục <i class="fas fa-chevron-right"></i>
+            Tiếp tục <i className="fas fa-chevron-right"></i>
           </button>
         </div>
       </div>

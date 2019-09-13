@@ -163,7 +163,7 @@ class Project extends Component {
         </Head>
 
         <React.Fragment>
-          <div class="background-overlay"></div>
+          <div className="background-overlay"></div>
           <div className="addMember__header">
             <HeaderAdmin
               sidebar={this.state.categories}

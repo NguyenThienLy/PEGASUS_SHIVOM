@@ -9,7 +9,7 @@ export class ImageShow extends React.Component {
     return (
       <div className="image-show">
         {this.props.items.map((item, index) => {
-          return (<div className={`image-show__img${index} image-show__item`}>
+          return (<div className={`image-show__img${index} image-show__item`} key={index}>
             <img
               src={item.image}
               alt={item.name}

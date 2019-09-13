@@ -177,7 +177,7 @@ export class CourseOptions extends React.Component {
         <div className="course-options__content">
           {this.state.courseOptions.map((item, index) => {
             return (
-              <div className="course-options__content__course">
+              <div className="course-options__content__course" key={index}>
                 <div className="course-options__content__course__icon">
                   <i className="fab fa-pagelines"></i>
                 </div>
@@ -190,13 +190,13 @@ export class CourseOptions extends React.Component {
                 <div className="course-options__content__course__list-options">
                   {item.options.map((option, index) => {
                     return (
-                      <div className="course-options__content__course__list-options__option">
+                      <div className="course-options__content__course__list-options__option" key={index}>
                         <input type="checkbox" />
                         <div className="course-options__content__course__list-options__option__name">
                           {option.type}
                         </div>
                         <div className="course-options__content__course__list-options__option__discount">
-                          <i class="fas fa-tags"></i> {option.discount}
+                          <i className="fas fa-tags"></i> {option.discount}
                         </div>
                       </div>
                     );
@@ -216,7 +216,7 @@ export class CourseOptions extends React.Component {
           })}
           <div className="course-options__content__button">
             <button>
-              Tiếp tục <i class="fas fa-chevron-right"></i>
+              Tiếp tục <i className="fas fa-chevron-right"></i>
             </button>
           </div>
         </div>

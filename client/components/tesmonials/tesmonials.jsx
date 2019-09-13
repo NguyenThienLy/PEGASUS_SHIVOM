@@ -35,7 +35,7 @@ export class Tesmonials extends React.Component {
         }
       ]
     });
-    $(".tesmonials__slick-autoplay").on("beforeChange", function(
+    $(".tesmonials__slick-autoplay").on("beforeChange", function (
       event,
       slick,
       currentSlide,
@@ -46,7 +46,7 @@ export class Tesmonials extends React.Component {
       );
       $(".tesmonials__slick-autoplay .slick-dots li button")
         .attr("aria-pressed", "false")
-        .focus(function() {
+        .focus(function () {
           this.blur();
         });
     });
@@ -58,9 +58,9 @@ export class Tesmonials extends React.Component {
     return (
       <div className="tesmonials">
         <div className="tesmonials__slick-autoplay">
-          {this.props.tesmonials.map(review => {
+          {this.props.tesmonials.map((review, index) => {
             return (
-              <div className="tesmonials__slick-autoplay__item">
+              <div className="tesmonials__slick-autoplay__item" key={index}>
                 <Review review={review} />
               </div>
             );

@@ -52,7 +52,7 @@ export class ContactUs extends React.Component {
               {
                 this.props.defaultCourse ? <option value={this.props.defaultCourse._id}>{this.props.defaultCourse.name}</option> : this.props.courses.length > 0 ? this.props.courses.map(course => {
                   return (
-                    <option value={course._id}>{course.name}</option>
+                    <option value={course._id} key={course._id}>{course.name}</option>
                   )
                 }) : <option value="" hidden>
                     Chọn khoá học

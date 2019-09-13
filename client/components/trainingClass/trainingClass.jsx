@@ -38,26 +38,14 @@ export class TrainingClass extends React.Component {
                     <p className="training-class__info__detail" dangerouslySetInnerHTML={{ __html: (trainingClass.description || "").slice(0, 100) + "..." }}>
 
                     </p>
-                    {/* <div className="training-class__info__other">
-            <div className="training-class__info__other__time">
-              <span>
-                <i class="far fa-clock fa-sm" />
-              </span>
-              <span>{trainingClass.time}</span>
-            </div>
-            <div className="training-class__info__other__star">
-              <span>
-                <i class="far fa-star fa-sm" />
-              </span>
-              <span>{trainingClass.star}</span>
-            </div>
-            <div className="training-class__info__other__love">
-              <span>
-                <i class="fas fa-heart fa-sm" />
-              </span>
-              <span>{trainingClass.love}</span>
-            </div>
-          </div> */}
+                    <div className="training-class__info__other">
+                        <div className="training-class__info__other__time">
+                            <span>
+                                <i className="fas fa-users"></i>
+                            </span>
+                            <span>{trainingClass.currentStudentAmount}/{trainingClass.quantity}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         );

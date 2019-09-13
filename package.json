@@ -63,6 +63,7 @@
     "redux-thunk": "^2.3.0",
     "request-promise": "^4.2.2",
     "socket.io": "^2.2.0",
+    "sweetalert2": "^8.17.1",
     "typescript": "^3.5.3",
     "uuid": "^3.3.3"
   },

@@ -12,11 +12,15 @@ export type CourseModel = BaseModel & {
     metaDescription: string
     thumb: string
     benefits: string[]
+    quantity: number
+    currentStudentAmount: number
 }
 
 const courseSchema = new Schema({
     name: { type: String, required: true },
     slug: { type: String, unique: true },
+    quantity: { type: Number, default: 0 },
+    currentStudentAmount: { type: Number },
     shortDescription: { type: String },
     description: { type: String },
     metaTitle: { type: String },

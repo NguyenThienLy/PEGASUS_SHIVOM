@@ -81,7 +81,6 @@ export class Sidebar extends React.Component {
 
   render() {
     const { sidebar } = this.props;
-    console.log("side bar: ", sidebar)
     return (
       <div className="sidebar">
         <div className="sidebar__inner">
@@ -98,9 +97,9 @@ export class Sidebar extends React.Component {
             </div>
           </div>
           <ul className="sidebar__inner__main-menu">
-            {sidebar.map(item => {
+            {sidebar.map((item, index) => {
               return item.subCategories ? (
-                <React.Fragment>
+                <React.Fragment key={index}>
                   <li className="sidebar__inner__main-menu__sub-menu">
                     <a href="#">
                       {/* <span
@@ -109,14 +108,14 @@ export class Sidebar extends React.Component {
                       {item.name}
                     </a>
                     <div className="sidebar__inner__main-menu__sub-menu__dropdown-icon">
-                      <i class="fas fa-caret-left" />
+                      <i className="fas fa-caret-left" />
                     </div>
                   </li>
                   <div className="sidebar__inner__main-menu__sub-menu__dropdown-container">
                     <ul>
-                      {item.subCategories.map(subItem => {
+                      {item.subCategories.map((subItem, index) => {
                         return (
-                          <Link href={subItem.linkHref} as={subItem.linkAs}>
+                          <Link href={subItem.linkHref} as={subItem.linkAs} key={index}>
                             <li>
 
                               <a href={subItem.linkAs}>{subItem.name}</a>
@@ -129,7 +128,7 @@ export class Sidebar extends React.Component {
                   </div>
                 </React.Fragment>
               ) : (
-                  <Link href={item.linkHref} as={item.linkAs}>
+                  <Link href={item.linkHref} as={item.linkAs} key={index}>
                     <li className="sidebar__inner__main-menu__none-sub-menu">
 
                       <a href={item.linkAs}>

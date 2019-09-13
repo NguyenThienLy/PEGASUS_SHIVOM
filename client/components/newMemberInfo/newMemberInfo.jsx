@@ -33,7 +33,7 @@ export class NewMemberInfo extends React.Component {
               />
             </div>
             <div className="newMemberInfo__form__info__icon">
-              <i class="fas fa-address-card"></i>
+              <i className="fas fa-address-card"></i>
             </div>
           </div>
           <div className="newMemberInfo__form__info">
@@ -77,24 +77,24 @@ export class NewMemberInfo extends React.Component {
               />
             </div>
             <div className="newMemberInfo__form__info__icon">
-              <i class="fas fa-user-alt"></i>
+              <i className="fas fa-user-alt"></i>
             </div>
           </div>
           <div className="newMemberInfo__form__info">
             <div className="newMemberInfo__title-text">Thêm ảnh đại diện</div>
             <div className="newMemberInfo__form__info__add-photo">
               <button>
-                <i class="fas fa-plus-circle"></i>
+                <i className="fas fa-plus-circle"></i>
               </button>
             </div>
 
             <div className="newMemberInfo__form__info__icon">
-              <i class="fas fa-camera-retro"></i>
+              <i className="fas fa-camera-retro"></i>
             </div>
           </div>
           <div className="newMemberInfo__form__button">
             <button>
-              Tiếp tục <i class="fas fa-chevron-right"></i>
+              Tiếp tục <i className="fas fa-chevron-right"></i>
             </button>
           </div>
         </form>

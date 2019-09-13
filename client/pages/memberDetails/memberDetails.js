@@ -66,25 +66,25 @@ export class MemberDetails extends React.Component {
       ],
       numberAdmins: [
         {
-          icon: '<i class="fas fa-id-card-alt"></i>',
+          icon: '<i className="fas fa-id-card-alt"></i>',
           about: "Đi đúng giờ",
           quantity: 184,
           colorIcon: "#f5365c"
         },
         {
-          icon: '<i class="fas fa-id-card-alt"></i>',
+          icon: '<i className="fas fa-id-card-alt"></i>',
           about: "Đi trễ",
           quantity: 60,
           colorIcon: "#fb6340"
         },
         {
-          icon: '<i class="fas fa-id-card-alt"></i>',
+          icon: '<i className="fas fa-id-card-alt"></i>',
           about: "Vắng",
           quantity: 24,
           colorIcon: "#ffd600"
         },
         {
-          icon: '<i class="fas fa-id-card-alt"></i>',
+          icon: '<i className="fas fa-id-card-alt"></i>',
           about: "Đi thừa",
           quantity: 13,
           colorIcon: "#11cdef"
@@ -100,10 +100,10 @@ export class MemberDetails extends React.Component {
     return {};
   }
 
-  fetchData = () => {};
+  fetchData = () => { };
 
-  handleScroll = () => {};
-  componentWillUnmount() {}
+  handleScroll = () => { };
+  componentWillUnmount() { }
   componentDidMount() {
     this.fetchData();
 

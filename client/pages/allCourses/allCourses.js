@@ -7,6 +7,7 @@ import { api } from "../../services";
 import { action } from "../../actions";
 import { bindActionCreators } from 'redux'
 
+import Swal from 'sweetalert2'
 import "./allCourses.scss";
 import {
 	Header,
@@ -137,6 +138,16 @@ export class AllCourses extends React.Component {
 			this.props.fetchNewCategory()
 		}
 	}
+	componentDidUpdate(prevProps, prevState, snapshot) {
+		if (this.props.contacts.isAddSuccess && !prevProps.contacts.isAddSuccess) {
+			Swal.fire("Thành công", 'Gửi liên hệ thành công', 'success')
+			this.props.addContactRefresh()
+		}
+		if (this.props.contacts.isAddError && prevProps.contacts.adding) {
+			Swal.fire("Thất bại", 'Gửi liên hệ không thành công', 'error')
+			this.props.addContactRefresh()
+		}
+	}
 	componentDidMount() {
 		this.fetchData()
 		this.handleScroll();
@@ -149,6 +160,7 @@ export class AllCourses extends React.Component {
 	getLatestNews() {
 		api.news.getList({
 			query: {
+				limit: 5,
 				order: { createdAt: -1 },
 				populates: [{ path: "category", select: "name slug" }]
 			}
@@ -196,8 +208,8 @@ export class AllCourses extends React.Component {
 					<div className="all-courses__wrapper">
 						<div className="all-courses__wrapper__main-content">
 							{this.props.courses.fetching === false
-								? this.props.courses.items.map(trainingClass => {
-									return <TrainingClass trainingClass={trainingClass} />;
+								? this.props.courses.items.map((trainingClass, index) => {
+									return <TrainingClass trainingClass={trainingClass} key={index} />;
 								})
 								: null}
 						</div>
@@ -213,9 +225,9 @@ export class AllCourses extends React.Component {
 									Thể loại
                 	                </div>
 								{
-									this.props.newCategories.items.map((category) => {
+									this.props.newCategories.items.map((category, index) => {
 										return (
-											<div className="all-courses__wrapper__sub-content__categories__category">
+											<div className="all-courses__wrapper__sub-content__categories__category" key={index}>
 												<Link href={`/blog/blog?categorySlug=${category.slug}`} as={`/${category.slug}`}>
 													<a href={`/${category.slug}`} >
 														{category.name}
@@ -279,6 +291,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 	fetchSetting: action.setting.fetch,
 	fetchNewCategory: action.newCategory.fetch,
 	addContact: action.contact.add,
+	addContactRefresh: action.contact.addRefresh
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllCourses);

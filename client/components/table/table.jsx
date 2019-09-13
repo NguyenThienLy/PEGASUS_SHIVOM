@@ -12,7 +12,7 @@ export class Table extends React.Component {
       <div className="table">
         <div className="table__title">
           <div className="table__title__icon">
-            <i class="fas fa-clipboard-list" />
+            <i className="fas fa-clipboard-list" />
           </div>
           <div className="table__title__content">Simple Table</div>
         </div>
@@ -46,19 +46,19 @@ export class Table extends React.Component {
                     type="button"
                     className="table__content__btn table__content__btn--primary"
                   >
-                    <i class="fas fa-info" />
+                    <i className="fas fa-info" />
                   </button>
                   <button
                     type="button"
                     className="table__content__btn table__content__btn--success"
                   >
-                    <i class="fas fa-pen" />
+                    <i className="fas fa-pen" />
                   </button>
                   <button
                     type="button"
                     className="table__content__btn table__content__btn--warning"
                   >
-                    <i class="fas fa-trash-alt" />
+                    <i className="fas fa-trash-alt" />
                   </button>
                 </td>
               </tr>
