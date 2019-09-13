@@ -124,9 +124,9 @@ export class Footer extends React.Component {
         </div>
         <hr className="footer-wrapper__divider" />
         <div className="footer-wrapper__second-floor">
-          {this.state.categories.map(category => {
+          {this.state.categories.map((category, index) => {
             return (
-              <Link href={category.linkHref} as={category.linkAs}>
+              <Link href={category.linkHref} as={category.linkAs} key={index}>
                 <a href={category.linkAs}>
                   <div
                     className="footer-wrapper__second-floor__item"

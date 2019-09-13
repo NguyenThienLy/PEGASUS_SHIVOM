@@ -8,21 +8,21 @@ export class Alert extends Component {
         this.state = {
             warn: {
                 typeCss: 'warn',
-                icon: <i class="fas fa-exclamation"></i>,
+                icon: <i className="fas fa-exclamation"></i>,
                 title: 'Are You Sure?',
                 content: 'Do you really want to delete this',
                 button: 'Cancel'
             },
             success: {
                 typeCss: 'success',
-                icon: <i class="fas fa-check"></i>,
+                icon: <i className="fas fa-check"></i>,
                 title: 'Success',
                 content: 'This is acceptable',
                 button: 'OK'
             },
             error: {
                 typeCss: 'error',
-                icon: <i class="fas fa-times"></i>,
+                icon: <i className="fas fa-times"></i>,
                 title: 'Error',
                 content: 'This is unacceptable',
                 button: 'Cancel'
@@ -56,7 +56,7 @@ export class Alert extends Component {
         return (
             <div className="alert-wrapper" >
 
-                <div className="alert-wrapper__exit"><i class="fas fa-times"></i></div>
+                <div className="alert-wrapper__exit"><i className="fas fa-times"></i></div>
                 <div className={`alert-wrapper__icon alert-wrapper__icon--${typeOfBtn.typeCss}`}>
                     {typeOfBtn.icon}
                 </div>

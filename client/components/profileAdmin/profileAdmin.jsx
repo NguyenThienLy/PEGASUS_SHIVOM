@@ -61,13 +61,13 @@ export class ProfileAdmin extends React.Component {
 
           <div className="profileAdmin__links">
             <a href={profileAdmin.facebook}>
-              <i class="fab fa-facebook-f" />
+              <i className="fab fa-facebook-f" />
             </a>
             <a href={profileAdmin.twitter}>
-              <i class="fab fa-twitter" />
+              <i className="fab fa-twitter" />
             </a>
             <a href={profileAdmin.instagram}>
-              <i class="fab fa-instagram" />
+              <i className="fab fa-instagram" />
             </a>
           </div>
         </div>

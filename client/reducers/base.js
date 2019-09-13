@@ -5,17 +5,20 @@ import * as _ from 'lodash'
 export class BaseReducer {
     constructor(name) {
         this.name = name.toUpperCase()
-        this.initState = {
+        this.customInitState = {}
+        this.initState = _.merge({
             items: [],
             fetching: false,
             fetchError: null,
             updating: false,
             updateError: null,
+            isAddSuccess: false,
             adding: false,
+            isAddError: false,
             addError: null,
             deleting: false,
             deleteError: null
-        }
+        }, this.customInitState)
         this.customActions = {}
         this.actions = _.merge({
             fetchPending: `FETCH_${this.name}_PENDING`,
@@ -24,6 +27,7 @@ export class BaseReducer {
             addPending: `ADD_${this.name}_PENDING`,
             addSuccess: `ADD_${this.name}_SUCCESS`,
             addError: `ADD_${this.name}_ERROR`,
+            addRefresh: `ADD_${this.name}_REFRESH`,
             deletePending: `DELETE_${this.name}_PENDING`,
             deleteSuccess: `DELETE_${this.name}_SUCCESS`,
             deleteError: `DELETE_${this.name}_ERROR`,
@@ -48,13 +52,17 @@ export class BaseReducer {
                 state = { ...state, fetching: false, fetchError: action.payload };
                 break
             case this.actions.addPending:
-                state.unshift(action.payload)
+                state = { ...state, adding: true }
                 break
             case this.actions.addSuccess:
-                state.unshift(action.payload)
+                state = { ...state, adding: false, isAddSuccess: true }
+                state.items.unshift(action.payload)
                 break
             case this.actions.addError:
-                state.unshift(action.payload)
+                state = { ...state, adding: false, isAddError: true, addError: action.payload }
+                break
+            case this.actions.addRefresh:
+                state = { ...state, adding: false, isAddError: false, addError: null, isAddSuccess: false }
                 break
             case this.actions.deletePending:
                 break

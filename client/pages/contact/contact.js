@@ -7,6 +7,8 @@ import { api } from "../../services";
 import { action } from "../../actions";
 import { bindActionCreators } from 'redux';
 
+import Swal from 'sweetalert2'
+
 import "./contact.scss";
 import { Header, Footer, IntroHome2, ContactUs, Map } from "../../components";
 import GoogleMapReact from "google-map-react";
@@ -64,6 +66,16 @@ export class Contact extends React.Component {
   };
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
+  }
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.contacts.isAddSuccess && !prevProps.contacts.isAddSuccess) {
+      Swal.fire("Thành công", 'Gửi liên hệ thành công', 'success')
+      this.props.addContactRefresh()
+    }
+    if (this.props.contacts.isAddError && prevProps.contacts.adding) {
+      Swal.fire("Thất bại", 'Gửi liên hệ không thành công', 'error')
+      this.props.addContactRefresh()
+    }
   }
   fetchData() {
     if (this.props.courses.items.length === 0) {
@@ -154,7 +166,7 @@ export class Contact extends React.Component {
           ></meta>
         </Head>
         <React.Fragment>
-          <div class="background-overlay"></div>
+          <div className="background-overlay"></div>
           <Header {...this.props} logo={this.props.setting.logo} />
 
           <div className="contact__body">
@@ -178,8 +190,8 @@ export class Contact extends React.Component {
               </div>
             </div>
             <div className="contact__body__intro">
-              {this.state.intro.map(intro => {
-                return <IntroHome2 introHome2={intro}></IntroHome2>;
+              {this.state.intro.map((intro, index) => {
+                return <IntroHome2 introHome2={intro} key={index}></IntroHome2>;
               })}
             </div>
             <div className="contact__body__brands">
@@ -239,7 +251,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   fetchCourse: action.course.fetch,
   fetchSetting: action.setting.fetch,
   fetchNewCategory: action.newCategory.fetch,
-  addContact: action.contact.add
+  addContact: action.contact.add,
+  addContactRefresh: action.contact.addRefresh
 }, dispatch)
 
 

@@ -6,6 +6,7 @@ import { action } from "../../actions";
 import { api } from "../../services";
 import { bindActionCreators } from "redux";
 
+import Swal from 'sweetalert2'
 import "./home.scss";
 import {
   Footer,
@@ -303,7 +304,7 @@ class Home extends React.Component {
         button: "read more"
       },
       numberAdmin: {
-        icon: '<i class="fas fa-id-card-alt"></i>',
+        icon: '<i className="fas fa-id-card-alt"></i>',
         about: "booking",
         quantity: 184
       },
@@ -388,8 +389,14 @@ class Home extends React.Component {
     //   const result = await api.class.getList();
     // } catch (err) { }
   };
-  async componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.props.tesmonials.fetching === false) {
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.contacts.isAddSuccess && !prevProps.contacts.isAddSuccess) {
+      Swal.fire("Thành công", 'Gửi liên hệ thành công', 'success')
+      this.props.addContactRefresh()
+    }
+    if (this.props.contacts.isAddError && prevProps.contacts.adding) {
+      Swal.fire("Thất bại", 'Gửi liên hệ không thành công', 'error')
+      this.props.addContactRefresh()
     }
   }
   async componentDidMount() {
@@ -507,7 +514,7 @@ class Home extends React.Component {
           ></meta>
         </Head>
         <React.Fragment>
-          <div class="background-overlay"></div>
+          <div className="background-overlay"></div>
           <Header {...this.props} />
 
           <div className="home__body">
@@ -518,15 +525,15 @@ class Home extends React.Component {
             </div>
 
             <div className="home__body__intro">
-              {this.state.introHome.map(intro => {
-                return <IntroHome introHome={intro}></IntroHome>;
+              {this.state.introHome.map((intro, index) => {
+                return <IntroHome introHome={intro} key={index}></IntroHome>;
               })}
             </div>
             <div className="home__body__intro-slick-autoplay">
-              {this.state.introHome.map(intro => {
+              {this.state.introHome.map((intro, index) => {
                 return (
                   <div className="home__body__intro-slick-autoplay__item">
-                    <IntroHome introHome={intro}></IntroHome>
+                    <IntroHome introHome={intro} key={index}></IntroHome>
                   </div>
                 );
               })}
@@ -544,8 +551,8 @@ class Home extends React.Component {
               </div>
               <div className="home__body__trainingClass__content">
                 {this.props.courses.fetching === false
-                  ? this.props.courses.items.map(trainingClass => {
-                    return <TrainingClass trainingClass={trainingClass} />;
+                  ? this.props.courses.items.map((trainingClass, index) => {
+                    return <TrainingClass trainingClass={trainingClass} key={index} />;
                   })
                   : null}
                 {/* {this.state.trainingClasses.map(trainingClass => {
@@ -635,8 +642,8 @@ class Home extends React.Component {
               </div>
               <div className="home__body__trainers__list">
                 {this.props.teachers.fetching === false
-                  ? this.props.teachers.items.map(trainer => {
-                    return <Trainer trainer={trainer} />;
+                  ? this.props.teachers.items.map((trainer, index) => {
+                    return <Trainer trainer={trainer} key={index} />;
                   })
                   : null}
                 {/* {this.state.trainers.map(trainer => {
@@ -736,7 +743,8 @@ const mapDispatchToProps = dispatch =>
       fetchSetting: action.setting.fetch,
       fetchTimeTable: action.timeTable.fetch,
       fetchNewCategory: action.newCategory.fetch,
-      fetchPinnedNews: action.news.getPinnedNews
+      fetchPinnedNews: action.news.getPinnedNews,
+      addContactRefresh: action.contact.addRefresh
     },
     dispatch
   );

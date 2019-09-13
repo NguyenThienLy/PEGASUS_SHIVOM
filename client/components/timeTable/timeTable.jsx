@@ -110,8 +110,8 @@ export class TimeTable extends React.Component {
       const className = timeTable.class.name;
       const teacherName = timeTable.class.teacher
         ? timeTable.class.teacher.firstName +
-          " " +
-          timeTable.class.teacher.lastName
+        " " +
+        timeTable.class.teacher.lastName
         : null;
 
       timeTable.items.forEach(item => {
@@ -207,6 +207,7 @@ export class TimeTable extends React.Component {
                   onClick={() => {
                     return this.changeTab(course._id);
                   }}
+                  key={course._id}
                 >
                   <HoverDivAnimation title={course.name} />
                 </li>
@@ -251,7 +252,7 @@ export class TimeTable extends React.Component {
                   </div>
                 </td>
                 {this.state.dayOfWeekMapping.map(dayOfWeek => {
-                  return <td>{this.state.timeTableData.morning[dayOfWeek]}</td>;
+                  return <td key={dayOfWeek}>{this.state.timeTableData.morning[dayOfWeek]}</td>;
                 })}
                 {/* <td>
                   <div className="time-table__table-events__class-info time-table__table-events__my-tooltip">
@@ -340,7 +341,7 @@ export class TimeTable extends React.Component {
                 </td>
                 {this.state.dayOfWeekMapping.map(dayOfWeek => {
                   return (
-                    <td>{this.state.timeTableData.afternoon[dayOfWeek]}</td>
+                    <td key={dayOfWeek}>{this.state.timeTableData.afternoon[dayOfWeek]}</td>
                   );
                 })}
                 {/* <td>
@@ -429,7 +430,7 @@ export class TimeTable extends React.Component {
                   </div>
                 </td>
                 {this.state.dayOfWeekMapping.map(dayOfWeek => {
-                  return <td>{this.state.timeTableData.night[dayOfWeek]}</td>;
+                  return <td key={dayOfWeek}>{this.state.timeTableData.night[dayOfWeek]}</td>;
                 })}
                 {/* <td>
                   <div className="time-table__table-events__class-info time-table__table-events__my-tooltip">

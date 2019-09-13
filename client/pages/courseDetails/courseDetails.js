@@ -67,25 +67,25 @@ export class CourseDetails extends React.Component {
       ],
       numberAdmins: [
         {
-          icon: '<i class="fas fa-id-card-alt"></i>',
+          icon: '<i className="fas fa-id-card-alt"></i>',
           about: "Đi đúng giờ",
           quantity: 184,
           colorIcon: "#f5365c"
         },
         {
-          icon: '<i class="fas fa-id-card-alt"></i>',
+          icon: '<i className="fas fa-id-card-alt"></i>',
           about: "Đi trễ",
           quantity: 60,
           colorIcon: "#fb6340"
         },
         {
-          icon: '<i class="fas fa-id-card-alt"></i>',
+          icon: '<i className="fas fa-id-card-alt"></i>',
           about: "Vắng",
           quantity: 24,
           colorIcon: "#ffd600"
         },
         {
-          icon: '<i class="fas fa-id-card-alt"></i>',
+          icon: '<i className="fas fa-id-card-alt"></i>',
           about: "Đi thừa",
           quantity: 13,
           colorIcon: "#11cdef"
@@ -133,8 +133,8 @@ export class CourseDetails extends React.Component {
     // } catch (err) { }
   };
 
-  handleScroll = () => {};
-  componentWillUnmount() {}
+  handleScroll = () => { };
+  componentWillUnmount() { }
   componentDidMount() {
     this.fetchData();
 
@@ -248,8 +248,8 @@ export class CourseDetails extends React.Component {
           </div>
           <div className="courseDetails__body">
             <div className="courseDetails__body__numbers">
-              {this.state.numberAdmins.map(number => {
-                return <NumberAdmin numberAdmin={number}></NumberAdmin>;
+              {this.state.numberAdmins.map((number, index) => {
+                return <NumberAdmin numberAdmin={number} key={index}></NumberAdmin>;
               })}
             </div>
             <div className="courseDetails__body__card">
