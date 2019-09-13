@@ -164,7 +164,7 @@ export class Slider extends React.Component {
                   <p className="slider__slick-autoplay__item__caption__content slider__slick-autoplay__item__caption--hidden">
                     {item.option.description}
                   </p>
-                  <div className="slider__slick-autoplay__item__caption__more">
+                  <div className="slider__slick-autoplay__item__caption__more" onClick={this.props.showTryItNowModal}>
                     <a
                       href="#"
                       className="slider__slick-autoplay__item__caption__more__btn slider__slick-autoplay__item__caption--hidden"

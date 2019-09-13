@@ -59,7 +59,7 @@ export class News2 extends React.Component {
                     </div>
                     <div
                         className="news2__inner__content"
-                        dangerouslySetInnerHTML={{ __html: news2.content }}
+                        dangerouslySetInnerHTML={{ __html: news2.description }}
                     >
                         {/* <p > </p> */}
                     </div>

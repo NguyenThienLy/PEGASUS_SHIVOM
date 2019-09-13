@@ -52,3 +52,4 @@ export * from "./stepsLine/stepsLine";
 export * from "./tesmonials/tesmonials";
 export * from "./memberInfo/memberInfo";
 export * from "./courseInfo/courseInfo";
+export * from "./tryItNowForm/tryItNowForm"
