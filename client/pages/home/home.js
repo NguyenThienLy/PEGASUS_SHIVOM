@@ -23,6 +23,7 @@ import {
   Map,
   Tesmonials
 } from "../../components";
+import { TryItNowModal } from "./components/tryItNowModal/tryItNowModal";
 
 class Home extends React.Component {
   constructor(props) {
@@ -319,11 +320,21 @@ class Home extends React.Component {
         facebook: "facebook.com",
         twitter: "twitter.com",
         instagram: "instagram.com"
-      }
+      },
+      isShowTryItNowModal: false
     };
+    this.hideTryItNowModal = this.hideTryItNowModal.bind(this)
+    this.showTryItNowModal = this.showTryItNowModal.bind(this)
   }
   static async getInitialProps({ req, query }) {
     return {};
+  }
+  hideTryItNowModal() {
+    this.setState({ isShowTryItNowModal: false })
+    this.props.addContactRefresh()
+  }
+  showTryItNowModal() {
+    this.setState({ isShowTryItNowModal: true })
   }
   fetchData = () => {
     // Cách 1
@@ -501,6 +512,8 @@ class Home extends React.Component {
   render() {
     return (
       <div className="home">
+        <TryItNowModal show={this.state.isShowTryItNowModal} hideModal={this.hideTryItNowModal} addContact={this.addContact}
+          courses={this.props.courses.items} />
         <Head>
           <title> Trang chủ </title>
           <meta name="title" content="Trang chủ" />
@@ -520,7 +533,7 @@ class Home extends React.Component {
           <div className="home__body">
             <div className="home__body__slider">
               {this.props.sliders.fetching === false ? (
-                <Slider {...this.props.sliders} />
+                <Slider {...this.props.sliders} showTryItNowModal={this.showTryItNowModal} />
               ) : null}
             </div>
 

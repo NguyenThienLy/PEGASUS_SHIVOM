@@ -183,7 +183,11 @@ serif;
 
             @include e('content') {
                 padding-bottom: 2.5em;
-
+                width: 100%;
+                // color: #454647;
+                img {
+                    width: 100%;
+                }
                 @include for-phone-only {
                     padding-bottom: 1.5em;
                 }
