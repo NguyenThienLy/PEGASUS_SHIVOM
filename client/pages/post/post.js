@@ -114,6 +114,9 @@ class Post extends React.Component {
         }
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.newsData._id !== prevProps.newsData._id) {
+            this.getRelatestNews()
+        }
         if (this.props.contacts.isAddSuccess && !prevProps.contacts.isAddSuccess) {
             Swal.fire("Thành công", 'Gửi liên hệ thành công', 'success')
             this.props.addContactRefresh()
