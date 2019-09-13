@@ -393,7 +393,6 @@ class Home extends React.Component {
     }
   }
   async componentDidMount() {
-    console.log("Tai sao lai vao day nua");
     this.fetchData();
     $(".home__body__brands__slick-autoplay").slick({
       dots: false,
@@ -435,7 +434,7 @@ class Home extends React.Component {
         }
       ]
     });
-    $(".home__body__brands__slick-autoplay").on("beforeChange", function(
+    $(".home__body__brands__slick-autoplay").on("beforeChange", function (
       event,
       slick,
       currentSlide,
@@ -446,7 +445,7 @@ class Home extends React.Component {
       );
       $(".home__body__brands__slick-autoplay .slick-dots li button")
         .attr("aria-pressed", "false")
-        .focus(function() {
+        .focus(function () {
           this.blur();
         });
     });
@@ -471,7 +470,7 @@ class Home extends React.Component {
         }
       ]
     });
-    $(".home__body__intro-slick-autoplay").on("beforeChange", function(
+    $(".home__body__intro-slick-autoplay").on("beforeChange", function (
       event,
       slick,
       currentSlide,
@@ -482,7 +481,7 @@ class Home extends React.Component {
       );
       $(".home__body__intro-slick-autoplay .slick-dots li button")
         .attr("aria-pressed", "false")
-        .focus(function() {
+        .focus(function () {
           this.blur();
         });
     });
@@ -546,8 +545,8 @@ class Home extends React.Component {
               <div className="home__body__trainingClass__content">
                 {this.props.courses.fetching === false
                   ? this.props.courses.items.map(trainingClass => {
-                      return <TrainingClass trainingClass={trainingClass} />;
-                    })
+                    return <TrainingClass trainingClass={trainingClass} />;
+                  })
                   : null}
                 {/* {this.state.trainingClasses.map(trainingClass => {
                   return <TrainingClass trainingClass={trainingClass} />;
@@ -637,8 +636,8 @@ class Home extends React.Component {
               <div className="home__body__trainers__list">
                 {this.props.teachers.fetching === false
                   ? this.props.teachers.items.map(trainer => {
-                      return <Trainer trainer={trainer} />;
-                    })
+                    return <Trainer trainer={trainer} />;
+                  })
                   : null}
                 {/* {this.state.trainers.map(trainer => {
                   return <Trainer trainer={trainer} />;

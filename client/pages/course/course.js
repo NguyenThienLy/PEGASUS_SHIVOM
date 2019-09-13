@@ -225,8 +225,21 @@ export class Course extends React.Component {
 				<Header {...this.props} />
 				<React.Fragment>
 					<div className="course-title">
+						<span>
+							<Link href="/home/home" as="/">
+								<a href="/">Trang chủ</a>
+							</Link> </span>&nbsp;&nbsp;<i className="fas fa-chevron-right"></i>&nbsp;&nbsp;
+                        <span>
+							<Link href={`/allCourses/allCourses`} as={`/khoa-hoc`}>
+								<a href={`/khoa-hoc`}>Khoá học</a>
+							</Link>
+						</span> &nbsp;&nbsp;<i className="fas fa-chevron-right"></i>&nbsp;&nbsp;
+                        <span>
+							<Link href={`/course/course?slug=${this.props.course.slug}`} as={`/khoa-hoc/${this.props.course.slug}`}>
+								<a href={`/khoa-hoc/${this.props.course.slug}`}>{this.props.course.name}</a>
+							</Link>
+						</span>
 
-						<a href="/">trang chủ</a>&nbsp;&nbsp;<i className="fas fa-chevron-right"></i>&nbsp;&nbsp;<a href="cac-khoa-hoc">các khoá học</a>&nbsp;&nbsp;<i className="fas fa-chevron-right"></i>&nbsp;&nbsp;<a>{this.props.course.name}</a>
 					</div>
 					<div className="course-ringing-phone">
 						<RingingPhone />
