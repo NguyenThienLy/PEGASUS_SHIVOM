@@ -20,92 +20,99 @@
     background-color: rgba(255, 255, 255, 0.8);
     //z-index: -1;
   }
-
-  @include e("form") {
+  @include e("form"){
     z-index: 0;
-    margin: 0 2em 0 0;
+    padding: 0 2em 0 0;
     display: flex;
     flex-direction: column;
     flex-basis: 50%;
-    align-items: center;
     justify-content: center;
-
-    @include e("input") {
-      box-sizing: border-box;
-      width: 100%;
-      background: #fff; //#fcfcfc;
-      color: $font-color;
-      font-size: 0.875em;
-      //box-shadow: 0 0 10px 0 rgba(0, 0, 0 , 0.03);
-      border: 1px solid $table-border-color;
-      outline: 0;
-      padding: 1em 0.875em;
-      margin: 0.5em 0;
-
-      &:focus {
-        border: 1px solid $main-color;
-      }
-    }
-
-    @include e("select-box") {
-      box-sizing: border-box;
-      width: 100%;
-      background: #fff; //#fcfcfc;
-      color: $font-color;
-      //box-shadow: 0 0 10px 0 rgba(0, 0, 0 , 0.03);
-      border: 1px solid $table-border-color;
-      padding: 0.8em 0.875em;
-      margin: 0.5em 0;
-      outline: 0;
-
-      @include e("select") {
-        width: 100%;
-        border: none;
-        outline: none;
-        background: none;
-        -webkit-appearance: none;
-        color: inherit;
-        font-size: 0.875em;
-      }
-    }
-
-    @include e("btn") {
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-size: 0.9em;
-      width: 100%;
-      display: block;
-      // background: transparent;
-      // color: inherit;
-      // font: inherit;
-      // border-radius: 2px;
-      border: 0;
-      outline: 0;
-      margin-top: 0.5em;
-      padding: 1em 0.875em;
-      transition: all 300ms ease-in;
-      cursor: pointer;
-
-      @include m("primary") {
-        background: $main-color;
-        color: #fff;
-        border: 1px solid $main-color;
-
-        &:hover {
-          // background: darken($main-color, 4%);
-          background-color: transparent;
-          color: $main-color;
-          border: 1px solid $main-color;
-        }
-
-        &:active {
-          // background: $main-color;
-          // // box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, .2);
-          // box-shadow: 1px 1px 10px 0 $sub-main-color;
-        }
-      }
-    }
   }
+  // @include e("form") {
+  //   z-index: 0;
+  //   margin: 0 2em 0 0;
+  //   display: flex;
+  //   flex-direction: column;
+  //   flex-basis: 50%;
+  //   align-items: center;
+  //   justify-content: center;
+
+  //   @include e("input") {
+  //     box-sizing: border-box;
+  //     width: 100%;
+  //     background: #fff; //#fcfcfc;
+  //     color: $font-color;
+  //     font-size: 0.875em;
+  //     //box-shadow: 0 0 10px 0 rgba(0, 0, 0 , 0.03);
+  //     border: 1px solid $table-border-color;
+  //     outline: 0;
+  //     padding: 1em 0.875em;
+  //     margin: 0.5em 0;
+
+  //     &:focus {
+  //       border: 1px solid $main-color;
+  //     }
+  //   }
+
+  //   @include e("select-box") {
+  //     box-sizing: border-box;
+  //     width: 100%;
+  //     background: #fff; //#fcfcfc;
+  //     color: $font-color;
+  //     //box-shadow: 0 0 10px 0 rgba(0, 0, 0 , 0.03);
+  //     border: 1px solid $table-border-color;
+  //     padding: 0.8em 0.875em;
+  //     margin: 0.5em 0;
+  //     outline: 0;
+
+  //     @include e("select") {
+  //       width: 100%;
+  //       border: none;
+  //       outline: none;
+  //       background: none;
+  //       -webkit-appearance: none;
+  //       color: inherit;
+  //       font-size: 0.875em;
+  //     }
+  //   }
+
+  //   @include e("btn") {
+  //     text-transform: uppercase;
+  //     letter-spacing: 0.1em;
+  //     font-size: 0.9em;
+  //     width: 100%;
+  //     display: block;
+  //     // background: transparent;
+  //     // color: inherit;
+  //     // font: inherit;
+  //     // border-radius: 2px;
+  //     border: 0;
+  //     outline: 0;
+  //     margin-top: 0.5em;
+  //     padding: 1em 0.875em;
+  //     transition: all 300ms ease-in;
+  //     cursor: pointer;
+
+  //     @include m("primary") {
+  //       background: $main-color;
+  //       color: #fff;
+  //       border: 1px solid $main-color;
+
+  //       &:hover {
+  //         // background: darken($main-color, 4%);
+  //         background-color: transparent;
+  //         color: $main-color;
+  //         border: 1px solid $main-color;
+  //       }
+
+  //       &:active {
+  //         // background: $main-color;
+  //         // // box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, .2);
+  //         // box-shadow: 1px 1px 10px 0 $sub-main-color;
+  //       }
+  //     }
+  //   }
+  // }
 
   @include e("sub-info") {
     flex-basis: 50%;

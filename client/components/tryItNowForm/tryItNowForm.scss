@@ -2,7 +2,7 @@
 .try-it-now {
 @include e("form") {
     z-index: 0;
-    margin: 2em;
+    // margin: 2em;
     display: flex;
     flex-direction: column;
     flex-basis: 50%;
@@ -54,6 +54,7 @@
       font-size: 0.9em;
       width: 100%;
       display: block;
+      margin-left: 0;
       // background: transparent;
       // color: inherit;
       // font: inherit;
