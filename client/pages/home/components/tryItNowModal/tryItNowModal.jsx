@@ -30,8 +30,10 @@ export class TryItNowModal extends Component {
             <section>
 
                 <Modal visible={show} width="500" height="auto" effect="fadeInUp" onClickAway={() => this.closeModal()}>
-                    <TryItNowForm addContact={this.submit}
-                        courses={this.props.courses} />
+                    <div className="try-it-now-modal">
+                        <TryItNowForm addContact={this.submit}
+                            courses={this.props.courses} />
+                    </div>
                 </Modal>
             </section>
         );

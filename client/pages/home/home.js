@@ -21,7 +21,8 @@ import {
   NumberSection,
   ImageShow,
   Map,
-  Tesmonials
+  Tesmonials,
+  Loading
 } from "../../components";
 import { TryItNowModal } from "./components/tryItNowModal/tryItNowModal";
 
@@ -412,61 +413,62 @@ class Home extends React.Component {
   }
   async componentDidMount() {
     this.fetchData();
-    $(".home__body__brands__slick-autoplay").slick({
-      dots: false,
-      arrows: false,
-      slidesToShow: 6,
-      slidesToScroll: 1,
-      autoplay: true,
-      autoplaySpeed: 3000,
-      responsive: [
-        {
-          breakpoint: 1400,
-          settings: {
-            slidesToShow: 5,
-            slidesToScroll: 1,
-            infinite: true,
-            dots: false
-          }
-        },
-        {
-          breakpoint: 992,
-          settings: {
-            slidesToShow: 4,
-            slidesToScroll: 1
-          }
-        },
-        {
-          breakpoint: 768,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 1
-          }
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1
-          }
-        }
-      ]
-    });
-    $(".home__body__brands__slick-autoplay").on("beforeChange", function(
-      event,
-      slick,
-      currentSlide,
-      nextSlide
-    ) {
-      $(".home__body__brands__slick-autoplay .slick-dots li").removeClass(
-        "slick-active"
-      );
-      $(".home__body__brands__slick-autoplay .slick-dots li button")
-        .attr("aria-pressed", "false")
-        .focus(function() {
-          this.blur();
-        });
-    });
+
+    // $(".home__body__brands__slick-autoplay").slick({
+    //   dots: false,
+    //   arrows: false,
+    //   slidesToShow: 6,
+    //   slidesToScroll: 1,
+    //   autoplay: true,
+    //   autoplaySpeed: 3000,
+    //   responsive: [
+    //     {
+    //       breakpoint: 1400,
+    //       settings: {
+    //         slidesToShow: 5,
+    //         slidesToScroll: 1,
+    //         infinite: true,
+    //         dots: false
+    //       }
+    //     },
+    //     {
+    //       breakpoint: 992,
+    //       settings: {
+    //         slidesToShow: 4,
+    //         slidesToScroll: 1
+    //       }
+    //     },
+    //     {
+    //       breakpoint: 768,
+    //       settings: {
+    //         slidesToShow: 3,
+    //         slidesToScroll: 1
+    //       }
+    //     },
+    //     {
+    //       breakpoint: 600,
+    //       settings: {
+    //         slidesToShow: 2,
+    //         slidesToScroll: 1
+    //       }
+    //     }
+    //   ]
+    // });
+    // $(".home__body__brands__slick-autoplay").on("beforeChange", function (
+    //   event,
+    //   slick,
+    //   currentSlide,
+    //   nextSlide
+    // ) {
+    //   $(".home__body__brands__slick-autoplay .slick-dots li").removeClass(
+    //     "slick-active"
+    //   );
+    //   $(".home__body__brands__slick-autoplay .slick-dots li button")
+    //     .attr("aria-pressed", "false")
+    //     .focus(function () {
+    //       this.blur();
+    //     });
+    // });
 
     $(".home__body__intro-slick-autoplay").slick({
       dots: true,
@@ -512,12 +514,9 @@ class Home extends React.Component {
   render() {
     return (
       <div className="home">
-        <TryItNowModal
-          show={this.state.isShowTryItNowModal}
-          hideModal={this.hideTryItNowModal}
-          addContact={this.addContact}
-          courses={this.props.courses.items}
-        />
+        <TryItNowModal show={this.state.isShowTryItNowModal} hideModal={this.hideTryItNowModal} addContact={this.addContact}
+          courses={this.props.courses.items} />
+        {this.props.contacts.adding ? <Loading /> : null}
         <Head>
           <title> Trang chủ </title>
           <meta name="title" content="Trang chủ" />
@@ -678,7 +677,7 @@ class Home extends React.Component {
             </div>
 
             <div className="home__body__brands">
-              <div className="home__body__brands__slick-autoplay">
+              {/* <div className="home__body__brands__slick-autoplay">
                 <div className="home__body__brands__slick-autoplay__item">
                   <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-6.png"></img>
                 </div>
@@ -697,7 +696,7 @@ class Home extends React.Component {
                 <div className="home__body__brands__slick-autoplay__item">
                   <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-3.png"></img>
                 </div>
-              </div>
+              </div> */}
             </div>
 
             <div className="home__body__map">
