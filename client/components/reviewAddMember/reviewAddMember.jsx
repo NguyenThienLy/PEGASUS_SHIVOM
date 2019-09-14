@@ -127,10 +127,10 @@ export class ReviewAddMember extends React.Component {
                   Thứ hai
                 </div>
                 <div className="reviewAddMember__content__right__timeTable__event__class-info">
-                  <div className="time-table__list-events__event__class-info__class-name">
+                  <div className="reviewAddMember__content__right__timeTable__event__class-info__class-name">
                     Cân bằng cơ thể
                   </div>
-                  <div className="time-table__list-events__event__class-info__class-time">
+                  <div className="reviewAddMember__content__right__timeTable__event__class-info__class-time">
                     07:00 - 09:00
                   </div>
                 </div>
@@ -140,10 +140,10 @@ export class ReviewAddMember extends React.Component {
                   Thứ ba
                 </div>
                 <div className="reviewAddMember__content__right__timeTable__event__class-info">
-                  <div className="time-table__list-events__event__class-info__class-name">
+                  <div className="reviewAddMember__content__right__timeTable__event__class-info__class-name">
                     Duỗi người
                   </div>
-                  <div className="time-table__list-events__event__class-info__class-time">
+                  <div className="reviewAddMember__content__right__timeTable__event__class-info__class-time">
                     07:00 - 09:00
                   </div>
                 </div>

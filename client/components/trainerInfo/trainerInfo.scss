@@ -17,12 +17,12 @@
       height: 100%;
 
       &:hover {
-        transition: transform 1s ease-in;
+        transition: transform 800ms ease;
         transform: scale(1);
       }
 
       &:not(:hover) {
-        transition: transform 1s ease-out;
+        transition: transform 800ms ease;
         transform: scale(1.03);
       }
     }

@@ -10,7 +10,7 @@ import * as moment from 'moment'
 // import Swal from 'sweetalert2'
 
 import "./course.scss";
-import { Header, Footer, TrainerInfo, ContactUs, RingingPhone, LatestPost, SearchBox } from "../../components";
+import { Header, Footer, TrainerInfo, ContactUs, RingingPhone, LatestPost, SearchBox, CourseListBenefits } from "../../components";
 import { SocialGroup } from "../../components/footer/socialGroup/socialGroup"
 import { RegisterBtn } from './registerBtn/registerBtn'
 
@@ -261,8 +261,9 @@ export class Course extends React.Component {
 							<div className="course-wrapper__main-content__content" dangerouslySetInnerHTML={{ __html: this.props.course.description }}>
 
 							</div>
-							<div className="course-wrapper__main-content__targets">
-								{
+							<div className="course-wrapper__main-content__benefits">
+								<CourseListBenefits courseListBenefits={this.props.course.benefits}></CourseListBenefits>
+								{/* {
 									this.props.course.benefits.map((benefit, index) => {
 										return (
 											<div className="course-wrapper__main-content__targets__target" key={index}>
@@ -271,7 +272,7 @@ export class Course extends React.Component {
 											</div>
 										)
 									})
-								}
+								} */}
 							</div>
 							{
 								this.props.timeTableOfCourse && this.props.timeTableOfCourse.length > 0 ? this.props.timeTableOfCourse.map((classData, index) => {

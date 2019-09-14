@@ -306,7 +306,7 @@ class Home extends React.Component {
         button: "read more"
       },
       numberAdmin: {
-        icon: '<i className="fas fa-id-card-alt"></i>',
+        icon: '<i class="fas fa-id-card-alt"></i>',
         about: "booking",
         quantity: 184
       },
@@ -514,8 +514,12 @@ class Home extends React.Component {
   render() {
     return (
       <div className="home">
-        <TryItNowModal show={this.state.isShowTryItNowModal} hideModal={this.hideTryItNowModal} addContact={this.addContact}
-          courses={this.props.courses.items} />
+        <TryItNowModal
+          show={this.state.isShowTryItNowModal}
+          hideModal={this.hideTryItNowModal}
+          addContact={this.addContact}
+          courses={this.props.courses.items}
+        />
         {this.props.contacts.adding ? <Loading /> : null}
         <Head>
           <title> Trang chủ </title>

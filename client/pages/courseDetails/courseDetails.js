@@ -297,6 +297,14 @@ export class CourseDetails extends React.Component {
       "margin-top",
       heightOfHeader + "px"
     );
+
+    $(
+      ".courseDetails__body__card__content__chart__filter__form__input"
+    ).datetimepicker({
+      format: "d/m/Y",
+      timepicker: false,
+      mask: false
+    });
   }
 
   shouldComponentUpdate() {

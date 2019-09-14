@@ -96,7 +96,6 @@ $hover-color: lighten($sub-main-color, 27%);
         column-gap: 2em;
         row-gap: 2em;
         @include e("item") {
-          margin-right: 3em;
           &:nth-last-child(1) {
             grid-column-start: 1;
             grid-column-end: 3;

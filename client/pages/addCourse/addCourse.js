@@ -84,6 +84,7 @@ class AddCourse extends Component {
   }
 
   openPage = function(pageNumber) {
+    // set up page content
     var i, page, stepBtns;
     page = document.getElementsByClassName(
       "addCourse__body__card__content__info"
@@ -102,40 +103,41 @@ class AddCourse extends Component {
       backgroundColor: "#00a3af",
       color: "#fff"
     });
+
+    // update curPageNumber
     this.setState({ curPageNumber: pageNumber });
+
+    // set up for button previous, next
+    if (pageNumber == this.state.pages.length) {
+      $(".addCourse__body__card__buttons__btn-next").text("Xác nhận");
+    } else {
+      $(".addCourse__body__card__buttons__btn-next").html(
+        "Tiếp theo<i class='fas fa-chevron-right'></i>"
+      );
+    }
     if (pageNumber == 1) {
       $(".addCourse__body__card__buttons__btn-previous").attr("disabled", true);
+    } else {
+      $(".addCourse__body__card__buttons__btn-previous").attr(
+        "disabled",
+        false
+      );
     }
   };
 
   handleClickPrevious = function() {
     let curPageNumber = this.state.curPageNumber - 1;
-    if (curPageNumber > 1) {
+    if (curPageNumber > 0) {
       this.setState({ curPageNumber });
       this.openPage(curPageNumber);
-    } else if (curPageNumber == 1) {
-      this.setState({ curPageNumber });
-      this.openPage(curPageNumber);
-      $(".addCourse__body__card__buttons__btn-previous").attr("disabled", true);
     }
-    $(".addCourse__body__card__buttons__btn-next").html(
-      "Tiếp theo<i class='fas fa-chevron-right'></i>"
-    );
   };
 
   handleClickNext = function() {
     let curPageNumber = this.state.curPageNumber + 1;
-    if (curPageNumber < this.state.pages.length) {
+    if (curPageNumber <= this.state.pages.length) {
       this.setState({ curPageNumber });
       this.openPage(curPageNumber);
-      $(".addCourse__body__card__buttons__btn-previous").attr(
-        "disabled",
-        false
-      );
-    } else if (curPageNumber == this.state.pages.length) {
-      this.setState({ curPageNumber });
-      this.openPage(curPageNumber);
-      $(".addCourse__body__card__buttons__btn-next").text("Xác nhận");
     }
   };
 
