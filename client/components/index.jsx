@@ -42,11 +42,18 @@ export * from "./searchBox/searchBox";
 export * from "./headerAdmin/headerAdmin";
 export * from "./customSelect/customSelect";
 export * from "./alert/alert";
-export * from "./addStudent/addStudent";
 export * from "./feedbackAdmin/feedbackAdmin";
+export * from "./newMemberInfo/newMemberInfo";
 export * from "./courseOptions/courseOptions";
-export * from "./summaryRegisForm/summaryRegisForm";
+export * from "./timeTableOptions/timeTableOptions";
+export * from "./reviewAddMember/reviewAddMember";
 export * from "./addCourse/addCourse";
 export * from "./stepsLine/stepsLine";
 export * from "./tesmonials/tesmonials";
+<<<<<<< HEAD
 export * from "./calendarCustom/calendarCustom";
+=======
+export * from "./memberInfo/memberInfo";
+export * from "./courseInfo/courseInfo";
+export * from "./tryItNowForm/tryItNowForm"
+>>>>>>> b52138f78cf78f5b96847eb7a5fa6f6dbe847579

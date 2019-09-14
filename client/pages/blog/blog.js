@@ -8,6 +8,8 @@ import { api } from "../../services";
 import { action } from "../../actions";
 import { bindActionCreators } from "redux";
 
+import Swal from 'sweetalert2'
+
 import {
     Header,
     Footer,
@@ -185,9 +187,20 @@ class Blog extends React.Component {
         var heightOfFooter = $(".blog__footer .footer-wrapper").height();
         $(".blog__contact-us").css("margin-bottom", heightOfFooter + "px");
     }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.contacts.isAddSuccess && !prevProps.contacts.isAddSuccess) {
+            Swal.fire("Thành công", 'Gửi liên hệ thành công', 'success')
+            this.props.addContactRefresh()
+        }
+        if (this.props.contacts.isAddError && prevProps.contacts.adding) {
+            Swal.fire("Thất bại", 'Gửi liên hệ không thành công', 'error')
+            this.props.addContactRefresh()
+        }
+    }
     getLatestNews() {
         api.news.getList({
             query: {
+                limit: 5,
                 order: { createdAt: -1 },
                 populates: [{ path: "category", select: "name slug" }]
             }
@@ -216,7 +229,13 @@ class Blog extends React.Component {
                 <Header {...this.props} />
                 <React.Fragment>
                     <div className="blog__path">
-                        <a href="http://hiephoayoga.com">trang chủ</a> / <a>các bài viết</a>
+                        <span>
+                            <Link href="/home/home" as="/">
+                                <a href="/">Trang chủ</a>
+                            </Link> </span>&nbsp;&nbsp;<i className="fas fa-chevron-right"></i>&nbsp;&nbsp;
+                        <span><Link href={`/blog/blog?categorySlug=${this.props.category.slug}`} as={`/${this.props.category.slug}`}>
+                            <a href={`/${this.props.category.slug}`}>{this.props.category.name}</a>
+                        </Link></span>
                     </div>
                     <div className="blog">
                         <div className="blog__wrapper">
@@ -225,7 +244,7 @@ class Blog extends React.Component {
                                     news2.category = this.props.category;
 
                                     return (
-                                        <div>
+                                        <div key={index}>
                                             <News2 key={index} news2={news2}></News2>
                                         </div>
                                     );
@@ -314,7 +333,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     fetchCourse: action.course.fetch,
     fetchSetting: action.setting.fetch,
     fetchNewCategory: action.newCategory.fetch,
-    addContact: action.contact.add
+    addContact: action.contact.add,
+    addContactRefresh: action.contact.addRefresh
 }, dispatch);
 
 export default connect(

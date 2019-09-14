@@ -26,13 +26,13 @@ export class Trainer extends React.Component {
           <div className="trainer__info__name">{trainer.firstName} {trainer.lastName}</div>
           <div className="trainer__info__other">
             <a href={trainer.social.facebook}>
-              <i class="fab fa-facebook-f" />
+              <i className="fab fa-facebook-f" />
             </a>
             <a href={trainer.social.twitter}>
-              <i class="fab fa-twitter" />
+              <i className="fab fa-twitter" />
             </a>
             <a href={trainer.social.instagram}>
-              <i class="fab fa-instagram" />
+              <i className="fab fa-instagram" />
             </a>
           </div>
         </div>

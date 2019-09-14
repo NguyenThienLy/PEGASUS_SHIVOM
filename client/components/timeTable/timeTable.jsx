@@ -2,7 +2,7 @@ import * as React from "react";
 import "./timeTable.scss";
 import { HoverDivAnimation } from "../hoverDivAnimation/hoverDivAnimation";
 
-import * as _ from 'lodash'
+import * as _ from "lodash";
 
 export class TimeTable extends React.Component {
   constructor(props) {
@@ -10,10 +10,22 @@ export class TimeTable extends React.Component {
     this.state = {
       currentTab: "all",
       dayOfWeekMapping: [
-        "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday"
       ],
       dayOfWeekVietnamese: [
-        "Thứ hai", "Thứ ba", "Thứ tư", "Thứ năm", "Thứ sáu", "Thứ bảy", "Chủ nhật"
+        "Thứ hai",
+        "Thứ ba",
+        "Thứ tư",
+        "Thứ năm",
+        "Thứ sáu",
+        "Thứ bảy",
+        "Chủ nhật"
       ],
       timeTableListData: {
         monday: [],
@@ -56,7 +68,6 @@ export class TimeTable extends React.Component {
     };
   }
   componentDidMount() {
-
     let timeTableData = {
       morning: {
         monday: [],
@@ -82,7 +93,7 @@ export class TimeTable extends React.Component {
         friday: [],
         saturday: []
       }
-    }
+    };
     let timeTableListData = {
       monday: [],
       tuesday: [],
@@ -91,79 +102,113 @@ export class TimeTable extends React.Component {
       friday: [],
       saturday: [],
       sunday: []
-    }
-    const LAST_MORNING_HOUR = 720
-    const LAST_AFTERNOON_HOUR = 1080
+    };
+    const LAST_MORNING_HOUR = 720;
+    const LAST_AFTERNOON_HOUR = 1080;
     let timeTableItems = this.props.timeTables.forEach(timeTable => {
-      const courseName = timeTable.course.name
-      const className = timeTable.class.name
-      const teacherName = timeTable.class.teacher ? timeTable.class.teacher.firstName + " " + timeTable.class.teacher.lastName : null
+      const courseName = timeTable.course.name;
+      const className = timeTable.class.name;
+      const teacherName = timeTable.class.teacher
+        ? timeTable.class.teacher.firstName +
+        " " +
+        timeTable.class.teacher.lastName
+        : null;
 
       timeTable.items.forEach(item => {
-        let data = (<div className={`time-table__table-events__class-info time-table__table-events__class-info-${timeTable.course._id} time-table__table-events__my-tooltip`} key={item._id}>
-          <div className="time-table__table-events__my-tooltip__content" >
-            {item.endTime.number - item.startTime.number} phút
-          <i />
-          </div>
-          <a
-            className="time-table__table-events__class-info__class-name"
-            href="#"
-            title="Body Balance"
+        let data = (
+          <div
+            className={`time-table__table-events__class-info time-table__table-events__class-info-${timeTable.course._id} time-table__table-events__my-tooltip`}
+            key={item._id}
           >
-            {courseName} <br />{item.startTime.hour}:{item.startTime.minute === 0 ? "00" : item.startTime.minute} - {item.endTime.hour}:{item.endTime.minute === 0 ? "00" : item.endTime.minute}
-          </a>
-          <div className="time-table__table-events__class-info__class-teacher">
-            {teacherName}
+            <div className="time-table__table-events__my-tooltip__content">
+              {item.endTime.number - item.startTime.number} phút
+              <i />
+            </div>
+            <a
+              className="time-table__table-events__class-info__class-name"
+              href="#"
+              title="Body Balance"
+            >
+              {courseName} <br />
+              {item.startTime.hour}:
+              {item.startTime.minute === 0 ? "00" : item.startTime.minute} -{" "}
+              {item.endTime.hour}:
+              {item.endTime.minute === 0 ? "00" : item.endTime.minute}
+            </a>
+            <div className="time-table__table-events__class-info__class-teacher">
+              {teacherName}
+            </div>
           </div>
-        </div>)
-        let listItemData = (<div className={`time-table__list-events__event__class-info time-table__list-events__event__class-info-${timeTable.course._id}`} key={item._id}>
-          <a
-            href="#"
-            className="time-table__list-events__event__class-info__class-name"
+        );
+        let listItemData = (
+          <div
+            className={`time-table__list-events__event__class-info time-table__list-events__event__class-info-${timeTable.course._id}`}
+            key={item._id}
           >
-            {courseName}
-          </a>
-          <div className="time-table__list-events__event__class-info__class-time">
-            {courseName} <br />{item.startTime.hour}:{item.startTime.minute === 0 ? "00" : item.startTime.minute} - {item.endTime.hour}:{item.endTime.minute === 0 ? "00" : item.endTime.minute}
+            <a
+              href="#"
+              className="time-table__list-events__event__class-info__class-name"
+            >
+              {courseName}
+            </a>
+            <div className="time-table__list-events__event__class-info__class-time">
+              {item.startTime.hour}:
+              {item.startTime.minute === 0 ? "00" : item.startTime.minute} -{" "}
+              {item.endTime.hour}:
+              {item.endTime.minute === 0 ? "00" : item.endTime.minute}
+            </div>
           </div>
-        </div>)
-        timeTableListData[item.dayOfWeek].push(listItemData)
+        );
+        timeTableListData[item.dayOfWeek].push(listItemData);
         if (item.endTime.number < LAST_MORNING_HOUR) {
-          timeTableData.morning[item.dayOfWeek].push(data)
+          timeTableData.morning[item.dayOfWeek].push(data);
         } else if (item.endTime.number < LAST_AFTERNOON_HOUR) {
-          timeTableData.afternoon[item.dayOfWeek].push(data)
+          timeTableData.afternoon[item.dayOfWeek].push(data);
         } else {
-          timeTableData.night[item.dayOfWeek].push(data)
+          timeTableData.night[item.dayOfWeek].push(data);
         }
-      })
-    })
-    this.setState({ timeTableData, timeTableListData })
+      });
+    });
+    this.setState({ timeTableData, timeTableListData });
   }
-  changeTab = (tabId) => {
-    this.setState({ currentTab: tabId })
+  changeTab = tabId => {
+    this.setState({ currentTab: tabId });
     if (tabId === "all") {
-      $("div[class*='time-table__table-events__class-info-']").show()
-      $("div[class*='time-table__list-events__event__class-info-']").show()
+      $("div[class*='time-table__table-events__class-info-']").show();
+      $("div[class*='time-table__list-events__event__class-info-']").show();
     } else {
       //$(`div:not(.time-table__table-events__class-info-${tabId})`).hide()
-      $("div[class*='time-table__table-events__class-info-']").not($(`.time-table__table-events__class-info-${tabId}`)).hide()
-      $(`.time-table__table-events__class-info-${tabId}`).show()
-      $("div[class*='time-table__list-events__event__class-info-']").not($(`.time-table__list-events__event__class-info-${tabId}`)).hide()
-      $(`.time-table__list-events__event__class-info-${tabId}`).show()
+      $("div[class*='time-table__table-events__class-info-']")
+        .not($(`.time-table__table-events__class-info-${tabId}`))
+        .hide();
+      $(`.time-table__table-events__class-info-${tabId}`).show();
+      $("div[class*='time-table__list-events__event__class-info-']")
+        .not($(`.time-table__list-events__event__class-info-${tabId}`))
+        .hide();
+      $(`.time-table__list-events__event__class-info-${tabId}`).show();
     }
-  }
+  };
   render() {
     return (
       <div className="time-table">
         <div className="time-table__tabs">
           <ul>
-            <li onClick={() => { return this.changeTab("all") }} className={`time-table__tabs__active`}>
+            <li
+              onClick={() => {
+                return this.changeTab("all");
+              }}
+              className={`time-table__tabs__active`}
+            >
               <HoverDivAnimation title="Tất cả" />
             </li>
             {this.props.courses.items.map(course => {
               return (
-
-                <li onClick={() => { return this.changeTab(course._id) }}>
+                <li
+                  onClick={() => {
+                    return this.changeTab(course._id);
+                  }}
+                  key={course._id}
+                >
                   <HoverDivAnimation title={course.name} />
                 </li>
               );
@@ -174,12 +219,14 @@ export class TimeTable extends React.Component {
           {this.state.dayOfWeekMapping.map((dayOfWeek, index) => {
             return (
               <div className="time-table__list-events__event" key={index}>
-                <div className="time-table__list-events__event__date">{this.state.dayOfWeekVietnamese[Number(index)]}</div>
+                <div className="time-table__list-events__event__date">
+                  {this.state.dayOfWeekVietnamese[Number(index)]}
+                </div>
                 {this.state.timeTableListData[dayOfWeek].map(item => {
-                  return item
+                  return item;
                 })}
               </div>
-            )
+            );
           })}
         </div>
         <div className="time-table__table-events">
@@ -205,11 +252,7 @@ export class TimeTable extends React.Component {
                   </div>
                 </td>
                 {this.state.dayOfWeekMapping.map(dayOfWeek => {
-                  return (
-                    <td>
-                      {this.state.timeTableData.morning[dayOfWeek]}
-                    </td>
-                  )
+                  return <td key={dayOfWeek}>{this.state.timeTableData.morning[dayOfWeek]}</td>;
                 })}
                 {/* <td>
                   <div className="time-table__table-events__class-info time-table__table-events__my-tooltip">
@@ -298,10 +341,8 @@ export class TimeTable extends React.Component {
                 </td>
                 {this.state.dayOfWeekMapping.map(dayOfWeek => {
                   return (
-                    <td>
-                      {this.state.timeTableData.afternoon[dayOfWeek]}
-                    </td>
-                  )
+                    <td key={dayOfWeek}>{this.state.timeTableData.afternoon[dayOfWeek]}</td>
+                  );
                 })}
                 {/* <td>
                   <div className="time-table__table-events__class-info time-table__table-events__my-tooltip">
@@ -389,11 +430,7 @@ export class TimeTable extends React.Component {
                   </div>
                 </td>
                 {this.state.dayOfWeekMapping.map(dayOfWeek => {
-                  return (
-                    <td>
-                      {this.state.timeTableData.night[dayOfWeek]}
-                    </td>
-                  )
+                  return <td key={dayOfWeek}>{this.state.timeTableData.night[dayOfWeek]}</td>;
                 })}
                 {/* <td>
                   <div className="time-table__table-events__class-info time-table__table-events__my-tooltip">

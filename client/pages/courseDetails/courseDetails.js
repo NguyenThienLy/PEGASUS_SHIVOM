@@ -16,9 +16,9 @@ import {
   Table,
   CustomSelect,
   ProfileAdmin,
-  ColumnChart
+  ColumnChart,
+  CourseInfo
 } from "../../components";
-import { CourseInfo } from "../../components/courseInfo/courseInfo";
 
 export class CourseDetails extends React.Component {
   constructor(props) {
@@ -71,28 +71,28 @@ export class CourseDetails extends React.Component {
       ],
       numberAdmins: [
         {
-          icon: '<i class="fas fa-id-card-alt"></i>',
+          icon: '<i className="fas fa-id-card-alt"></i>',
           about: "Đi đúng giờ",
           quantity: 0,
           colorIcon: "#f5365c",
           isEmpty: true
         },
         {
-          icon: '<i class="fas fa-id-card-alt"></i>',
+          icon: '<i className="fas fa-id-card-alt"></i>',
           about: "Đi trễ",
           quantity: 0,
           colorIcon: "#fb6340",
           isEmpty: true
         },
         {
-          icon: '<i class="fas fa-id-card-alt"></i>',
+          icon: '<i className="fas fa-id-card-alt"></i>',
           about: "Vắng",
           quantity: 0,
           colorIcon: "#ffd600",
           isEmpty: true
         },
         {
-          icon: '<i class="fas fa-id-card-alt"></i>',
+          icon: '<i className="fas fa-id-card-alt"></i>',
           about: "Đi thừa",
           quantity: 0,
           colorIcon: "#11cdef",

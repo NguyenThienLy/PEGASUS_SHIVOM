@@ -12,25 +12,29 @@ export class Footer extends React.Component {
       categories: [
         {
           name: "trang chủ",
-          href: "#"
+          linkHref: "/home/home",
+          linkAs: "/"
         },
         {
           name: "khoá học",
-          href: "#"
+          linkHref: "/allCourses/allCourses",
+          linkAs: "/khoa-hoc"
         },
         {
           name: "tin tức",
-          href: "#"
+          linkHref: "/home/home",
+          linkAs: "/"
         },
         {
           name: "về chúng tôi",
-          href: "#"
+          linkHref: "/contact/contact",
+          linkAs: "/lien-he"
         }
       ]
     };
   }
   componentDidMount() {
-    $(window).on("resize", function() {
+    $(window).on("resize", function () {
       let body = $(".footer-wrapper").prev();
       let heightOfFooter = $(".footer-wrapper").outerHeight();
 
@@ -120,14 +124,18 @@ export class Footer extends React.Component {
         </div>
         <hr className="footer-wrapper__divider" />
         <div className="footer-wrapper__second-floor">
-          {this.state.categories.map(category => {
+          {this.state.categories.map((category, index) => {
             return (
-              <div
-                href={category.href}
-                className="footer-wrapper__second-floor__item"
-              >
-                <HoverDivAnimation title={category.name} />
-              </div>
+              <Link href={category.linkHref} as={category.linkAs} key={index}>
+                <a href={category.linkAs}>
+                  <div
+                    className="footer-wrapper__second-floor__item"
+                  >
+
+                    <HoverDivAnimation title={category.name} />
+                  </div>
+                </a>
+              </Link>
             );
           })}
         </div>

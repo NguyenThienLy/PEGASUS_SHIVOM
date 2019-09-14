@@ -18,7 +18,7 @@ export class PostAuthor extends React.Component {
           </a>
         </div>
         <div className="post-author__info">
-          <div className="post-author__info__position">{postAuthor.position}</div>
+          <div className="post-author__info__position">Tác giả</div>
           <div className="post-author__info__name">
             <a href="#">{postAuthor.firstName} {postAuthor.lastName}</a>
           </div>

@@ -48,7 +48,7 @@ export class AddCourse extends React.Component {
                                 {
                                     this.state.benefits.map((benefit, index) => {
                                         return <li className="course-info__form__detail__benefits__list-items__item" key={index}>
-                                            <i class="fas fa-leaf"></i>&nbsp;&nbsp;{benefit}
+                                            <i className="fas fa-leaf"></i>&nbsp;&nbsp;{benefit}
                                         </li>
                                     })
                                 }
@@ -68,9 +68,9 @@ export class AddCourse extends React.Component {
                     <div className="course-info__form__detail">
                         <div className="course-info__title-text">Thêm ảnh khoá học</div>
                         <div className="course-info__form__detail__add-photo">
-                            <button><i class="fas fa-plus-circle"></i></button>
+                            <button><i className="fas fa-plus-circle"></i></button>
                         </div>
-                        <div className="course-info__form__detail__icon"><i class="fas fa-camera-retro"></i></div>
+                        <div className="course-info__form__detail__icon"><i className="fas fa-camera-retro"></i></div>
                     </div>
                 </form>
             </div>

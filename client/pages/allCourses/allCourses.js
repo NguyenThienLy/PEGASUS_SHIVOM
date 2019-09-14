@@ -7,6 +7,7 @@ import { api } from "../../services";
 import { action } from "../../actions";
 import { bindActionCreators } from 'redux'
 
+import Swal from 'sweetalert2'
 import "./allCourses.scss";
 import {
 	Header,
@@ -107,7 +108,8 @@ export class AllCourses extends React.Component {
 					title: "Be Smart-Eat Wise WISE",
 					date: "13th jun"
 				}
-			]
+			],
+			latestNews: []
 		};
 	}
 	static async getInitialProps({ req, query }) {
@@ -126,14 +128,47 @@ export class AllCourses extends React.Component {
 		window.removeEventListener("scroll", this.handleScroll);
 	}
 	fetchData() {
-		this.props.fetchCourses()
+		if (this.props.courses.items.length === 0) {
+			this.props.fetchCourse()
+		}
+		if (!this.props.setting.fetched) {
+			this.props.fetchSetting();
+		}
+		if (this.props.newCategories.items.length === 0) {
+			this.props.fetchNewCategory()
+		}
+	}
+	componentDidUpdate(prevProps, prevState, snapshot) {
+		if (this.props.contacts.isAddSuccess && !prevProps.contacts.isAddSuccess) {
+			Swal.fire("Thành công", 'Gửi liên hệ thành công', 'success')
+			this.props.addContactRefresh()
+		}
+		if (this.props.contacts.isAddError && prevProps.contacts.adding) {
+			Swal.fire("Thất bại", 'Gửi liên hệ không thành công', 'error')
+			this.props.addContactRefresh()
+		}
 	}
 	componentDidMount() {
+		this.fetchData()
 		this.handleScroll();
 		window.addEventListener("scroll", this.handleScroll);
 
 		var heightOfFooter = $(".all-courses__footer .footer-wrapper").height();
 		$(".all-courses__contactUs").css("margin-bottom", heightOfFooter + "px");
+		this.getLatestNews()
+	}
+	getLatestNews() {
+		api.news.getList({
+			query: {
+				limit: 5,
+				order: { createdAt: -1 },
+				populates: [{ path: "category", select: "name slug" }]
+			}
+		}).then(res => {
+			this.setState({ latestNews: res.results.objects.rows })
+		}).catch(err => {
+
+		})
 	}
 	addContact = body => {
 		this.props.addContact(body);
@@ -172,45 +207,47 @@ export class AllCourses extends React.Component {
 					</div>
 					<div className="all-courses__wrapper">
 						<div className="all-courses__wrapper__main-content">
-							{
-								this.props.courses.items.map(trainingClass => {
-									return (
-										<div className="all-courses__wrapper__main-content__item">
-											<TrainingClass trainingClass={trainingClass} />
-										</div>
-									)
+							{this.props.courses.fetching === false
+								? this.props.courses.items.map((trainingClass, index) => {
+									return <TrainingClass trainingClass={trainingClass} key={index} />;
 								})
-							}
+								: null}
 						</div>
 						<div className="all-courses__wrapper__sub-content">
 							<div className="all-courses__wrapper__sub-content__search">
 								<SearchBox type='search' />
 							</div>
 							<div className="all-courses__wrapper__sub-content__social-group">
-								<SocialGroup />
+								{this.props.setting.social ? <SocialGroup social={this.props.setting.social} /> : null}
 							</div>
 							<div className="all-courses__wrapper__sub-content__categories">
 								<div className="all-courses__wrapper__sub-content__categories__text">
 									Thể loại
                 	                </div>
 								{
-									this.state.categories.map((category) => {
+									this.props.newCategories.items.map((category, index) => {
 										return (
-											<div className="all-courses__wrapper__sub-content__categories__category">
-												{category.name} ({category.classes})
-                                                </div>
+											<div className="all-courses__wrapper__sub-content__categories__category" key={index}>
+												<Link href={`/blog/blog?categorySlug=${category.slug}`} as={`/${category.slug}`}>
+													<a href={`/${category.slug}`} >
+														{category.name}
+													</a>
+													{/* {course.name} ({course.classes}) */}
+												</Link>
+											</div>
 										)
 									})
 								}
+
 							</div>
 							<div className="all-courses__wrapper__sub-content__latest-posts">
 								<div className="all-courses__wrapper__sub-content__categories__text">
 									bài viết
                 	                </div>
 								{
-									this.state.latestPost.map((post, index) => {
+									this.state.latestNews.map((post, index) => {
 										return (
-											<div key={index} className="all-courses__wrapper__sub-content__latest-posts__post">
+											<div key={index} className="post__wrapper__sub-content__latest-posts__post">
 												<LatestPost latestPost={post} />
 											</div>
 										);
@@ -237,7 +274,7 @@ export class AllCourses extends React.Component {
 					</div>
 
 					<div className="all-courses__footer">
-						<Footer social={this.props.setting.social} />
+						<Footer {...this.props.setting.contact} logo={this.props.setting.logo} social={this.props.setting.social} />
 					</div>
 				</React.Fragment>
 			</div>
@@ -250,7 +287,11 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-	fetchCourses: action.course.fetch
+	fetchCourse: action.course.fetch,
+	fetchSetting: action.setting.fetch,
+	fetchNewCategory: action.newCategory.fetch,
+	addContact: action.contact.add,
+	addContactRefresh: action.contact.addRefresh
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllCourses);

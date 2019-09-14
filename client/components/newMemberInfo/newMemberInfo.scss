@@ -1,12 +1,12 @@
 @import "../../default.scss";
 
-.student-info {
+.newMemberInfo {
   // box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.04);
   width: 100%;
   background-color: #fff;
   // border-radius: 5px;
 
-  .student-info__title-text {
+  .newMemberInfo__title-text {
     color: $color-grey;
     // font-family: $font-family-special;
     font-size: 1em;
@@ -17,7 +17,7 @@
     }
   }
 
-  .student-info__input-box {
+  .newMemberInfo__input-box {
     // background: none;
     // border-radius: 0;
     // border: none;
@@ -81,11 +81,11 @@
       column-gap: 2em;
       row-gap: 1em;
       @include e("item") {
-        .student-info__title-text {
+        .newMemberInfo__title-text {
           width: 100%;
           margin-bottom: 0.5em;
         }
-        .student-info__input-box {
+        .newMemberInfo__input-box {
           width: 90%;
         }
         input[type="number"] {
@@ -126,7 +126,7 @@
           font-size: 0.9em;
         }
       }
-      & > .student-info__title-text {
+      & > .newMemberInfo__title-text {
         width: 100%;
         grid-column-start: 1;
         grid-column-end: 3;
@@ -159,7 +159,7 @@
     @include e("button") {
       display: flex;
       justify-content: center;
-      padding: 1em 5em 1em 3em;
+      padding: 2em 0em 1em;
       // width: 5em;
       // height: 1em;
       button {
@@ -172,7 +172,7 @@
         // letter-spacing: 0.05em;
         transition: 200ms ease;
         color: $main-color;
-        background-color: lighten($sub-main-color, 25%); 
+        background-color: lighten($sub-main-color, 25%);
         box-shadow: 1px 1px 5px #ebebeb;
         text-transform: uppercase;
         cursor: pointer;

@@ -7,6 +7,7 @@ import { action } from '../../actions';
 import { bindActionCreators } from 'redux'
 import Router from 'next/router'
 
+import Swal from 'sweetalert2'
 import './post.scss'
 import {
     Header,
@@ -112,6 +113,19 @@ class Post extends React.Component {
             this.props.fetchNewCategory()
         }
     }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.newsData._id !== prevProps.newsData._id) {
+            this.getRelatestNews()
+        }
+        if (this.props.contacts.isAddSuccess && !prevProps.contacts.isAddSuccess) {
+            Swal.fire("Thành công", 'Gửi liên hệ thành công', 'success')
+            this.props.addContactRefresh()
+        }
+        if (this.props.contacts.isAddError && prevProps.contacts.adding) {
+            Swal.fire("Thất bại", 'Gửi liên hệ không thành công', 'error')
+            this.props.addContactRefresh()
+        }
+    }
     async componentDidMount() {
         this.fetchData()
         this.getLatestNews()
@@ -120,17 +134,34 @@ class Post extends React.Component {
         $(".post__contact-us").css("margin-bottom", heightOfFooter + "px");
     }
     getRelatestNews() {
+        const randomOffset = Math.floor(Math.random() * 10);
         api.news.getList({
             query: {
                 limit: 2,
-                filter: { category: this.props.newsData.category._id },
+                offset: randomOffset,
+                filter: { category: this.props.newsData.category._id, _id: { $ne: this.props.newsData._id } },
                 populates: [
                     { path: "category", select: "name slug" },
                     { path: "author", select: "firstName lastName avatar" }
                 ]
             }
         }).then(res => {
-            this.setState({ relatedNews: res.results.objects.rows })
+            if (res.results.objects.rows.length === 0) {
+                api.news.getList({
+                    query: {
+                        limit: 2,
+                        filter: { category: this.props.newsData.category._id, _id: { $ne: this.props.newsData._id } },
+                        populates: [
+                            { path: "category", select: "name slug" },
+                            { path: "author", select: "firstName lastName avatar" }
+                        ]
+                    }
+                }).then(res => {
+                    this.setState({ relatedNews: res.results.objects.rows })
+                })
+            } else {
+                this.setState({ relatedNews: res.results.objects.rows })
+            }
         }).catch(err => {
 
         })
@@ -138,6 +169,7 @@ class Post extends React.Component {
     getLatestNews() {
         api.news.getList({
             query: {
+                limit: 5,
                 order: { createdAt: -1 },
                 populates: [{ path: "category", select: "name slug" }]
             }
@@ -146,6 +178,9 @@ class Post extends React.Component {
         }).catch(err => {
 
         })
+    }
+    addContact = (body) => {
+        this.props.addContact(body)
     }
 
     render() {
@@ -162,10 +197,10 @@ class Post extends React.Component {
                         <span>
                             <Link href="/home/home" as="/">
                                 <a href="/">Trang chủ</a>
-                            </Link> </span>/
+                            </Link> </span>&nbsp;&nbsp;<i className="fas fa-chevron-right"></i>&nbsp;&nbsp;
                         <span><Link href={`/blog/blog?categorySlug=${this.props.newsData.category.slug}`} as={`/${this.props.newsData.category.slug}`}>
                             <a href={`/${this.props.newsData.category.slug}`}>{this.props.newsData.category.name}</a>
-                        </Link></span> /
+                        </Link></span> &nbsp;&nbsp;<i className="fas fa-chevron-right"></i>&nbsp;&nbsp;
                         <span><Link href={`/post/post?categorySlug=${this.props.newsData.category.slug}&newsSlug=${this.props.newsData.slug}`} as={`/${this.props.newsData.category.slug}/${this.props.newsData.slug}`}>
                             <a>{this.props.newsData.title}</a>
                         </Link></span>
@@ -208,9 +243,9 @@ class Post extends React.Component {
                                 <div className="post__wrapper__main-content__related-posts">
 
                                     {
-                                        this.state.relatedNews.map((post) => {
+                                        this.state.relatedNews.map((post, index) => {
                                             return (
-                                                <div className="post__wrapper__main-content__related-posts__post">
+                                                <div className="post__wrapper__main-content__related-posts__post" key={index}>
                                                     <RelatedPost relatedPost={post} />
                                                 </div>
                                             );
@@ -234,9 +269,9 @@ class Post extends React.Component {
                                         Thể loại
                 	                </div>
                                     {
-                                        this.props.newCategories.items.map((category) => {
+                                        this.props.newCategories.items.map((category, index) => {
                                             return (
-                                                <div className="post__wrapper__sub-content__categories__category">
+                                                <div className="post__wrapper__sub-content__categories__category" key={index}>
                                                     <Link href={`/blog/blog?categorySlug=${category.slug}`} as={`/${category.slug}`}>
                                                         <a href={`/${category.slug}`} >
                                                             {category.name}
@@ -295,6 +330,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     fetchSetting: action.setting.fetch,
     fetchNewCategory: action.newCategory.fetch,
     addContact: action.contact.add,
+    addContactRefresh: action.contact.addRefresh
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);

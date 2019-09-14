@@ -14,7 +14,7 @@ export class Table extends React.Component {
       <div className="table">
         <div className="table__title">
           <div className="table__title__icon">
-            <i class="fas fa-clipboard-list" />
+            <i className="fas fa-clipboard-list" />
           </div>
           <div className="table__title__content">{staticContent.nameTable}</div>
         </div>
@@ -45,6 +45,7 @@ export class Table extends React.Component {
               </tr>
             </thead>
             <tbody>
+<<<<<<< HEAD
               {tableContents &&
                 tableContents.map((tableContent, index) => {
                   return (
@@ -101,6 +102,34 @@ export class Table extends React.Component {
                     </tr>
                   );
                 })}
+=======
+              <tr>
+                <td data-title="#">1</td>
+                <td data-title="Ảnh đại diện">Peter</td>
+                <td data-title="Tên học viên">Griffin</td>
+                <td data-title="Points">$100</td>
+                <td data-title="Actions" className="table__content__right">
+                  <button
+                    type="button"
+                    className="table__content__btn table__content__btn--primary"
+                  >
+                    <i className="fas fa-info" />
+                  </button>
+                  <button
+                    type="button"
+                    className="table__content__btn table__content__btn--success"
+                  >
+                    <i className="fas fa-pen" />
+                  </button>
+                  <button
+                    type="button"
+                    className="table__content__btn table__content__btn--warning"
+                  >
+                    <i className="fas fa-trash-alt" />
+                  </button>
+                </td>
+              </tr>
+>>>>>>> b52138f78cf78f5b96847eb7a5fa6f6dbe847579
             </tbody>
           </table>
         </div>

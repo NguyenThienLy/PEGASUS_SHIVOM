@@ -6,6 +6,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux'
 import { api } from "../../services";
 import { action } from "../../actions";
+import * as moment from 'moment'
+import Swal from 'sweetalert2'
 
 import "./course.scss";
 import { Header, Footer, TrainerInfo, ContactUs, RingingPhone, LatestPost, SearchBox } from "../../components";
@@ -157,13 +159,6 @@ export class Course extends React.Component {
 		}
 	}
 	componentWillReceiveProps(nextProps) {
-		if (this.props.course._id !== nextProps.course._id) {
-			this.setState({ timeTables: [] })
-		}
-		if (nextProps.courses.items.length > 0 || this.props.course._id !== nextProps.course._id) {
-			this.props.fetchTimeTableOfCourse(nextProps.course._id)
-		}
-
 		return true
 	}
 	shouldComponentUpdate(nextProps, nextState) {
@@ -171,15 +166,13 @@ export class Course extends React.Component {
 		return true;
 	}
 	componentDidUpdate(prevProps, prevState, snapshot) {
-		const courseItemIndex = this.props.courses.items.findIndex(item => { return item._id === this.props.course._id })
-		if (courseItemIndex != -1 && (this.state.timeTables == undefined || (this.state.timeTables && this.state.timeTables.length === 0))) {
-			setTimeout(() => {
-				const courseData = this.props.courses.items[courseItemIndex]
-				if (courseData.timeTables !== undefined) {
-
-					this.setState({ timeTables: courseData.timeTables })
-				}
-			}, 1000);
+		if (this.props.contacts.isAddSuccess && !prevProps.contacts.isAddSuccess) {
+			Swal.fire("Thành công", 'Gửi liên hệ thành công', 'success')
+			this.props.addContactRefresh()
+		}
+		if (this.props.contacts.isAddError && prevProps.contacts.adding) {
+			Swal.fire("Thất bại", 'Gửi liên hệ không thành công', 'error')
+			this.props.addContactRefresh()
 		}
 	}
 
@@ -193,6 +186,7 @@ export class Course extends React.Component {
 	getLatestNews() {
 		api.news.getList({
 			query: {
+				limit: 5,
 				order: { createdAt: -1 },
 				populates: [{ path: "category", select: "name slug" }]
 			}
@@ -214,6 +208,9 @@ export class Course extends React.Component {
 		}
 
 	}
+	addContact = body => {
+		this.props.addContact(body);
+	};
 	render() {
 		return (
 			<div className="course">
@@ -225,8 +222,21 @@ export class Course extends React.Component {
 				<Header {...this.props} />
 				<React.Fragment>
 					<div className="course-title">
+						<span>
+							<Link href="/home/home" as="/">
+								<a href="/">Trang chủ</a>
+							</Link> </span>&nbsp;&nbsp;<i className="fas fa-chevron-right"></i>&nbsp;&nbsp;
+                        <span>
+							<Link href={`/allCourses/allCourses`} as={`/khoa-hoc`}>
+								<a href={`/khoa-hoc`}>Khoá học</a>
+							</Link>
+						</span> &nbsp;&nbsp;<i className="fas fa-chevron-right"></i>&nbsp;&nbsp;
+                        <span>
+							<Link href={`/course/course?slug=${this.props.course.slug}`} as={`/khoa-hoc/${this.props.course.slug}`}>
+								<a href={`/khoa-hoc/${this.props.course.slug}`}>{this.props.course.name}</a>
+							</Link>
+						</span>
 
-						<a href="/">trang chủ</a>&nbsp;&nbsp;<i className="fas fa-chevron-right"></i>&nbsp;&nbsp;<a href="cac-khoa-hoc">các khoá học</a>&nbsp;&nbsp;<i className="fas fa-chevron-right"></i>&nbsp;&nbsp;<a>{this.props.course.name}</a>
 					</div>
 					<div className="course-ringing-phone">
 						<RingingPhone />
@@ -239,16 +249,16 @@ export class Course extends React.Component {
 
 
 							<div className="course-wrapper__main-content__image">
-								{/* <div className="course-wrapper__main-content__image__dateCreated">
+								<div className="course-wrapper__main-content__image__dateCreated">
 									<a>
 										<span className="course-wrapper__main-content__image__dateCreated__day">
-											{this.state.course.dateCreated.day}
+											{moment(this.state.course.createdAt).date()}
 										</span>
 										<span className="course-wrapper__main-content__image__dateCreated__month">
-											{this.state.course.dateCreated.month}
+											Th {moment(this.state.course.createdAt).month() + 1}
 										</span>
 									</a>
-								</div> */}
+								</div>
 								<img src={this.props.course.thumb} alt={this.props.course.name} />
 							</div>
 
@@ -309,7 +319,7 @@ export class Course extends React.Component {
 										},
 									}
 									return (
-										<div>
+										<div key={index}>
 											<div className="course-wrapper__main-content__text">
 												{classData.name}
 												{/* <RegisterBtn /> */}
@@ -351,9 +361,9 @@ export class Course extends React.Component {
 									Các khoá học
                 				</div>
 								{
-									this.props.courses.items.map((course) => {
+									this.props.courses.items.map((course, index) => {
 										return (
-											<div className="course-wrapper__sub-content__other-courses__course">
+											<div className="course-wrapper__sub-content__other-courses__course" key={index}>
 												<Link href={`/course/course?slug=${course.slug}`} as={`/khoa-hoc/${course.slug}`}>
 													<a href={`/khoa-hoc/${course.slug}`} >
 														{course.name}
@@ -410,6 +420,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 	fetchTimeTableOfCourse: action.course.getTimeTableOfCourse,
 	fetchNewCategory: action.newCategory.fetch,
 	addContact: action.contact.add,
+	addContactRefresh: action.contact.addRefresh
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Course);

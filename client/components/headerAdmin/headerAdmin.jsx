@@ -21,12 +21,12 @@ export class HeaderAdmin extends React.Component {
   }
 
   componentDidMount() {
-    var outHeightOfUser = $(".headerAdmin__wrapper__user").outerHeight();
+    var outerHeightOfUser = $(".headerAdmin__wrapper__user").outerHeight();
     $(".headerAdmin__wrapper__user__inner").css({
-      top: outHeightOfUser
+      top: outerHeightOfUser
     });
 
-    $(".headerAdmin__wrapper__user").click(function(e) {
+    $(".headerAdmin__wrapper__user").click(function (e) {
       e.stopPropagation(); // ko chạy body, html click
       var maxHeight = $(".headerAdmin__wrapper__user__inner").css("maxHeight");
       if (maxHeight == "500px") {
@@ -52,11 +52,11 @@ export class HeaderAdmin extends React.Component {
       }
     });
 
-    $(".headerAdmin__wrapper__user__inner").click(function(e) {
+    $(".headerAdmin__wrapper__user__inner").click(function (e) {
       e.stopPropagation();
     });
 
-    $("body,html").click(function(e) {
+    $("body,html").click(function (e) {
       $("body, html").css("cursor", "default");
       $(".headerAdmin > .sidebar").removeClass("sidebar__show-menu");
       $(".background-overlay").css("display", "none");
@@ -74,7 +74,7 @@ export class HeaderAdmin extends React.Component {
       }
     });
 
-    $(".headerAdmin__wrapper__icon-sidebar").click(function(e) {
+    $(".headerAdmin__wrapper__icon-sidebar").click(function (e) {
       e.stopPropagation();
       $(".headerAdmin > .sidebar").addClass("sidebar__show-menu");
       $(".background-overlay").css("display", "block");
@@ -93,11 +93,11 @@ export class HeaderAdmin extends React.Component {
       }
     });
 
-    $(".headerAdmin > .sidebar").click(function(e) {
+    $(".headerAdmin > .sidebar").click(function (e) {
       e.stopPropagation();
     });
 
-    $(window).on("resize", function() {
+    $(window).on("resize", function () {
       var win = $(this);
       if (win.outerWidth() > 991) {
         if ($(".sidebar").hasClass("sidebar__show-menu")) {
@@ -115,7 +115,7 @@ export class HeaderAdmin extends React.Component {
         <Sidebar sidebar={sidebar} logo={logo}></Sidebar>
         <div className="headerAdmin__wrapper">
           <div className="headerAdmin__wrapper__icon-sidebar">
-            <i class="fas fa-bars"></i>
+            <i className="fas fa-bars"></i>
           </div>
           <div className="headerAdmin__wrapper__user">
             <img
@@ -126,7 +126,7 @@ export class HeaderAdmin extends React.Component {
             <div className="headerAdmin__wrapper__user__name">
               <span>
                 {headerAdmin.name}
-                <i class="fas fa-angle-down"></i>
+                <i className="fas fa-angle-down"></i>
               </span>
             </div>
             <div className="headerAdmin__wrapper__user__inner">

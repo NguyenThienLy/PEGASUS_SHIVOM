@@ -59,19 +59,19 @@ export class News2 extends React.Component {
                     </div>
                     <div
                         className="news2__inner__content"
-                        dangerouslySetInnerHTML={{ __html: news2.content }}
+                        dangerouslySetInnerHTML={{ __html: news2.description }}
                     >
                         {/* <p > </p> */}
                     </div>
                     <div className="news2__inner__more">
                         {/* <div className="news2__inner__more__comments-and-loves">
                             <a href="#">
-                                <i class="far fa-comment"></i>
+                                <i className="far fa-comment"></i>
                                 <span>56</span>
                             </a>
                             <span>&nbsp;/&nbsp;</span>
                             <a href="#">
-                                <i class="far fa-heart"></i>
+                                <i className="far fa-heart"></i>
                                 <span>66</span>
                             </a>
                         </div> */}
