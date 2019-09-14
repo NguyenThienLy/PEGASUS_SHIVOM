@@ -1,5 +1,6 @@
 import * as React from "react";
 import "./newMemberInfo.scss";
+import { MyDropzone } from "../myDropzone/myDropzone";
 
 export class NewMemberInfo extends React.Component {
   constructor(props) {
@@ -83,20 +84,18 @@ export class NewMemberInfo extends React.Component {
           <div className="newMemberInfo__form__info">
             <div className="newMemberInfo__title-text">Thêm ảnh đại diện</div>
             <div className="newMemberInfo__form__info__add-photo">
-              <button>
-                <i className="fas fa-plus-circle"></i>
-              </button>
+              <MyDropzone></MyDropzone>
             </div>
 
             <div className="newMemberInfo__form__info__icon">
               <i className="fas fa-camera-retro"></i>
             </div>
           </div>
-          <div className="newMemberInfo__form__button">
+          {/* <div className="newMemberInfo__form__button">
             <button>
               Tiếp tục <i className="fas fa-chevron-right"></i>
             </button>
-          </div>
+          </div> */}
         </form>
       </div>
     );

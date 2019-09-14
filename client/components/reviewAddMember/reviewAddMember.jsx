@@ -159,9 +159,9 @@ export class ReviewAddMember extends React.Component {
               500.000<u>đ</u>
             </span>
           </div>
-          <div className="reviewAddMember__more__button">
+          {/* <div className="reviewAddMember__more__button">
             <button>Xác nhận</button>
-          </div>
+          </div> */}
         </div>
       </div>
     );
