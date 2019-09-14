@@ -1,4 +1,4 @@
-import { checkinService, courseStudentService, statisticCourseService } from '../index'
+import { checkinService, courseStudentService, statisticCourseService, utilService } from '../index'
 import * as moment from 'moment'
 import * as _ from 'lodash'
 
@@ -15,17 +15,8 @@ export class UpdateStatisticCourseCronJob {
     // Hàm ghi nhận dữ liệu để thông kê cho khóa học
     async updateStatisticCourse() {
         // Lấy ra danh sách các checkin của ngày hôm trước
-        const startTime = moment().utcOffset("+07:00").subtract(1, "days").startOf("days").toDate()
-        const endTime = moment().utcOffset("+07:00").subtract(1, "days").endOf("days").toDate()
-
-        //console.log(endTime)
-
-        // Lấy ra tuần hiện tại
-        const currWeek = moment(startTime).week()
-        // Lấy ra tháng hiện tại
-        const currMonth = moment(startTime).month() + 1
-        // Lấy ra năm hiện tại
-        const currYear = moment(startTime).year()
+        const startTime = moment().subtract(1, "days").startOf("days").toDate()
+        const endTime = moment().subtract(1, "days").endOf("days").toDate()
 
         // Gom nhóm học viên theo khóa học 
         const listCheckin = await checkinService.model.aggregate([
@@ -78,9 +69,7 @@ export class UpdateStatisticCourseCronJob {
             // Cập nhật tuần || tháng || năm cho khóa học
             this.updateDataStatisticCourse({
                 course: course._id,
-                week: currWeek,
-                month: currMonth,
-                year: currYear,
+                startTime: startTime,
                 totalAbsent: listStudentTypeAbsent.length,
                 totalLate: listStudentTypeLate.length,
                 totalOnTime: listStudentTypeOnTime.length,
@@ -99,19 +88,23 @@ export class UpdateStatisticCourseCronJob {
     // Cập nhật dữ liệu biểu đồ cho khóa học
     updateDataStatisticCourse(params: {
         course: string,
-        week: number,
-        month: number,
-        year: number,
+        startTime: Date,
         totalAbsent: number,
         totalLate: number,
         totalOnTime: number,
         totalRedundant: number
     }) {
+        // Đổi lại cho week thôi
+        const tempStartDate = utilService.parseDateToWeekMonthYear(params.startTime)
+
+        const month = moment(params.startTime).month() + 1
+        const year = moment(params.startTime).year()
+
         // Cập nhật tuần cho khóa học
         statisticCourseService.model.
-            findOneAndUpdate({ course: params.course, "time.week": params.week, "time.month": params.month, "time.year": params.year, type: "week", status: "active" },
+            findOneAndUpdate({ course: params.course, "time.week": tempStartDate.week, "time.month": tempStartDate.month, "time.year": tempStartDate.year, type: "week", status: "active" },
                 {
-                    course: params.course, "time.week": params.week, "time.month": params.month, "time.year": params.year, type: "week", status: "active",
+                    course: params.course, "time.week": tempStartDate.week, "time.month": tempStartDate.month, "time.year": tempStartDate.year, type: "week", status: "active",
                     $inc: {
                         totalAbsent: params.totalAbsent, totalLate: params.totalLate,
                         totalOnTime: params.totalOnTime, totalRedundant: params.totalRedundant
@@ -124,9 +117,9 @@ export class UpdateStatisticCourseCronJob {
 
         // Cập nhật tháng cho khóa học
         statisticCourseService.model.
-            findOneAndUpdate({ course: params.course, "time.week": null, "time.month": params.month, "time.year": params.year, type: "month", status: "active" },
+            findOneAndUpdate({ course: params.course, "time.week": null, "time.month": month, "time.year": year, type: "month", status: "active" },
                 {
-                    course: params.course, "time.week": null, "time.month": params.month, "time.year": params.year, type: "month", status: "active",
+                    course: params.course, "time.week": null, "time.month": month, "time.year": year, type: "month", status: "active",
                     $inc: {
                         totalAbsent: params.totalAbsent, totalLate: params.totalLate,
                         totalOnTime: params.totalOnTime, totalRedundant: params.totalRedundant
@@ -139,9 +132,9 @@ export class UpdateStatisticCourseCronJob {
 
         // Cập nhật năm cho khóa học
         statisticCourseService.model.
-            findOneAndUpdate({ course: params.course, "time.week": null, "time.month": null, "time.year": params.year, type: "year", status: "active" },
+            findOneAndUpdate({ course: params.course, "time.week": null, "time.month": null, "time.year": year, type: "year", status: "active" },
                 {
-                    course: params.course, "time.week": null, "time.month": null, "time.year": params.year, type: "year", status: "active",
+                    course: params.course, "time.week": null, "time.month": null, "time.year": year, type: "year", status: "active",
                     $inc: {
                         totalAbsent: params.totalAbsent, totalLate: params.totalLate,
                         totalOnTime: params.totalOnTime, totalRedundant: params.totalRedundant

@@ -28,6 +28,7 @@ class MyDocument extends Document {
           <link rel="icon" href="/bookFeeling.jpg" />
           <link rel="stylesheet" type="text/css" href="/css/nprogress.css" />
           <link rel="stylesheet" type="text/css" href="/css/tippy.css" />
+          <link rel="stylesheet" type="text/css" href="/css/dayPicker.css" />
           <link
             rel="https://fonts.googleapis.com/css?family=Merriweather:400,700"
             rel="stylesheet"

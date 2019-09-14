@@ -7,12 +7,79 @@ export class CourseInfo extends React.Component {
   }
   render() {
     const { courseInfo } = this.props;
+    //console.log("courseInfo", courseInfo);
 
     return (
       <div className="courseInfo">
-        <div className="courseInfo__name">Tên khóa học</div>
+        {courseInfo && (
+          <div className="courseInfo__name">{courseInfo.name}</div>
+        )}
 
-        <div className="courseInfo__description">Course description</div>
+        {courseInfo && (
+          <div className="courseInfo__description">{courseInfo.slug}</div>
+        )}
+
+        <div className="courseInfo__details">
+          <div className="courseInfo__details__row">
+            <div className="courseInfo__details__row__holder">
+              <div className="courseInfo__details__row__holder__title">
+                Số lượng học viên
+              </div>
+              <div className="courseInfo__details__row__holder__content">
+                25
+              </div>
+            </div>
+            <div className="courseInfo__details__row__holder">
+              <div className="courseInfo__details__row__holder__title">
+                Thông tin khác
+              </div>
+              <div className="courseInfo__details__row__holder__content">
+                ...
+              </div>
+            </div>
+          </div>
+          <div className="courseInfo__details__row">
+            <div className="courseInfo__details__row__holder">
+              <div className="courseInfo__details__row__holder__title">
+                Khác
+              </div>
+              <div className="courseInfo__details__row__holder__content">
+                ...
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="courseInfo__details">
+          <div className="courseInfo__details__row">
+            <div className="courseInfo__details__row__holder">
+              <div className="courseInfo__details__row__holder__title">
+                Số lượng học viên
+              </div>
+              <div className="courseInfo__details__row__holder__content">
+                25
+              </div>
+            </div>
+            <div className="courseInfo__details__row__holder">
+              <div className="courseInfo__details__row__holder__title">
+                Thông tin khác
+              </div>
+              <div className="courseInfo__details__row__holder__content">
+                ...
+              </div>
+            </div>
+          </div>
+          <div className="courseInfo__details__row">
+            <div className="courseInfo__details__row__holder">
+              <div className="courseInfo__details__row__holder__title">
+                Khác
+              </div>
+              <div className="courseInfo__details__row__holder__content">
+                ...
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div className="courseInfo__details">
           <div className="courseInfo__details__row">

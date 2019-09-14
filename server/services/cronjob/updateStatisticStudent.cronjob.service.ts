@@ -1,4 +1,4 @@
-import { checkinService, statisticStudentService } from '../index'
+import { checkinService, statisticStudentService, utilService } from '../index'
 import * as moment from 'moment'
 import * as _ from 'lodash'
 
@@ -20,12 +20,12 @@ export class UpdateStatisticStudentCronJob {
         const startTime = moment().subtract(1, "days").startOf("days").toDate()
         const endTime = moment().subtract(1, "days").endOf("days").toDate()
 
-        // Lấy ra tuần hiện tại
-        const currWeek = moment(startTime).week()
-        // Lấy ra tháng hiện tại
-        const currMonth = moment(startTime).month() + 1
-        // Lấy ra năm hiện tại
-        const currYear = moment(startTime).year()
+        // // Lấy ra tuần hiện tại
+        // const currWeek = moment(startTime).week()
+        // // Lấy ra tháng hiện tại
+        // const currMonth = moment(startTime).month() + 1
+        // // Lấy ra năm hiện tại
+        // const currYear = moment(startTime).year()
 
         // Gom nhóm học viên theo khóa học 
         const listCheckin = await checkinService.model.aggregate([
@@ -55,9 +55,7 @@ export class UpdateStatisticStudentCronJob {
             // Cập nhật danh sách học sinh vắng
             this.updateDataStatisticStudent({
                 student: student._id,
-                week: currWeek,
-                month: currMonth,
-                year: currYear,
+                startTime: startTime,
                 // Lấy danh sách các ngày học viên vắng
                 objAbsent: _.map(listStudentFollowType.absent, function (item) {
                     return { course: item.course, time: item.checkinAt }
@@ -81,20 +79,23 @@ export class UpdateStatisticStudentCronJob {
     // Cập nhật dữ liệu biểu đồ cho khóa học
     updateDataStatisticStudent(params: {
         student: string,
-        week: number,
-        month: number,
-        year: number,
+        startTime: Date,
         objAbsent: any,
         objLate: any,
         objOnTime: any,
         objRedundant: any
     }) {
+        // Đổi lại cho week thôi
+        const tempStartDate = utilService.parseDateToWeekMonthYear(params.startTime)
+
+        const month = moment(params.startTime).month() + 1
+        const year = moment(params.startTime).year()
 
         // Cập nhật theo tuần cho học sinh
         statisticStudentService.model.
-            findOneAndUpdate({ student: params.student, "time.week": params.week, "time.month": params.month, "time.year": params.year, type: "week", status: "active" },
+            findOneAndUpdate({ student: params.student, "time.week": tempStartDate.week, "time.month": tempStartDate.month, "time.year": tempStartDate.year, type: "week", status: "active" },
                 {
-                    student: params.student, "time.week": params.week, "time.month": params.month, "time.year": params.year, type: "week", status: "active",
+                    student: params.student, "time.week": tempStartDate.week, "time.month": tempStartDate.month, "time.year": tempStartDate.year, type: "week", status: "active",
                     $push: {
                         absent: params.objAbsent, late: params.objLate,
                         onTime: params.objOnTime, redundant: params.objRedundant
@@ -107,9 +108,9 @@ export class UpdateStatisticStudentCronJob {
 
         // Cập nhật theo tháng cho học sinh
         statisticStudentService.model.
-            findOneAndUpdate({ student: params.student, "time.week": null, "time.month": params.month, "time.year": params.year, type: "month", status: "active" },
+            findOneAndUpdate({ student: params.student, "time.week": null, "time.month": month, "time.year": year, type: "month", status: "active" },
                 {
-                    student: params.student, "time.week": null, "time.month": params.month, "time.year": params.year, type: "month", status: "active",
+                    student: params.student, "time.week": null, "time.month": month, "time.year": year, type: "month", status: "active",
                     $push: {
                         absent: params.objAbsent, late: params.objLate,
                         onTime: params.objOnTime, redundant: params.objRedundant
@@ -122,9 +123,9 @@ export class UpdateStatisticStudentCronJob {
 
         // Cập nhật theo năm cho học sinh
         statisticStudentService.model.
-            findOneAndUpdate({ student: params.student, "time.week": null, "time.month": null, "time.year": params.year, type: "year", status: "active" },
+            findOneAndUpdate({ student: params.student, "time.week": null, "time.month": null, "time.year": year, type: "year", status: "active" },
                 {
-                    student: params.student, "time.week": null, "time.month": null, "time.year": params.year, type: "year", status: "active",
+                    student: params.student, "time.week": null, "time.month": null, "time.year": year, type: "year", status: "active",
                     $push: {
                         absent: params.objAbsent, late: params.objLate,
                         onTime: params.objOnTime, redundant: params.objRedundant
