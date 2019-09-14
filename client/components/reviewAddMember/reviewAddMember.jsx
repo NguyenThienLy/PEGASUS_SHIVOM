@@ -80,6 +80,7 @@ export class ReviewAddMember extends React.Component {
                   28/12/1994
                 </div>
               </div>
+
               <div className="reviewAddMember__content__right__info__item">
                 <div className="reviewAddMember__content__right__info__item__title">
                   Địa chỉ

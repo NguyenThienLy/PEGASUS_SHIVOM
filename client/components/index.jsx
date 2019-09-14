@@ -52,4 +52,9 @@ export * from "./stepsLine/stepsLine";
 export * from "./tesmonials/tesmonials";
 export * from "./memberInfo/memberInfo";
 export * from "./courseInfo/courseInfo";
-export * from "./tryItNowForm/tryItNowForm"
+export * from "./tryItNowForm/tryItNowForm";
+export * from "./newCourseInfo/newCourseInfo";
+export * from "./addCourseBenefitsForm/addCourseBenefitsForm";
+export * from "./tinymceEditor/tinymceEditor";
+export * from "./reviewAddCourse/reviewAddCourse";
+export * from "./myDropzone/myDropzone";

@@ -11,14 +11,19 @@ class MyDocument extends Document {
       <Html lang="vi">
         <Head>
           <style>{`body { margin: 0 } /* custom! */`}</style>
-          <script async src="https://www.googletagmanager.com/gtag/js?id=UA-80582137-5"></script>
-          <script dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=UA-80582137-5"
+          ></script>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.dataLayer = window.dataLayer || [];
                         function gtag(){dataLayer.push(arguments); }
                         gtag('js', new Date());
                       
-                        gtag('config', 'UA-80582137-5');`,
-          }} />
+                        gtag('config', 'UA-80582137-5');`
+            }}
+          />
           <link rel="manifest" href="/manifest.json" />
           <link rel="icon" href="/bookFeeling.jpg" />
           <link rel="stylesheet" type="text/css" href="/css/nprogress.css" />
@@ -68,6 +73,7 @@ class MyDocument extends Document {
           />
           <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+          <script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=nxw3p5ckcu5jx187f8q2w3ysytehc7mdor1gcic8zu1iq5pv"></script>
           <Main />
           <NextScript />
         </body>

@@ -9,16 +9,21 @@
     width: 20%;
     background-color: lighten($sub-main-color, 25%);
   }
-  @include e("number") {
+  @include e("btn") {
     width: 2.5em;
     height: 2.5em;
     background-color: lighten($sub-main-color, 25%);
+    font-size: 1em;
+    font-family: $font-body;
     color: $main-color;
     // border: 1px solid $table-border-color;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: none;
     border-radius: 50%;
+    outline: none;
+    margin: 0;
     box-shadow: 1px 1px 5px #ebebeb;
   }
 }
