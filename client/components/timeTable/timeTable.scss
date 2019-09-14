@@ -8,6 +8,13 @@ $background-table-header-color: lighten($sub-main-color, 25%);
   display: flex;
   justify-content: center;
   flex-direction: column;
+  .divider {
+    height: 1px;
+    background-color: $table-border-color;
+    border: none;
+    margin: 0px;
+  }
+
   @include e("tabs") {
     margin-bottom: 1.5em;
     padding: 2em 0em;
@@ -28,7 +35,7 @@ $background-table-header-color: lighten($sub-main-color, 25%);
         }
       }
     }
-    @include e("active"){
+    @include e("active") {
       color: $main-color !important;
     }
   }
@@ -101,6 +108,10 @@ $background-table-header-color: lighten($sub-main-color, 25%);
       }
       tbody {
         td {
+          vertical-align: top;
+          &:nth-child(1) {
+            vertical-align: middle;
+          }
           .time-table__table-events__class-time {
             color: $font-color;
           }

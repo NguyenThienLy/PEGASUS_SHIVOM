@@ -59,10 +59,13 @@
               //     transition-delay: 0s, 0s, 0.5s;
               //   }
               // }
-              & > .hoverDiv {
-                padding: 2.6em 1em;
-                cursor: pointer;
+              @include e("hover-div") {
+                & > .hoverDiv {
+                  padding: 2.6em 1em;
+                  cursor: pointer;
+                }
               }
+
               &:hover {
                 .header__wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper {
                   max-height: 500px;
@@ -73,14 +76,16 @@
                   transition: max-height 700ms ease;
                   transition-delay: 0.3s;
                 }
-                & > .hoverDiv {
-                  .hoverDiv__link {
-                    color: $main-color;
-                    transition: 200ms;
-                  }
-                  .hoverDiv__link__content--hover {
-                    height: 1.1em;
-                    width: 100%;
+                .header__wrapper__page-menu-area__left__navbar__list-items__item__hover-div {
+                  & > .hoverDiv {
+                    .hoverDiv__link {
+                      color: $main-color;
+                      transition: 200ms;
+                    }
+                    .hoverDiv__link__content--hover {
+                      height: 1.1em;
+                      width: 100%;
+                    }
                   }
                 }
               }
@@ -197,9 +202,11 @@
               //     transition-delay: 0s, 0s, 0.5s;
               //   }
               // }
-              & > .hoverDiv {
-                padding: 1.8em 1em;
-                cursor: pointer;
+              @include e("hover-div") {
+                & > .hoverDiv {
+                  padding: 1.8em 1em;
+                  cursor: pointer;
+                }
               }
               &:hover {
                 .header__sub-wrapper__page-menu-area__left__navbar__list-items__item__sub-navbar-wrapper {
@@ -211,14 +218,16 @@
                   transition: max-height 700ms ease;
                   transition-delay: 0.3s;
                 }
-                & > .hoverDiv {
-                  .hoverDiv__link {
-                    color: $main-color;
-                    transition: 200ms;
-                  }
-                  .hoverDiv__link__content--hover {
-                    height: 1.1em;
-                    width: 100%;
+                .header__wrapper__page-menu-area__left__navbar__list-items__item__hover-div {
+                  & > .hoverDiv {
+                    .hoverDiv__link {
+                      color: $main-color;
+                      transition: 200ms;
+                    }
+                    .hoverDiv__link__content--hover {
+                      height: 1.1em;
+                      width: 100%;
+                    }
                   }
                 }
               }

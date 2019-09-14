@@ -6,7 +6,7 @@ export class ContactUs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.send = this.send.bind(this)
+    this.send = this.send.bind(this);
   }
   send(body) {
     // const body = {
@@ -16,15 +16,14 @@ export class ContactUs extends React.Component {
     //   phone: this.refs.phone.value,
     //   course: this.refs.course.value
     // }
-    this.props.addContact(body)
+    this.props.addContact(body);
   }
   render() {
     return (
       <div className="contact-us">
-        <div className="contact-us__overlay"></div>
+        {/* <div className="contact-us__overlay"></div> */}
         <div className="contact-us__form">
-          <TryItNowForm addContact={this.send}
-            courses={this.props.courses} />
+          <TryItNowForm addContact={this.send} courses={this.props.courses} />
         </div>
         {/* <form className="contact-us__form">
           <input
@@ -78,9 +77,7 @@ export class ContactUs extends React.Component {
 
         <div className="contact-us__sub-info">
           <div className="contact-us__sub-info__brand">{this.props.brand}</div>
-          <div className="contact-us__sub-info__title">
-            {this.props.title}
-          </div>
+          <div className="contact-us__sub-info__title">{this.props.title}</div>
           <div className="contact-us__sub-info__content">
             {this.props.description}
           </div>

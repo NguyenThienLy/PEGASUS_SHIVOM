@@ -51,7 +51,6 @@ $background-table-header-color: lighten($sub-main-color, 25%);
       }
       tbody {
         td {
-          padding: 0;
           vertical-align: top;
           &:nth-child(1) {
             vertical-align: middle;

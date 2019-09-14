@@ -110,12 +110,12 @@ export class TimeTable extends React.Component {
       const className = timeTable.class.name;
       const teacherName = timeTable.class.teacher
         ? timeTable.class.teacher.firstName +
-        " " +
-        timeTable.class.teacher.lastName
+          " " +
+          timeTable.class.teacher.lastName
         : null;
 
       timeTable.items.forEach(item => {
-        let data = (
+        let data = [
           <div
             className={`time-table__table-events__class-info time-table__table-events__class-info-${timeTable.course._id} time-table__table-events__my-tooltip`}
             key={item._id}
@@ -138,8 +138,9 @@ export class TimeTable extends React.Component {
             <div className="time-table__table-events__class-info__class-teacher">
               {teacherName}
             </div>
-          </div>
-        );
+          </div>,
+          <hr className="divider" />
+        ];
         let listItemData = (
           <div
             className={`time-table__list-events__event__class-info time-table__list-events__event__class-info-${timeTable.course._id}`}
@@ -252,7 +253,11 @@ export class TimeTable extends React.Component {
                   </div>
                 </td>
                 {this.state.dayOfWeekMapping.map(dayOfWeek => {
-                  return <td key={dayOfWeek}>{this.state.timeTableData.morning[dayOfWeek]}</td>;
+                  return (
+                    <td key={dayOfWeek}>
+                      {this.state.timeTableData.morning[dayOfWeek]}
+                    </td>
+                  );
                 })}
                 {/* <td>
                   <div className="time-table__table-events__class-info time-table__table-events__my-tooltip">
@@ -341,7 +346,9 @@ export class TimeTable extends React.Component {
                 </td>
                 {this.state.dayOfWeekMapping.map(dayOfWeek => {
                   return (
-                    <td key={dayOfWeek}>{this.state.timeTableData.afternoon[dayOfWeek]}</td>
+                    <td key={dayOfWeek}>
+                      {this.state.timeTableData.afternoon[dayOfWeek]}
+                    </td>
                   );
                 })}
                 {/* <td>
@@ -430,7 +437,11 @@ export class TimeTable extends React.Component {
                   </div>
                 </td>
                 {this.state.dayOfWeekMapping.map(dayOfWeek => {
-                  return <td key={dayOfWeek}>{this.state.timeTableData.night[dayOfWeek]}</td>;
+                  return (
+                    <td key={dayOfWeek}>
+                      {this.state.timeTableData.night[dayOfWeek]}
+                    </td>
+                  );
                 })}
                 {/* <td>
                   <div className="time-table__table-events__class-info time-table__table-events__my-tooltip">
