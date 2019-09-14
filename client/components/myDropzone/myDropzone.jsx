@@ -116,8 +116,12 @@ export function MyDropzone(props) {
         })}
       >
         <input {...getInputProps()} />
-        <p>Drag 'n' drop some files here, or click to select files</p>
-        <em>(Only *.jpeg and *.png images will be accepted)</em>
+        <p className="container__text">
+          Kéo ảnh vào đây hoặc click nút để chọn ảnh
+        </p>
+        <em className="container__text">
+          (Chỉ chấp nhận file *.jpeg and *.png)
+        </em>
         <button className="container__btn" type="button" onClick={open}>
           <i class="fas fa-plus"></i>
         </button>

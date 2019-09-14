@@ -100,10 +100,10 @@ export class MemberDetails extends React.Component {
     return {};
   }
 
-  fetchData = () => { };
+  fetchData = () => {};
 
-  handleScroll = () => { };
-  componentWillUnmount() { }
+  handleScroll = () => {};
+  componentWillUnmount() {}
   componentDidMount() {
     this.fetchData();
 
@@ -143,6 +143,14 @@ export class MemberDetails extends React.Component {
       "margin-top",
       heightOfHeader + "px"
     );
+
+    $(
+      ".memberDetails__body__card__content__chart__filter__form__input"
+    ).datetimepicker({
+      format: "d/m/Y",
+      timepicker: false,
+      mask: false
+    });
   }
 
   shouldComponentUpdate() {

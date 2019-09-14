@@ -133,8 +133,8 @@ export class CourseDetails extends React.Component {
     // } catch (err) { }
   };
 
-  handleScroll = () => { };
-  componentWillUnmount() { }
+  handleScroll = () => {};
+  componentWillUnmount() {}
   componentDidMount() {
     this.fetchData();
 
@@ -174,6 +174,14 @@ export class CourseDetails extends React.Component {
       "margin-top",
       heightOfHeader + "px"
     );
+
+    $(
+      ".courseDetails__body__card__content__chart__filter__form__input"
+    ).datetimepicker({
+      format: "d/m/Y",
+      timepicker: false,
+      mask: false
+    });
   }
 
   shouldComponentUpdate() {
@@ -249,7 +257,9 @@ export class CourseDetails extends React.Component {
           <div className="courseDetails__body">
             <div className="courseDetails__body__numbers">
               {this.state.numberAdmins.map((number, index) => {
-                return <NumberAdmin numberAdmin={number} key={index}></NumberAdmin>;
+                return (
+                  <NumberAdmin numberAdmin={number} key={index}></NumberAdmin>
+                );
               })}
             </div>
             <div className="courseDetails__body__card">

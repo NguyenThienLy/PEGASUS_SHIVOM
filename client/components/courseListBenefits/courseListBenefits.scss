@@ -1,0 +1,15 @@
+@import "../../default.scss";
+
+.course-list-benefits {
+  margin-bottom: 2em;
+  @include e("title") {
+    font-size: 1.1em;
+    color: $color-grey;
+    font-family: $font-family-special;
+  }
+  @include e("content") {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2em;
+  }
+}

@@ -118,27 +118,28 @@
                 line-height: 26px;
             }
 
-            @include e('targets') {
-                color: rgba(0, 0, 0, 0.6);
-                font-size: 1em;
-                display: flex;
-                flex-wrap: wrap;
-                margin-top: 20px;
+            @include e('benefits') {
+                margin: 2em 0 1em;
+                // color: rgba(0, 0, 0, 0.6);
+                // font-size: 1em;
+                // display: flex;
+                // flex-wrap: wrap;
+                // margin-top: 20px;
 
-                @include e('target') {
-                    width: 33%;
-                    margin: 10px 0;
-                    text-transform: capitalize;
+                // @include e('target') {
+                //     width: 33%;
+                //     margin: 10px 0;
+                //     text-transform: capitalize;
 
-                    .fas {
-                        &:hover {
-                            color: $sub-main-color;
-                        }
+                //     .fas {
+                //         &:hover {
+                //             color: $sub-main-color;
+                //         }
 
-                        color: $main-color;
-                        margin-right: 4px;
-                    }
-                }
+                //         color: $main-color;
+                //         margin-right: 4px;
+                //     }
+                // }
             }
 
             @include e('classes') {

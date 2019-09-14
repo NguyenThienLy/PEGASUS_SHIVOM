@@ -1,12 +1,28 @@
 @import "../../default.scss";
 
 .container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-width: 2px;
+  border-radius: 2px;
+  border-color: #ededed;
+  border-style: dashed;
+  background-color: #fafafa;
+  outline: none;
+  transition: border 0.24s ease-in-out;
+  @include e("text") {
+    font-size: 0.9em;
+    color: $font-color;
+  }
   @include e("btn") {
     display: block;
     text-align: center;
     padding: 0.75em 0.85em;
     margin: auto;
-    margin-top: 1em;
+    margin-top: 2em;
     border: none;
     border-radius: 50%;
     outline: none;

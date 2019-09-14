@@ -1,0 +1,27 @@
+@import "../../default.scss";
+
+.course-benefit {
+  margin-top: -2em;
+  height: 100%;
+  position: relative;
+  @include e("index") {
+    height: 1em;
+    display: inline-block;
+    font-family: $font-family-number;
+    font-size: 6em;
+    color: $sub-main-color;
+    font-weight: 700;
+    opacity: 0.18;
+  }
+  @include e("content") {
+    position: absolute;
+    bottom: -35%;
+    left: 6%;
+    font-family: $font-family-special;
+    color: $main-color;
+    font-size: 0.9em;
+    &::first-letter {
+      text-transform: capitalize;
+    }
+  }
+}
