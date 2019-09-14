@@ -8,14 +8,24 @@ $background-table-header-color: lighten($sub-main-color, 25%);
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin: 0 1em;
   .divider {
     height: 1px;
     background-color: $table-border-color;
     border: none;
     margin: 0px;
   }
+
+  @include e("title") {
+    font-size: 1.1em;
+    color: $main-color; //rgba(0, 0, 0, 0.7);
+    font-weight: bold;
+    margin-left: 1.75em;
+    letter-spacing: 0.05em;
+    padding: 1em 0;
+    font-family: $font-family-special;
+  }
   @include e("table-events") {
+    margin: 2em 1em 0;
     table,
     th,
     td {
@@ -160,7 +170,7 @@ $background-table-header-color: lighten($sub-main-color, 25%);
       border: none;
       border-radius: 5px;
       outline: none;
-      // letter-spacing: 0.05em;
+      font-family: $font-body;
       transition: 200ms ease;
       color: $main-color;
       background-color: lighten($sub-main-color, 25%);

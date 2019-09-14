@@ -174,7 +174,7 @@
         border: none;
         border-radius: 5px;
         outline: none;
-        // letter-spacing: 0.05em;
+        font-family: $font-body;
         transition: 200ms ease;
         color: $main-color;
         background-color: lighten($sub-main-color, 25%);

@@ -64,7 +64,8 @@
     }
     @include e("image") {
       width: 100%;
-      margin-bottom: 27px;
+      height: auto;
+      margin-bottom: 1.5em;
       position: relative;
       @include e("dateCreated") {
         position: absolute;

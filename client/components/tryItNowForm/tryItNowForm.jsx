@@ -229,8 +229,8 @@ export class TryItNowForm extends React.Component {
                     >
                         gửi
           </button>
-                </form>
-            </React.Fragment>
-        )
-    }
+        </form>
+      </React.Fragment>
+    );
+  }
 }

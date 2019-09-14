@@ -6,7 +6,7 @@ import { action } from "../../actions";
 import { api } from "../../services";
 import { bindActionCreators } from "redux";
 
-import Swal from 'sweetalert2'
+// import Swal from 'sweetalert2'
 import "./home.scss";
 import {
   Footer,
@@ -324,18 +324,18 @@ class Home extends React.Component {
       },
       isShowTryItNowModal: false
     };
-    this.hideTryItNowModal = this.hideTryItNowModal.bind(this)
-    this.showTryItNowModal = this.showTryItNowModal.bind(this)
+    this.hideTryItNowModal = this.hideTryItNowModal.bind(this);
+    this.showTryItNowModal = this.showTryItNowModal.bind(this);
   }
   static async getInitialProps({ req, query }) {
     return {};
   }
   hideTryItNowModal() {
-    this.setState({ isShowTryItNowModal: false })
-    this.props.addContactRefresh()
+    this.setState({ isShowTryItNowModal: false });
+    this.props.addContactRefresh();
   }
   showTryItNowModal() {
-    this.setState({ isShowTryItNowModal: true })
+    this.setState({ isShowTryItNowModal: true });
   }
   fetchData = () => {
     // Cách 1
@@ -403,16 +403,17 @@ class Home extends React.Component {
   };
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.contacts.isAddSuccess && !prevProps.contacts.isAddSuccess) {
-      Swal.fire("Thành công", 'Gửi liên hệ thành công', 'success')
-      this.props.addContactRefresh()
+      Swal.fire("Thành công", "Gửi liên hệ thành công", "success");
+      this.props.addContactRefresh();
     }
     if (this.props.contacts.isAddError && prevProps.contacts.adding) {
-      Swal.fire("Thất bại", 'Gửi liên hệ không thành công', 'error')
-      this.props.addContactRefresh()
+      Swal.fire("Thất bại", "Gửi liên hệ không thành công", "error");
+      this.props.addContactRefresh();
     }
   }
   async componentDidMount() {
     this.fetchData();
+
     // $(".home__body__brands__slick-autoplay").slick({
     //   dots: false,
     //   arrows: false,
@@ -489,7 +490,7 @@ class Home extends React.Component {
         }
       ]
     });
-    $(".home__body__intro-slick-autoplay").on("beforeChange", function (
+    $(".home__body__intro-slick-autoplay").on("beforeChange", function(
       event,
       slick,
       currentSlide,
@@ -500,7 +501,7 @@ class Home extends React.Component {
       );
       $(".home__body__intro-slick-autoplay .slick-dots li button")
         .attr("aria-pressed", "false")
-        .focus(function () {
+        .focus(function() {
           this.blur();
         });
     });
@@ -535,7 +536,10 @@ class Home extends React.Component {
           <div className="home__body">
             <div className="home__body__slider">
               {this.props.sliders.fetching === false ? (
-                <Slider {...this.props.sliders} showTryItNowModal={this.showTryItNowModal} />
+                <Slider
+                  {...this.props.sliders}
+                  showTryItNowModal={this.showTryItNowModal}
+                />
               ) : null}
             </div>
 
@@ -567,8 +571,13 @@ class Home extends React.Component {
               <div className="home__body__trainingClass__content">
                 {this.props.courses.fetching === false
                   ? this.props.courses.items.map((trainingClass, index) => {
-                    return <TrainingClass trainingClass={trainingClass} key={index} />;
-                  })
+                      return (
+                        <TrainingClass
+                          trainingClass={trainingClass}
+                          key={index}
+                        />
+                      );
+                    })
                   : null}
                 {/* {this.state.trainingClasses.map(trainingClass => {
                   return <TrainingClass trainingClass={trainingClass} />;
@@ -658,8 +667,8 @@ class Home extends React.Component {
               <div className="home__body__trainers__list">
                 {this.props.teachers.fetching === false
                   ? this.props.teachers.items.map((trainer, index) => {
-                    return <Trainer trainer={trainer} key={index} />;
-                  })
+                      return <Trainer trainer={trainer} key={index} />;
+                    })
                   : null}
                 {/* {this.state.trainers.map(trainer => {
                   return <Trainer trainer={trainer} />;
