@@ -13,7 +13,7 @@ export class StatisticCourseService extends CrudService<typeof StatisticCourse> 
         totalWeekStartTime: number,
         totalWeekEndTime: number
     }) {
-        console.log("params", params)
+        //console.log("params", params)
 
         // Của tất cả các khóa học
         if (params.course === "null") {
@@ -22,13 +22,13 @@ export class StatisticCourseService extends CrudService<typeof StatisticCourse> 
                 dataRedundants = [],
                 isEmpty = true
 
-            for (var i = 1; i <= 52; i++) {
-                labels.push("T " + i)
-                dataAbsents.push(0)
-                dataLates.push(0)
-                dataOnTimes.push(0)
-                dataRedundants.push(0)
-            }
+            // for (var i = 1; i <= 52; i++) {
+            //     labels.push("T " + i)
+            //     dataAbsents.push(0)
+            //     dataLates.push(0)
+            //     dataOnTimes.push(0)
+            //     dataRedundants.push(0)
+            // }
 
             const tempLineChart = await this.model.aggregate([
                 // Lọc ra theo khóa học và type phù hợp
@@ -102,10 +102,24 @@ export class StatisticCourseService extends CrudService<typeof StatisticCourse> 
             ])
 
             tempLineChart.forEach(element => {
-                dataAbsents[element.labels - 1] = element.totalAbsent
-                dataLates[element.labels - 1] = element.totalLate
-                dataOnTimes[element.labels - 1] = element.totalOnTime
-                dataRedundants[element.labels - 1] = element.totalRedundant
+                switch (params.type) {
+                    case "week":
+                        labels.push("T " + element.labels)
+                        break;
+
+                    case "month":
+                        labels.push("Th " + element.labels)
+                        break;
+
+                    case "year":
+                        labels.push("Na " + element.labels)
+                        break;
+                }
+
+                dataAbsents.push(element.totalAbsent)
+                dataLates.push(element.totalLate)
+                dataOnTimes.push(element.totalOnTime)
+                dataRedundants.push(element.totalRedundant)
 
                 isEmpty = false
             })
@@ -121,8 +135,13 @@ export class StatisticCourseService extends CrudService<typeof StatisticCourse> 
 
         }
 
+        let labels = [], dataAbsents = [],
+            dataLates = [], dataOnTimes = [],
+            dataRedundants = [],
+            isEmpty = true
+
         // Theo một khóa học
-        return await this.model.aggregate([
+        const tempLineChart = await this.model.aggregate([
             // Lọc ra theo khóa học và type phù hợp
             {
                 $match: {
@@ -178,6 +197,38 @@ export class StatisticCourseService extends CrudService<typeof StatisticCourse> 
                 }
             }
         ])
+
+        tempLineChart.forEach(element => {
+            switch (params.type) {
+                case "week":
+                    labels.push("T " + element.labels)
+                    break;
+
+                case "month":
+                    labels.push("Th " + element.labels)
+                    break;
+
+                case "year":
+                    labels.push("Na " + element.labels)
+                    break;
+            }
+
+            dataAbsents.push(element.totalAbsent)
+            dataLates.push(element.totalLate)
+            dataOnTimes.push(element.totalOnTime)
+            dataRedundants.push(element.totalRedundant)
+
+            isEmpty = false
+        })
+
+        return {
+            labels: labels,
+            dataAbsents: dataAbsents,
+            dataLates: dataLates,
+            dataOnTimes: dataOnTimes,
+            dataRedundants: dataRedundants,
+            isEmpty: isEmpty
+        }
     }
 
     async getDataInStatisticForPieChart(params: {
@@ -277,8 +328,13 @@ export class StatisticCourseService extends CrudService<typeof StatisticCourse> 
             }
         }
 
+        let labels = ["Vắng học", "Trễ giờ", "Đúng giờ", "Đi thừa"],
+            data = [0, 0, 0, 0], totalAbsent = 0,
+            totalLate = 0, totalOnTime = 0, totalRedundant = 0,
+            isEmpty = true
+
         // Theo một khóa học
-        return await this.model.aggregate([
+        const tempDataPieChart = await this.model.aggregate([
             // Lọc ra theo khóa học và type phù hợp
             {
                 $match: {
@@ -331,5 +387,31 @@ export class StatisticCourseService extends CrudService<typeof StatisticCourse> 
                 }
             }
         ])
+
+        if (tempDataPieChart.length > 0) {
+            data[0] = tempDataPieChart[0].totalAbsent
+            totalAbsent = tempDataPieChart[0].totalAbsent
+
+            data[1] = tempDataPieChart[0].totalLate
+            totalLate = tempDataPieChart[0].totalLate
+
+            data[2] = tempDataPieChart[0].totalOnTime
+            totalOnTime = tempDataPieChart[0].totalOnTime
+
+            data[3] = tempDataPieChart[0].totalRedundant
+            totalRedundant = tempDataPieChart[0].totalRedundant
+
+            isEmpty = false
+        }
+
+        return {
+            labels: labels,
+            data: data,
+            totalAbsent: totalAbsent,
+            totalLate: totalLate,
+            totalOnTime: totalOnTime,
+            totalRedundant: totalRedundant,
+            isEmpty: isEmpty
+        }
     }
 }

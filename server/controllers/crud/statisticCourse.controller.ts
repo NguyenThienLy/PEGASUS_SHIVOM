@@ -1,5 +1,5 @@
 import { CrudController } from '../crud.controller'
-import { statisticCourseService, checkinService, cacheService } from '../../services/index'
+import { statisticCourseService, checkinService, cacheService, utilService } from '../../services/index'
 import * as moment from 'moment'
 import * as hash from 'object-hash'
 
@@ -14,7 +14,7 @@ export class StatisticCourseController extends CrudController<typeof statisticCo
         startTime: Date,
         endTime: Date
     }) {
-        console.log("paramsControll", params)
+        //console.log("paramsControll", params)
 
         // Lay ma hash duy nhat de query cache
         const hashCode = hash(JSON.stringify(params))
@@ -30,13 +30,16 @@ export class StatisticCourseController extends CrudController<typeof statisticCo
             // Đổi sang tuần theo type
             switch (type) {
                 case "week":
-                    totalWeekStartTime = moment(startTime).week() + moment(startTime).year() * 52
-                    totalWeekEndTime = moment(endTime).week() + moment(endTime).year() * 52
+                    const tempStartDate = utilService.parseDateToWeekMonthYear(startTime)
+                    const tempEndDate = utilService.parseDateToWeekMonthYear(endTime)
+
+                    totalWeekStartTime = tempStartDate.week + tempStartDate.year * 52
+                    totalWeekEndTime = tempEndDate.week + tempEndDate.year * 52
                     break
 
                 case "month":
-                    totalWeekStartTime = (moment(startTime).month() - 1) * 4 + moment(startTime).year() * 52
-                    totalWeekEndTime = (moment(endTime).month() - 1) * 4 + moment(endTime).year() * 52
+                    totalWeekStartTime = moment(startTime).month() * 4 + moment(startTime).year() * 52
+                    totalWeekEndTime = moment(endTime).month() * 4 + moment(endTime).year() * 52
                     break
 
                 case "year":
@@ -44,9 +47,6 @@ export class StatisticCourseController extends CrudController<typeof statisticCo
                     totalWeekEndTime = moment(endTime).year() * 52
                     break
             }
-
-            console.log(moment(startTime).year(), moment(startTime).week())
-            console.log(moment(endTime).year(), moment(endTime).week())
 
             // Thống kê theo kiểu realTime
             if (type === "realTime")
@@ -84,13 +84,16 @@ export class StatisticCourseController extends CrudController<typeof statisticCo
             // Đổi sang tuần theo type
             switch (type) {
                 case "week":
-                    totalWeekStartTime = moment(startTime).week() + moment(startTime).year() * 52
-                    totalWeekEndTime = moment(endTime).week() + moment(endTime).year() * 52
+                    const tempStartDate = utilService.parseDateToWeekMonthYear(startTime)
+                    const tempEndDate = utilService.parseDateToWeekMonthYear(endTime)
+
+                    totalWeekStartTime = tempStartDate.week + tempStartDate.year * 52
+                    totalWeekEndTime = tempEndDate.week + tempEndDate.year * 52
                     break
 
                 case "month":
-                    totalWeekStartTime = (moment(startTime).month() - 1) * 4 + moment(startTime).year() * 52
-                    totalWeekEndTime = (moment(endTime).month() - 1) * 4 + moment(endTime).year() * 52
+                    totalWeekStartTime = moment(startTime).month() * 4 + moment(startTime).year() * 52
+                    totalWeekEndTime = moment(endTime).month() * 4 + moment(endTime).year() * 52
                     break
 
                 case "year":
