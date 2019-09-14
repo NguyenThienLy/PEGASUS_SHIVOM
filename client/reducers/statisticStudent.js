@@ -33,119 +33,141 @@ export class StatisticStudentReducer extends BaseReducer {
     };
   }
   reducer = (state = this.initState, action) => {
-    let itemIndex = -1;
     switch (action.type) {
       // Đang lấy dữ liệu cho list detail
       case this.actions.fetchListDetailPending:
-        state = {
-          ...state,
-          statisticListDetail: {
-            ...state.statisticForListDetail,
-            fetching: true
+        return _.merge(
+          {},
+          {
+            statisticForListDetail: {
+              fetching: true,
+              fetchError: null,
+              data: []
+            },
+            statisticForCalendarChart: state.statisticForCalendarChart,
+            statisticForPieChart: state.statisticForPieChart
           }
-        };
-
-        break;
+        );
 
       // Lấy thành công dữ liệu cho list detail
       case this.actions.fetchListDetailSuccess:
-        state = {
-          ...state,
-          statisticForListDetail: {
-            ...state.statisticForListDetail,
-            data: action.statisticForListDetail.data,
-            fetching: false
+        return _.merge(
+          {},
+          {
+            statisticForListDetail: {
+              data: action.payload,
+              fetching: false,
+              fetchError: null
+            },
+            statisticForCalendarChart: state.statisticForCalendarChart,
+            statisticForPieChart: state.statisticForPieChart
           }
-        };
-
-        break;
+        );
 
       // Lấy dữ liệu thất bại cho list detail
       case this.actions.fetchListDetailError:
-        state = {
-          ...state,
-          statisticForListDetail: {
-            ...state.statisticForListDetail,
-            data: [],
-            fetching: true
+        return _.merge(
+          {},
+          {
+            statisticForListDetail: {
+              data: [],
+              fetching: false,
+              fetchError: action.payload
+            },
+            statisticForCalendarChart: state.statisticForCalendarChart,
+            statisticForPieChart: state.statisticForPieChart
           }
-        };
-        break;
+        );
 
       // Đang lấy dữ liệu cho calendar chart
       case this.actions.fetchCalendarChartPending:
-        state = {
-          ...state,
-          statisticCalendarChart: {
-            ...state.statisticForCalendarChart,
-            fetching: true
+        return _.merge(
+          {},
+          {
+            statisticForCalendarChart: {
+              fetching: true,
+              fetchError: null,
+              data: []
+            },
+            statisticForPieChart: state.statisticForPieChar,
+            statisticForListDetail: state.statisticForListDetail
           }
-        };
-
-        break;
+        );
 
       // Lấy thành công dữ liệu cho calendar chart
       case this.actions.fetchCalendarChartSuccess:
-        state = {
-          ...state,
-          statisticForCalendarChart: {
-            ...state.statisticForCalendarChart,
-            data: action.statisticForCalendarChart.data,
-            fetching: false
+        return _.merge(
+          {},
+          {
+            statisticForCalendarChart: {
+              data: action.payload,
+              fetching: false,
+              fetchError: null
+            },
+            statisticForPieChart: state.statisticForPieChar,
+            statisticForListDetail: state.statisticForListDetail
           }
-        };
-
-        break;
+        );
 
       // Lấy dữ liệu thất bại cho calendar chart
       case this.actions.fetchCalendarChartError:
-        state = {
-          ...state,
-          statisticForCalendarChart: {
-            ...state.statisticForCalendarChart,
-            data: [],
-            fetching: true
+        return _.merge(
+          {},
+          {
+            statisticForCalendarChart: {
+              data: [],
+              fetching: false,
+              fetchError: action.payload
+            },
+            statisticForPieChart: state.statisticForPieChar,
+            statisticForListDetail: state.statisticForListDetail
           }
-        };
-        break;
+        );
 
       // Đang lấy dữ liệu cho pie chart
       case this.actions.fetchPieChartPending:
-        state = {
-          ...state,
-          statisticPieChart: {
-            ...state.statisticForPieChart,
-            fetching: true
+        return _.merge(
+          {},
+          {
+            statisticForPieChart: {
+              fetching: true,
+              fetchError: null,
+              data: []
+            },
+            statisticForCalendarChart: state.statisticForCalendarChart,
+            statisticForListDetail: state.statisticForListDetail
           }
-        };
+        );
 
-        break;
-
-      // Lấy thành công dữ liệu cho calendar chart
+      // Lấy thành công dữ liệu cho pie chart
       case this.actions.fetchPieChartSuccess:
-        state = {
-          ...state,
-          statisticForPieChart: {
-            ...state.statisticForPieChart,
-            data: action.statisticForPieChart.data,
-            fetching: false
+        return _.merge(
+          {},
+          {
+            statisticForPieChart: {
+              data: action.payload,
+              fetching: false,
+              fetchError: null
+            },
+            statisticForCalendarChart: state.statisticForCalendarChart,
+            statisticForListDetail: state.statisticForListDetail
           }
-        };
+        );
 
-        break;
-
-      // Lấy dữ liệu thất bại cho calendar chart
+      // Lấy dữ liệu thất bại cho pie chart
       case this.actions.fetchPieChartError:
-        state = {
-          ...state,
-          statisticForPieChart: {
-            ...state.statisticForPieChart,
-            data: [],
-            fetching: true
+        return _.merge(
+          {},
+          {
+            statisticForPieChart: {
+              data: [],
+              fetching: false,
+              fetchError: action.payload
+            },
+            statisticForCalendarChart: state.statisticForCalendarChart,
+            statisticForListDetail: state.statisticForListDetail
           }
-        };
-
-        break;
+        );
     }
     return state;
   };

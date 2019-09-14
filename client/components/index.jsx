@@ -49,3 +49,4 @@ export * from "./summaryRegisForm/summaryRegisForm";
 export * from "./addCourse/addCourse";
 export * from "./stepsLine/stepsLine";
 export * from "./tesmonials/tesmonials";
+export * from "./calendarCustom/calendarCustom";
