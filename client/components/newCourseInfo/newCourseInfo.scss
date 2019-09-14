@@ -148,6 +148,10 @@
         align-items: center;
         display: flex;
         padding: 1em 0;
+        .container {
+          width: 100%;
+          text-align: center;
+        }
       }
     }
 

@@ -343,11 +343,11 @@ export class TimeTableOptions extends React.Component {
             </tbody>
           </table>
         </div>
-        <div className="time-table-options__button">
+        {/* <div className="time-table-options__button">
           <button>
             Tiếp tục <i className="fas fa-chevron-right"></i>
           </button>
-        </div>
+        </div> */}
       </div>
     );
   }

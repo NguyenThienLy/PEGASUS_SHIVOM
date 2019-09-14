@@ -45,12 +45,59 @@ body {
         box-shadow: 1px 1px 5px rgba(0, 163, 175, 0.5);
       }
       @include e("content") {
-        padding: 4em 0;
+        padding: 4em 0 0;
         @include e("steps") {
           margin: 0 0 3em;
         }
         @include e("info") {
           margin: 0 0 3em;
+        }
+      }
+      @include e("buttons") {
+        display: flex;
+        justify-content: center;
+        padding: 0em 0em 2em;
+        @include e("btn") {
+          font-size: 1em;
+          padding: 0.6em 1.8em;
+          margin-right: 2em;
+          text-align: center;
+          border: none;
+          border-radius: 5px;
+          outline: none;
+          font-family: $font-body;
+          transition: 200ms ease;
+          color: $main-color;
+          background-color: lighten($sub-main-color, 25%);
+          box-shadow: 1px 1px 5px #ebebeb;
+          text-transform: uppercase;
+          cursor: pointer;
+          &:nth-last-child(1) {
+            margin-right: 0;
+          }
+          &:disabled {
+            cursor: no-drop;
+            background-color: #ebebeb;
+            color: $font-color;
+          }
+          i {
+            font-size: 0.9em;
+          }
+          &:not(:disabled):hover {
+            cursor: pointer;
+            background-color: $main-color;
+            color: #fff;
+          }
+        }
+        @include e("btn-previous") {
+          i {
+            margin-right: 0.4em;
+          }
+        }
+        @include e("btn-next") {
+          i {
+            margin-left: 0.4em;
+          }
         }
       }
     }
