@@ -11,18 +11,24 @@ class MyDocument extends Document {
       <Html lang="vi">
         <Head>
           <style>{`body { margin: 0 } /* custom! */`}</style>
-          <script async src="https://www.googletagmanager.com/gtag/js?id=UA-80582137-5"></script>
-          <script dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=UA-80582137-5"
+          ></script>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.dataLayer = window.dataLayer || [];
                         function gtag(){dataLayer.push(arguments); }
                         gtag('js', new Date());
                       
-                        gtag('config', 'UA-80582137-5');`,
-          }} />
+                        gtag('config', 'UA-80582137-5');`
+            }}
+          />
           <link rel="manifest" href="/manifest.json" />
           <link rel="icon" href="/bookFeeling.jpg" />
           <link rel="stylesheet" type="text/css" href="/css/nprogress.css" />
           <link rel="stylesheet" type="text/css" href="/css/tippy.css" />
+          <link rel="stylesheet" type="text/css" href="/css/dayPicker.css" />
           <link
             rel="https://fonts.googleapis.com/css?family=Merriweather:400,700"
             rel="stylesheet"

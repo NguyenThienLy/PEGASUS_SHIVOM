@@ -1,17 +1,59 @@
 import * as React from "react";
 import "./table.scss";
+import { CalendarCustomModal } from "../calendarCustomModal/calendarCustomModal";
+import { timingSafeEqual } from "crypto";
+import moment from "moment";
 
 export class Table extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      calendarModal: {
+        isShow: false,
+        arrTime: []
+      }
+    };
+    this.hideCalendarModal = this.hideCalendarModal.bind(this);
+    this.showCalendar = this.showCalendar.bind(this);
+  }
+  hideCalendarModal() {
+    this.setState({ calendarModal: { isShow: false } });
+  }
+  showCalendar(times) {
+    console.log("times", times);
+
+    let tempCalendarModal = {
+      isShow: true,
+      arrTime: []
+    };
+
+    times.forEach(element => {
+      console.log("times date", moment(element.time).date());
+      tempCalendarModal.arrTime.push(
+        new Date(
+          moment(element.time).year(),
+          moment(element.time).month(),
+          moment(element.time).date()
+        )
+      );
+    });
+
+    console.log("calendarModal", tempCalendarModal);
+
+    this.setState({ calendarModal: tempCalendarModal });
   }
 
   render() {
-    const { tableContents, staticContent } = this.props;
+    const { tableContents, staticContent, formatKey } = this.props;
     //console.log("tableContents", tableContents);
 
     return (
       <div className="table">
+        <CalendarCustomModal
+          show={this.state.calendarModal.isShow}
+          hideModal={this.hideCalendarModal}
+          arrTime={this.state.calendarModal.arrTime}
+        />
         <div className="table__title">
           <div className="table__title__icon">
             <i className="fas fa-clipboard-list" />
@@ -45,7 +87,6 @@ export class Table extends React.Component {
               </tr>
             </thead>
             <tbody>
-<<<<<<< HEAD
               {tableContents &&
                 tableContents.map((tableContent, index) => {
                   return (
@@ -83,6 +124,9 @@ export class Table extends React.Component {
                         <button
                           type="button"
                           className="table__content__btn table__content__btn--primary"
+                          onClick={() => {
+                            this.showCalendar(tableContent[formatKey]);
+                          }}
                         >
                           <i class="fas fa-info" />
                         </button>
@@ -102,34 +146,6 @@ export class Table extends React.Component {
                     </tr>
                   );
                 })}
-=======
-              <tr>
-                <td data-title="#">1</td>
-                <td data-title="Ảnh đại diện">Peter</td>
-                <td data-title="Tên học viên">Griffin</td>
-                <td data-title="Points">$100</td>
-                <td data-title="Actions" className="table__content__right">
-                  <button
-                    type="button"
-                    className="table__content__btn table__content__btn--primary"
-                  >
-                    <i className="fas fa-info" />
-                  </button>
-                  <button
-                    type="button"
-                    className="table__content__btn table__content__btn--success"
-                  >
-                    <i className="fas fa-pen" />
-                  </button>
-                  <button
-                    type="button"
-                    className="table__content__btn table__content__btn--warning"
-                  >
-                    <i className="fas fa-trash-alt" />
-                  </button>
-                </td>
-              </tr>
->>>>>>> b52138f78cf78f5b96847eb7a5fa6f6dbe847579
             </tbody>
           </table>
         </div>

@@ -537,6 +537,7 @@ export class CourseDetails extends React.Component {
                       .absents
                   }
                   staticContent={this.state.absent}
+                  formatKey="absents"
                 ></Table>
               )}
 
@@ -549,6 +550,7 @@ export class CourseDetails extends React.Component {
                       .lates
                   }
                   staticContent={this.state.late}
+                  formatKey="lates"
                 ></Table>
               )}
 
@@ -561,6 +563,7 @@ export class CourseDetails extends React.Component {
                       .onTimes
                   }
                   staticContent={this.state.onTime}
+                  formatKey="onTimes"
                 ></Table>
               )}
 
@@ -573,6 +576,7 @@ export class CourseDetails extends React.Component {
                       .redundants
                   }
                   staticContent={this.state.redundant}
+                  formatKey="redundants"
                 ></Table>
               )}
             </div>
