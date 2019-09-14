@@ -24,10 +24,10 @@ export class TryItNowModal extends Component {
   render() {
     const { show } = this.props;
     return (
-      <section>
+      <section className="try-it-now-modal">
         <Modal
           visible={show}
-          width="500"
+          width="600"
           height="auto"
           effect="fadeInUp"
           onClickAway={() => this.closeModal()}
@@ -38,4 +38,3 @@ export class TryItNowModal extends Component {
     );
   }
 }
-

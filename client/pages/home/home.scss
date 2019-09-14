@@ -1,9 +1,17 @@
 @import "../../default.scss";
+@import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css");
 
 .home {
   background-color: #fff;
   @include e("body") {
     @include e("slider") {
+      position: relative;
+      .loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
     }
     @include e("intro") {
       padding: 0 3.5em;
@@ -11,6 +19,7 @@
       display: flex;
       justify-content: center;
       // align-items: center;
+      display: none;
       .introHome {
         width: 20em;
         height: auto;
@@ -25,6 +34,9 @@
       width: 100%;
       margin-top: -8em;
       padding: 0 8%;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 1s ease;
       @include e("item") {
         .introHome {
           padding: 0 1em;
@@ -57,6 +69,8 @@
       }
       .slick-track {
         padding: 1em 0;
+        display: flex;
+        align-items: center;
       }
       .slick-slide {
         margin: 0 1.5em;
@@ -1187,7 +1201,7 @@
   }
 
   .home__body__intro {
-    display: flex;
+    display: none;
   }
   .home__body__intro-slick-autoplay {
     display: none;

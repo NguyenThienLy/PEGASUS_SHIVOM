@@ -322,7 +322,8 @@ class Home extends React.Component {
         twitter: "twitter.com",
         instagram: "instagram.com"
       },
-      isShowTryItNowModal: false
+      isShowTryItNowModal: false,
+      windowSize: 0
     };
     this.hideTryItNowModal = this.hideTryItNowModal.bind(this);
     this.showTryItNowModal = this.showTryItNowModal.bind(this);
@@ -410,6 +411,7 @@ class Home extends React.Component {
       Swal.fire("Thất bại", "Gửi liên hệ không thành công", "error");
       this.props.addContactRefresh();
     }
+    console.log("windowSize" + this.state.windowSize);
   }
   async componentDidMount() {
     this.fetchData();
@@ -469,41 +471,50 @@ class Home extends React.Component {
     //       this.blur();
     //     });
     // });
-
-    $(".home__body__intro-slick-autoplay").slick({
-      dots: true,
-      arrows: false,
-      slidesToShow: 2,
-      slidesToScroll: 1,
-      autoplay: true,
-      autoplaySpeed: 5000,
-      responsive: [
-        {
-          breakpoint: 768,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            infinite: true,
-            dots: true,
-            arrows: false
-          }
-        }
-      ]
-    });
-    $(".home__body__intro-slick-autoplay").on("beforeChange", function(
-      event,
-      slick,
-      currentSlide,
-      nextSlide
-    ) {
-      $(".home__body__intro-slick-autoplay .slick-dots li").removeClass(
-        "slick-active"
-      );
-      $(".home__body__intro-slick-autoplay .slick-dots li button")
-        .attr("aria-pressed", "false")
-        .focus(function() {
-          this.blur();
+    $(window).on("load", () => {
+      this.setState({ windowSize: $(window).outerWidth() });
+      $(".home__body__intro-slick-autoplay").on("init", function(event, slick) {
+        $(".home__body__intro-slick-autoplay").css({
+          opacity: "1",
+          visibility: "visible"
         });
+      });
+      $(".home__body__intro-slick-autoplay").slick({
+        dots: true,
+        arrows: false,
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        responsive: [
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              infinite: true,
+              dots: true,
+              arrows: false
+            }
+          }
+        ]
+      });
+
+      $(".home__body__intro-slick-autoplay").on("beforeChange", function(
+        event,
+        slick,
+        currentSlide,
+        nextSlide
+      ) {
+        $(".home__body__intro-slick-autoplay .slick-dots li").removeClass(
+          "slick-active"
+        );
+        $(".home__body__intro-slick-autoplay .slick-dots li button")
+          .attr("aria-pressed", "false")
+          .focus(function() {
+            this.blur();
+          });
+      });
     });
   }
 
@@ -538,21 +549,50 @@ class Home extends React.Component {
           <Header {...this.props} />
 
           <div className="home__body">
-            <div className="home__body__slider">
-              {this.props.sliders.fetching === false ? (
-                <Slider
-                  {...this.props.sliders}
-                  showTryItNowModal={this.showTryItNowModal}
-                />
-              ) : null}
-            </div>
+            {this.props.sliders.fetching === false ? (
+              [
+                <div className="home__body__slider">
+                  <Slider
+                    {...this.props.sliders}
+                    showTryItNowModal={this.showTryItNowModal}
+                  />
+                </div>,
+                <div
+                  className="home__body__intro"
+                  style={
+                    this.state.windowSize > 1199
+                      ? { display: "flex" }
+                      : { display: "none" }
+                  }
+                >
+                  {this.state.introHome.map((intro, index) => {
+                    return (
+                      <IntroHome introHome={intro} key={index}></IntroHome>
+                    );
+                  })}
+                </div>,
+                <div className="home__body__intro-slick-autoplay animated fadeIn">
+                  {this.state.introHome.map((intro, index) => {
+                    return (
+                      <div className="home__body__intro-slick-autoplay__item">
+                        <IntroHome introHome={intro} key={index}></IntroHome>
+                      </div>
+                    );
+                  })}
+                </div>
+              ]
+            ) : (
+              <div className="home__body__slider" style={{ height: "50vh" }}>
+                <Loading />
+              </div>
+            )}
 
-            <div className="home__body__intro">
+            {/* <div className="home__body__intro">
               {this.state.introHome.map((intro, index) => {
                 return <IntroHome introHome={intro} key={index}></IntroHome>;
               })}
             </div>
-            <div className="home__body__intro-slick-autoplay">
+            <div className="home__body__intro-slick-autoplay animated fadeIn">
               {this.state.introHome.map((intro, index) => {
                 return (
                   <div className="home__body__intro-slick-autoplay__item">
@@ -560,7 +600,7 @@ class Home extends React.Component {
                   </div>
                 );
               })}
-            </div>
+            </div> */}
 
             <div className="home__body__trainingClass">
               <div className="home__body__trainingClass__title">

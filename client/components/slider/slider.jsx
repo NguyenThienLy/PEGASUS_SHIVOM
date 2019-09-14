@@ -9,7 +9,11 @@ export class Slider extends React.Component {
     this.settingSlider = this.settingSlider.bind(this);
   }
   settingSlider() {
-    $(".slider__slick-autoplay").on("init", function (event, slick) {
+    $(".slider__slick-autoplay").on("init", function(event, slick) {
+      $(".slider__slick-autoplay").css({
+        opacity: "1",
+        visibility: "visible"
+      });
       $(
         ".slick-active .slider__slick-autoplay__item__caption__title"
       ).removeClass("slider__slick-autoplay__item__caption--hidden");
@@ -51,18 +55,19 @@ export class Slider extends React.Component {
         draggable: false,
         pauseOnHover: false,
         fade: true,
-        cssEase: "linear"
+        cssEase: "linear",
+        lazyLoad: "ondemand"
       });
 
-    $(".slider__prevArrow").click(function () {
+    $(".slider__prevArrow").click(function() {
       $(".slider__slick-autoplay").slick("slickPrev");
     });
 
-    $(".slider__nextArrow").click(function () {
+    $(".slider__nextArrow").click(function() {
       $(".slider__slick-autoplay").slick("slickNext");
     });
 
-    $(".slider__slick-autoplay").on("beforeChange", function (
+    $(".slider__slick-autoplay").on("beforeChange", function(
       event,
       slick,
       currentSlide,
@@ -99,12 +104,12 @@ export class Slider extends React.Component {
       $(".slider__slick-autoplay .slick-dots li").removeClass("slick-active");
       $(".slider__slick-autoplay .slick-dots li button")
         .attr("aria-pressed", "false")
-        .focus(function () {
+        .focus(function() {
           this.blur();
         });
     });
 
-    $(".slider__slick-autoplay").on("afterChange", function (
+    $(".slider__slick-autoplay").on("afterChange", function(
       event,
       slick,
       currentSlide,
@@ -151,11 +156,14 @@ export class Slider extends React.Component {
         <div className="slider__arrow slider__nextArrow">
           <i className="fas fa-chevron-right"></i>
         </div>
-        <div className="slider__slick-autoplay">
+        <div className="slider__slick-autoplay animated fadeIn">
           {this.props.items.map((item, index) => {
             return (
               <div className="slider__slick-autoplay__item" key={index}>
-                <img src={item.option.image}></img>
+                <img
+                  data-lazy={item.option.image}
+                  src={item.option.image}
+                ></img>
                 <div className="slider__slick-autoplay__item__caption">
                   <div className="slider__slick-autoplay__item__caption__title slider__slick-autoplay__item__caption--hidden">
                     {item.option.title}
@@ -164,7 +172,10 @@ export class Slider extends React.Component {
                   <p className="slider__slick-autoplay__item__caption__content slider__slick-autoplay__item__caption--hidden">
                     {item.option.description}
                   </p>
-                  <div className="slider__slick-autoplay__item__caption__more" onClick={this.props.showTryItNowModal}>
+                  <div
+                    className="slider__slick-autoplay__item__caption__more"
+                    onClick={this.props.showTryItNowModal}
+                  >
                     <a
                       href="#"
                       className="slider__slick-autoplay__item__caption__more__btn slider__slick-autoplay__item__caption--hidden"
