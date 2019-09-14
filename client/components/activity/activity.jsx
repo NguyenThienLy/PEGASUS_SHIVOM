@@ -1,6 +1,4 @@
 import * as React from "react";
-import * as moment from "moment";
-
 import "./activity.scss";
 
 export class Activity extends React.Component {
