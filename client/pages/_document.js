@@ -34,6 +34,7 @@ class MyDocument extends Document {
             rel="stylesheet"
             media="screen"
           />
+
           <link
             href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat"
             rel="stylesheet"
@@ -67,6 +68,7 @@ class MyDocument extends Document {
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossOrigin="anonymous"
           />
+          <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
           <script
             src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -74,6 +76,7 @@ class MyDocument extends Document {
           />
           <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+          <script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=nxw3p5ckcu5jx187f8q2w3ysytehc7mdor1gcic8zu1iq5pv"></script>
           <Main />
           <NextScript />
         </body>

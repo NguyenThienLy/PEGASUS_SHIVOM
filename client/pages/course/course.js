@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux'
 import { api } from "../../services";
 import { action } from "../../actions";
 import * as moment from 'moment'
-import Swal from 'sweetalert2'
+// import Swal from 'sweetalert2'
 
 import "./course.scss";
 import { Header, Footer, TrainerInfo, ContactUs, RingingPhone, LatestPost, SearchBox } from "../../components";
@@ -236,18 +236,12 @@ export class Course extends React.Component {
 								<a href={`/khoa-hoc/${this.props.course.slug}`}>{this.props.course.name}</a>
 							</Link>
 						</span>
-
 					</div>
 					<div className="course-ringing-phone">
 						<RingingPhone />
 					</div>
 					<div className="course-wrapper">
-
-
 						<div className="course-wrapper__main-content">
-
-
-
 							<div className="course-wrapper__main-content__image">
 								<div className="course-wrapper__main-content__image__dateCreated">
 									<a>
@@ -261,12 +255,6 @@ export class Course extends React.Component {
 								</div>
 								<img src={this.props.course.thumb} alt={this.props.course.name} />
 							</div>
-
-
-
-							{/* <div className="course-wrapper__main-content__author">
-								{this.state.course.author}
-							</div> */}
 							<div className="course-wrapper__main-content__title">
 								{this.props.course.name}
 							</div>
@@ -286,7 +274,6 @@ export class Course extends React.Component {
 								}
 							</div>
 							{
-
 								this.props.timeTableOfCourse && this.props.timeTableOfCourse.length > 0 ? this.props.timeTableOfCourse.map((classData, index) => {
 									let sorter = {
 										"monday": {

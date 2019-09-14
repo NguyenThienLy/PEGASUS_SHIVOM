@@ -9,10 +9,12 @@ export class TimeTableOptions extends React.Component {
     super(props);
     this.state = {};
   }
-  componentDidMount() { }
+  componentDidMount() {}
   render() {
     return (
       <div className="time-table-options">
+        <div className="course-options__title">Chọn lịch học</div>
+        <hr className="divider" />
         <div className="time-table-options__table-events">
           <table>
             <thead>
@@ -341,11 +343,11 @@ export class TimeTableOptions extends React.Component {
             </tbody>
           </table>
         </div>
-        <div className="time-table-options__button">
+        {/* <div className="time-table-options__button">
           <button>
             Tiếp tục <i className="fas fa-chevron-right"></i>
           </button>
-        </div>
+        </div> */}
       </div>
     );
   }

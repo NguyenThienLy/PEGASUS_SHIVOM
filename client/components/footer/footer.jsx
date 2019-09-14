@@ -34,7 +34,7 @@ export class Footer extends React.Component {
     };
   }
   componentDidMount() {
-    $(window).on("resize", function () {
+    $(window).on("resize", function() {
       let body = $(".footer-wrapper").prev();
       let heightOfFooter = $(".footer-wrapper").outerHeight();
 
@@ -56,6 +56,7 @@ export class Footer extends React.Component {
   }
 
   handleLoad = () => {
+    console.log("hhhhhhh");
     // set margin-bottom for body
     let heightOfFooter = $(".footer-wrapper").height();
     let body = $(".footer-wrapper").prev();
@@ -128,10 +129,7 @@ export class Footer extends React.Component {
             return (
               <Link href={category.linkHref} as={category.linkAs} key={index}>
                 <a href={category.linkAs}>
-                  <div
-                    className="footer-wrapper__second-floor__item"
-                  >
-
+                  <div className="footer-wrapper__second-floor__item">
                     <HoverDivAnimation title={category.name} />
                   </div>
                 </a>

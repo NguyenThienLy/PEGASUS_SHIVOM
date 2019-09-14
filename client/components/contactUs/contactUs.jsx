@@ -1,5 +1,6 @@
 import * as React from "react";
 import "./contactUs.scss";
+import { TryItNowForm } from "../tryItNowForm/tryItNowForm";
 
 export class ContactUs extends React.Component {
   constructor(props) {
@@ -7,21 +8,25 @@ export class ContactUs extends React.Component {
     this.state = {};
     this.send = this.send.bind(this)
   }
-  send() {
-    const body = {
-      fullName: this.refs.name.value,
-      address: this.refs.name.value,
-      email: this.refs.email.value,
-      phone: this.refs.phone.value,
-      course: this.refs.course.value
-    }
+  send(body) {
+    // const body = {
+    //   fullName: this.refs.name.value,
+    //   address: this.refs.name.value,
+    //   email: this.refs.email.value,
+    //   phone: this.refs.phone.value,
+    //   course: this.refs.course.value
+    // }
     this.props.addContact(body)
   }
   render() {
     return (
       <div className="contact-us">
         <div className="contact-us__overlay"></div>
-        <form className="contact-us__form">
+        <div className="contact-us__form">
+          <TryItNowForm addContact={this.send}
+            courses={this.props.courses} />
+        </div>
+        {/* <form className="contact-us__form">
           <input
             type="text"
             placeholder="Họ và tên"
@@ -69,7 +74,7 @@ export class ContactUs extends React.Component {
           >
             gửi
           </button>
-        </form>
+        </form> */}
 
         <div className="contact-us__sub-info">
           <div className="contact-us__sub-info__brand">{this.props.brand}</div>

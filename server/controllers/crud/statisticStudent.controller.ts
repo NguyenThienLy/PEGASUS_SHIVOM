@@ -1,5 +1,5 @@
 import { CrudController } from '../crud.controller'
-import { statisticStudentService, checkinService, cacheService } from '../../services/index'
+import { statisticStudentService, checkinService, cacheService, utilService } from '../../services/index'
 import * as moment from 'moment'
 import * as hash from 'object-hash'
 import { format } from 'util';
@@ -29,13 +29,16 @@ export class StatisticStudentController extends CrudController<typeof statisticS
             // Đổi sang tuần theo type
             switch (type) {
                 case "week":
-                    totalWeekStartTime = moment(startTime).week() + moment(startTime).year() * 52
-                    totalWeekEndTime = moment(endTime).week() + moment(endTime).year() * 52
+                    const tempStartDate = utilService.parseDateToWeekMonthYear(startTime)
+                    const tempEndDate = utilService.parseDateToWeekMonthYear(endTime)
+
+                    totalWeekStartTime = tempStartDate.week + tempStartDate.year * 52
+                    totalWeekEndTime = tempEndDate.week + tempEndDate.year * 52
                     break
 
                 case "month":
-                    totalWeekStartTime = (moment(startTime).month() - 1) * 4 + moment(startTime).year() * 52
-                    totalWeekEndTime = (moment(endTime).month() - 1) * 4 + moment(endTime).year() * 52
+                    totalWeekStartTime = moment(startTime).month() * 4 + moment(startTime).year() * 52
+                    totalWeekEndTime = moment(endTime).month() * 4 + moment(endTime).year() * 52
                     break
 
                 case "year":
@@ -81,13 +84,16 @@ export class StatisticStudentController extends CrudController<typeof statisticS
             // Đổi sang tuần theo type
             switch (type) {
                 case "week":
-                    totalWeekStartTime = moment(startTime).week() + moment(startTime).year() * 52
-                    totalWeekEndTime = moment(endTime).week() + moment(endTime).year() * 52
+                    const tempStartDate = utilService.parseDateToWeekMonthYear(startTime)
+                    const tempEndDate = utilService.parseDateToWeekMonthYear(endTime)
+
+                    totalWeekStartTime = tempStartDate.week + tempStartDate.year * 52
+                    totalWeekEndTime = tempEndDate.week + tempEndDate.year * 52
                     break
 
                 case "month":
-                    totalWeekStartTime = (moment(startTime).month() - 1) * 4 + moment(startTime).year() * 52
-                    totalWeekEndTime = (moment(endTime).month() - 1) * 4 + moment(endTime).year() * 52
+                    totalWeekStartTime = moment(startTime).month() * 4 + moment(startTime).year() * 52
+                    totalWeekEndTime = moment(endTime).month() * 4 + moment(endTime).year() * 52
                     break
 
                 case "year":
@@ -128,13 +134,16 @@ export class StatisticStudentController extends CrudController<typeof statisticS
             // Đổi sang tuần theo type
             switch (type) {
                 case "week":
-                    totalWeekStartTime = moment(startTime).week() + moment(startTime).year() * 52
-                    totalWeekEndTime = moment(endTime).week() + moment(endTime).year() * 52
+                    const tempStartDate = utilService.parseDateToWeekMonthYear(startTime)
+                    const tempEndDate = utilService.parseDateToWeekMonthYear(endTime)
+
+                    totalWeekStartTime = tempStartDate.week + tempStartDate.year * 52
+                    totalWeekEndTime = tempEndDate.week + tempEndDate.year * 52
                     break
 
                 case "month":
-                    totalWeekStartTime = (moment(startTime).month() - 1) * 4 + moment(startTime).year() * 52
-                    totalWeekEndTime = (moment(endTime).month() - 1) * 4 + moment(endTime).year() * 52
+                    totalWeekStartTime = moment(startTime).month() * 4 + moment(startTime).year() * 52
+                    totalWeekEndTime = moment(endTime).month() * 4 + moment(endTime).year() * 52
                     break
 
                 case "year":

@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { api } from "../../services";
 import { action } from "../../actions";
 
-import "./project.scss";
+import "./addMember.scss";
 import {
   HeaderAdmin,
   Sidebar,
@@ -15,10 +15,10 @@ import {
   StepsLine,
   TimeTableOptions,
   ReviewAddMember
-} from "../../components/";
+} from "../../components";
 import { StudentAction } from "../../actions/student";
 
-class Project extends Component {
+class AddMember extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -66,9 +66,75 @@ class Project extends Component {
           linkAs: "/lien-he",
           key: "about"
         }
-      ]
+      ],
+      pages: [
+        "newMemberInfo",
+        "courseOptions",
+        "timeTableOptions",
+        "reviewAddMember"
+      ],
+      curPageNumber: 1
     };
+    this.openPage = this.openPage.bind(this);
+    this.handleClickPrevious = this.handleClickPrevious.bind(this);
+    this.handleClickNext = this.handleClickNext.bind(this);
   }
+
+  openPage = function(pageNumber) {
+    var i, page, stepBtns;
+    page = document.getElementsByClassName(
+      "addMember__body__card__content__info"
+    );
+    for (i = 0; i < page.length; i++) {
+      page[i].style.display = "none";
+    }
+    stepBtns = document.getElementsByClassName("stepsLine__btn");
+    for (i = 0; i < stepBtns.length; i++) {
+      stepBtns[i].style.backgroundColor = "#e1f2f4";
+      stepBtns[i].style.color = "#00a3af";
+    }
+    document.getElementById(this.state.pages[pageNumber - 1]).style.display =
+      "block";
+    $(".stepsLine__btn-" + pageNumber).css({
+      backgroundColor: "#00a3af",
+      color: "#fff"
+    });
+    this.setState({ curPageNumber: pageNumber });
+    if (pageNumber == 1) {
+      $(".addMember__body__card__buttons__btn-previous").attr("disabled", true);
+    }
+  };
+
+  handleClickPrevious = function() {
+    let curPageNumber = this.state.curPageNumber - 1;
+    if (curPageNumber > 1) {
+      this.setState({ curPageNumber });
+      this.openPage(curPageNumber);
+    } else if (curPageNumber == 1) {
+      this.setState({ curPageNumber });
+      this.openPage(curPageNumber);
+      $(".addMember__body__card__buttons__btn-previous").attr("disabled", true);
+    }
+    $(".addMember__body__card__buttons__btn-next").html(
+      "Tiếp theo<i class='fas fa-chevron-right'></i>"
+    );
+  };
+
+  handleClickNext = function() {
+    let curPageNumber = this.state.curPageNumber + 1;
+    if (curPageNumber < this.state.pages.length) {
+      this.setState({ curPageNumber });
+      this.openPage(curPageNumber);
+      $(".addMember__body__card__buttons__btn-previous").attr(
+        "disabled",
+        false
+      );
+    } else if (curPageNumber == this.state.pages.length) {
+      this.setState({ curPageNumber });
+      this.openPage(curPageNumber);
+      $(".addMember__body__card__buttons__btn-next").text("Xác nhận");
+    }
+  };
 
   static async getInitialProps({ req, query }) {
     return {};
@@ -178,14 +244,57 @@ class Project extends Component {
               <div className="addMember__body__card__title">Thêm học viên</div>
               <div className="addMember__body__card__content">
                 <div className="addMember__body__card__content__steps">
-                  <StepsLine></StepsLine>
+                  <StepsLine
+                    stepQuantity={this.state.pages.length}
+                    pages={this.state.pages}
+                    openPage={this.openPage}
+                  ></StepsLine>
                 </div>
-                <div className="addMember__body__card__content__info">
+                <div
+                  id="newMemberInfo"
+                  className="addMember__body__card__content__info animated
+                  fadeIn"
+                >
                   <NewMemberInfo />
                 </div>
+                <div
+                  id="courseOptions"
+                  className="addMember__body__card__content__info animated
+                  fadeIn"
+                >
+                  <CourseOptions />
+                </div>
+                <div
+                  id="timeTableOptions"
+                  className="addMember__body__card__content__info animated
+                  fadeIn"
+                >
+                  <TimeTableOptions></TimeTableOptions>
+                </div>
+                <div
+                  id="reviewAddMember"
+                  className="addMember__body__card__content__info animated
+                  fadeIn"
+                >
+                  <ReviewAddMember />
+                </div>
+              </div>
+              <div className="addMember__body__card__buttons">
+                <button
+                  className="addMember__body__card__buttons__btn addMember__body__card__buttons__btn-previous"
+                  onClick={this.handleClickPrevious}
+                >
+                  <i className="fas fa-chevron-left"></i>Quay lại
+                </button>
+                <button
+                  className="addMember__body__card__buttons__btn addMember__body__card__buttons__btn-next"
+                  onClick={this.handleClickNext}
+                >
+                  Tiếp tục<i className="fas fa-chevron-right"></i>
+                </button>
               </div>
             </div>
-            <div className="addMember__body__card">
+            {/* <div className="addMember__body__card">
               <div className="addMember__body__card__title">Thêm học viên</div>
               <div className="addMember__body__card__content">
                 <div className="addMember__body__card__content__steps">
@@ -217,7 +326,7 @@ class Project extends Component {
                   <ReviewAddMember />
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </React.Fragment>
       </div>
@@ -229,4 +338,4 @@ const mapStateToProps = state => {
   return state;
 };
 
-export default connect(mapStateToProps)(Project);
+export default connect(mapStateToProps)(AddMember);

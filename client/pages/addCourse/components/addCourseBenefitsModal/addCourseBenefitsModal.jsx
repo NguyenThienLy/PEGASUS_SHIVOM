@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 // import Modal from 'react-awesome-modal';
-import "./tryItNowModal.scss";
-import { Modal } from "../../../../modals/";
-import { TryItNowForm } from "../../../../components";
+import "./addCourseBenefitsModal.scss";
+import { Modal } from "../../../../modals";
+import { AddCourseBenefitsForm } from "../../../../components";
 
-export class TryItNowModal extends Component {
+export class AddCourseBenefitsModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,7 +19,7 @@ export class TryItNowModal extends Component {
   }
   submit(body) {
     this.props.hideModal();
-    this.props.addContact(body);
+    this.props.addCourseBenefits(body);
   }
   render() {
     const { show } = this.props;
@@ -27,15 +27,14 @@ export class TryItNowModal extends Component {
       <section>
         <Modal
           visible={show}
-          width="500"
+          width="600"
           height="auto"
           effect="fadeInUp"
           onClickAway={() => this.closeModal()}
         >
-          <TryItNowForm addContact={this.submit} courses={this.props.courses} />
+          <AddCourseBenefitsForm addCourseBenefits={this.submit} />
         </Modal>
       </section>
     );
   }
 }
-

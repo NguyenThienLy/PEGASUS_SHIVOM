@@ -1,12 +1,12 @@
 @import "../../default.scss";
 
-.newMemberInfo {
+.newCourseInfo {
   // box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.04);
   width: 100%;
   background-color: #fff;
   // border-radius: 5px;
 
-  .newMemberInfo__title-text {
+  .newCourseInfo__title-text {
     color: $color-grey;
     // font-family: $font-family-special;
     font-size: 1em;
@@ -17,7 +17,7 @@
     }
   }
 
-  .newMemberInfo__input-box {
+  .newCourseInfo__input-box {
     // background: none;
     // border-radius: 0;
     // border: none;
@@ -81,26 +81,35 @@
       column-gap: 2em;
       row-gap: 1em;
       @include e("item") {
-        .newMemberInfo__title-text {
+        .newCourseInfo__title-text {
           width: 100%;
           margin-bottom: 0.5em;
         }
-        .newMemberInfo__input-box {
+        .newCourseInfo__input-box {
           width: 90%;
+          margin-top: 0.5em;
         }
-        input[type="number"] {
-          -moz-appearance: textfield; /* Firefox */
-        }
-        input[type="date"] {
-          // color: rgba(0, 0, 0, 0.2);
-          &::-webkit-datetime-edit-month-field {
-            color: rgba(0, 0, 0, 0.3);
-          }
-          &::-webkit-datetime-edit-day-field {
-            color: rgba(0, 0, 0, 0.3);
-          }
-          &::-webkit-datetime-edit-year-field {
-            color: rgba(0, 0, 0, 0.3);
+        @include e("add-btn") {
+          margin-top: 1em;
+          text-align: center;
+          button {
+            padding: 0.75em 0.85em;
+            margin: auto;
+            border: none;
+            border-radius: 50%;
+            outline: none;
+            transition: 200ms ease;
+            color: $main-color;
+            background-color: lighten($sub-main-color, 25%);
+            box-shadow: 1px 1px 5px #ebebeb;
+            cursor: pointer;
+            i {
+              font-size: 1.6em;
+            }
+            &:hover {
+              background-color: $main-color;
+              color: #fff;
+            }
           }
         }
         @include m("single") {
@@ -126,7 +135,7 @@
           font-size: 0.9em;
         }
       }
-      & > .newMemberInfo__title-text {
+      & > .newCourseInfo__title-text {
         width: 100%;
         grid-column-start: 1;
         grid-column-end: 3;

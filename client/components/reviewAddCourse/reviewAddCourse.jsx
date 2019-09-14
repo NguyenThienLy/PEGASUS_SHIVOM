@@ -1,27 +1,17 @@
 import * as React from "react";
-import "./reviewAddMember.scss";
+import "./reviewAddCourse.scss";
+import { News2 } from "../../components";
 
-export class ReviewAddMember extends React.Component {
+export class ReviewAddCourse extends React.Component {
   constructor(props) {
     super(props);
   }
   render() {
     return (
-      <div className="reviewAddMember">
-        <div className="reviewAddMember__title">Xác nhận thông tin</div>
+      <div className="reviewAddCourse">
+        <div className="reviewAddCourse__title">Xác nhận thông tin</div>
         <hr className="divider" />
-        <div className="reviewAddMember__content">
-          <div className="reviewAddMember__content__left">
-            <div className="reviewAddMember__content__left__avatar">
-              <img
-                src="https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-event-list-1a-768x768.jpg"
-                alt=""
-              />
-            </div>
-            <div className="reviewAddMember__content__left__name">
-              <span>Hoàng Thị Ngọc Hạnh</span>
-            </div>
-          </div>
+        <div className="reviewAddCourse__content">
           <div className="reviewAddMember__content__right">
             <div className="reviewAddMember__content__right__title">
               <div className="reviewAddMember__content__right__title__inner">
@@ -150,19 +140,57 @@ export class ReviewAddMember extends React.Component {
               </div>
             </div>
           </div>
-        </div>
-        <hr className="divider" />
-        <div className="reviewAddMember__more">
-          <div className="reviewAddMember__more__sum">
-            <span className="reviewAddMember__more__sum__title">Tổng tiền</span>
-            <span className="reviewAddMember__more__sum__content">
-              500.000<u>đ</u>
-            </span>
+          <div className="reviewAddCourse__content__image">
+            <div className="reviewAddCourse__content__image__dateCreated">
+              <a>
+                <span className="reviewAddCourse__content__image__dateCreated__day">
+                  {/* {moment(this.state.course.createdAt).date()} */}
+                  14
+                </span>
+                <span className="reviewAddCourse__content__image__dateCreated__month">
+                  {/* Th {moment(this.state.course.createdAt).month() + 1} */}{" "}
+                  Th 9
+                </span>
+              </a>
+            </div>
+            {/* <img src={this.props.course.thumb} alt={this.props.course.name} /> */}
+            <img
+              src="https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-event-list-2a.jpg"
+              alt="Yoga cho người lớn tuổi"
+            />
           </div>
-          {/* <div className="reviewAddMember__more__button">
-            <button>Xác nhận</button>
+
+          {/* <div className="reviewAddCourse__content__author">
+  {this.state.course.author}
+</div> */}
+          <div className="reviewAddCourse__content__title">
+            {/* {this.props.course.name} */}
+            Yoga cho người lớn tuổi
+          </div>
+          <div
+            className="reviewAddCourse__content__content"
+            // dangerouslySetInnerHTML={{ __html: this.props.course.description }}
+          >
+            nội dung bài viết
+          </div>
+          {/* <div className="reviewAddCourse__content__targets">
+            {this.props.course.benefits.map((benefit, index) => {
+              return (
+                <div
+                  className="reviewAddCourse__content__targets__target"
+                  key={index}
+                >
+                  <i className="fas fa-check"></i>
+                  {benefit}
+                </div>
+              );
+            })}
           </div> */}
         </div>
+
+        {/* <div className="reviewAddCourse__button">
+          <button>Xác nhận</button>
+        </div> */}
       </div>
     );
   }
