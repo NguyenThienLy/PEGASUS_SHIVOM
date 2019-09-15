@@ -190,7 +190,7 @@ export class Header extends React.Component {
 
     var prevScrollPos = window.pageYOffset;
     var currentScrollPos = window.pageYOffset;
-    var posToExpose = 600;
+    var posToExpose = 300;
     if (prevScrollPos < posToExpose) {
       $(".header .header__sub-wrapper").css({
         maxHeight: "0px",

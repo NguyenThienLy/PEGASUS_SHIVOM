@@ -10,7 +10,7 @@ export class CourseBenefit extends React.Component {
   render() {
     return (
       <div className="course-benefit">
-        <div className="course-benefit__index">{this.props.index}</div>
+        <div className="course-benefit__number">{this.props.number}</div>
         <div className="course-benefit__content">{this.props.benefit}</div>
       </div>
     );

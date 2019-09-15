@@ -5,7 +5,6 @@
     // margin: 2em;
     display: flex;
     flex-direction: column;
-    flex-basis: 50%;
     align-items: center;
     justify-content: center;
     @include e("error-message") {
