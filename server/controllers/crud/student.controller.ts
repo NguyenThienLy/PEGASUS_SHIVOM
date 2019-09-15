@@ -3,16 +3,53 @@ import * as moment from 'moment'
 import * as hash from 'object-hash'
 
 import { CrudController } from '../crud.controller'
-import { studentService, ICrudOption, courseStudentService, classTimeTableService, errorService, classService, checkinService, mailService, tokenService, giftService, giftReceiveService, studentTimeTableService, cacheService } from '../../services'
+import { studentService, ICrudOption, courseStudentService, classTimeTableService, errorService, classService, checkinService, mailService, tokenService, giftService, giftReceiveService, studentTimeTableService, cacheService, utilService } from '../../services'
 import { CourseStudentModel, StudentModel, CourseModel, GiftModel, GiftReceiveModel, StudentTimeTableModel } from '../../models';
 import { webhookController } from '..';
 import { replyFeedbackEmail, remindExtendCourseEmail, notifyReceiveGiftEmail } from '../../mailTemplate';
 import { ObjectID } from 'bson';
 
-
 export class StudentController extends CrudController<typeof studentService>{
     constructor() {
         super(studentService);
+    }
+    async enroll(params: {
+        personalInfo: any
+        courses: any[],
+        isPayFee: boolean
+    }) {
+        const { personalInfo, courses, isPayFee = false } = params
+        const password = utilService.generateShortId(6)
+        personalInfo.password = password
+        let results: any[] = []
+        try {
+            const student: StudentModel = await this.service.create(personalInfo)
+            results.push(student)
+            for (const course of courses) {
+                const startTime = moment().format()
+                const endTime = moment().add(course.monthAmount, "months").format()
+                const courseStudent: CourseStudentModel = await courseStudentService.create({
+                    student: student._id,
+                    course: course._id,
+                    startTime: startTime,
+                    endTime: endTime,
+                    isPayFee: isPayFee
+                })
+                results.push(courseStudent)
+                const studentTimeTable: StudentTimeTableModel = await studentTimeTableService.create({
+                    course: course._id,
+                    student: student._id,
+                    items: course.timeTableIds
+                })
+                results.push(studentTimeTable)
+            }
+            return student
+        } catch (err) {
+            results.forEach(result => {
+                result.remove()
+            })
+            throw err
+        }
     }
     async enrollToCourse(params: {
         studentId: string
@@ -97,9 +134,9 @@ export class StudentController extends CrudController<typeof studentService>{
             student: params.studentId,
             gift: params.gift
         }, {
-            upsert: true,
-            new: true
-        })
+                upsert: true,
+                new: true
+            })
         // Gửi mail toi nguoi dung
 
         try {
@@ -122,10 +159,10 @@ export class StudentController extends CrudController<typeof studentService>{
         return await this.service.update({
             cardId: params.code
         }, {
-            filter: {
-                _id: params.studentId
-            }
-        })
+                filter: {
+                    _id: params.studentId
+                }
+            })
     }
     async login(params: {
         phone: string

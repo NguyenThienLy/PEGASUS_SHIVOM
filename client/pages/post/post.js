@@ -7,7 +7,7 @@ import { action } from '../../actions';
 import { bindActionCreators } from 'redux'
 import Router from 'next/router'
 
-// import Swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 import './post.scss'
 import {
     Header,

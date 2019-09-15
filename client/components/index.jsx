@@ -57,6 +57,6 @@ export * from "./newCourseInfo/newCourseInfo";
 export * from "./addCourseBenefitsForm/addCourseBenefitsForm";
 export * from "./tinymceEditor/tinymceEditor";
 export * from "./reviewAddCourse/reviewAddCourse";
-export * from "./myDropzone/myDropzone";
+export * from "./imageUpload/imageUpload";
 export * from "./courseBenefit/courseBenefit";
 export * from "./courseListBenefits/courseListBenefits";

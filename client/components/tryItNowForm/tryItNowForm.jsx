@@ -159,7 +159,6 @@ export class TryItNowForm extends React.Component {
         return;
       }
     });
-    console.log("this state: ", this.state);
   };
   render() {
     return (
@@ -236,10 +235,10 @@ export class TryItNowForm extends React.Component {
                   );
                 })
               ) : (
-                <option value="" hidden>
-                  Chọn khoá học
+                    <option value="" hidden>
+                      Chọn khoá học
                 </option>
-              )}
+                  )}
             </select>
           </div>
           <button
