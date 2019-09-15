@@ -20,7 +20,7 @@ export * from "./review/review";
 export * from "./numberSection/numberSection";
 export * from "./postAuthor/postAuthor";
 export * from "./introHome/introHome";
-export * from "./eventHour/eventHour";
+export * from "./classTimeItem/classTimeItem";
 export * from "./latestPost/latestPost";
 export * from "./introHome2/introHome2";
 export * from "./news2/news2";

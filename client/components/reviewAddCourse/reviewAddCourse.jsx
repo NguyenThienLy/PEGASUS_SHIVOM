@@ -153,7 +153,7 @@ export class ReviewAddCourse extends React.Component {
 </div> */}
             <div className="reviewAddCourse__content__post__title">
               {/* {this.props.course.name} */}
-              Yoga cho người lớn tuổi
+              yoga cho người lớn tuổi
             </div>
             <div
               className="reviewAddCourse__content__post__content"
@@ -163,6 +163,12 @@ export class ReviewAddCourse extends React.Component {
             </div>
           </div>
           <hr className="divider-grey" />
+          <div className="reviewAddCourse__content__title">
+            <div className="reviewAddCourse__content__title__inner">
+              <div>Lợi ích khóa học</div>
+              <div className="reviewAddCourse__content__title__inner--hover" />
+            </div>
+          </div>
           <div className="reviewAddCourse__content__benefits">
             <CourseListBenefits
               courseListBenefits={this.state.courseListBenefits}

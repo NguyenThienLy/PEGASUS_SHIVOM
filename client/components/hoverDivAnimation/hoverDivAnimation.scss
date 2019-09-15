@@ -46,7 +46,7 @@ $hover-color: lighten($sub-main-color, 27%);
   @include e("link") {
     // pointer-events: none;
     cursor: pointer;
-    color: $font-color;
+    color: $color-grey;
     text-transform: uppercase;
     display: block;
     text-decoration: none;

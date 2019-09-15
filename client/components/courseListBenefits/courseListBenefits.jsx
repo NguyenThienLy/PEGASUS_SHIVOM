@@ -8,17 +8,16 @@ export class CourseListBenefits extends React.Component {
     super(props);
     this.state = {};
   }
-
   render() {
     return (
       <div className="course-list-benefits">
-        <div className="course-list-benefits__title">Lợi ích sau khi học</div>
+        {/* <div className="course-list-benefits__title">Lợi ích sau khi học</div> */}
         <div className="course-list-benefits__content">
           {this.props.courseListBenefits.map((benefit, index) => {
             return (
               <CourseBenefit
                 benefit={benefit}
-                index={index + 1}
+                number={index + 1}
               ></CourseBenefit>
             );
           })}

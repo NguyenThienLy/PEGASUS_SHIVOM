@@ -5,22 +5,18 @@
   height: 15em;
   display: flex;
   flex-direction: row;
-  font-size: 16px;
   // margin: auto;
 
   @include e("img") {
-    width: 15em;
+    width: 40%;
     overflow: hidden;
-
     img {
       width: 100%;
-      height: 100%;
-
+      height: auto;
       &:hover {
         transition: transform 800ms ease;
         transform: scale(1);
       }
-
       &:not(:hover) {
         transition: transform 800ms ease;
         transform: scale(1.03);
@@ -29,30 +25,27 @@
   }
 
   @include e("info") {
-    width: 55%;
-    padding-left: 2em;
-
+    width: 57%;
+    padding-left: 3%;
     @include e("name") {
       font-size: 1.8em;
       text-transform: capitalize;
       color: $main-color;
       font-family: $font-family-special;
-      margin: 0 0 0.1em 0;
       letter-spacing: 0.05em;
       font-weight: 600;
     }
 
     @include e("description") {
+      margin-top: 1em;
       font-size: 1em;
       color: $font-color;
-      line-height: 130%;
       word-spacing: 0.05em;
-      line-height: 1.6em;
+      line-height: 1.7em;
     }
 
     @include e("detail") {
       margin-top: 1.6em;
-
       .list-items {
         list-style-type: none;
         padding: 0;
