@@ -20,6 +20,14 @@
     background-color: rgba(255, 255, 255, 0.8);
     //z-index: -1;
   }
+  @include e("form"){
+    z-index: 0;
+    padding: 0 2em 0 0;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 50%;
+    justify-content: center;
+  }
 //   @include e("form"){
 //     z-index: 0;
 //     padding: 0 2em 0 0;

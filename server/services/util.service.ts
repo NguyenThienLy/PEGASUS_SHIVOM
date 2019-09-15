@@ -42,4 +42,16 @@ export class UtilService {
         }
         return message
     }
+    generateShortId(length: number) {
+        var d = new Date().valueOf();
+        var n = d.toString();
+        var result = '';
+        var p = 0;
+        var chars = '0123456789abcdefghijklmnopqrstuvwxyz';
+        for (var i = length; i > 0; --i) {
+            result += ((i & 1) && n.charAt(p) ? n.charAt(p) : chars[Math.floor(Math.random() * chars.length)]);
+            if (i & 1) p++;
+        };
+        return result
+    }
 }

@@ -23,6 +23,48 @@ export default class StudentRouter extends CrudRouter<typeof studentController> 
         this.router.post("/:_id/card", this.updateCardMiddlewares(), this.route(this.updateCard))
         this.router.post("/:_id/sendGift", this.sendGiftMiddlewares(), this.route(this.sendGift))
         this.router.post("/:_id/enroll", this.enrollToCourseMiddlewares(), this.route(this.enrollToCourse))
+        this.router.post("/enroll", this.enrollMiddlewares(), this.route(this.enroll))
+    }
+
+    enrollMiddlewares(): any[] {
+        return [
+            authInfoMiddleware.run(["admin"])
+        ]
+    }
+    async enroll(req: Request, res: Response) {
+        await this.validateJSON(req.body, {
+            type: "object",
+            properties: {
+                personalInfo: {
+                    type: "object",
+                    properties: {
+                        cardId: { type: "string" },
+                        phone: { type: "string" },
+                        point: { type: "number" },
+                        firstName: { type: "string" },
+                        lastName: { type: "string" },
+                        birthday: { type: "string", format: "date-time" },
+                        address: { type: "string" },
+                        avatar: { type: "string" }
+                    }
+                },
+                courses: {
+                    type: "array",
+                    items: {
+                        properties: {
+                            _id: { type: "string" },
+                            monthAmount: { type: "number" },
+                            timeTableIds: { type: "array", items: { type: "string" } }
+                        }
+                    }
+                },
+                isPayFee: { type: "boolean" }
+            },
+            required: ["personalInfo", "courses"],
+            additionalProperties: false
+        })
+        const result = await this.controller.enroll(req.body)
+        this.onSuccess(res, result)
     }
     enrollToCourseMiddlewares(): any[] {
         return [

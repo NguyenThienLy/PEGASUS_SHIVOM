@@ -8,7 +8,7 @@ import { api } from "../../services";
 import { action } from "../../actions";
 import { bindActionCreators } from "redux";
 
-// import Swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 
 import {
     Header,

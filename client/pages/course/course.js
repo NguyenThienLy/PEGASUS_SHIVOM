@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux'
 import { api } from "../../services";
 import { action } from "../../actions";
 import * as moment from 'moment'
-// import Swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 
 import "./course.scss";
 import { Header, Footer, TrainerInfo, ContactUs, RingingPhone, LatestPost, SearchBox } from "../../components";

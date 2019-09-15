@@ -1,6 +1,6 @@
 import * as React from "react";
 import "./newCourseInfo.scss";
-import { MyDropzone } from "../myDropzone/myDropzone";
+import { ImageUpload } from "../imageUpload/imageUpload";
 
 export class NewCourseInfo extends React.Component {
   constructor(props) {
@@ -67,7 +67,7 @@ export class NewCourseInfo extends React.Component {
           <div className="newCourseInfo__form__info">
             <div className="newCourseInfo__title-text">Thêm ảnh đại diện</div>
             <div className="newCourseInfo__form__info__add-photo">
-              <MyDropzone></MyDropzone>
+              <ImageUpload></ImageUpload>
             </div>
 
             <div className="newCourseInfo__form__info__icon">

@@ -73,7 +73,21 @@ class AddMember extends Component {
         "timeTableOptions",
         "reviewAddMember"
       ],
-      curPageNumber: 1
+      curPageNumber: 1,
+      formData: {
+        memberInfo: {
+          cardNumber: null,
+          phone: null,
+          point: null,
+          firstName: null,
+          lastName: null,
+          birthday: null,
+          address: null,
+          avatar: null
+        },
+        courses: [],
+        timeTables: [],
+      }
     };
     this.openPage = this.openPage.bind(this);
     this.handleClickPrevious = this.handleClickPrevious.bind(this);
@@ -216,6 +230,14 @@ class AddMember extends Component {
       this.setState({ categories: this.state.categories });
     }
   }
+  handleChange = (step, key, value) => {
+    if(step === "memberInfo"){
+      this.state.formData[step][key] = value
+    } else {
+      this.state.formData[step] = value
+    }
+    this.setState({ formData: this.state.formData })
+  }
   render() {
     return (
       <div className="addMember">
@@ -255,7 +277,7 @@ class AddMember extends Component {
                   className="addMember__body__card__content__info animated
                   fadeIn"
                 >
-                  <NewMemberInfo />
+                  <NewMemberInfo  handleChange={this.handleChange}/>
                 </div>
                 <div
                   id="courseOptions"

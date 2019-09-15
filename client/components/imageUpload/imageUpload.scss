@@ -1,0 +1,46 @@
+@import "../../default.scss";
+
+// .drop-zone-wrap {
+//   border: 1px solid rgba(0, 0, 0, 0.3);
+//   @include e("btn") {
+//     display: block;
+//     text-align: center;
+//     padding: 0.75em 0.85em;
+//     margin: auto;
+//     margin-top: 1em;
+//     border: none;
+//     border-radius: 50%;
+//     outline: none;
+//     transition: 200ms ease;
+//     color: $main-color;
+//     background-color: lighten($sub-main-color, 25%);
+//     box-shadow: 1px 1px 5px #ebebeb;
+//     cursor: pointer;
+//     i {
+//       font-size: 1.6em;
+//     }
+//     &:hover {
+//       background-color: $main-color;
+//       color: #fff;
+//     }
+//   }
+// }
+
+.drop-zone-wrap {
+  
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	border-style: dashed;
+  padding: 5px;
+  height: 100px;
+  width: 100%;
+	min-width: 50%;
+	cursor: pointer;
+	&__instruction {
+    padding: 35px 10px;
+    height: 100%;
+		&:focus {
+			outline: none;
+		}
+	}
+}
+

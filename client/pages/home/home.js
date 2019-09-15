@@ -6,7 +6,7 @@ import { action } from "../../actions";
 import { api } from "../../services";
 import { bindActionCreators } from "redux";
 
-// import Swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 import "./home.scss";
 import {
   Footer,
@@ -490,7 +490,7 @@ class Home extends React.Component {
         }
       ]
     });
-    $(".home__body__intro-slick-autoplay").on("beforeChange", function(
+    $(".home__body__intro-slick-autoplay").on("beforeChange", function (
       event,
       slick,
       currentSlide,
@@ -501,7 +501,7 @@ class Home extends React.Component {
       );
       $(".home__body__intro-slick-autoplay .slick-dots li button")
         .attr("aria-pressed", "false")
-        .focus(function() {
+        .focus(function () {
           this.blur();
         });
     });
@@ -571,13 +571,13 @@ class Home extends React.Component {
               <div className="home__body__trainingClass__content">
                 {this.props.courses.fetching === false
                   ? this.props.courses.items.map((trainingClass, index) => {
-                      return (
-                        <TrainingClass
-                          trainingClass={trainingClass}
-                          key={index}
-                        />
-                      );
-                    })
+                    return (
+                      <TrainingClass
+                        trainingClass={trainingClass}
+                        key={index}
+                      />
+                    );
+                  })
                   : null}
                 {/* {this.state.trainingClasses.map(trainingClass => {
                   return <TrainingClass trainingClass={trainingClass} />;
@@ -667,8 +667,8 @@ class Home extends React.Component {
               <div className="home__body__trainers__list">
                 {this.props.teachers.fetching === false
                   ? this.props.teachers.items.map((trainer, index) => {
-                      return <Trainer trainer={trainer} key={index} />;
-                    })
+                    return <Trainer trainer={trainer} key={index} />;
+                  })
                   : null}
                 {/* {this.state.trainers.map(trainer => {
                   return <Trainer trainer={trainer} />;
