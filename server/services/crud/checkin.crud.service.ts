@@ -12,7 +12,12 @@ export class CheckinService extends CrudService<typeof Checkin> {
     async getDataInStatisticForLineChart(params: {
         course: string
     }) {
-        return await this.model.aggregate([
+        let labels = [], dataAbsents = [],
+            dataLates = [], dataOnTimes = [],
+            dataRedundants = [],
+            isEmpty = true
+
+        const tempLineChart = await this.model.aggregate([
             // Lọc ra theo khóa học
             {
                 $match: {
@@ -61,6 +66,26 @@ export class CheckinService extends CrudService<typeof Checkin> {
                 $sort: { labels: 1 }
             }
         ])
+
+        tempLineChart.forEach(element => {
+            labels.push(element.labels)
+
+            dataAbsents.push(element.totalAbsent)
+            dataLates.push(element.totalLate)
+            dataOnTimes.push(element.totalOnTime)
+            dataRedundants.push(element.totalRedundant)
+
+            isEmpty = false
+        })
+
+        return {
+            labels: labels,
+            dataAbsents: dataAbsents,
+            dataLates: dataLates,
+            dataOnTimes: dataOnTimes,
+            dataRedundants: dataRedundants,
+            isEmpty: isEmpty
+        }
     }
 
     async getDataInStatisticForPieChart(params: {

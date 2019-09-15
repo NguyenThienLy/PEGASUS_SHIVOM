@@ -64,14 +64,13 @@
     }
     @include e("image") {
       width: 100%;
-      height: auto;
       margin-bottom: 1.5em;
       position: relative;
       @include e("dateCreated") {
         position: absolute;
         top: 0;
+        left: 3%;
         text-align: center;
-        margin-left: 1.1em;
         a {
           text-decoration: none;
           color: $main-color;
@@ -88,11 +87,11 @@
           }
         }
         @include e("day") {
-          width: 3em;
           font-size: 1.2em;
           line-height: 3em;
         }
         @include e("month") {
+          padding: 0 2em;
           font-size: 0.9em;
           line-height: 2em;
           margin-top: 0.1em;

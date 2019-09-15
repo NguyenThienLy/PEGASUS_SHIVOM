@@ -1,737 +1,758 @@
 @import "../../default.scss";
+$hover-color: lighten($sub-main-color, 27%);
 
 .course {
-    background-color: #fff;
-    font-size: $font-size;
-
-    .course-ringing-phone {
-        position: fixed;
-        right: 50px;
-        bottom: 80px;
+  background-color: #fff;
+  .divider-grey {
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border: none;
+    margin: 0px;
+  }
+  .divider {
+    height: 1px;
+    background-color: $table-border-color;
+    border: none;
+    margin: 0px;
+  }
+  @include e("body") {
+    @include e("ringing-phone") {
+      position: fixed;
+      right: 3em;
+      bottom: 4em;
     }
-
-    @include e('contact-us') {
-        width: 80%;
-        margin: 1em auto 0;
-        padding: 1em 0 7em;
-    }
-
-    .course-title {
-        color: #363738;
-        font-family: $font-family-special;
-        background-color: $background-color;
-        padding: 3em 0 3em 10em;
-        font-size: $font-size;
-
-        a {
-            font-size: 1.125em;
-            color: #363738;
-            text-transform: capitalize;
-
-            &:hover {
-                color: $main-color;
-            }
+    @include e("breadcrumb") {
+      font-family: $font-family-special;
+      background-color: $background-color;
+      padding: 3em 0 3em 10%;
+      a {
+        font-size: 0.9em;
+        color: $color-grey; //#363738;
+        text-transform: capitalize;
+        transition: all 200ms ease;
+        &:hover {
+          color: $main-color;
         }
-
-        i {
-            font-size: 0.75em;
-            color: $main-color;
-        }
+      }
+      i {
+        font-size: 0.7em;
+        color: $main-color;
+      }
     }
+    @include e("wrapper") {
+      display: flex;
+      flex-direction: row;
+      width: 85%;
+      margin: auto;
+      padding: 4em 0;
 
-    .course-wrapper {
+      @include e("main-content") {
         display: flex;
-        flex-direction: row;
-
-
-        @include e('main-content') {
-            margin: 4em 0 4em 4em;
-            padding: 0 1.5em;
-            display: flex;
-            flex-direction: column;
-            width: 65%;
-
-            @include e("image") {
-                width: 100%;
-                margin-bottom: 27px;
-                position: relative;
-
-                @include e("dateCreated") {
-                    position: absolute;
-                    top: 0;
-                    text-align: center;
-                    margin-left: 1.1em;
-
-
-                    span {
-                        color: $main-color;
-                        font-size: 1.2em;
-                        display: block;
-
-                        font-family: $font-family-special;
-                        font-weight: 500;
-                        text-align: center;
-                        background-color: #fff;
-                    }
-
-                    @include e("day") {
-                        padding: 5px 10px;
-                        width: 3em;
-                        font-size: 1.2em;
-                        line-height: 3em;
-                    }
-
-                    @include e("month") {
-                        padding: 0 10px;
-                        font-size: 0.9em;
-                        line-height: 2em;
-                        margin-top: 0.1em;
-                        text-transform: capitalize;
-                    }
-                }
-
-                img {
-                    width: 100%;
-                    height: auto;
-                }
+        flex-direction: column;
+        width: 75%;
+        @include e("image") {
+          width: 100%;
+          margin-bottom: 1.5em;
+          position: relative;
+          @include e("dateCreated") {
+            position: absolute;
+            top: 0;
+            left: 3%;
+            text-align: center;
+            span {
+              color: $main-color;
+              display: block;
+              font-family: $font-family-special;
+              font-weight: 500;
+              text-align: center;
+              background-color: #fff;
             }
-
-            @include e('author') {
-                text-transform: uppercase;
-                margin-top: 2em;
-                color: $sub-main-color;
-                font-size: 0.875em;
-
-                font-family: $font-family-special;
+            @include e("day") {
+              font-size: 1.2em;
+              line-height: 3em;
             }
-
-            @include e('title') {
-                font-family: $font-family-special;
-                font-size: 2.5em;
-                padding: 8px 0 20px 0;
+            @include e("month") {
+              padding: 0 1em;
+              font-size: 0.9em;
+              line-height: 2em;
+              margin-top: 0.1em;
+              text-transform: capitalize;
             }
+          }
+          img {
+            width: 100%;
+            height: auto;
+          }
+        }
 
-            @include e('content') {
-                margin: 10px 0;
-                color: rgba(0, 0, 0, 0.6);
-                font-size: 1em;
-                line-height: 26px;
+        @include e("author") {
+          text-transform: uppercase;
+          margin-top: 2em;
+          color: $sub-main-color;
+          font-size: 0.875em;
+
+          font-family: $font-family-special;
+        }
+
+        @include e("title") {
+          font-family: $font-family-special;
+          font-size: 1.8em;
+        }
+
+        @include e("content") {
+          margin: 1.5em 0 1.8em;
+          color: $font-color;
+          font-size: 0.85em;
+          line-height: 1.7em;
+        }
+
+        @include e("benefits") {
+          margin: 1.5em 0em 1.5em 1em;
+          @include e("title") {
+            margin-bottom: 2em;
+            font-size: 1.5em;
+            font-family: $font-family-special;
+            position: relative;
+            display: inline-block;
+            padding: 0 0.5em;
+            z-index: 0;
+            color: $main-color;
+            @include m("hover") {
+              position: absolute;
+              left: 0;
+              bottom: -0.5em;
+              height: 1em;
+              width: 100%;
+              background-color: $hover-color;
+              z-index: -1;
             }
+          }
+          .course-list-benefits {
+          }
+          // color: rgba(0, 0, 0, 0.6);
+          // font-size: 1em;
+          // display: flex;
+          // flex-wrap: wrap;
+          // margin-top: 20px;
 
-            @include e('targets') {
-                color: rgba(0, 0, 0, 0.6);
-                font-size: 1em;
-                display: flex;
-                flex-wrap: wrap;
-                margin-top: 20px;
+          // @include e('target') {
+          //     width: 33%;
+          //     margin: 10px 0;
+          //     text-transform: capitalize;
 
-                @include e('target') {
-                    width: 33%;
-                    margin: 10px 0;
-                    text-transform: capitalize;
+          //     .fas {
+          //         &:hover {
+          //             color: $sub-main-color;
+          //         }
 
-                    .fas {
-                        &:hover {
-                            color: $sub-main-color;
-                        }
+          //         color: $main-color;
+          //         margin-right: 4px;
+          //     }
+          // }
+        }
 
-                        color: $main-color;
-                        margin-right: 4px;
-                    }
-                }
+        @include e("classes") {
+          margin: 1.5em 0em 1.5em 1em;
+          @include e("title") {
+            margin-bottom: 1em;
+            font-size: 1.5em;
+            font-family: $font-family-special;
+            position: relative;
+            display: inline-block;
+            padding: 0 0.5em;
+            z-index: 0;
+            color: $main-color;
+            @include m("hover") {
+              position: absolute;
+              left: 0;
+              bottom: -0.5em;
+              height: 1em;
+              width: 100%;
+              background-color: $hover-color;
+              z-index: -1;
             }
-
-            @include e('classes') {
-                display: flex;
-                flex-wrap: wrap;
-
-                @include e('yogaclass') {
-                    &:hover {
-                        border-color: #fff;
-                        box-shadow: 1px 1px 10px 0 $sub-main-color;
-                    }
-
-                    border: 1px solid $sub-main-color;
-                    width: 15em;
-                    margin-right: 20px;
-                    margin-bottom: 20px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    padding: 1.5em;
-                    font-family: $font-family-special;
-
-                    h4 {
-                        color: #363738;
-
-                        margin: 0 0 9px 0;
-                    }
-
-                    p {
-                        margin: 10px;
-                        color: rgba(0, 0, 0, 0.6);
-                    }
-                }
-            }
-
-            @include e('text') {
+          }
+          @include e("class") {
+            color: $color-grey;
+            padding: 1em 0;
+            @include e("class-name") {
+              margin-bottom: 1em;
+              font-size: 1.3em;
+              font-family: $font-family-special;
+              &::first-letter {
                 text-transform: capitalize;
-                font-size: 2em;
-                margin: 0.5em 0 0.8em 0;
-                color: #363738;
-                font-family: "Noto Serif SC", serif;
+              }
+            }
 
-                span {
-                    color: $main-color;
+            @include e("class-trainer") {
+              margin-bottom: 2em;
+              .class-trainer {
+                @include e("info") {
+                  @include e("name") {
+                    font-size: 1.3em;
+                  }
+                  @include e("description") {
+                    font-size: 0.85em;
+                  }
                 }
+              }
             }
 
-            @include e('trainer-info') {
-                margin-bottom: 40px;
+            @include e("class-time") {
+              display: grid;
+              grid-template-columns: repeat(3, 1fr);
+              column-gap: 2em;
+              row-gap: 2em;
+              //   display: flex;
+              //   flex-wrap: wrap;
+              @include e("time-item") {
+                // &:hover {
+                //   border-color: #fff;
+                //   box-shadow: 1px 1px 10px 0 $sub-main-color;
+                // }
+                // border: 1px solid $sub-main-color;
+                // width: 15em;
+                // margin-right: 20px;
+                // margin-bottom: 20px;
+                // display: flex;
+                // flex-direction: row;
+                // justify-content: center;
+                // align-items: center;
+                // padding: 1.5em;
+                // font-family: $font-family-special;
+                // h4 {
+                //   color: #363738;
+
+                //   margin: 0 0 9px 0;
+                // }
+                // p {
+                //   margin: 10px;
+                //   color: rgba(0, 0, 0, 0.6);
+                // }
+              }
             }
+          }
         }
+      }
 
-        @include e('sub-content') {
-            margin: 4em 0 4em 1em;
-            width: 20%;
-
-            @include e('social-group') {
-                margin: 40px 0 30px 0;
+      @include e("sub-content") {
+        margin-left: 3%;
+        width: 22%;
+        @include e("social-group") {
+          margin: 1em 0 2em 0;
+          .media-buttons {
+            @include e("media-icons") {
+              background-color: $hover-color;
+              @include m("hover") {
+                font-size: 1.2em;
+              }
             }
-
-            @include e('other-courses') {
-
-                margin-bottom: 30px;
-
-                @include e('text') {
-                    font-family: $font-family-special;
-                    font-size: 1.7em;
-                    font-color: #363738;
-                    margin-bottom: 20px;
-                    text-transform: capitalize;
-                }
-
-                @include e('course') {
-                    font-family: $font-family-special;
-                    text-transform: uppercase;
-                    color: $main-color;
-                    font-size: 0.8em;
-                    margin-bottom: 12px;
-                }
-            }
-
-            @include e('email') {
-                margin: 40px 0 30px 0;
-
-                p {
-                    line-height: 26px;
-                    color: rgba(0, 0, 0, 0.6);
-                }
-            }
-
-            @include e('lasted-post') {}
+          }
         }
+        @include e("title") {
+          font-family: $font-family-special;
+          font-size: 1.2em;
+          font-color: $color-grey;
+          margin-bottom: 1em;
+          &::first-letter {
+            text-transform: capitalize;
+          }
+        }
+        @include e("other-courses") {
+          margin-bottom: 2em;
+          @include e("course") {
+            text-transform: uppercase;
+            margin-bottom: 1em;
+            @include e("link") {
+              text-decoration: none;
+              font-size: 0.7em;
+              .hoverDiv {
+                @include e("link") {
+                  cursor: pointer;
+                  color: $main-color;
+                  letter-spacing: 0.05em;
+                }
+              }
+            }
+          }
+        }
+        @include e("latest-posts") {
+          margin-bottom: 2em;
+          @include e("post") {
+            margin-bottom: 1em;
+          }
+        }
+        @include e("email") {
+          margin: 3em 0 2em;
+          @include e("content") {
+            font-size: 0.85em;
+            color: $font-color;
+            margin-bottom: 1.5em;
+          }
+          .search-box form {
+            width: 100%;
+          }
+        }
+      }
     }
+    @include e("contact-us") {
+      width: 80%;
+      margin: 0 auto 0;
+      padding: 3em 0 7em;
+    }
+  }
 }
 
-@media only screen and (max-width: 2000px) {
-    html {
-        font-size: 20px !important;
-    }
+@media only screen and (min-width: 1200px) {
+  html {
+    font-size: 20px !important;
+  }
 }
 
-@media only screen and (max-width: 1199px) {
-    html {
-        font-size: 20px !important;
-    }
+@media only screen and (min-width: 992px) {
+  html {
+    font-size: 20px !important;
+  }
 
-    .course {
-        .course-title {
-            padding: 1em 0 1em 5.5em;
+  .course {
+    @include e("wrapper") {
+      @include e("main-content") {
+        @include e("classes") {
+          @include e("class") {
+            @include e("class-time") {
+              width: 25%;
+              margin-right: 10px;
+              padding: 1em;
+            }
+          }
+        }
+      }
+
+      @include e("sub-content") {
+        margin-right: 1em;
+        width: auto;
+
+        @include e("latest-posts") {
+          @include e("post") {
+            width: 80%;
+          }
         }
 
-        .course-wrapper {
-            @include e('main-content') {
+        @include e("search") {
+          .search-box {
+            form {
+              width: 100%;
+              input {
+                width: 85%;
+              }
+              i {
+                top: 33%;
+                right: 1em !important;
+              }
+            }
+          }
+        }
+
+        @include e("email") {
+          .search-box {
+            form {
+              width: 100%;
+              input {
+                width: 85%;
+              }
+              i {
+                top: 33%;
+                right: 1em !important;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @include e("contact-us") {
+      padding-bottom: 4em;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  html {
+    font-size: 19px !important;
+  }
+
+  .course {
+    @include e("breadcrumb") {
+      padding: 1em 0 1em 5.5em;
+    }
+
+    @include e("wrapper") {
+      flex-direction: column;
+
+      @include e("main-content") {
+        width: auto;
+        margin: 3em 4.5em;
+
+        @include e("course-info") {
+          @include e("image") {
+            margin-bottom: 0;
+          }
+        }
+
+        @include e("classes") {
+          @include e("class") {
+            @include e("class-name") {
+              .register-btn {
                 margin-left: 0;
-                width: 75%;
-
-                @include e('classes') {
-                    @include e('yogaclass') {
-                        width: 25%;
-                        margin-right: 10px;
-                        padding: 1em;
-                    }
-                }
-
+              }
             }
-
-            @include e('sub-content') {
-                margin-right: 1em;
-                width: auto;
-
-                @include e('latest-posts') {
-                    @include e('post') {
-                        width: 80%;
-                    }
+            @include e("class-trainer") {
+              margin-bottom: 1em;
+              .class-trainer {
+                height: auto;
+                flex-direction: column;
+                @include e("img") {
+                  width: 100%;
                 }
-
-                @include e('search') {
-                    .search-box {
-                        form {
-                            width: 100%;
-
-                            input {
-                                width: 85%;
-                            }
-
-                            i {
-                                top: 33%;
-                                right: 1em !important;
-                            }
-                        }
-                    }
+                @include e("info") {
+                  width: 100%;
+                  padding-left: 0;
+                  @include e("name") {
+                    padding: 0.5em 5% 0 0;
+                  }
+                  @include e("description") {
+                    margin: 18px 0 0;
+                  }
+                  @include e("detail") {
+                    margin-top: 18px;
+                  }
                 }
-
-                @include e('email') {
-                    .search-box {
-                        form {
-                            width: 100%;
-
-                            input {
-                                width: 85%;
-                            }
-
-                            i {
-                                top: 33%;
-                                right: 1em !important;
-                            }
-                        }
-                    }
-                }
+              }
             }
+            @include e("class-time") {
+              width: 8em;
+              margin-right: 15px;
+              padding: 1em;
+            }
+          }
+        }
+      }
+
+      @include e("sub-content") {
+        width: auto;
+        margin: 0 5.5em;
+        @include e("latest-posts") {
+          @include e("post") {
+            width: 50%;
+          }
         }
 
-        @include e('contact-us') {
-            padding-bottom: 4em;
+        @include e("search") {
+          .search-box {
+            form {
+              width: 100%;
+              input {
+                width: 85%;
+              }
+              i {
+                top: 33%;
+                right: 1em !important;
+              }
+            }
+          }
         }
+
+        @include e("email") {
+          .search-box {
+            form {
+              width: 100%;
+              input {
+                width: 85%;
+              }
+              i {
+                top: 33%;
+                right: 1em !important;
+              }
+            }
+          }
+        }
+
+        @include e("social-group") {
+          .media-buttons__icons {
+            box-shadow: 1px 1px 10px 0 #83ccd2;
+          }
+        }
+      }
     }
+
+    @include e("contact-us") {
+      padding: 0;
+      .contact-us {
+        flex-direction: column-reverse;
+        @include e("form") {
+          flex-basis: 100%;
+          margin: 0 0em 4em 0em;
+        }
+        @include e("sub-info") {
+          flex-basis: 100%;
+          margin: 0;
+        }
+      }
+    }
+  }
 }
 
-@media only screen and (max-width: 991px) {
-    html {
-        font-size: 19px !important;
+@media only screen and (min-width: 600px) {
+  html {
+    font-size: 19px !important;
+  }
+
+  .course {
+    @include e("breadcrumb") {
+      padding: 1em 0 1em 1.5em;
+      font-size: 0.8em;
     }
 
-    .course {
-        .course-title {
-            padding: 1em 0 1em 5.5em;
-        }
-
-        .course-wrapper {
-            flex-direction: column;
-
-            @include e('main-content') {
-                width: auto;
-                margin: 3em 4.5em;
-
-                @include e('image') {
-                    margin-bottom: 0;
-                }
-
-                @include e('classes') {
-                    @include e('yogaclass') {
-                        width: 8em;
-                        margin-right: 15px;
-                        padding: 1em;
-                    }
-                }
-
-                @include e('text') {
-                    .register-btn {
-                        margin-left: 0;
-                    }
-                }
-
-                @include e('trainer-info') {
-                    margin-bottom: 1em;
-
-                    .class-trainer {
-                        height: auto;
-                        flex-direction: column;
-
-                        @include e('img') {
-                            width: 100%;
-                        }
-
-                        @include e('info') {
-                            width: 100%;
-                            padding-left: 0;
-
-                            @include e('name') {
-                                padding: 0.5em 5% 0 0;
-                            }
-
-                            @include e('description') {
-                                margin: 18px 0 0;
-                            }
-
-                            @include e('detail') {
-                                margin-top: 18px;
-                            }
-                        }
-                    }
-                }
+    @include e("wrapper") {
+      flex-direction: column;
+      @include e("main-content") {
+        width: auto;
+        margin-right: 4em;
+        @include e("classes") {
+          @include e("class") {
+            @include e("class-name") {
+              .register-btn {
+                margin-left: 0;
+              }
             }
 
-            @include e('sub-content') {
-                width: auto;
-                margin: 0 5.5em;
-
-                @include e('latest-posts') {
-                    @include e('post') {
-                        width: 50%;
-                    }
-                }
-
-                @include e('search') {
-                    .search-box {
-                        form {
-                            width: 100%;
-
-                            input {
-                                width: 85%;
-                            }
-
-                            i {
-                                top: 33%;
-                                right: 1em !important;
-                            }
-                        }
-                    }
-                }
-
-                @include e('email') {
-                    .search-box {
-                        form {
-                            width: 100%;
-
-                            input {
-                                width: 85%;
-                            }
-
-                            i {
-                                top: 33%;
-                                right: 1em !important;
-                            }
-                        }
-                    }
-                }
-
-                @include e('social-group') {
-                    .media-buttons__icons {
-                        box-shadow: 1px 1px 10px 0 #83ccd2;
-                    }
-                }
+            @include e("class-time") {
+              width: 9em;
+              margin-right: 15px;
+              padding: 1em;
             }
 
-        }
+            @include e("class-trainer") {
+              .class-trainer {
+                height: auto;
+                flex-direction: column;
 
-        @include e('contact-us') {
-            padding: 0;
-
-            .contact-us {
-                flex-direction: column-reverse;
-
-                @include e('form ') {
-                    flex-basis: 100%;
-                    margin: 0 0em 4em 0em;
+                @include e("img") {
+                  width: 100%;
                 }
 
-                @include e('sub-info') {
-                    flex-basis: 100%;
-                    margin: 0;
+                @include e("info") {
+                  width: 100%;
+                  padding-left: 0;
+
+                  @include e("name") {
+                    padding: 9.5% 5% 0 0;
+                  }
+
+                  @include e("description") {
+                    margin: 18px 0 0;
+                  }
                 }
+              }
             }
+          }
         }
+      }
+
+      @include e("sub-content") {
+        width: auto;
+        margin: 0 5.5em;
+        @include e("latest-posts") {
+          @include e("post") {
+            width: 50%;
+          }
+        }
+
+        @include e("search") {
+          .search-box {
+            form {
+              width: 100%;
+              input {
+                width: 85%;
+              }
+              i {
+                top: 33%;
+                right: 1em !important;
+              }
+            }
+          }
+        }
+
+        @include e("email") {
+          .search-box {
+            form {
+              width: 100%;
+              input {
+                width: 85%;
+              }
+              i {
+                top: 33%;
+                right: 1em !important;
+              }
+            }
+          }
+        }
+
+        @include e("social-group") {
+          .media-buttons__icons {
+            box-shadow: 1px 1px 10px 0 #83ccd2;
+          }
+        }
+      }
     }
+
+    @include e("contact-us") {
+      padding: 0;
+      .contact-us {
+        flex-direction: column-reverse;
+        @include e("form ") {
+          flex-basis: 100%;
+          margin: 0 0em 4em 0em;
+        }
+        @include e("sub-info") {
+          flex-basis: 100%;
+          margin: 0;
+        }
+      }
+    }
+  }
 }
 
-@media only screen and (max-width: 767px) {
-    html {
-        font-size: 19px !important;
+@media only screen and (max-width: 599px) {
+  html {
+    font-size: 18px !important;
+  }
+
+  .course {
+    @include e("breadcrumb") {
+      padding: 1em 0 1em 1.5em;
+      font-size: 0.8em;
     }
 
-    .course {
-        .course-title {
-            padding: 1em 0 1em 1.5em;
-            font-size: 0.8em;
+    @include e("wrapper") {
+      flex-direction: column;
+      @include e("main-content") {
+        width: auto;
+        margin-right: 0em;
+        margin-left: 0em;
+        margin-top: 1.5em;
+        @include e("course-info") {
+          @include e("image") {
+            margin-bottom: 0;
+          }
+
+          @include e("title") {
+            font-size: 1.4375em;
+          }
+          @include e("benefits") {
+            @include e("benefit") {
+              width: 50%;
+            }
+          }
         }
 
-        .course-wrapper {
-            flex-direction: column;
-
-            @include e('main-content') {
-                width: auto;
-                margin-right: 4em;
-
-                @include e('classes') {
-                    @include e('yogaclass') {
-                        width: 9em;
-                        margin-right: 15px;
-                        padding: 1em;
-                    }
-                }
-
-                @include e('text') {
-                    .register-btn {
-                        margin-left: 0;
-                    }
-                }
-
-                @include e('trainer-info') {
-                    .class-trainer {
-                        height: auto;
-                        flex-direction: column;
-
-                        @include e('img') {
-                            width: 100%;
-                        }
-
-                        @include e('info') {
-                            width: 100%;
-                            padding-left: 0;
-
-                            @include e('name') {
-                                padding: 9.5% 5% 0 0;
-                            }
-
-                            @include e('description') {
-                                margin: 18px 0 0;
-                            }
-                        }
-                    }
-                }
+        @include e("classes") {
+          @include e("class") {
+            @include e("class-name") {
+              .register-btn {
+                margin-left: 0;
+                width: 100%;
+              }
             }
-
-            @include e('sub-content') {
-                width: auto;
-                margin: 0 5.5em;
-
-                @include e('latest-posts') {
-                    @include e('post') {
-                        width: 50%;
-                    }
-                }
-
-                @include e('search') {
-                    .search-box {
-                        form {
-                            width: 100%;
-
-                            input {
-                                width: 85%;
-                            }
-
-                            i {
-                                top: 33%;
-                                right: 1em !important;
-                            }
-                        }
-                    }
-                }
-
-                @include e('email') {
-                    .search-box {
-                        form {
-                            width: 100%;
-
-                            input {
-                                width: 85%;
-                            }
-
-                            i {
-                                top: 33%;
-                                right: 1em !important;
-                            }
-                        }
-                    }
-                }
-
-                @include e('social-group') {
-                    .media-buttons__icons {
-                        box-shadow: 1px 1px 10px 0 #83ccd2;
-                    }
-                }
+            @include e("class-time") {
+              width: 100%;
+              padding: 1em;
+              margin-right: 0;
             }
+            @include e("class-trainer") {
+              .class-trainer {
+                height: auto;
+                flex-direction: column;
+                @include e("img") {
+                  width: 100%;
+                }
+                @include e("info") {
+                  width: 100%;
+                  padding-left: 0;
+                  @include e("name") {
+                    padding: 9.5% 5% 0 0;
+                  }
+                  @include e("description") {
+                    margin: 18px 0 0;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
 
+      @include e("sub-content") {
+        width: auto;
+        margin-right: 1.5em;
+        margin-left: 1.5em;
+        @include e("latest-posts") {
+          @include e("post") {
+            width: 85%;
+          }
+        }
+        @include e("search") {
+          .search-box {
+            form {
+              width: 100%;
+              input {
+                width: 85%;
+              }
+              i {
+                top: 33%;
+                right: 1em !important;
+              }
+            }
+          }
         }
 
-        @include e('contact-us') {
-            padding: 0;
-
-            .contact-us {
-                flex-direction: column-reverse;
-
-                @include e('form ') {
-                    flex-basis: 100%;
-                    margin: 0 0em 4em 0em;
-                }
-
-                @include e('sub-info') {
-                    flex-basis: 100%;
-                    margin: 0;
-                }
+        @include e("email") {
+          .search-box {
+            form {
+              width: 100%;
+              input {
+                width: 85%;
+              }
+              i {
+                top: 33%;
+                right: 1em !important;
+              }
             }
+          }
         }
-    }
-}
 
-@media only screen and (max-width: 575px) {
-    html {
-        font-size: 18px !important;
+        @include e("social-group") {
+          .media-buttons__icons {
+            box-shadow: 1px 1px 10px 0 #83ccd2;
+          }
+        }
+      }
     }
 
-    .course {
-        .course-title {
-            padding: 1em 0 1em 1.5em;
-            font-size: 0.8em;
+    @include e("contact-us") {
+      padding: 0;
+      margin-bottom: 0 !important;
+      .contact-us {
+        flex-direction: column-reverse;
+        @include e("form") {
+          flex-basis: 100%;
+          margin: 0 0em 4em 0em;
         }
-
-        .course-wrapper {
-            flex-direction: column;
-
-            @include e('main-content') {
-                width: auto;
-                margin-right: 0em;
-                margin-left: 0em;
-                margin-top: 1.5em;
-
-                @include e('image') {
-                    margin-bottom: 0;
-                }
-
-                @include e('title') {
-                    font-size: 1.4375em;
-                }
-
-                @include e('classes') {
-                    @include e('yogaclass') {
-                        width: 100%;
-                        padding: 1em;
-                        margin-right: 0;
-                    }
-                }
-
-                @include e('text') {
-                    .register-btn {
-                        margin-left: 0;
-                        width: 100%;
-                    }
-                }
-
-                @include e('targets') {
-                    @include e('target') {
-                        width: 50%;
-                    }
-                }
-
-                @include e('trainer-info') {
-                    .class-trainer {
-                        height: auto;
-                        flex-direction: column;
-
-                        @include e('img') {
-                            width: 100%;
-                        }
-
-                        @include e('info') {
-                            width: 100%;
-                            padding-left: 0;
-
-                            @include e('name') {
-                                padding: 9.5% 5% 0 0;
-                            }
-
-                            @include e('description') {
-                                margin: 18px 0 0;
-                            }
-                        }
-                    }
-                }
-            }
-
-            @include e('sub-content') {
-                width: auto;
-                margin-right: 1.5em;
-                margin-left: 1.5em;
-
-                @include e('latest-posts') {
-                    @include e('post') {
-                        width: 85%;
-                    }
-                }
-
-                @include e('search') {
-                    .search-box {
-                        form {
-                            width: 100%;
-
-                            input {
-                                width: 85%;
-                            }
-
-                            i {
-                                top: 33%;
-                                right: 1em !important;
-                            }
-                        }
-                    }
-                }
-
-                @include e('email') {
-                    .search-box {
-                        form {
-                            width: 100%;
-
-                            input {
-                                width: 85%;
-                            }
-
-                            i {
-                                top: 33%;
-                                right: 1em !important;
-                            }
-                        }
-                    }
-                }
-
-                @include e('social-group') {
-                    .media-buttons__icons {
-                        box-shadow: 1px 1px 10px 0 #83ccd2;
-                    }
-                }
-            }
-
+        @include e("sub-info") {
+          flex-basis: 100%;
+          margin: 0;
         }
-
-        @include e('contact-us') {
-            padding: 0;
-            margin-bottom: 0 !important;
-
-            .contact-us {
-                flex-direction: column-reverse;
-
-                @include e('form ') {
-                    flex-basis: 100%;
-                    margin: 0 0em 4em 0em;
-                }
-
-                @include e('sub-info') {
-                    flex-basis: 100%;
-                    margin: 0;
-                }
-            }
-        }
+      }
     }
+  }
 }

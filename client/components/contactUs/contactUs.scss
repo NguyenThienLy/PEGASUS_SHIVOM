@@ -2,8 +2,6 @@
 
 .contact-us {
   position: relative;
-  font-family: $font-title;
-  font-size: $font-size;
   // -webkit-box-shadow: 0 0 15px rgba(131, 204, 210, 0.2);
   // box-shadow: 0 0 15px rgba(131, 204, 210, 0.2);
   // background-image: url("https://images.squarespace-cdn.com/content/v1/523c8cd7e4b0cc256b0f8746/1503656828390-8AVA7X34APK0YB393UF5/ke17ZwdGBToddI8pDm48kMWB_b-n6a50YzIZsjMYkmt7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0hveExjbswnAj1UrRPScjfAsZste21sIDg4hzF3IoAd0gcytUQrJ8Q9Y5sp8n9LlOw/minea-berg-design-yoga-illustration.jpg?format=1000w");
@@ -116,6 +114,7 @@
 //       }
 //     }
   // }
+  
 
   @include e("sub-info") {
     flex-basis: 50%;
@@ -128,7 +127,7 @@
     @include e("brand") {
       color: $font-color;
       text-transform: uppercase;
-      font-size: 0.9em;
+      font-size: 0.7em;
       letter-spacing: 0.15em;
 
       &::before {
@@ -143,11 +142,11 @@
     }
 
     @include e("title") {
-      font-family: "Noto Serif SC", serif;
+      font-family: $font-family-special;
       letter-spacing: 0.05em;
       color: $main-color;
       text-transform: capitalize;
-      font-size: 2.6em;
+      font-size: 2.3em;
       margin: 0.2em 0;
     }
 
@@ -157,7 +156,7 @@
       color: $font-color;
       margin-top: 1em;
       margin-bottom: 1.5em;
-      font-size: 1.1em;
+      font-size: 0.9em;
     }
 
     @include e("contact-info") {
@@ -167,14 +166,14 @@
         a {
           text-decoration: none;
           color: $font-color;
-
+          font-size: 0.9em;
           &:hover {
             color: $main-color;
           }
         }
 
         .icon {
-          font-size: 1.3em;
+          font-size: 1em;
           width: 2em;
           color: $main-color;
           display: inline-block;

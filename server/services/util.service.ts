@@ -4,6 +4,7 @@ import * as Ajv from 'ajv'
 import * as AjvError from 'ajv-errors'
 import * as AjvKeyWords from 'ajv-keywords'
 import * as bcrypt from 'bcryptjs'
+import * as moment from 'moment'
 
 const SALT_WORK_FACTOR = 10
 export class UtilService {
@@ -53,5 +54,24 @@ export class UtilService {
             if (i & 1) p++;
         };
         return result
+    }
+    parseDateToWeekMonthYear(dateTime) {
+        let week, month, year
+
+        week = moment(dateTime).week()
+        month = moment(dateTime).month() + 1
+        year = moment(dateTime).year()
+
+        // Nếu đó ngày thuộc tuần của năm sau
+        if (week === 1 && month === 12) {
+            month = 1
+            year++
+        }
+
+        return {
+            week: week,
+            month: month,
+            year: year
+        }
     }
 }

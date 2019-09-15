@@ -1,8 +1,10 @@
 @import "../../default.scss";
+@import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css");
 
 .slider {
   width: 100%;
   position: relative;
+
   @include e("arrow") {
     z-index: 1;
     position: absolute;
@@ -34,8 +36,17 @@
       }
     }
   }
+  .slider__slick-autoplay.slick-initialized {
+    // display: block;
+    // opacity: 1;
+    // visibility: visible;
+  }
   @include e("slick-autoplay") {
     width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 1s ease;
+    // display: none;
     @include e("item") {
       position: relative;
       img {

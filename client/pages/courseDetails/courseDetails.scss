@@ -56,6 +56,7 @@ body {
       @include e("content") {
         padding: 3em 0;
         @include e("course") {
+          //width: 100%;
           @include e("filter") {
           }
           @include e("info") {
@@ -116,13 +117,16 @@ body {
             }
           }
           @include e("row") {
-            margin: 2em 0 1em;
-            .lineChart {
-              width: 100%;
-              margin-right: 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            .columnChart {
+              margin-top: 2em;
+              margin-bottom: 1em;
             }
             .pieChart {
-              margin: auto;
+              margin-top: 2em;
+              margin-bottom: 1em;
             }
           }
         }
@@ -370,7 +374,7 @@ body {
     flex-direction: row;
     align-items: flex-start;
     .courseInfo {
-      width: 60%;
+      width: 100%;
       margin-right: 3%;
     }
     .profileAdmin {

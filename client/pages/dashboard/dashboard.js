@@ -129,28 +129,28 @@ export class Dashboard extends React.Component {
       // },
       numberAdmins: [
         {
-          icon: '<i className="fas fa-id-card-alt"></i>',
+          icon: '<i class="fas fa-id-card-alt"></i>',
           about: "Đi đúng giờ",
           quantity: 0,
           colorIcon: "#f5365c",
           isEmpty: true
         },
         {
-          icon: '<i className="fas fa-id-card-alt"></i>',
+          icon: '<i class="fas fa-id-card-alt"></i>',
           about: "Đi trễ",
           quantity: 0,
           colorIcon: "#fb6340",
           isEmpty: true
         },
         {
-          icon: '<i className="fas fa-id-card-alt"></i>',
+          icon: '<i class="fas fa-id-card-alt"></i>',
           about: "Vắng",
           quantity: 0,
           colorIcon: "#ffd600",
           isEmpty: true
         },
         {
-          icon: '<i className="fas fa-id-card-alt"></i>',
+          icon: '<i class="fas fa-id-card-alt"></i>',
           about: "Đi thừa",
           quantity: 0,
           colorIcon: "#11cdef",
@@ -317,10 +317,9 @@ export class Dashboard extends React.Component {
         "x-token": token
       }
     });
-
   };
-  handleScroll = () => { };
-  componentWillUnmount() { }
+  handleScroll = () => {};
+  componentWillUnmount() {}
   async componentDidMount() {
     // Lấy năm
     // startTime bắt đầu năm hiện tại
@@ -470,6 +469,8 @@ export class Dashboard extends React.Component {
       });
     }
 
+    
+
     return true;
   }
 
@@ -508,13 +509,13 @@ export class Dashboard extends React.Component {
               {this.props.statisticCourse.statisticForPieChart.fetching
                 ? "đang tải ..."
                 : this.state.numberAdmins.map((number, index) => {
-                  return (
-                    <NumberAdmin
-                      numberAdmin={number}
-                      key={index}
-                    ></NumberAdmin>
-                  );
-                })}
+                    return (
+                      <NumberAdmin
+                        numberAdmin={number}
+                        key={index}
+                      ></NumberAdmin>
+                    );
+                  })}
             </div>
             <div className="dashboard__body__card">
               <div className="dashboard__body__card__title">Thống kê</div>

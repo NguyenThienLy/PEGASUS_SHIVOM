@@ -1,82 +1,26 @@
-$main-color:#73B043;
-.loading {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width:100%;
-    height: 100%;
-    // background: rgba(0, 0, 0, 0.1);
-    transition: all 0.5s ease-in-out; 
-}
-.loading-main {
-   
-    position:fixed;
-    width: 450px;
-    height: 300px;
-    top:calc( 50% - 50px );
-    left:calc( 50% - 50px );
-    transform: translate(-50%,-50%);
-    padding: 10px;
-    
-  }
+@import "../../default.scss";
 
-.lds-ellipsis {
-    position:fixed;
-    // width: 450px;
-    // height: 300px;
-    top:50%;
-    left:50%;
-    display: inline-block;
-    // position: relative;
-    width: 100px;
-    height: 100px;
+.lds-dual-ring {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 46px;
+  height: 46px;
+  margin: 1px;
+  border-radius: 50%;
+  border: 5px solid $sub-main-color;
+  border-color: $sub-main-color transparent $sub-main-color transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
   }
-  .lds-ellipsis div {
-    position: absolute;
-    top: 27px;
-    width: 11px;
-    height: 11px;
-    border-radius: 50%;
-    background: $main-color;
-    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+  100% {
+    transform: rotate(360deg);
   }
-  .lds-ellipsis div:nth-child(1) {
-    left: 6px;
-    animation: lds-ellipsis1 0.6s infinite;
-  }
-  .lds-ellipsis div:nth-child(2) {
-    left: 6px;
-    animation: lds-ellipsis2 0.6s infinite;
-  }
-  .lds-ellipsis div:nth-child(3) {
-    left: 26px;
-    animation: lds-ellipsis2 0.6s infinite;
-  }
-  .lds-ellipsis div:nth-child(4) {
-    left: 45px;
-    animation: lds-ellipsis3 0.6s infinite;
-  }
-  @keyframes lds-ellipsis1 {
-    0% {
-      transform: scale(0);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-  @keyframes lds-ellipsis3 {
-    0% {
-      transform: scale(1);
-    }
-    100% {
-      transform: scale(0);
-    }
-  }
-  @keyframes lds-ellipsis2 {
-    0% {
-      transform: translate(0, 0);
-    }
-    100% {
-      transform: translate(19px, 0);
-    }
-  }
+}
