@@ -9,13 +9,13 @@ export type PackageModel = BaseModel & {
     monthAmount: number
     type: string
     price: number
-    discount: [
-        {
-            type: string
-            condition: string
-            amount: number
-        }
-    ]
+    priceBeforeDiscount: number
+    discount:
+    {
+        type: string
+        condition: string
+        amount: number
+    },
     course: string | CourseModel
 }
 
@@ -24,12 +24,13 @@ const packageSchema = new Schema({
     name: { type: String },
     monthAmount: { type: Number },
     type: { type: String },
-    price: { type: String },
-    discount: [{
-        type: { type: String },
+    price: { type: Number },
+    priceBeforeDiscount: { type: Number },
+    discount: {
+        type: { type: String, enum: ["amount", "percent"] },
         condition: { type: String },
         amount: { type: Number }
-    }],
+    },
     status: { type: String, enum: ["active", "deactive"], default: "active" }
 }, { timestamps: true })
 

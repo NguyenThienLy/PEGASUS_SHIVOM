@@ -222,7 +222,6 @@ export class StudentApi extends CrudApi {
         option.headers || {}
       )
     };
-    console.log("birthday url", url);
     const res = await this.exec(url, options);
     if (res.code && res.code === 200) {
       return res;
@@ -243,6 +242,28 @@ export class StudentApi extends CrudApi {
         },
         option.headers || {}
       )
+    };
+    const res = await this.exec(url, options);
+    if (res.code && res.code === 200) {
+      return res;
+    } else {
+      throw res;
+    }
+  }
+  async enroll(body, option) {
+    let url = this.baseUrl(`enroll`);
+    const query = this._serialize(option.query || {});
+    url += `${query}`;
+    const options = {
+      method: "POST",
+      headers: _.merge(
+        {
+          "User-Agent": "Request-Promise",
+          "Content-Type": "Application/json"
+        },
+        option.headers || {}
+      ),
+      body: JSON.stringify(body)
     };
     const res = await this.exec(url, options);
     if (res.code && res.code === 200) {

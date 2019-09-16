@@ -6,6 +6,8 @@ import { connect } from "react-redux";
 import { api } from "../../services";
 import { action } from "../../actions";
 
+import { bindActionCreators } from 'redux'
+
 import "./addMember.scss";
 import {
   HeaderAdmin,
@@ -76,7 +78,7 @@ class AddMember extends Component {
       curPageNumber: 1,
       formData: {
         memberInfo: {
-          cardNumber: null,
+          cardId: null,
           phone: null,
           point: null,
           firstName: null,
@@ -87,11 +89,13 @@ class AddMember extends Component {
         },
         courses: [],
         timeTables: [],
+        totalPrice: 0
       }
     };
     this.openPage = this.openPage.bind(this);
     this.handleClickPrevious = this.handleClickPrevious.bind(this);
     this.handleClickNext = this.handleClickNext.bind(this);
+    this.submitEnroll = this.submitEnroll.bind(this)
   }
 
   openPage = function(pageNumber) {
@@ -120,7 +124,8 @@ class AddMember extends Component {
 
     // set up for button previous, next
     if (pageNumber == this.state.pages.length) {
-      $(".addMember__body__card__buttons__btn-next").text("Xác nhận");
+        $(".addMember__body__card__buttons__btn-next").text("Xác nhận");
+        $(".addMember__body__card__buttons__btn-next")
     } else {
       $(".addMember__body__card__buttons__btn-next").html(
         "Tiếp theo<i class='fas fa-chevron-right'></i>"
@@ -135,7 +140,10 @@ class AddMember extends Component {
       );
     }
   };
-
+  submitEnroll(){
+      console.log("formdata: ", this.state.formData)
+      
+  }
   handleClickPrevious = function() {
     let curPageNumber = this.state.curPageNumber - 1;
     if (curPageNumber > 0) {
@@ -149,14 +157,29 @@ class AddMember extends Component {
     if (curPageNumber <= this.state.pages.length) {
       this.setState({ curPageNumber });
       this.openPage(curPageNumber);
+    } 
+    if(curPageNumber > this.state.pages.length){
+        this.submitEnroll()
     }
   };
 
   static async getInitialProps({ req, query }) {
     return {};
   }
-
+  fetchData(){
+    this.props.fetchCourse({
+      query: {
+        limit: 0
+      }
+    })
+    this.props.fetchPackage({
+      query: {
+        limit: 0
+      }
+    })
+  }
   async componentDidMount() {
+    this.fetchData()
     if (this.props.courses.items.length > 0) {
       const courseCategoryIndex = this.state.categories.findIndex(item => {
         return item.key === "course";
@@ -240,6 +263,52 @@ class AddMember extends Component {
     }
     this.setState({ formData: this.state.formData })
   }
+  handleSelectCoursePackage = (courseId, packageId) => {
+    const courseIndex = this.state.formData.courses.findIndex((course) => { return courseId === course._id })
+    const packageData = this.props.package.items.find((packageData) => { return packageData._id === packageId})
+    if(courseIndex === -1 ){
+      this.state.formData.courses.push({
+        _id: courseId, package: packageId, timeTables: [], price: packageData.price, type: "package"
+      })
+    } else {
+      if(packageId === this.state.formData.courses[courseIndex].package){
+        this.state.formData.courses.splice(courseIndex,1)
+      } else {
+        this.state.formData.courses[courseIndex] = {
+          _id: courseId, package: packageId, timeTables: this.state.formData.courses[courseIndex].timeTables, price: packageData.price,type: "package"
+        }
+      }
+    }
+    this.setState({ formData: this.state.formData })
+  }
+  handleInputCourseMonthAmount = (courseId, monthAmount) => {
+    
+    const courseIndex = this.state.formData.courses.findIndex((course) => { return courseId === course._id })
+    const courseData = this.props.courses.items.find((courseData) => { return courseData._id === courseId})
+    if(monthAmount === 0 && courseIndex !== -1){
+      this.state.formData.courses.splice(courseIndex,1)
+    } else if (courseIndex === -1 ){
+      
+      this.state.formData.courses.push({
+        _id: courseId, monthAmount: monthAmount, timeTables: [], price: courseData.pricePerMonth*monthAmount,type: "monthAmount"
+      })
+    } else if (courseIndex !== -1 ){
+      this.state.formData.courses[courseIndex] = {
+        _id: courseId, monthAmount: monthAmount, timeTables: this.state.formData.courses[courseIndex].timeTables, price: courseData.pricePerMonth*monthAmount, type: "monthAmount"
+      }
+    }
+    this.setState({ formData: this.state.formData })
+  }
+  handleChooseTimeTableItem = (courseId, timeTableItemId) => {
+    const courseIndex = this.state.formData.courses.findIndex((course) => { return courseId === course._id })
+    const timeTableItemIndex = this.state.formData.courses[courseIndex].timeTables.findIndex((timeTableItem) => { return timeTableItemId === timeTableItem })
+    if(timeTableItemIndex === -1 ){
+      this.state.formData.courses[courseIndex].timeTables.push(timeTableItemId)
+    } else {
+      this.state.formData.courses[courseIndex].timeTables.splice(timeTableItemIndex,1)
+    }
+    this.setState({ formData: this.state.formData })
+  }
   render() {
     return (
       <div className="addMember">
@@ -250,6 +319,7 @@ class AddMember extends Component {
             name="description"
             content="Thêm học viên tại trung tâm Yoga Hiệp Hòa"
           />
+          <meta name="robots" content="noindex"/>
         </Head>
 
         <React.Fragment>
@@ -286,21 +356,21 @@ class AddMember extends Component {
                   className="addMember__body__card__content__info animated
                   fadeIn"
                 >
-                  <CourseOptions />
+                  <CourseOptions courses={this.props.courses.items} packages={this.props.package.items} handleSelectCoursePackage={this.handleSelectCoursePackage} handleInputCourseMonthAmount={this.handleInputCourseMonthAmount}/>
                 </div>
                 <div
                   id="timeTableOptions"
                   className="addMember__body__card__content__info animated
                   fadeIn"
                 >
-                  <TimeTableOptions></TimeTableOptions>
+                  <TimeTableOptions courses={this.state.formData.courses} handleChooseTimeTableItem={this.handleChooseTimeTableItem}></TimeTableOptions>
                 </div>
                 <div
                   id="reviewAddMember"
                   className="addMember__body__card__content__info animated
                   fadeIn"
                 >
-                  <ReviewAddMember />
+                  <ReviewAddMember data={this.state.formData} courses={this.props.courses.items}/>
                 </div>
               </div>
               <div className="addMember__body__card__buttons">
@@ -362,4 +432,9 @@ const mapStateToProps = state => {
   return state;
 };
 
-export default connect(mapStateToProps)(AddMember);
+const mapDispatchToProps = dispatch => bindActionCreators({
+  fetchCourse: action.course.fetch,
+  fetchPackage: action.package.fetch
+}, dispatch)
+
+export default connect(mapStateToProps,mapDispatchToProps)(AddMember);

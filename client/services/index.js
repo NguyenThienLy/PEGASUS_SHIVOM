@@ -23,11 +23,12 @@ import { TimeTableItemApi } from "./apis/timeTableItem";
 import { SettingApi } from "./apis/setting";
 import { StatisticCourseApi } from "./apis/statisticCourse";
 import { StatisticStudentApi } from "./apis/statisticStudent";
+import { PackageApi } from "./apis/package";
 
 const crudApi = new CrudApi();
 
 class api {
-  constructor() {}
+  constructor() { }
   static admin = new AdminApi();
   static class = new ClassApi();
   static classTimeTable = new ClassTimeTableApi();
@@ -51,6 +52,7 @@ class api {
   static setting = new SettingApi();
   static statisticCourse = new StatisticCourseApi();
   static statisticStudent = new StatisticStudentApi();
+  static package = new PackageApi()
 }
 
 export { crudApi, api };

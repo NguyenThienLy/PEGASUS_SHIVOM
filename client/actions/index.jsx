@@ -25,7 +25,7 @@ import { TimeTableAction } from "./timeTable";
 import { StatisticCourseAction } from "./statisticCourse";
 import { StatisticStudentAction } from "./statisticStudent";
 import { StudentAccountAction } from './studentAccount'
-
+import { PackageAction } from './package'
 
 class action {
   constructor() {
@@ -55,6 +55,7 @@ class action {
   static studentAccount = new StudentAccountAction()
   static statisticCourse = new StatisticCourseAction();
   static statisticStudent = new StatisticStudentAction();
+  static package = new PackageAction()
 }
 import { from } from "rxjs";
 

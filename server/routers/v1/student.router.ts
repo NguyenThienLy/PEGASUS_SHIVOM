@@ -54,6 +54,8 @@ export default class StudentRouter extends CrudRouter<typeof studentController> 
                         properties: {
                             _id: { type: "string" },
                             monthAmount: { type: "number" },
+                            package: { type: "string" },
+                            type: { type: "string", enum: ["package", "monthAmount"] },
                             timeTableIds: { type: "array", items: { type: "string" } }
                         }
                     }

@@ -39,7 +39,7 @@ const studentSchema = new Schema({
     gender: { type: String, enum: ["male", "female"] },
     password: { type: String },
     address: { type: String },
-    phone: { type: String, required: true },
+    phone: { type: String, required: true, unique: true },
     email: { type: String },
     avatar: { type: String },
     point: { type: Number, default: 0 },

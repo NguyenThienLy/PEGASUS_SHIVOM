@@ -1,9 +1,16 @@
 import * as React from "react";
 import "./reviewAddMember.scss";
 
+
 export class ReviewAddMember extends React.Component {
   constructor(props) {
     super(props);
+  }
+  getTotalPrice() {
+
+    const totalPrice = this.props.data.courses.length > 0 ? this.props.data.courses.map(course => { return course.price }).reduce((a, b) => { return a + b }) : 0
+
+    return (<React.Fragment>{totalPrice}<u>đ</u></React.Fragment>)
   }
   render() {
     return (
@@ -14,12 +21,12 @@ export class ReviewAddMember extends React.Component {
           <div className="reviewAddMember__content__left">
             <div className="reviewAddMember__content__left__avatar">
               <img
-                src="https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-event-list-1a-768x768.jpg"
+                src={this.props.data.memberInfo.avatar}
                 alt=""
               />
             </div>
             <div className="reviewAddMember__content__left__name">
-              <span>Hoàng Thị Ngọc Hạnh</span>
+              <span>{this.props.data.memberInfo.firstName} {this.props.data.memberInfo.lastName}</span>
             </div>
           </div>
           <div className="reviewAddMember__content__right">
@@ -35,7 +42,7 @@ export class ReviewAddMember extends React.Component {
                   Mã số thẻ
                 </div>
                 <div className="reviewAddMember__content__right__info__item__content">
-                  54354456575
+                  {this.props.data.memberInfo.cardId}
                 </div>
               </div>
               <div className="reviewAddMember__content__right__info__item">
@@ -43,7 +50,7 @@ export class ReviewAddMember extends React.Component {
                   Điểm tích lũy
                 </div>
                 <div className="reviewAddMember__content__right__info__item__content">
-                  0
+                  {this.props.data.memberInfo.point}
                 </div>
               </div>
 
@@ -52,7 +59,7 @@ export class ReviewAddMember extends React.Component {
                   Họ
                 </div>
                 <div className="reviewAddMember__content__right__info__item__content">
-                  Nguyễn
+                  {this.props.data.memberInfo.firstName}
                 </div>
               </div>
               <div className="reviewAddMember__content__right__info__item">
@@ -60,7 +67,7 @@ export class ReviewAddMember extends React.Component {
                   Tên đệm và tên
                 </div>
                 <div className="reviewAddMember__content__right__info__item__content">
-                  Văn A
+                  {this.props.data.memberInfo.lastName}
                 </div>
               </div>
 
@@ -69,7 +76,7 @@ export class ReviewAddMember extends React.Component {
                   Số điện thoại
                 </div>
                 <div className="reviewAddMember__content__right__info__item__content">
-                  1234567899
+                  {this.props.data.memberInfo.phone}
                 </div>
               </div>
               <div className="reviewAddMember__content__right__info__item">
@@ -77,7 +84,7 @@ export class ReviewAddMember extends React.Component {
                   Sinh nhật
                 </div>
                 <div className="reviewAddMember__content__right__info__item__content">
-                  28/12/1994
+                  {this.props.data.memberInfo.birthday}
                 </div>
               </div>
 
@@ -86,7 +93,7 @@ export class ReviewAddMember extends React.Component {
                   Địa chỉ
                 </div>
                 <div className="reviewAddMember__content__right__info__item__content">
-                  128/3G đường số 3 phường 11 quận Gò Vấp
+                  {this.props.data.memberInfo.address}
                 </div>
               </div>
             </div>
@@ -98,7 +105,15 @@ export class ReviewAddMember extends React.Component {
               </div>
             </div>
             <div className="reviewAddMember__content__right__info">
-              <div className="reviewAddMember__content__right__info__item">
+              {this.props.data.courses.map((course, index) => {
+                const courseData = this.props.courses.find((courseData) => { return courseData._id === course._id })
+                return (<div className="reviewAddMember__content__right__info__item">
+                  <div className="reviewAddMember__content__right__info__item__content">
+                    {courseData.name}
+                  </div>
+                </div>)
+              })}
+              {/* <div className="reviewAddMember__content__right__info__item">
                 <div className="reviewAddMember__content__right__info__item__content">
                   Yoga cộng đồng
                 </div>
@@ -112,10 +127,10 @@ export class ReviewAddMember extends React.Component {
                 <div className="reviewAddMember__content__right__info__item__content">
                   Yoga bà bầu
                 </div>
-              </div>
+              </div> */}
             </div>
 
-            <div className="reviewAddMember__content__right__title">
+            {/* <div className="reviewAddMember__content__right__title">
               <div className="reviewAddMember__content__right__title__inner">
                 <div>Lịch học</div>
                 <div className="reviewAddMember__content__right__title__inner--hover" />
@@ -148,7 +163,7 @@ export class ReviewAddMember extends React.Component {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
         <hr className="divider" />
@@ -156,7 +171,7 @@ export class ReviewAddMember extends React.Component {
           <div className="reviewAddMember__more__sum">
             <span className="reviewAddMember__more__sum__title">Tổng tiền</span>
             <span className="reviewAddMember__more__sum__content">
-              500.000<u>đ</u>
+              {this.getTotalPrice()}
             </span>
           </div>
           {/* <div className="reviewAddMember__more__button">

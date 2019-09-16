@@ -34,8 +34,8 @@ export class NewMemberInfo extends React.Component {
                 placeholder="0123456789"
                 type="number"
                 required
-                ref="cardNumber"
-                name="cardNumber"
+                ref="cardId"
+                name="cardId"
                 onChange={this.handleChange}
               />
             </div>
