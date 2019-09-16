@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@babel/preset-react": "^7.0.0",
+    "@tinymce/tinymce-react": "^3.3.2",
     "@types/mongoose": "^5.5.12",
     "@types/node": "^8.0.50",
     "@zeit/next-bundle-analyzer": "^0.1.2",

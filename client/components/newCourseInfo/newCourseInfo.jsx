@@ -6,6 +6,15 @@ export class NewCourseInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.handleChange = this.handleChange.bind(this)
+    this.changeImageFile = this.changeImageFile.bind(this)
+  }
+  handleChange(e) {
+    const { name, value } = e.target
+    this.props.handleChange(name, value)
+  }
+  changeImageFile(file) {
+    this.props.handleChange("thumb", file)
   }
   render() {
     return (
@@ -22,6 +31,8 @@ export class NewCourseInfo extends React.Component {
                 className="newCourseInfo__input-box"
                 placeholder="Yoga cộng đồng"
                 type="text"
+                name="name"
+                onChange={this.handleChange}
                 required
               />
             </div>
@@ -33,6 +44,8 @@ export class NewCourseInfo extends React.Component {
                 className="newCourseInfo__input-box"
                 placeholder="yoga-cong-dong"
                 type="text"
+                name="slug"
+                onChange={this.handleChange}
               />
             </div>
             <div className="newCourseInfo__form__info__icon">
@@ -67,7 +80,7 @@ export class NewCourseInfo extends React.Component {
           <div className="newCourseInfo__form__info">
             <div className="newCourseInfo__title-text">Thêm ảnh đại diện</div>
             <div className="newCourseInfo__form__info__add-photo">
-              <ImageUpload></ImageUpload>
+              <ImageUpload changeImage={this.changeImageFile}></ImageUpload>
             </div>
 
             <div className="newCourseInfo__form__info__icon">

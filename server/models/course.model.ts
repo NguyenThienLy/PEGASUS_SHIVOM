@@ -22,7 +22,7 @@ const courseSchema = new Schema({
     slug: { type: String, unique: true },
     quantity: { type: Number, default: 0 },
     pricePerMonth: { type: Number },
-    currentStudentAmount: { type: Number },
+    currentStudentAmount: { type: Number, default: 0 },
     shortDescription: { type: String },
     description: { type: String },
     metaTitle: { type: String },

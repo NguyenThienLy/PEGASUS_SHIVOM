@@ -22,6 +22,13 @@ export class ReviewAddCourse extends React.Component {
       ]
     };
   }
+  getCourseThumb() {
+    if (typeof (this.props.data.thumb) !== "string") {
+      return <image src={URL.createObjectURL(this.props.data.thumb)} />
+    } else {
+      return <image src={this.props.data.thumb} />
+    }
+  }
   render() {
     return (
       <div className="reviewAddCourse">
@@ -40,15 +47,15 @@ export class ReviewAddCourse extends React.Component {
                 Tên
               </div>
               <div className="reviewAddCourse__content__info__item__content">
-                yoga cộng đồng
+                {this.props.data.name}
               </div>
             </div>
             <div className="reviewAddCourse__content__info__item">
               <div className="reviewAddCourse__content__info__item__title">
-                Tên đường dẫn
+                Đường dẫn
               </div>
               <div className="reviewAddCourse__content__info__item__content">
-                yoga-cong-dong
+                {this.props.data.slug}
               </div>
             </div>
           </div>
@@ -61,32 +68,15 @@ export class ReviewAddCourse extends React.Component {
           </div>
           <div className="reviewAddCourse__content__images">
             <div className="reviewAddCourse__content__images__item">
-              <img
-                src="https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-event-list-4a-768x768.jpg"
+              {this.getCourseThumb()}
+              {/* <img
+                src={this.props.data.thumb}
                 alt=""
-              />
-            </div>
-            <div className="reviewAddCourse__content__images__item">
-              <img
-                src="https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-event-list-3a-768x768.jpg"
-                alt=""
-              />
-            </div>
-            <div className="reviewAddCourse__content__images__item">
-              <img
-                src="https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-event-list-2a-768x768.jpg"
-                alt=""
-              />
-            </div>
-            <div className="reviewAddCourse__content__images__item">
-              <img
-                src="https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-event-list-2a-768x768.jpg"
-                alt=""
-              />
+              /> */}
             </div>
           </div>
 
-          <div className="reviewAddCourse__content__title">
+          {/* <div className="reviewAddCourse__content__title">
             <div className="reviewAddCourse__content__title__inner">
               <div>Lịch học</div>
               <div className="reviewAddCourse__content__title__inner--hover" />
@@ -119,7 +109,7 @@ export class ReviewAddCourse extends React.Component {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
           <div className="reviewAddCourse__content__title">
             <div className="reviewAddCourse__content__title__inner">
@@ -127,40 +117,8 @@ export class ReviewAddCourse extends React.Component {
               <div className="reviewAddCourse__content__title__inner--hover" />
             </div>
           </div>
-          <div className="reviewAddCourse__content__post">
-            <div className="reviewAddCourse__content__post__image">
-              <div className="reviewAddCourse__content__post__image__dateCreated">
-                <a>
-                  <span className="reviewAddCourse__content__post__image__dateCreated__day">
-                    {/* {moment(this.state.course.createdAt).date()} */}
-                    14
-                  </span>
-                  <span className="reviewAddCourse__content__post__image__dateCreated__month">
-                    {/* Th {moment(this.state.course.createdAt).month() + 1} */}{" "}
-                    Th 9
-                  </span>
-                </a>
-              </div>
-              {/* <img src={this.props.course.thumb} alt={this.props.course.name} /> */}
-              <img
-                src="https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-event-list-2a.jpg"
-                alt="Yoga cho người lớn tuổi"
-              />
-            </div>
+          <div className="reviewAddCourse__content__post" dangerouslySetInnerHTML={{ __html: this.props.data.description }}>
 
-            {/* <div className="reviewAddCourse__content__post__author">
-  {this.state.course.author}
-</div> */}
-            <div className="reviewAddCourse__content__post__title">
-              {/* {this.props.course.name} */}
-              yoga cho người lớn tuổi
-            </div>
-            <div
-              className="reviewAddCourse__content__post__content"
-              // dangerouslySetInnerHTML={{ __html: this.props.course.description }}
-            >
-              nội dung bài viết
-            </div>
           </div>
           <hr className="divider-grey" />
           <div className="reviewAddCourse__content__title">
@@ -171,11 +129,11 @@ export class ReviewAddCourse extends React.Component {
           </div>
           <div className="reviewAddCourse__content__benefits">
             <CourseListBenefits
-              courseListBenefits={this.state.courseListBenefits}
+              courseListBenefits={this.props.data.benefits}
             ></CourseListBenefits>
           </div>
 
-          <div className="reviewAddCourse__content__title">
+          {/* <div className="reviewAddCourse__content__title">
             <div className="reviewAddCourse__content__title__inner">
               <div>Giáo viên</div>
               <div className="reviewAddCourse__content__title__inner--hover" />
@@ -183,7 +141,7 @@ export class ReviewAddCourse extends React.Component {
           </div>
           <div className="reviewAddCourse__content__trainer">
             <TrainerInfo trainerInfo={this.state.trainerInfo}></TrainerInfo>
-          </div>
+          </div> */}
         </div>
       </div>
       /* <div className="reviewAddCourse__button">
