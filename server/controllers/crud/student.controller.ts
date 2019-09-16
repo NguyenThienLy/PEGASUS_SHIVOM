@@ -3,8 +3,8 @@ import * as moment from 'moment'
 import * as hash from 'object-hash'
 
 import { CrudController } from '../crud.controller'
-import { studentService, ICrudOption, courseStudentService, classTimeTableService, errorService, classService, checkinService, mailService, tokenService, giftService, giftReceiveService, studentTimeTableService, cacheService, utilService } from '../../services'
-import { CourseStudentModel, StudentModel, CourseModel, GiftModel, GiftReceiveModel, StudentTimeTableModel } from '../../models';
+import { studentService, ICrudOption, courseStudentService, classTimeTableService, errorService, classService, checkinService, mailService, tokenService, giftService, giftReceiveService, studentTimeTableService, cacheService, utilService, packageService } from '../../services'
+import { CourseStudentModel, StudentModel, CourseModel, GiftModel, GiftReceiveModel, StudentTimeTableModel, PackageModel } from '../../models';
 import { webhookController } from '..';
 import { replyFeedbackEmail, remindExtendCourseEmail, notifyReceiveGiftEmail } from '../../mailTemplate';
 import { ObjectID } from 'bson';
@@ -19,21 +19,29 @@ export class StudentController extends CrudController<typeof studentService>{
         isPayFee: boolean
     }) {
         const { personalInfo, courses, isPayFee = false } = params
-        const password = utilService.generateShortId(6)
-        personalInfo.password = password
+        //const password = utilService.generateShortId(6)
+        personalInfo.password = ""
         let results: any[] = []
         try {
             const student: StudentModel = await this.service.create(personalInfo)
             results.push(student)
             for (const course of courses) {
-                const startTime = moment().format()
-                const endTime = moment().add(course.monthAmount, "months").format()
+                let startTime = moment().format()
+                let endTime
+                let packageInfo: PackageModel
+                if (course.type === "package") {
+                    packageInfo = await packageService.getItem({ filter: { _id: course.package } })
+                    endTime = moment().add(packageInfo.monthAmount, "months").format()
+                } else {
+                    endTime = moment().add(course.monthAmount, "months").format()
+                }
                 const courseStudent: CourseStudentModel = await courseStudentService.create({
                     student: student._id,
                     course: course._id,
                     startTime: startTime,
                     endTime: endTime,
-                    isPayFee: isPayFee
+                    isPayFee: isPayFee,
+                    package: packageInfo ? packageInfo._id : null
                 })
                 results.push(courseStudent)
                 const studentTimeTable: StudentTimeTableModel = await studentTimeTableService.create({

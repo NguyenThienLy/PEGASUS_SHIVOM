@@ -13,6 +13,7 @@ export type CourseModel = BaseModel & {
     thumb: string
     benefits: string[]
     quantity: number
+    pricePerMonth?: number
     currentStudentAmount: number
 }
 
@@ -20,6 +21,7 @@ const courseSchema = new Schema({
     name: { type: String, required: true },
     slug: { type: String, unique: true },
     quantity: { type: Number, default: 0 },
+    pricePerMonth: { type: Number },
     currentStudentAmount: { type: Number },
     shortDescription: { type: String },
     description: { type: String },

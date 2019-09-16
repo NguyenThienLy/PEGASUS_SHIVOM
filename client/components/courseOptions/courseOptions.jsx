@@ -5,169 +5,179 @@ export class CourseOptions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      courseOptions: [
-        {
-          title: "yoga cộng đồng",
-          totalSlots: 36,
-          takenSlots: 32,
-          options: [
-            {
-              type: "1 tháng",
-              discount: "10%",
-              isChosen: false
-            },
-            {
-              type: "3 tháng",
-              discount: "10%",
-              isChosen: false
-            },
-            {
-              type: "6 tháng",
-              discount: "10%",
-              isChosen: false
-            },
-            {
-              type: "9 tháng",
-              discount: "10%",
-              isChosen: false
-            },
-            {
-              type: "12 tháng",
-              discount: "10%",
-              isChosen: false
-            }
-          ]
-        },
-        {
-          title: "yoga trẻ em",
-          totalSlots: 36,
-          takenSlots: 32,
-          options: [
-            {
-              type: "1 tháng",
-              discount: "10%",
-              isChosen: false
-            },
-            {
-              type: "3 tháng",
-              discount: "10%",
-              isChosen: false
-            },
-            {
-              type: "6 tháng",
-              discount: "10%",
-              isChosen: false
-            },
-            {
-              type: "9 tháng",
-              discount: "10%",
-              isChosen: false
-            },
-            {
-              type: "12 tháng",
-              discount: "10%",
-              isChosen: false
-            }
-          ]
-        },
-        {
-          title: "yoga trị liệu",
-          totalSlots: 36,
-          takenSlots: 32,
-          options: [
-            {
-              type: "1 tháng",
-              discount: "10%",
-              isChosen: false
-            },
-            {
-              type: "3 tháng",
-              discount: "10%",
-              isChosen: false
-            },
-            {
-              type: "6 tháng",
-              discount: "10%",
-              isChosen: false
-            },
-            {
-              type: "9 tháng",
-              discount: "10%",
-              isChosen: false
-            },
-            {
-              type: "12 tháng",
-              discount: "10%",
-              isChosen: false
-            }
-          ]
-        },
-        {
-          title: "yoga nhẹ nhàng",
-          totalSlots: 36,
-          takenSlots: 32,
-          options: [
-            {
-              type: "1 tháng",
-              discount: "10%",
-              isChosen: false
-            },
-            {
-              type: "3 tháng",
-              discount: "10%",
-              isChosen: false
-            },
-            {
-              type: "6 tháng",
-              discount: "10%",
-              isChosen: false
-            },
-            {
-              type: "9 tháng",
-              discount: "10%",
-              isChosen: false
-            },
-            {
-              type: "12 tháng",
-              discount: "10%",
-              isChosen: false
-            }
-          ]
-        },
-        {
-          title: "yoga bà bầu",
-          totalSlots: 36,
-          takenSlots: 32,
-          options: [
-            {
-              type: "1 tháng",
-              discount: "10%",
-              isChosen: false
-            },
-            {
-              type: "3 tháng",
-              discount: "10%",
-              isChosen: false
-            },
-            {
-              type: "6 tháng",
-              discount: "10%",
-              isChosen: false
-            },
-            {
-              type: "9 tháng",
-              discount: "10%",
-              isChosen: false
-            },
-            {
-              type: "12 tháng",
-              discount: "10%",
-              isChosen: false
-            }
-          ]
-        }
-      ]
+      // courseOptions: [
+      //   {
+      //     title: "yoga cộng đồng",
+      //     totalSlots: 36,
+      //     takenSlots: 32,
+      //     options: [
+      //       {
+      //         type: "1 tháng",
+      //         discount: "10%",
+      //         isChosen: false
+      //       },
+      //       {
+      //         type: "3 tháng",
+      //         discount: "10%",
+      //         isChosen: false
+      //       },
+      //       {
+      //         type: "6 tháng",
+      //         discount: "10%",
+      //         isChosen: false
+      //       },
+      //       {
+      //         type: "9 tháng",
+      //         discount: "10%",
+      //         isChosen: false
+      //       },
+      //       {
+      //         type: "12 tháng",
+      //         discount: "10%",
+      //         isChosen: false
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     title: "yoga trẻ em",
+      //     totalSlots: 36,
+      //     takenSlots: 32,
+      //     options: [
+      //       {
+      //         type: "1 tháng",
+      //         discount: "10%",
+      //         isChosen: false
+      //       },
+      //       {
+      //         type: "3 tháng",
+      //         discount: "10%",
+      //         isChosen: false
+      //       },
+      //       {
+      //         type: "6 tháng",
+      //         discount: "10%",
+      //         isChosen: false
+      //       },
+      //       {
+      //         type: "9 tháng",
+      //         discount: "10%",
+      //         isChosen: false
+      //       },
+      //       {
+      //         type: "12 tháng",
+      //         discount: "10%",
+      //         isChosen: false
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     title: "yoga trị liệu",
+      //     totalSlots: 36,
+      //     takenSlots: 32,
+      //     options: [
+      //       {
+      //         type: "1 tháng",
+      //         discount: "10%",
+      //         isChosen: false
+      //       },
+      //       {
+      //         type: "3 tháng",
+      //         discount: "10%",
+      //         isChosen: false
+      //       },
+      //       {
+      //         type: "6 tháng",
+      //         discount: "10%",
+      //         isChosen: false
+      //       },
+      //       {
+      //         type: "9 tháng",
+      //         discount: "10%",
+      //         isChosen: false
+      //       },
+      //       {
+      //         type: "12 tháng",
+      //         discount: "10%",
+      //         isChosen: false
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     title: "yoga nhẹ nhàng",
+      //     totalSlots: 36,
+      //     takenSlots: 32,
+      //     options: [
+      //       {
+      //         type: "1 tháng",
+      //         discount: "10%",
+      //         isChosen: false
+      //       },
+      //       {
+      //         type: "3 tháng",
+      //         discount: "10%",
+      //         isChosen: false
+      //       },
+      //       {
+      //         type: "6 tháng",
+      //         discount: "10%",
+      //         isChosen: false
+      //       },
+      //       {
+      //         type: "9 tháng",
+      //         discount: "10%",
+      //         isChosen: false
+      //       },
+      //       {
+      //         type: "12 tháng",
+      //         discount: "10%",
+      //         isChosen: false
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     title: "yoga bà bầu",
+      //     totalSlots: 36,
+      //     takenSlots: 32,
+      //     options: [
+      //       {
+      //         type: "1 tháng",
+      //         discount: "10%",
+      //         isChosen: false
+      //       },
+      //       {
+      //         type: "3 tháng",
+      //         discount: "10%",
+      //         isChosen: false
+      //       },
+      //       {
+      //         type: "6 tháng",
+      //         discount: "10%",
+      //         isChosen: false
+      //       },
+      //       {
+      //         type: "9 tháng",
+      //         discount: "10%",
+      //         isChosen: false
+      //       },
+      //       {
+      //         type: "12 tháng",
+      //         discount: "10%",
+      //         isChosen: false
+      //       }
+      //     ]
+      //   }
+      // ]
     };
+  }
+  handleSelectPackage = (courseId, packageId) => {
+    console.log("course: ", courseId)
+    console.log("packageId: ", packageId)
+    this.props.handleSelectCoursePackage(courseId, packageId)
+  }
+  handleInputMonth = (courseId, event) => {
+    console.log("course: ", courseId)
+    console.log("month amount: ", event.target.value)
+    this.props.handleInputCourseMonthAmount(courseId, Number(event.target.value))
   }
   render() {
     return (
@@ -175,43 +185,54 @@ export class CourseOptions extends React.Component {
         <div className="course-options__title">Chọn khoá học</div>
         <hr className="divider" />
         <div className="course-options__content">
-          {this.state.courseOptions.map((item, index) => {
+          {this.props.courses.map((item, index) => {
             return (
               <div className="course-options__content__course" key={index}>
                 <div className="course-options__content__course__icon">
                   <i className="fab fa-pagelines"></i>
                 </div>
                 <div className="course-options__content__course__name">
-                  {item.title}
+                  {item.name}
                   <span>
-                    {item.takenSlots} / {item.totalSlots}
+                    {item.currentStudentAmount} / {item.quantity}
                   </span>
                 </div>
                 <div className="course-options__content__course__list-options">
-                  {item.options.map((option, index) => {
-                    return (
-                      <div
-                        className="course-options__content__course__list-options__option"
-                        key={index}
-                      >
-                        <input type="checkbox" />
-                        <div className="course-options__content__course__list-options__option__name">
-                          {option.type}
+                  {this.props.packages.map((packageData, index) => {
+                    if (packageData.course === item._id) {
+                      return (
+                        <div
+                          className="course-options__content__course__list-options__option"
+                          key={index}
+                          onClick={() => {
+                            this.handleSelectPackage(item._id, packageData._id)
+                          }}
+                        >
+                          <input type="checkbox" />
+                          <div className="course-options__content__course__list-options__option__name">
+                            {packageData.name}
+                          </div>
+                          <div className="course-options__content__course__list-options__option__discount">
+                            <i className="fas fa-tags"></i> {packageData.discount[0].amount}{packageData.discount[0].type === "amount" ? " Đồng" : "%"}
+                          </div>
+                          {/* Giá của gói này
+                          <div className="course-options__content__course__list-options__option__discount">
+                            <i className="fas fa-tags"></i> {packageData.price}
+                          </div> */}
                         </div>
-                        <div className="course-options__content__course__list-options__option__discount">
-                          <i className="fas fa-tags"></i> {option.discount}
-                        </div>
-                      </div>
-                    );
+                      );
+                    }
                   })}
                   <div className="course-options__content__course__list-options__option--optional">
                     <input
                       className="course-options__content__course__list-options__option--optional"
-                      type="text"
-                      name=""
-                      id=""
-                      placeholder="Nhập vào..."
+                      type="number"
+                      placeholder="Nhập vào số tháng"
+                      onChange={(event) => { this.handleInputMonth(item._id, event) }}
                     />
+                    {/* <div className="course-options__content__course__list-options__option__discount">
+                      <i className="fas fa-tags"></i> {item.pricePerMonth}
+                    </div> */}
                   </div>
                 </div>
               </div>
