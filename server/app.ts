@@ -88,8 +88,11 @@ class Server {
         this.server.get("/khoa-hoc", (req, res) => {
             this.app.render(req, res, "/allCourses/allCourses");
         });
-        this.server.get("/du-an", (req, res) => {
-            this.app.render(req, res, "/project/project");
+        this.server.get("/them-hoc-vien", (req, res) => {
+            this.app.render(req, res, "/addMember/addMember");
+        });
+        this.server.get("/them-khoa-hoc", (req, res) => {
+            this.app.render(req, res, "/addCourse/addCourse");
         });
         this.server.get("/gioi-thieu", (req, res) => {
             this.app.render(req, res, "/about/about");
@@ -109,10 +112,10 @@ class Server {
         this.server.get("/tong-quan", (req, res) => {
             this.app.render(req, res, "/dashboard/dashboard");
         });
-        this.server.get("/thong-ke-khoa-hoc", (req, res) => {
+        this.server.get("/chi-tiet-khoa-hoc", (req, res) => {
             this.app.render(req, res, "/courseDetails/courseDetails");
         });
-        this.server.get("/thong-ke-hoc-vien", (req, res) => {
+        this.server.get("/chi-tiet-hoc-vien", (req, res) => {
             this.app.render(req, res, "/memberDetails/memberDetails");
         });
         this.server.get("404", (req, res) => {
