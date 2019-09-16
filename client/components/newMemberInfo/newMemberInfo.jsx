@@ -12,10 +12,10 @@ export class NewMemberInfo extends React.Component {
 
   handleChange(e) {
     const { name, value } = e.target
-    this.props.handleChange("memberInfo", name, value)
+    this.props.handleChange("personalInfo", name, value)
   }
   changeAvatarFile(file) {
-    this.props.handleChange("avatar", "avatar", file)
+    this.props.handleChange("personalInfo", "avatar", file)
   }
 
   render() {

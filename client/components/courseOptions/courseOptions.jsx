@@ -170,13 +170,9 @@ export class CourseOptions extends React.Component {
     };
   }
   handleSelectPackage = (courseId, packageId) => {
-    console.log("course: ", courseId)
-    console.log("packageId: ", packageId)
     this.props.handleSelectCoursePackage(courseId, packageId)
   }
   handleInputMonth = (courseId, event) => {
-    console.log("course: ", courseId)
-    console.log("month amount: ", event.target.value)
     this.props.handleInputCourseMonthAmount(courseId, Number(event.target.value))
   }
   render() {
@@ -213,7 +209,7 @@ export class CourseOptions extends React.Component {
                             {packageData.name}
                           </div>
                           <div className="course-options__content__course__list-options__option__discount">
-                            <i className="fas fa-tags"></i> {packageData.discount[0].amount}{packageData.discount[0].type === "amount" ? " Đồng" : "%"}
+                            <i className="fas fa-tags"></i> {packageData.discount.amount}{packageData.discount.type === "amount" ? " Đồng" : "%"}
                           </div>
                           {/* Giá của gói này
                           <div className="course-options__content__course__list-options__option__discount">

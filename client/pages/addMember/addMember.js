@@ -8,6 +8,9 @@ import { action } from "../../actions";
 
 import { bindActionCreators } from 'redux'
 
+import Swal from 'sweetalert2'
+import * as moment from 'moment'
+
 import "./addMember.scss";
 import {
   HeaderAdmin,
@@ -76,20 +79,19 @@ class AddMember extends Component {
         "reviewAddMember"
       ],
       curPageNumber: 1,
+      isAdding: false,
       formData: {
-        memberInfo: {
-          cardId: null,
-          phone: null,
-          point: null,
-          firstName: null,
-          lastName: null,
-          birthday: null,
-          address: null,
-          avatar: null
+        personalInfo: {
+          cardId: "",
+          phone: "",
+          point: 0,
+          firstName: "",
+          lastName: "",
+          birthday: moment().format(),
+          address: "",
+          avatar: ""
         },
-        courses: [],
-        timeTables: [],
-        totalPrice: 0
+        courses: []
       }
     };
     this.openPage = this.openPage.bind(this);
@@ -140,10 +142,7 @@ class AddMember extends Component {
       );
     }
   };
-  submitEnroll(){
-      console.log("formdata: ", this.state.formData)
-      
-  }
+ 
   handleClickPrevious = function() {
     let curPageNumber = this.state.curPageNumber - 1;
     if (curPageNumber > 0) {
@@ -179,6 +178,7 @@ class AddMember extends Component {
     })
   }
   async componentDidMount() {
+    
     this.fetchData()
     if (this.props.courses.items.length > 0) {
       const courseCategoryIndex = this.state.categories.findIndex(item => {
@@ -256,11 +256,9 @@ class AddMember extends Component {
     }
   }
   handleChange = (step, key, value) => {
-    if(step === "memberInfo"){
+    if(step === "personalInfo"){
       this.state.formData[step][key] = value
-    } else {
-      this.state.formData[step] = value
-    }
+    } 
     this.setState({ formData: this.state.formData })
   }
   handleSelectCoursePackage = (courseId, packageId) => {
@@ -308,6 +306,28 @@ class AddMember extends Component {
       this.state.formData.courses[courseIndex].timeTables.splice(timeTableItemIndex,1)
     }
     this.setState({ formData: this.state.formData })
+  }
+  async submitEnroll(){
+    Swal.showLoading()
+    let imageLink
+    if (this.state.formData.personalInfo.avatar !== "") {
+      imageLink = await api.imgur.uploadImage(this.state.formData.personalInfo.avatar)
+      this.state.formData.personalInfo.avatar = imageLink
+    }
+    this.state.formData.personalInfo.birthday = moment(this.state.formData.personalInfo.birthday).format()
+    api.student.enroll(this.state.formData, {
+      headers: {
+        "x-token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M"
+      }
+    }).then(res => {
+      
+      Swal.fire("Thành công", "Thêm học viên thành công", "success");
+    })
+    .catch(err => {
+
+      console.log("err")
+      Swal.fire("Thất bại", "Thêm học viên không thành công", "error");
+    })
   }
   render() {
     return (

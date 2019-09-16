@@ -20,7 +20,6 @@ export class Table extends React.Component {
     this.setState({ calendarModal: { isShow: false } });
   }
   showCalendar(times) {
-    console.log("times", times);
 
     let tempCalendarModal = {
       isShow: true,
@@ -28,7 +27,6 @@ export class Table extends React.Component {
     };
 
     times.forEach(element => {
-      console.log("times date", moment(element.time).date());
       tempCalendarModal.arrTime.push(
         new Date(
           moment(element.time).year(),
@@ -37,8 +35,6 @@ export class Table extends React.Component {
         )
       );
     });
-
-    console.log("calendarModal", tempCalendarModal);
 
     this.setState({ calendarModal: tempCalendarModal });
   }
