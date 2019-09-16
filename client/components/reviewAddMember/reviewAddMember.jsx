@@ -21,12 +21,12 @@ export class ReviewAddMember extends React.Component {
           <div className="reviewAddMember__content__left">
             <div className="reviewAddMember__content__left__avatar">
               <img
-                src={this.props.data.memberInfo.avatar}
+                src={this.props.data.personalInfo.avatar}
                 alt=""
               />
             </div>
             <div className="reviewAddMember__content__left__name">
-              <span>{this.props.data.memberInfo.firstName} {this.props.data.memberInfo.lastName}</span>
+              <span>{this.props.data.personalInfo.firstName} {this.props.data.personalInfo.lastName}</span>
             </div>
           </div>
           <div className="reviewAddMember__content__right">
@@ -42,7 +42,7 @@ export class ReviewAddMember extends React.Component {
                   Mã số thẻ
                 </div>
                 <div className="reviewAddMember__content__right__info__item__content">
-                  {this.props.data.memberInfo.cardId}
+                  {this.props.data.personalInfo.cardId}
                 </div>
               </div>
               <div className="reviewAddMember__content__right__info__item">
@@ -50,7 +50,7 @@ export class ReviewAddMember extends React.Component {
                   Điểm tích lũy
                 </div>
                 <div className="reviewAddMember__content__right__info__item__content">
-                  {this.props.data.memberInfo.point}
+                  {this.props.data.personalInfo.point}
                 </div>
               </div>
 
@@ -59,7 +59,7 @@ export class ReviewAddMember extends React.Component {
                   Họ
                 </div>
                 <div className="reviewAddMember__content__right__info__item__content">
-                  {this.props.data.memberInfo.firstName}
+                  {this.props.data.personalInfo.firstName}
                 </div>
               </div>
               <div className="reviewAddMember__content__right__info__item">
@@ -67,7 +67,7 @@ export class ReviewAddMember extends React.Component {
                   Tên đệm và tên
                 </div>
                 <div className="reviewAddMember__content__right__info__item__content">
-                  {this.props.data.memberInfo.lastName}
+                  {this.props.data.personalInfo.lastName}
                 </div>
               </div>
 
@@ -76,7 +76,7 @@ export class ReviewAddMember extends React.Component {
                   Số điện thoại
                 </div>
                 <div className="reviewAddMember__content__right__info__item__content">
-                  {this.props.data.memberInfo.phone}
+                  {this.props.data.personalInfo.phone}
                 </div>
               </div>
               <div className="reviewAddMember__content__right__info__item">
@@ -84,7 +84,7 @@ export class ReviewAddMember extends React.Component {
                   Sinh nhật
                 </div>
                 <div className="reviewAddMember__content__right__info__item__content">
-                  {this.props.data.memberInfo.birthday}
+                  {this.props.data.personalInfo.birthday}
                 </div>
               </div>
 
@@ -93,7 +93,7 @@ export class ReviewAddMember extends React.Component {
                   Địa chỉ
                 </div>
                 <div className="reviewAddMember__content__right__info__item__content">
-                  {this.props.data.memberInfo.address}
+                  {this.props.data.personalInfo.address}
                 </div>
               </div>
             </div>

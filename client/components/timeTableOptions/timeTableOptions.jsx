@@ -127,8 +127,6 @@ export class TimeTableOptions extends React.Component {
     })
   }
   handleChooseTimeTableItem(courseId, timeTableItemId) {
-    console.log("course : ", courseId)
-    console.log("Time table items: ", timeTableItemId)
     this.props.handleChooseTimeTableItem(courseId, timeTableItemId)
   }
   async fetchData(courseIds) {

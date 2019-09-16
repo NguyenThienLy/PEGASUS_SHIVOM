@@ -24,11 +24,13 @@ import { SettingApi } from "./apis/setting";
 import { StatisticCourseApi } from "./apis/statisticCourse";
 import { StatisticStudentApi } from "./apis/statisticStudent";
 import { PackageApi } from "./apis/package";
+import { ImgurApi } from "./imgur";
 
 const crudApi = new CrudApi();
 
 class api {
   constructor() { }
+  static imgur = new ImgurApi()
   static admin = new AdminApi();
   static class = new ClassApi();
   static classTimeTable = new ClassTimeTableApi();
