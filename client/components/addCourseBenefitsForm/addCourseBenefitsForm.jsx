@@ -6,7 +6,8 @@ export class AddCourseBenefitsForm extends React.Component {
     super(props);
     this.submit = this.submit.bind(this);
   }
-  submit() {
+  submit(e) {
+    e.preventDefault()
     const body = {
       name: this.refs.name.value
     };
@@ -16,7 +17,7 @@ export class AddCourseBenefitsForm extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <form className="add-course-benefits__form">
+        <form className="add-course-benefits__form" onSubmit={this.submit}>
           <div className="add-course-benefits__form__title">thêm lợi ích</div>
           <input
             type="text"
@@ -25,8 +26,8 @@ export class AddCourseBenefitsForm extends React.Component {
             ref="name"
           />
           <button
-            onClick={this.submit}
-            type="button"
+
+            type="submit"
             className="add-course-benefits__form__btn add-course-benefits__form__btn--primary"
           >
             thêm

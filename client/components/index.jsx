@@ -60,3 +60,4 @@ export * from "./reviewAddCourse/reviewAddCourse";
 export * from "./imageUpload/imageUpload";
 export * from "./courseBenefit/courseBenefit";
 export * from "./courseListBenefits/courseListBenefits";
+export * from './memberInfo/memberInfo'
