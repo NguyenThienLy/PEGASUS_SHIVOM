@@ -7,8 +7,8 @@ export class RingingPhone extends React.Component {
   }
   render() {
     return (
-      <div>
-        <a href="#">
+      <div className="ringing-phone">
+        <a className="ringing-phone__link" href="#">
           <i className="bell fas fa-phone" />
         </a>
       </div>
