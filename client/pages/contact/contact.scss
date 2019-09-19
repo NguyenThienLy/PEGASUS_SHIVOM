@@ -9,7 +9,7 @@
       justify-content: center;
       align-items: center;
       @include e("inner") {
-        padding: 0 32%;
+        padding: 0 25%;
         text-align: center;
         color: #fff;
         div {
@@ -27,21 +27,22 @@
       @include e("image") {
         position: relative;
         img {
-          max-width: 100%;
+          width: 100%;
           height: auto;
         }
         @include e("info") {
           position: absolute;
           top: 50%;
+          left: 50%;
           text-align: center;
-          padding: 0 20%;
           color: #fff;
-          transform: translateY(-50%);
+          transform: translate(-50%, -50%);
           div {
             text-transform: capitalize;
             font-family: $font-family-special;
             font-size: 3.6em;
             letter-spacing: 0.025em;
+            white-space: nowrap;
           }
           p {
             margin: 0.8em 0 1em;
@@ -105,12 +106,12 @@
     .contact__body__title__image {
       display: block;
       img {
-        max-width: 100%;
-        height: 15em;
+        height: 20em;
+        object-fit: cover;
       }
       .contact__body__title__image__info {
         top: 50%;
-        padding: 0 10%;
+        // padding: 0 10%;
         div {
           font-size: 3.1em;
         }
@@ -139,12 +140,15 @@
     .contact-us {
       flex-direction: column-reverse;
       .contact-us__form {
-        flex-basis: 100%;
-        margin: 3em 0 0 0;
+        width: 100%;
+        margin: 0;
       }
       .contact-us__sub-info {
-        flex-basis: 100%;
-        margin: 0;
+        width: 100%;
+        margin: 0 0 2em;
+        @include e("title") {
+          font-size: 1.7em;
+        }
       }
     }
   }
@@ -162,12 +166,12 @@
     .contact__body__title__image {
       display: block;
       img {
-        max-width: 100%;
-        height: auto;
+        height: 20em;
+        object-fit: cover;
       }
       .contact__body__title__image__info {
         top: 45%;
-        padding: 0 15%;
+        // padding: 0 15%;
         div {
           font-size: 3.3em;
         }
@@ -196,12 +200,15 @@
     .contact-us {
       flex-direction: column-reverse;
       .contact-us__form {
-        flex-basis: 100%;
-        margin: 3em 0 0 0;
+        width: 100%;
+        margin: 0;
       }
       .contact-us__sub-info {
-        flex-basis: 100%;
-        margin: 0;
+        width: 100%;
+        margin: 0 0 2em;
+        @include e("title") {
+          font-size: 1.9em;
+        }
       }
     }
   }
@@ -218,6 +225,10 @@
     background: none;
     .contact__body__title__image {
       display: block;
+      img {
+        height: auto;
+        object-fit: contain;
+      }
       .contact__body__title__image__info {
         top: 50%;
         padding: 0 20%;
@@ -249,12 +260,15 @@
     .contact-us {
       flex-direction: column-reverse;
       .contact-us__form {
-        flex-basis: 100%;
-        margin: 3em 0 0 0;
+        width: 100%;
+        margin: 0;
       }
       .contact-us__sub-info {
-        flex-basis: 100%;
-        margin: 0;
+        width: 100%;
+        margin: 0 0 2em;
+        @include e("title") {
+          font-size: 1.9em;
+        }
       }
     }
   }
@@ -276,6 +290,7 @@
       display: none;
     }
     .contact__body__title__inner {
+      display: block;
       padding: 0 26%;
       div {
         font-size: 3.6em;
@@ -301,12 +316,15 @@
     .contact-us {
       flex-direction: row;
       .contact-us__form {
-        flex-basis: 50%;
-        margin: 0 2em 0 0;
+        width: 50%;
+        margin: 0;
       }
       .contact-us__sub-info {
-        flex-basis: 50%;
-        margin: 0 0 0 2em;
+        width: 45%;
+        margin: 0 0 0 5%;
+        @include e("title") {
+          font-size: 2.1em;
+        }
       }
     }
   }
@@ -328,7 +346,8 @@
       display: none;
     }
     .contact__body__title__inner {
-      padding: 0 32%;
+      display: block;
+      padding: 0 25%;
       div {
         font-size: 3.7em;
       }
@@ -353,12 +372,15 @@
     .contact-us {
       flex-direction: row;
       .contact-us__form {
-        flex-basis: 50%;
-        margin: 0 2em 0 0;
+        width: 50%;
+        margin: 0;
       }
       .contact-us__sub-info {
-        flex-basis: 50%;
-        margin: 0 0 0 2em;
+        width: 45%;
+        margin: 0 0 0 5%;
+        @include e("title") {
+          font-size: 2.3em;
+        }
       }
     }
   }
