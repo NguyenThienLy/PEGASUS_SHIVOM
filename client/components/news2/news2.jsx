@@ -5,32 +5,31 @@ import moment from "moment";
 import Link from "next/link";
 
 export class News2 extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+  constructor(props) {
+    super(props);
+  }
 
-    render() {
-        const { news2 } = this.props;
-        return (
-            <div className="news2">
-                <div className="news2__inner">
-                    <div className="news2__inner__info">
-                        <div className="news2__inner__info__author">
-                            <span>By&nbsp;</span>
-                            <a href="#">
-                                {news2.author.firstName}&nbsp;
-                {news2.author.lastName}
-                            </a>
-                        </div>
-                        <div className="news2__inner__info__category">
-                            <Link
-                                href={`/blog/blog?slug=${news2.category.slug}`}
-                                as={`/${news2.category.slug}`}
-                            >
-                                <a href={news2.category.slug}>{news2.category.name}</a>
-                            </Link>
-                        </div>
-                        {/* <div className="news2__inner__info__tags">
+  render() {
+    const { news2 } = this.props;
+    return (
+      <div className="news2">
+        <div className="news2__inner">
+          <div className="news2__inner__info">
+            <div className="news2__inner__info__author">
+              <span>viết bởi&nbsp;</span>
+              <a href="#">
+                {news2.author.firstName}&nbsp;{news2.author.lastName}
+              </a>
+            </div>
+            <div className="news2__inner__info__category">
+              <Link
+                href={`/blog/blog?slug=${news2.category.slug}`}
+                as={`/${news2.category.slug}`}
+              >
+                <a href={`/${news2.category.slug}`}>{news2.category.name}</a>
+              </Link>
+            </div>
+            {/* <div className="news2__inner__info__tags">
               {news2.tags.map(tag => {
                 return [
                   <a href={tag.link}>{tag.name}</a>,
@@ -38,33 +37,43 @@ export class News2 extends React.Component {
                 ];
               })}
             </div> */}
-                    </div>
-                    <h3 className="news2__inner__title">
-                        <a href={news2.link}>{news2.title}</a>
-                    </h3>
-                    <div className="news2__inner__image">
-                        <div className="news2__inner__image__dateCreated">
-                            <a href="#">
-                                <span className="news2__inner__image__dateCreated__day">
-                                    {moment(news2.createdAt).date()}
-                                </span>
-                                <span className="news2__inner__image__dateCreated__month">
-                                    Th {moment(news2.createdAt).month() + 1}
-                                </span>
-                            </a>
-                        </div>
-                        <a href="#">
-                            <img src={news2.thumb} alt="" />
-                        </a>
-                    </div>
-                    <div
-                        className="news2__inner__content"
-                        dangerouslySetInnerHTML={{ __html: news2.description }}
-                    >
-                        {/* <p > </p> */}
-                    </div>
-                    <div className="news2__inner__more">
-                        {/* <div className="news2__inner__more__comments-and-loves">
+          </div>
+          <h3 className="news2__inner__title">
+            <Link
+              href={`/post/post?categorySlug=${news2.category.slug}&newsSlug=${news2.slug}`}
+              as={`/${news2.category.slug}/${news2.slug}`}
+            >
+              <a href={`/${news2.category.slug}/${news2.slug}`}>
+                {news2.title}
+              </a>
+            </Link>
+          </h3>
+          <div className="news2__inner__image">
+            <div className="news2__inner__image__dateCreated">
+              <span className="news2__inner__image__dateCreated__day">
+                {moment(news2.createdAt).date()}
+              </span>
+              <span className="news2__inner__image__dateCreated__month">
+                Tháng {moment(news2.createdAt).month() + 1}
+              </span>
+            </div>
+            <Link
+              href={`/post/post?categorySlug=${news2.category.slug}&newsSlug=${news2.slug}`}
+              as={`/${news2.category.slug}/${news2.slug}`}
+            >
+              <a href={`/${news2.category.slug}/${news2.slug}`}>
+                <img src={news2.thumb} alt="" />
+              </a>
+            </Link>
+          </div>
+          <div
+            className="news2__inner__content"
+            dangerouslySetInnerHTML={{ __html: news2.description }}
+          >
+            {/* <p > </p> */}
+          </div>
+          <div className="news2__inner__more">
+            {/* <div className="news2__inner__more__comments-and-loves">
                             <a href="#">
                                 <i className="far fa-comment"></i>
                                 <span>56</span>
@@ -75,17 +84,20 @@ export class News2 extends React.Component {
                                 <span>66</span>
                             </a>
                         </div> */}
-                        <div className="news2__inner__more__button">
-                            <Link href={`/post/post?categorySlug=${news2.category.slug}&newsSlug=${news2.slug}`} as={`/${news2.category.slug}/${news2.slug}`}>
-                                <a href={`/${news2.category.slug}/${news2.slug}`}>
-                                    <DefaultButton link={news2.slug} content="Xem thêm" />
-                                </a>
-                            </Link>
-                        </div>
-                        <div className="news2__inner__more__other" />
-                    </div>
-                </div>
+            <div className="news2__inner__more__button">
+              <Link
+                href={`/post/post?categorySlug=${news2.category.slug}&newsSlug=${news2.slug}`}
+                as={`/${news2.category.slug}/${news2.slug}`}
+              >
+                <a href={`/${news2.category.slug}/${news2.slug}`}>
+                  <DefaultButton link={news2.slug} content="Xem thêm" />
+                </a>
+              </Link>
             </div>
-        );
-    }
+            {/* <div className="news2__inner__more__other" /> */}
+          </div>
+        </div>
+      </div>
+    );
+  }
 }

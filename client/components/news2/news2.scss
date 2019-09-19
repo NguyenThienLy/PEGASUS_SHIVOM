@@ -1,17 +1,15 @@
 @import "../../default.scss";
 
 .news2 {
-  width: 80%;
-  margin: auto;
-  margin-bottom: 2em;
+  width: 100%;
   @include e("inner") {
-    padding: 1.1em 0 1.5em;
-    border-bottom: 1px solid #ebebeb;
+    padding: 1em 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     @include e("info") {
       text-transform: uppercase;
       font-weight: 400;
       line-height: 1.5em;
-      font-size: 0.6em;
+      font-size: 0.65em;
       text-align: center;
       color: $main-color;
       letter-spacing: 0.1em;
@@ -53,7 +51,7 @@
         text-decoration: none;
         color: $color-grey;
         font-family: $font-family-special;
-        font-size: 1.5em;
+        font-size: 1.4em;
         line-height: 1.25em;
         text-transform: capitalize;
         transition: 300ms;
@@ -71,27 +69,20 @@
         top: 0;
         left: 3%;
         text-align: center;
-        a {
-          text-decoration: none;
+        span {
+          display: block;
+          font-family: $font-family-special;
+          font-weight: 500;
+          text-align: center;
+          background-color: #fff;
           color: $main-color;
-          transition: 300ms;
-          &:hover {
-            color: $color-grey;
-          }
-          span {
-            display: block;
-            font-family: $font-family-special;
-            font-weight: 500;
-            text-align: center;
-            background-color: #fff;
-          }
         }
         @include e("day") {
           font-size: 1.2em;
           line-height: 3em;
         }
         @include e("month") {
-          padding: 0 2em;
+          padding: 0 1em;
           font-size: 0.9em;
           line-height: 2em;
           margin-top: 0.1em;
@@ -104,7 +95,7 @@
       }
     }
     @include e("content") {
-      font-size: 0.8em;
+      font-size: 0.9em;
       line-height: 1.5em;
       color: $font-color;
     }
@@ -112,36 +103,37 @@
       padding: 0.8em 0 3em;
       display: flex;
       align-items: center;
+      justify-content: center;
       text-align: center;
-      @include e("comments-and-loves") {
-        width: 25%;
-        font-size: 0.65em;
-        color: $main-color;
-        text-align: left !important;
-        a {
-          text-decoration: none;
+      // @include e("comments-and-loves") {
+      //   width: 25%;
+      //   font-size: 0.65em;
+      //   color: $main-color;
+      //   text-align: left !important;
+      //   a {
+      //     text-decoration: none;
 
-          color: $main-color;
-          transition: 300ms;
-          i {
-            margin-right: 5px;
-          }
-          &:hover {
-            color: $color-grey;
-          }
-        }
-      }
+      //     color: $main-color;
+      //     transition: 300ms;
+      //     i {
+      //       margin-right: 5px;
+      //     }
+      //     &:hover {
+      //       color: $color-grey;
+      //     }
+      //   }
+      // }
       @include e("button") {
-        width: 50%;
+        // width: 50%;
         margin: 1.5em 0 0.25em 0;
         .default-button__link__content {
           text-transform: uppercase;
           padding: 1em 1.25em;
         }
       }
-      @include e("other") {
-        width: 25%;
-      }
+      // @include e("other") {
+      //   width: 25%;
+      // }
     }
   }
 }

@@ -204,8 +204,6 @@ export class Course extends React.Component {
   async componentDidMount() {
     this.fetchData();
     this.getLatestNews();
-    var heightOfFooter = $(".course__footer .footer-wrapper").height();
-    $(".course__contact-us").css("margin-bottom", heightOfFooter + "px");
   }
   getLatestNews() {
     api.news
@@ -281,14 +279,12 @@ export class Course extends React.Component {
               <div className="course__body__wrapper__main-content">
                 <div className="course__body__wrapper__main-content__image">
                   <div className="course__body__wrapper__main-content__image__dateCreated">
-                    <a>
-                      <span className="course__body__wrapper__main-content__image__dateCreated__day">
-                        {moment(this.state.course.createdAt).date()}
-                      </span>
-                      <span className="course__body__wrapper__main-content__image__dateCreated__month">
-                        Tháng {moment(this.state.course.createdAt).month() + 1}
-                      </span>
-                    </a>
+                    <span className="course__body__wrapper__main-content__image__dateCreated__day">
+                      {moment(this.state.course.createdAt).date()}
+                    </span>
+                    <span className="course__body__wrapper__main-content__image__dateCreated__month">
+                      Tháng {moment(this.state.course.createdAt).month() + 1}
+                    </span>
                   </div>
                   <img
                     src={this.props.course.thumb}
@@ -479,7 +475,7 @@ export class Course extends React.Component {
 
                 <div className="course__body__wrapper__sub-content__latest-posts">
                   <div className="course__body__wrapper__sub-content__title">
-                    bài viết
+                    Bài viết
                   </div>
                   {this.state.latestNews.map((post, index) => {
                     return (
@@ -492,6 +488,7 @@ export class Course extends React.Component {
                     );
                   })}
                 </div>
+
                 <div className="course__body__wrapper__sub-content__email">
                   <div className="course__body__wrapper__sub-content__title">
                     Liên hệ
@@ -503,6 +500,7 @@ export class Course extends React.Component {
                 </div>
               </div>
             </div>
+
             <div className="course__body__contact-us">
               <ContactUs
                 {...this.props.setting.contact}

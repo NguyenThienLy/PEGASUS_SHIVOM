@@ -49,7 +49,7 @@ $hover-color: lighten($sub-main-color, 27%);
     color: $color-grey;
     text-transform: uppercase;
     display: block;
-    text-decoration: none;
+    // text-decoration: none;
     //line-height: 28px;
     //letter-spacing: 0.1em;
     @include e("content") {

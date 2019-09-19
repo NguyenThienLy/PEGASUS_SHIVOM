@@ -496,12 +496,15 @@
     .contact-us {
       flex-direction: column-reverse;
       .contact-us__form {
-        flex-basis: 100%;
-        margin: 3em 0 0 0;
+        width: 100%;
+        margin: 0;
       }
       .contact-us__sub-info {
-        flex-basis: 100%;
-        margin: 0;
+        width: 100%;
+        margin: 0 0 2em;
+        @include e("title") {
+          font-size: 1.7em;
+        }
       }
     }
   }
@@ -712,12 +715,15 @@
     .contact-us {
       flex-direction: column-reverse;
       .contact-us__form {
-        flex-basis: 100%;
-        margin: 3em 0 0 0;
+        width: 100%;
+        margin: 0;
       }
       .contact-us__sub-info {
-        flex-basis: 100%;
-        margin: 0;
+        width: 100%;
+        margin: 0 0 2em;
+        @include e("title") {
+          font-size: 1.9em;
+        }
       }
     }
   }
@@ -927,12 +933,15 @@
     .contact-us {
       flex-direction: column-reverse;
       .contact-us__form {
-        flex-basis: 100%;
-        margin: 3em 0 0 0;
+        width: 100%;
+        margin: 0;
       }
       .contact-us__sub-info {
-        flex-basis: 100%;
-        margin: 0;
+        width: 100%;
+        margin: 0 0 2em;
+        @include e("title") {
+          font-size: 1.9em;
+        }
       }
     }
   }
@@ -1012,7 +1021,7 @@
           width: 50%;
         }
         .training-class__info {
-          width: 50%;
+          width: 46%;
           margin-left: 4%;
           margin-top: 0em;
         }
@@ -1145,12 +1154,15 @@
     .contact-us {
       flex-direction: row;
       .contact-us__form {
-        flex-basis: 50%;
-        margin: 0 2em 0 0;
+        width: 50%;
+        margin: 0;
       }
       .contact-us__sub-info {
-        flex-basis: 50%;
-        margin: 0 0 0 2em;
+        width: 45%;
+        margin: 0 0 0 5%;
+        @include e("title") {
+          font-size: 2.1em;
+        }
       }
     }
   }
@@ -1229,7 +1241,7 @@
           width: 50%;
         }
         .training-class__info {
-          width: 50%;
+          width: 45%;
           margin-left: 5%;
           margin-top: 0em;
         }
@@ -1362,12 +1374,15 @@
     .contact-us {
       flex-direction: row;
       .contact-us__form {
-        flex-basis: 50%;
-        margin: 0 2em 0 0;
+        width: 50%;
+        margin: 0;
       }
       .contact-us__sub-info {
-        flex-basis: 50%;
-        margin: 0 0 0 2em;
+        width: 45%;
+        margin: 0 0 0 5%;
+        @include e("title") {
+          font-size: 2.3em;
+        }
       }
     }
   }
