@@ -23,12 +23,15 @@ export class ReviewAddCourse extends React.Component {
     };
   }
   getCourseThumb() {
-
-    if (typeof (this.props.data.thumb) !== "string") {
-      return <image src={URL.createObjectURL(this.props.data.thumb)} />
+    if (typeof this.props.data.thumb !== "string") {
+      return <image src={URL.createObjectURL(this.props.data.thumb)} />;
     } else {
-      return <image src={this.props.data.thumb} />
+      return <image src={this.props.data.thumb} />;
     }
+  }
+
+  componentDidMount() {
+    console.log(this.props.data);
   }
   render() {
     return (
@@ -69,11 +72,7 @@ export class ReviewAddCourse extends React.Component {
           </div>
           <div className="reviewAddCourse__content__images">
             <div className="reviewAddCourse__content__images__item">
-
-              <img
-                src={this.props.data.thumbUrl}
-                alt=""
-              />
+              <img src={this.props.data.thumbUrl} alt="" />
             </div>
           </div>
 
@@ -118,9 +117,10 @@ export class ReviewAddCourse extends React.Component {
               <div className="reviewAddCourse__content__title__inner--hover" />
             </div>
           </div>
-          <div className="reviewAddCourse__content__post" dangerouslySetInnerHTML={{ __html: this.props.data.description }}>
-
-          </div>
+          <div
+            className="reviewAddCourse__content__post"
+            dangerouslySetInnerHTML={{ __html: this.props.data.description }}
+          ></div>
           <hr className="divider-grey" />
           <div className="reviewAddCourse__content__title">
             <div className="reviewAddCourse__content__title__inner">

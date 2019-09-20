@@ -60,4 +60,8 @@ export * from "./reviewAddCourse/reviewAddCourse";
 export * from "./imageUpload/imageUpload";
 export * from "./courseBenefit/courseBenefit";
 export * from "./courseListBenefits/courseListBenefits";
-export * from './memberInfo/memberInfo'
+export * from "./memberInfo/memberInfo";
+export * from "./addClassTimeForm/addClassTimeForm";
+export * from "./newClassInfo/newClassInfo";
+export * from "./newClassTimetable/newClassTimetable";
+export * from "./reviewAddClass/reviewAddClass";
