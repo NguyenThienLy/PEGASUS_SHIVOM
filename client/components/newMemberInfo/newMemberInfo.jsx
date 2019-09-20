@@ -11,11 +11,13 @@ export class NewMemberInfo extends React.Component {
   }
 
   handleChange(e) {
-    const { name, value } = e.target
+    let { name, value } = e.target
+    if (name === "point") value = Number(value)
     this.props.handleChange("personalInfo", name, value)
   }
-  changeAvatarFile(file) {
+  changeAvatarFile(file, fileUrl) {
     this.props.handleChange("personalInfo", "avatar", file)
+    this.props.handleChange("personalInfo", "avatarUrl", fileUrl)
   }
 
   render() {
@@ -38,12 +40,13 @@ export class NewMemberInfo extends React.Component {
                 name="cardId"
                 onChange={this.handleChange}
               />
+
             </div>
             <div className="newMemberInfo__form__info__item">
               <div className="newMemberInfo__title-text">Điểm tích lũy</div>
               <input
                 className="newMemberInfo__input-box"
-                placeholder="0"
+                defaultValue={0}
                 type="number"
                 ref="point"
                 name="point"
@@ -84,7 +87,7 @@ export class NewMemberInfo extends React.Component {
               <input
                 className="newMemberInfo__input-box"
                 placeholder="0123456789"
-                type="number"
+                type="text"
                 required
                 ref="phone"
                 name="phone"

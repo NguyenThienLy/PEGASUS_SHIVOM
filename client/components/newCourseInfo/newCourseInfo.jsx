@@ -13,8 +13,9 @@ export class NewCourseInfo extends React.Component {
     const { name, value } = e.target
     this.props.handleChange(name, value)
   }
-  changeImageFile(file) {
+  changeImageFile(file, fileUrl) {
     this.props.handleChange("thumb", file)
+    this.props.handleChange("thumbUrl", fileUrl)
   }
   render() {
     return (

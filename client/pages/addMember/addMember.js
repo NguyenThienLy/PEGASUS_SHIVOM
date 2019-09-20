@@ -89,7 +89,8 @@ class AddMember extends Component {
           lastName: "",
           birthday: moment().format(),
           address: "",
-          avatar: ""
+          avatar: "",
+          avatarUrl: ""
         },
         courses: []
       }
@@ -256,6 +257,7 @@ class AddMember extends Component {
     }
   }
   handleChange = (step, key, value) => {
+   
     if(step === "personalInfo"){
       this.state.formData[step][key] = value
     } 

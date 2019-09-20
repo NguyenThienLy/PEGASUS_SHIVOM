@@ -44,15 +44,16 @@ export class ImageUpload extends Component {
     }
   }
   onDrop = (acceptedFiles) => {
-    const thumbs = acceptedFiles.map(file => (
-      <div style={thumb} key={file.name}>
+    let fileUrl = URL.createObjectURL(acceptedFiles[0])
+    const thumbs = (
+      <div style={thumb} key={acceptedFiles[0].name}>
         <div style={thumbInner}>
-          <img src={URL.createObjectURL(file)} style={img} />
+          <img src={fileUrl} style={img} />
         </div>
       </div>
-    ));
+    )
     this.setState({ uploadFiles: acceptedFiles, thumbs: thumbs });
-    this.props.changeImage(acceptedFiles[0])
+    this.props.changeImage(acceptedFiles[0], fileUrl)
   }
   render() {
     return (

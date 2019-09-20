@@ -76,6 +76,7 @@ class AddCourse extends Component {
         slug: "",
         benefits: [],
         thumb: "",
+        thumbUrl: "",
         description: ""
       }
     };
@@ -252,7 +253,6 @@ class AddCourse extends Component {
   handleInputForm(name,value){
     this.state.formData[name] = value
     this.setState({ formData: this.state.formData})
-    console.log("form data: ", this.state.formData)
   }
   async submitCourse(){
     Swal.showLoading()

@@ -23,6 +23,7 @@ export class ReviewAddCourse extends React.Component {
     };
   }
   getCourseThumb() {
+
     if (typeof (this.props.data.thumb) !== "string") {
       return <image src={URL.createObjectURL(this.props.data.thumb)} />
     } else {
@@ -68,11 +69,11 @@ export class ReviewAddCourse extends React.Component {
           </div>
           <div className="reviewAddCourse__content__images">
             <div className="reviewAddCourse__content__images__item">
-              {this.getCourseThumb()}
-              {/* <img
-                src={this.props.data.thumb}
+
+              <img
+                src={this.props.data.thumbUrl}
                 alt=""
-              /> */}
+              />
             </div>
           </div>
 
