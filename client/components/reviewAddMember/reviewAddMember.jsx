@@ -1,10 +1,12 @@
 import * as React from "react";
 import "./reviewAddMember.scss";
 
-
 export class ReviewAddMember extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      avatar: null
+    }
   }
   getTotalPrice() {
 
@@ -12,7 +14,9 @@ export class ReviewAddMember extends React.Component {
 
     return (<React.Fragment>{totalPrice}<u>đ</u></React.Fragment>)
   }
+
   render() {
+
     return (
       <div className="reviewAddMember">
         <div className="reviewAddMember__title">Xác nhận thông tin</div>
@@ -21,7 +25,7 @@ export class ReviewAddMember extends React.Component {
           <div className="reviewAddMember__content__left">
             <div className="reviewAddMember__content__left__avatar">
               <img
-                src={this.props.data.personalInfo.avatar}
+                src={this.props.data.personalInfo.avatarUrl}
                 alt=""
               />
             </div>

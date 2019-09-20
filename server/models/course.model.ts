@@ -21,7 +21,7 @@ const courseSchema = new Schema({
     name: { type: String, required: true },
     slug: { type: String, unique: true },
     quantity: { type: Number, default: 0 },
-    pricePerMonth: { type: Number },
+    pricePerMonth: { type: Number, default: 0 },
     currentStudentAmount: { type: Number, default: 0 },
     shortDescription: { type: String },
     description: { type: String },
