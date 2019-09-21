@@ -5,7 +5,7 @@ import Link from "next/link";
 import { connect } from "react-redux";
 import { api } from "../../services";
 import { action } from "../../actions";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 import "./addCourse.scss";
 import {
@@ -70,7 +70,6 @@ class AddCourse extends Component {
       pages: ["newCourseInfo", "tinymceEditor", "reviewAddCourse"],
       curPageNumber: 1,
       isShowAddCourseBenefitsModal: false,
-      courseBenefits: [],
       formData: {
         name: "",
         slug: "",
@@ -86,12 +85,14 @@ class AddCourse extends Component {
     this.showAddCourseBenefitsModal = this.showAddCourseBenefitsModal.bind(
       this
     );
-    this.addCourseBenefits = this.addCourseBenefits.bind(this);
+
     this.openPage = this.openPage.bind(this);
     this.handleClickPrevious = this.handleClickPrevious.bind(this);
     this.handleClickNext = this.handleClickNext.bind(this);
-    this.handleInputForm = this.handleInputForm.bind(this)
-    this.submitCourse = this.submitCourse.bind(this)
+    this.handleInputForm = this.handleInputForm.bind(this);
+    this.handleAddBenefits = this.handleAddBenefits.bind(this);
+    this.handleRemoveBenefits = this.handleRemoveBenefits.bind(this);
+    this.submitCourse = this.submitCourse.bind(this);
   }
 
   openPage = function(pageNumber) {
@@ -150,16 +151,9 @@ class AddCourse extends Component {
       this.setState({ curPageNumber });
       this.openPage(curPageNumber);
     }
-    if(curPageNumber > this.state.pages.length){
-      this.submitCourse()
+    if (curPageNumber > this.state.pages.length) {
+      this.submitCourse();
     }
-  };
-
-  addCourseBenefits = function(body) {
-    let benefits = this.state.courseBenefits.slice();
-    benefits.push(body);
-    this.state.formData.benefits.push(body.name)
-    this.setState({ courseBenefits: benefits, formData: this.state.formData });
   };
 
   static async getInitialProps({ req, query }) {
@@ -250,30 +244,40 @@ class AddCourse extends Component {
     }
   }
 
-  handleInputForm(name,value){
-    this.state.formData[name] = value
-    this.setState({ formData: this.state.formData})
+  handleInputForm(name, value) {
+    this.state.formData[name] = value;
+    this.setState({ formData: this.state.formData });
   }
-  async submitCourse(){
-    Swal.showLoading()
-    let imageLink
-    if (this.state.formData.thumb !== "") {
-      imageLink = await api.imgur.uploadImage(this.state.formData.thumb)
-      this.state.formData.thumb = imageLink
-    }
-    api.course.create(this.state.formData, {
-      headers: {
-        "x-token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M"
-      }
-    }).then(res => {
-      
-      Swal.fire("Thành công", "Thêm khoá học thành công", "success");
-    })
-    .catch(err => {
+  handleAddBenefits = function(body) {
+    this.state.formData.benefits.push(body.name);
+    this.setState({ formData: this.state.formData });
+  };
+  handleRemoveBenefits(index) {
+    this.state.formData.benefits.splice(index, 1);
+    this.setState({ formData: this.state.formData });
+  }
 
-      console.log("err")
-      Swal.fire("Thất bại", "Thêm khoá học không thành công", "error");
-    })
+  async submitCourse() {
+    Swal.showLoading();
+    let imageLink;
+    if (this.state.formData.thumb !== "") {
+      imageLink = await api.imgur.uploadImage(this.state.formData.thumb);
+      this.state.formData.thumb = imageLink;
+    }
+    api.course
+      .create(this.state.formData, {
+        headers: {
+          "x-token":
+            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M"
+        }
+      })
+      .then(res => {
+        Swal.fire("Thành công", "Thêm khoá học thành công", "success");
+      })
+      .catch(err => {
+        console.log("err");
+        Swal.fire("Thất bại", "Thêm khoá học không thành công", "error");
+      });
   }
   render() {
     return (
@@ -281,7 +285,7 @@ class AddCourse extends Component {
         <AddCourseBenefitsModal
           show={this.state.isShowAddCourseBenefitsModal}
           hideModal={this.hideAddCourseBenefitsModal}
-          addCourseBenefits={this.addCourseBenefits}
+          handleAddBenefits={this.handleAddBenefits}
         />
 
         <Head>
@@ -321,9 +325,10 @@ class AddCourse extends Component {
                   fadeIn"
                 >
                   <NewCourseInfo
-                    courseBenefits={this.state.courseBenefits}
+                    courseBenefits={this.state.formData.benefits}
                     showAddCourseBenefitsModal={this.showAddCourseBenefitsModal}
                     handleChange={this.handleInputForm}
+                    handleRemove={this.handleRemoveBenefits}
                   />
                 </div>
                 <div
@@ -331,14 +336,16 @@ class AddCourse extends Component {
                   className="addCourse__body__card__content__info animated
                   fadeIn"
                 >
-                  <TinymceEditor handleChange={this.handleInputForm}></TinymceEditor>
+                  <TinymceEditor
+                    handleChange={this.handleInputForm}
+                  ></TinymceEditor>
                 </div>
                 <div
                   id="reviewAddCourse"
                   className="addCourse__body__card__content__info animated
                   fadeIn"
                 >
-                  <ReviewAddCourse data={this.state.formData}/>
+                  <ReviewAddCourse data={this.state.formData} />
                 </div>
               </div>
               <div className="addCourse__body__card__buttons">

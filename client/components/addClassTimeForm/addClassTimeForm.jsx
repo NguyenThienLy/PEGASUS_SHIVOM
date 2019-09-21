@@ -24,10 +24,9 @@ export class AddClassTimeForm extends React.Component {
       timeStart: this.refs.timeStart.value,
       timeEnd: this.refs.timeEnd.value
     };
-    console.log(body);
     $(".add-class-time__form__item__input").val("");
     $(".add-class-time__form__item__select-box__select").val("");
-    this.props.addClassTime(body);
+    this.props.handleAddClassTime(body);
   }
   render() {
     return (

@@ -53,7 +53,7 @@ export class NewClassInfo extends React.Component {
 
             <div className="new-class-info__form__info__item">
               <div className="new-class-info__title-text">
-                Mã code <span>* (bắt buộc)</span>
+                Code <span>* (bắt buộc)</span>
               </div>
               <input
                 className="new-class-info__input-box"

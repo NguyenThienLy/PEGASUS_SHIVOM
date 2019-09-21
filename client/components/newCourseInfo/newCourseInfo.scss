@@ -83,11 +83,31 @@
       @include e("item") {
         .newCourseInfo__title-text {
           width: 100%;
-          margin-bottom: 0.5em;
+          margin-bottom: 1em;
         }
         .newCourseInfo__input-box {
           width: 90%;
-          margin-top: 0.5em;
+        }
+        @include e("input-remove") {
+          margin-bottom: 0.5em;
+          position: relative;
+          .newCourseInfo__input-box:hover + i {
+            opacity: 1;
+            color: $sub-main-color;
+          }
+          i {
+            position: absolute;
+            right: 0.5em;
+            top: 50%;
+            opacity: 0;
+            cursor: pointer;
+            transform: translateY(-50%);
+            transition: all 200ms ease;
+            &:hover {
+              opacity: 1;
+              color: $main-color;
+            }
+          }
         }
         @include e("add-btn") {
           margin-top: 1em;

@@ -13,14 +13,14 @@ export class CourseListBenefits extends React.Component {
       <div className="course-list-benefits">
         {/* <div className="course-list-benefits__title">Lợi ích sau khi học</div> */}
         <div className="course-list-benefits__content">
-          {/* {this.props.courseListBenefits.map((benefit, index) => {
+          {this.props.courseListBenefits.map((benefit, index) => {
             return (
               <CourseBenefit
                 benefit={benefit}
                 number={index + 1}
               ></CourseBenefit>
             );
-          })} */}
+          })}
         </div>
       </div>
     );

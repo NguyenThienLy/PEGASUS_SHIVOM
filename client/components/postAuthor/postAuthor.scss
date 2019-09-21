@@ -1,38 +1,45 @@
 @import "../../default.scss";
 
 .post-author {
-  // width: 35em;
-  height: auto;
+  width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
 
   @include e("avatar") {
-    margin: auto;
-
+    display: flex;
+    width: 40%;
+    overflow: hidden;
     img {
-      width: 12.25em;
+      width: 100%;
       height: auto;
-      border-radius: 50%;
+      &:hover {
+        transition: transform 800ms ease;
+        transform: scale(1);
+      }
+      &:not(:hover) {
+        transition: transform 800ms ease;
+        transform: scale(1.03);
+      }
     }
   }
 
   @include e("info") {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    margin-left: 1.875em;
-
+    justify-content: flex-start;
+    padding-left: 5%;
+    width: 55%;
     @include e("position") {
       color: $font-color;
       text-transform: uppercase;
       letter-spacing: 0.15em;
-      font-size: 0.75em;
+      font-size: 0.7em;
       line-height: 1.625em;
 
       &::before {
         content: "";
         height: 1px;
-        width: 51px;
+        width: 15%;
         margin-right: 3%;
         background: $main-color;
         display: inline-block;
@@ -43,14 +50,12 @@
     @include e("name") {
       font-family: $font-family-special;
       text-transform: capitalize;
-      font-size: 1.875em;
-      margin: 4px 0 14px 0;
-
+      font-size: 1.4em;
+      margin: 0.5em 0 1em;
       a {
         color: $color-grey;
         text-decoration: none;
-        transition: 300ms;
-
+        transition: 200ms ease;
         &:hover {
           color: $main-color;
         }
@@ -58,12 +63,12 @@
     }
 
     @include e("description") {
-      font-size: 0.9375em;
+      font-size: 0.85em;
       color: $font-color;
       letter-spacing: 0.025em;
       word-spacing: 0.05em;
       line-height: 1.625em;
-      margin-bottom: 10px;
+      margin-bottom: 1em;
     }
   }
 }

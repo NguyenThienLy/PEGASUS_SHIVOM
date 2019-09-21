@@ -19,7 +19,7 @@ export class AddCourseBenefitsModal extends Component {
   }
   submit(body) {
     this.props.hideModal();
-    this.props.addCourseBenefits(body);
+    this.props.handleAddBenefits(body);
   }
   render() {
     const { show } = this.props;
@@ -32,7 +32,7 @@ export class AddCourseBenefitsModal extends Component {
           effect="fadeInUp"
           onClickAway={() => this.closeModal()}
         >
-          <AddCourseBenefitsForm addCourseBenefits={this.submit} />
+          <AddCourseBenefitsForm handleAddBenefits={this.submit} />
         </Modal>
       </section>
     );

@@ -10,17 +10,14 @@ export class PostAuthor extends React.Component {
     return (
       <div className="post-author">
         <div className="post-author__avatar">
-          <a href="#">
-            <img
-              src={postAuthor.avatar}
-              alt="author's avatar"
-            />
-          </a>
+          <img src={postAuthor.avatar} alt="Ảnh tác giả" />
         </div>
         <div className="post-author__info">
           <div className="post-author__info__position">Tác giả</div>
           <div className="post-author__info__name">
-            <a href="#">{postAuthor.firstName} {postAuthor.lastName}</a>
+            <a href="#">
+              {postAuthor.firstName} {postAuthor.lastName}
+            </a>
           </div>
           <div className="post-author__info__description">
             {postAuthor.description}

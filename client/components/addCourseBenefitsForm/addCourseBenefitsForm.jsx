@@ -7,12 +7,12 @@ export class AddCourseBenefitsForm extends React.Component {
     this.submit = this.submit.bind(this);
   }
   submit(e) {
-    e.preventDefault()
+    e.preventDefault();
     const body = {
       name: this.refs.name.value
     };
     $(".add-course-benefits__form__input").val("");
-    this.props.addCourseBenefits(body);
+    this.props.handleAddBenefits(body);
   }
   render() {
     return (
@@ -26,7 +26,6 @@ export class AddCourseBenefitsForm extends React.Component {
             ref="name"
           />
           <button
-
             type="submit"
             className="add-course-benefits__form__btn add-course-benefits__form__btn--primary"
           >

@@ -38,7 +38,7 @@ export class News2 extends React.Component {
               })}
             </div> */}
           </div>
-          <h3 className="news2__inner__title">
+          <div className="news2__inner__title">
             <Link
               href={`/post/post?categorySlug=${news2.category.slug}&newsSlug=${news2.slug}`}
               as={`/${news2.category.slug}/${news2.slug}`}
@@ -47,13 +47,13 @@ export class News2 extends React.Component {
                 {news2.title}
               </a>
             </Link>
-          </h3>
+          </div>
           <div className="news2__inner__image">
-            <div className="news2__inner__image__dateCreated">
-              <span className="news2__inner__image__dateCreated__day">
+            <div className="news2__inner__image__created-date">
+              <span className="news2__inner__image__created-date__day">
                 {moment(news2.createdAt).date()}
               </span>
-              <span className="news2__inner__image__dateCreated__month">
+              <span className="news2__inner__image__created-date__month">
                 Tháng {moment(news2.createdAt).month() + 1}
               </span>
             </div>

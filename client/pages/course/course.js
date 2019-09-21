@@ -167,7 +167,13 @@ export class Course extends React.Component {
         saturday: 6,
         sunday: 7
       },
-      latestNews: []
+      latestNews: [],
+      courseListBenefits: [
+        "Đem lại sự trẻ đẹp và dẻo dai diệu kỳ",
+        "Đem lại sự trẻ đẹp và dẻo dai diệu kỳ",
+        "Đem lại sự trẻ đẹp và dẻo dai diệu kỳ",
+        "Đem lại sự trẻ đẹp và dẻo dai diệu kỳ"
+      ]
     };
   }
   static async getInitialProps({ req, query }) {
@@ -311,7 +317,7 @@ export class Course extends React.Component {
                     <div className="course__body__wrapper__main-content__benefits__title--hover" />
                   </div>
                   <CourseListBenefits
-                    courseListBenefits={this.props.course.benefits}
+                    courseListBenefits={this.state.courseListBenefits} //{this.props.course.benefits}
                   ></CourseListBenefits>
                   {/* {
 									this.props.course.benefits.map((benefit, index) => {
@@ -435,9 +441,9 @@ export class Course extends React.Component {
               </div>
 
               <div className="course__body__wrapper__sub-content">
-                {/* <div className="course__body__wrapper__sub-content__search">
-								<SearchBox type='search' />
-							</div> */}
+                <div className="course__body__wrapper__sub-content__search">
+                  <SearchBox type="search" />
+                </div>
                 <div className="course__body__wrapper__sub-content__social-group">
                   {this.props.setting.social ? (
                     <SocialGroup social={this.props.setting.social} />
