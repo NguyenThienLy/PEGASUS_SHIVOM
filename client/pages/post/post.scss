@@ -1,500 +1,1554 @@
 @import "../../default.scss";
 
 @mixin for-phone-only {
-    @media (max-width: 599px) {
-        @content;
-    }
+  @media (max-width: 599px) {
+    @content;
+  }
 }
 
 @mixin for-tablet-portrait-up {
-    @media (min-width: 600px) {
-        @content;
-    }
+  @media (min-width: 600px) {
+    @content;
+  }
 }
 
 @mixin for-tablet-portrait-only {
-    @media (min-width: 600px) and (max-width: 899px) {
-        @content;
-    }
+  @media (min-width: 600px) and (max-width: 899px) {
+    @content;
+  }
 }
 
 @mixin for-tablet-landscape-up {
-    @media (min-width: 900px) {
-        @content;
-    }
+  @media (min-width: 900px) {
+    @content;
+  }
 }
 
 @mixin for-tablet-landscape-only {
-    @media (min-width: 900px) and (max-width: 1199px) {
-        @content;
-    }
+  @media (min-width: 900px) and (max-width: 1199px) {
+    @content;
+  }
 }
 
 @mixin for-desktop-up {
-    @media (min-width: 1200px) {
-        @content;
-    }
+  @media (min-width: 1200px) {
+    @content;
+  }
 }
 
 @mixin for-desktop-only {
-    @media (min-width: 1200px) and (max-width: 1799px) {
-        @content;
-    }
+  @media (min-width: 1200px) and (max-width: 1799px) {
+    @content;
+  }
 }
 
 @mixin for-big-desktop-up {
-    @media (min-width: 1800px) {
-        @content;
-    }
+  @media (min-width: 1800px) {
+    @content;
+  }
 }
 
-$font-fam: "Noto Serif SC",
-serif;
+$hover-color: lighten($sub-main-color, 27%);
 
 .post {
-    background-color: #fff;
-    font-size: $font-size;
-    padding: 3em 3em 0;
-
-    @include e('path') {
-        color: #363738;
-        font-family: $font-fam;
-        font-size: $font-size;
-        background-color: $background-color;
-        padding: 3em 0 3em 10em;
-
-        a {
-            color: #363738;
-            text-transform: capitalize;
-            text-decoration: none;
-            cursor: pointer;
-            font-weight: 500;
-            font-size: 1.125em;
-
-            &:hover {
-                color: $main-color;
-            }
-        }
-
-        @include for-phone-only {
-            padding: 1em 1.5em;
-
-            a {
-                font-size: 0.8em;
-            }
-        }
-
-        @include for-tablet-portrait-only {
-            padding: 1em 5.5em;
-        }
-
-        @include for-tablet-landscape-only {
-            padding: 1.5em 0 1.5em 6.5em;
-        }
-
-        @include for-big-desktop-up {
-            padding-left: 13em;
-        }
-
+  background-color: #fff;
+  .divider-grey {
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border: none;
+    margin: 0px;
+  }
+  .divider {
+    height: 1px;
+    background-color: $table-border-color;
+    border: none;
+    margin: 0px;
+  }
+  @include e("body") {
+    @include e("ringing-phone") {
+      position: fixed;
+      right: 2em;
+      bottom: 2em;
+      z-index: 2;
     }
 
-    @include e('wrapper') {
+    @include e("breadcrumb") {
+      font-family: $font-family-special;
+      background-color: $background-color;
+      padding: 3em 10%;
+      a {
+        font-size: 0.9em;
+        color: $color-grey; //#363738;
+        text-decoration: none;
+        text-transform: capitalize;
+        transition: all 200ms ease;
+        &:hover {
+          color: $main-color;
+        }
+      }
+      i {
+        font-size: 0.7em;
+        color: $main-color;
+      }
+
+      //   color: #363738;
+      //   font-family: $font-family-special;
+      //   font-size: $font-size;
+      //   background-color: $background-color;
+      //   padding: 3em 0 3em 10em;
+
+      //   a {
+      //     color: #363738;
+      //     text-transform: capitalize;
+      //     text-decoration: none;
+      //     cursor: pointer;
+      //     font-weight: 500;
+      //     font-size: 1.125em;
+
+      //     &:hover {
+      //       color: $main-color;
+      //     }
+      //   }
+
+      //   @include for-phone-only {
+      //     padding: 1em 1.5em;
+
+      //     a {
+      //       font-size: 0.8em;
+      //     }
+      //   }
+
+      //   @include for-tablet-portrait-only {
+      //     padding: 1em 5.5em;
+      //   }
+
+      //   @include for-tablet-landscape-only {
+      //     padding: 1.5em 0 1.5em 6.5em;
+      //   }
+
+      //   @include for-big-desktop-up {
+      //     padding-left: 13em;
+      //   }
+    }
+
+    @include e("wrapper") {
+      display: flex;
+      flex-direction: row;
+      width: 80%;
+      margin: auto;
+      padding: 4em 0;
+
+      @include e("main-content") {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        width: 70%;
 
-        @include e('main-content') {
-            width: 55%;
-            margin-left: 5.5em;
-            padding: 1.5em;
-            margin-right: 2em;
+        @include e("info") {
+          text-transform: uppercase;
+          font-weight: 400;
+          line-height: 1.5em;
+          font-size: 0.65em;
+          text-align: center;
+          color: $main-color;
+          letter-spacing: 0.1em;
+          a {
+            text-decoration: none;
+            color: $main-color;
+            transition: 300ms;
+            &:hover {
+              color: $color-grey;
+            }
+          }
 
+          @include e("author") {
+            display: inline-block;
+            &::after {
+              content: "/";
+              display: inline-block;
+              margin: 0 3px;
+            }
+          }
+
+          @include e("category") {
+            display: inline-block;
+            &::after {
+              content: "/";
+              display: inline-block;
+              margin: 0 3px;
+            }
+          }
+
+          @include e("tags") {
+            display: inline-block;
+          }
+        }
+
+        @include e("title") {
+          text-align: center;
+          font-weight: 400;
+          margin-top: 0.5em;
+          margin-bottom: 2em;
+          padding: 0 4em;
+          a {
+            text-decoration: none;
+            color: $color-grey;
+            font-family: $font-family-special;
+            font-size: 1.8em;
+            line-height: 1.25em;
+            text-transform: capitalize;
+            transition: 300ms;
+            &:hover {
+              color: $main-color;
+            }
+          }
+
+          //   @include for-phone-only {
+          //     padding: 0;
+          //     font-size: 1.1em;
+          //     margin-bottom: 1.5em;
+          //     padding: 0;
+          //   }
+        }
+
+        @include e("content") {
+          font-size: 0.9em;
+          line-height: 1.7em;
+          color: $font-color;
+          margin-bottom: 2em;
+          //   img {
+          //     width: 100%;
+          //   }
+          //   @include for-phone-only {
+          //     padding-bottom: 1.5em;
+          //   }
+        }
+
+        @include e("post-author") {
+          margin: 2em 0 4em 0;
+          .post-author {
+            flex-direction: row;
+            @include e("avatar") {
+              width: 40%;
+            }
             @include e("info") {
-                text-transform: uppercase;
-                font-weight: 400;
-                line-height: 1.5em;
-                font-size: 0.6em;
-                text-align: center;
-                color: $main-color;
-                letter-spacing: 0.1em;
+              width: 55%;
+              padding-left: 5%;
+              margin-bottom: 0;
+              @include e("position") {
+                font-size: 0.7em;
+              }
+              @include e("name") {
+                font-size: 1.4em;
+              }
+              @include e("description") {
+                font-size: 0.85em;
+              }
+            }
+          }
+          //   @include for-phone-only {
+          //     padding: 1.5em 0 1.5em;
+          //     margin-bottom: 1.5em;
 
-                a {
-                    text-decoration: none;
-                    color: $main-color;
-                    transition: 300ms;
+          //     .post-author {
+          //       flex-direction: column;
 
-                    &:hover {
-                        color: $color-grey;
-                    }
+          //       @include e("avatar") {
+          //         padding-bottom: 1em;
+
+          //         img {
+          //           width: 10em;
+          //         }
+          //       }
+
+          //       @include e("info") {
+          //         margin-left: 0;
+
+          //         @include e("name") {
+          //           font-size: 1.5em;
+          //         }
+          //       }
+          //     }
+          //   }
+        }
+
+        @include e("related-posts-title") {
+          margin: 2em 0 1.5em;
+          font-family: $font-family-special;
+          color: $main-color;
+          font-size: 1.4em;
+        }
+
+        @include e("related-posts") {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          column-gap: 2em;
+          row-gap: 1.5em;
+          margin-bottom: 3em;
+          @include e("post") {
+            .related-post {
+              @include e("image") {
+                @include e("created-date") {
+                  @include e("day") {
+                    font-size: 0.9em;
+                    line-height: 2em;
+                  }
+                  @include e("month") {
+                    padding: 0 0.5em;
+                    font-size: 0.75em;
+                  }
                 }
-
-                @include e("author") {
-                    display: inline-block;
-
-                    &::after {
-                        content: "/";
-                        display: inline-block;
-                        margin: 0 3px;
-                    }
-                }
-
-                @include e("category") {
-                    display: inline-block;
-
-                    &::after {
-                        content: "/";
-                        display: inline-block;
-                        margin: 0 3px;
-                    }
-                }
-
-                @include e("tags") {
-                    display: inline-block;
-                }
+              }
+              @include e("title") {
+                font-size: 1.2em;
+              }
+              @include e("author") {
+                font-size: 0.75em;
+              }
             }
 
-            @include e("title") {
-                text-align: center;
-                font-weight: 400;
-                margin-top: 0.5em;
-                margin-bottom: 2em;
-                padding: 0 4em;
+            // @include for-phone-only {
+            //   width: 100%;
 
-                a {
-                    text-decoration: none;
-                    color: $color-grey;
-                    font-family: $font-family-special;
-                    font-size: 1.3125em;
-                    line-height: 1.25em;
-                    text-transform: capitalize;
-                    transition: 300ms;
+            //   .related-post {
+            //     padding-right: 0;
 
-                    &:hover {
-                        color: $main-color;
-                    }
-                }
+            //     @include e("img") {
+            //       margin-bottom: 0.5em;
+            //     }
 
-                @include for-phone-only {
-                    padding: 0;
-                    font-size: 1.1em;
-                    margin-bottom: 1.5em;
-                    padding: 0;
-                }
+            //     @include e("author") {
+            //       font-size: 0.7em;
+            //     }
+
+            //     @include e("title") {
+            //       font-size: 1.2em;
+            //     }
+            //   }
+            // }
+
+            // @include for-tablet-portrait-only {
+            //   padding-right: 1em;
+            // }
+          }
+        }
+
+        // @include for-phone-only {
+        //   width: auto;
+        //   margin-left: 0;
+        //   margin-right: 0;
+        // }
+
+        // @include for-tablet-portrait-only {
+        //   width: auto;
+        //   margin-left: 3.5em;
+        //   margin-right: 3.5em;
+        // }
+
+        // @include for-tablet-landscape-only {
+        //   margin-left: 3.5em;
+        //   margin-right: 3.5em;
+        //   width: auto;
+        // }
+
+        // @include for-big-desktop-up {
+        //   margin-right: 5.5em;
+        // }
+      }
+
+      @include e("sub-content") {
+        margin-left: 3%;
+        width: 27%;
+        @include e("title") {
+          font-family: $font-family-special;
+          font-size: 1.2em;
+          font-color: $color-grey;
+          margin-bottom: 1em;
+          &::first-letter {
+            text-transform: capitalize;
+          }
+        }
+
+        @include e("search") {
+          margin: 3em 0 2em;
+          .search-box form {
+            width: 100%;
+            input {
+              width: 65%;
+              font-size: 0.8em;
             }
+          }
+        }
 
-            @include e('content') {
-                padding-bottom: 2.5em;
+        @include e("social-group") {
+          margin: 1em 0 2em 0;
+          .media-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 0em;
+            row-gap: 1em;
+            @include e("media-icons") {
+              margin: auto;
+              background-color: $hover-color;
+              &:nth-last-child(1) {
+                margin-right: auto;
+              }
+              @include m("hover") {
+                font-size: 1.2em;
+              }
+            }
+          }
+        }
+
+        @include e("categories") {
+          margin-bottom: 2em;
+          display: grid;
+          grid-template-columns: repeat(1, 1fr);
+          column-gap: 0em;
+          row-gap: 1em;
+          @include e("category") {
+            text-transform: uppercase;
+            @include e("link") {
+              text-decoration: none;
+              font-size: 0.7em;
+              .hoverDiv {
+                @include e("link") {
+                  color: $main-color;
+                  letter-spacing: 0.05em;
+                }
+              }
+            }
+          }
+        }
+
+        @include e("latest-posts") {
+          margin-bottom: 2em;
+          @include e("post") {
+            margin-bottom: 1em;
+            .latestPost {
+              @include e("info") {
+                width: 45%;
+              }
+            }
+            // @include for-phone-only {
+            //   width: 20em;
+            // }
+
+            // @include for-tablet-portrait-only {
+            //   width: 20em;
+            // }
+
+            // @include for-tablet-landscape-only {
+            //   width: 17em;
+            // }
+          }
+        }
+
+        @include e("email") {
+          margin: 3em 0 2em;
+          @include e("content") {
+            font-size: 0.85em;
+            color: $font-color;
+            margin-bottom: 1.5em;
+          }
+          .search-box form {
+            width: 100%;
+            input {
+              width: 65%;
+              font-size: 0.8em;
+            }
+          }
+        }
+
+        // @include for-phone-only {
+        //   width: auto;
+        //   margin: 0em 1.5em 1em;
+        // }
+
+        // @include for-tablet-portrait-only {
+        //   width: auto;
+        //   margin: 2em 5.5em;
+        // }
+
+        // @include for-tablet-landscape-only {
+        //   width: auto;
+        //   margin: 4em 5.5em;
+        // }
+      }
+
+      //   @include for-phone-only {
+      //     flex-direction: column;
+      //   }
+
+      //   @include for-tablet-portrait-only {
+      //     flex-direction: column;
+      //   }
+
+      //   @include for-tablet-landscape-only {
+      //     flex-direction: column;
+      //   }
+    }
+
+    @include e("contact-us") {
+      width: 80%;
+      margin: 0 auto 0;
+      padding: 3em 0 7em;
+
+      //   @include for-phone-only {
+      //     padding-bottom: 4em;
+      //     margin-bottom: 0 !important;
+
+      //     .contact-us {
+      //       flex-direction: column-reverse;
+
+      //       @include e("sub-info") {
+      //         margin-left: 0;
+
+      //         @include e("title") {
+      //           font-size: 2em;
+      //         }
+
+      //         @include e("content") {
+      //           font-size: 1em;
+      //         }
+      //       }
+
+      //       form {
+      //         margin-right: 0;
+      //       }
+      //     }
+      //   }
+
+      //   @include for-tablet-portrait-only {
+      //     padding-bottom: 4em;
+
+      //     .contact-us {
+      //       flex-direction: column-reverse;
+
+      //       @include e("sub-info") {
+      //         margin-left: 1em;
+      //       }
+
+      //       form {
+      //         margin-right: 1em;
+      //       }
+      //     }
+      //   }
+
+      //   @include for-tablet-landscape-only {
+      //     .contact-us {
+      //       @include e("sub-info") {
+      //         margin: 0;
+      //       }
+      //     }
+      //   }
+    }
+
+    // @include for-phone-only {
+    //   padding: 0;
+    // }
+
+    // @include for-tablet-portrait-only {
+    //   padding: auto 0;
+    // }
+
+    // @include for-big-desktop-up {
+    //   padding: 0 10em;
+    // }
+  }
+}
+
+@media only screen and (max-width: 599px) {
+  html {
+    font-size: 18px !important;
+  }
+
+  .post {
+    @include e("body") {
+      @include e("ringing-phone") {
+        right: 1em;
+        bottom: 1em;
+        .ringing-phone {
+          @include e("link") {
+            padding: 0.8em;
+          }
+        }
+      }
+
+      @include e("breadcrumb") {
+      }
+
+      @include e("wrapper") {
+        flex-direction: column;
+        padding: 4em 0;
+
+        @include e("main-content") {
+          width: 100%;
+
+          @include e("info") {
+            font-size: 0.65em;
+          }
+
+          @include e("title") {
+            padding: 0em;
+            a {
+              font-size: 1.5em;
+            }
+          }
+
+          @include e("content") {
+            font-size: 0.9em;
+          }
+
+          @include e("post-author") {
+            .post-author {
+              flex-direction: column-reverse;
+              @include e("avatar") {
                 width: 100%;
-                // color: #454647;
-                img {
-                    width: 100%;
+              }
+              @include e("info") {
+                width: 100%;
+                padding-left: 0;
+                margin-bottom: 1em;
+                @include e("position") {
+                  font-size: 0.65em;
                 }
-                @include for-phone-only {
-                    padding-bottom: 1.5em;
+                @include e("name") {
+                  font-size: 1.2em;
                 }
-            }
-
-            @include e('post-author') {
-                margin-bottom: 3.25em;
-                padding: 3.625em 0 3.25em;
-                border-top: 1px solid #ebebeb;
-                border-bottom: 1px solid #ebebeb;
-
-                @include for-phone-only {
-                    padding: 1.5em 0 1.5em;
-                    margin-bottom: 1.5em;
-
-                    .post-author {
-                        flex-direction: column;
-
-                        @include e("avatar") {
-                            padding-bottom: 1em;
-
-                            img {
-                                width: 10em;
-                            }
-                        }
-
-                        @include e('info') {
-                            margin-left: 0;
-
-                            @include e('name') {
-                                font-size: 1.5em;
-                            }
-                        }
-                    }
+                @include e("description") {
+                  font-size: 0.8em;
                 }
+              }
             }
+          }
 
-            @include e('text-divider') {
-                font-family: $font-family-special;
-                color: $main-color;
-                margin-bottom: 2em;
+          @include e("related-posts-title") {
+            font-size: 1.2em;
+          }
 
-                h3 {
-                    font-weight: 500;
-                    font-size: 2.625em;
-                    margin: 0;
-
-                    @include for-phone-only {
-                        font-size: 1.5em;
+          @include e("related-posts") {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            column-gap: 0;
+            row-gap: 3em;
+            @include e("post") {
+              .related-post {
+                @include e("image") {
+                  @include e("created-date") {
+                    @include e("day") {
+                      font-size: 0.9em;
+                      line-height: 2em;
                     }
+                    @include e("month") {
+                      padding: 0 1em;
+                      font-size: 0.75em;
+                    }
+                  }
+                  img {
+                    height: auto;
+                  }
                 }
-            }
-
-            @include e('related-posts') {
-                display: flex;
-                flex-wrap: wrap;
-                margin-top: 2em;
-
-                @include e('post') {
-                    width: 50%;
-
-                    .related-post {
-                        width: auto;
-                    }
-
-                    @include for-phone-only {
-                        width: 100%;
-
-                        .related-post {
-                            padding-right: 0;
-
-                            @include e('img') {
-                                margin-bottom: 0.5em;
-                            }
-
-                            @include e('author') {
-                                font-size: 0.7em;
-                            }
-
-                            @include e('title') {
-                                font-size: 1.2em;
-                            }
-                        }
-                    }
-
-                    @include for-tablet-portrait-only {
-                        padding-right: 1em;
-                    }
+                @include e("title") {
+                  font-size: 1em;
                 }
+                @include e("author") {
+                  font-size: 0.65em;
+                }
+              }
             }
-
-            @include for-phone-only {
-                width: auto;
-                margin-left: 0;
-                margin-right: 0;
-            }
-
-            @include for-tablet-portrait-only {
-                width: auto;
-                margin-left: 3.5em;
-                margin-right: 3.5em;
-            }
-
-            @include for-tablet-landscape-only {
-                margin-left: 3.5em;
-                margin-right: 3.5em;
-                width: auto;
-            }
-
-            @include for-big-desktop-up {
-                margin-right: 5.5em;
-            }
+          }
         }
 
-        @include e('sub-content') {
-            margin: 4em 0 4em;
-            width: 25%;
+        @include e("sub-content") {
+          margin-left: 0;
+          width: 100%;
+          border-top: 1px solid $table-border-color;
+          @include e("title") {
+            font-size: 1.3em;
+            margin-bottom: 1.5em;
+          }
 
-            @include e('social-group') {
-                margin: 40px 0 30px 0;
-
-                .media-buttons__media-icons {
-                    width: 55px;
-                    margin-right: 20px;
-                }
+          @include e("search") {
+            margin: 3em 0 2em;
+            .search-box form {
+              input {
+                width: 76%;
+                font-size: 0.9em;
+              }
             }
+          }
 
-            @include e('latest-posts') {
-                @include e('post') {
-                    width: 80%;
-
-                    @include for-phone-only {
-                        width: 20em;
-                    }
-
-                    @include for-tablet-portrait-only {
-                        width: 20em;
-                    }
-
-                    @include for-tablet-landscape-only {
-                        width: 17em;
-                    }
+          @include e("social-group") {
+            margin: 1em 0 2em 0;
+            .media-buttons {
+              display: block;
+              @include e("media-icons") {
+                margin: 0.5em 1.3em 0.5em 0;
+                &:nth-last-child(1) {
+                  margin-right: 0;
                 }
+              }
             }
+          }
 
-            @include e('categories') {
+          @include e("categories") {
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 2em;
+            row-gap: 1em;
+            @include e("category") {
+              @include e("link") {
+                font-size: 0.8em;
+              }
+            }
+          }
 
-                margin-bottom: 30px;
-
-                @include e('text') {
-                    font-family: $font-fam;
-                    font-size: 1.7em;
-                    font-color: #363738;
-                    margin-bottom: 20px;
-                    text-transform: capitalize;
+          @include e("latest-posts") {
+            @include e("post") {
+              .latestPost {
+                @include e("image") {
+                  width: 6em;
+                  height: 6em;
                 }
-
-                @include e('category') {
-                    font-family: $font-fam;
-                    text-transform: uppercase;
-                    color: $main-color;
+                @include e("info") {
+                  width: 55%;
+                  @include e("title") {
+                    font-size: 0.9em;
+                  }
+                  @include e("date") {
                     font-size: 0.8em;
-                    margin-bottom: 12px;
+                  }
                 }
+              }
             }
+          }
 
-            @include e('search') {
-                p {
-                    line-height: 26px;
-                    color: rgba(0, 0, 0, 0.6);
+          @include e("email") {
+            @include e("content") {
+              font-size: 0.9em;
+            }
+            .search-box form {
+              input {
+                width: 76%;
+                font-size: 0.9em;
+              }
+            }
+          }
+        }
+      }
+
+      @include e("contact-us") {
+        .contact-us {
+          flex-direction: column-reverse;
+          @include e("form") {
+            width: 100%;
+          }
+          @include e("sub-info") {
+            width: 100%;
+            margin: 0 0 2em;
+            @include e("title") {
+              font-size: 1.7em;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  html {
+    font-size: 19px !important;
+  }
+
+  .post {
+    @include e("body") {
+      @include e("ringing-phone") {
+        right: 1em;
+        bottom: 1em;
+        .ringing-phone {
+          @include e("link") {
+            padding: 0.8em;
+          }
+        }
+      }
+
+      @include e("breadcrumb") {
+      }
+
+      @include e("wrapper") {
+        flex-direction: column;
+        padding: 4em 0;
+
+        @include e("main-content") {
+          width: 100%;
+
+          @include e("info") {
+            font-size: 0.7em;
+          }
+
+          @include e("title") {
+            padding: 0em;
+            a {
+              font-size: 1.8em;
+            }
+          }
+
+          @include e("content") {
+            font-size: 0.85em;
+          }
+
+          @include e("post-author") {
+            .post-author {
+              flex-direction: column-reverse;
+              @include e("avatar") {
+                width: 100%;
+              }
+              @include e("info") {
+                width: 100%;
+                padding-left: 0;
+                margin-bottom: 1em;
+                @include e("position") {
+                  font-size: 0.7em;
                 }
+                @include e("name") {
+                  font-size: 1.4em;
+                }
+                @include e("description") {
+                  font-size: 0.85em;
+                }
+              }
+            }
+          }
 
-                .search-box {
-                    form {
-                        width: 100%;
+          @include e("related-posts-title") {
+            font-size: 1.4em;
+          }
 
-                        input {
-                            width: 85%;
-                        }
-
-                        i {
-                            top: 33%;
-                            right: 1em !important;
-                        }
+          @include e("related-posts") {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            column-gap: 0;
+            row-gap: 3em;
+            @include e("post") {
+              .related-post {
+                @include e("image") {
+                  @include e("created-date") {
+                    @include e("day") {
+                      font-size: 1em;
+                      line-height: 3em;
                     }
-                }
-            }
-
-            @include e('email') {
-                margin: 40px 0 30px 0;
-
-                p {
-                    line-height: 26px;
-                    color: rgba(0, 0, 0, 0.6);
-                }
-
-                .search-box {
-                    form {
-                        width: 100%;
-
-                        input {
-                            width: 85%;
-                        }
-
-                        i {
-                            top: 33%;
-                            right: 1em !important;
-                        }
+                    @include e("month") {
+                      padding: 0 1em;
+                      font-size: 0.85em;
                     }
+                  }
+                  img {
+                    height: auto;
+                  }
                 }
+                @include e("title") {
+                  font-size: 1.2em;
+                }
+                @include e("author") {
+                  font-size: 0.75em;
+                }
+              }
             }
-
-            @include for-phone-only {
-                width: auto;
-                margin: 0em 1.5em 1em;
-            }
-
-            @include for-tablet-portrait-only {
-                width: auto;
-                margin: 2em 5.5em;
-            }
-
-            @include for-tablet-landscape-only {
-                width: auto;
-                margin: 4em 5.5em;
-            }
+          }
         }
 
-        @include for-phone-only {
-            flex-direction: column;
-        }
+        @include e("sub-content") {
+          margin-left: 0;
+          width: 100%;
+          border-top: 1px solid $table-border-color;
+          @include e("title") {
+            font-size: 1.3em;
+            margin-bottom: 1.5em;
+          }
 
-        @include for-tablet-portrait-only {
-            flex-direction: column;
-        }
+          @include e("search") {
+            margin: 3em 0 2em;
+            .search-box form {
+              input {
+                width: 85%;
+                font-size: 0.9em;
+              }
+            }
+          }
 
-        @include for-tablet-landscape-only {
-            flex-direction: column;
+          @include e("social-group") {
+            margin: 1em 0 2em 0;
+            .media-buttons {
+              display: block;
+              @include e("media-icons") {
+                margin: 0.5em 1.3em 0.5em 0;
+                &:nth-last-child(1) {
+                  margin-right: 0;
+                }
+              }
+            }
+          }
+
+          @include e("categories") {
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 2em;
+            row-gap: 1em;
+            @include e("category") {
+              @include e("link") {
+                font-size: 0.8em;
+              }
+            }
+          }
+
+          @include e("latest-posts") {
+            @include e("post") {
+              .latestPost {
+                @include e("image") {
+                  width: 6em;
+                  height: 6em;
+                }
+                @include e("info") {
+                  width: 73%;
+                  @include e("title") {
+                    font-size: 0.9em;
+                  }
+                  @include e("date") {
+                    font-size: 0.8em;
+                  }
+                }
+              }
+            }
+          }
+
+          @include e("email") {
+            @include e("content") {
+              font-size: 0.9em;
+            }
+            .search-box form {
+              input {
+                width: 85%;
+                font-size: 0.9em;
+              }
+            }
+          }
         }
+      }
+
+      @include e("contact-us") {
+        .contact-us {
+          flex-direction: column-reverse;
+          @include e("form") {
+            width: 100%;
+          }
+          @include e("sub-info") {
+            width: 100%;
+            margin: 0 0 2em;
+            @include e("title") {
+              font-size: 1.9em;
+            }
+          }
+        }
+      }
     }
+  }
+}
 
-    @include e('contact-us') {
-        width: 80%;
-        margin: 1em auto 0;
-        padding: 1em 0 7em;
+@media only screen and (min-width: 768px) {
+  html {
+    font-size: 19px !important;
+  }
 
-        @include for-phone-only {
-            padding-bottom: 4em;
-            margin-bottom: 0 !important;
+  .post {
+    @include e("body") {
+      @include e("ringing-phone") {
+        right: 1.5em;
+        bottom: 1.5em;
+        .ringing-phone {
+          @include e("link") {
+            padding: 0.9em;
+          }
+        }
+      }
 
-            .contact-us {
-                flex-direction: column-reverse;
+      @include e("breadcrumb") {
+      }
 
+      @include e("wrapper") {
+        flex-direction: column;
+        padding: 4em 0;
 
-                @include e('sub-info') {
-                    margin-left: 0;
+        @include e("main-content") {
+          width: 100%;
 
-                    @include e('title') {
-                        font-size: 2em;
+          @include e("info") {
+            font-size: 0.65em;
+          }
+
+          @include e("title") {
+            padding: 0 3em;
+            a {
+              font-size: 1.8em;
+            }
+          }
+
+          @include e("content") {
+            font-size: 0.85em;
+          }
+
+          @include e("post-author") {
+            .post-author {
+              flex-direction: row;
+              @include e("avatar") {
+                width: 40%;
+              }
+              @include e("info") {
+                width: 55%;
+                padding-left: 5%;
+                margin-bottom: 0;
+                @include e("position") {
+                  font-size: 0.7em;
+                }
+                @include e("name") {
+                  font-size: 1.4em;
+                }
+                @include e("description") {
+                  font-size: 0.85em;
+                }
+              }
+            }
+          }
+
+          @include e("related-posts-title") {
+            font-size: 1.4em;
+          }
+
+          @include e("related-posts") {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 2em;
+            row-gap: 1.5em;
+            @include e("post") {
+              .related-post {
+                @include e("image") {
+                  @include e("created-date") {
+                    @include e("day") {
+                      font-size: 0.9em;
+                      line-height: 2em;
                     }
-
-                    @include e('content') {
-                        font-size: 1em;
+                    @include e("month") {
+                      padding: 0 0.5em;
+                      font-size: 0.75em;
                     }
+                  }
+                  img {
+                    height: 15em;
+                  }
                 }
-
-                form {
-                    margin-right: 0;
+                @include e("title") {
+                  font-size: 1.2em;
                 }
+                @include e("author") {
+                  font-size: 0.75em;
+                }
+              }
             }
+          }
         }
 
-        @include for-tablet-portrait-only {
-            padding-bottom: 4em;
+        @include e("sub-content") {
+          margin-left: 0;
+          width: 100%;
+          border-top: 1px solid $table-border-color;
+          @include e("title") {
+            font-size: 1.3em;
+            margin-bottom: 1em;
+          }
 
-            .contact-us {
-                flex-direction: column-reverse;
-
-                @include e('sub-info') {
-                    margin-left: 1em;
-                }
-
-                form {
-                    margin-right: 1em;
-                }
+          @include e("search") {
+            margin: 3em 0 2em;
+            .search-box form {
+              input {
+                width: 85%;
+                font-size: 0.9em;
+              }
             }
+          }
+
+          @include e("social-group") {
+            margin: 1em 0 2em 0;
+            .media-buttons {
+              display: block;
+              @include e("media-icons") {
+                margin: 0.5em 1.3em 0.5em 0;
+                &:nth-last-child(1) {
+                  margin-right: 0;
+                }
+              }
+            }
+          }
+
+          @include e("categories") {
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 2em;
+            row-gap: 1em;
+            @include e("category") {
+              @include e("link") {
+                font-size: 0.8em;
+              }
+            }
+          }
+
+          @include e("latest-posts") {
+            @include e("post") {
+              .latestPost {
+                @include e("image") {
+                  width: 6em;
+                  height: 6em;
+                }
+                @include e("info") {
+                  width: 76%;
+                  @include e("title") {
+                    font-size: 0.9em;
+                  }
+                  @include e("date") {
+                    font-size: 0.8em;
+                  }
+                }
+              }
+            }
+          }
+
+          @include e("email") {
+            @include e("content") {
+              font-size: 0.9em;
+            }
+            .search-box form {
+              input {
+                width: 85%;
+                font-size: 0.9em;
+              }
+            }
+          }
+        }
+      }
+
+      @include e("contact-us") {
+        .contact-us {
+          flex-direction: column-reverse;
+          @include e("form") {
+            width: 100%;
+          }
+          @include e("sub-info") {
+            width: 100%;
+            margin: 0 0 2em;
+            @include e("title") {
+              font-size: 1.9em;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  html {
+    font-size: 20px !important;
+  }
+
+  .post {
+    @include e("body") {
+      @include e("ringing-phone") {
+        right: 2em;
+        bottom: 2em;
+        .ringing-phone {
+          @include e("link") {
+            padding: 1em;
+          }
+        }
+      }
+
+      @include e("breadcrumb") {
+      }
+
+      @include e("wrapper") {
+        flex-direction: row;
+        padding: 4em 0;
+
+        @include e("main-content") {
+          width: 68%;
+
+          @include e("info") {
+            font-size: 0.65em;
+          }
+
+          @include e("title") {
+            padding: 0 4em;
+            a {
+              font-size: 1.8em;
+            }
+          }
+
+          @include e("content") {
+            font-size: 0.85em;
+          }
+
+          @include e("post-author") {
+            .post-author {
+              flex-direction: row;
+              @include e("avatar") {
+                width: 40%;
+              }
+              @include e("info") {
+                width: 55%;
+                padding-left: 5%;
+                margin-bottom: 0;
+                @include e("position") {
+                  font-size: 0.7em;
+                }
+                @include e("name") {
+                  font-size: 1.4em;
+                }
+                @include e("description") {
+                  font-size: 0.85em;
+                }
+              }
+            }
+          }
+
+          @include e("related-posts-title") {
+            font-size: 1.4em;
+          }
+
+          @include e("related-posts") {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 2em;
+            row-gap: 1.5em;
+            @include e("post") {
+              .related-post {
+                @include e("image") {
+                  @include e("created-date") {
+                    @include e("day") {
+                      font-size: 0.9em;
+                      line-height: 2em;
+                    }
+                    @include e("month") {
+                      padding: 0 0.5em;
+                      font-size: 0.75em;
+                    }
+                  }
+                  img {
+                    height: 15em;
+                  }
+                }
+                @include e("title") {
+                  font-size: 1.2em;
+                }
+                @include e("author") {
+                  font-size: 0.75em;
+                }
+              }
+            }
+          }
         }
 
-        @include for-tablet-landscape-only {
-            .contact-us {
-                @include e('sub-info') {
-                    margin: 0;
-                }
+        @include e("sub-content") {
+          margin-left: 5%;
+          width: 27%;
+          border-top: none;
+          @include e("title") {
+            font-size: 1.2em;
+            margin-bottom: 1em;
+          }
+
+          @include e("search") {
+            margin: 3em 0 2em;
+            .search-box form {
+              input {
+                width: 65%;
+                font-size: 0.8em;
+              }
             }
+          }
+
+          @include e("social-group") {
+            margin: 1em 0 2em 0;
+            .media-buttons {
+              display: grid;
+              grid-template-columns: repeat(2, 1fr);
+              column-gap: 0em;
+              row-gap: 1em;
+              @include e("media-icons") {
+                margin: auto;
+                &:nth-last-child(1) {
+                  margin-right: auto;
+                }
+              }
+            }
+          }
+
+          @include e("categories") {
+            grid-template-columns: repeat(1, 1fr);
+            column-gap: 0em;
+            row-gap: 1em;
+            @include e("category") {
+              @include e("link") {
+                font-size: 0.7em;
+              }
+            }
+          }
+
+          @include e("latest-posts") {
+            @include e("post") {
+              .latestPost {
+                @include e("image") {
+                  width: 5em;
+                  height: 5em;
+                }
+                @include e("info") {
+                  width: 45%;
+                  @include e("title") {
+                    font-size: 0.8em;
+                  }
+                  @include e("date") {
+                    font-size: 0.75em;
+                  }
+                }
+              }
+            }
+          }
+
+          @include e("email") {
+            @include e("content") {
+              font-size: 0.85em;
+            }
+            .search-box form {
+              input {
+                width: 65%;
+                font-size: 0.8em;
+              }
+            }
+          }
+        }
+      }
+
+      @include e("contact-us") {
+        .contact-us {
+          flex-direction: row;
+          @include e("form") {
+            width: 50%;
+          }
+          @include e("sub-info") {
+            width: 45%;
+            margin: 0 0 0 5%;
+            @include e("title") {
+              font-size: 2.1em;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  html {
+    font-size: 20px !important;
+  }
+
+  .post {
+    @include e("body") {
+      @include e("ringing-phone") {
+        right: 2em;
+        bottom: 2em;
+        .ringing-phone {
+          @include e("link") {
+            padding: 1em;
+          }
+        }
+      }
+
+      @include e("breadcrumb") {
+      }
+
+      @include e("wrapper") {
+        flex-direction: row;
+        padding: 4em 0;
+
+        @include e("main-content") {
+          width: 68%;
+
+          @include e("info") {
+            font-size: 0.65em;
+          }
+
+          @include e("title") {
+            padding: 0 4em;
+            a {
+              font-size: 1.8em;
+            }
+          }
+
+          @include e("content") {
+            font-size: 0.85em;
+          }
+
+          @include e("post-author") {
+            .post-author {
+              flex-direction: row;
+              @include e("avatar") {
+                width: 40%;
+              }
+              @include e("info") {
+                width: 55%;
+                padding-left: 5%;
+                margin-bottom: 0;
+                @include e("position") {
+                  font-size: 0.7em;
+                }
+                @include e("name") {
+                  font-size: 1.4em;
+                }
+                @include e("description") {
+                  font-size: 0.85em;
+                }
+              }
+            }
+          }
+
+          @include e("related-posts-title") {
+            font-size: 1.4em;
+          }
+
+          @include e("related-posts") {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 2em;
+            row-gap: 1.5em;
+            @include e("post") {
+              .related-post {
+                @include e("image") {
+                  @include e("created-date") {
+                    @include e("day") {
+                      font-size: 0.9em;
+                      line-height: 2em;
+                    }
+                    @include e("month") {
+                      padding: 0 0.5em;
+                      font-size: 0.75em;
+                    }
+                  }
+                  img {
+                    height: 15em;
+                  }
+                }
+                @include e("title") {
+                  font-size: 1.2em;
+                }
+                @include e("author") {
+                  font-size: 0.75em;
+                }
+              }
+            }
+          }
         }
 
-    }
+        @include e("sub-content") {
+          margin-left: 5%;
+          width: 27%;
+          border-top: none;
+          @include e("title") {
+            font-size: 1.2em;
+            margin-bottom: 1em;
+          }
 
-    @include for-phone-only {
-        padding: 0;
-    }
+          @include e("search") {
+            margin: 3em 0 2em;
+            .search-box form {
+              input {
+                width: 68%;
+                font-size: 0.8em;
+              }
+            }
+          }
 
-    @include for-tablet-portrait-only {
-        padding: auto 0;
-    }
+          @include e("social-group") {
+            margin: 1em 0 2em 0;
+            .media-buttons {
+              display: grid;
+              grid-template-columns: repeat(2, 1fr);
+              column-gap: 0em;
+              row-gap: 1em;
+              @include e("media-icons") {
+                margin: auto;
+                &:nth-last-child(1) {
+                  margin-right: auto;
+                }
+              }
+            }
+          }
 
-    @include for-big-desktop-up {
-        padding: 0 10em;
+          @include e("categories") {
+            grid-template-columns: repeat(1, 1fr);
+            column-gap: 0em;
+            row-gap: 1em;
+            @include e("category") {
+              @include e("link") {
+                font-size: 0.7em;
+              }
+            }
+          }
+
+          @include e("latest-posts") {
+            @include e("post") {
+              .latestPost {
+                @include e("image") {
+                  width: 5em;
+                  height: 5em;
+                }
+                @include e("info") {
+                  width: 52%;
+                  @include e("title") {
+                    font-size: 0.85em;
+                  }
+                  @include e("date") {
+                    font-size: 0.8em;
+                  }
+                }
+              }
+            }
+          }
+
+          @include e("email") {
+            @include e("content") {
+              font-size: 0.85em;
+            }
+            .search-box form {
+              input {
+                width: 68%;
+                font-size: 0.8em;
+              }
+            }
+          }
+        }
+      }
+
+      @include e("contact-us") {
+        .contact-us {
+          flex-direction: row;
+          @include e("form") {
+            width: 50%;
+          }
+          @include e("sub-info") {
+            width: 45%;
+            margin: 0 0 0 5%;
+            @include e("title") {
+              font-size: 2.3em;
+            }
+          }
+        }
+      }
     }
+  }
 }

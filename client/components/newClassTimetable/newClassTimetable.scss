@@ -86,7 +86,26 @@
       grid-template-columns: repeat(3, 1fr);
       column-gap: 2em;
       row-gap: 1em;
-      margin-bottom: 1em;
+      position: relative;
+      &:nth-last-child(1) {
+        margin-bottom: 1em;
+      }
+      &:hover > i {
+        opacity: 1;
+        color: $sub-main-color;
+      }
+      i {
+        position: absolute;
+        top: 0.7em;
+        right: 1em;
+        opacity: 0;
+        cursor: pointer;
+        transition: all 200ms ease;
+        &:hover {
+          opacity: 1;
+          color: $main-color;
+        }
+      }
       @include e("item") {
         .new-class-timetable__title-text {
           width: 100%;

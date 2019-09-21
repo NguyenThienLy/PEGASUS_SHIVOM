@@ -228,6 +228,10 @@ $hover-color: lighten($sub-main-color, 27%);
         @include e("social-group") {
           margin: 1em 0 2em 0;
           .media-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 0em;
+            row-gap: 1em;
             @include e("media-icons") {
               margin: auto;
               background-color: $hover-color;
@@ -300,6 +304,11 @@ $hover-color: lighten($sub-main-color, 27%);
             margin-bottom: 1.5em;
           }
           .search-box form {
+            width: 100%;
+            input {
+              width: 65%;
+              font-size: 0.8em;
+            }
           }
         }
 
@@ -843,7 +852,7 @@ $hover-color: lighten($sub-main-color, 27%);
               @include e("title") {
                 padding: 0 4em;
                 a {
-                  font-size: 1.4em;
+                  font-size: 1.5em;
                 }
               }
               @include e("image") {
@@ -994,6 +1003,7 @@ $hover-color: lighten($sub-main-color, 27%);
                   font-size: 1.4em;
                 }
               }
+
               @include e("image") {
                 @include e("dateCreated") {
                   @include e("day") {
@@ -1004,6 +1014,7 @@ $hover-color: lighten($sub-main-color, 27%);
                   }
                 }
               }
+
               @include e("content") {
                 font-size: 0.9em;
               }

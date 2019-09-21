@@ -70,7 +70,6 @@ class AddClass extends Component {
       pages: ["newClassInfo", "addClassTimetable", "reviewAddClass"],
       curPageNumber: 1,
       isShowAddClassTimeModal: false,
-      classTimes: [],
       formData: {
         name: "",
         slug: "",
@@ -82,11 +81,12 @@ class AddClass extends Component {
     };
     this.hideAddClassTimeModal = this.hideAddClassTimeModal.bind(this);
     this.showAddClassTimeModal = this.showAddClassTimeModal.bind(this);
-    this.addClassTime = this.addClassTime.bind(this);
     this.openPage = this.openPage.bind(this);
     this.handleClickPrevious = this.handleClickPrevious.bind(this);
     this.handleClickNext = this.handleClickNext.bind(this);
     this.handleInputForm = this.handleInputForm.bind(this);
+    this.handleAddClassTime = this.handleAddClassTime.bind(this);
+    this.handleRemoveClassTimes = this.handleRemoveClassTimes.bind(this);
     this.submitClass = this.submitClass.bind(this);
   }
 
@@ -149,14 +149,6 @@ class AddClass extends Component {
     if (curPageNumber > this.state.pages.length) {
       this.submitClass();
     }
-  };
-
-  addClassTime = function(body) {
-    let classTimes = this.state.classTimes.slice();
-    classTimes.push(body);
-    this.setState({ classTimes: classTimes });
-    //this.state.formData.classTimes.push(body.name);
-    //this.setState({ classTimes: classTimes, formData: this.state.formData });
   };
 
   static async getInitialProps({ req, query }) {
@@ -251,6 +243,14 @@ class AddClass extends Component {
     this.state.formData[name] = value;
     this.setState({ formData: this.state.formData });
   }
+  handleAddClassTime = function(body) {
+    this.state.formData.classTimes.push(body);
+    this.setState({ formData: this.state.formData });
+  };
+  handleRemoveClassTimes(index) {
+    this.state.formData.classTimes.splice(index, 1);
+    this.setState({ formData: this.state.formData });
+  }
   async submitClass() {
     Swal.showLoading();
     let imageLink;
@@ -279,7 +279,7 @@ class AddClass extends Component {
         <AddClassTimeModal
           show={this.state.isShowAddClassTimeModal}
           hideModal={this.hideAddClassTimeModal}
-          addClassTime={this.addClassTime}
+          handleAddClassTime={this.handleAddClassTime}
         />
 
         <Head>
@@ -326,8 +326,9 @@ class AddClass extends Component {
                   fadeIn"
                 >
                   <NewClassTimetable
-                    classTimes={this.state.classTimes}
+                    classTimes={this.state.formData.classTimes}
                     showAddClassTimeModal={this.showAddClassTimeModal}
+                    handleRemove={this.handleRemoveClassTimes}
                   ></NewClassTimetable>
                 </div>
                 <div

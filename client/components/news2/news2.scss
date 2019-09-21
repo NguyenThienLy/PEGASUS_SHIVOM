@@ -41,6 +41,7 @@
         display: inline-block;
       }
     }
+
     @include e("title") {
       text-align: center;
       font-weight: 400;
@@ -60,11 +61,12 @@
         }
       }
     }
+
     @include e("image") {
       width: 100%;
       margin-bottom: 1.5em;
       position: relative;
-      @include e("dateCreated") {
+      @include e("created-date") {
         position: absolute;
         top: 0;
         left: 3%;
@@ -94,11 +96,13 @@
         height: auto;
       }
     }
+
     @include e("content") {
       font-size: 0.9em;
       line-height: 1.5em;
       color: $font-color;
     }
+
     @include e("more") {
       padding: 0.8em 0 3em;
       display: flex;

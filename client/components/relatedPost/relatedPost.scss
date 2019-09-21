@@ -1,84 +1,71 @@
 @import "../../default.scss";
 
 .related-post {
-  font-size: $font-size;
-  font-family: $font-family-special;
-  width: 20em;
-  // height: 20em;
-  display: flex;
-  flex-direction: column;
-  padding-right: 2em;
-  margin-bottom: 1.873em;
+  width: 100%;
 
-  @include e("img") {
+  @include e("image") {
+    width: 100%;
+    margin-bottom: 1em;
     position: relative;
-    margin-bottom: 1.6em;
-
-    img {
-      width: 100%;
-      height: auto;
-    }
 
     @include e("created-date") {
       position: absolute;
       top: 0;
+      left: 3%;
       text-align: center;
-      margin-left: 1.1em;
-      color: $main-color;
-
-      &:hover {
-        color: darken($main-color, 20%);
-      }
-
-      div {
+      span {
         display: block;
+        font-family: $font-family-special;
         font-weight: 500;
         text-align: center;
         background-color: #fff;
+        color: $main-color;
       }
-
       @include e("day") {
-        width: 4em;
-        font-size: 1.2em;
-        line-height: 4em;
-      }
-
-      @include e("month") {
         font-size: 0.9em;
         line-height: 2em;
-        margin-top: 2px;
+      }
+      @include e("month") {
+        padding: 0 0.5em;
+        font-size: 0.75em;
+        line-height: 2em;
+        margin-top: 0.1em;
         text-transform: capitalize;
+      }
+    }
+    img {
+      width: 100%;
+      height: 15em;
+      object-fit: cover;
+    }
+  }
+
+  @include e("title") {
+    font-family: $font-family-special;
+    text-transform: capitalize;
+    font-size: 1.2em;
+    a {
+      text-decoration: none;
+      color: $color-grey;
+      transition: 200ms ease;
+      &:hover {
+        color: $main-color;
       }
     }
   }
 
   @include e("author") {
+    text-transform: uppercase;
+    margin-top: 0.7em;
+    font-size: 0.75em;
+    color: $font-color;
     a {
       text-decoration: none;
-      color: $sub-main-color;
-
+      color: $main-color;
+      transition: 200ms ease;
       &:hover {
         color: $color-grey;
       }
     }
-
-    text-transform: uppercase;
-    line-height: 2em;
-    font-size: 0.75em;
-    margin-bottm: 0.375em;
-  }
-
-  @include e("title") {
-    a {
-      text-decoration: none;
-      color: $color-grey;
-
-      &:hover {
-        color: $main-color;
-      }
-    }
-
-    text-transform: capitalize;
-    font-size: 1.875em;
   }
 }

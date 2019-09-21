@@ -1,4 +1,5 @@
 @import "../../default.scss";
+
 $hover-color: lighten($sub-main-color, 27%);
 
 .course {
@@ -15,6 +16,7 @@ $hover-color: lighten($sub-main-color, 27%);
     border: none;
     margin: 0px;
   }
+
   @include e("body") {
     @include e("ringing-phone") {
       position: fixed;
@@ -22,6 +24,7 @@ $hover-color: lighten($sub-main-color, 27%);
       bottom: 2em;
       z-index: 2;
     }
+
     @include e("breadcrumb") {
       font-family: $font-family-special;
       background-color: $background-color;
@@ -41,17 +44,19 @@ $hover-color: lighten($sub-main-color, 27%);
         color: $main-color;
       }
     }
+
     @include e("wrapper") {
       display: flex;
       flex-direction: row;
-      width: 85%;
+      width: 80%;
       margin: auto;
       padding: 4em 0;
 
       @include e("main-content") {
         display: flex;
         flex-direction: column;
-        width: 75%;
+        width: 68%;
+
         @include e("image") {
           width: 100%;
           margin-bottom: 1.5em;
@@ -111,7 +116,7 @@ $hover-color: lighten($sub-main-color, 27%);
         @include e("benefits") {
           margin: 1.5em 0em 1.5em 1em;
           @include e("title") {
-            margin-bottom: 2em;
+            margin-bottom: 1em;
             font-size: 1.5em;
             font-family: $font-family-special;
             position: relative;
@@ -130,6 +135,16 @@ $hover-color: lighten($sub-main-color, 27%);
             }
           }
           .course-list-benefits {
+            @include e("content") {
+              grid-template-columns: repeat(1, 1fr);
+              column-gap: 0em;
+              .course-benefit {
+                @include e("content") {
+                  bottom: -38%;
+                  left: 4%;
+                }
+              }
+            }
           }
           // color: rgba(0, 0, 0, 0.6);
           // font-size: 1em;
@@ -238,8 +253,8 @@ $hover-color: lighten($sub-main-color, 27%);
       }
 
       @include e("sub-content") {
-        margin-left: 3%;
-        width: 22%;
+        margin-left: 5%;
+        width: 27%;
         @include e("title") {
           font-family: $font-family-special;
           font-size: 1.2em;
@@ -250,9 +265,24 @@ $hover-color: lighten($sub-main-color, 27%);
           }
         }
 
+        @include e("search") {
+          margin: 3em 0 2em;
+          .search-box form {
+            width: 100%;
+            input {
+              width: 65%;
+              font-size: 0.8em;
+            }
+          }
+        }
+
         @include e("social-group") {
           margin: 1em 0 2em 0;
           .media-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 0em;
+            row-gap: 1em;
             @include e("media-icons") {
               margin: auto;
               background-color: $hover-color;
@@ -307,6 +337,11 @@ $hover-color: lighten($sub-main-color, 27%);
             margin-bottom: 1.5em;
           }
           .search-box form {
+            width: 100%;
+            input {
+              width: 65%;
+              font-size: 0.8em;
+            }
           }
         }
       }
@@ -336,15 +371,17 @@ $hover-color: lighten($sub-main-color, 27%);
           }
         }
       }
+
       @include e("breadcrumb") {
       }
+
       @include e("wrapper") {
         flex-direction: column;
-        width: 80%;
         padding: 2em 0;
 
         @include e("main-content") {
           width: 100%;
+
           @include e("image") {
             @include e("dateCreated") {
               @include e("day") {
@@ -353,7 +390,7 @@ $hover-color: lighten($sub-main-color, 27%);
               }
               @include e("month") {
                 font-size: 0.7em;
-                line-height: 2em;
+                padding: 0 1em;
               }
             }
           }
@@ -371,6 +408,16 @@ $hover-color: lighten($sub-main-color, 27%);
               font-size: 1.2em;
             }
             .course-list-benefits {
+              @include e("content") {
+                grid-template-columns: repeat(1, 1fr);
+                column-gap: 0em;
+                .course-benefit {
+                  @include e("content") {
+                    bottom: -50%;
+                    left: 8%;
+                  }
+                }
+              }
             }
           }
 
@@ -417,6 +464,21 @@ $hover-color: lighten($sub-main-color, 27%);
           margin-left: 0;
           width: 100%;
           border-top: 1px solid $table-border-color;
+          @include e("title") {
+            font-size: 1.3em;
+            margin-bottom: 1.5em;
+          }
+
+          @include e("search") {
+            margin: 3em 0 2em;
+            .search-box form {
+              input {
+                width: 76%;
+                font-size: 0.9em;
+              }
+            }
+          }
+
           @include e("social-group") {
             margin: 3em 0 2em 0;
             .media-buttons {
@@ -429,10 +491,7 @@ $hover-color: lighten($sub-main-color, 27%);
               }
             }
           }
-          @include e("title") {
-            font-size: 1em;
-            margin-bottom: 1.5em;
-          }
+
           @include e("other-courses") {
             grid-template-columns: repeat(1, 1fr);
             column-gap: 0em;
@@ -443,15 +502,16 @@ $hover-color: lighten($sub-main-color, 27%);
               }
             }
           }
+
           @include e("latest-posts") {
             @include e("post") {
               .latestPost {
                 @include e("image") {
-                  width: 5em;
-                  height: 5em;
+                  width: 6em;
+                  height: 6em;
                 }
                 @include e("info") {
-                  width: 65%;
+                  width: 55%;
                   @include e("title") {
                     font-size: 0.9em;
                   }
@@ -462,21 +522,22 @@ $hover-color: lighten($sub-main-color, 27%);
               }
             }
           }
+
           @include e("email") {
             @include e("content") {
               font-size: 0.9em;
             }
             .search-box form {
               input {
-                width: 75%;
+                width: 76%;
                 font-size: 0.9em;
               }
             }
           }
         }
       }
+
       @include e("contact-us") {
-        width: 80%;
         .contact-us {
           flex-direction: column-reverse;
           @include e("form") {
@@ -511,24 +572,26 @@ $hover-color: lighten($sub-main-color, 27%);
           }
         }
       }
+
       @include e("breadcrumb") {
       }
+
       @include e("wrapper") {
         flex-direction: column;
-        width: 80%;
-        padding: 4em 0;
+        padding: 2em 0;
 
         @include e("main-content") {
           width: 100%;
+
           @include e("image") {
             @include e("dateCreated") {
               @include e("day") {
-                font-size: 1.2em;
+                font-size: 1.1em;
                 line-height: 3em;
               }
               @include e("month") {
-                font-size: 0.9em;
-                line-height: 2em;
+                font-size: 0.8em;
+                padding: 0 1em;
               }
             }
           }
@@ -543,19 +606,29 @@ $hover-color: lighten($sub-main-color, 27%);
 
           @include e("benefits") {
             @include e("title") {
-              font-size: 1.5em;
+              font-size: 1.2em;
             }
             .course-list-benefits {
+              @include e("content") {
+                grid-template-columns: repeat(1, 1fr);
+                column-gap: 0em;
+                .course-benefit {
+                  @include e("content") {
+                    bottom: -40%;
+                    left: 5%;
+                  }
+                }
+              }
             }
           }
 
           @include e("classes") {
             @include e("title") {
-              font-size: 1.5em;
+              font-size: 1.2em;
             }
             @include e("class") {
               @include e("class-name") {
-                font-size: 1.3em;
+                font-size: 1em;
               }
 
               @include e("class-trainer") {
@@ -568,18 +641,18 @@ $hover-color: lighten($sub-main-color, 27%);
                     width: 100%;
                     padding: 1em 0 0;
                     @include e("name") {
-                      font-size: 1.3em;
+                      font-size: 1.1em;
                     }
                     @include e("description") {
-                      font-size: 0.9em;
+                      font-size: 0.85em;
                     }
                   }
                 }
               }
 
               @include e("class-time") {
-                grid-template-columns: repeat(2, 1fr);
-                column-gap: 2em;
+                grid-template-columns: repeat(1, 1fr);
+                column-gap: 0em;
                 row-gap: 2em;
                 @include e("time-item") {
                 }
@@ -592,6 +665,21 @@ $hover-color: lighten($sub-main-color, 27%);
           margin-left: 0;
           width: 100%;
           border-top: 1px solid $table-border-color;
+          @include e("title") {
+            font-size: 1.3em;
+            margin-bottom: 1em;
+          }
+
+          @include e("search") {
+            margin: 3em 0 2em;
+            .search-box form {
+              input {
+                width: 85%;
+                font-size: 0.9em;
+              }
+            }
+          }
+
           @include e("social-group") {
             margin: 3em 0 2em 0;
             .media-buttons {
@@ -604,10 +692,7 @@ $hover-color: lighten($sub-main-color, 27%);
               }
             }
           }
-          @include e("title") {
-            font-size: 1.3em;
-            margin-bottom: 1.5em;
-          }
+
           @include e("other-courses") {
             grid-template-columns: repeat(2, 1fr);
             column-gap: 2em;
@@ -618,6 +703,7 @@ $hover-color: lighten($sub-main-color, 27%);
               }
             }
           }
+
           @include e("latest-posts") {
             @include e("post") {
               .latestPost {
@@ -637,6 +723,7 @@ $hover-color: lighten($sub-main-color, 27%);
               }
             }
           }
+
           @include e("email") {
             @include e("content") {
               font-size: 0.9em;
@@ -650,8 +737,8 @@ $hover-color: lighten($sub-main-color, 27%);
           }
         }
       }
+
       @include e("contact-us") {
-        width: 80%;
         .contact-us {
           flex-direction: column-reverse;
           @include e("form") {
@@ -677,133 +764,85 @@ $hover-color: lighten($sub-main-color, 27%);
 
   .course {
     @include e("body") {
+      @include e("ringing-phone") {
+        right: 1.5em;
+        bottom: 1.5em;
+        .ringing-phone {
+          @include e("link") {
+            padding: 0.9em;
+          }
+        }
+      }
+
       @include e("breadcrumb") {
       }
+
       @include e("wrapper") {
         flex-direction: column;
-        width: 80%;
-        margin: auto;
-        padding: 4em 0;
+        padding: 2em 0;
 
         @include e("main-content") {
           width: 100%;
+
           @include e("image") {
-            width: 100%;
-            margin-bottom: 1.5em;
-            position: relative;
             @include e("dateCreated") {
-              position: absolute;
-              top: 0;
-              left: 3%;
-              text-align: center;
-              span {
-                color: $main-color;
-                display: block;
-                font-family: $font-family-special;
-                font-weight: 500;
-                text-align: center;
-                background-color: #fff;
-              }
               @include e("day") {
                 font-size: 1.2em;
                 line-height: 3em;
               }
               @include e("month") {
-                padding: 0 1em;
                 font-size: 0.9em;
-                line-height: 2em;
-                margin-top: 0.1em;
-                text-transform: capitalize;
+                padding: 0 1em;
               }
-            }
-            img {
-              width: 100%;
-              height: auto;
             }
           }
 
           @include e("title") {
-            font-family: $font-family-special;
             font-size: 1.8em;
           }
 
           @include e("content") {
-            margin: 1.5em 0 1.8em;
-            color: $font-color;
             font-size: 0.85em;
-            line-height: 1.7em;
           }
 
           @include e("benefits") {
-            margin: 1.5em 0em 1.5em 1em;
             @include e("title") {
-              margin-bottom: 2em;
-              font-size: 1.5em;
-              font-family: $font-family-special;
-              position: relative;
-              display: inline-block;
-              padding: 0 0.5em;
-              z-index: 0;
-              color: $main-color;
-              @include m("hover") {
-                position: absolute;
-                left: 0;
-                bottom: -0.5em;
-                height: 1em;
-                width: 100%;
-                background-color: $hover-color;
-                z-index: -1;
-              }
+              font-size: 1.2em;
             }
             .course-list-benefits {
+              @include e("content") {
+                grid-template-columns: repeat(1, 1fr);
+                column-gap: 0em;
+                .course-benefit {
+                  @include e("content") {
+                    bottom: -38%;
+                    left: 4%;
+                  }
+                }
+              }
             }
           }
 
           @include e("classes") {
-            margin: 1.5em 0em 1.5em 1em;
             @include e("title") {
-              margin-bottom: 1em;
-              font-size: 1.5em;
-              font-family: $font-family-special;
-              position: relative;
-              display: inline-block;
-              padding: 0 0.5em;
-              z-index: 0;
-              color: $main-color;
-              @include m("hover") {
-                position: absolute;
-                left: 0;
-                bottom: -0.5em;
-                height: 1em;
-                width: 100%;
-                background-color: $hover-color;
-                z-index: -1;
-              }
+              font-size: 1.2em;
             }
             @include e("class") {
-              color: $color-grey;
-              padding: 1em 0;
               @include e("class-name") {
-                margin-bottom: 1em;
-                font-size: 1.3em;
-                font-family: $font-family-special;
-                &::first-letter {
-                  text-transform: capitalize;
-                }
+                font-size: 1em;
               }
 
               @include e("class-trainer") {
-                margin-bottom: 2em;
                 .class-trainer {
-                  flex-direction: row;
+                  flex-direction: column;
                   @include e("img") {
-                    width: 40%;
+                    width: 100%;
                   }
                   @include e("info") {
-                    width: 57%;
-                    padding: 0 0 0 3%;
+                    width: 100%;
+                    padding: 1em 0 0;
                     @include e("name") {
-                      font-size: 1.3em;
+                      font-size: 1.1em;
                     }
                     @include e("description") {
                       font-size: 0.85em;
@@ -813,8 +852,7 @@ $hover-color: lighten($sub-main-color, 27%);
               }
 
               @include e("class-time") {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(2, 1fr);
                 column-gap: 2em;
                 row-gap: 2em;
                 @include e("time-item") {
@@ -828,6 +866,21 @@ $hover-color: lighten($sub-main-color, 27%);
           margin-left: 0;
           width: 100%;
           border-top: 1px solid $table-border-color;
+          @include e("title") {
+            font-size: 1.3em;
+            margin-bottom: 1em;
+          }
+
+          @include e("search") {
+            margin: 3em 0 2em;
+            .search-box form {
+              input {
+                width: 85%;
+                font-size: 0.9em;
+              }
+            }
+          }
+
           @include e("social-group") {
             margin: 3em 0 2em 0;
             .media-buttons {
@@ -837,22 +890,10 @@ $hover-color: lighten($sub-main-color, 27%);
                 &:nth-last-child(1) {
                   margin-right: 0;
                 }
-                background-color: $hover-color;
-                @include m("hover") {
-                  font-size: 1.2em;
-                }
               }
             }
           }
-          @include e("title") {
-            font-family: $font-family-special;
-            font-size: 1.3em;
-            font-color: $color-grey;
-            margin-bottom: 1.5em;
-            &::first-letter {
-              text-transform: capitalize;
-            }
-          }
+
           @include e("other-courses") {
             grid-template-columns: repeat(2, 1fr);
             column-gap: 2em;
@@ -863,17 +904,16 @@ $hover-color: lighten($sub-main-color, 27%);
               }
             }
           }
+
           @include e("latest-posts") {
-            margin-bottom: 2em;
             @include e("post") {
-              margin-bottom: 1em;
               .latestPost {
                 @include e("image") {
                   width: 6em;
                   height: 6em;
                 }
                 @include e("info") {
-                  width: 78%;
+                  width: 76%;
                   @include e("title") {
                     font-size: 0.9em;
                   }
@@ -884,15 +924,12 @@ $hover-color: lighten($sub-main-color, 27%);
               }
             }
           }
+
           @include e("email") {
-            margin: 3em 0 2em;
             @include e("content") {
               font-size: 0.9em;
-              color: $font-color;
-              margin-bottom: 1.5em;
             }
             .search-box form {
-              width: 100%;
               input {
                 width: 85%;
                 font-size: 0.9em;
@@ -901,8 +938,8 @@ $hover-color: lighten($sub-main-color, 27%);
           }
         }
       }
+
       @include e("contact-us") {
-        width: 80%;
         .contact-us {
           flex-direction: column-reverse;
           @include e("form") {
@@ -928,128 +965,85 @@ $hover-color: lighten($sub-main-color, 27%);
 
   .course {
     @include e("body") {
+      @include e("ringing-phone") {
+        right: 2em;
+        bottom: 2em;
+        .ringing-phone {
+          @include e("link") {
+            padding: 1em;
+          }
+        }
+      }
+
       @include e("breadcrumb") {
       }
+
       @include e("wrapper") {
-        display: flex;
         flex-direction: row;
-        width: 85%;
-        margin: auto;
         padding: 4em 0;
 
         @include e("main-content") {
-          width: 75%;
+          width: 68%;
+
           @include e("image") {
-            width: 100%;
-            margin-bottom: 1.5em;
-            position: relative;
             @include e("dateCreated") {
-              position: absolute;
-              top: 0;
-              left: 3%;
-              text-align: center;
-              span {
-                color: $main-color;
-                display: block;
-                font-family: $font-family-special;
-                font-weight: 500;
-                text-align: center;
-                background-color: #fff;
-              }
               @include e("day") {
                 font-size: 1.2em;
                 line-height: 3em;
               }
               @include e("month") {
-                padding: 0 1em;
                 font-size: 0.9em;
-                line-height: 2em;
-                margin-top: 0.1em;
-                text-transform: capitalize;
+                padding: 0 1em;
               }
-            }
-            img {
-              width: 100%;
-              height: auto;
             }
           }
 
           @include e("title") {
-            font-family: $font-family-special;
             font-size: 1.8em;
           }
 
           @include e("content") {
-            margin: 1.5em 0 1.8em;
-            color: $font-color;
             font-size: 0.85em;
-            line-height: 1.7em;
           }
 
           @include e("benefits") {
-            margin: 1.5em 0em 1.5em 1em;
             @include e("title") {
-              margin-bottom: 2em;
               font-size: 1.5em;
-              font-family: $font-family-special;
-              position: relative;
-              display: inline-block;
-              padding: 0 0.5em;
-              z-index: 0;
-              color: $main-color;
-              @include m("hover") {
-                position: absolute;
-                left: 0;
-                bottom: -0.5em;
-                height: 1em;
-                width: 100%;
-                background-color: $hover-color;
-                z-index: -1;
-              }
             }
             .course-list-benefits {
+              @include e("content") {
+                grid-template-columns: repeat(1, 1fr);
+                column-gap: 0em;
+                .course-benefit {
+                  @include e("content") {
+                    bottom: -38%;
+                    left: 6%;
+                  }
+                }
+              }
             }
           }
 
           @include e("classes") {
-            margin: 1.5em 0em 1.5em 1em;
             @include e("title") {
-              margin-bottom: 1em;
               font-size: 1.5em;
-              font-family: $font-family-special;
-              position: relative;
-              display: inline-block;
-              padding: 0 0.5em;
-              z-index: 0;
-              color: $main-color;
-              @include m("hover") {
-                position: absolute;
-                left: 0;
-                bottom: -0.5em;
-                height: 1em;
-                width: 100%;
-                background-color: $hover-color;
-                z-index: -1;
-              }
             }
             @include e("class") {
-              color: $color-grey;
-              padding: 1em 0;
               @include e("class-name") {
-                margin-bottom: 1em;
                 font-size: 1.3em;
-                font-family: $font-family-special;
-                &::first-letter {
-                  text-transform: capitalize;
-                }
               }
 
               @include e("class-trainer") {
-                margin-bottom: 2em;
                 .class-trainer {
+                  flex-direction: row;
+                  @include e("img") {
+                    width: 40%;
+                  }
                   @include e("info") {
+                    width: 57%;
+                    padding: 0 0 0 3%;
                     @include e("name") {
-                      font-size: 1.3em;
+                      font-size: 1.1em;
                     }
                     @include e("description") {
                       font-size: 0.85em;
@@ -1059,7 +1053,6 @@ $hover-color: lighten($sub-main-color, 27%);
               }
 
               @include e("class-time") {
-                display: grid;
                 grid-template-columns: repeat(3, 1fr);
                 column-gap: 2em;
                 row-gap: 2em;
@@ -1071,9 +1064,24 @@ $hover-color: lighten($sub-main-color, 27%);
         }
 
         @include e("sub-content") {
-          margin-left: 3%;
-          width: 22%;
+          margin-left: 5%;
+          width: 27%;
           border-top: none;
+          @include e("title") {
+            font-size: 1.2em;
+            margin-bottom: 1em;
+          }
+
+          @include e("search") {
+            margin: 3em 0 2em;
+            .search-box form {
+              input {
+                width: 65%;
+                font-size: 0.8em;
+              }
+            }
+          }
+
           @include e("social-group") {
             margin: 1em 0 2em 0;
             .media-buttons {
@@ -1083,25 +1091,13 @@ $hover-color: lighten($sub-main-color, 27%);
               row-gap: 1em;
               @include e("media-icons") {
                 margin: auto;
-                background-color: $hover-color;
                 &:nth-last-child(1) {
                   margin-right: auto;
-                }
-                @include m("hover") {
-                  font-size: 1.2em;
                 }
               }
             }
           }
-          @include e("title") {
-            font-family: $font-family-special;
-            font-size: 1.2em;
-            font-color: $color-grey;
-            margin-bottom: 1em;
-            &::first-letter {
-              text-transform: capitalize;
-            }
-          }
+
           @include e("other-courses") {
             grid-template-columns: repeat(1, 1fr);
             column-gap: 0em;
@@ -1112,17 +1108,16 @@ $hover-color: lighten($sub-main-color, 27%);
               }
             }
           }
+
           @include e("latest-posts") {
-            margin-bottom: 2em;
             @include e("post") {
-              margin-bottom: 1em;
               .latestPost {
                 @include e("image") {
                   width: 5em;
                   height: 5em;
                 }
                 @include e("info") {
-                  width: 43%;
+                  width: 45%;
                   @include e("title") {
                     font-size: 0.8em;
                   }
@@ -1133,25 +1128,22 @@ $hover-color: lighten($sub-main-color, 27%);
               }
             }
           }
+
           @include e("email") {
-            margin: 3em 0 2em;
             @include e("content") {
               font-size: 0.85em;
-              color: $font-color;
-              margin-bottom: 1.5em;
             }
             .search-box form {
-              width: 100%;
               input {
-                width: 60%;
+                width: 65%;
                 font-size: 0.8em;
               }
             }
           }
         }
       }
+
       @include e("contact-us") {
-        width: 85%;
         .contact-us {
           flex-direction: row;
           @include e("form") {
@@ -1177,128 +1169,85 @@ $hover-color: lighten($sub-main-color, 27%);
 
   .course {
     @include e("body") {
+      @include e("ringing-phone") {
+        right: 2em;
+        bottom: 2em;
+        .ringing-phone {
+          @include e("link") {
+            padding: 1em;
+          }
+        }
+      }
+
       @include e("breadcrumb") {
       }
+
       @include e("wrapper") {
-        display: flex;
         flex-direction: row;
-        width: 85%;
-        margin: auto;
         padding: 4em 0;
 
         @include e("main-content") {
-          width: 75%;
+          width: 68%;
+
           @include e("image") {
-            width: 100%;
-            margin-bottom: 1.5em;
-            position: relative;
             @include e("dateCreated") {
-              position: absolute;
-              top: 0;
-              left: 3%;
-              text-align: center;
-              span {
-                color: $main-color;
-                display: block;
-                font-family: $font-family-special;
-                font-weight: 500;
-                text-align: center;
-                background-color: #fff;
-              }
               @include e("day") {
                 font-size: 1.2em;
-                line-height: 3em;
+                line-height: 2em;
               }
               @include e("month") {
-                padding: 0 1em;
                 font-size: 0.9em;
-                line-height: 2em;
-                margin-top: 0.1em;
-                text-transform: capitalize;
+                padding: 0 0.5em;
               }
-            }
-            img {
-              width: 100%;
-              height: auto;
             }
           }
 
           @include e("title") {
-            font-family: $font-family-special;
             font-size: 1.8em;
           }
 
           @include e("content") {
-            margin: 1.5em 0 1.8em;
-            color: $font-color;
             font-size: 0.85em;
-            line-height: 1.7em;
           }
 
           @include e("benefits") {
-            margin: 1.5em 0em 1.5em 1em;
             @include e("title") {
-              margin-bottom: 2em;
               font-size: 1.5em;
-              font-family: $font-family-special;
-              position: relative;
-              display: inline-block;
-              padding: 0 0.5em;
-              z-index: 0;
-              color: $main-color;
-              @include m("hover") {
-                position: absolute;
-                left: 0;
-                bottom: -0.5em;
-                height: 1em;
-                width: 100%;
-                background-color: $hover-color;
-                z-index: -1;
-              }
             }
             .course-list-benefits {
+              @include e("content") {
+                grid-template-columns: repeat(1, 1fr);
+                column-gap: 0em;
+                .course-benefit {
+                  @include e("content") {
+                    bottom: -38%;
+                    left: 5%;
+                  }
+                }
+              }
             }
           }
 
           @include e("classes") {
-            margin: 1.5em 0em 1.5em 1em;
             @include e("title") {
-              margin-bottom: 1em;
               font-size: 1.5em;
-              font-family: $font-family-special;
-              position: relative;
-              display: inline-block;
-              padding: 0 0.5em;
-              z-index: 0;
-              color: $main-color;
-              @include m("hover") {
-                position: absolute;
-                left: 0;
-                bottom: -0.5em;
-                height: 1em;
-                width: 100%;
-                background-color: $hover-color;
-                z-index: -1;
-              }
             }
             @include e("class") {
-              color: $color-grey;
-              padding: 1em 0;
               @include e("class-name") {
-                margin-bottom: 1em;
                 font-size: 1.3em;
-                font-family: $font-family-special;
-                &::first-letter {
-                  text-transform: capitalize;
-                }
               }
 
               @include e("class-trainer") {
-                margin-bottom: 2em;
                 .class-trainer {
+                  flex-direction: row;
+                  @include e("img") {
+                    width: 40%;
+                  }
                   @include e("info") {
+                    width: 57%;
+                    padding: 0 0 0 3%;
                     @include e("name") {
-                      font-size: 1.3em;
+                      font-size: 1.1em;
                     }
                     @include e("description") {
                       font-size: 0.85em;
@@ -1308,7 +1257,6 @@ $hover-color: lighten($sub-main-color, 27%);
               }
 
               @include e("class-time") {
-                display: grid;
                 grid-template-columns: repeat(3, 1fr);
                 column-gap: 2em;
                 row-gap: 2em;
@@ -1320,8 +1268,24 @@ $hover-color: lighten($sub-main-color, 27%);
         }
 
         @include e("sub-content") {
-          margin-left: 3%;
-          width: 22%;
+          margin-left: 5%;
+          width: 27%;
+          border-top: none;
+          @include e("title") {
+            font-size: 1.2em;
+            margin-bottom: 1em;
+          }
+
+          @include e("search") {
+            margin: 3em 0 2em;
+            .search-box form {
+              input {
+                width: 68%;
+                font-size: 0.8em;
+              }
+            }
+          }
+
           @include e("social-group") {
             margin: 1em 0 2em 0;
             .media-buttons {
@@ -1331,25 +1295,13 @@ $hover-color: lighten($sub-main-color, 27%);
               row-gap: 1em;
               @include e("media-icons") {
                 margin: auto;
-                background-color: $hover-color;
                 &:nth-last-child(1) {
                   margin-right: auto;
-                }
-                @include m("hover") {
-                  font-size: 1.2em;
                 }
               }
             }
           }
-          @include e("title") {
-            font-family: $font-family-special;
-            font-size: 1.2em;
-            font-color: $color-grey;
-            margin-bottom: 1em;
-            &::first-letter {
-              text-transform: capitalize;
-            }
-          }
+
           @include e("other-courses") {
             grid-template-columns: repeat(1, 1fr);
             column-gap: 0em;
@@ -1360,40 +1312,46 @@ $hover-color: lighten($sub-main-color, 27%);
               }
             }
           }
+
           @include e("latest-posts") {
-            margin-bottom: 2em;
             @include e("post") {
-              margin-bottom: 1em;
               .latestPost {
+                @include e("image") {
+                  width: 5em;
+                  height: 5em;
+                }
                 @include e("info") {
-                  width: 45%;
+                  width: 52%;
+                  @include e("title") {
+                    font-size: 0.85em;
+                  }
+                  @include e("date") {
+                    font-size: 0.8em;
+                  }
                 }
               }
             }
           }
+
           @include e("email") {
-            margin: 3em 0 2em;
             @include e("content") {
               font-size: 0.85em;
-              color: $font-color;
-              margin-bottom: 1.5em;
             }
             .search-box form {
-              width: 100%;
               input {
-                width: 65%;
+                width: 68%;
+                font-size: 0.8em;
               }
             }
           }
         }
       }
+
       @include e("contact-us") {
-        width: 85%;
         .contact-us {
           flex-direction: row;
           @include e("form") {
             width: 50%;
-            margin: 0;
           }
           @include e("sub-info") {
             width: 45%;
