@@ -377,7 +377,7 @@ export class Course extends React.Component {
                           key={index}
                         >
                           <div className="course__body__wrapper__main-content__classes__class__class-name">
-                            {classData.name}
+                            {classData.class.name}
                             {/* <RegisterBtn /> */}
                           </div>
                           <div className="course__body__wrapper__main-content__classes__class__class-trainer">
