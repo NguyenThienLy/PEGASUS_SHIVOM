@@ -223,7 +223,7 @@ export class Course extends React.Component {
       .then(res => {
         this.setState({ latestNews: res.results.objects.rows });
       })
-      .catch(err => {});
+      .catch(err => { });
   }
   fetchData() {
     if (this.props.courses.items.length === 0) {
@@ -317,7 +317,7 @@ export class Course extends React.Component {
                     <div className="course__body__wrapper__main-content__benefits__title--hover" />
                   </div>
                   <CourseListBenefits
-                    courseListBenefits={this.state.courseListBenefits} //{this.props.course.benefits}
+                    courseListBenefits={this.props.course.benefits} //{this.props.course.benefits}
                   ></CourseListBenefits>
                   {/* {
 									this.props.course.benefits.map((benefit, index) => {
@@ -339,103 +339,103 @@ export class Course extends React.Component {
                     <div className="course__body__wrapper__main-content__classes__title--hover" />
                   </div>
                   {this.props.timeTableOfCourse &&
-                  this.props.timeTableOfCourse.length > 0
+                    this.props.timeTableOfCourse.length > 0
                     ? this.props.timeTableOfCourse.map((classData, index) => {
-                        let sorter = {
-                          monday: {
-                            value: 1,
-                            text: "Thứ hai"
-                          },
-                          tuesday: {
-                            value: 2,
-                            text: "Thứ ba"
-                          },
-                          wednesday: {
-                            value: 3,
-                            text: "Thứ tư"
-                          },
-                          thursday: {
-                            value: 4,
-                            text: "Thứ năm"
-                          },
-                          friday: {
-                            value: 5,
-                            text: "Thứ sáu"
-                          },
-                          saturday: {
-                            value: 6,
-                            text: "Thứ bảy"
-                          },
-                          sunday: {
-                            value: 7,
-                            text: "Chủ nhật"
-                          }
-                        };
-                        return (
-                          <div
-                            className="course__body__wrapper__main-content__classes__class"
-                            key={index}
-                          >
-                            <div className="course__body__wrapper__main-content__classes__class__class-name">
-                              {classData.name}
-                              {/* <RegisterBtn /> */}
-                            </div>
-                            <div className="course__body__wrapper__main-content__classes__class__class-trainer">
-                              {classData.class.teacher ? (
-                                <TrainerInfo
-                                  trainerInfo={classData.class.teacher}
-                                />
-                              ) : null}
-                            </div>
-                            <div className="course__body__wrapper__main-content__classes__class__class-time">
-                              {classData.items
-                                .sort(function(a, b) {
-                                  return (
-                                    sorter[a.dayOfWeek].value -
-                                    sorter[b.dayOfWeek].value
-                                  );
-                                })
-                                .map((timeTableItem, index) => {
-                                  return (
-                                    <div
-                                      key={index}
-                                      className="course__body__wrapper__main-content__classes__class__class-time__time-item"
-                                    >
-                                      <ClassTimeItem
-                                        weekday={
-                                          sorter[timeTableItem.dayOfWeek].text
-                                        }
-                                        timeStart={timeTableItem.startTime}
-                                        timeEnd={timeTableItem.endTime}
-                                      ></ClassTimeItem>
-                                    </div>
-
-                                    // <div
-                                    //   key={index}
-                                    //   className="course__body__wrapper__main-content__classes__yogaclass"
-                                    // >
-                                    //   <h4>
-                                    //     {sorter[timeTableItem.dayOfWeek].text}
-                                    //   </h4>
-                                    //   <h4>
-                                    //     {timeTableItem.startTime.hour}:
-                                    //     {timeTableItem.startTime.minute === 0
-                                    //       ? "00"
-                                    //       : timeTableItem.startTime.minute}{" "}
-                                    //     - {timeTableItem.endTime.hour}:
-                                    //     {timeTableItem.endTime.minute === 0
-                                    //       ? "00"
-                                    //       : timeTableItem.endTime.minute}
-                                    //   </h4>
-                                    //   {/*
-                                    // 							<p>{yogaclass.teacher}</p> */}
-                                    // </div>
-                                  );
-                                })}
-                            </div>
+                      let sorter = {
+                        monday: {
+                          value: 1,
+                          text: "Thứ hai"
+                        },
+                        tuesday: {
+                          value: 2,
+                          text: "Thứ ba"
+                        },
+                        wednesday: {
+                          value: 3,
+                          text: "Thứ tư"
+                        },
+                        thursday: {
+                          value: 4,
+                          text: "Thứ năm"
+                        },
+                        friday: {
+                          value: 5,
+                          text: "Thứ sáu"
+                        },
+                        saturday: {
+                          value: 6,
+                          text: "Thứ bảy"
+                        },
+                        sunday: {
+                          value: 7,
+                          text: "Chủ nhật"
+                        }
+                      };
+                      return (
+                        <div
+                          className="course__body__wrapper__main-content__classes__class"
+                          key={index}
+                        >
+                          <div className="course__body__wrapper__main-content__classes__class__class-name">
+                            {classData.name}
+                            {/* <RegisterBtn /> */}
                           </div>
-                        );
-                      })
+                          <div className="course__body__wrapper__main-content__classes__class__class-trainer">
+                            {classData.class.teacher ? (
+                              <TrainerInfo
+                                trainerInfo={classData.class.teacher}
+                              />
+                            ) : null}
+                          </div>
+                          <div className="course__body__wrapper__main-content__classes__class__class-time">
+                            {classData.items
+                              .sort(function (a, b) {
+                                return (
+                                  sorter[a.dayOfWeek].value -
+                                  sorter[b.dayOfWeek].value
+                                );
+                              })
+                              .map((timeTableItem, index) => {
+                                return (
+                                  <div
+                                    key={index}
+                                    className="course__body__wrapper__main-content__classes__class__class-time__time-item"
+                                  >
+                                    <ClassTimeItem
+                                      weekday={
+                                        sorter[timeTableItem.dayOfWeek].text
+                                      }
+                                      timeStart={timeTableItem.startTime}
+                                      timeEnd={timeTableItem.endTime}
+                                    ></ClassTimeItem>
+                                  </div>
+
+                                  // <div
+                                  //   key={index}
+                                  //   className="course__body__wrapper__main-content__classes__yogaclass"
+                                  // >
+                                  //   <h4>
+                                  //     {sorter[timeTableItem.dayOfWeek].text}
+                                  //   </h4>
+                                  //   <h4>
+                                  //     {timeTableItem.startTime.hour}:
+                                  //     {timeTableItem.startTime.minute === 0
+                                  //       ? "00"
+                                  //       : timeTableItem.startTime.minute}{" "}
+                                  //     - {timeTableItem.endTime.hour}:
+                                  //     {timeTableItem.endTime.minute === 0
+                                  //       ? "00"
+                                  //       : timeTableItem.endTime.minute}
+                                  //   </h4>
+                                  //   {/*
+                                  // 							<p>{yogaclass.teacher}</p> */}
+                                  // </div>
+                                );
+                              })}
+                          </div>
+                        </div>
+                      );
+                    })
                     : null}
                 </div>
               </div>
