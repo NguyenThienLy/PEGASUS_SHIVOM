@@ -1,6 +1,5 @@
 @import "../../default.scss";
 
-$font-size-table-content: 15px;
 $hover-color: darken($sub-main-color, 10%);
 $background-table-header-color: lighten($sub-main-color, 25%);
 
@@ -18,7 +17,6 @@ $background-table-header-color: lighten($sub-main-color, 25%);
   @include e("tabs") {
     margin-bottom: 1.5em;
     padding: 2em 0em;
-    font-size: $font-size;
     display: flex;
     ul {
       width: 100%;
@@ -28,11 +26,7 @@ $background-table-header-color: lighten($sub-main-color, 25%);
       display: flex;
       justify-content: center;
       li {
-        margin-right: 2em;
-        font-size: 0.9em;
-        &:nth-last-child(1) {
-          margin-right: 0em;
-        }
+        font-size: 0.75em;
       }
     }
     @include e("active") {
@@ -91,7 +85,7 @@ $background-table-header-color: lighten($sub-main-color, 25%);
       text-align: center;
     }
     table {
-      font-size: $font-size-table-content;
+      font-size: 0.85em;
       width: 100%;
       letter-spacing: normal;
       line-height: normal;
@@ -109,6 +103,7 @@ $background-table-header-color: lighten($sub-main-color, 25%);
       tbody {
         td {
           vertical-align: top;
+          padding: 0;
           &:nth-child(1) {
             vertical-align: middle;
           }
@@ -121,13 +116,22 @@ $background-table-header-color: lighten($sub-main-color, 25%);
             padding: 1em 1em;
             position: relative;
             @include e("class-name") {
-              color: $color-grey;
+              color: $main-color;
               text-decoration: none;
               font-weight: 500;
-              margin-bottom: 1em;
+            }
+            @include e("class-time") {
+              color: $color-grey;
+              font-size: 0.9em;
+              margin-top: 0.5em;
             }
             @include e("class-teacher") {
               color: $font-color;
+              font-size: 0.9em;
+              margin-top: 1em;
+            }
+            &:not(:nth-child(1)) {
+              border-top: 1px solid $table-border-color;
             }
           }
           .time-table__table-events__my-tooltip {
