@@ -239,12 +239,6 @@
         margin: 0 auto;
         margin-top: -4.25em;
         .trainer {
-          display: inline-block;
-          width: 32%;
-          margin-right: 2%;
-          &:nth-last-child(1) {
-            margin-right: 0% !important;
-          }
         }
       }
     }
@@ -286,7 +280,7 @@
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 599px) {
   html {
-    font-size: 18px !important;
+    font-size: $font-size-375 !important;
   }
 
   .home__body__slider {
@@ -413,11 +407,10 @@
       .time-table__tabs {
         ul {
           display: grid;
-          grid-template-columns: 48% 48%;
-          column-gap: 1%;
-          row-gap: 1em;
+          grid-template-columns: repeat(1, 1fr);
+          column-gap: 0em;
+          row-gap: 1.5em;
           li {
-            margin-right: 0em;
           }
         }
       }
@@ -473,10 +466,18 @@
     }
     .home__body__trainers__list {
       margin-top: 3em;
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      column-gap: 0em;
+      row-gap: 3em;
       .trainer {
-        display: block;
-        width: 100%;
-        margin: 0 0 3em 0;
+        @include e("image") {
+          a {
+            img {
+              height: auto;
+            }
+          }
+        }
         .trainer__info {
           text-align: left;
           margin-top: 4%;
@@ -513,7 +514,7 @@
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
   html {
-    font-size: 18px !important;
+    font-size: $font-size-600 !important;
   }
 
   .home__body__slider {
@@ -633,11 +634,10 @@
       .time-table__tabs {
         ul {
           display: grid;
-          grid-template-columns: 33% 33% 33%;
-          column-gap: 0.33%;
-          row-gap: 1em;
+          grid-template-columns: repeat(2, 1fr);
+          column-gap: 2em;
+          row-gap: 1.5em;
           li {
-            margin-right: 0em;
           }
         }
       }
@@ -693,10 +693,18 @@
     }
     .home__body__trainers__list {
       margin-top: 3em;
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      column-gap: 0em;
+      row-gap: 3em;
       .trainer {
-        display: block;
-        width: 100%;
-        margin: 0 0 3em 0;
+        @include e("image") {
+          a {
+            img {
+              height: auto;
+            }
+          }
+        }
         .trainer__info {
           text-align: left;
           margin-top: 4%;
@@ -732,7 +740,7 @@
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
   html {
-    font-size: 19px !important;
+    font-size: $font-size-768 !important;
   }
 
   .home__body__slider {
@@ -851,11 +859,10 @@
       .time-table__tabs {
         ul {
           display: grid;
-          grid-template-columns: 33% 33% 33%;
-          column-gap: 0.33%;
-          row-gap: 1em;
+          grid-template-columns: repeat(3, 1fr);
+          column-gap: 2em;
+          row-gap: 1.5em;
           li {
-            margin-right: 0em;
           }
         }
       }
@@ -911,10 +918,18 @@
     }
     .home__body__trainers__list {
       margin-top: 3em;
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      column-gap: 0em;
+      row-gap: 3em;
       .trainer {
-        display: block;
-        width: 100%;
-        margin: 0 0 3em 0;
+        @include e("image") {
+          a {
+            img {
+              height: auto;
+            }
+          }
+        }
         .trainer__info {
           text-align: left;
           margin-top: 4%;
@@ -950,7 +965,7 @@
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
   html {
-    font-size: 19px !important;
+    font-size: $font-size-992 !important;
   }
 
   .home__body__slider {
@@ -1069,11 +1084,10 @@
       .time-table__tabs {
         ul {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: repeat(4, 1fr);
           column-gap: 2em;
-          row-gap: 1em;
+          row-gap: 1.5em;
           li {
-            margin-right: 0em;
           }
         }
       }
@@ -1129,16 +1143,21 @@
     }
     .home__body__trainers__list {
       margin-top: -4.25em;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 1.5em;
+      row-gap: 1.5em;
       .trainer {
-        display: inline-block;
-        width: 32%;
-        margin: 0 2% 0 0;
+        @include e("image") {
+          a {
+            img {
+              height: 16em;
+            }
+          }
+        }
         .trainer__info {
           text-align: center;
           margin-top: 5%;
-        }
-        &:nth-last-child(1) {
-          margin-right: 0% !important;
         }
       }
     }
@@ -1171,7 +1190,7 @@
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
   html {
-    font-size: 20px !important;
+    font-size: $font-size-1200 !important;
   }
 
   .home__body__slider {
@@ -1288,12 +1307,11 @@
     .home__body__timeTable__content {
       .time-table__tabs {
         ul {
-          display: flex;
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          column-gap: 2em;
+          row-gap: 1.5em;
           li {
-            margin-right: 1.5em;
-            &:nth-last-child(1) {
-              margin-right: 0em;
-            }
           }
         }
       }
@@ -1349,16 +1367,21 @@
     }
     .home__body__trainers__list {
       margin-top: -4.25em;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 1.5em;
+      row-gap: 1.5em;
       .trainer {
-        display: inline-block;
-        width: 32%;
-        margin: 0 2% 0 0;
+        @include e("image") {
+          a {
+            img {
+              height: 17em;
+            }
+          }
+        }
         .trainer__info {
           text-align: center;
           margin-top: 5%;
-        }
-        &:nth-last-child(1) {
-          margin-right: 0% !important;
         }
       }
     }

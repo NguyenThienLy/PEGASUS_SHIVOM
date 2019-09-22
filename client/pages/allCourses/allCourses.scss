@@ -319,7 +319,7 @@ $hover-color: lighten($sub-main-color, 27%);
 
 @media only screen and (max-width: 599px) {
   html {
-    font-size: 18px !important;
+    font-size: $font-size-375 !important;
   }
 
   .all-courses {
@@ -474,7 +474,7 @@ $hover-color: lighten($sub-main-color, 27%);
 
 @media only screen and (min-width: 600px) {
   html {
-    font-size: 19px !important;
+    font-size: $font-size-600 !important;
   }
 
   .all-courses {
@@ -629,7 +629,7 @@ $hover-color: lighten($sub-main-color, 27%);
 
 @media only screen and (min-width: 768px) {
   html {
-    font-size: 19px !important;
+    font-size: $font-size-768 !important;
   }
 
   .all-courses {
@@ -784,7 +784,7 @@ $hover-color: lighten($sub-main-color, 27%);
 
 @media only screen and (min-width: 992px) {
   html {
-    font-size: 20px !important;
+    font-size: $font-size-992 !important;
   }
 
   .all-courses {
@@ -938,7 +938,7 @@ $hover-color: lighten($sub-main-color, 27%);
 
 @media only screen and (min-width: 1200px) {
   html {
-    font-size: 20px !important;
+    font-size: $font-size-1200 !important;
   }
 
   .all-courses {
