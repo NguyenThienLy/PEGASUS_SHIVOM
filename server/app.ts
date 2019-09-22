@@ -94,6 +94,9 @@ class Server {
         this.server.get("/them-khoa-hoc", (req, res) => {
             this.app.render(req, res, "/addCourse/addCourse");
         });
+        this.server.get("/them-lop-hoc", (req, res) => {
+            this.app.render(req, res, "/addClass/addClass");
+        });
         this.server.get("/gioi-thieu", (req, res) => {
             this.app.render(req, res, "/about/about");
         });

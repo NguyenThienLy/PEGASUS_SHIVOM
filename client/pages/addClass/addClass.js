@@ -258,7 +258,7 @@ class AddClass extends Component {
       imageLink = await api.imgur.uploadImage(this.state.formData.thumb);
       this.state.formData.thumb = imageLink;
     }
-    api.course
+    api.class
       .create(this.state.formData, {
         headers: {
           "x-token":
