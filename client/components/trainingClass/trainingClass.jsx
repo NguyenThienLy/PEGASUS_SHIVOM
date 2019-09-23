@@ -35,7 +35,7 @@ export class TrainingClass extends React.Component {
                             <a href={`/khoa-hoc/${trainingClass.slug}`}>{trainingClass.name}</a>
                         </Link>
                     </h4>
-                    <p className="training-class__info__detail" dangerouslySetInnerHTML={{ __html: (trainingClass.description || "").slice(0, 100) + "..." }}>
+                    <p className="training-class__info__detail" dangerouslySetInnerHTML={{ __html: (trainingClass.shortDescription || "").slice(0, 200) + "..." }}>
 
                     </p>
                     <div className="training-class__info__other">

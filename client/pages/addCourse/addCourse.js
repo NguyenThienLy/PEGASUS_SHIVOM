@@ -76,7 +76,8 @@ class AddCourse extends Component {
         benefits: [],
         thumb: "",
         thumbUrl: "",
-        description: ""
+        description: "",
+        shortDescription: ""
       }
     };
     this.hideAddCourseBenefitsModal = this.hideAddCourseBenefitsModal.bind(
