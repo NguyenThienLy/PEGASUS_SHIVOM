@@ -101,7 +101,7 @@ body {
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 599px) {
   html {
-    font-size: 18px !important;
+    font-size: $font-size-375 !important;
   }
 
   .dashboard__sidebar {
@@ -154,7 +154,7 @@ body {
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
   html {
-    font-size: 18px !important;
+    font-size: $font-size-600 !important;
   }
 
   .dashboard__sidebar {
@@ -207,7 +207,7 @@ body {
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
   html {
-    font-size: 19px !important;
+    font-size: $font-size-768 !important;
   }
 
   .dashboard__sidebar {
@@ -260,7 +260,7 @@ body {
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
   html {
-    font-size: 19px !important;
+    font-size: $font-size-992 !important;
   }
 
   .dashboard__sidebar {
@@ -317,7 +317,7 @@ body {
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
   html {
-    font-size: 20px !important;
+    font-size: $font-size-1200 !important;
   }
 
   .dashboard__sidebar {

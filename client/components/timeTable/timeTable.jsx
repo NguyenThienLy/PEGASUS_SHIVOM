@@ -127,19 +127,21 @@ export class TimeTable extends React.Component {
             <a
               className="time-table__table-events__class-info__class-name"
               href="#"
-              title="Body Balance"
+              title={courseName}
             >
-              {courseName} <br />
+              {courseName}
+            </a>
+            <div className="time-table__table-events__class-info__class-time">
               {item.startTime.hour}:
               {item.startTime.minute === 0 ? "00" : item.startTime.minute} -{" "}
               {item.endTime.hour}:
               {item.endTime.minute === 0 ? "00" : item.endTime.minute}
-            </a>
+            </div>
             <div className="time-table__table-events__class-info__class-teacher">
               {teacherName}
             </div>
-          </div>,
-          <hr className="divider" />
+          </div>
+          // <hr className="divider" />
         ];
         let listItemData = (
           <div

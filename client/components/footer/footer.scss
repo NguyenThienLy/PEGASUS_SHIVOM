@@ -1,7 +1,6 @@
 @import "../../default.scss";
 
 .footer-wrapper {
-  font-size: $font-size;
   background-color: $background-color;
   position: fixed;
   bottom: 0;
@@ -31,7 +30,7 @@
       align-items: center;
       @include e("item") {
         letter-spacing: 0.025em;
-        font-size: 1em;
+        font-size: 0.9em;
         margin: 0 2em 1.5em 0;
         text-decoration: none;
         color: $font-color;
@@ -57,7 +56,7 @@
           background: #fcfcfc;
           color: $font-color;
           font-family: $font-body;
-          font-size: 0.9em;
+          font-size: 0.85em;
           box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.03);
           border: 0;
           outline: 0;
@@ -67,7 +66,7 @@
         @include e("btn") {
           text-transform: uppercase;
           letter-spacing: 0.1em;
-          font-size: 0.9em;
+          font-size: 0.8em;
           display: inline-block;
           box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
           border: 0;
@@ -113,7 +112,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 0.875em;
+    font-size: 0.8em;
     padding: 2em 3em;
     @include e("item") {
       .hoverDiv__link__content--hover {
@@ -132,6 +131,10 @@
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 599px) {
+  html {
+    font-size: $font-size-375 !important;
+  }
+
   .footer-wrapper {
     .footer-wrapper__first-floor {
       .footer-wrapper__first-floor__contact {
@@ -143,7 +146,7 @@
       .footer-wrapper__first-floor__email-regis {
         .footer-wrapper__first-floor__email-regis__form {
           .footer-wrapper__first-floor__email-regis__form__input {
-            width: 12em;
+            width: 51%;
           }
         }
       }
@@ -170,6 +173,10 @@
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
+  html {
+    font-size: $font-size-600 !important;
+  }
+
   .footer-wrapper {
     .footer-wrapper__first-floor {
       .footer-wrapper__first-floor__contact {
@@ -181,7 +188,7 @@
       .footer-wrapper__first-floor__email-regis {
         .footer-wrapper__first-floor__email-regis__form {
           .footer-wrapper__first-floor__email-regis__form__input {
-            width: 15em;
+            width: 72%;
           }
         }
       }
@@ -208,6 +215,10 @@
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
+  html {
+    font-size: $font-size-768 !important;
+  }
+
   .footer-wrapper {
     .footer-wrapper__first-floor {
       .footer-wrapper__first-floor__contact {
@@ -248,6 +259,10 @@
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
+  html {
+    font-size: $font-size-992 !important;
+  }
+
   .footer-wrapper {
     .footer-wrapper__first-floor {
       .footer-wrapper__first-floor__contact {
@@ -288,6 +303,10 @@
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
+  html {
+    font-size: $font-size-1200 !important;
+  }
+
   .footer-wrapper {
     .footer-wrapper__first-floor {
       .footer-wrapper__first-floor__contact {
@@ -299,7 +318,7 @@
       .footer-wrapper__first-floor__email-regis {
         .footer-wrapper__first-floor__email-regis__form {
           .footer-wrapper__first-floor__email-regis__form__input {
-            width: 20em;
+            width: 22em;
           }
         }
       }

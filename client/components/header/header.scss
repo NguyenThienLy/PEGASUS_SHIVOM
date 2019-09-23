@@ -304,6 +304,10 @@
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 599px) {
+  html {
+    font-size: $font-size-375 !important;
+  }
+
   // main
   .header__wrapper__page-menu-area__left__logo-wrapper,
   .header__wrapper__page-menu-area__left__navbar {
@@ -339,6 +343,10 @@
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
+  html {
+    font-size: $font-size-600 !important;
+  }
+
   // main
   .header__wrapper__page-menu-area__left__logo-wrapper,
   .header__wrapper__page-menu-area__left__navbar {
@@ -374,6 +382,10 @@
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
+  html {
+    font-size: $font-size-768 !important;
+  }
+
   // main
   .header__wrapper__page-menu-area__left__logo-wrapper,
   .header__wrapper__page-menu-area__left__navbar {
@@ -409,6 +421,10 @@
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
+  html {
+    font-size: $font-size-992 !important;
+  }
+
   // main
   .header__wrapper__page-menu-area__left__navbar__list-items__item > .hoverDiv {
     padding: 2.6em 1em;
@@ -453,6 +469,10 @@
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
+  html {
+    font-size: $font-size-1200 !important;
+  }
+
   // main
   .header__wrapper__page-menu-area__left__navbar__list-items__item > .hoverDiv {
     padding: 2.6em 2em;
