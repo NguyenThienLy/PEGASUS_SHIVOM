@@ -26,6 +26,7 @@ import { StatisticCourseAction } from "./statisticCourse";
 import { StatisticStudentAction } from "./statisticStudent";
 import { StudentAccountAction } from './studentAccount'
 import { PackageAction } from './package'
+import { RoomAction } from './room'
 
 class action {
   constructor() {
@@ -56,6 +57,7 @@ class action {
   static statisticCourse = new StatisticCourseAction();
   static statisticStudent = new StatisticStudentAction();
   static package = new PackageAction()
+  static room = new RoomAction()
 }
 import { from } from "rxjs";
 

@@ -97,6 +97,9 @@ class Server {
         this.server.get("/them-lop-hoc", (req, res) => {
             this.app.render(req, res, "/addClass/addClass");
         });
+        this.server.get("/them-bai-viet", (req, res) => {
+            this.app.render(req, res, "/manager/addPost/addPost");
+        });
         this.server.get("/gioi-thieu", (req, res) => {
             this.app.render(req, res, "/about/about");
         });
