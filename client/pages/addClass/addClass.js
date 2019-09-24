@@ -80,7 +80,7 @@ class AddClass extends Component {
         quantity: 0,
         teacher: null
       },
-      classId: "5d896eb48ace80dccc5254b8"
+      classId: null
     };
     this.hideAddClassTimeModal = this.hideAddClassTimeModal.bind(this);
     this.showAddClassTimeModal = this.showAddClassTimeModal.bind(this);
