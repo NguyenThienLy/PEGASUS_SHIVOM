@@ -65,3 +65,4 @@ export * from "./addClassTimeForm/addClassTimeForm";
 export * from "./newClassInfo/newClassInfo";
 export * from "./newClassTimetable/newClassTimetable";
 export * from "./reviewAddClass/reviewAddClass";
+export * from "./timePickerModal/timePickerModal"

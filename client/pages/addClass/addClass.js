@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { connect } from "react-redux";
+import { bindActionCreators } from 'redux'
 import { api } from "../../services";
 import { action } from "../../actions";
 import Swal from "sweetalert2";
@@ -70,14 +71,16 @@ class AddClass extends Component {
       pages: ["newClassInfo", "addClassTimetable", "reviewAddClass"],
       curPageNumber: 1,
       isShowAddClassTimeModal: false,
+      timeTable: [],
       formData: {
         name: "",
-        slug: "",
-        classTimes: [],
-        thumb: "",
-        thumbUrl: "",
-        description: ""
-      }
+        course: null,
+        shortDescription: "",
+        description: "",
+        quantity: 0,
+        teacher: null
+      },
+      classId: "5d896eb48ace80dccc5254b8"
     };
     this.hideAddClassTimeModal = this.hideAddClassTimeModal.bind(this);
     this.showAddClassTimeModal = this.showAddClassTimeModal.bind(this);
@@ -89,80 +92,8 @@ class AddClass extends Component {
     this.handleRemoveClassTimes = this.handleRemoveClassTimes.bind(this);
     this.submitClass = this.submitClass.bind(this);
   }
-
-  openPage = function(pageNumber) {
-    // set up page content
-    var i, page, stepBtns;
-    page = document.getElementsByClassName(
-      "add-class__body__card__content__info"
-    );
-    for (i = 0; i < page.length; i++) {
-      page[i].style.display = "none";
-    }
-    stepBtns = document.getElementsByClassName("stepsLine__btn");
-    for (i = 0; i < stepBtns.length; i++) {
-      stepBtns[i].style.backgroundColor = "#e1f2f4";
-      stepBtns[i].style.color = "#00a3af";
-    }
-    document.getElementById(this.state.pages[pageNumber - 1]).style.display =
-      "block";
-    $(".stepsLine__btn-" + pageNumber).css({
-      backgroundColor: "#00a3af",
-      color: "#fff"
-    });
-
-    // update curPageNumber
-    this.setState({ curPageNumber: pageNumber });
-
-    // set up for button previous, next
-    if (pageNumber == this.state.pages.length) {
-      $(".add-class__body__card__buttons__btn-next").text("Xác nhận");
-    } else {
-      $(".add-class__body__card__buttons__btn-next").html(
-        "Tiếp theo<i class='fas fa-chevron-right'></i>"
-      );
-    }
-    if (pageNumber == 1) {
-      $(".add-class__body__card__buttons__btn-previous").attr("disabled", true);
-    } else {
-      $(".add-class__body__card__buttons__btn-previous").attr(
-        "disabled",
-        false
-      );
-    }
-  };
-
-  handleClickPrevious = function() {
-    let curPageNumber = this.state.curPageNumber - 1;
-    if (curPageNumber > 0) {
-      this.setState({ curPageNumber });
-      this.openPage(curPageNumber);
-    }
-  };
-
-  handleClickNext = function() {
-    let curPageNumber = this.state.curPageNumber + 1;
-    if (curPageNumber <= this.state.pages.length) {
-      this.setState({ curPageNumber });
-      this.openPage(curPageNumber);
-    }
-    if (curPageNumber > this.state.pages.length) {
-      this.submitClass();
-    }
-  };
-
-  static async getInitialProps({ req, query }) {
-    return {};
-  }
-
-  hideAddClassTimeModal() {
-    this.setState({ isShowAddClassTimeModal: false });
-  }
-  showAddClassTimeModal() {
-    this.setState({ isShowAddClassTimeModal: true });
-  }
-
   async componentDidMount() {
+    this.fetchData()
     if (this.props.courses.items.length > 0) {
       const courseCategoryIndex = this.state.categories.findIndex(item => {
         return item.key === "course";
@@ -239,39 +170,162 @@ class AddClass extends Component {
     }
   }
 
+  openPage = function(pageNumber) {
+    // set up page content
+    var i, page, stepBtns;
+    page = document.getElementsByClassName(
+      "add-class__body__card__content__info"
+    );
+    for (i = 0; i < page.length; i++) {
+      page[i].style.display = "none";
+    }
+    stepBtns = document.getElementsByClassName("stepsLine__btn");
+    for (i = 0; i < stepBtns.length; i++) {
+      stepBtns[i].style.backgroundColor = "#e1f2f4";
+      stepBtns[i].style.color = "#00a3af";
+    }
+    document.getElementById(this.state.pages[pageNumber - 1]).style.display =
+      "block";
+    $(".stepsLine__btn-" + pageNumber).css({
+      backgroundColor: "#00a3af",
+      color: "#fff"
+    });
+
+    // update curPageNumber
+    this.setState({ curPageNumber: pageNumber });
+
+    // set up for button previous, next
+    if (pageNumber == this.state.pages.length) {
+      $(".add-class__body__card__buttons__btn-next").text("Xác nhận");
+    } else {
+      $(".add-class__body__card__buttons__btn-next").html(
+        "Tiếp theo<i class='fas fa-chevron-right'></i>"
+      );
+    }
+    if (pageNumber == 1) {
+      $(".add-class__body__card__buttons__btn-previous").attr("disabled", true);
+    } else {
+      $(".add-class__body__card__buttons__btn-previous").attr(
+        "disabled",
+        false
+      );
+    }
+  };
+
+  handleClickPrevious = function() {
+    let curPageNumber = this.state.curPageNumber - 1;
+    if (curPageNumber > 0) {
+      this.setState({ curPageNumber });
+      this.openPage(curPageNumber);
+    }
+  };
+
+  handleClickNext = async () => {
+    let curPageNumber = this.state.curPageNumber + 1;
+    if(curPageNumber === 2){
+       await this.submitClass()
+    }
+    if (curPageNumber <= this.state.pages.length) {
+      this.setState({ curPageNumber });
+      this.openPage(curPageNumber);
+    }
+    if (curPageNumber > this.state.pages.length) {
+      this.submitClass();
+    }
+  };
+
+  static async getInitialProps({ req, query }) {
+    return {};
+  }
+
+  hideAddClassTimeModal() {
+    this.setState({ isShowAddClassTimeModal: false });
+  }
+  showAddClassTimeModal() {
+    this.setState({ isShowAddClassTimeModal: true });
+  }
+  fetchData(){
+    this.props.fetchCourse({
+      query: {
+        limit: 0
+      }
+    })
+    this.props.fetchTeacher({
+      query: {
+        limit: 0
+      }
+    })
+    this.props.fetchRoom({
+      query: {
+        limit: 0 
+      }
+    })
+  }
+  
+
   handleInputForm(name, value) {
     this.state.formData[name] = value;
     this.setState({ formData: this.state.formData });
   }
   handleAddClassTime = function(body) {
-    this.state.formData.classTimes.push(body);
-    this.setState({ formData: this.state.formData });
+    if(!this.state.classId){
+      Swal.fire("Chưa tạo lớp học","Vui lòng quay lại bước trước tạo lớp học trước khi thêm thời khoá biểu","warning")
+    } else {
+      Swal.showLoading()
+      api.class.addTimeTableItem(this.state.classId,body, {
+        headers: {
+          "x-token":
+            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M"
+        }
+      }).then(res => {
+        console.log("res: ", res)
+        body._id = res.result.object.items[res.result.object.items.length - 1]
+        console.log("time table item: ", body)
+        this.state.timeTable.push(body)
+        this.setState({ timeTable: this.state.timeTable })
+        Swal.fire("Thành công", "Thêm thời khoá biểu thành công", "success");
+      })
+      .catch(err => {
+        console.log("ERR: ", err)
+        Swal.fire("Thất bại", "Thêm thời khoá biểu thất bại", "error");
+      })
+      
+    }
   };
   handleRemoveClassTimes(index) {
-    this.state.formData.classTimes.splice(index, 1);
-    this.setState({ formData: this.state.formData });
+    Swal.showLoading()
+      api.class.deleteTimeTableItem(this.state.classId,this.state.timeTable[index]._id, {
+        headers: {
+          "x-token":
+            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M"
+        }
+      }).then(res => {
+        console.log("res: ", res)
+        this.state.timeTable.splice(index, 1);
+        this.setState({ timeTable: this.state.timeTable });
+        Swal.fire("Thành công", "Xoá thời khoá biểu thành công", "success");
+      })
+      .catch(err => {
+        console.log("ERR: ", err)
+        Swal.fire("Thất bại", "Xoá thời khoá biểu thất bại", "error");
+      })
+    
   }
   async submitClass() {
     Swal.showLoading();
-    let imageLink;
-    if (this.state.formData.thumb !== "") {
-      imageLink = await api.imgur.uploadImage(this.state.formData.thumb);
-      this.state.formData.thumb = imageLink;
-    }
-    api.class
-      .create(this.state.formData, {
+    try {
+      const res = await api.class.create(this.state.formData, {
         headers: {
           "x-token":
             "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M"
         }
       })
-      .then(res => {
-        Swal.fire("Thành công", "Thêm lớp học thành công", "success");
-      })
-      .catch(err => {
+      this.setState({ classId: res.result.object._id })
+      Swal.fire("Thành công", "Thêm lớp học thành công", "success");
+    } catch(err){
         console.log("err");
         Swal.fire("Thất bại", "Thêm lớp học không thành công", "error");
-      });
+    }
   }
   render() {
     return (
@@ -280,6 +334,7 @@ class AddClass extends Component {
           show={this.state.isShowAddClassTimeModal}
           hideModal={this.hideAddClassTimeModal}
           handleAddClassTime={this.handleAddClassTime}
+          rooms={this.props.room.items}
         />
 
         <Head>
@@ -318,7 +373,7 @@ class AddClass extends Component {
                   className="add-class__body__card__content__info animated
                   fadeIn"
                 >
-                  <NewClassInfo handleChange={this.handleInputForm} />
+                  <NewClassInfo handleChange={this.handleInputForm} courses={this.props.courses.items} teachers={this.props.teachers.items}/>
                 </div>
                 <div
                   id="addClassTimetable"
@@ -326,7 +381,7 @@ class AddClass extends Component {
                   fadeIn"
                 >
                   <NewClassTimetable
-                    classTimes={this.state.formData.classTimes}
+                    timeTable={this.state.timeTable}
                     showAddClassTimeModal={this.showAddClassTimeModal}
                     handleRemove={this.handleRemoveClassTimes}
                   ></NewClassTimetable>
@@ -354,28 +409,6 @@ class AddClass extends Component {
                 </button>
               </div>
             </div>
-            {/* <div className="add-class__body__card">
-              <div className="add-class__body__card__title">Thêm khóa học</div>
-              <div className="add-class__body__card__content">
-                <div className="add-class__body__card__content__steps">
-                  <StepsLine></StepsLine>
-                </div>
-                <div className="add-class__body__card__content__info">
-                  <TinymceEditor></TinymceEditor>
-                </div>
-              </div>
-            </div>
-            <div className="add-class__body__card">
-              <div className="add-class__body__card__title">Thêm khóa học</div>
-              <div className="add-class__body__card__content">
-                <div className="add-class__body__card__content__steps">
-                  <StepsLine></StepsLine>
-                </div>
-                <div className="add-class__body__card__content__info">
-                  <Reviewadd-class />
-                </div>
-              </div>
-            </div> */}
           </div>
         </React.Fragment>
       </div>
@@ -387,4 +420,14 @@ const mapStateToProps = state => {
   return state;
 };
 
-export default connect(mapStateToProps)(AddClass);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      fetchCourse: action.course.fetch,
+      fetchTeacher: action.teacher.fetch,
+      fetchRoom: action.room.fetch
+    },
+    dispatch
+  );
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddClass);

@@ -95,79 +95,6 @@ class AddCourse extends Component {
     this.handleRemoveBenefits = this.handleRemoveBenefits.bind(this);
     this.submitCourse = this.submitCourse.bind(this);
   }
-
-  openPage = function(pageNumber) {
-    // set up page content
-    var i, page, stepBtns;
-    page = document.getElementsByClassName(
-      "addCourse__body__card__content__info"
-    );
-    for (i = 0; i < page.length; i++) {
-      page[i].style.display = "none";
-    }
-    stepBtns = document.getElementsByClassName("stepsLine__btn");
-    for (i = 0; i < stepBtns.length; i++) {
-      stepBtns[i].style.backgroundColor = "#e1f2f4";
-      stepBtns[i].style.color = "#00a3af";
-    }
-    document.getElementById(this.state.pages[pageNumber - 1]).style.display =
-      "block";
-    $(".stepsLine__btn-" + pageNumber).css({
-      backgroundColor: "#00a3af",
-      color: "#fff"
-    });
-
-    // update curPageNumber
-    this.setState({ curPageNumber: pageNumber });
-
-    // set up for button previous, next
-    if (pageNumber == this.state.pages.length) {
-      $(".addCourse__body__card__buttons__btn-next").text("Xác nhận");
-    } else {
-      $(".addCourse__body__card__buttons__btn-next").html(
-        "Tiếp theo<i class='fas fa-chevron-right'></i>"
-      );
-    }
-    if (pageNumber == 1) {
-      $(".addCourse__body__card__buttons__btn-previous").attr("disabled", true);
-    } else {
-      $(".addCourse__body__card__buttons__btn-previous").attr(
-        "disabled",
-        false
-      );
-    }
-  };
-
-  handleClickPrevious = function() {
-    let curPageNumber = this.state.curPageNumber - 1;
-    if (curPageNumber > 0) {
-      this.setState({ curPageNumber });
-      this.openPage(curPageNumber);
-    }
-  };
-
-  handleClickNext = function() {
-    let curPageNumber = this.state.curPageNumber + 1;
-    if (curPageNumber <= this.state.pages.length) {
-      this.setState({ curPageNumber });
-      this.openPage(curPageNumber);
-    }
-    if (curPageNumber > this.state.pages.length) {
-      this.submitCourse();
-    }
-  };
-
-  static async getInitialProps({ req, query }) {
-    return {};
-  }
-
-  hideAddCourseBenefitsModal() {
-    this.setState({ isShowAddCourseBenefitsModal: false });
-  }
-  showAddCourseBenefitsModal() {
-    this.setState({ isShowAddCourseBenefitsModal: true });
-  }
-
   async componentDidMount() {
     if (this.props.courses.items.length > 0) {
       const courseCategoryIndex = this.state.categories.findIndex(item => {
@@ -244,6 +171,80 @@ class AddCourse extends Component {
       this.setState({ categories: this.state.categories });
     }
   }
+
+  openPage = function(pageNumber) {
+    // set up page content
+    var i, page, stepBtns;
+    page = document.getElementsByClassName(
+      "addCourse__body__card__content__info"
+    );
+    for (i = 0; i < page.length; i++) {
+      page[i].style.display = "none";
+    }
+    stepBtns = document.getElementsByClassName("stepsLine__btn");
+    for (i = 0; i < stepBtns.length; i++) {
+      stepBtns[i].style.backgroundColor = "#e1f2f4";
+      stepBtns[i].style.color = "#00a3af";
+    }
+    document.getElementById(this.state.pages[pageNumber - 1]).style.display =
+      "block";
+    $(".stepsLine__btn-" + pageNumber).css({
+      backgroundColor: "#00a3af",
+      color: "#fff"
+    });
+
+    // update curPageNumber
+    this.setState({ curPageNumber: pageNumber });
+
+    // set up for button previous, next
+    if (pageNumber == this.state.pages.length) {
+      $(".addCourse__body__card__buttons__btn-next").text("Xác nhận");
+    } else {
+      $(".addCourse__body__card__buttons__btn-next").html(
+        "Tiếp theo<i class='fas fa-chevron-right'></i>"
+      );
+    }
+    if (pageNumber == 1) {
+      $(".addCourse__body__card__buttons__btn-previous").attr("disabled", true);
+    } else {
+      $(".addCourse__body__card__buttons__btn-previous").attr(
+        "disabled",
+        false
+      );
+    }
+  };
+
+  handleClickPrevious = function() {
+    let curPageNumber = this.state.curPageNumber - 1;
+    if (curPageNumber > 0) {
+      this.setState({ curPageNumber });
+      this.openPage(curPageNumber);
+    }
+  };
+
+  handleClickNext = function() {
+    let curPageNumber = this.state.curPageNumber + 1;
+    if (curPageNumber <= this.state.pages.length) {
+      this.setState({ curPageNumber });
+      this.openPage(curPageNumber);
+    }
+    if (curPageNumber > this.state.pages.length) {
+      this.submitCourse();
+    }
+  };
+
+  static async getInitialProps({ req, query }) {
+    return {};
+  }
+
+  hideAddCourseBenefitsModal() {
+    this.setState({ isShowAddCourseBenefitsModal: false });
+  }
+  showAddCourseBenefitsModal() {
+    this.setState({ isShowAddCourseBenefitsModal: true });
+  }
+
+  
 
   handleInputForm(name, value) {
     this.state.formData[name] = value;
@@ -338,7 +339,7 @@ class AddCourse extends Component {
                   fadeIn"
                 >
                   <TinymceEditor
-                    handleChange={this.handleInputForm}
+                    handleChange={this.handleInputForm} varName="description"
                   ></TinymceEditor>
                 </div>
                 <div

@@ -49,7 +49,7 @@ export class ClassController extends CrudController<typeof classService>{
     async addTimeTableItem(params: {
         classId: string
         timeTableItem: {
-            dayOfWeek: "monday" | "tuesday" | "webnesday" | "thursday" | "friday" | "saturday" | "sunday",
+            dayOfWeek: "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday",
             startTime: {
                 hour: number,
                 minute: number

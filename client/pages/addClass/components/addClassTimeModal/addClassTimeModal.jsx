@@ -12,7 +12,7 @@ export class AddClassTimeModal extends Component {
     };
     this.submit = this.submit.bind(this);
   }
-  componentDidMount() {}
+  componentDidMount() { }
 
   closeModal() {
     this.props.hideModal();
@@ -32,7 +32,7 @@ export class AddClassTimeModal extends Component {
           effect="fadeInUp"
           onClickAway={() => this.closeModal()}
         >
-          <AddClassTimeForm handleAddClassTime={this.submit} />
+          <AddClassTimeForm handleAddClassTime={this.submit} rooms={this.props.rooms} />
         </Modal>
       </section>
     );

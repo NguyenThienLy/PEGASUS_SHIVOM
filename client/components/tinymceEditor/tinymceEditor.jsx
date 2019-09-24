@@ -27,7 +27,7 @@ export class TinymceEditor extends React.Component {
     // });
   }
   handleChange(e) {
-    this.props.handleChange("description", e.target.getContent())
+    this.props.handleChange(this.props.varName, e.target.getContent())
   }
   render() {
     return (

@@ -78,7 +78,7 @@ export default class ClassRouter extends CrudRouter<typeof classController> {
                 startAvailableCheckinTime: timeSchema,
                 endAvailableCheckinTime: timeSchema,
                 dayOfWeek: {
-                    type: "string", enum: ["monday", "tuesday", "webnesday", "thursday", "friday", "saturday", "sunday"]
+                    type: "string", enum: ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
                 },
                 room: { type: "string" }
             },

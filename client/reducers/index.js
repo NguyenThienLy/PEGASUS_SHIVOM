@@ -24,6 +24,7 @@ import { SettingReducer } from './setting'
 import { TimeTableReducer } from './timeTable'
 import { StudentAccountReducer } from './studentAccount'
 import { PackageReducer } from './package'
+import { RoomReducer } from './room'
 
 import { StatisticCourseReducer } from "./statisticCourse";
 import { StatisticStudentReducer } from "./statisticStudent";
@@ -53,6 +54,7 @@ const settingReducer = new SettingReducer()
 const timeTableReducer = new TimeTableReducer()
 const studentAccountReducer = new StudentAccountReducer()
 const packageReducer = new PackageReducer()
+const roomReducer = new RoomReducer()
 
 const statisticCourseReducer = new StatisticCourseReducer();
 const statisticStudentReducer = new StatisticStudentReducer();
@@ -83,7 +85,8 @@ const store = combineReducers({
   studentAccount: studentAccountReducer.reducer,
   statisticCourse: statisticCourseReducer.reducer,
   statisticStudent: statisticStudentReducer.reducer,
-  package: packageReducer.reducer
+  package: packageReducer.reducer,
+  room: roomReducer.reducer
 })
 
 export default store;

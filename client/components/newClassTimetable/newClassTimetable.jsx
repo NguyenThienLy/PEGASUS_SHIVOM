@@ -5,15 +5,36 @@ export class NewClassTimetable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      weekdays: [
-        "Thứ hai",
-        "Thứ ba",
-        "Thứ tư",
-        "Thứ năm",
-        "Thứ sáu",
-        "Thứ bảy",
-        "Chủ nhật"
-      ]
+      weekdays: {
+        monday: {
+          value: 1,
+          text: "Thứ hai"
+        },
+        tuesday: {
+          value: 2,
+          text: "Thứ ba"
+        },
+        wednesday: {
+          value: 3,
+          text: "Thứ tư"
+        },
+        thursday: {
+          value: 4,
+          text: "Thứ năm"
+        },
+        friday: {
+          value: 5,
+          text: "Thứ sáu"
+        },
+        saturday: {
+          value: 6,
+          text: "Thứ bảy"
+        },
+        sunday: {
+          value: 7,
+          text: "Chủ nhật"
+        }
+      }
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -30,34 +51,21 @@ export class NewClassTimetable extends React.Component {
         <div className="new-class-timetable__title">Thời khóa biểu</div>
         <hr className="divider" />
         <div className="new-class-timetable__wrapper">
-          {this.props.classTimes.map((classTime, index) => {
+          {this.props.timeTable.map((timeTableItem, index) => {
             return (
               <div className="new-class-timetable__wrapper__info">
                 <div className="new-class-timetable__wrapper__info__item">
                   <div className="new-class-timetable__title-text">
                     Ngày trong tuần
                   </div>
-                  <div className="new-class-timetable__select-box">
-                    <select
-                      required
-                      className="new-class-timetable__select-box__select"
-                    >
-                      <option value="" hidden>
-                        Chọn thứ
-                      </option>
-                      {this.state.weekdays.map((weekday, index) => {
-                        return parseInt(classTime.weekday) === index ? (
-                          <option selected key={index} value={index}>
-                            {weekday}
-                          </option>
-                        ) : (
-                          <option key={index} value={index}>
-                            {weekday}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </div>
+
+                  <input
+                    className="new-class-timetable__input-box"
+                    value={this.state.weekdays[timeTableItem.dayOfWeek].text}
+                    type="text"
+                    required
+                    readOnly={true}
+                  />
                 </div>
                 <div className="new-class-timetable__wrapper__info__item">
                   <div className="new-class-timetable__title-text">
@@ -65,10 +73,10 @@ export class NewClassTimetable extends React.Component {
                   </div>
                   <input
                     className="new-class-timetable__input-box"
-                    placeholder="6:30"
+                    value={`${timeTableItem.startTime.hour}:${timeTableItem.startTime.minute}`}
                     type="text"
                     required
-                    value={classTime.timeStart}
+                    readOnly={true}
                   />
                 </div>
                 <div className="new-class-timetable__wrapper__info__item">
@@ -77,10 +85,10 @@ export class NewClassTimetable extends React.Component {
                   </div>
                   <input
                     className="new-class-timetable__input-box"
-                    placeholder="9:30"
+                    value={`${timeTableItem.endTime.hour}:${timeTableItem.endTime.minute}`}
                     type="text"
                     required
-                    value={classTime.timeEnd}
+                    readOnly={true}
                   />
                 </div>
                 <i
