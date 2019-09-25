@@ -56,7 +56,7 @@
       width: 85%;
       margin: 5em auto 0em;
       display: grid;
-      grid-template-columns: 23% 23% 23% 23%;
+      grid-template-columns: 33% 33% 33%;
       grid-column-gap: 2%;
       grid-row-gap: 1em;
       .introHome2 {
@@ -358,7 +358,7 @@
   }
 
   .contact__body__intro {
-    grid-template-columns: 23% 23% 23% 23%;
+    grid-template-columns: 33% 33% 33%;
     grid-column-gap: 2%;
   }
 
