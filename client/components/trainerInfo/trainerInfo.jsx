@@ -18,8 +18,7 @@ export class TrainerInfo extends React.Component {
                     <div className="class-trainer__info__name">
                         {trainerInfo.firstName} {trainerInfo.lastName}
                     </div>
-                    <div className="class-trainer__info__description">
-                        {trainerInfo.shortDescription}
+                    <div className="class-trainer__info__description" dangerouslySetInnerHTML={{ __html: trainerInfo.shortDescription }}>
                     </div>
                     {/* <div className="class-trainer__info__detail">
                         <ul className="list-items">
