@@ -67,3 +67,4 @@ export * from "./newClassTimetable/newClassTimetable";
 export * from "./reviewAddClass/reviewAddClass";
 export * from "./timePickerModal/timePickerModal"
 export * from './adminSidebar/adminSidebar'
+export * from './switchRouter/switchRouter'

@@ -68,34 +68,13 @@ class Server {
       this.app.render(req, res, "/manager/addCourse/addCourse");
     });
     // Quan ly lop hoc
-    this.server.get("/quan-ly/lop-hoc/*", async (req, res, next) => {
-      try {
-        req.locals = {};
-        req.locals.context = {};
-        const html = await this.app.renderToHTML(req, res, '/manager/class/class', {});
-        // Handle client redirects
-        const context = req.locals.context;
-        if (context.url) {
-          return res.redirect(context.url)
-        }
-
-        // Handle client response statuses
-        if (context.status) {
-          return res.status(context.status).send();
-        }
-
-        // Request was ended by the user
-        if (html === null) {
-          return;
-        }
-
-        this.app.sendHTML(req, res, html);
-      } catch (err) {
-        next(err)
-      }
-      // this.app.render(req, res, "/manager/class/class");
+    this.server.get("/quan-ly/lop-hoc", async (req, res, next) => {
+      this.app.render(req, res, "/manager/class/class");
     });
-    this.server.get("/quan-ly/lop-hoc/them", (req, res) => {
+    this.server.get("/quan-ly/lop-hoc/*", async (req, res, next) => {
+      this.app.render(req, res, "/manager/class/class");
+    });
+    this.server.get("/quan-ly/them-lop-hoc", (req, res) => {
       this.app.render(req, res, "/manager/addClass/addClass");
     });
     // Quan ly muc tin tuc

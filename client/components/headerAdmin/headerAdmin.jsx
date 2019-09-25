@@ -112,7 +112,7 @@ export class HeaderAdmin extends React.Component {
     const { headerAdmin, sidebar, logo } = this.props;
     return (
       <div className="headerAdmin">
-        <Sidebar sidebar={sidebar} logo={logo}></Sidebar>
+        {/* <Sidebar sidebar={sidebar} logo={logo}></Sidebar> */}
         <div className="headerAdmin__wrapper">
           <div className="headerAdmin__wrapper__icon-sidebar">
             <i className="fas fa-bars"></i>

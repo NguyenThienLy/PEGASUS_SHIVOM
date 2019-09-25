@@ -14,11 +14,16 @@ export class AdminSidebar extends React.Component {
         },
         {
           name: "Khoá học",
-          linkAs: "/quan-ly/khoa-hoc",
-          linkHref: "/manager/course/course"
+          linkAs: "/quan-ly/khoa-hoc/them",
+          linkHref: "/manager/addCourse/addCourse"
         },
         {
           name: "Lớp học",
+          linkAs: "/quan-ly/them-lop-hoc",
+          linkHref: "/manager/addClass/addClass"
+        },
+        {
+          name: "Quản lý lớp học",
           linkAs: "/quan-ly/lop-hoc",
           linkHref: "/manager/class/class"
         },
@@ -34,8 +39,8 @@ export class AdminSidebar extends React.Component {
         },
         {
           name: "Tin tức",
-          linkAs: "/quan-ly/tin-tuc",
-          linkHref: "/manager/news/news"
+          linkAs: "/quan-ly/tin-tuc/them",
+          linkHref: "/manager/addPost/addPost"
         },
         {
           name: "Thiết lập",
