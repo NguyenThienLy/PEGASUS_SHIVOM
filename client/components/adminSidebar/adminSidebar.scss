@@ -1,0 +1,146 @@
+@import "../../default.scss";
+
+$background-color: lighten($sub-main-color, 30%);
+$color-line: rgba(187, 184, 184, 0.5);
+
+.admin-sidebar {
+  margin: 0;
+  padding: 0;
+  width: 0em;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  background-color: #fff;
+  overflow: hidden;
+  -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  -webkit-transition: width 300ms ease;
+  transition: width 300ms ease;
+  @include e("show-menu") {
+    width: 12em;
+  }
+  @include e("inner") {
+    @include e("top-menu") {
+      padding-top: 2em;
+      //background-color: #fff;
+      @include e("logo") {
+        padding: 0em 3em;
+        img {
+          max-width: 100%;
+          height: auto;
+        }
+      }
+      @include e("title") {
+        text-transform: capitalize;
+        font-weight: bold;
+        font-family: $font-family-special;
+        font-size: 0.9em;
+        color: $color-grey;
+        padding: 1em 1.5em;
+        letter-spacing: 0.05em;
+      }
+      border-bottom: 0.05em solid $table-border-color;
+    }
+    @include e("main-menu") {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      & > li {
+        transition: 300ms;
+        a {
+          padding: 1em 0.5em 1em 1.5em;
+          text-decoration: none;
+          font-size: 0.8em;
+          color: #111;
+          display: flex;
+          align-items: center;
+          // width: 100%;
+          transition: 100ms;
+          text-transform: capitalize;
+          i {
+            margin-right: 0.8em;
+            font-size: 0.9em;
+            color: #cacedb;
+            transition: 100ms;
+          }
+        }
+        &:hover {
+          box-shadow: inset 0.1875rem 0 0 $main-color;
+          background-color: #fbfbfb;
+        }
+        &:hover > a {
+          color: $main-color;
+        }
+        &:hover i {
+          color: $main-color;
+        }
+      }
+      @include e("sub-menu") {
+        position: relative;
+        @include e("dropdown-icon") {
+          position: absolute;
+          right: 1.5em;
+          top: 1.4em;
+          cursor: pointer;
+          text-align: center;
+          font-size: 0.7em;
+          font-style: normal;
+          transition: 300ms;
+          color: $font-color;
+          @include m("transform-left") {
+            transform: rotate(0deg);
+          }
+          @include m("transform-down") {
+            transform: rotate(-90deg);
+          }
+        }
+        @include e("dropdown-container") {
+          display: none;
+          padding: 0 0 0 1em;
+          ul {
+            padding-left: 0.5em;
+            background-color: #fefeff;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            li {
+              padding: 0.5em;
+              transition: 300ms;
+              a {
+                padding: 0.5em 0.5em 0.5em 1em;
+                text-decoration: none;
+                font-size: 0.8em;
+                color: #111;
+                display: block;
+                transition: 0.1s;
+                text-transform: capitalize;
+              }
+              &:hover {
+                background-color: #fbfbfb;
+              }
+              &:hover > a {
+                color: $main-color;
+              }
+            }
+          }
+
+          // @include m("transform-active") {
+          //   display: block;
+          // }
+        }
+      }
+      @include m("item-active") {
+        box-shadow: inset 0.1875rem 0 0 $main-color;
+        background-color: #fbfbfb;
+        a {
+          color: $main-color !important;
+        }
+        i {
+          color: $main-color !important;
+        }
+      }
+    }
+  }
+}

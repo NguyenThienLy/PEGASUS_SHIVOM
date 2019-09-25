@@ -4,8 +4,8 @@ import Head from "next/head";
 import Link from "next/link";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux'
-import { api } from "../../services";
-import { action } from "../../actions";
+import { api } from "../../../services";
+import { action } from "../../../actions";
 import Swal from "sweetalert2";
 
 import "./addClass.scss";
@@ -15,8 +15,9 @@ import {
   StepsLine,
   NewClassInfo,
   NewClassTimetable,
-  ReviewAddClass
-} from "../../components";
+  ReviewAddClass,
+  AdminSidebar
+} from "../../../components";
 import { AddClassTimeModal } from "./components/addClassTimeModal/addClassTimeModal";
 
 class AddClass extends Component {
@@ -28,46 +29,7 @@ class AddClass extends Component {
           "https://cdn1.iconfinder.com/data/icons/avatars-1-5/136/87-512.png",
         name: "Avril Lavigne"
       },
-      categories: [
-        {
-          name: "trang chủ",
-          linkHref: "/home/home",
-          linkAs: "/",
-          key: "home"
-        },
-        {
-          name: "khoá học",
-          key: "course",
-          subCategories: []
-        },
-        {
-          name: "tin tức",
-          key: "news",
-          subCategories: [
-            {
-              name: "khoá học môt",
-              linkHref: "/blog/blog?categorySlug=khoa-hoc-not",
-              linkAs: "/khoa-hoc-mot"
-            },
-            {
-              name: "khoá học hai",
-              linkHref: "/home/home",
-              linkAs: "/"
-            },
-            {
-              name: "khoá học ba",
-              linkHref: "/home/home",
-              linkAs: "/"
-            }
-          ]
-        },
-        {
-          name: "về chúng tôi",
-          linkHref: "/contact/contact",
-          linkAs: "/lien-he",
-          key: "about"
-        }
-      ],
+      
       pages: ["newClassInfo", "addClassTimetable", "reviewAddClass"],
       curPageNumber: 1,
       isShowAddClassTimeModal: false,
@@ -94,35 +56,6 @@ class AddClass extends Component {
   }
   async componentDidMount() {
     this.fetchData()
-    if (this.props.courses.items.length > 0) {
-      const courseCategoryIndex = this.state.categories.findIndex(item => {
-        return item.key === "course";
-      });
-      const subCategories = this.props.courses.items.map(item => {
-        return {
-          name: item.name,
-          linkHref: `/course/course?slug=${item.slug}`,
-          linkAs: `/khoa-hoc/${item.slug}`
-        };
-      });
-      this.state.categories[courseCategoryIndex].subCategories = subCategories;
-      this.setState({ categories: this.state.categories });
-    }
-    if (this.props.newCategories.items.length > 0) {
-      const newCategoryIndex = this.state.categories.findIndex(item => {
-        return item.key === "news";
-      });
-      const subCategories = this.props.newCategories.items.map(item => {
-        return {
-          name: item.name,
-          linkHref: `/blog/blog?categorySlug=${item.slug}`,
-          linkAs: `/${item.slug}`
-        };
-      });
-      this.state.categories[newCategoryIndex].subCategories = subCategories;
-      this.setState({ categories: this.state.categories });
-    }
-
     var heightOfHeader = $(
       ".add-class .add-class__header .headerAdmin__wrapper"
     ).height();
@@ -133,42 +66,7 @@ class AddClass extends Component {
     return true;
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (
-      prevProps.courses.items.length === 0 &&
-      this.props.courses.items.length > 0
-    ) {
-      const courseCategoryIndex = this.state.categories.findIndex(item => {
-        return item.key === "course";
-      });
-      const subCategories = this.props.courses.items.map(item => {
-        return {
-          name: item.name,
-          linkHref: `/course/course?slug=${item.slug}`,
-          linkAs: `/khoa-hoc/${item.slug}`
-        };
-      });
-      this.state.categories[courseCategoryIndex].subCategories = subCategories;
-      this.setState({ categories: this.state.categories });
-    }
-    if (
-      prevProps.newCategories.items.length === 0 &&
-      this.props.newCategories.items.length > 0
-    ) {
-      const newCategoryIndex = this.state.categories.findIndex(item => {
-        return item.key === "news";
-      });
-      const subCategories = this.props.newCategories.items.map(item => {
-        return {
-          name: item.name,
-          linkHref: `/blog/blog?categorySlug=${item.slug}`,
-          linkAs: `/${item.slug}`
-        };
-      });
-      this.state.categories[newCategoryIndex].subCategories = subCategories;
-      this.setState({ categories: this.state.categories });
-    }
-  }
+  
 
   openPage = function(pageNumber) {
     // set up page content
@@ -339,6 +237,7 @@ class AddClass extends Component {
 
         <Head>
           <title>Thêm lớp học</title>
+          <meta name="robots" content="noindex"/>
           <meta name="title" content="Thêm lớp học" />
           <meta
             name="description"
@@ -355,7 +254,7 @@ class AddClass extends Component {
             ></HeaderAdmin>
           </div>
           <div className="add-class__sidebar">
-            <Sidebar sidebar={this.state.categories}></Sidebar>
+            <AdminSidebar/>
           </div>
           <div className="add-class__body">
             <div className="add-class__body__card">

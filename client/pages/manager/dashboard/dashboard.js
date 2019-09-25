@@ -4,8 +4,8 @@ import * as moment from "moment";
 import Head from "next/head";
 import Link from "next/link";
 import { connect } from "react-redux";
-import { api } from "../../services";
-import { action } from "../../actions";
+import { api } from "../../../services";
+import { action } from "../../../actions";
 import { bindActionCreators } from "redux";
 
 import "./dashboard.scss";
@@ -19,8 +19,9 @@ import {
   Table,
   Activity,
   CustomSelect,
-  FeedbackAdmin
-} from "../../components";
+  FeedbackAdmin,
+  AdminSidebar
+} from "../../../components";
 import GoogleMapReact from "google-map-react";
 
 export class Dashboard extends React.Component {
@@ -32,101 +33,7 @@ export class Dashboard extends React.Component {
           "https://cdn1.iconfinder.com/data/icons/avatars-1-5/136/87-512.png",
         name: "Avril Lavigne"
       },
-      categories: [
-        {
-          name: "trang chủ",
-          linkHref: "/home/home",
-          linkAs: "/",
-          key: "home"
-        },
-        {
-          name: "khoá học",
-          key: "course",
-          subCategories: []
-        },
-        {
-          name: "tin tức",
-          key: "news",
-          subCategories: [
-            {
-              name: "khoá học môt",
-              linkHref: "/blog/blog?categorySlug=khoa-hoc-not",
-              linkAs: "/khoa-hoc-mot"
-            },
-            {
-              name: "khoá học hai",
-              linkHref: "/home/home",
-              linkAs: "/"
-            },
-            {
-              name: "khoá học ba",
-              linkHref: "/home/home",
-              linkAs: "/"
-            }
-          ]
-        },
-        {
-          name: "về chúng tôi",
-          linkHref: "/contact/contact",
-          linkAs: "/lien-he",
-          key: "about"
-        }
-      ],
-      // sidebar: {
-      //   homeLink: "#",
-      //   logoSource: "/logo.png",
-      //   title: "Shivom Dashboard",
-      //   listItems: [
-      //     {
-      //       link: "#",
-      //       icon: "<i class='fas fa-user'></i>",
-      //       name: "Trang chủ"
-      //     },
-      //     {
-      //       link: "#",
-      //       icon: "<i class='far fa-list-alt'></i>",
-      //       name: "Khóa học",
-      //       subItems: [
-      //         {
-      //           link: "#",
-      //           name: "Khóa học 1"
-      //         },
-      //         {
-      //           link: "#",
-      //           name: "Khóa học 2"
-      //         },
-      //         {
-      //           link: "#",
-      //           name: "Khóa học 3"
-      //         }
-      //       ]
-      //     },
-      //     {
-      //       link: "#",
-      //       icon: "<i class='far fa-newspaper'></i>",
-      //       name: "Tin tức",
-      //       subItems: [
-      //         {
-      //           link: "#",
-      //           name: "Tin tức 1"
-      //         },
-      //         {
-      //           link: "#",
-      //           name: "Tin tức 2"
-      //         },
-      //         {
-      //           link: "#",
-      //           name: "Tin tức 3"
-      //         }
-      //       ]
-      //     },
-      //     {
-      //       link: "#",
-      //       icon: "<i class='fas fa-info'></i>",
-      //       name: "Về chúng tôi"
-      //     }
-      //   ]
-      // },
+
       numberAdmins: [
         {
           icon: '<i class="fas fa-id-card-alt"></i>',
@@ -318,8 +225,8 @@ export class Dashboard extends React.Component {
       }
     });
   };
-  handleScroll = () => {};
-  componentWillUnmount() {}
+  handleScroll = () => { };
+  componentWillUnmount() { }
   async componentDidMount() {
     // Lấy năm
     // startTime bắt đầu năm hiện tại
@@ -469,7 +376,7 @@ export class Dashboard extends React.Component {
       });
     }
 
-    
+
 
     return true;
   }
@@ -479,6 +386,7 @@ export class Dashboard extends React.Component {
       <div className="dashboard">
         <Head>
           <title>Dashboard</title>
+          <meta name="robots" content="noindex" />
           <meta name="title" content="Dashboard" />
           <meta
             name="description"
@@ -499,23 +407,23 @@ export class Dashboard extends React.Component {
             ></HeaderAdmin>
           </div>
           <div className="dashboard__sidebar">
-            <Sidebar
-              sidebar={this.state.categories}
+            <AdminSidebar
               logo={this.props.setting.logo}
-            ></Sidebar>
+            />
+
           </div>
           <div className="dashboard__body">
             <div className="dashboard__body__numbers">
               {this.props.statisticCourse.statisticForPieChart.fetching
                 ? "đang tải ..."
                 : this.state.numberAdmins.map((number, index) => {
-                    return (
-                      <NumberAdmin
-                        numberAdmin={number}
-                        key={index}
-                      ></NumberAdmin>
-                    );
-                  })}
+                  return (
+                    <NumberAdmin
+                      numberAdmin={number}
+                      key={index}
+                    ></NumberAdmin>
+                  );
+                })}
             </div>
             <div className="dashboard__body__card">
               <div className="dashboard__body__card__title">Thống kê</div>

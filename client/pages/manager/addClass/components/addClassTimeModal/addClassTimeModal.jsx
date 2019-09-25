@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 // import Modal from 'react-awesome-modal';
 import "./addClassTimeModal.scss";
-import { Modal } from "../../../../modals";
-import { AddClassTimeForm } from "../../../../components";
+import { Modal } from "../../../../../modals";
+import { AddClassTimeForm } from "../../../../../components";
 
 export class AddClassTimeModal extends Component {
   constructor(props) {

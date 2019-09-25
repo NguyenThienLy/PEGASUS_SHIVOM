@@ -1,4 +1,4 @@
-@import "../../default.scss";
+@import "../../../default.scss";
 @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css");
 
 html,
@@ -6,7 +6,7 @@ body {
   background-color: lighten($sub-main-color, 27%);
 }
 
-.addCourse {
+.class {
   display: flex;
   flex-direction: row;
   height: 100vh;
@@ -22,7 +22,7 @@ body {
   @include e("body") {
     min-height: 100%;
     width: 78%;
-    margin: 0 1%;
+    margin: 100px 1%;
     @include e("card") {
       margin: 4em 0 3em;
       background-color: #fff;

@@ -49,6 +49,53 @@ class Server {
     this.server.get("/", (req, res) => {
       this.app.render(req, res, "/index");
     });
+    // quan ly
+    this.server.get("/quan-ly/tong-quan", (req, res) => {
+      this.app.render(req, res, "/manager/dashboard/dashboard");
+    });
+    // quan ly hoc vien
+    this.server.get("/quan-ly/hoc-vien", (req, res) => {
+      this.app.render(req, res, "/manager/member/member");
+    });
+    this.server.get("/quan-ly/hoc-vien/them", (req, res) => {
+      this.app.render(req, res, "/manager/addMember/addMember");
+    });
+    // quan ly khoa hoc
+    this.server.get("/quan-ly/khoa-hoc", (req, res) => {
+      this.app.render(req, res, "/manager/course/course");
+    });
+    this.server.get("/quan-ly/khoa-hoc/them", (req, res) => {
+      this.app.render(req, res, "/manager/addCourse/addCourse");
+    });
+    // Quan ly lop hoc
+    this.server.get("/quan-ly/lop-hoc", async (req, res, next) => {
+      this.app.render(req, res, "/manager/class/class");
+    });
+    this.server.get("/quan-ly/lop-hoc/*", async (req, res, next) => {
+      this.app.render(req, res, "/manager/class/class");
+    });
+    this.server.get("/quan-ly/them-lop-hoc", (req, res) => {
+      this.app.render(req, res, "/manager/addClass/addClass");
+    });
+    // Quan ly muc tin tuc
+    this.server.get("/quan-ly/muc-tin-tuc", (req, res) => {
+      this.app.render(req, res, "/manager/newsCategory/newsCategory");
+    });
+    this.server.get("/quan-ly/muc-tin-tuc/them", (req, res) => {
+      this.app.render(req, res, "/manager/addPost/addPost");
+    });
+    // Quan ly tin tuc
+    this.server.get("/quan-ly/tin-tuc", (req, res) => {
+      this.app.render(req, res, "/manager/news/news");
+    });
+    this.server.get("/quan-ly/tin-tuc/them", (req, res) => {
+      this.app.render(req, res, "/manager/addPost/addPost");
+    });
+    // Thiet lap
+    this.server.get("/quan-ly/thiet-lap", (req, res) => {
+      this.app.render(req, res, "/manager/setting/setting");
+    });
+    // Giao dien nguoi dung
     this.server.get("/bai-viet/:newsId", (req, res) => {
       this.app.render(req, res, "/post/post", { newsId: req.params.newsId });
     });
@@ -58,18 +105,7 @@ class Server {
     this.server.get("/khoa-hoc", (req, res) => {
       this.app.render(req, res, "/allCourses/allCourses");
     });
-    this.server.get("/them-hoc-vien", (req, res) => {
-      this.app.render(req, res, "/addMember/addMember");
-    });
-    this.server.get("/them-khoa-hoc", (req, res) => {
-      this.app.render(req, res, "/addCourse/addCourse");
-    });
-    this.server.get("/them-lop-hoc", (req, res) => {
-      this.app.render(req, res, "/addClass/addClass");
-    });
-    this.server.get("/them-bai-viet", (req, res) => {
-      this.app.render(req, res, "/manager/addPost/addPost");
-    });
+
     this.server.get("/gioi-thieu", (req, res) => {
       this.app.render(req, res, "/about/about");
     });
@@ -85,9 +121,7 @@ class Server {
     this.server.get("/search", (req, res) => {
       this.app.render(req, res, "/searchResults/searchResults");
     });
-    this.server.get("/tong-quan", (req, res) => {
-      this.app.render(req, res, "/dashboard/dashboard");
-    });
+
     this.server.get("/chi-tiet-khoa-hoc", (req, res) => {
       this.app.render(req, res, "/courseDetails/courseDetails");
     });
