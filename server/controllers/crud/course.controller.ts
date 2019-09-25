@@ -70,8 +70,8 @@ export class CourseController extends CrudController<typeof courseService>{
                 populates: [
                     {
                         path: "items",
-                        select: "startTime endTime dayOfWeek",
-
+                        select: "startTime endTime dayOfWeek topic",
+                        match: { status: "active" }
                     }, {
                         path: "class",
                         select: "name shortDescription",
