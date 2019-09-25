@@ -7,7 +7,7 @@ export class ClassTimeItem extends React.Component {
   }
 
   render() {
-    const { weekday, timeStart, timeEnd } = this.props;
+    const { weekday, timeStart, timeEnd, topic } = this.props;
     return (
       <div className="class-time-item">
         <span className="class-time-item__border class-time-item__border-left" />
@@ -18,6 +18,7 @@ export class ClassTimeItem extends React.Component {
         <span className="class-time-item__border class-time-item__border-bottom-right" />
         <div className="class-time-item__inner">
           <div className="class-time-item__inner__weekday">{weekday}</div>
+          <div className="class-time-item__inner__weekday">{topic}</div>
           <div className="class-time-item__inner__time">
             <span className="class-time-item__inner__time__start">
               {timeStart.hour}:

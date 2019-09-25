@@ -407,6 +407,7 @@ export class Course extends React.Component {
                                       }
                                       timeStart={timeTableItem.startTime}
                                       timeEnd={timeTableItem.endTime}
+                                      topic={timeTableItem.topic}
                                     ></ClassTimeItem>
                                   </div>
 
