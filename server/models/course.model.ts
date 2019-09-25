@@ -15,6 +15,7 @@ export type CourseModel = BaseModel & {
     quantity: number
     pricePerMonth?: number
     currentStudentAmount: number
+    color: string
 }
 
 const courseSchema = new Schema({
@@ -29,6 +30,7 @@ const courseSchema = new Schema({
     metaDescription: { type: String },
     thumb: { type: String },
     benefits: { type: [{ type: String }], default: [] },
+    color: { type: String },
     status: { type: String, enum: ["active", "deactive"], default: "active" }
 }, { timestamps: true })
 

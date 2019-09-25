@@ -29,6 +29,7 @@ export type TimeTableItemModel = BaseModel & {
     }
     class: string | ClassModel
     room: string | RoomModel
+    topic: string
 }
 
 const timeTableItemSchema = new Schema({
@@ -57,6 +58,7 @@ const timeTableItemSchema = new Schema({
     },
     class: { type: Schema.Types.ObjectId, ref: "Class", required: true },
     room: { type: Schema.Types.ObjectId, ref: "Room" },
+    topic: { type: String },
     status: { type: String, enum: ["active", "deactive"], default: "active" }
 }, { timestamps: true })
 

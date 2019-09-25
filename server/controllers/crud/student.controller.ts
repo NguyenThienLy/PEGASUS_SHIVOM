@@ -314,7 +314,8 @@ export class StudentController extends CrudController<typeof studentService>{
                 populates: [
                     {
                         path: "items",
-                        select: "startTime endTime dayOfWeek",
+                        select: "startTime endTime dayOfWeek topic",
+                        match: { status: "active" },
                         populate: [{
                             path: "class",
                             select: "name",
@@ -374,7 +375,8 @@ export class StudentController extends CrudController<typeof studentService>{
                     },
                     {
                         path: "items",
-                        select: "startTime endTime dayOfWeek",
+                        select: "startTime endTime dayOfWeek topic",
+                        match: { status: "active" },
                         populate: [{
                             path: "class",
                             select: "name",
