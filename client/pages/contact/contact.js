@@ -20,31 +20,24 @@ export class Contact extends React.Component {
       intro: [
         {
           image:
-            "https://dalia.elated-themes.com/wp-content/uploads/2018/05/h1-icon-img-1.png",
-          title: "the thermal bath",
+            "https://i.imgur.com/SdqiWdP.png",
+          title: "Sức khỏe",
           content:
-            "Lorem ipsum dolor sit amet, ad duo adipisci imperdiet, eum eu fugit."
+            "Sức khỏe không phải là thứ chúng ta có thể mua. Tuy nhiên, nó có thể là một tài khoản tiết kiệm cực kỳ giá trị"
         },
         {
           image:
-            "https://dalia.elated-themes.com/wp-content/uploads/2018/05/h1-icon-img-2.png",
-          title: "relaxing massage",
+            "https://i.imgur.com/Rr4Nxja.png",
+          title: "Cân bằng",
           content:
-            "Lorem ipsum dolor sit amet, ad duo adipisci imperdiet, eum eu fugit."
+            "Khi ta tạo ra sự yên bình, hài hòa và cân bằng trong tâm hồn, ta sẽ tìm thấy chúng trong đời mình"
         },
         {
           image:
-            "https://dalia.elated-themes.com/wp-content/uploads/2018/05/h1-icon-img-3.png",
-          title: "body treatments",
+            "https://i.imgur.com/SYIHz0O.png  ",
+          title: "Hạnh phúc",
           content:
-            "Lorem ipsum dolor sit amet, ad duo adipisci imperdiet, eum eu fugit."
-        },
-        {
-          image:
-            "https://dalia.elated-themes.com/wp-content/uploads/2018/05/h1-icon-img-4.png",
-          title: "supreme skincare",
-          content:
-            "Lorem ipsum dolor sit amet, ad duo adipisci imperdiet, eum eu fugit."
+            "Hạnh phúc lớn nhất ở đời là có thể tin chắc rằng ta được yêu thương - yêu vì chính bản thân ta, hay đúng hơn, yêu bất kể bản thân ta"
         }
       ],
       center: {
@@ -174,18 +167,16 @@ export class Contact extends React.Component {
               <div className="contact__body__title__image">
                 <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/06/about-us-title-img.jpg"></img>
                 <div className="contact__body__title__image__info">
-                  <div>about us</div>
+                  <div>Về chúng tôi</div>
                   <p>
-                    Lorem ipsum dolor sit amet, animal utamur id nec, clita
-                    doming oblique usu cu, utroque omittam summ.
+                    Với giá trị cốt lõi vì sức khỏe cộng đồng Hiệp Hòa Yoga xem đó là kim chỉ nam để hoạt động
                   </p>
                 </div>
               </div>
               <div className="contact__body__title__inner">
-                <div>about us</div>
+                <div>Về chúng tôi</div>
                 <p>
-                  Lorem ipsum dolor sit amet, animal utamur id nec, clita doming
-                  oblique usu cu, utroque omittam summ.
+                  Với giá trị cốt lõi vì sức khỏe cộng đồng Hiệp Hòa Yoga xem đó là kim chỉ nam để hoạt động
                 </p>
               </div>
             </div>
@@ -197,22 +188,37 @@ export class Contact extends React.Component {
             <div className="contact__body__brands">
               <div className="contact__body__brands__slick-autoplay">
                 <div className="contact__body__brands__slick-autoplay__item">
-                  <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-6.png"></img>
+                  <img src="https://i.imgur.com/2ovXBXJ.png "></img>
                 </div>
                 <div className="contact__body__brands__slick-autoplay__item">
-                  <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-7.png"></img>
+                  <img src="https://i.imgur.com/u6U1336.png"></img>
                 </div>
                 <div className="contact__body__brands__slick-autoplay__item">
-                  <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-8.png"></img>
+                  <img src="https://i.imgur.com/nuLIaqY.png"></img>
                 </div>
                 <div className="contact__body__brands__slick-autoplay__item">
-                  <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-5.png"></img>
+                  <img src="https://i.imgur.com/WEBPRF7.png"></img>
                 </div>
                 <div className="contact__body__brands__slick-autoplay__item">
-                  <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-2.png"></img>
+                  <img src="https://i.imgur.com/XsPbeWD.png"></img>
                 </div>
                 <div className="contact__body__brands__slick-autoplay__item">
-                  <img src="https://dalia.elated-themes.com/wp-content/uploads/2018/05/client-3.png"></img>
+                  <img src="https://i.imgur.com/aL7go5w.png"></img>
+                </div>
+                <div className="contact__body__brands__slick-autoplay__item">
+                  <img src="https://i.imgur.com/ESlmROr.png"></img>
+                </div>
+                <div className="contact__body__brands__slick-autoplay__item">
+                  <img src="https://i.imgur.com/RnuUiEx.png"></img>
+                </div>
+                <div className="contact__body__brands__slick-autoplay__item">
+                  <img src="https://i.imgur.com/CE6MmSF.png"></img>
+                </div>
+                <div className="contact__body__brands__slick-autoplay__item">
+                  <img src="https://i.imgur.com/zEnx4mj.png"></img>
+                </div>
+                <div className="contact__body__brands__slick-autoplay__item">
+                  <img src="https://i.imgur.com/PWYN1WN.png"></img>
                 </div>
               </div>
             </div>

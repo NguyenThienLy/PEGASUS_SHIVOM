@@ -226,7 +226,7 @@ class Home extends React.Component {
         {
           link: "#",
           image:
-            "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-icon-img-1.png",
+            "https://i.imgur.com/tk1poDX.png",
           title: "Tâm huyết",
           content:
             "Đội ngũ giáo viên chuyên môn cao, luôn nhiệt tình và tâm huyết với những bài dạy - học viên của mình"
@@ -234,7 +234,7 @@ class Home extends React.Component {
         {
           link: "#",
           image:
-            "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-icon-img-4.png",
+            "https://i.imgur.com/fIGwVx3.png",
           title: "Chất lượng",
           content:
             "Cơ sở vật chất hiện đại, trang thiết bị đầy đủ  - Giáo trình hướng dẫn khoa học, đạt chuẩn quốc tế"
@@ -242,7 +242,7 @@ class Home extends React.Component {
         {
           link: "#",
           image:
-            "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-icon-img-5.png",
+            "https://i.imgur.com/S86zsCv.png",
           title: "Uy tín",
           content:
             "Giáo viên có chứng chỉ giảng dạy - Cam kết chất lượng từng khoá học"
@@ -607,8 +607,8 @@ class Home extends React.Component {
                 <div className="home__body__trainingClass__title__inner">
                   <div>Khoá học yoga</div>
                   <p>
-                    Lorem ipsum dolor sit amet, animal utamur id nec, clita
-                    doming oblique usu cu, utroque omittam summ.
+                    Các khóa học được đầu tư và nghiên cứu kĩ lưỡng phù hợp với từng nhóm đối tượng cụ thể,
+                    dẫn dắt bởi những giáo viên tâm huyết và chuyên môn tốt.
                   </p>
                 </div>
               </div>
@@ -679,7 +679,7 @@ class Home extends React.Component {
               ) : null}
             </div>
 
-            <div className="home__body__numbers">
+            {/* <div className="home__body__numbers">
               <div className="home__body__numbers__item">
                 <NumberSection />
               </div>
@@ -692,21 +692,19 @@ class Home extends React.Component {
               <div className="home__body__numbers__item">
                 <NumberSection />
               </div>
-            </div>
+            </div> */}
 
             <div className="home__body__trainers">
               <div className="home__body__trainers__introduction">
                 <div className="home__body__trainers__introduction__inner">
-                  <div>Đội ngũ giáo viên</div>
+                  <div>Đội ngũ huấn luận viên</div>
                   <p>
-                    Lorem ipsum dolor sit amet, animal utamur id nec, clita
-                    doming oblique usu cu, utroque omittam ex sea inani
-                    eleifend.
+                    Đội ngũ huấn luận viên tận tình, chu đáo và am hiểu học viên.
                   </p>
                 </div>
               </div>
               <div className="home__body__trainers__background">
-                <div>instructor</div>
+                <div>Huấn luận viên</div>
               </div>
               <div className="home__body__trainers__list">
                 {this.props.teachers.fetching === false
