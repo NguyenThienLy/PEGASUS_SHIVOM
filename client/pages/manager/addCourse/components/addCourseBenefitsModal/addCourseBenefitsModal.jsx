@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 // import Modal from 'react-awesome-modal';
 import "./addCourseBenefitsModal.scss";
-import { Modal } from "../../../../modals";
-import { AddCourseBenefitsForm } from "../../../../components";
+import { Modal } from "../../../../../modals";
+import { AddCourseBenefitsForm } from "../../../../../components";
 
 export class AddCourseBenefitsModal extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ export class AddCourseBenefitsModal extends Component {
     };
     this.submit = this.submit.bind(this);
   }
-  componentDidMount() {}
+  componentDidMount() { }
 
   closeModal() {
     this.props.hideModal();

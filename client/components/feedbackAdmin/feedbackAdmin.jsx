@@ -21,7 +21,7 @@ export class FeedbackAdmin extends React.Component {
             return (
               <li className="feedbackAdmin__actions__detail" key={index}>
                 <div className="feedbackAdmin__actions__detail__img">
-                  <img src={feedbackAdmin.student.avatar}></img>
+                  <img src={(feedbackAdmin.student || {}).avatar}></img>
                 </div>
                 <a href="#" className="feedbackAdmin__actions__detail__content">
                   <div className="feedbackAdmin__actions__detail__content__time">
@@ -29,9 +29,9 @@ export class FeedbackAdmin extends React.Component {
                       " ngày trước"}
                   </div>
                   <div className="feedbackAdmin__actions__detail__content__time">
-                    {feedbackAdmin.student.firstName}{" "}
-                    {feedbackAdmin.student.lastName}
-                    {" ("} {feedbackAdmin.student.point} {"điểm )"}
+                    {(feedbackAdmin.student || {}).firstName}{" "}
+                    {(feedbackAdmin.student || {}).lastName}
+                    {" ("} {(feedbackAdmin.student || {}).point} {"điểm )"}
                   </div>
                   <div className="feedbackAdmin__actions__detail__content__text">
                     {feedbackAdmin.content}
