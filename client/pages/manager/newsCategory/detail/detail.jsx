@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export class EditClass extends React.Component {
+export class DetailNewsCategory extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -9,7 +9,7 @@ export class EditClass extends React.Component {
     render() {
 
         return (
-            <div>Xin chào sửa nào</div>
+            <div>Chi tiết mục tin tức</div>
         );
     }
 }

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export class AddClass extends React.Component {
+export class MainSetting extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -9,7 +9,7 @@ export class AddClass extends React.Component {
     render() {
 
         return (
-            <div>Thêm lớp học</div>
+            <div>Xin chào</div>
         );
     }
 }

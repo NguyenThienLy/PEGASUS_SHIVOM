@@ -16,7 +16,7 @@ import {
 
 import { MainClass } from './main/main';
 import { AddClass } from './add/add';
-import { EditClass } from './edit/edit';
+import { DetailClass } from './detail/detail'
 
 class Class extends Component {
     constructor(props) {
@@ -40,16 +40,13 @@ class Class extends Component {
         //         pathname: req._parsedOriginalUrl.pathname
         //     }
         // }
-        // else {
-
-        //     return {
+        // return {
         //         location: window.location.pathname
-        //     }
         // }
     }
     render() {
         return (
-            <div className="class">
+            <div className="manager">
                 <Head>
                     <title>Quản lý lớp học</title>
                     <meta name="robots" content="noindex" />
@@ -62,22 +59,22 @@ class Class extends Component {
 
                 <React.Fragment>
                     <div className="background-overlay"></div>
-                    <div className="class__header">
+                    <div className="manager__header">
                         <HeaderAdmin
                             sidebar={this.state.categories}
                             headerAdmin={this.state.headerAdmin}
                         ></HeaderAdmin>
                     </div>
-                    <div className="class__sidebar">
+                    <div className="manager__sidebar">
                         <AdminSidebar />
                     </div>
-                    <div className="class__body">
+                    <div className="manager__body">
                         <div>
                             <SwitchRouter routes={
                                 [
                                     { path: "/quan-ly/lop-hoc", component: <MainClass /> },
-                                    { path: "/quan-ly/lop-hoc/them", component: <AddClass greeting="Xin chào" /> },
-                                    { path: "/quan-ly/lop-hoc/sua", component: <EditClass /> }
+                                    { path: "/quan-ly/lop-hoc/them", component: <AddClass /> },
+                                    { path: "/quan-ly/lop-hoc/chi-tiet", component: <DetailClass /> }
                                 ]
                             } />
                         </div>
