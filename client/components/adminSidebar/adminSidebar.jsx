@@ -14,38 +14,133 @@ export class AdminSidebar extends React.Component {
         },
         {
           name: "Khoá học",
-          linkAs: "/quan-ly/khoa-hoc/them",
-          linkHref: "/manager/addCourse/addCourse"
+          linkAs: "/quan-ly/khoa-hoc",
+          linkHref: "/manager/course/course",
+          subCategories: [
+            {
+              name: "Danh sách",
+              linkAs: "/quan-ly/khoa-hoc",
+              linkHref: "/manager/course/course",
+            },
+            {
+              name: "Thêm",
+              linkAs: "/quan-ly/khoa-hoc/them",
+              linkHref: "/manager/course/course",
+            },
+            {
+              name: "Chi tiết",
+              linkAs: "/quan-ly/khoa-hoc/chi-tiet",
+              linkHref: "/manager/course/course",
+            }
+          ]
         },
         {
           name: "Lớp học",
-          linkAs: "/quan-ly/them-lop-hoc",
-          linkHref: "/manager/addClass/addClass"
-        },
-        {
-          name: "Quản lý lớp học",
           linkAs: "/quan-ly/lop-hoc",
-          linkHref: "/manager/class/class"
+          linkHref: "/manager/class/class",
+          subCategories: [
+            {
+              name: "Danh sách",
+              linkAs: "/quan-ly/lop-hoc",
+              linkHref: "/manager/class/class",
+            },
+            {
+              name: "Thêm",
+              linkAs: "/quan-ly/lop-hoc/them",
+              linkHref: "/manager/class/class",
+            },
+            {
+              name: "Chi tiết",
+              linkAs: "/quan-ly/lop-hoc/chi-tiet",
+              linkHref: "/manager/class/class",
+            }
+          ]
         },
         {
           name: "Học viên",
           linkAs: "/quan-ly/hoc-vien",
-          linkHref: "/manager/member/member"
+          linkHref: "/manager/member/member",
+          subCategories: [
+            {
+              name: "Danh sách",
+              linkAs: "/quan-ly/hoc-vien",
+              linkHref: "/manager/member/member",
+            },
+            {
+              name: "Thêm",
+              linkAs: "/quan-ly/hoc-vien/them",
+              linkHref: "/manager/member/member",
+            },
+            {
+              name: "Chi tiết",
+              linkAs: "/quan-ly/hoc-vien/chi-tiet",
+              linkHref: "/manager/member/member",
+            }
+          ]
         },
         {
-          name: "Chuyên mục tin tức",
+          name: "Mục tin tức",
           linkAs: "/quan-ly/muc-tin-tuc",
-          linkHref: "/manager/newsCategory/newsCategory"
+          linkHref: "/manager/newsCategory/newsCategory",
+          subCategories: [
+            {
+              name: "Danh sách",
+              linkAs: "/quan-ly/muc-tin-tuc",
+              linkHref: "/manager/newsCategory/newsCategory",
+            },
+            {
+              name: "Thêm",
+              linkAs: "/quan-ly/muc-tin-tuc/them",
+              linkHref: "/manager/newsCategory/newsCategory",
+            },
+            {
+              name: "Chi tiết",
+              linkAs: "/quan-ly/muc-tin-tuc/chi-tiet",
+              linkHref: "/manager/newsCategory/newsCategory",
+            }
+          ]
         },
         {
           name: "Tin tức",
-          linkAs: "/quan-ly/tin-tuc/them",
-          linkHref: "/manager/addPost/addPost"
+          linkAs: "/quan-ly/tin-tuc",
+          linkHref: "/manager/news/news",
+          subCategories: [
+            {
+              name: "Danh sách",
+              linkAs: "/quan-ly/tin-tuc",
+              linkHref: "/manager/news/news",
+            },
+            {
+              name: "Thêm",
+              linkAs: "/quan-ly/tin-tuc/them",
+              linkHref: "/manager/news/news",
+            },
+            {
+              name: "Chi tiết",
+              linkAs: "/quan-ly/tin-tuc/chi-tiet",
+              linkHref: "/manager/news/news",
+            }
+          ]
         },
         {
           name: "Thiết lập",
           linkAs: "/quan-ly/thiet-lap",
           linkHref: "/manager/setting/setting"
+        },
+        {
+          name: "Thêm khoá học",
+          linkAs: "/quan-ly/them-khoa-hoc",
+          linkHref: "/manager/addCourse/addCourse"
+        },
+        {
+          name: "Thêm lớp học",
+          linkAs: "/quan-ly/them-lop-hoc",
+          linkHref: "/manager/addClass/addClass"
+        },
+        {
+          name: "Thêm học viên",
+          linkAs: "/quan-ly/them-hoc-vien",
+          linkHref: "/manager/addMember/addMember"
         },
       ]
     }

@@ -80,6 +80,9 @@ class Server {
             this.app.render(req, res, "/index");
         });
         // quan ly
+        this.server.get("/quan-ly", (req, res) => {
+            res.redirect("/quan-ly/tong-quan")
+        });
         this.server.get("/quan-ly/tong-quan", (req, res) => {
             this.app.render(req, res, "/manager/dashboard/dashboard");
         });
@@ -87,14 +90,20 @@ class Server {
         this.server.get("/quan-ly/hoc-vien", (req, res) => {
             this.app.render(req, res, "/manager/member/member");
         });
-        this.server.get("/quan-ly/hoc-vien/them", (req, res) => {
+        this.server.get("/quan-ly/hoc-vien/*", (req, res) => {
+            this.app.render(req, res, "/manager/member/member");
+        });
+        this.server.get("/quan-ly/them-hoc-vien", (req, res) => {
             this.app.render(req, res, "/manager/addMember/addMember");
         });
         // quan ly khoa hoc
         this.server.get("/quan-ly/khoa-hoc", (req, res) => {
             this.app.render(req, res, "/manager/course/course");
         });
-        this.server.get("/quan-ly/khoa-hoc/them", (req, res) => {
+        this.server.get("/quan-ly/khoa-hoc/*", (req, res) => {
+            this.app.render(req, res, "/manager/course/course");
+        });
+        this.server.get("/quan-ly/them-khoa-hoc", (req, res) => {
             this.app.render(req, res, "/manager/addCourse/addCourse");
         });
         // Quan ly lop hoc
@@ -111,14 +120,18 @@ class Server {
         this.server.get("/quan-ly/muc-tin-tuc", (req, res) => {
             this.app.render(req, res, "/manager/newsCategory/newsCategory");
         });
-        this.server.get("/quan-ly/muc-tin-tuc/them", (req, res) => {
-            this.app.render(req, res, "/manager/addPost/addPost");
+        this.server.get("/quan-ly/muc-tin-tuc/*", (req, res) => {
+            this.app.render(req, res, "/manager/newsCategory/newsCategory");
         });
+
         // Quan ly tin tuc
         this.server.get("/quan-ly/tin-tuc", (req, res) => {
             this.app.render(req, res, "/manager/news/news");
         });
-        this.server.get("/quan-ly/tin-tuc/them", (req, res) => {
+        this.server.get("/quan-ly/tin-tuc/*", (req, res) => {
+            this.app.render(req, res, "/manager/news/news");
+        });
+        this.server.get("/quan-ly/them-tin-tuc", (req, res) => {
             this.app.render(req, res, "/manager/addPost/addPost");
         });
         // Thiet lap

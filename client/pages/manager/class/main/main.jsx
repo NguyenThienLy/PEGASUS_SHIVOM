@@ -9,7 +9,7 @@ export class MainClass extends React.Component {
     render() {
 
         return (
-            <div>Xin chào</div>
+            <div>Danh sách lớp học</div>
         );
     }
 }
