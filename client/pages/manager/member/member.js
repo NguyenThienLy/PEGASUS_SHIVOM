@@ -6,6 +6,8 @@ import { connect } from "react-redux";
 import { api } from "../../../services";
 import { action } from "../../../actions";
 
+import { bindActionCreators } from 'redux'
+
 import "./member.scss";
 import {
     HeaderAdmin,
@@ -27,7 +29,7 @@ class Member extends Component {
                     "https://cdn1.iconfinder.com/data/icons/avatars-1-5/136/87-512.png",
                 name: "Avril Lavigne"
             },
-            pathname: null
+            number: null
         };
     }
 
@@ -36,7 +38,25 @@ class Member extends Component {
             number: Math.random()
         }
     }
+    componentDidMount() {
+        this.fetchData()
+    }
+    fetchData() {
+        this.props.fetchStudent({
+            query: {
+                limit: 0
+            },
+            headers: {
+                "x-token":
+                    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M"
+            }
+        })
+    }
+    componentWillReceiveProps(nextProps) {
+        this.setState({ number: Math.random() })
+    }
     render() {
+
         return (
             <div className="manager">
                 <Head>
@@ -60,10 +80,10 @@ class Member extends Component {
                         <AdminSidebar />
                     </div>
                     <div className="manager__body">
-                        <div>
+                        <div key={this.state.number}>
                             <SwitchRouter routes={
                                 [
-                                    { path: "/quan-ly/hoc-vien", component: <MainMember /> },
+                                    { path: "/quan-ly/hoc-vien", component: <MainMember {...this.props} /> },
                                     { path: "/quan-ly/hoc-vien/them", component: <AddMember /> },
                                     { path: "/quan-ly/hoc-vien/chi-tiet", component: <DetailMember /> }
                                 ]
@@ -80,4 +100,13 @@ const mapStateToProps = state => {
     return state;
 };
 
-export default connect(mapStateToProps)(Member);
+const mapDispatchToProps = dispatch =>
+    bindActionCreators(
+        {
+            fetchStudent: action.student.fetch
+        },
+        dispatch
+    );
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Member);

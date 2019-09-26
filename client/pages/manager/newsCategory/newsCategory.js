@@ -5,6 +5,7 @@ import Link from "next/link";
 import { connect } from "react-redux";
 import { api } from "../../../services";
 import { action } from "../../../actions";
+import { bindActionCreators } from 'redux'
 
 import "./newsCategory.scss";
 import {
@@ -27,7 +28,7 @@ class NewsCategory extends Component {
                     "https://cdn1.iconfinder.com/data/icons/avatars-1-5/136/87-512.png",
                 name: "Avril Lavigne"
             },
-            pathname: null
+            number: null
         };
     }
 
@@ -35,6 +36,23 @@ class NewsCategory extends Component {
         return {
             number: Math.random()
         }
+    }
+    componentDidMount() {
+        this.fetchData()
+    }
+    fetchData() {
+        this.props.fetchNewsCategory({
+            query: {
+                limit: 0
+            },
+            headers: {
+                "x-token":
+                    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M"
+            }
+        })
+    }
+    componentWillReceiveProps(nextProps) {
+        this.setState({ number: Math.random() })
     }
     render() {
         return (
@@ -61,10 +79,10 @@ class NewsCategory extends Component {
                         <AdminSidebar />
                     </div>
                     <div className="manager__body">
-                        <div>
+                        <div key={this.state.number}>
                             <SwitchRouter routes={
                                 [
-                                    { path: "/quan-ly/muc-tin-tuc", component: <MainNewsCategory /> },
+                                    { path: "/quan-ly/muc-tin-tuc", component: <MainNewsCategory {...this.props} /> },
                                     { path: "/quan-ly/muc-tin-tuc/them", component: <AddNewsCategory /> },
                                     { path: "/quan-ly/muc-tin-tuc/chi-tiet", component: <DetailNewsCategory /> }
                                 ]
@@ -81,4 +99,13 @@ const mapStateToProps = state => {
     return state;
 };
 
-export default connect(mapStateToProps)(NewsCategory);
+const mapDispatchToProps = dispatch =>
+    bindActionCreators(
+        {
+            fetchNewsCategory: action.newCategory.fetch
+        },
+        dispatch
+    );
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewsCategory);
