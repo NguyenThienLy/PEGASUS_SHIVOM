@@ -186,3 +186,33 @@ $color-grey: #363738;
     }
   }
 }
+
+
+.member-table {
+  width:100% ;
+  background: #fff;
+}
+.member-table > td, th  {
+  border-bottom: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+.member-table > tr:last-child {
+  border-bottom: none;
+  text-align: left;
+  padding: 8px;
+}
+.member-table >  th, td {
+  border-bottom: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.member-table > tr:hover {
+  background-color: #bbb
+}
+
+.avatar-image {
+  width: 100px;
+  height: 100px;
+}

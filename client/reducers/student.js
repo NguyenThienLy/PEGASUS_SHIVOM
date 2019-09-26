@@ -4,6 +4,17 @@ export class StudentReducer extends BaseReducer {
   constructor() {
     super("student");
     this.initState = {
+      items: [],
+      fetching: false,
+      fetchError: null,
+      updating: false,
+      updateError: null,
+      isAddSuccess: false,
+      adding: false,
+      isAddError: false,
+      addError: null,
+      deleting: false,
+      deleteError: null,
       itemsNewStudents: {
         fetching: false,
         fetchError: null,

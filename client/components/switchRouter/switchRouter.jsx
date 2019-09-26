@@ -5,8 +5,7 @@ export class SwitchRouter extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            component: null,
-            isLoaded: false
+            component: null
         };
     }
     componentDidMount() {
@@ -14,15 +13,19 @@ export class SwitchRouter extends React.Component {
 
         const route = this.props.routes.find((route) => { return route.path === pathname })
         if (route) {
-            this.setState({ component: route.component, isLoaded: true })
+            this.setState({ component: route.component })
         }
     }
     componentWillReceiveProps(nextProps) {
+
         const pathname = window.location.pathname
         const route = this.props.routes.find((route) => { return route.path === pathname })
         if (route) {
-            this.setState({ component: route.component, isLoaded: true })
+            this.setState({ component: route.component })
         }
+    }
+    shouldComponentUpdate() {
+        return true
     }
     render() {
         if (this.state.component) {
