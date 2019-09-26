@@ -9,7 +9,7 @@ body {
 .add-class {
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  // height: 100vh;
   @include e("header") {
   }
   @include e("sidebar") {

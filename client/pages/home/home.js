@@ -6,7 +6,7 @@ import { action } from "../../actions";
 import { api } from "../../services";
 import { bindActionCreators } from "redux";
 
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 import "./home.scss";
 import {
   Footer,
@@ -225,24 +225,21 @@ class Home extends React.Component {
       introHome: [
         {
           link: "#",
-          image:
-            "https://i.imgur.com/tk1poDX.png",
+          image: "https://i.imgur.com/tk1poDX.png",
           title: "Tâm huyết",
           content:
             "Đội ngũ giáo viên chuyên môn cao, luôn nhiệt tình và tâm huyết với những bài dạy - học viên của mình"
         },
         {
           link: "#",
-          image:
-            "https://i.imgur.com/fIGwVx3.png",
+          image: "https://i.imgur.com/fIGwVx3.png",
           title: "Chất lượng",
           content:
             "Cơ sở vật chất hiện đại, trang thiết bị đầy đủ  - Giáo trình hướng dẫn khoa học, đạt chuẩn quốc tế"
         },
         {
           link: "#",
-          image:
-            "https://i.imgur.com/S86zsCv.png",
+          image: "https://i.imgur.com/S86zsCv.png",
           title: "Uy tín",
           content:
             "Giáo viên có chứng chỉ giảng dạy - Cam kết chất lượng từng khoá học"
@@ -411,7 +408,6 @@ class Home extends React.Component {
       Swal.fire("Thất bại", "Gửi liên hệ không thành công", "error");
       this.props.addContactRefresh();
     }
-    console.log("windowSize" + this.state.windowSize);
   }
   async componentDidMount() {
     this.fetchData();
@@ -473,10 +469,10 @@ class Home extends React.Component {
     // });
     $(window).on("load", () => {
       this.setState({ windowSize: $(window).outerWidth() });
-      $(".home__body__intro-slick-autoplay").on("init", function (event, slick) {
+      $(".home__body__intro-slick-autoplay").on("init", function(event, slick) {
         $(".home__body__intro-slick-autoplay").css({
           opacity: "1",
-          visibility: "visible"
+          visibility: "visible" // visible when loaded
         });
       });
       $(".home__body__intro-slick-autoplay").slick({
@@ -500,7 +496,7 @@ class Home extends React.Component {
         ]
       });
 
-      $(".home__body__intro-slick-autoplay").on("beforeChange", function (
+      $(".home__body__intro-slick-autoplay").on("beforeChange", function(
         event,
         slick,
         currentSlide,
@@ -511,7 +507,7 @@ class Home extends React.Component {
         );
         $(".home__body__intro-slick-autoplay .slick-dots li button")
           .attr("aria-pressed", "false")
-          .focus(function () {
+          .focus(function() {
             this.blur();
           });
       });
@@ -582,10 +578,10 @@ class Home extends React.Component {
                 </div>
               ]
             ) : (
-                <div className="home__body__slider" style={{ height: "50vh" }}>
-                  <Loading />
-                </div>
-              )}
+              <div className="home__body__slider" style={{ height: "50vh" }}>
+                <Loading />
+              </div>
+            )}
 
             {/* <div className="home__body__intro">
               {this.state.introHome.map((intro, index) => {
@@ -607,21 +603,22 @@ class Home extends React.Component {
                 <div className="home__body__trainingClass__title__inner">
                   <div>Khoá học yoga</div>
                   <p>
-                    Các khóa học được đầu tư và nghiên cứu kĩ lưỡng phù hợp với từng nhóm đối tượng cụ thể,
-                    dẫn dắt bởi những giáo viên tâm huyết và chuyên môn tốt.
+                    Các khóa học được đầu tư và nghiên cứu kĩ lưỡng phù hợp với
+                    từng nhóm đối tượng cụ thể, dẫn dắt bởi những giáo viên tâm
+                    huyết và chuyên môn tốt.
                   </p>
                 </div>
               </div>
               <div className="home__body__trainingClass__content">
                 {this.props.courses.fetching === false
                   ? this.props.courses.items.map((trainingClass, index) => {
-                    return (
-                      <TrainingClass
-                        trainingClass={trainingClass}
-                        key={index}
-                      />
-                    );
-                  })
+                      return (
+                        <TrainingClass
+                          trainingClass={trainingClass}
+                          key={index}
+                        />
+                      );
+                    })
                   : null}
                 {/* {this.state.trainingClasses.map(trainingClass => {
                   return <TrainingClass trainingClass={trainingClass} />;
@@ -699,7 +696,8 @@ class Home extends React.Component {
                 <div className="home__body__trainers__introduction__inner">
                   <div>Đội ngũ huấn luận viên</div>
                   <p>
-                    Đội ngũ huấn luận viên tận tình, chu đáo và am hiểu học viên.
+                    Đội ngũ huấn luận viên tận tình, chu đáo và am hiểu học
+                    viên.
                   </p>
                 </div>
               </div>
@@ -709,8 +707,8 @@ class Home extends React.Component {
               <div className="home__body__trainers__list">
                 {this.props.teachers.fetching === false
                   ? this.props.teachers.items.map((trainer, index) => {
-                    return <Trainer trainer={trainer} key={index} />;
-                  })
+                      return <Trainer trainer={trainer} key={index} />;
+                    })
                   : null}
                 {/* {this.state.trainers.map(trainer => {
                   return <Trainer trainer={trainer} />;

@@ -75,7 +75,6 @@
     textarea {
       width: 100%;
       resize: vertical;
-      border: none;
       outline: none;
       font-size: 1em;
       font-family: $font-body;
@@ -122,12 +121,12 @@
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);
       padding: 1.2em 3em;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      column-gap: 1em;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 2em;
       row-gap: 1em;
-      @include m("two-columns") {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      // @include m("two-columns") {
+      //   grid-template-columns: repeat(2, 1fr);
+      // }
       @include e("item") {
         .new-class-info__title-text {
           width: 100%;
@@ -136,10 +135,10 @@
         .new-class-info__input-box {
           width: 90%;
         }
-        @include m("double") {
-          grid-column-start: 1;
-          grid-column-end: 3;
-        }
+        // @include m("double") {
+        //   grid-column-start: 1;
+        //   grid-column-end: 3;
+        // }
         @include e("add-btn") {
           margin-top: 1em;
           text-align: center;
@@ -189,12 +188,12 @@
       & > .new-class-info__title-text {
         width: 100%;
         grid-column-start: 1;
-        grid-column-end: 5;
+        grid-column-end: 3;
       }
       & > .new-class-info__text-area {
         width: 90%;
         grid-column-start: 1;
-        grid-column-end: 5;
+        grid-column-end: 3;
       }
     }
 

@@ -6,7 +6,7 @@ const LRUCache = require("lru-cache");
 const ssrCache = new LRUCache({
   max: 100 * 1024 * 1024,
   /* cache size will be 100 MB using `return n.length` as length() function */
-  length: function (n, key) {
+  length: function(n, key) {
     return n.length;
   },
   maxAge: 1000 * 60 * 60 * 24 * 30
@@ -48,6 +48,9 @@ class Server {
   async handleRequest() {
     this.server.get("/", (req, res) => {
       this.app.render(req, res, "/index");
+    });
+    this.server.get("/hoc-vien", (req, res) => {
+      this.app.render(req, res, "/member/member");
     });
     this.server.get("/bai-viet/:newsId", (req, res) => {
       this.app.render(req, res, "/post/post", { newsId: req.params.newsId });

@@ -469,8 +469,6 @@ export class Dashboard extends React.Component {
       });
     }
 
-    
-
     return true;
   }
 
@@ -580,6 +578,7 @@ export class Dashboard extends React.Component {
               ></Activity>
             </div>
           </div>
+          />
         </React.Fragment>
       </div>
     );

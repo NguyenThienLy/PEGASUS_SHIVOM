@@ -35,19 +35,21 @@ export class ColumnChart extends React.Component {
           </div> */}
         </div>
         <div className="columnChart__content">
-          {isFetching && isEmpty && "Đăng tải dữ liệu ..."}
-          {isEmpty && !isFetching && "Dữ liệu trống !!!"}
-          {!isFetching && !isEmpty && (
-            <Bar
-              data={columnChartData}
-              options={{
-                legend: {
-                  display: this.props.displayLegend,
-                  position: this.props.legendPosition
-                }
-              }}
-            />
-          )}
+          <div className="columnChart__content__inner">
+            {isFetching && isEmpty && "Đăng tải dữ liệu ..."}
+            {isEmpty && !isFetching && "Dữ liệu trống !!!"}
+            {!isFetching && !isEmpty && (
+              <Bar
+                data={columnChartData}
+                options={{
+                  legend: {
+                    display: this.props.displayLegend,
+                    position: this.props.legendPosition
+                  }
+                }}
+              />
+            )}
+          </div>
         </div>
       </div>
     );
