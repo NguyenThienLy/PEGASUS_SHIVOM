@@ -167,13 +167,7 @@ export class Course extends React.Component {
         saturday: 6,
         sunday: 7
       },
-      latestNews: [],
-      courseListBenefits: [
-        "Đem lại sự trẻ đẹp và dẻo dai diệu kỳ",
-        "Đem lại sự trẻ đẹp và dẻo dai diệu kỳ",
-        "Đem lại sự trẻ đẹp và dẻo dai diệu kỳ",
-        "Đem lại sự trẻ đẹp và dẻo dai diệu kỳ"
-      ]
+      latestNews: []
     };
   }
   static async getInitialProps({ req, query }) {

@@ -8,6 +8,7 @@ $background-color-chart: lighten($sub-main-color, 30%);
   // -webkit-box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
   // box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
   border: 1px solid $table-border-color;
+  background-color: #fff;
   margin-right: 2%;
   @include e("title") {
     display: flex;
@@ -23,7 +24,7 @@ $background-color-chart: lighten($sub-main-color, 30%);
   @include e("select") {
     display: flex;
     justify-content: space-between;
-    padding: 0.5em 1em;
+    padding: 1em;
     background-color: $background-color-chart;
     border-bottom: 1px solid $table-border-color;
     @include e("info") {
@@ -59,7 +60,7 @@ $background-color-chart: lighten($sub-main-color, 30%);
   }
   @include e("content") {
     @include e("inner") {
-      height: 10em;
+      // height: 10em;
       padding: 1em 2em;
       font-size: 0.9em;
     }

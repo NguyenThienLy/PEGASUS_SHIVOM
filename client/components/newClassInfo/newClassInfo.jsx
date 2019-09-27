@@ -20,7 +20,7 @@ export class NewClassInfo extends React.Component {
                 <hr className="divider" />
                 <form className="new-class-info__form">
                     <div className="new-class-info__form__info">
-                        <div className="new-class-info__form__info__item new-class-info__form__info__item--double">
+                        <div className="new-class-info__form__info__item">
                             <div className="new-class-info__title-text">
                                 Tên lớp học <span>* (bắt buộc)</span>
                             </div>
@@ -65,7 +65,7 @@ export class NewClassInfo extends React.Component {
                         </div>
                     </div>
 
-                    <div className="new-class-info__form__info new-class-info__form__info--two-columns">
+                    <div className="new-class-info__form__info">
                         <div className="new-class-info__form__info__item">
                             <div className="new-class-info__title-text">
                                 Khóa học <span>* (bắt buộc)</span>

@@ -54,16 +54,16 @@ export class NewCourseInfo extends React.Component {
               />
             </div>
             <div className="newCourseInfo__form__info__item">
-              <div className="newCourseInfo__title-text">
-                Mô tả ngắn
+              <div className="newCourseInfo__title-text">Mô tả ngắn</div>
+              <div className="newCourseInfo__text-area">
+                <textarea
+                  rows="6"
+                  maxLength="100"
+                  placeholder="Khóa học giúp bạn dẻo dai hơn"
+                  name="shortDescription"
+                  onChange={this.handleChange}
+                ></textarea>
               </div>
-              <textarea
-                className="newCourseInfo__input-box"
-                placeholder="Mô tả ngắn"
-                type="text"
-                name="shortDescription"
-                onChange={this.handleChange}
-              />
             </div>
             <div className="newCourseInfo__form__info__icon">
               <i className="fas fa-address-card"></i>

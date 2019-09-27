@@ -49,6 +49,29 @@
     }
   }
 
+  .newCourseInfo__text-area {
+    textarea {
+      width: 90%;
+      resize: vertical;
+      border: none;
+      outline: none;
+      font-size: 1em;
+      font-family: $font-body;
+      color: $font-color;
+      border: 1px solid $table-border-color;
+      border-radius: 5px;
+      padding: 1em 5%;
+      &::placeholder {
+        color: rgba(0, 0, 0, 0.3);
+        font-size: 0.9em;
+      }
+      &:focus {
+        outline: none;
+        border: 1px solid $main-color;
+      }
+    }
+  }
+
   .divider {
     height: 1px;
     background-color: $table-border-color;

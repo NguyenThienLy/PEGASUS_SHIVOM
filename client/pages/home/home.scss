@@ -11,15 +11,21 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        .lds-dual-ring {
+          width: 40px;
+          height: 40px;
+        }
+        .lds-dual-ring:after {
+          width: 32px;
+          height: 32px;
+        }
       }
     }
     @include e("intro") {
       padding: 0 3.5em;
       margin-top: -8em;
-      display: flex;
       justify-content: center;
       // align-items: center;
-      display: none;
       .introHome {
         width: 20em;
         height: auto;
@@ -34,9 +40,9 @@
       width: 100%;
       margin-top: -8em;
       padding: 0 8%;
-      opacity: 0;
+      opacity: 0; // hidden though display block
       visibility: hidden;
-      transition: opacity 1s ease;
+      transition: all 1s ease;
       @include e("item") {
         .introHome {
           padding: 0 1em;
@@ -226,7 +232,7 @@
         div {
           display: inline-block;
           text-transform: capitalize;
-          font-size: 12em;
+          font-size: 10em;
           font-family: $font-family-number;
           color: $sub-main-color;
           font-weight: 700;
@@ -361,7 +367,7 @@
 
   .home__body__imageShow {
     .image-show {
-      grid-template-columns: 100%;
+      grid-template-columns: repeat(1, 1fr);
       grid-template-areas:
         "img1"
         "img2"
@@ -453,8 +459,8 @@
   }
 
   .home__body__numbers {
-    grid-template-columns: 100%;
-    column-gap: 0%;
+    grid-template-columns: repeat(1, 1fr);
+    column-gap: 0em;
   }
 
   .home__body__trainers {
@@ -595,7 +601,7 @@
 
   .home__body__imageShow {
     .image-show {
-      grid-template-columns: 50% 50%;
+      grid-template-columns: repeat(2, 1fr);
       grid-template-areas:
         "img1 img2"
         "img3 img4"
@@ -680,8 +686,8 @@
   }
 
   .home__body__numbers {
-    grid-template-columns: 100%;
-    column-gap: 0%;
+    grid-template-columns: repeat(1, 1fr);
+    column-gap: 0em;
   }
 
   .home__body__trainers {
@@ -821,7 +827,7 @@
 
   .home__body__imageShow {
     .image-show {
-      grid-template-columns: 33.33% 33.33% 33.33%;
+      grid-template-columns: repeat(3, 1fr);
       grid-template-areas:
         "img1 img2 img3"
         "img4 img5 img6";
@@ -905,8 +911,8 @@
   }
 
   .home__body__numbers {
-    grid-template-columns: 49% 49%;
-    column-gap: 1%;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2em;
   }
 
   .home__body__trainers {
@@ -1046,7 +1052,7 @@
 
   .home__body__imageShow {
     .image-show {
-      grid-template-columns: 33.33% 33.33% 33.33%;
+      grid-template-columns: repeat(3, 1fr);
       grid-template-areas:
         "img1 img2 img3"
         "img4 img5 img6";
@@ -1130,8 +1136,8 @@
   }
 
   .home__body__numbers {
-    grid-template-columns: 49% 49%;
-    column-gap: 1%;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2em;
   }
 
   .home__body__trainers {
@@ -1142,7 +1148,7 @@
       display: block;
     }
     .home__body__trainers__list {
-      margin-top: -4.25em;
+      margin-top: -15em;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       column-gap: 1.5em;
@@ -1151,7 +1157,7 @@
         @include e("image") {
           a {
             img {
-              height: 16em;
+              height: 18em;
             }
           }
         }
@@ -1232,7 +1238,7 @@
   }
 
   .home__body__intro {
-    display: none;
+    display: none; // display none when page starts loading
   }
   .home__body__intro-slick-autoplay {
     display: none;
@@ -1270,7 +1276,7 @@
 
   .home__body__imageShow {
     .image-show {
-      grid-template-columns: 33.33% 33.33% 33.33%;
+      grid-template-columns: repeat(3, 1fr);
       grid-template-areas:
         "img1 img2 img3"
         "img4 img5 img6";
@@ -1354,8 +1360,8 @@
   }
 
   .home__body__numbers {
-    grid-template-columns: 24% 24% 24% 24%;
-    column-gap: 1%;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 1.5em;
   }
 
   .home__body__trainers {
@@ -1366,7 +1372,7 @@
       display: block;
     }
     .home__body__trainers__list {
-      margin-top: -4.25em;
+      margin-top: -15em;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       column-gap: 1.5em;
@@ -1375,7 +1381,7 @@
         @include e("image") {
           a {
             img {
-              height: 17em;
+              height: 19em;
             }
           }
         }

@@ -375,9 +375,7 @@ export class Dashboard extends React.Component {
         lineChartData: newLineChartData
       });
     }
-
-
-
+    
     return true;
   }
 

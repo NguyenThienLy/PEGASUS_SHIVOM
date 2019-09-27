@@ -11,6 +11,7 @@ $color-icon: rgba(0, 163, 175, 0.7);
   box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
   transition: 300ms;
   position: relative;
+  border: none;
   @include e("inner") {
     width: 100%;
     position: absolute;
