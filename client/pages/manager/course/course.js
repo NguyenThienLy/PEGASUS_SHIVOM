@@ -84,7 +84,7 @@ class Course extends Component {
                                 [
                                     { path: "/quan-ly/khoa-hoc", component: <MainCourse {...this.props} /> },
                                     { path: "/quan-ly/khoa-hoc/them", component: <AddCourse /> },
-                                    { path: "/quan-ly/khoa-hoc/chi-tiet", component: <DetailCourse /> }
+                                    { path: "/quan-ly/khoa-hoc/chi-tiet/:courseId", component: <DetailCourse {...this.props} /> }
                                 ]
                             } />
                         </div>

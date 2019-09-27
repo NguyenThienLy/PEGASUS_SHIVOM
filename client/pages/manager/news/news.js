@@ -84,7 +84,7 @@ class News extends Component {
                                 [
                                     { path: "/quan-ly/tin-tuc", component: <MainNews {...this.props} /> },
                                     { path: "/quan-ly/tin-tuc/them", component: <AddNews /> },
-                                    { path: "/quan-ly/tin-tuc/chi-tiet", component: <DetailNews /> }
+                                    { path: "/quan-ly/tin-tuc/chi-tiet/:newsId", component: <DetailNews {...this.props}/> }
                                 ]
                             } />
                         </div>
