@@ -26,11 +26,6 @@ export class AdminSidebar extends React.Component {
               name: "Thêm",
               linkAs: "/quan-ly/khoa-hoc/them",
               linkHref: "/manager/course/course",
-            },
-            {
-              name: "Chi tiết",
-              linkAs: "/quan-ly/khoa-hoc/chi-tiet",
-              linkHref: "/manager/course/course",
             }
           ]
         },
@@ -47,11 +42,6 @@ export class AdminSidebar extends React.Component {
             {
               name: "Thêm",
               linkAs: "/quan-ly/lop-hoc/them",
-              linkHref: "/manager/class/class",
-            },
-            {
-              name: "Chi tiết",
-              linkAs: "/quan-ly/lop-hoc/chi-tiet",
               linkHref: "/manager/class/class",
             }
           ]
@@ -70,11 +60,6 @@ export class AdminSidebar extends React.Component {
               name: "Thêm",
               linkAs: "/quan-ly/hoc-vien/them",
               linkHref: "/manager/member/member",
-            },
-            {
-              name: "Chi tiết",
-              linkAs: "/quan-ly/hoc-vien/chi-tiet",
-              linkHref: "/manager/member/member",
             }
           ]
         },
@@ -92,11 +77,6 @@ export class AdminSidebar extends React.Component {
               name: "Thêm",
               linkAs: "/quan-ly/muc-tin-tuc/them",
               linkHref: "/manager/newsCategory/newsCategory",
-            },
-            {
-              name: "Chi tiết",
-              linkAs: "/quan-ly/muc-tin-tuc/chi-tiet",
-              linkHref: "/manager/newsCategory/newsCategory",
             }
           ]
         },
@@ -113,11 +93,6 @@ export class AdminSidebar extends React.Component {
             {
               name: "Thêm",
               linkAs: "/quan-ly/tin-tuc/them",
-              linkHref: "/manager/news/news",
-            },
-            {
-              name: "Chi tiết",
-              linkAs: "/quan-ly/tin-tuc/chi-tiet",
               linkHref: "/manager/news/news",
             }
           ]

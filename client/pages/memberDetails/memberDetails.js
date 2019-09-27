@@ -100,10 +100,10 @@ export class MemberDetails extends React.Component {
     return {};
   }
 
-  fetchData = () => {};
+  fetchData = () => { };
 
-  handleScroll = () => {};
-  componentWillUnmount() {}
+  handleScroll = () => { };
+  componentWillUnmount() { }
   componentDidMount() {
     this.fetchData();
 
@@ -296,7 +296,7 @@ export class MemberDetails extends React.Component {
               </div>
             </div>
             <div className="memberDetails__body__table">
-              <Table></Table>
+              {/* <Table></Table> */}
             </div>
           </div>
         </React.Fragment>

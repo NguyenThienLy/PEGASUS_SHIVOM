@@ -34,6 +34,7 @@ class Member extends Component {
     }
 
     static async getInitialProps({ req, query }) {
+
         return {
             number: Math.random()
         }
@@ -85,7 +86,7 @@ class Member extends Component {
                                 [
                                     { path: "/quan-ly/hoc-vien", component: <MainMember {...this.props} /> },
                                     { path: "/quan-ly/hoc-vien/them", component: <AddMember /> },
-                                    { path: "/quan-ly/hoc-vien/chi-tiet", component: <DetailMember /> }
+                                    { path: "/quan-ly/hoc-vien/chi-tiet/:studentId", component: <DetailMember {...this.props} /> }
                                 ]
                             } />
                         </div>

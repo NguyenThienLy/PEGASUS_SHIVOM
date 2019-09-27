@@ -15,6 +15,7 @@ class MyDocument extends Document {
             async
             src="https://www.googletagmanager.com/gtag/js?id=UA-80582137-5"
           ></script>
+          <script src="https://cdn.tiny.cloud/1/tlt647bhgwv17djd3zlimks0k38mgbeuhppgf1uz2wjiwjdi/tinymce/5/tinymce.min.js"></script>
           <script
             dangerouslySetInnerHTML={{
               __html: `window.dataLayer = window.dataLayer || [];

@@ -84,7 +84,7 @@ class Class extends Component {
                                 [
                                     { path: "/quan-ly/lop-hoc", component: <MainClass {...this.props} /> },
                                     { path: "/quan-ly/lop-hoc/them", component: <AddClass /> },
-                                    { path: "/quan-ly/lop-hoc/chi-tiet", component: <DetailClass /> }
+                                    { path: "/quan-ly/lop-hoc/chi-tiet/:classId", component: <DetailClass {...this.props} /> }
                                 ]
                             } />
                         </div>

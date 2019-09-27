@@ -20,6 +20,8 @@ Router.events.on('routeChangeComplete', () => {
 })
 Router.events.on('routeChangeError', () => NProgress.done())
 
+import "../base.scss"
+
 class ReviewApp extends App {
   render() {
     const { Component, pageProps, reduxStore } = this.props

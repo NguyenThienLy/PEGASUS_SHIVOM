@@ -84,7 +84,7 @@ class NewsCategory extends Component {
                                 [
                                     { path: "/quan-ly/muc-tin-tuc", component: <MainNewsCategory {...this.props} /> },
                                     { path: "/quan-ly/muc-tin-tuc/them", component: <AddNewsCategory /> },
-                                    { path: "/quan-ly/muc-tin-tuc/chi-tiet", component: <DetailNewsCategory /> }
+                                    { path: "/quan-ly/muc-tin-tuc/chi-tiet/:newsCategoryId", component: <DetailNewsCategory {...this.props} /> }
                                 ]
                             } />
                         </div>

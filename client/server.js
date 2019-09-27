@@ -61,7 +61,7 @@ class Server {
       this.app.render(req, res, "/manager/member/member");
     });
     this.server.get("/quan-ly/hoc-vien/*", (req, res) => {
-      this.app.render(req, res, "/manager/member/member");
+      this.app.render(req, res, "/manager/member/member", req.params);
     });
     this.server.get("/quan-ly/them-hoc-vien", (req, res) => {
       this.app.render(req, res, "/manager/addMember/addMember");
