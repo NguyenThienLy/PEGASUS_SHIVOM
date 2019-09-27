@@ -36,7 +36,6 @@ export class Footer extends React.Component {
   componentDidMount() {
     $(window).on("resize", function() {
       let body = $(".footer-wrapper").prev();
-      let heightOfFooter = $(".footer-wrapper").outerHeight();
 
       if ($(window).outerWidth() > 599) {
         let heightOfFooter = $(".footer-wrapper").outerHeight();

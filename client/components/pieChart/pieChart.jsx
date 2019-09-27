@@ -1,6 +1,7 @@
 import * as React from "react";
 import "./pieChart.scss";
 import { Pie } from "react-chartjs-2";
+import { Loading } from "../../components";
 
 export class PieChart extends React.Component {
   constructor(props) {
@@ -22,8 +23,8 @@ export class PieChart extends React.Component {
         </div>
         <div className="pieChart__content">
           <div className="pieChart__content__inner">
-            {isFetching && isEmpty && "Đăng tải dữ liệu ..."}
-            {isEmpty && !isFetching && "Dữ liệu trống !!!"}
+            {isFetching && isEmpty && <Loading />}
+            {isEmpty && !isFetching && "Dữ liệu trống"}
             {!isFetching && !isEmpty && (
               <Pie
                 data={pieChartData}

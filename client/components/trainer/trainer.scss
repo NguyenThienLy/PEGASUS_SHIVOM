@@ -4,7 +4,7 @@
   height: auto;
   color: $color-grey;
   @include e("image") {
-    width: fit-content;
+    // width: fit-content;
     height: auto;
     position: relative;
     z-index: 0;
