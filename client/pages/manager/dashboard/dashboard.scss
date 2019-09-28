@@ -9,8 +9,25 @@ body {
   display: flex;
   flex-direction: row;
   // height: 100vh;
+
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2em 0em;
+    .lds-dual-ring {
+      width: 40px;
+      height: 40px;
+    }
+    .lds-dual-ring:after {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
   @include e("header") {
   }
+
   @include e("sidebar") {
     width: 20%;
     .sidebar {
@@ -18,20 +35,39 @@ body {
       width: 20%;
     }
   }
+
   @include e("body") {
     min-height: 100%;
     width: 78%;
     margin: 0 1%;
+
     @include e("numbers") {
       margin: 4em 0 3em;
-      // display: flex;
-      // justify-content: space-between;
-      // align-items: center;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       column-gap: 2em;
       row-gap: 1em;
+
+      .loading {
+        grid-column-start: 1;
+        grid-column-end: 5;
+      }
+
+      .numberAdmin {
+        @include e("inner") {
+          @include e("icon") {
+          }
+          @include e("info") {
+            @include e("about") {
+            }
+            @include e("quantity") {
+              text-align: left;
+            }
+          }
+        }
+      }
     }
+
     @include e("card") {
       margin: 0 0 3em;
       background-color: #fff;
@@ -40,6 +76,7 @@ body {
       -webkit-box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
       box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
       position: relative;
+
       @include e("title") {
         width: 10em;
         position: absolute;
@@ -53,15 +90,16 @@ body {
         -webkit-box-shadow: 1px 1px 5px rgba(0, 163, 175, 0.5);
         box-shadow: 1px 1px 5px rgba(0, 163, 175, 0.5);
       }
+
       @include e("content") {
         padding: 3em 0;
         @include e("chart") {
           @include e("filter") {
           }
+
           @include e("row") {
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
             .columnChart {
               margin-top: 2em;
               margin-bottom: 1em;
@@ -71,12 +109,13 @@ body {
               margin-bottom: 1em;
             }
           }
-          @include e("single") {
+
+          @include e("row-single") {
             .lineChart {
               margin-top: 2em;
               margin-bottom: 1em;
               width: 100%;
-              margin-right: 0;
+              margin-right: 0%;
             }
           }
         }
@@ -86,14 +125,20 @@ body {
     @include e("table") {
       margin: 0 0 3em;
     }
+
     @include e("activities") {
       margin: 0 0 3em;
       // display: flex;
       // justify-content: space-between;
       display: grid;
-      grid-template-columns: auto auto auto;
+      grid-template-columns: repeat(3, 1fr);
       column-gap: 1em;
       row-gap: 1em;
+      .activity {
+        @include e("actions") {
+          max-height: 18em;
+        }
+      }
     }
   }
 }
@@ -118,11 +163,18 @@ body {
   }
 
   .dashboard__body__numbers {
-    grid-template-columns: auto;
+    grid-template-columns: repeat(1, 1fr);
     column-gap: 0em;
+    row-gap: 1em;
+
+    .loading {
+      grid-column-start: 1;
+      grid-column-end: 2;
+    }
+
     .numberAdmin__inner__info {
       .numberAdmin__inner__info__quantity {
-        float: right;
+        text-align: right;
       }
     }
   }
@@ -130,10 +182,6 @@ body {
   .dashboard__body__card__content__chart__row {
     flex-direction: column;
     .columnChart {
-      width: 100%;
-      margin-right: 0;
-    }
-    .lineChart {
       width: 100%;
       margin-right: 0;
     }
@@ -146,8 +194,9 @@ body {
   }
 
   .dashboard__body__activities {
-    grid-template-columns: auto;
+    grid-template-columns: repeat(1, 1fr);
     column-gap: 0;
+    row-gap: 1em;
   }
 }
 
@@ -171,11 +220,18 @@ body {
   }
 
   .dashboard__body__numbers {
-    grid-template-columns: auto auto;
+    grid-template-columns: repeat(2, 1fr);
     column-gap: 1em;
+    row-gap: 1em;
+
+    .loading {
+      grid-column-start: 1;
+      grid-column-end: 3;
+    }
+
     .numberAdmin__inner__info {
       .numberAdmin__inner__info__quantity {
-        float: right;
+        text-align: right;
       }
     }
   }
@@ -183,10 +239,6 @@ body {
   .dashboard__body__card__content__chart__row {
     flex-direction: column;
     .columnChart {
-      width: 100%;
-      margin-right: 0;
-    }
-    .lineChart {
       width: 100%;
       margin-right: 0;
     }
@@ -199,8 +251,9 @@ body {
   }
 
   .dashboard__body__activities {
-    grid-template-columns: auto;
+    grid-template-columns: repeat(1, 1fr);
     column-gap: 0;
+    row-gap: 1em;
   }
 }
 
@@ -224,11 +277,18 @@ body {
   }
 
   .dashboard__body__numbers {
-    grid-template-columns: auto auto;
+    grid-template-columns: repeat(2, 1fr);
     column-gap: 2em;
+    row-gap: 1em;
+
+    .loading {
+      grid-column-start: 1;
+      grid-column-end: 3;
+    }
+
     .numberAdmin__inner__info {
       .numberAdmin__inner__info__quantity {
-        float: right;
+        text-align: right;
       }
     }
   }
@@ -239,21 +299,18 @@ body {
       width: 100%;
       margin-right: 0;
     }
-    .lineChart {
-      width: 100%;
-      margin-right: 0;
-    }
     .pieChart {
       margin: auto;
       margin-top: 2em;
       margin-bottom: 1em;
-      width: 50%;
+      width: 70%;
     }
   }
 
   .dashboard__body__activities {
-    grid-template-columns: auto auto;
+    grid-template-columns: repeat(2, 1fr);
     column-gap: 1em;
+    row-gap: 1em;
   }
 }
 
@@ -277,15 +334,18 @@ body {
   }
 
   .dashboard__body__numbers {
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: repeat(4, 1fr);
     column-gap: 0.5em;
-    .numberAdmin__inner__icon {
-      margin-right: 0.5em;
+    row-gap: 1em;
+
+    .loading {
+      grid-column-start: 1;
+      grid-column-end: 5;
     }
+
     .numberAdmin__inner__info {
-      margin-right: 0.5em;
       .numberAdmin__inner__info__quantity {
-        float: none;
+        text-align: left;
       }
     }
   }
@@ -296,21 +356,18 @@ body {
       width: 100%;
       margin-right: 0;
     }
-    .lineChart {
-      width: 100%;
-      margin-right: 0;
-    }
     .pieChart {
       margin: auto;
       margin-top: 2em;
       margin-bottom: 1em;
-      width: 50%;
+      width: 70%;
     }
   }
 
   .dashboard__body__activities {
-    grid-template-columns: auto auto;
+    grid-template-columns: repeat(2, 1fr);
     column-gap: 1em;
+    row-gap: 1em;
   }
 }
 
@@ -334,11 +391,18 @@ body {
   }
 
   .dashboard__body__numbers {
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: repeat(4, 1fr);
     column-gap: 1em;
+    row-gap: 1em;
+
+    .loading {
+      grid-column-start: 1;
+      grid-column-end: 5;
+    }
+
     .numberAdmin__inner__info {
       .numberAdmin__inner__info__quantity {
-        float: none;
+        text-align: left;
       }
     }
   }
@@ -346,29 +410,18 @@ body {
   .dashboard__body__card__content__chart__row {
     flex-direction: row;
     .columnChart {
-      width: 68%;
+      width: 58%;
       margin-right: 2%;
-    }
-    .lineChart {
-      width: 100%;
-      margin-right: 0;
     }
     .pieChart {
       margin: none;
-      width: 30%;
-    }
-  }
-
-  .dashboard__body__card__content__linechart__row {
-    flex-direction: row;
-    .lineChart {
-      width: 100%;
-      margin-right: 2%;
+      width: 40%;
     }
   }
 
   .dashboard__body__activities {
-    grid-template-columns: auto auto auto;
+    grid-template-columns: repeat(3, 1fr);
     column-gap: 1em;
+    row-gap: 1em;
   }
 }

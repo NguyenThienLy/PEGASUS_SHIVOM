@@ -373,7 +373,25 @@ export class Member extends React.Component {
                       <i className="fas fa-user-alt"></i>
                     </div>
                   </div>
+                  <div className="member__body__personal-info__content__form__info member__body__personal-info__content__form__info--hidden">
+                    <div className="member__body__personal-info__content__form__info__item member__body__personal-info__content__form__info__item--single">
+                      <div className="member__body__personal-info__content__form__info__item__title-text">
+                        Cập nhật ảnh đại diện
+                      </div>
+                      <div className="member__body__personal-info__content__form__info__item__avatar">
+                        <img
+                          src="https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-event-list-1a-768x768.jpg"
+                          alt=""
+                        />
+                      </div>
+
+                      <div className="newMemberInfo__form__info__icon">
+                        <i className="fas fa-camera-retro"></i>
+                      </div>
+                    </div>
+                  </div>
                 </form>
+
                 <div className="member__body__personal-info__content__avatar">
                   <div className="member__body__personal-info__content__avatar__image">
                     <img

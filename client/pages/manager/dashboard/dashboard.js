@@ -20,7 +20,8 @@ import {
   Activity,
   CustomSelect,
   FeedbackAdmin,
-  AdminSidebar
+  AdminSidebar,
+  Loading
 } from "../../../components";
 import GoogleMapReact from "google-map-react";
 
@@ -225,8 +226,8 @@ export class Dashboard extends React.Component {
       }
     });
   };
-  handleScroll = () => { };
-  componentWillUnmount() { }
+  handleScroll = () => {};
+  componentWillUnmount() {}
   async componentDidMount() {
     // Lấy năm
     // startTime bắt đầu năm hiện tại
@@ -375,7 +376,7 @@ export class Dashboard extends React.Component {
         lineChartData: newLineChartData
       });
     }
-    
+
     return true;
   }
 
@@ -405,23 +406,19 @@ export class Dashboard extends React.Component {
             ></HeaderAdmin>
           </div>
           <div className="dashboard__sidebar">
-            <AdminSidebar
-              logo={this.props.setting.logo}
-            />
-
+            <AdminSidebar logo={this.props.setting.logo} />
           </div>
           <div className="dashboard__body">
             <div className="dashboard__body__numbers">
-              {this.props.statisticCourse.statisticForPieChart.fetching
-                ? "đang tải ..."
-                : this.state.numberAdmins.map((number, index) => {
+              {this.props.statisticCourse.statisticForPieChart.fetching ? (
+                <Loading />
+              ) : (
+                this.state.numberAdmins.map((number, index) => {
                   return (
-                    <NumberAdmin
-                      numberAdmin={number}
-                      key={index}
-                    ></NumberAdmin>
+                    <NumberAdmin numberAdmin={number} key={index}></NumberAdmin>
                   );
-                })}
+                })
+              )}
             </div>
             <div className="dashboard__body__card">
               <div className="dashboard__body__card__title">Thống kê</div>
@@ -450,7 +447,7 @@ export class Dashboard extends React.Component {
                       isEmpty={this.state.pieChartData.isEmpty}
                     ></PieChart>
                   </div>
-                  <div className="dashboard__body__card__content__linechart__row">
+                  <div className="dashboard__body__card__content__chart__row-single">
                     <LineChart
                       lineChartData={this.state.lineChartData}
                       isFetching={

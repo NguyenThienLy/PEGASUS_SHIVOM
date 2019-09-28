@@ -408,6 +408,8 @@ class Home extends React.Component {
       Swal.fire("Thất bại", "Gửi liên hệ không thành công", "error");
       this.props.addContactRefresh();
     }
+
+    console.log("hello " + this.state.windowSize);
   }
   async componentDidMount() {
     this.fetchData();
@@ -467,14 +469,20 @@ class Home extends React.Component {
     //       this.blur();
     //     });
     // });
+    $(window).on("resize", () => {
+      this.setState({ windowSize: $(window).width() });
+    });
+
     $(window).on("load", () => {
-      this.setState({ windowSize: $(window).outerWidth() });
+      this.setState({ windowSize: $(window).width() });
+
       $(".home__body__intro-slick-autoplay").on("init", function(event, slick) {
         $(".home__body__intro-slick-autoplay").css({
           opacity: "1",
           visibility: "visible" // visible when loaded
         });
       });
+
       $(".home__body__intro-slick-autoplay").slick({
         dots: true,
         arrows: false,

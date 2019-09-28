@@ -21,7 +21,7 @@ export class Activity extends React.Component {
                 <div className="activity__actions__detail__img">
                   <img src={activity.avatar}></img>
                 </div>
-                <a href="#" className="activity__actions__detail__content">
+                <div className="activity__actions__detail__content">
                   <div className="activity__actions__detail__content__time">
                     {activity.header}
                   </div>
@@ -29,7 +29,7 @@ export class Activity extends React.Component {
                     {activity.firstName} {activity.lastName}{" "}
                     {staticContent.content}
                   </div>
-                </a>
+                </div>
                 <a href="#" className="activity__actions__detail__btn">
                   {activity.suport}
                 </a>

@@ -1,6 +1,7 @@
 import * as React from "react";
 import "./lineChart.scss";
 import { Line } from "react-chartjs-2";
+import { Loading } from "../../components";
 
 export class LineChart extends React.Component {
   constructor(props) {
@@ -36,8 +37,8 @@ export class LineChart extends React.Component {
         </div>
         <div className="lineChart__content">
           <div className="lineChart__content__inner">
-            {isFetching && isEmpty && "Đăng tải dữ liệu ..."}
-            {isEmpty && !isFetching && "Dữ liệu trống !!!"}
+            {isFetching && isEmpty && <Loading />}
+            {isEmpty && !isFetching && "Dữ liệu trống"}
             {!isFetching && !isEmpty && (
               <Line
                 data={lineChartData}

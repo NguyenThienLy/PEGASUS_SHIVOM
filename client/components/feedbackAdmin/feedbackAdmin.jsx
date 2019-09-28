@@ -23,7 +23,7 @@ export class FeedbackAdmin extends React.Component {
                 <div className="feedbackAdmin__actions__detail__img">
                   <img src={(feedbackAdmin.student || {}).avatar}></img>
                 </div>
-                <a href="#" className="feedbackAdmin__actions__detail__content">
+                <div className="feedbackAdmin__actions__detail__content">
                   <div className="feedbackAdmin__actions__detail__content__time">
                     {moment().diff(feedbackAdmin.createdAt, "days") +
                       " ngày trước"}
@@ -31,12 +31,14 @@ export class FeedbackAdmin extends React.Component {
                   <div className="feedbackAdmin__actions__detail__content__time">
                     {(feedbackAdmin.student || {}).firstName}{" "}
                     {(feedbackAdmin.student || {}).lastName}
-                    {" ("} {(feedbackAdmin.student || {}).point} {"điểm )"}
+                    {" ("}
+                    {(feedbackAdmin.student || {}).point}
+                    {" điểm)"}
                   </div>
                   <div className="feedbackAdmin__actions__detail__content__text">
                     {feedbackAdmin.content}
                   </div>
-                </a>
+                </div>
                 <a href="#" className="feedbackAdmin__actions__detail__btn">
                   Trả lời
                 </a>

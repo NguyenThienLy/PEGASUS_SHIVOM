@@ -106,6 +106,7 @@ $background-table-header-color: lighten($sub-main-color, 25%);
           padding: 0;
           &:nth-child(1) {
             vertical-align: middle;
+            padding: 0 0.2em;
           }
           .time-table__table-events__class-time {
             color: $font-color;
@@ -122,12 +123,12 @@ $background-table-header-color: lighten($sub-main-color, 25%);
             }
             @include e("class-time") {
               color: $color-grey;
-              font-size: 0.9em;
+              font-size: 1em;
               margin-top: 0.5em;
             }
             @include e("class-teacher") {
               color: $font-color;
-              font-size: 0.9em;
+              font-size: 1em;
               margin-top: 1em;
             }
             &:not(:nth-child(1)) {
