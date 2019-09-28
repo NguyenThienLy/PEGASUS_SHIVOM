@@ -33,6 +33,7 @@
     border-radius: 5px;
     outline: none;
     padding: 0.5em 5%;
+    width: 90%;
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
       /* display: none; <- Crashes Chrome on hover */
@@ -100,7 +101,7 @@
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);
       padding: 1.2em 3em;
       display: grid;
-      grid-template-columns: auto auto;
+      grid-template-columns: repeat(2, 1fr);
       column-gap: 2em;
       row-gap: 1em;
       @include e("item") {
@@ -108,8 +109,10 @@
           width: 100%;
           margin-bottom: 1em;
         }
-        .newCourseInfo__input-box {
-          width: 90%;
+        @include e("error-message") {
+          width: 100%;
+          font-size: 0.8em;
+          color: red;
         }
         @include e("input-remove") {
           margin-bottom: 0.5em;
@@ -191,42 +194,36 @@
         align-items: center;
         display: flex;
         padding: 1em 0;
-        .container {
-          width: 100%;
-          text-align: center;
-        }
       }
     }
 
-    @include e("button") {
-      display: flex;
-      justify-content: center;
-      padding: 2em 0em 1em;
-      // width: 5em;
-      // height: 1em;
-      button {
-        font-size: 1em;
-        padding: 0.6em 1.8em;
-        text-align: center;
-        border: none;
-        border-radius: 5px;
-        outline: none;
-        font-family: $font-body;
-        transition: 200ms ease;
-        color: $main-color;
-        background-color: lighten($sub-main-color, 25%);
-        box-shadow: 1px 1px 5px #ebebeb;
-        text-transform: uppercase;
-        cursor: pointer;
-        i {
-          font-size: 0.9em;
-          margin-left: 0.3em;
-        }
-        &:hover {
-          background-color: $main-color;
-          color: #fff;
-        }
-      }
-    }
+    // @include e("button") {
+    //   display: flex;
+    //   justify-content: center;
+    //   padding: 2em 0em 1em;
+    //   button {
+    //     font-size: 1em;
+    //     padding: 0.6em 1.8em;
+    //     text-align: center;
+    //     border: none;
+    //     border-radius: 5px;
+    //     outline: none;
+    //     font-family: $font-body;
+    //     transition: 200ms ease;
+    //     color: $main-color;
+    //     background-color: lighten($sub-main-color, 25%);
+    //     box-shadow: 1px 1px 5px #ebebeb;
+    //     text-transform: uppercase;
+    //     cursor: pointer;
+    //     i {
+    //       font-size: 0.9em;
+    //       margin-left: 0.3em;
+    //     }
+    //     &:hover {
+    //       background-color: $main-color;
+    //       color: #fff;
+    //     }
+    //   }
+    // }
   }
 }

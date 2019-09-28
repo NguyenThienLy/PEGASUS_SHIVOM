@@ -113,7 +113,9 @@ export class TryItNowForm extends React.Component {
     // }, 0)
   }
   handleChange = event => {
-    const { name, value } = event.target;
+    let { name, value } = event.target;
+    value = value.trim();
+
     this.handleInputValidation(name, value);
   };
   handleInputValidation = (name, value) => {
@@ -235,10 +237,10 @@ export class TryItNowForm extends React.Component {
                   );
                 })
               ) : (
-                    <option value="" hidden>
-                      Chọn khoá học
+                <option value="" hidden>
+                  Chọn khoá học
                 </option>
-                  )}
+              )}
             </select>
           </div>
           <button

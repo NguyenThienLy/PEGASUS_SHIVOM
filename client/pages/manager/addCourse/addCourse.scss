@@ -60,7 +60,7 @@ body {
         @include e("btn") {
           font-size: 1em;
           padding: 0.6em 1.8em;
-          margin-right: 2em;
+          margin: 0 2em 0 0;
           text-align: center;
           border: none;
           border-radius: 5px;
@@ -73,7 +73,7 @@ body {
           text-transform: uppercase;
           cursor: pointer;
           &:nth-last-child(1) {
-            margin-right: 0;
+            margin: 0;
           }
           &:disabled {
             cursor: no-drop;
