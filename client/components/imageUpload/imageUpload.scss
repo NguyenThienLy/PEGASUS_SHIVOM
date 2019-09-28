@@ -27,20 +27,20 @@
 // }
 
 .drop-zone-wrap {
-  
-	border: 1px solid rgba(0, 0, 0, 0.3);
-	border-style: dashed;
-  padding: 5px;
-  height: 100px;
-  width: 100%;
-	min-width: 50%;
-	cursor: pointer;
-	&__instruction {
-    padding: 35px 10px;
-    height: 100%;
-		&:focus {
-			outline: none;
-		}
-	}
+  border: 1px solid lighten(#83ccd2, 10%);
+  border-style: dashed;
+  padding: 0.7em;
+  //   height: 100px;
+  //   width: 100%;
+  // 	min-width: 50%;
+  cursor: pointer;
+  color: $font-color;
+  font-size: 1em;
+  &__instruction {
+    padding: 1.5em 0.5em;
+    // height: 100%;
+    &:focus {
+      outline: none;
+    }
+  }
 }
-

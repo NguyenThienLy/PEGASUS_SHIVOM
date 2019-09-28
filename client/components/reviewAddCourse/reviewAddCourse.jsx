@@ -66,6 +66,16 @@ export class ReviewAddCourse extends React.Component {
 
           <div className="reviewAddCourse__content__title">
             <div className="reviewAddCourse__content__title__inner">
+              <div>Giới thiệu ngắn về khóa học</div>
+              <div className="reviewAddCourse__content__title__inner--hover" />
+            </div>
+          </div>
+          <div className="reviewAddCourse__content__short-description">
+            {this.props.data.shortDescription}
+          </div>
+
+          <div className="reviewAddCourse__content__title">
+            <div className="reviewAddCourse__content__title__inner">
               <div>Hình ảnh</div>
               <div className="reviewAddCourse__content__title__inner--hover" />
             </div>

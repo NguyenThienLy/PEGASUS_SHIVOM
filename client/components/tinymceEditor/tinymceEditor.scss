@@ -21,6 +21,13 @@ $hover-color: lighten($sub-main-color, 27%);
   }
   @include e("content") {
     margin: 2em 1em 0;
+    @include e("error-message") {
+      width: 100%;
+      display: block;
+      font-size: 0.8em;
+      color: red;
+      margin-bottom: 1em;
+    }
   }
   @include e("button") {
     display: flex;

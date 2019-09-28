@@ -28,8 +28,21 @@ class AddCourse extends Component {
           "https://cdn1.iconfinder.com/data/icons/avatars-1-5/136/87-512.png",
         name: "Avril Lavigne"
       },
-      
-      pages: ["newCourseInfo", "tinymceEditor", "reviewAddCourse"],
+
+      pages: [
+        {
+          name: "newCourseInfo",
+          isValid: false
+        },
+        {
+          name: "tinymceEditor",
+          isValid: false
+        },
+        {
+          name: "reviewAddCourse",
+          isValid: true
+        }
+      ],
       curPageNumber: 1,
       isShowAddCourseBenefitsModal: false,
       formData: {
@@ -52,13 +65,13 @@ class AddCourse extends Component {
     this.openPage = this.openPage.bind(this);
     this.handleClickPrevious = this.handleClickPrevious.bind(this);
     this.handleClickNext = this.handleClickNext.bind(this);
+    this.handleIsValid = this.handleIsValid.bind(this);
     this.handleInputForm = this.handleInputForm.bind(this);
     this.handleAddBenefits = this.handleAddBenefits.bind(this);
     this.handleRemoveBenefits = this.handleRemoveBenefits.bind(this);
     this.submitCourse = this.submitCourse.bind(this);
   }
   async componentDidMount() {
-   
     var heightOfHeader = $(
       ".addCourse .addCourse__header .headerAdmin__wrapper"
     ).height();
@@ -82,8 +95,9 @@ class AddCourse extends Component {
       stepBtns[i].style.backgroundColor = "#e1f2f4";
       stepBtns[i].style.color = "#00a3af";
     }
-    document.getElementById(this.state.pages[pageNumber - 1]).style.display =
-      "block";
+    document.getElementById(
+      this.state.pages[pageNumber - 1].name
+    ).style.display = "block";
     $(".stepsLine__btn-" + pageNumber).css({
       backgroundColor: "#00a3af",
       color: "#fff"
@@ -111,22 +125,37 @@ class AddCourse extends Component {
   };
 
   handleClickPrevious = function() {
-    let curPageNumber = this.state.curPageNumber - 1;
-    if (curPageNumber > 0) {
-      this.setState({ curPageNumber });
-      this.openPage(curPageNumber);
+    const curPageNumber = this.state.curPageNumber;
+    let nextPageNumber = curPageNumber - 1;
+    if (nextPageNumber > 0) {
+      this.setState({ curPageNumber: nextPageNumber });
+      this.openPage(nextPageNumber);
     }
   };
 
   handleClickNext = function() {
-    let curPageNumber = this.state.curPageNumber + 1;
-    if (curPageNumber <= this.state.pages.length) {
-      this.setState({ curPageNumber });
-      this.openPage(curPageNumber);
+    const curPageNumber = this.state.curPageNumber;
+    const pages = this.state.pages;
+
+    if (!pages[curPageNumber - 1].isValid) {
+      alert("Vui lòng kiểm tra lại thông tin");
+      return;
     }
-    if (curPageNumber > this.state.pages.length) {
+
+    let nextPageNumber = curPageNumber + 1;
+    if (nextPageNumber <= pages.length) {
+      this.setState({ curPageNumber: nextPageNumber });
+      this.openPage(nextPageNumber);
+    }
+    if (nextPageNumber > pages.length) {
       this.submitCourse();
     }
+  };
+
+  handleIsValid = function(pageNumber, isValid) {
+    const pages = this.state.pages;
+    pages[pageNumber - 1].isValid = isValid;
+    this.setState({ pages: pages });
   };
 
   static async getInitialProps({ req, query }) {
@@ -139,8 +168,6 @@ class AddCourse extends Component {
   showAddCourseBenefitsModal() {
     this.setState({ isShowAddCourseBenefitsModal: true });
   }
-
-  
 
   handleInputForm(name, value) {
     this.state.formData[name] = value;
@@ -188,7 +215,7 @@ class AddCourse extends Component {
 
         <Head>
           <title>Thêm khoá học</title>
-          <meta name="robots" content="noindex"/>
+          <meta name="robots" content="noindex" />
           <meta name="title" content="Thêm khóa học" />
           <meta
             name="description"
@@ -214,7 +241,6 @@ class AddCourse extends Component {
                 <div className="addCourse__body__card__content__steps">
                   <StepsLine
                     stepQuantity={this.state.pages.length}
-                    pages={this.state.pages}
                     openPage={this.openPage}
                   ></StepsLine>
                 </div>
@@ -228,6 +254,8 @@ class AddCourse extends Component {
                     showAddCourseBenefitsModal={this.showAddCourseBenefitsModal}
                     handleChange={this.handleInputForm}
                     handleRemove={this.handleRemoveBenefits}
+                    handleIsValid={this.handleIsValid}
+                    pageNumber="1"
                   />
                 </div>
                 <div
@@ -236,7 +264,10 @@ class AddCourse extends Component {
                   fadeIn"
                 >
                   <TinymceEditor
-                    handleChange={this.handleInputForm} varName="description"
+                    handleChange={this.handleInputForm}
+                    varName="description"
+                    handleIsValid={this.handleIsValid}
+                    pageNumber="2"
                   ></TinymceEditor>
                 </div>
                 <div

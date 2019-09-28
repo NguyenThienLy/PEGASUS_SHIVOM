@@ -4,7 +4,6 @@ import Dropzone from "react-dropzone";
 import "./imageUpload.scss";
 import styled from "styled-components";
 
-
 const thumbsContainer = {
   display: "flex",
   flexDirection: "row",
@@ -14,12 +13,12 @@ const thumbsContainer = {
 
 const thumb = {
   display: "inline-flex",
-  borderRadius: 2,
-  border: "1px solid #eaeaea",
+  borderRadius: 3,
+  border: "1px solid #a8dbe0",
   marginBottom: 8,
   marginRight: 8,
-  width: 100,
-  height: 100,
+  width: 120,
+  height: 120,
   padding: 4,
   boxSizing: "border-box"
 };
@@ -32,8 +31,9 @@ const thumbInner = {
 
 const img = {
   display: "block",
-  width: "auto",
-  height: "100%"
+  width: "100%",
+  height: "100%",
+  objectFit: "cover"
 };
 export class ImageUpload extends Component {
   constructor(props) {
@@ -41,26 +41,31 @@ export class ImageUpload extends Component {
     this.state = {
       uploadFiles: [],
       thumbs: null
-    }
+    };
   }
-  onDrop = (acceptedFiles) => {
-    let fileUrl = URL.createObjectURL(acceptedFiles[0])
-    const thumbs = (
-      <div style={thumb} key={acceptedFiles[0].name}>
-        <div style={thumbInner}>
-          <img src={fileUrl} style={img} />
+  onDrop = acceptedFiles => {
+    let fileUrl = URL.createObjectURL(acceptedFiles[0]);
+    const thumbs = acceptedFiles.map(file => {
+      return (
+        <div style={thumb} key={file.name}>
+          <div style={thumbInner}>
+            <img src={URL.createObjectURL(file)} style={img} />
+          </div>
         </div>
-      </div>
-    )
+      );
+    });
+
     this.setState({ uploadFiles: acceptedFiles, thumbs: thumbs });
-    this.props.changeImage(acceptedFiles[0], fileUrl)
-  }
+    this.props.changeImage(acceptedFiles[0], fileUrl);
+  };
   render() {
     return (
       <div>
         <div className="drop-zone-wrap">
-          <Dropzone className="" onDrop={this.onDrop}
-            accept="image/png, image/jpg, image/jpeg">
+          <Dropzone
+            onDrop={this.onDrop}
+            accept="image/png, image/jpg, image/jpeg"
+          >
             {({ getRootProps, getInputProps }) => (
               <div {...getRootProps()} className="drop-zone-wrap__instruction">
                 <input {...getInputProps()} />
@@ -78,7 +83,6 @@ export class ImageUpload extends Component {
               </div>
             )}
           </Dropzone>
-
         </div>
         <aside style={thumbsContainer}>{this.state.thumbs}</aside>
       </div>
