@@ -37,7 +37,7 @@ export class Footer extends React.Component {
     $(window).on("resize", function() {
       let body = $(".footer-wrapper").prev();
 
-      if ($(window).outerWidth() > 599) {
+      if ($(window).width() > 599) {
         let heightOfFooter = $(".footer-wrapper").outerHeight();
         $(".footer-wrapper").css({
           position: "fixed",
@@ -59,7 +59,7 @@ export class Footer extends React.Component {
     let heightOfFooter = $(".footer-wrapper").height();
     let body = $(".footer-wrapper").prev();
 
-    if ($(window).outerWidth() > 599) {
+    if ($(window).width() > 599) {
       $(".footer-wrapper").css({
         position: "fixed",
         zIndex: "-1"

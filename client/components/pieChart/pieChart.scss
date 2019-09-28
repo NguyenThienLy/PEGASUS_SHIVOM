@@ -24,7 +24,7 @@ $background-color-chart: lighten($sub-main-color, 30%);
     border-bottom: 1px solid $table-border-color;
     @include e("inner") {
       // height: 20em;
-      padding: 1em 2em;
+      padding: 2em 0.5em;
       font-size: 0.9em;
     }
   }
@@ -35,7 +35,7 @@ $background-color-chart: lighten($sub-main-color, 30%);
     background-color: $background-color-chart;
     @include e("info") {
       color: $font-color;
-      font-size: 0.8em;
+      font-size: 0.9em;
     }
     @include e("date") {
     }

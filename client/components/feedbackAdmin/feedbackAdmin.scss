@@ -44,14 +44,15 @@
       @include e("img") {
         position: absolute;
         left: 0;
-        transform: translateX(-50%);
         top: 1em;
+        transform: translateX(-50%);
         width: 2em;
         height: 2em;
-        border-radius: 999px;
+        border-radius: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
+        background-color: #fff;
         box-shadow: 1px 1px 10px #ebebeb;
         img {
           width: 100%;
@@ -60,8 +61,8 @@
       }
 
       @include e("content") {
-        width: 75%;
-        margin-right: 1%;
+        width: 74%;
+        margin-right: 2%;
         font-family: $font-family-special;
 
         @include e("time") {
@@ -81,14 +82,14 @@
       }
 
       @include e("btn") {
-        width: 10%;
+        width: 8%;
         height: fit-content;
         font-size: 0.7em;
-        padding: 0.5em 1em;
+        padding: 0.5em 2%;
         margin-right: 0.5em;
         border-radius: 5px;
         border: 1px solid rgba(0, 0, 0, 0.1);
-        color: $font-color; //rgba(0, 0, 0, 0.7);
+        color: $font-color;
         background: none;
         text-align: center;
         letter-spacing: 0.4px;
@@ -96,6 +97,10 @@
         text-decoration: none;
         outline: none;
         transition: 200ms ease;
+
+        &:nth-last-child(1) {
+          margin-right: 0em;
+        }
 
         &::first-letter {
           text-transform: capitalize;
