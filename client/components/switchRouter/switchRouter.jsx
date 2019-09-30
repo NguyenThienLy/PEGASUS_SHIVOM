@@ -33,7 +33,10 @@ export class SwitchRouter extends React.Component {
             return true
         })
         if (route) {
-            let child = React.cloneElement(route.component, { params: params })
+            let child = route.component
+            if (Object.keys(params).length > 0) {
+                child = React.cloneElement(route.component, { params: params })
+            }
             this.setState({ component: child })
         }
     }

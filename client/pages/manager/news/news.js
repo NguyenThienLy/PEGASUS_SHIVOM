@@ -50,6 +50,11 @@ class News extends Component {
                     "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M"
             }
         })
+        this.props.fetchCategory({
+            query: {
+                limit: 0
+            }
+        });
     }
     componentWillReceiveProps(nextProps) {
         this.setState({ number: Math.random() })
@@ -83,8 +88,8 @@ class News extends Component {
                             <SwitchRouter routes={
                                 [
                                     { path: "/quan-ly/tin-tuc", component: <MainNews {...this.props} /> },
-                                    { path: "/quan-ly/tin-tuc/them", component: <AddNews /> },
-                                    { path: "/quan-ly/tin-tuc/chi-tiet/:newsId", component: <DetailNews {...this.props}/> }
+                                    { path: "/quan-ly/tin-tuc/them", component: <AddNews {...this.props} /> },
+                                    { path: "/quan-ly/tin-tuc/chi-tiet/:newsId", component: <DetailNews {...this.props} /> }
                                 ]
                             } />
                         </div>
@@ -101,7 +106,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
     bindActionCreators(
         {
-            fetchNews: action.news.fetch
+            fetchNews: action.news.fetch,
+            fetchCategory: action.newCategory.fetch
         },
         dispatch
     );

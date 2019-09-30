@@ -50,6 +50,21 @@ class Class extends Component {
                     "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M"
             }
         })
+        this.props.fetchCourse({
+            query: {
+                limit: 0
+            }
+        })
+        this.props.fetchTeacher({
+            query: {
+                limit: 0
+            }
+        })
+        this.props.fetchRoom({
+            query: {
+                limit: 0
+            }
+        })
     }
     componentWillReceiveProps(nextProps) {
         this.setState({ number: Math.random() })
@@ -83,7 +98,7 @@ class Class extends Component {
                             <SwitchRouter routes={
                                 [
                                     { path: "/quan-ly/lop-hoc", component: <MainClass {...this.props} /> },
-                                    { path: "/quan-ly/lop-hoc/them", component: <AddClass /> },
+                                    { path: "/quan-ly/lop-hoc/them", component: <AddClass {...this.props} /> },
                                     { path: "/quan-ly/lop-hoc/chi-tiet/:classId", component: <DetailClass {...this.props} /> }
                                 ]
                             } />
@@ -102,7 +117,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
     bindActionCreators(
         {
-            fetchClass: action.class.fetch
+            fetchClass: action.class.fetch,
+            fetchCourse: action.course.fetch,
+            fetchTeacher: action.teacher.fetch,
+            fetchRoom: action.room.fetch
         },
         dispatch
     );

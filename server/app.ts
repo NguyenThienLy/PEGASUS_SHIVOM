@@ -93,9 +93,6 @@ class Server {
         this.server.get("/quan-ly/hoc-vien/*", (req, res) => {
             this.app.render(req, res, "/manager/member/member");
         });
-        this.server.get("/quan-ly/them-hoc-vien", (req, res) => {
-            this.app.render(req, res, "/manager/addMember/addMember");
-        });
         // quan ly khoa hoc
         this.server.get("/quan-ly/khoa-hoc", (req, res) => {
             this.app.render(req, res, "/manager/course/course");
@@ -103,18 +100,12 @@ class Server {
         this.server.get("/quan-ly/khoa-hoc/*", (req, res) => {
             this.app.render(req, res, "/manager/course/course");
         });
-        this.server.get("/quan-ly/them-khoa-hoc", (req, res) => {
-            this.app.render(req, res, "/manager/addCourse/addCourse");
-        });
         // Quan ly lop hoc
         this.server.get("/quan-ly/lop-hoc", async (req, res, next) => {
             this.app.render(req, res, "/manager/class/class");
         });
         this.server.get("/quan-ly/lop-hoc/*", async (req, res, next) => {
             this.app.render(req, res, "/manager/class/class");
-        });
-        this.server.get("/quan-ly/them-lop-hoc", (req, res) => {
-            this.app.render(req, res, "/manager/addClass/addClass");
         });
         // Quan ly muc tin tuc
         this.server.get("/quan-ly/muc-tin-tuc", (req, res) => {
@@ -131,8 +122,12 @@ class Server {
         this.server.get("/quan-ly/tin-tuc/*", (req, res) => {
             this.app.render(req, res, "/manager/news/news");
         });
-        this.server.get("/quan-ly/them-tin-tuc", (req, res) => {
-            this.app.render(req, res, "/manager/addPost/addPost");
+        // Quan ly slider
+        this.server.get("/quan-ly/slider", (req, res) => {
+            this.app.render(req, res, "/manager/slider/slider");
+        });
+        this.server.get("/quan-ly/slider/*", (req, res) => {
+            this.app.render(req, res, "/manager/slider/slider");
         });
         // Thiet lap
         this.server.get("/quan-ly/thiet-lap", (req, res) => {
