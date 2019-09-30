@@ -5,10 +5,9 @@ import Link from "next/link";
 import { connect } from "react-redux";
 import { api } from "../../../services";
 import { action } from "../../../actions";
-
 import { bindActionCreators } from 'redux'
 
-import "./member.scss";
+import "./slider.scss";
 import {
     HeaderAdmin,
     Sidebar,
@@ -16,11 +15,11 @@ import {
     SwitchRouter
 } from "../../../components";
 
-import { MainMember } from './main/main'
-import { AddMember } from './add/add'
-import { DetailMember } from './detail/detail'
+import { MainSlider } from './main/main'
+import { AddSlider } from './add/add'
+import { DetailSlider } from "./detail/detail";
 
-class Member extends Component {
+class Slider extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -34,7 +33,6 @@ class Member extends Component {
     }
 
     static async getInitialProps({ req, query }) {
-
         return {
             number: Math.random()
         }
@@ -43,21 +41,7 @@ class Member extends Component {
         this.fetchData()
     }
     fetchData() {
-        this.props.fetchStudent({
-            query: {
-                limit: 0
-            },
-            headers: {
-                "x-token":
-                    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M"
-            }
-        })
-        this.props.fetchCourse({
-            query: {
-                limit: 0
-            }
-        })
-        this.props.fetchPackage({
+        this.props.fetchSlider({
             query: {
                 limit: 0
             }
@@ -67,16 +51,15 @@ class Member extends Component {
         this.setState({ number: Math.random() })
     }
     render() {
-
         return (
             <div className="manager">
                 <Head>
-                    <title>Quản lý học viên</title>
+                    <title>Quản lý slider</title>
                     <meta name="robots" content="noindex" />
-                    <meta name="title" content="Quản lý lơp học" />
+                    <meta name="title" content="Quản lý slider" />
                     <meta
                         name="description"
-                        content="Thêm khóa học tại trung tâm Yoga Hiệp Hòa"
+                        content="Quản lý slider"
                     />
                 </Head>
 
@@ -84,6 +67,7 @@ class Member extends Component {
                     <div className="background-overlay"></div>
                     <div className="manager__header">
                         <HeaderAdmin
+                            sidebar={this.state.categories}
                             headerAdmin={this.state.headerAdmin}
                         ></HeaderAdmin>
                     </div>
@@ -94,9 +78,9 @@ class Member extends Component {
                         <div key={this.state.number}>
                             <SwitchRouter routes={
                                 [
-                                    { path: "/quan-ly/hoc-vien", component: <MainMember {...this.props} /> },
-                                    { path: "/quan-ly/hoc-vien/them", component: <AddMember {...this.props} /> },
-                                    { path: "/quan-ly/hoc-vien/chi-tiet/:studentId", component: <DetailMember {...this.props} /> }
+                                    { path: "/quan-ly/slider", component: <MainSlider {...this.props} /> },
+                                    { path: "/quan-ly/slider/them", component: <AddSlider {...this.props} /> },
+                                    { path: "/quan-ly/slider/chi-tiet/:sliderId", component: <DetailSlider {...this.props} /> }
                                 ]
                             } />
                         </div>
@@ -114,12 +98,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
     bindActionCreators(
         {
-            fetchStudent: action.student.fetch,
-            fetchCourse: action.course.fetch,
-            fetchPackage: action.package.fetch
+            fetchSlider: action.slider.fetch
         },
         dispatch
     );
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Member);
+export default connect(mapStateToProps, mapDispatchToProps)(Slider);

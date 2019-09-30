@@ -98,25 +98,27 @@ export class AdminSidebar extends React.Component {
           ]
         },
         {
+          name: "Slider",
+          linkAs: "/quan-ly/slider",
+          linkHref: "/manager/slider/slider",
+          subCategories: [
+            {
+              name: "Danh sách",
+              linkAs: "/quan-ly/slider",
+              linkHref: "/manager/slider/slider",
+            },
+            {
+              name: "Thêm",
+              linkAs: "/quan-ly/slider/them",
+              linkHref: "/manager/slider/slider",
+            }
+          ]
+        },
+        {
           name: "Thiết lập",
           linkAs: "/quan-ly/thiet-lap",
           linkHref: "/manager/setting/setting"
-        },
-        {
-          name: "Thêm khoá học",
-          linkAs: "/quan-ly/them-khoa-hoc",
-          linkHref: "/manager/addCourse/addCourse"
-        },
-        {
-          name: "Thêm lớp học",
-          linkAs: "/quan-ly/them-lop-hoc",
-          linkHref: "/manager/addClass/addClass"
-        },
-        {
-          name: "Thêm học viên",
-          linkAs: "/quan-ly/them-hoc-vien",
-          linkHref: "/manager/addMember/addMember"
-        },
+        }
       ]
     }
   }
