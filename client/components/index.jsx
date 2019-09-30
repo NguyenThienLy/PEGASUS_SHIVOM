@@ -62,3 +62,4 @@ export * from "./timePickerModal/timePickerModal"
 export * from './adminSidebar/adminSidebar'
 export * from './switchRouter/switchRouter'
 export * from './tableData/tableData'
+export * from './form/form'
