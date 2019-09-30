@@ -69,7 +69,7 @@ export class ImageUpload extends Component {
             {({ getRootProps, getInputProps }) => (
               <div {...getRootProps()} className="drop-zone-wrap__instruction">
                 <input {...getInputProps()} />
-                <div>Kéo thả ảnh hoặc nhấn vào đây</div>
+                <div>{this.props.title || "Kéo thả ảnh hoặc nhấn vào đây"}</div>
                 <div>
                   {/* <ul>
                     {
