@@ -57,7 +57,8 @@ export class MainClass extends React.Component {
                 type: `UPDATE_CLASS_SUCCESS`,
                 payload: res.result.object
             })
-            Router.push(`/manager/class/class`, `/quan-ly/lop-hoc`)
+            this.forceUpdate()
+            // Router.push(`/manager/class/class`, `/quan-ly/lop-hoc`)
         }).catch(err => {
 
             Swal.fire("Thất bại", "Thay đổi trạng thái thất bại", "error")

@@ -1,0 +1,15 @@
+
+@import "../../../../default.scss";
+
+
+.member-main {
+    @include e("filter"){
+        margin: 2em 0;
+        @include e("input"){
+            width: 200px;
+            height: 45px;
+            border-radius: 5px;
+            border: 1px solid #000;
+        }
+    }
+}
