@@ -28,7 +28,12 @@ export class Form extends Component {
             const bodyKeys = Object.keys(this.props.form)
             const body = {}
             for (const key of bodyKeys) {
-                body[key] = this.props.form[key].value
+                if (this.props.form[key].type === "number") {
+                    body[key] = Number(this.props.form[key].value)
+                } else {
+                    body[key] = this.props.form[key].value
+                }
+
             }
             this.props.submit(body);
         } else {
@@ -41,7 +46,6 @@ export class Form extends Component {
         this.handleInputValidation(name, value);
     };
     handleInputValidation = (name, value) => {
-        console.log("name: ", name, " value: ", value)
         let isFound = false
         _.forEach(this.props.validate.rules, (rule, key) => {
             if (name === key) {
