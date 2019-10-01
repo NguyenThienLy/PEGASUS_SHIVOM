@@ -69,6 +69,7 @@ export class StudentApi extends CrudApi {
   }
   async searchByPhone(phone, option) {
     let url = this.baseUrl(`search`);
+    option.query = option.query || {}
     option.query.phone = phone;
     const query = this._serialize(option.query || {});
     url += `${query}`;
@@ -90,7 +91,7 @@ export class StudentApi extends CrudApi {
     }
   }
   async checkIn(studentId, option) {
-    let url = this.baseUrl(`${studentId}/checkin}`);
+    let url = this.baseUrl(`${studentId}/checkin`);
     const query = this._serialize(option.query || {});
     url += `${query}`;
     const options = {

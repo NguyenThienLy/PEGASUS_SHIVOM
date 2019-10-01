@@ -124,7 +124,6 @@ export class DetailMember extends React.Component {
     }
 
     render() {
-        console.log("detail member: ", this.props.params)
         return (
             <div className="memberDetails">
                 <div className="memberDetails__body">
