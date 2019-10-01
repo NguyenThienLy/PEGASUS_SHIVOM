@@ -30,6 +30,10 @@
   // #C2E6F4
   //DCF0F9
   // #EDF7FC
+  .action-td {
+    display: flex;
+    justify-content: space-evenly;
+  }
   .manager {
     display: flex;
     flex-direction: row;
