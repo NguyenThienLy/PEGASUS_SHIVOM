@@ -30,18 +30,9 @@ export class MainMember extends React.Component {
         Router.push(`/manager/member/member?studentId=${studentId}`, `/quan-ly/hoc-vien/chi-tiet/${studentId}`)
     }
     searchByPhone(e) {
-        console.log("enae: ", e.target.value)
         const { name, value } = e.target
         if (value.length > 0) {
-            api.student.searchByPhone(value, {
-                query: {
-
-                },
-                headers: {
-                    "x-token":
-                        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M"
-                }
-            }).then(res => {
+            api.student.searchByPhone(value).then(res => {
                 this.setState({
                     students: res.results.objects.rows
                 })
@@ -56,12 +47,7 @@ export class MainMember extends React.Component {
     }
     checkin(studentId) {
         Swal.showLoading()
-        api.student.checkIn(studentId, {
-            headers: {
-                "x-token":
-                    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M"
-            }
-        }).then(res => {
+        api.student.checkIn(studentId).then(res => {
             Swal.fire("Thành công", "Checkin cho học viên thành công", "success")
         }).catch(err => {
             console.log("err: ", err)
@@ -137,7 +123,7 @@ export class MainMember extends React.Component {
 
                                         <th>Thao tác</th>
                                     </tr>
-                                    {students.map((item, index) => {
+                                    {(students || []).map((item, index) => {
 
                                         return (
                                             <tr key={item._id}>

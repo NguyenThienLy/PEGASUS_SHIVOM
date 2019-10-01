@@ -4,7 +4,7 @@ export class StudentApi extends CrudApi {
   constructor() {
     super("student");
   }
-  async getTimeTableByCourse(studentId, courseId, option) {
+  async getTimeTableByCourse(studentId, courseId, option = {}) {
     let url = this.baseUrl(`${studentId}/timeTable/${courseId}`);
     const query = this._serialize(option.query || {});
     url += `${query}`;
@@ -25,7 +25,7 @@ export class StudentApi extends CrudApi {
       throw res;
     }
   }
-  async getTimeTable(studentId, option) {
+  async getTimeTable(studentId, option = {}) {
     let url = this.baseUrl(`${studentId}/timeTable`);
     const query = this._serialize(option.query || {});
     url += `${query}`;
@@ -34,7 +34,8 @@ export class StudentApi extends CrudApi {
       headers: _.merge(
         {
           "User-Agent": "Request-Promise",
-          "Content-Type": "Application/json"
+          "Content-Type": "Application/json",
+          "x-token": localStorage.getItem("token")
         },
         option.headers || {}
       )
@@ -46,7 +47,7 @@ export class StudentApi extends CrudApi {
       throw res;
     }
   }
-  async getListClassOfStudent(studentId, option) {
+  async getListClassOfStudent(studentId, option = {}) {
     let url = this.baseUrl(`${studentId}/class`);
     const query = this._serialize(option.query || {});
     url += `${query}`;
@@ -55,7 +56,8 @@ export class StudentApi extends CrudApi {
       headers: _.merge(
         {
           "User-Agent": "Request-Promise",
-          "Content-Type": "Application/json"
+          "Content-Type": "Application/json",
+          "x-token": localStorage.getItem("token")
         },
         option.headers || {}
       )
@@ -67,7 +69,7 @@ export class StudentApi extends CrudApi {
       throw res;
     }
   }
-  async searchByPhone(phone, option) {
+  async searchByPhone(phone, option = {}) {
     let url = this.baseUrl(`search`);
     option.query = option.query || {}
     option.query.phone = phone;
@@ -78,7 +80,8 @@ export class StudentApi extends CrudApi {
       headers: _.merge(
         {
           "User-Agent": "Request-Promise",
-          "Content-Type": "Application/json"
+          "Content-Type": "Application/json",
+          "x-token": localStorage.getItem("token")
         },
         option.headers || {}
       )
@@ -90,7 +93,7 @@ export class StudentApi extends CrudApi {
       throw res;
     }
   }
-  async checkIn(studentId, option) {
+  async checkIn(studentId, option = {}) {
     let url = this.baseUrl(`${studentId}/checkin`);
     const query = this._serialize(option.query || {});
     url += `${query}`;
@@ -99,7 +102,8 @@ export class StudentApi extends CrudApi {
       headers: _.merge(
         {
           "User-Agent": "Request-Promise",
-          "Content-Type": "Application/json"
+          "Content-Type": "Application/json",
+          "x-token": localStorage.getItem("token")
         },
         option.headers || {}
       )
@@ -111,32 +115,8 @@ export class StudentApi extends CrudApi {
       throw res;
     }
   }
-  async login(email, password, option) {
-    let url = this.baseUrl(`login`);
-    const query = this._serialize(option.query || {});
-    url += `${query}`;
-    const options = {
-      method: "POST",
-      headers: _.merge(
-        {
-          "User-Agent": "Request-Promise",
-          "Content-Type": "Application/json"
-        },
-        option.headers || {}
-      ),
-      body: JSON.stringify({
-        email,
-        password
-      })
-    };
-    const res = await this.exec(url, options);
-    if (res.code && res.code === 200) {
-      return res;
-    } else {
-      throw res;
-    }
-  }
-  async login(phone, password, option) {
+
+  async login(phone, password, option = {}) {
     let url = this.baseUrl(`login`);
     const query = this._serialize(option.query || {});
     url += `${query}`;
@@ -160,7 +140,7 @@ export class StudentApi extends CrudApi {
       throw res
     }
   }
-  async updateCard(studentId, code, option) {
+  async updateCard(studentId, code, option = {}) {
     let url = this.baseUrl(`${studentId}/card`);
     const query = this._serialize(option.query || {});
     url += `${query}`;
@@ -169,7 +149,8 @@ export class StudentApi extends CrudApi {
       headers: _.merge(
         {
           "User-Agent": "Request-Promise",
-          "Content-Type": "Application/json"
+          "Content-Type": "Application/json",
+          "x-token": localStorage.getItem("token")
         },
         option.headers || {}
       ),
@@ -184,7 +165,7 @@ export class StudentApi extends CrudApi {
       throw res;
     }
   }
-  async sendGift(studentId, giftId, amount, option) {
+  async sendGift(studentId, giftId, amount, option = {}) {
     let url = this.baseUrl(`${studentId}/sendGift`);
     const query = this._serialize(option.query || {});
     url += `${query}`;
@@ -193,7 +174,8 @@ export class StudentApi extends CrudApi {
       headers: _.merge(
         {
           "User-Agent": "Request-Promise",
-          "Content-Type": "Application/json"
+          "Content-Type": "Application/json",
+          "x-token": localStorage.getItem("token")
         },
         option.headers || {}
       ),
@@ -209,7 +191,7 @@ export class StudentApi extends CrudApi {
       throw res;
     }
   }
-  async getListStudentUpcommingBirthday(option) {
+  async getListStudentUpcommingBirthday(option = {}) {
     let url = this.baseUrl(`upcommingBirthday`);
     const query = this._serialize(option.query || {});
     url += `${query}`;
@@ -218,7 +200,8 @@ export class StudentApi extends CrudApi {
       headers: _.merge(
         {
           "User-Agent": "Request-Promise",
-          "Content-Type": "Application/json"
+          "Content-Type": "Application/json",
+          "x-token": localStorage.getItem("token")
         },
         option.headers || {}
       )
@@ -230,7 +213,7 @@ export class StudentApi extends CrudApi {
       throw res;
     }
   }
-  async getListStudentUpcommingExpired(option) {
+  async getListStudentUpcommingExpired(option = {}) {
     let url = this.baseUrl(`upcommingExpired`);
     const query = this._serialize(option.query || {});
     url += `${query}`;
@@ -239,7 +222,8 @@ export class StudentApi extends CrudApi {
       headers: _.merge(
         {
           "User-Agent": "Request-Promise",
-          "Content-Type": "Application/json"
+          "Content-Type": "Application/json",
+          "x-token": localStorage.getItem("token")
         },
         option.headers || {}
       )
@@ -251,7 +235,7 @@ export class StudentApi extends CrudApi {
       throw res;
     }
   }
-  async enroll(body, option) {
+  async enroll(body, option = {}) {
     let url = this.baseUrl(`enroll`);
     const query = this._serialize(option.query || {});
     url += `${query}`;
@@ -260,7 +244,8 @@ export class StudentApi extends CrudApi {
       headers: _.merge(
         {
           "User-Agent": "Request-Promise",
-          "Content-Type": "Application/json"
+          "Content-Type": "Application/json",
+          "x-token": localStorage.getItem("token")
         },
         option.headers || {}
       ),
@@ -273,7 +258,7 @@ export class StudentApi extends CrudApi {
       throw res;
     }
   }
-  async sendMailUpcommingPayFee(courseStudentIds, option) {
+  async sendMailUpcommingPayFee(courseStudentIds, option = {}) {
     let url = this.baseUrl(`sendMailUpcommingPayFee`);
     const query = this._serialize(option.query || {});
     url += `${query}`;
@@ -282,7 +267,8 @@ export class StudentApi extends CrudApi {
       headers: _.merge(
         {
           "User-Agent": "Request-Promise",
-          "Content-Type": "Application/json"
+          "Content-Type": "Application/json",
+          "x-token": localStorage.getItem("token")
         },
         option.headers || {}
       ),
