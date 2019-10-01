@@ -54,6 +54,7 @@ $background-table-header-color: lighten($sub-main-color, 25%);
           text-decoration: none;
           transition: all 200ms ease;
           color: $color-grey;
+          
           &:hover {
             color: $main-color;
           }
@@ -120,6 +121,9 @@ $background-table-header-color: lighten($sub-main-color, 25%);
               color: $main-color;
               text-decoration: none;
               font-weight: 500;
+          //     display: block;
+          // width: 100%;
+              word-break: break-all;
             }
             @include e("class-time") {
               color: $color-grey;

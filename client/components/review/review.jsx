@@ -18,7 +18,7 @@ export class Review extends React.Component {
           </div>
         </div>
         <div className="review__info">
-          <div className="review__info__content">{review.content.length > 200 ? review.content.slice(0, 200) + "..." : review.content}</div>
+          <div className="review__info__content">{review.content.split(" ").slice(0, length).join(" ")}</div>
           <div className="review__info__owner">{review.name}</div>
         </div>
       </div>
