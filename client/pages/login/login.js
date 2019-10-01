@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as moment from 'moment'
 import Head from "next/head";
 import Link from "next/link";
 import Router from "next/router"
@@ -8,7 +9,7 @@ import { action } from "../../actions";
 import { bindActionCreators } from 'redux'
 
 import "./login.scss";
-import { Header, Footer } from "../../components";
+import { Header, Footer, Loading } from "../../components";
 
 class Login extends React.Component {
   constructor(props) {
@@ -28,36 +29,39 @@ class Login extends React.Component {
     const userType = localStorage.getItem("ut")
     const token = localStorage.getItem("token")
     const userId = localStorage.getItem("_id")
-    if (this.props.type === "student") {
-      if (this.props.studentAccount.login.isLogon) {
-        Router.push("/")
-      } else if (userType === "student") {
-        try {
-          await api.student.getItem(userId, {
-            headers: {
-              "x-token": token
-            }
-          })
+    const tokenExpiredAt = localStorage.getItem("exp")
+    if (tokenExpiredAt && moment(tokenExpiredAt).isAfter(moment())) {
+      if (this.props.type === "student") {
+        if (this.props.studentAccount.login.isLogon) {
           Router.push("/")
-        } catch (err) {
+        } else if (userType === "student") {
+          try {
+            await api.student.getItem(userId, {
+              headers: {
+                "x-token": token
+              }
+            })
+            Router.push("/")
+          } catch (err) {
 
+          }
         }
-      }
-    } else if (this.props.type === "admin") {
-      if (this.props.admin.login.isLogon) {
-        Router.push("/tong-quan")
-      } else if (userType === "admin") {
-        try {
-          await api.admin.getItem(userId, {
+      } else if (this.props.type === "admin") {
+        if (this.props.admin.login.isLogon) {
+          Router.push("/manager/dashboard/dashboard", "/quan-ly/tong-quan")
+        } else if (userType === "admin") {
+          try {
+            await api.admin.getItem(userId, {
 
-            headers: {
-              "x-token": token
-            }
+              headers: {
+                "x-token": token
+              }
 
-          })
-          Router.push("/tong-quan")
-        } catch (err) {
+            })
+            Router.push("/quan-ly/tong-quan")
+          } catch (err) {
 
+          }
         }
       }
     }
@@ -120,7 +124,7 @@ class Login extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.admin.login.isLogon && prevProps.admin.login.isLogon === false) {
       console.log("Đăng nhập thành công")
-      Router.push("/tong-quan")
+      Router.push("/manager/dashboard/dashboard", "/quan-ly/tong-quan")
     }
     if (this.props.admin.login.isError && prevProps.admin.login.isPending) {
       console.log("Co loi xay ra")
@@ -129,7 +133,6 @@ class Login extends React.Component {
     }
   }
   render() {
-    console.log("login page props: ", this.props.admin)
     return (
       <div className="login-page">
         <Head>
@@ -137,9 +140,9 @@ class Login extends React.Component {
           <meta name="title" content="Login" />
           <meta name="description" content="Trang đăng nhập" />
         </Head>
-
+        {this.state.isLoading ? <Loading /> : null}
         <React.Fragment>
-          {this.state.isLoading ? "Đang kiểm tra" : ""}
+
           <div className="form-structor">
             <div className="signup">
               <h2 className="form-title" id="signup">

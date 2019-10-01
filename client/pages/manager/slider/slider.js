@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import * as moment from 'moment'
 
 import Head from "next/head";
 import Link from "next/link";
+import Router from "next/router"
 import { connect } from "react-redux";
 import { api } from "../../../services";
 import { action } from "../../../actions";
@@ -50,7 +52,15 @@ class Slider extends Component {
     componentWillReceiveProps(nextProps) {
         this.setState({ number: Math.random() })
     }
+    async checkUserAlreadyLogin() {
+        const userType = localStorage.getItem("ut")
+        const tokenExpiredAt = localStorage.getItem("exp")
+        if (!userType || !tokenExpiredAt || moment(tokenExpiredAt).isBefore(moment()) || userType !== "admin") {
+            Router.push("/dang-nhap/admin")
+        }
+    }
     render() {
+        this.checkUserAlreadyLogin()
         return (
             <div className="manager">
                 <Head>

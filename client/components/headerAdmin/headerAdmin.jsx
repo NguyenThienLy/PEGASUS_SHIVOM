@@ -1,4 +1,5 @@
 import * as React from "react";
+import Router from 'next/router'
 import "./headerAdmin.scss";
 import { HoverDivAnimation, Sidebar } from "../../components";
 
@@ -8,13 +9,16 @@ export class HeaderAdmin extends React.Component {
     this.state = {
       userList: [
         {
-          name: "Trang cá nhân"
+          name: "Trang cá nhân",
+          key: "profile"
         },
         {
-          name: "Cài đặt"
+          name: "Cài đặt",
+          key: "setting"
         },
         {
-          name: "Đăng xuất"
+          name: "Đăng xuất",
+          key: "logout"
         }
       ]
     };
@@ -27,7 +31,7 @@ export class HeaderAdmin extends React.Component {
     });
 
     $(".headerAdmin__wrapper__user").click(function (e) {
-      e.stopPropagation(); // ko chạy body, html click
+      // e.stopPropagation(); // ko chạy body, html click
       var maxHeight = $(".headerAdmin__wrapper__user__inner").css("maxHeight");
       if (maxHeight == "500px") {
         $("body, html").css("cursor", "default");
@@ -52,9 +56,9 @@ export class HeaderAdmin extends React.Component {
       }
     });
 
-    $(".headerAdmin__wrapper__user__inner").click(function (e) {
-      e.stopPropagation();
-    });
+    // $(".headerAdmin__wrapper__user__inner").click(function (e) {
+    //   e.stopPropagation();
+    // });
 
     $("body,html").click(function (e) {
       $("body, html").css("cursor", "default");
@@ -108,6 +112,26 @@ export class HeaderAdmin extends React.Component {
     });
   }
 
+  onPopupClick(key) {
+    console.log("key: ", key)
+    switch (key) {
+      case "profile":
+        break
+      case "setting":
+        Router.push("/manager/setting/setting", "/quan-ly/thiet-lap")
+        break
+      case "logout":
+        localStorage.removeItem("ut")
+        localStorage.removeItem("token")
+        localStorage.removeItem("exp")
+        localStorage.removeItem("_id")
+        Router.push("/dang-nhap/admin")
+        break
+    }
+  }
+  test() {
+    console.log("vãi")
+  }
   render() {
     const { headerAdmin, sidebar, logo } = this.props;
     return (
@@ -133,12 +157,16 @@ export class HeaderAdmin extends React.Component {
               <ul className="headerAdmin__wrapper__user__inner__list-items">
                 {this.state.userList.map((item, index) => {
                   return (
+
                     <li
                       key={index}
                       className="headerAdmin__wrapper__user__inner__list-items__item"
+                      onClick={() => { this.onPopupClick(item.key) }}
                     >
+
                       <HoverDivAnimation title={item.name} />
                     </li>
+
                   );
                 })}
               </ul>
