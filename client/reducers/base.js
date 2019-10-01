@@ -11,6 +11,8 @@ export class BaseReducer {
         fetchError: null,
         updating: false,
         updateError: null,
+        isUpdateSuccess: false,
+        isUpdateError: false,
         isAddSuccess: false,
         adding: false,
         isAddError: false,
@@ -33,9 +35,10 @@ export class BaseReducer {
         deletePending: `DELETE_${this.name}_PENDING`,
         deleteSuccess: `DELETE_${this.name}_SUCCESS`,
         deleteError: `DELETE_${this.name}_ERROR`,
-        updatePending: `EDIT_${this.name}_PENDING`,
-        updateSuccess: `EDIT_${this.name}_SUCCESS`,
-        updateError: `EDIT_${this.name}_ERROR`,
+        updatePending: `UPDATE_${this.name}_PENDING`,
+        updateSuccess: `UPDATE_${this.name}_SUCCESS`,
+        updateError: `UPDATE_${this.name}_ERROR`,
+        updateRefresh: `UPDATE_${this.name}_REFRESH`,
         concatPending: `CONCAT_${this.name}_PENDING`,
         concatSuccess: `CONCAT_${this.name}_SUCCESS`,
         concatError: `CONCAT_${this.name}_ERROR`
@@ -82,26 +85,45 @@ export class BaseReducer {
       case this.actions.deletePending:
         break;
       case this.actions.deleteSuccess:
-        itemIndex = state.findIndex(item => {
+        state = { ...state, updating: false, isUpdateSuccess: true };
+        itemIndex = state.items.findIndex(item => {
           return item._id === action.payload._id;
         });
         if (itemIndex !== -1) {
-          state.splice(itemIndex, 1);
+          state.items.splice(itemIndex, 1)
         }
         break;
       case this.actions.deleteError:
         break;
       case this.actions.updatePending:
+        state = { ...state, updating: true };
         break;
       case this.actions.updateSuccess:
-        itemIndex = state.findIndex(item => {
+        itemIndex = state.items.findIndex(item => {
           return item._id === action.payload._id;
         });
+        console.log("index: ", itemIndex)
         if (itemIndex !== -1) {
-          state[itemIndex] = action.payload;
+          state.items[itemIndex] = action.payload;
         }
+        console.log("state items: ", state.items)
         break;
       case this.actions.updateError:
+        state = {
+          ...state,
+          updating: false,
+          isUpdateError: true,
+          updateError: action.payload
+        };
+        break;
+      case this.actions.updateRefresh:
+        state = {
+          ...state,
+          updating: false,
+          isUpdateError: false,
+          updateError: null,
+          isUpdateSuccess: false
+        };
         break;
       case this.actions.concatPending:
         break;
