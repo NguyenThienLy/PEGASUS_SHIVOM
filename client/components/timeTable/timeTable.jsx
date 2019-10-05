@@ -1,31 +1,31 @@
-import * as React from "react";
-import "./timeTable.scss";
-import { HoverDivAnimation } from "../hoverDivAnimation/hoverDivAnimation";
+import * as React from 'react';
+import './timeTable.scss';
+import { HoverDivAnimation } from '../hoverDivAnimation/hoverDivAnimation';
 
-import * as _ from "lodash";
+import * as _ from 'lodash';
 
 export class TimeTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentTab: "all",
+      currentTab: 'all',
       dayOfWeekMapping: [
-        "monday",
-        "tuesday",
-        "wednesday",
-        "thursday",
-        "friday",
-        "saturday",
-        "sunday"
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',
+        'sunday'
       ],
       dayOfWeekVietnamese: [
-        "Thứ hai",
-        "Thứ ba",
-        "Thứ tư",
-        "Thứ năm",
-        "Thứ sáu",
-        "Thứ bảy",
-        "Chủ nhật"
+        'Thứ hai',
+        'Thứ ba',
+        'Thứ tư',
+        'Thứ năm',
+        'Thứ sáu',
+        'Thứ bảy',
+        'Chủ nhật'
       ],
       timeTableListData: {
         monday: [],
@@ -72,7 +72,7 @@ export class TimeTable extends React.Component {
           friday: [],
           saturday: [],
           sunday: []
-        },
+        }
       }
     };
   }
@@ -128,14 +128,16 @@ export class TimeTable extends React.Component {
     let timeTableItems = this.props.timeTables.forEach(timeTable => {
       const courseName = timeTable.course.name;
       const className = timeTable.class.name;
-      const classCode = timeTable.class.code
+      const classCode = timeTable.class.code;
       let teacherName = timeTable.class.teacher
         ? timeTable.class.teacher.firstName +
-        " " +
-        timeTable.class.teacher.lastName
+          ' ' +
+          timeTable.class.teacher.lastName
         : null;
-      const teacherNameArr = teacherName.split(" ")
-      teacherName = teacherNameArr.slice(teacherNameArr.length - 2, teacherNameArr.length).join(" ")
+      const teacherNameArr = teacherName.split(' ');
+      teacherName = teacherNameArr
+        .slice(teacherNameArr.length - 2, teacherNameArr.length)
+        .join(' ');
       timeTable.items.forEach(item => {
         let data = [
           <div
@@ -149,16 +151,16 @@ export class TimeTable extends React.Component {
             <a
               className="time-table__table-events__class-info__class-name"
               href="#"
-              title={classCode}
+              title={item.topic}
             >
-              {classCode}
+              {item.topic}
             </a>
             <div className="time-table__table-events__class-info__class-time">
               {/* {item.startTime.hour}:
               {item.startTime.minute === 0 ? "00" : item.startTime.minute} -{" "}
               {item.endTime.hour}:
               {item.endTime.minute === 0 ? "00" : item.endTime.minute} */}
-              {item.topic}
+              {classCode}
             </div>
             <div className="time-table__table-events__class-info__class-teacher">
               {teacherName}
@@ -179,9 +181,9 @@ export class TimeTable extends React.Component {
             </a>
             <div className="time-table__list-events__event__class-info__class-time">
               {item.startTime.hour}:
-              {item.startTime.minute === 0 ? "00" : item.startTime.minute} -{" "}
+              {item.startTime.minute === 0 ? '00' : item.startTime.minute} -{' '}
               {item.endTime.hour}:
-              {item.endTime.minute === 0 ? "00" : item.endTime.minute}
+              {item.endTime.minute === 0 ? '00' : item.endTime.minute}
             </div>
           </div>
         );
@@ -201,7 +203,7 @@ export class TimeTable extends React.Component {
   }
   changeTab = tabId => {
     this.setState({ currentTab: tabId });
-    if (tabId === "all") {
+    if (tabId === 'all') {
       $("div[class*='time-table__table-events__class-info-']").show();
       $("div[class*='time-table__list-events__event__class-info-']").show();
     } else {
@@ -223,7 +225,7 @@ export class TimeTable extends React.Component {
           <ul>
             <li
               onClick={() => {
-                return this.changeTab("all");
+                return this.changeTab('all');
               }}
               className={`time-table__tabs__active`}
             >
@@ -286,7 +288,6 @@ export class TimeTable extends React.Component {
                     </td>
                   );
                 })}
-
               </tr>
               <tr>
                 <td>
@@ -301,7 +302,6 @@ export class TimeTable extends React.Component {
                     </td>
                   );
                 })}
-
               </tr>
               <tr>
                 <td>
@@ -316,7 +316,6 @@ export class TimeTable extends React.Component {
                     </td>
                   );
                 })}
-
               </tr>
               <tr>
                 <td>
@@ -331,7 +330,6 @@ export class TimeTable extends React.Component {
                     </td>
                   );
                 })}
-
               </tr>
             </tbody>
           </table>
@@ -340,7 +338,6 @@ export class TimeTable extends React.Component {
     );
   }
 }
-
 
 // import * as React from "react";
 // import "./timeTable.scss";

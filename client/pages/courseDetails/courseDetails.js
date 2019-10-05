@@ -1,12 +1,12 @@
-import * as React from "react";
-import * as moment from "moment";
+import * as React from 'react';
+import * as moment from 'moment';
 
-import Head from "next/head";
-import { connect } from "react-redux";
-import { action } from "../../actions";
-import { bindActionCreators } from "redux";
+import Head from 'next/head';
+import { connect } from 'react-redux';
+import { action } from '../../actions';
+import { bindActionCreators } from 'redux';
 
-import "./courseDetails.scss";
+import './courseDetails.scss';
 import {
   Sidebar,
   HeaderAdmin,
@@ -18,7 +18,7 @@ import {
   ProfileAdmin,
   ColumnChart,
   CourseInfo
-} from "../../components";
+} from '../../components';
 
 export class CourseDetails extends React.Component {
   constructor(props) {
@@ -26,114 +26,114 @@ export class CourseDetails extends React.Component {
     this.state = {
       headerAdmin: {
         avatar:
-          "https://cdn1.iconfinder.com/data/icons/avatars-1-5/136/87-512.png",
-        name: "Avril Lavigne"
+          'https://cdn1.iconfinder.com/data/icons/avatars-1-5/136/87-512.png',
+        name: 'Avril Lavigne'
       },
       categories: [
         {
-          name: "trang chủ",
-          linkHref: "/home/home",
-          linkAs: "/",
-          key: "home"
+          name: 'trang chủ',
+          linkHref: '/home/home',
+          linkAs: '/',
+          key: 'home'
         },
         {
-          name: "khoá học",
-          key: "course",
+          name: 'khoá học',
+          key: 'course',
           subCategories: []
         },
         {
-          name: "tin tức",
-          key: "news",
+          name: 'tin tức',
+          key: 'news',
           subCategories: [
             {
-              name: "khoá học môt",
-              linkHref: "/blog/blog?categorySlug=khoa-hoc-not",
-              linkAs: "/khoa-hoc-mot"
+              name: 'khoá học môt',
+              linkHref: '/blog/blog?categorySlug=khoa-hoc-not',
+              linkAs: '/khoa-hoc-mot'
             },
             {
-              name: "khoá học hai",
-              linkHref: "/home/home",
-              linkAs: "/"
+              name: 'khoá học hai',
+              linkHref: '/home/home',
+              linkAs: '/'
             },
             {
-              name: "khoá học ba",
-              linkHref: "/home/home",
-              linkAs: "/"
+              name: 'khoá học ba',
+              linkHref: '/home/home',
+              linkAs: '/'
             }
           ]
         },
         {
-          name: "về chúng tôi",
-          linkHref: "/contact/contact",
-          linkAs: "/lien-he",
-          key: "about"
+          name: 'về chúng tôi',
+          linkHref: '/contact/contact',
+          linkAs: '/lien-he',
+          key: 'about'
         }
       ],
       numberAdmins: [
         {
           icon: '<i className="fas fa-id-card-alt"></i>',
-          about: "Đi đúng giờ",
+          about: 'Đi đúng giờ',
           quantity: 0,
-          colorIcon: "#f5365c",
+          colorIcon: '#f5365c',
           isEmpty: true
         },
         {
           icon: '<i className="fas fa-id-card-alt"></i>',
-          about: "Đi trễ",
+          about: 'Đi trễ',
           quantity: 0,
-          colorIcon: "#fb6340",
+          colorIcon: '#fb6340',
           isEmpty: true
         },
         {
           icon: '<i className="fas fa-id-card-alt"></i>',
-          about: "Vắng",
+          about: 'Vắng',
           quantity: 0,
-          colorIcon: "#ffd600",
+          colorIcon: '#ffd600',
           isEmpty: true
         },
         {
           icon: '<i className="fas fa-id-card-alt"></i>',
-          about: "Đi thừa",
+          about: 'Đi thừa',
           quantity: 0,
-          colorIcon: "#11cdef",
+          colorIcon: '#11cdef',
           isEmpty: true
         }
       ],
       customSelectCourse: {
-        placeholder: "Chọn khóa học...",
-        options: ["Yoga cho người cao tuổi", "Yoga cộng đồng"]
+        placeholder: 'Chọn khóa học...',
+        options: ['Yoga cho người cao tuổi', 'Yoga cộng đồng']
       },
       absent: {
-        nameTable: "Danh sách học viên vắng học"
+        nameTable: 'Danh sách học viên vắng học'
       },
       late: {
-        nameTable: "Danh sách học viên trễ giờ"
+        nameTable: 'Danh sách học viên trễ giờ'
       },
       onTime: {
-        nameTable: "Danh sách học viên đúng giờ"
+        nameTable: 'Danh sách học viên đúng giờ'
       },
       redundant: {
-        nameTable: "Danh sách học viên đi thừa"
+        nameTable: 'Danh sách học viên đi thừa'
       },
       profileAdmin: {
         image:
-          "https://dalia.elated-themes.com/wp-content/uploads/2018/06/team2-img-8.jpg",
-        name: "nisha sharma",
-        phone: "0947161096",
-        email: "nisha_sharma@gmail.com",
-        location: "remote",
+          'https://dalia.elated-themes.com/wp-content/uploads/2018/06/team2-img-8.jpg',
+        name: 'nisha sharma',
+        phone: '0947161096',
+        email: 'nisha_sharma@gmail.com',
+        location: 'remote',
         age: 25,
-        facebook: "facebook.com",
-        twitter: "twitter.com",
-        instagram: "instagram.com"
+        facebook: 'facebook.com',
+        twitter: 'twitter.com',
+        instagram: 'instagram.com'
       },
       columnChartData: {
         labels: null,
         datasets: [
           {
-            label: "Số học viên",
+            label: 'Số học viên',
             data: null,
-            backgroundColor: "rgba(75, 192, 192, 0.6)"
+            backgroundColor: 'rgba(75, 192, 192, 0.6)'
           }
         ],
         isEmpty: true
@@ -144,10 +144,10 @@ export class CourseDetails extends React.Component {
           {
             data: null,
             backgroundColor: [
-              "rgba(255, 99, 132, 0.6)",
-              "rgba(255, 206, 86, 0.6)",
-              "rgba(75, 192, 192, 0.6)",
-              "rgba(153, 102, 255, 0.6)"
+              'rgba(255, 99, 132, 0.6)',
+              'rgba(255, 206, 86, 0.6)',
+              'rgba(75, 192, 192, 0.6)',
+              'rgba(153, 102, 255, 0.6)'
             ]
           }
         ],
@@ -157,32 +157,32 @@ export class CourseDetails extends React.Component {
         labels: null,
         datasets: [
           {
-            label: "Vắng học",
+            label: 'Vắng học',
             fill: false,
             data: null,
-            backgroundColor: "rgba(255, 99, 132, 0.6)",
-            borderColor: "rgba(255, 99, 132, 0.6)"
+            backgroundColor: 'rgba(255, 99, 132, 0.6)',
+            borderColor: 'rgba(255, 99, 132, 0.6)'
           },
           {
-            label: "Trễ giờ",
+            label: 'Trễ giờ',
             fill: false,
             data: null,
-            backgroundColor: "rgba(255, 206, 86, 0.6)",
-            borderColor: "rgba(255, 206, 86, 0.6)"
+            backgroundColor: 'rgba(255, 206, 86, 0.6)',
+            borderColor: 'rgba(255, 206, 86, 0.6)'
           },
           {
-            label: "Đúng giờ",
+            label: 'Đúng giờ',
             fill: false,
             data: null,
-            backgroundColor: "rgba(75, 192, 192, 0.6)",
-            borderColor: "rgba(75, 192, 192, 0.6)"
+            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+            borderColor: 'rgba(75, 192, 192, 0.6)'
           },
           {
-            label: "Đi thừa",
+            label: 'Đi thừa',
             fill: false,
             data: null,
-            backgroundColor: "rgba(153, 102, 255, 0.6)",
-            borderColor: "rgba(153, 102, 255, 0.6)"
+            backgroundColor: 'rgba(153, 102, 255, 0.6)',
+            borderColor: 'rgba(153, 102, 255, 0.6)'
           }
         ],
         isEmpty: true
@@ -195,19 +195,19 @@ export class CourseDetails extends React.Component {
 
   fetchData = (startTime, endTime) => {
     const token =
-      "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M";
+      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M';
 
     this.props.fetchLineChart(
-      "5d4e3d9201f8b3bbc9a5ebb4",
-      "week",
+      '5d4e3d9201f8b3bbc9a5ebb4',
+      'week',
       `${startTime}Z`,
       `${endTime}Z`,
       token
     );
 
     this.props.fetchPieChart(
-      "5d4e3d9201f8b3bbc9a5ebb4",
-      "month",
+      '5d4e3d9201f8b3bbc9a5ebb4',
+      'month',
       `${startTime}Z`,
       `${endTime}Z`,
       token
@@ -217,14 +217,14 @@ export class CourseDetails extends React.Component {
 
     this.props.fetchCourse({
       query: {
-        filter: { _id: "5d4e3d9201f8b3bbc9a5ebb4" },
-        populates: ["classes"]
+        filter: { _id: '5d4e3d9201f8b3bbc9a5ebb4' },
+        populates: ['classes']
       }
     });
 
     this.props.fetchListDetail(
-      "5d4e3d9201f8b3bbc9a5ebb4",
-      "week",
+      '5d4e3d9201f8b3bbc9a5ebb4',
+      'week',
       `${startTime}Z`,
       `${endTime}Z`,
       token
@@ -254,16 +254,16 @@ export class CourseDetails extends React.Component {
   componentDidMount() {
     this.fetchData(
       moment()
-        .startOf("year")
-        .format("YYYY-MM-DD HH:mm:ss"),
+        .startOf('year')
+        .format('YYYY-MM-DD HH:mm:ss'),
       moment()
-        .endOf("year")
-        .format("YYYY-MM-DD HH:mm:ss")
+        .endOf('year')
+        .format('YYYY-MM-DD HH:mm:ss')
     );
 
     if (this.props.courses.items.length > 0) {
       const courseCategoryIndex = this.state.categories.findIndex(item => {
-        return item.key === "course";
+        return item.key === 'course';
       });
       const subCategories = this.props.courses.items.map(item => {
         return {
@@ -277,7 +277,7 @@ export class CourseDetails extends React.Component {
     }
     if (this.props.newCategories.items.length > 0) {
       const newCategoryIndex = this.state.categories.findIndex(item => {
-        return item.key === "news";
+        return item.key === 'news';
       });
       const subCategories = this.props.newCategories.items.map(item => {
         return {
@@ -291,17 +291,17 @@ export class CourseDetails extends React.Component {
     }
 
     var heightOfHeader = $(
-      ".courseDetails .courseDetails__header .headerAdmin__wrapper"
+      '.courseDetails .courseDetails__header .headerAdmin__wrapper'
     ).height();
-    $(".courseDetails .courseDetails__body").css(
-      "margin-top",
-      heightOfHeader + "px"
+    $('.courseDetails .courseDetails__body').css(
+      'margin-top',
+      heightOfHeader + 'px'
     );
 
     $(
-      ".courseDetails__body__card__content__chart__filter__form__input"
+      '.courseDetails__body__card__content__chart__filter__form__input'
     ).datetimepicker({
-      format: "d/m/Y",
+      format: 'd/m/Y',
       timepicker: false,
       mask: false
     });
@@ -317,7 +317,7 @@ export class CourseDetails extends React.Component {
       this.props.courses.items.length > 0
     ) {
       const courseCategoryIndex = this.state.categories.findIndex(item => {
-        return item.key === "course";
+        return item.key === 'course';
       });
       const subCategories = this.props.courses.items.map(item => {
         return {
@@ -335,7 +335,7 @@ export class CourseDetails extends React.Component {
       this.props.newCategories.items.length > 0
     ) {
       const newCategoryIndex = this.state.categories.findIndex(item => {
-        return item.key === "news";
+        return item.key === 'news';
       });
       const subCategories = this.props.newCategories.items.map(item => {
         return {
@@ -442,7 +442,7 @@ export class CourseDetails extends React.Component {
           <div className="courseDetails__body">
             <div className="courseDetails__body__numbers">
               {this.props.statisticCourse.statisticForPieChart.fetching
-                ? "đang tải ..."
+                ? 'đang tải ...'
                 : this.state.numberAdmins.map((number, index) => {
                     return (
                       <NumberAdmin
@@ -465,7 +465,7 @@ export class CourseDetails extends React.Component {
                   </div>
                   <div className="courseDetails__body__card__content__course__info">
                     {this.props.courses.fetching ? (
-                      "đang tải ..."
+                      'đang tải ...'
                     ) : (
                       <CourseInfo
                         courseInfo={this.props.courses.items[0]}
@@ -537,7 +537,7 @@ export class CourseDetails extends React.Component {
             </div>
             <div className="courseDetails__body__table">
               {this.props.statisticStudent.statisticForListDetail.fetching ? (
-                "Đang tải ..."
+                'Đang tải ...'
               ) : (
                 <Table
                   tableContents={
@@ -550,7 +550,7 @@ export class CourseDetails extends React.Component {
               )}
 
               {this.props.statisticStudent.statisticForListDetail.fetching ? (
-                "Đang tải ..."
+                'Đang tải ...'
               ) : (
                 <Table
                   tableContents={
@@ -563,7 +563,7 @@ export class CourseDetails extends React.Component {
               )}
 
               {this.props.statisticStudent.statisticForListDetail.fetching ? (
-                "Đang tải ..."
+                'Đang tải ...'
               ) : (
                 <Table
                   tableContents={
@@ -576,7 +576,7 @@ export class CourseDetails extends React.Component {
               )}
 
               {this.props.statisticStudent.statisticForListDetail.fetching ? (
-                "Đang tải ..."
+                'Đang tải ...'
               ) : (
                 <Table
                   tableContents={

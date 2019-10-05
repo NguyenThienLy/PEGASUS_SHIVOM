@@ -1,7 +1,7 @@
-import * as React from "react";
-import "./slider.scss";
-import { DefaultButton } from "../../components";
-import Link from "next/link";
+import * as React from 'react';
+import './slider.scss';
+import { DefaultButton } from '../../components';
+import Link from 'next/link';
 
 export class Slider extends React.Component {
   constructor(props) {
@@ -9,42 +9,42 @@ export class Slider extends React.Component {
     this.settingSlider = this.settingSlider.bind(this);
   }
   settingSlider() {
-    $(".slider__slick-autoplay").on("init", function(event, slick) {
-      $(".slider__slick-autoplay").css({
-        opacity: "1",
-        visibility: "visible"
+    $('.slider__slick-autoplay').on('init', function(event, slick) {
+      $('.slider__slick-autoplay').css({
+        opacity: '1',
+        visibility: 'visible'
       });
       $(
-        ".slick-active .slider__slick-autoplay__item__caption__title"
-      ).removeClass("slider__slick-autoplay__item__caption--hidden");
-      $(".slick-active .slider__slick-autoplay__item__caption__title").addClass(
-        "slider__slick-autoplay__item__caption__ani--1"
+        '.slick-active .slider__slick-autoplay__item__caption__title'
+      ).removeClass('slider__slick-autoplay__item__caption--hidden');
+      $('.slick-active .slider__slick-autoplay__item__caption__title').addClass(
+        'slider__slick-autoplay__item__caption__ani--1'
       );
 
       $(
-        ".slick-active .slider__slick-autoplay__item__caption__content"
-      ).removeClass("slider__slick-autoplay__item__caption--hidden");
+        '.slick-active .slider__slick-autoplay__item__caption__content'
+      ).removeClass('slider__slick-autoplay__item__caption--hidden');
       $(
-        ".slick-active .slider__slick-autoplay__item__caption__content"
-      ).addClass("slider__slick-autoplay__item__caption__ani--2");
+        '.slick-active .slider__slick-autoplay__item__caption__content'
+      ).addClass('slider__slick-autoplay__item__caption__ani--2');
 
       $(
-        ".slick-active .slider__slick-autoplay__item__caption__more__btn"
-      ).removeClass("slider__slick-autoplay__item__caption--hidden");
+        '.slick-active .slider__slick-autoplay__item__caption__more__btn'
+      ).removeClass('slider__slick-autoplay__item__caption--hidden');
       $(
-        ".slick-active .slider__slick-autoplay__item__caption__more__btn"
-      ).addClass("slider__slick-autoplay__item__caption__ani--3");
+        '.slick-active .slider__slick-autoplay__item__caption__more__btn'
+      ).addClass('slider__slick-autoplay__item__caption__ani--3');
 
       $(
-        ".slick-active .slider__slick-autoplay__item__caption__more__btn-default"
-      ).removeClass("slider__slick-autoplay__item__caption--hidden");
+        '.slick-active .slider__slick-autoplay__item__caption__more__btn-default'
+      ).removeClass('slider__slick-autoplay__item__caption--hidden');
       $(
-        ".slick-active .slider__slick-autoplay__item__caption__more__btn-default"
-      ).addClass("slider__slick-autoplay__item__caption__ani--4");
+        '.slick-active .slider__slick-autoplay__item__caption__more__btn-default'
+      ).addClass('slider__slick-autoplay__item__caption__ani--4');
     });
 
-    $(".slider__slick-autoplay")
-      .not(".slick-initialized")
+    $('.slider__slick-autoplay')
+      .not('.slick-initialized')
       .slick({
         dots: false,
         arrows: false,
@@ -55,93 +55,92 @@ export class Slider extends React.Component {
         draggable: false,
         pauseOnHover: false,
         fade: true,
-        cssEase: "linear",
-        lazyLoad: "ondemand"
+        cssEase: 'linear'
       });
 
-    $(".slider__prevArrow").click(function() {
-      $(".slider__slick-autoplay").slick("slickPrev");
+    $('.slider__prevArrow').click(function() {
+      $('.slider__slick-autoplay').slick('slickPrev');
     });
 
-    $(".slider__nextArrow").click(function() {
-      $(".slider__slick-autoplay").slick("slickNext");
+    $('.slider__nextArrow').click(function() {
+      $('.slider__slick-autoplay').slick('slickNext');
     });
 
-    $(".slider__slick-autoplay").on("beforeChange", function(
+    $('.slider__slick-autoplay').on('beforeChange', function(
       event,
       slick,
       currentSlide,
       nextSlide
     ) {
       $(
-        ".slick-active .slider__slick-autoplay__item__caption__title"
-      ).removeClass("slider__slick-autoplay__item__caption__ani--1");
-      $(".slick-active .slider__slick-autoplay__item__caption__title").addClass(
-        "slider__slick-autoplay__item__caption--hidden"
+        '.slick-active .slider__slick-autoplay__item__caption__title'
+      ).removeClass('slider__slick-autoplay__item__caption__ani--1');
+      $('.slick-active .slider__slick-autoplay__item__caption__title').addClass(
+        'slider__slick-autoplay__item__caption--hidden'
       );
 
       $(
-        ".slick-active .slider__slick-autoplay__item__caption__content"
-      ).removeClass("slider__slick-autoplay__item__caption__ani--2");
+        '.slick-active .slider__slick-autoplay__item__caption__content'
+      ).removeClass('slider__slick-autoplay__item__caption__ani--2');
       $(
-        ".slick-active .slider__slick-autoplay__item__caption__content"
-      ).addClass("slider__slick-autoplay__item__caption--hidden");
+        '.slick-active .slider__slick-autoplay__item__caption__content'
+      ).addClass('slider__slick-autoplay__item__caption--hidden');
 
       $(
-        ".slick-active .slider__slick-autoplay__item__caption__more__btn"
-      ).removeClass("slider__slick-autoplay__item__caption__ani--3");
+        '.slick-active .slider__slick-autoplay__item__caption__more__btn'
+      ).removeClass('slider__slick-autoplay__item__caption__ani--3');
       $(
-        ".slick-active .slider__slick-autoplay__item__caption__more__btn"
-      ).addClass("slider__slick-autoplay__item__caption--hidden");
+        '.slick-active .slider__slick-autoplay__item__caption__more__btn'
+      ).addClass('slider__slick-autoplay__item__caption--hidden');
 
       $(
-        ".slick-active .slider__slick-autoplay__item__caption__more__btn-default"
-      ).removeClass("slider__slick-autoplay__item__caption__ani--4");
+        '.slick-active .slider__slick-autoplay__item__caption__more__btn-default'
+      ).removeClass('slider__slick-autoplay__item__caption__ani--4');
       $(
-        ".slick-active .slider__slick-autoplay__item__caption__more__btn-default"
-      ).addClass("slider__slick-autoplay__item__caption--hidden");
+        '.slick-active .slider__slick-autoplay__item__caption__more__btn-default'
+      ).addClass('slider__slick-autoplay__item__caption--hidden');
 
-      $(".slider__slick-autoplay .slick-dots li").removeClass("slick-active");
-      $(".slider__slick-autoplay .slick-dots li button")
-        .attr("aria-pressed", "false")
+      $('.slider__slick-autoplay .slick-dots li').removeClass('slick-active');
+      $('.slider__slick-autoplay .slick-dots li button')
+        .attr('aria-pressed', 'false')
         .focus(function() {
           this.blur();
         });
     });
 
-    $(".slider__slick-autoplay").on("afterChange", function(
+    $('.slider__slick-autoplay').on('afterChange', function(
       event,
       slick,
       currentSlide,
       nextSlide
     ) {
       $(
-        ".slick-active .slider__slick-autoplay__item__caption__title"
-      ).removeClass("slider__slick-autoplay__item__caption--hidden");
-      $(".slick-active .slider__slick-autoplay__item__caption__title").addClass(
-        "slider__slick-autoplay__item__caption__ani--1"
+        '.slick-active .slider__slick-autoplay__item__caption__title'
+      ).removeClass('slider__slick-autoplay__item__caption--hidden');
+      $('.slick-active .slider__slick-autoplay__item__caption__title').addClass(
+        'slider__slick-autoplay__item__caption__ani--1'
       );
 
       $(
-        ".slick-active .slider__slick-autoplay__item__caption__content"
-      ).removeClass("slider__slick-autoplay__item__caption--hidden");
+        '.slick-active .slider__slick-autoplay__item__caption__content'
+      ).removeClass('slider__slick-autoplay__item__caption--hidden');
       $(
-        ".slick-active .slider__slick-autoplay__item__caption__content"
-      ).addClass("slider__slick-autoplay__item__caption__ani--2");
+        '.slick-active .slider__slick-autoplay__item__caption__content'
+      ).addClass('slider__slick-autoplay__item__caption__ani--2');
 
       $(
-        ".slick-active .slider__slick-autoplay__item__caption__more__btn"
-      ).removeClass("slider__slick-autoplay__item__caption--hidden");
+        '.slick-active .slider__slick-autoplay__item__caption__more__btn'
+      ).removeClass('slider__slick-autoplay__item__caption--hidden');
       $(
-        ".slick-active .slider__slick-autoplay__item__caption__more__btn"
-      ).addClass("slider__slick-autoplay__item__caption__ani--3");
+        '.slick-active .slider__slick-autoplay__item__caption__more__btn'
+      ).addClass('slider__slick-autoplay__item__caption__ani--3');
 
       $(
-        ".slick-active .slider__slick-autoplay__item__caption__more__btn-default"
-      ).removeClass("slider__slick-autoplay__item__caption--hidden");
+        '.slick-active .slider__slick-autoplay__item__caption__more__btn-default'
+      ).removeClass('slider__slick-autoplay__item__caption--hidden');
       $(
-        ".slick-active .slider__slick-autoplay__item__caption__more__btn-default"
-      ).addClass("slider__slick-autoplay__item__caption__ani--4");
+        '.slick-active .slider__slick-autoplay__item__caption__more__btn-default'
+      ).addClass('slider__slick-autoplay__item__caption__ani--4');
     });
   }
   componentDidMount() {
@@ -161,6 +160,7 @@ export class Slider extends React.Component {
             return (
               <div className="slider__slick-autoplay__item" key={index}>
                 <img
+                  alt=""
                   data-lazy={item.option.image}
                   src={item.option.image}
                 ></img>

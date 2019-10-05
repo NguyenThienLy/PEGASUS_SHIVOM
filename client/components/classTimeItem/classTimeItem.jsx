@@ -1,5 +1,5 @@
-import * as React from "react";
-import "./classTimeItem.scss";
+import * as React from 'react';
+import './classTimeItem.scss';
 
 export class ClassTimeItem extends React.Component {
   constructor(props) {
@@ -18,15 +18,15 @@ export class ClassTimeItem extends React.Component {
         <span className="class-time-item__border class-time-item__border-bottom-right" />
         <div className="class-time-item__inner">
           <div className="class-time-item__inner__weekday">{weekday}</div>
-          <div className="class-time-item__inner__weekday">{topic}</div>
+          <div className="class-time-item__inner__topic">{topic}</div>
           <div className="class-time-item__inner__time">
             <span className="class-time-item__inner__time__start">
               {timeStart.hour}:
-              {timeStart.minute === 0 ? "00" : timeStart.minute}
+              {timeStart.minute === 0 ? '00' : timeStart.minute}
             </span>
             <span> - </span>
             <span className="class-time-item__inner__time__end">
-              {timeEnd.hour}:{timeEnd.minute === 0 ? "00" : timeEnd.minute}
+              {timeEnd.hour}:{timeEnd.minute === 0 ? '00' : timeEnd.minute}
             </span>
           </div>
           {/* <div className="class-time-item__inner__trainer">

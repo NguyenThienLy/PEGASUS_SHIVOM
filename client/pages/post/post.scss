@@ -1,4 +1,4 @@
-@import "../../default.scss";
+@import '../../default.scss';
 
 @mixin for-phone-only {
   @media (max-width: 599px) {
@@ -64,15 +64,15 @@ $hover-color: lighten($sub-main-color, 27%);
     border: none;
     margin: 0px;
   }
-  @include e("body") {
-    @include e("ringing-phone") {
+  @include e('body') {
+    @include e('ringing-phone') {
       position: fixed;
       right: 2em;
       bottom: 2em;
       z-index: 2;
     }
 
-    @include e("breadcrumb") {
+    @include e('breadcrumb') {
       font-family: $font-family-special;
       background-color: $background-color;
       padding: 3em 10%;
@@ -131,19 +131,19 @@ $hover-color: lighten($sub-main-color, 27%);
       //   }
     }
 
-    @include e("wrapper") {
+    @include e('wrapper') {
       display: flex;
       flex-direction: row;
       width: 80%;
       margin: auto;
       padding: 4em 0;
 
-      @include e("main-content") {
+      @include e('main-content') {
         display: flex;
         flex-direction: column;
         width: 70%;
 
-        @include e("info") {
+        @include e('info') {
           text-transform: uppercase;
           font-weight: 400;
           line-height: 1.5em;
@@ -160,30 +160,30 @@ $hover-color: lighten($sub-main-color, 27%);
             }
           }
 
-          @include e("author") {
+          @include e('author') {
             display: inline-block;
             &::after {
-              content: "/";
+              content: '/';
               display: inline-block;
               margin: 0 3px;
             }
           }
 
-          @include e("category") {
+          @include e('category') {
             display: inline-block;
             &::after {
-              content: "/";
+              content: '/';
               display: inline-block;
               margin: 0 3px;
             }
           }
 
-          @include e("tags") {
+          @include e('tags') {
             display: inline-block;
           }
         }
 
-        @include e("title") {
+        @include e('title') {
           text-align: center;
           font-weight: 400;
           margin-top: 0.5em;
@@ -210,11 +210,15 @@ $hover-color: lighten($sub-main-color, 27%);
           //   }
         }
 
-        @include e("content") {
+        @include e('content') {
           font-size: 0.9em;
           line-height: 1.7em;
           color: $font-color;
           margin-bottom: 2em;
+          img {
+            width: 100%;
+            height: auto;
+          }
           //   img {
           //     width: 100%;
           //   }
@@ -223,24 +227,24 @@ $hover-color: lighten($sub-main-color, 27%);
           //   }
         }
 
-        @include e("post-author") {
+        @include e('post-author') {
           margin: 2em 0 4em 0;
           .post-author {
             flex-direction: row;
-            @include e("avatar") {
+            @include e('avatar') {
               width: 40%;
             }
-            @include e("info") {
+            @include e('info') {
               width: 55%;
               padding-left: 5%;
               margin-bottom: 0;
-              @include e("position") {
+              @include e('position') {
                 font-size: 0.7em;
               }
-              @include e("name") {
+              @include e('name') {
                 font-size: 1.4em;
               }
-              @include e("description") {
+              @include e('description') {
                 font-size: 0.85em;
               }
             }
@@ -271,37 +275,37 @@ $hover-color: lighten($sub-main-color, 27%);
           //   }
         }
 
-        @include e("related-posts-title") {
+        @include e('related-posts-title') {
           margin: 2em 0 1.5em;
           font-family: $font-family-special;
           color: $main-color;
           font-size: 1.4em;
         }
 
-        @include e("related-posts") {
+        @include e('related-posts') {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
           column-gap: 2em;
           row-gap: 1.5em;
           margin-bottom: 3em;
-          @include e("post") {
+          @include e('post') {
             .related-post {
-              @include e("image") {
-                @include e("created-date") {
-                  @include e("day") {
+              @include e('image') {
+                @include e('created-date') {
+                  @include e('day') {
                     font-size: 0.9em;
                     line-height: 2em;
                   }
-                  @include e("month") {
+                  @include e('month') {
                     padding: 0 0.5em;
                     font-size: 0.75em;
                   }
                 }
               }
-              @include e("title") {
+              @include e('title') {
                 font-size: 1.2em;
               }
-              @include e("author") {
+              @include e('author') {
                 font-size: 0.75em;
               }
             }
@@ -355,10 +359,10 @@ $hover-color: lighten($sub-main-color, 27%);
         // }
       }
 
-      @include e("sub-content") {
+      @include e('sub-content') {
         margin-left: 3%;
         width: 27%;
-        @include e("title") {
+        @include e('title') {
           font-family: $font-family-special;
           font-size: 1.2em;
           font-color: $color-grey;
@@ -368,7 +372,7 @@ $hover-color: lighten($sub-main-color, 27%);
           }
         }
 
-        @include e("search") {
+        @include e('search') {
           margin: 3em 0 2em;
           .search-box form {
             width: 100%;
@@ -379,39 +383,39 @@ $hover-color: lighten($sub-main-color, 27%);
           }
         }
 
-        @include e("social-group") {
+        @include e('social-group') {
           margin: 1em 0 2em 0;
           .media-buttons {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             column-gap: 0em;
             row-gap: 1em;
-            @include e("media-icons") {
+            @include e('media-icons') {
               margin: auto;
               background-color: $hover-color;
               &:nth-last-child(1) {
                 margin-right: auto;
               }
-              @include m("hover") {
+              @include m('hover') {
                 font-size: 1.2em;
               }
             }
           }
         }
 
-        @include e("categories") {
+        @include e('categories') {
           margin-bottom: 2em;
           display: grid;
           grid-template-columns: repeat(1, 1fr);
           column-gap: 0em;
           row-gap: 1em;
-          @include e("category") {
+          @include e('category') {
             text-transform: uppercase;
-            @include e("link") {
+            @include e('link') {
               text-decoration: none;
               font-size: 0.7em;
               .hoverDiv {
-                @include e("link") {
+                @include e('link') {
                   color: $main-color;
                   letter-spacing: 0.05em;
                 }
@@ -420,12 +424,12 @@ $hover-color: lighten($sub-main-color, 27%);
           }
         }
 
-        @include e("latest-posts") {
+        @include e('latest-posts') {
           margin-bottom: 2em;
-          @include e("post") {
+          @include e('post') {
             margin-bottom: 1em;
             .latestPost {
-              @include e("info") {
+              @include e('info') {
                 width: 45%;
               }
             }
@@ -443,9 +447,9 @@ $hover-color: lighten($sub-main-color, 27%);
           }
         }
 
-        @include e("email") {
+        @include e('email') {
           margin: 3em 0 2em;
-          @include e("content") {
+          @include e('content') {
             font-size: 0.85em;
             color: $font-color;
             margin-bottom: 1.5em;
@@ -488,7 +492,7 @@ $hover-color: lighten($sub-main-color, 27%);
       //   }
     }
 
-    @include e("contact-us") {
+    @include e('contact-us') {
       width: 80%;
       margin: 0 auto 0;
       padding: 3em 0 7em;
@@ -563,83 +567,83 @@ $hover-color: lighten($sub-main-color, 27%);
   }
 
   .post {
-    @include e("body") {
-      @include e("ringing-phone") {
+    @include e('body') {
+      @include e('ringing-phone') {
         right: 1em;
         bottom: 1em;
         .ringing-phone {
-          @include e("link") {
+          @include e('link') {
             padding: 0.8em;
           }
         }
       }
 
-      @include e("breadcrumb") {
+      @include e('breadcrumb') {
       }
 
-      @include e("wrapper") {
+      @include e('wrapper') {
         flex-direction: column;
         padding: 4em 0;
 
-        @include e("main-content") {
+        @include e('main-content') {
           width: 100%;
 
-          @include e("info") {
+          @include e('info') {
             font-size: 0.65em;
           }
 
-          @include e("title") {
+          @include e('title') {
             padding: 0em;
             a {
               font-size: 1.5em;
             }
           }
 
-          @include e("content") {
+          @include e('content') {
             font-size: 0.9em;
           }
 
-          @include e("post-author") {
+          @include e('post-author') {
             .post-author {
               flex-direction: column-reverse;
-              @include e("avatar") {
+              @include e('avatar') {
                 width: 100%;
               }
-              @include e("info") {
+              @include e('info') {
                 width: 100%;
                 padding-left: 0;
                 margin-bottom: 1em;
-                @include e("position") {
+                @include e('position') {
                   font-size: 0.65em;
                 }
-                @include e("name") {
+                @include e('name') {
                   font-size: 1.2em;
                 }
-                @include e("description") {
+                @include e('description') {
                   font-size: 0.8em;
                 }
               }
             }
           }
 
-          @include e("related-posts-title") {
+          @include e('related-posts-title') {
             font-size: 1.2em;
           }
 
-          @include e("related-posts") {
+          @include e('related-posts') {
             display: grid;
             grid-template-columns: repeat(1, 1fr);
             column-gap: 0;
             row-gap: 3em;
-            @include e("post") {
+            @include e('post') {
               .related-post {
-                @include e("image") {
-                  @include e("created-date") {
-                    @include e("day") {
+                @include e('image') {
+                  @include e('created-date') {
+                    @include e('day') {
                       font-size: 0.9em;
                       line-height: 2em;
                     }
-                    @include e("month") {
+                    @include e('month') {
                       padding: 0 1em;
                       font-size: 0.75em;
                     }
@@ -648,10 +652,10 @@ $hover-color: lighten($sub-main-color, 27%);
                     height: auto;
                   }
                 }
-                @include e("title") {
+                @include e('title') {
                   font-size: 1em;
                 }
-                @include e("author") {
+                @include e('author') {
                   font-size: 0.65em;
                 }
               }
@@ -659,16 +663,16 @@ $hover-color: lighten($sub-main-color, 27%);
           }
         }
 
-        @include e("sub-content") {
+        @include e('sub-content') {
           margin-left: 0;
           width: 100%;
           border-top: 1px solid $table-border-color;
-          @include e("title") {
+          @include e('title') {
             font-size: 1.3em;
             margin-bottom: 1.5em;
           }
 
-          @include e("search") {
+          @include e('search') {
             margin: 3em 0 2em;
             .search-box form {
               input {
@@ -678,11 +682,11 @@ $hover-color: lighten($sub-main-color, 27%);
             }
           }
 
-          @include e("social-group") {
+          @include e('social-group') {
             margin: 1em 0 2em 0;
             .media-buttons {
               display: block;
-              @include e("media-icons") {
+              @include e('media-icons') {
                 margin: 0.5em 1.3em 0.5em 0;
                 &:nth-last-child(1) {
                   margin-right: 0;
@@ -691,30 +695,30 @@ $hover-color: lighten($sub-main-color, 27%);
             }
           }
 
-          @include e("categories") {
+          @include e('categories') {
             grid-template-columns: repeat(2, 1fr);
             column-gap: 2em;
             row-gap: 1em;
-            @include e("category") {
-              @include e("link") {
+            @include e('category') {
+              @include e('link') {
                 font-size: 0.8em;
               }
             }
           }
 
-          @include e("latest-posts") {
-            @include e("post") {
+          @include e('latest-posts') {
+            @include e('post') {
               .latestPost {
-                @include e("image") {
+                @include e('image') {
                   width: 6em;
                   height: 6em;
                 }
-                @include e("info") {
+                @include e('info') {
                   width: 55%;
-                  @include e("title") {
+                  @include e('title') {
                     font-size: 0.9em;
                   }
-                  @include e("date") {
+                  @include e('date') {
                     font-size: 0.8em;
                   }
                 }
@@ -722,8 +726,8 @@ $hover-color: lighten($sub-main-color, 27%);
             }
           }
 
-          @include e("email") {
-            @include e("content") {
+          @include e('email') {
+            @include e('content') {
               font-size: 0.9em;
             }
             .search-box form {
@@ -736,16 +740,16 @@ $hover-color: lighten($sub-main-color, 27%);
         }
       }
 
-      @include e("contact-us") {
+      @include e('contact-us') {
         .contact-us {
           flex-direction: column-reverse;
-          @include e("form") {
+          @include e('form') {
             width: 100%;
           }
-          @include e("sub-info") {
+          @include e('sub-info') {
             width: 100%;
             margin: 0 0 2em;
-            @include e("title") {
+            @include e('title') {
               font-size: 1.7em;
             }
           }
@@ -761,83 +765,83 @@ $hover-color: lighten($sub-main-color, 27%);
   }
 
   .post {
-    @include e("body") {
-      @include e("ringing-phone") {
+    @include e('body') {
+      @include e('ringing-phone') {
         right: 1em;
         bottom: 1em;
         .ringing-phone {
-          @include e("link") {
+          @include e('link') {
             padding: 0.8em;
           }
         }
       }
 
-      @include e("breadcrumb") {
+      @include e('breadcrumb') {
       }
 
-      @include e("wrapper") {
+      @include e('wrapper') {
         flex-direction: column;
         padding: 4em 0;
 
-        @include e("main-content") {
+        @include e('main-content') {
           width: 100%;
 
-          @include e("info") {
+          @include e('info') {
             font-size: 0.7em;
           }
 
-          @include e("title") {
+          @include e('title') {
             padding: 0em;
             a {
               font-size: 1.8em;
             }
           }
 
-          @include e("content") {
+          @include e('content') {
             font-size: 0.85em;
           }
 
-          @include e("post-author") {
+          @include e('post-author') {
             .post-author {
               flex-direction: column-reverse;
-              @include e("avatar") {
+              @include e('avatar') {
                 width: 100%;
               }
-              @include e("info") {
+              @include e('info') {
                 width: 100%;
                 padding-left: 0;
                 margin-bottom: 1em;
-                @include e("position") {
+                @include e('position') {
                   font-size: 0.7em;
                 }
-                @include e("name") {
+                @include e('name') {
                   font-size: 1.4em;
                 }
-                @include e("description") {
+                @include e('description') {
                   font-size: 0.85em;
                 }
               }
             }
           }
 
-          @include e("related-posts-title") {
+          @include e('related-posts-title') {
             font-size: 1.4em;
           }
 
-          @include e("related-posts") {
+          @include e('related-posts') {
             display: grid;
             grid-template-columns: repeat(1, 1fr);
             column-gap: 0;
             row-gap: 3em;
-            @include e("post") {
+            @include e('post') {
               .related-post {
-                @include e("image") {
-                  @include e("created-date") {
-                    @include e("day") {
+                @include e('image') {
+                  @include e('created-date') {
+                    @include e('day') {
                       font-size: 1em;
                       line-height: 3em;
                     }
-                    @include e("month") {
+                    @include e('month') {
                       padding: 0 1em;
                       font-size: 0.85em;
                     }
@@ -846,10 +850,10 @@ $hover-color: lighten($sub-main-color, 27%);
                     height: auto;
                   }
                 }
-                @include e("title") {
+                @include e('title') {
                   font-size: 1.2em;
                 }
-                @include e("author") {
+                @include e('author') {
                   font-size: 0.75em;
                 }
               }
@@ -857,16 +861,16 @@ $hover-color: lighten($sub-main-color, 27%);
           }
         }
 
-        @include e("sub-content") {
+        @include e('sub-content') {
           margin-left: 0;
           width: 100%;
           border-top: 1px solid $table-border-color;
-          @include e("title") {
+          @include e('title') {
             font-size: 1.3em;
             margin-bottom: 1.5em;
           }
 
-          @include e("search") {
+          @include e('search') {
             margin: 3em 0 2em;
             .search-box form {
               input {
@@ -876,11 +880,11 @@ $hover-color: lighten($sub-main-color, 27%);
             }
           }
 
-          @include e("social-group") {
+          @include e('social-group') {
             margin: 1em 0 2em 0;
             .media-buttons {
               display: block;
-              @include e("media-icons") {
+              @include e('media-icons') {
                 margin: 0.5em 1.3em 0.5em 0;
                 &:nth-last-child(1) {
                   margin-right: 0;
@@ -889,30 +893,30 @@ $hover-color: lighten($sub-main-color, 27%);
             }
           }
 
-          @include e("categories") {
+          @include e('categories') {
             grid-template-columns: repeat(2, 1fr);
             column-gap: 2em;
             row-gap: 1em;
-            @include e("category") {
-              @include e("link") {
+            @include e('category') {
+              @include e('link') {
                 font-size: 0.8em;
               }
             }
           }
 
-          @include e("latest-posts") {
-            @include e("post") {
+          @include e('latest-posts') {
+            @include e('post') {
               .latestPost {
-                @include e("image") {
+                @include e('image') {
                   width: 6em;
                   height: 6em;
                 }
-                @include e("info") {
+                @include e('info') {
                   width: 73%;
-                  @include e("title") {
+                  @include e('title') {
                     font-size: 0.9em;
                   }
-                  @include e("date") {
+                  @include e('date') {
                     font-size: 0.8em;
                   }
                 }
@@ -920,8 +924,8 @@ $hover-color: lighten($sub-main-color, 27%);
             }
           }
 
-          @include e("email") {
-            @include e("content") {
+          @include e('email') {
+            @include e('content') {
               font-size: 0.9em;
             }
             .search-box form {
@@ -934,16 +938,16 @@ $hover-color: lighten($sub-main-color, 27%);
         }
       }
 
-      @include e("contact-us") {
+      @include e('contact-us') {
         .contact-us {
           flex-direction: column-reverse;
-          @include e("form") {
+          @include e('form') {
             width: 100%;
           }
-          @include e("sub-info") {
+          @include e('sub-info') {
             width: 100%;
             margin: 0 0 2em;
-            @include e("title") {
+            @include e('title') {
               font-size: 1.9em;
             }
           }
@@ -959,83 +963,83 @@ $hover-color: lighten($sub-main-color, 27%);
   }
 
   .post {
-    @include e("body") {
-      @include e("ringing-phone") {
+    @include e('body') {
+      @include e('ringing-phone') {
         right: 1.5em;
         bottom: 1.5em;
         .ringing-phone {
-          @include e("link") {
+          @include e('link') {
             padding: 0.9em;
           }
         }
       }
 
-      @include e("breadcrumb") {
+      @include e('breadcrumb') {
       }
 
-      @include e("wrapper") {
+      @include e('wrapper') {
         flex-direction: column;
         padding: 4em 0;
 
-        @include e("main-content") {
+        @include e('main-content') {
           width: 100%;
 
-          @include e("info") {
+          @include e('info') {
             font-size: 0.65em;
           }
 
-          @include e("title") {
+          @include e('title') {
             padding: 0 3em;
             a {
               font-size: 1.8em;
             }
           }
 
-          @include e("content") {
+          @include e('content') {
             font-size: 0.85em;
           }
 
-          @include e("post-author") {
+          @include e('post-author') {
             .post-author {
               flex-direction: row;
-              @include e("avatar") {
+              @include e('avatar') {
                 width: 40%;
               }
-              @include e("info") {
+              @include e('info') {
                 width: 55%;
                 padding-left: 5%;
                 margin-bottom: 0;
-                @include e("position") {
+                @include e('position') {
                   font-size: 0.7em;
                 }
-                @include e("name") {
+                @include e('name') {
                   font-size: 1.4em;
                 }
-                @include e("description") {
+                @include e('description') {
                   font-size: 0.85em;
                 }
               }
             }
           }
 
-          @include e("related-posts-title") {
+          @include e('related-posts-title') {
             font-size: 1.4em;
           }
 
-          @include e("related-posts") {
+          @include e('related-posts') {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             column-gap: 2em;
             row-gap: 1.5em;
-            @include e("post") {
+            @include e('post') {
               .related-post {
-                @include e("image") {
-                  @include e("created-date") {
-                    @include e("day") {
+                @include e('image') {
+                  @include e('created-date') {
+                    @include e('day') {
                       font-size: 0.9em;
                       line-height: 2em;
                     }
-                    @include e("month") {
+                    @include e('month') {
                       padding: 0 0.5em;
                       font-size: 0.75em;
                     }
@@ -1044,10 +1048,10 @@ $hover-color: lighten($sub-main-color, 27%);
                     height: 15em;
                   }
                 }
-                @include e("title") {
+                @include e('title') {
                   font-size: 1.2em;
                 }
-                @include e("author") {
+                @include e('author') {
                   font-size: 0.75em;
                 }
               }
@@ -1055,16 +1059,16 @@ $hover-color: lighten($sub-main-color, 27%);
           }
         }
 
-        @include e("sub-content") {
+        @include e('sub-content') {
           margin-left: 0;
           width: 100%;
           border-top: 1px solid $table-border-color;
-          @include e("title") {
+          @include e('title') {
             font-size: 1.3em;
             margin-bottom: 1em;
           }
 
-          @include e("search") {
+          @include e('search') {
             margin: 3em 0 2em;
             .search-box form {
               input {
@@ -1074,11 +1078,11 @@ $hover-color: lighten($sub-main-color, 27%);
             }
           }
 
-          @include e("social-group") {
+          @include e('social-group') {
             margin: 1em 0 2em 0;
             .media-buttons {
               display: block;
-              @include e("media-icons") {
+              @include e('media-icons') {
                 margin: 0.5em 1.3em 0.5em 0;
                 &:nth-last-child(1) {
                   margin-right: 0;
@@ -1087,30 +1091,30 @@ $hover-color: lighten($sub-main-color, 27%);
             }
           }
 
-          @include e("categories") {
+          @include e('categories') {
             grid-template-columns: repeat(2, 1fr);
             column-gap: 2em;
             row-gap: 1em;
-            @include e("category") {
-              @include e("link") {
+            @include e('category') {
+              @include e('link') {
                 font-size: 0.8em;
               }
             }
           }
 
-          @include e("latest-posts") {
-            @include e("post") {
+          @include e('latest-posts') {
+            @include e('post') {
               .latestPost {
-                @include e("image") {
+                @include e('image') {
                   width: 6em;
                   height: 6em;
                 }
-                @include e("info") {
+                @include e('info') {
                   width: 76%;
-                  @include e("title") {
+                  @include e('title') {
                     font-size: 0.9em;
                   }
-                  @include e("date") {
+                  @include e('date') {
                     font-size: 0.8em;
                   }
                 }
@@ -1118,8 +1122,8 @@ $hover-color: lighten($sub-main-color, 27%);
             }
           }
 
-          @include e("email") {
-            @include e("content") {
+          @include e('email') {
+            @include e('content') {
               font-size: 0.9em;
             }
             .search-box form {
@@ -1132,16 +1136,16 @@ $hover-color: lighten($sub-main-color, 27%);
         }
       }
 
-      @include e("contact-us") {
+      @include e('contact-us') {
         .contact-us {
           flex-direction: column-reverse;
-          @include e("form") {
+          @include e('form') {
             width: 100%;
           }
-          @include e("sub-info") {
+          @include e('sub-info') {
             width: 100%;
             margin: 0 0 2em;
-            @include e("title") {
+            @include e('title') {
               font-size: 1.9em;
             }
           }
@@ -1157,83 +1161,83 @@ $hover-color: lighten($sub-main-color, 27%);
   }
 
   .post {
-    @include e("body") {
-      @include e("ringing-phone") {
+    @include e('body') {
+      @include e('ringing-phone') {
         right: 2em;
         bottom: 2em;
         .ringing-phone {
-          @include e("link") {
+          @include e('link') {
             padding: 1em;
           }
         }
       }
 
-      @include e("breadcrumb") {
+      @include e('breadcrumb') {
       }
 
-      @include e("wrapper") {
+      @include e('wrapper') {
         flex-direction: row;
         padding: 4em 0;
 
-        @include e("main-content") {
+        @include e('main-content') {
           width: 68%;
 
-          @include e("info") {
+          @include e('info') {
             font-size: 0.65em;
           }
 
-          @include e("title") {
+          @include e('title') {
             padding: 0 4em;
             a {
               font-size: 1.8em;
             }
           }
 
-          @include e("content") {
+          @include e('content') {
             font-size: 0.85em;
           }
 
-          @include e("post-author") {
+          @include e('post-author') {
             .post-author {
               flex-direction: row;
-              @include e("avatar") {
+              @include e('avatar') {
                 width: 40%;
               }
-              @include e("info") {
+              @include e('info') {
                 width: 55%;
                 padding-left: 5%;
                 margin-bottom: 0;
-                @include e("position") {
+                @include e('position') {
                   font-size: 0.7em;
                 }
-                @include e("name") {
+                @include e('name') {
                   font-size: 1.4em;
                 }
-                @include e("description") {
+                @include e('description') {
                   font-size: 0.85em;
                 }
               }
             }
           }
 
-          @include e("related-posts-title") {
+          @include e('related-posts-title') {
             font-size: 1.4em;
           }
 
-          @include e("related-posts") {
+          @include e('related-posts') {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             column-gap: 2em;
             row-gap: 1.5em;
-            @include e("post") {
+            @include e('post') {
               .related-post {
-                @include e("image") {
-                  @include e("created-date") {
-                    @include e("day") {
+                @include e('image') {
+                  @include e('created-date') {
+                    @include e('day') {
                       font-size: 0.9em;
                       line-height: 2em;
                     }
-                    @include e("month") {
+                    @include e('month') {
                       padding: 0 0.5em;
                       font-size: 0.75em;
                     }
@@ -1242,10 +1246,10 @@ $hover-color: lighten($sub-main-color, 27%);
                     height: 15em;
                   }
                 }
-                @include e("title") {
+                @include e('title') {
                   font-size: 1.2em;
                 }
-                @include e("author") {
+                @include e('author') {
                   font-size: 0.75em;
                 }
               }
@@ -1253,16 +1257,16 @@ $hover-color: lighten($sub-main-color, 27%);
           }
         }
 
-        @include e("sub-content") {
+        @include e('sub-content') {
           margin-left: 5%;
           width: 27%;
           border-top: none;
-          @include e("title") {
+          @include e('title') {
             font-size: 1.2em;
             margin-bottom: 1em;
           }
 
-          @include e("search") {
+          @include e('search') {
             margin: 3em 0 2em;
             .search-box form {
               input {
@@ -1272,14 +1276,14 @@ $hover-color: lighten($sub-main-color, 27%);
             }
           }
 
-          @include e("social-group") {
+          @include e('social-group') {
             margin: 1em 0 2em 0;
             .media-buttons {
               display: grid;
               grid-template-columns: repeat(2, 1fr);
               column-gap: 0em;
               row-gap: 1em;
-              @include e("media-icons") {
+              @include e('media-icons') {
                 margin: auto;
                 &:nth-last-child(1) {
                   margin-right: auto;
@@ -1288,30 +1292,30 @@ $hover-color: lighten($sub-main-color, 27%);
             }
           }
 
-          @include e("categories") {
+          @include e('categories') {
             grid-template-columns: repeat(1, 1fr);
             column-gap: 0em;
             row-gap: 1em;
-            @include e("category") {
-              @include e("link") {
+            @include e('category') {
+              @include e('link') {
                 font-size: 0.7em;
               }
             }
           }
 
-          @include e("latest-posts") {
-            @include e("post") {
+          @include e('latest-posts') {
+            @include e('post') {
               .latestPost {
-                @include e("image") {
+                @include e('image') {
                   width: 5em;
                   height: 5em;
                 }
-                @include e("info") {
+                @include e('info') {
                   width: 45%;
-                  @include e("title") {
+                  @include e('title') {
                     font-size: 0.8em;
                   }
-                  @include e("date") {
+                  @include e('date') {
                     font-size: 0.75em;
                   }
                 }
@@ -1319,8 +1323,8 @@ $hover-color: lighten($sub-main-color, 27%);
             }
           }
 
-          @include e("email") {
-            @include e("content") {
+          @include e('email') {
+            @include e('content') {
               font-size: 0.85em;
             }
             .search-box form {
@@ -1333,16 +1337,16 @@ $hover-color: lighten($sub-main-color, 27%);
         }
       }
 
-      @include e("contact-us") {
+      @include e('contact-us') {
         .contact-us {
           flex-direction: row;
-          @include e("form") {
+          @include e('form') {
             width: 50%;
           }
-          @include e("sub-info") {
+          @include e('sub-info') {
             width: 45%;
             margin: 0 0 0 5%;
-            @include e("title") {
+            @include e('title') {
               font-size: 2.1em;
             }
           }
@@ -1358,83 +1362,83 @@ $hover-color: lighten($sub-main-color, 27%);
   }
 
   .post {
-    @include e("body") {
-      @include e("ringing-phone") {
+    @include e('body') {
+      @include e('ringing-phone') {
         right: 2em;
         bottom: 2em;
         .ringing-phone {
-          @include e("link") {
+          @include e('link') {
             padding: 1em;
           }
         }
       }
 
-      @include e("breadcrumb") {
+      @include e('breadcrumb') {
       }
 
-      @include e("wrapper") {
+      @include e('wrapper') {
         flex-direction: row;
         padding: 4em 0;
 
-        @include e("main-content") {
+        @include e('main-content') {
           width: 68%;
 
-          @include e("info") {
+          @include e('info') {
             font-size: 0.65em;
           }
 
-          @include e("title") {
+          @include e('title') {
             padding: 0 4em;
             a {
               font-size: 1.8em;
             }
           }
 
-          @include e("content") {
+          @include e('content') {
             font-size: 0.85em;
           }
 
-          @include e("post-author") {
+          @include e('post-author') {
             .post-author {
               flex-direction: row;
-              @include e("avatar") {
+              @include e('avatar') {
                 width: 40%;
               }
-              @include e("info") {
+              @include e('info') {
                 width: 55%;
                 padding-left: 5%;
                 margin-bottom: 0;
-                @include e("position") {
+                @include e('position') {
                   font-size: 0.7em;
                 }
-                @include e("name") {
+                @include e('name') {
                   font-size: 1.4em;
                 }
-                @include e("description") {
+                @include e('description') {
                   font-size: 0.85em;
                 }
               }
             }
           }
 
-          @include e("related-posts-title") {
+          @include e('related-posts-title') {
             font-size: 1.4em;
           }
 
-          @include e("related-posts") {
+          @include e('related-posts') {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             column-gap: 2em;
             row-gap: 1.5em;
-            @include e("post") {
+            @include e('post') {
               .related-post {
-                @include e("image") {
-                  @include e("created-date") {
-                    @include e("day") {
+                @include e('image') {
+                  @include e('created-date') {
+                    @include e('day') {
                       font-size: 0.9em;
                       line-height: 2em;
                     }
-                    @include e("month") {
+                    @include e('month') {
                       padding: 0 0.5em;
                       font-size: 0.75em;
                     }
@@ -1443,10 +1447,10 @@ $hover-color: lighten($sub-main-color, 27%);
                     height: 15em;
                   }
                 }
-                @include e("title") {
+                @include e('title') {
                   font-size: 1.2em;
                 }
-                @include e("author") {
+                @include e('author') {
                   font-size: 0.75em;
                 }
               }
@@ -1454,16 +1458,16 @@ $hover-color: lighten($sub-main-color, 27%);
           }
         }
 
-        @include e("sub-content") {
+        @include e('sub-content') {
           margin-left: 5%;
           width: 27%;
           border-top: none;
-          @include e("title") {
+          @include e('title') {
             font-size: 1.2em;
             margin-bottom: 1em;
           }
 
-          @include e("search") {
+          @include e('search') {
             margin: 3em 0 2em;
             .search-box form {
               input {
@@ -1473,14 +1477,14 @@ $hover-color: lighten($sub-main-color, 27%);
             }
           }
 
-          @include e("social-group") {
+          @include e('social-group') {
             margin: 1em 0 2em 0;
             .media-buttons {
               display: grid;
               grid-template-columns: repeat(2, 1fr);
               column-gap: 0em;
               row-gap: 1em;
-              @include e("media-icons") {
+              @include e('media-icons') {
                 margin: auto;
                 &:nth-last-child(1) {
                   margin-right: auto;
@@ -1489,30 +1493,30 @@ $hover-color: lighten($sub-main-color, 27%);
             }
           }
 
-          @include e("categories") {
+          @include e('categories') {
             grid-template-columns: repeat(1, 1fr);
             column-gap: 0em;
             row-gap: 1em;
-            @include e("category") {
-              @include e("link") {
+            @include e('category') {
+              @include e('link') {
                 font-size: 0.7em;
               }
             }
           }
 
-          @include e("latest-posts") {
-            @include e("post") {
+          @include e('latest-posts') {
+            @include e('post') {
               .latestPost {
-                @include e("image") {
+                @include e('image') {
                   width: 5em;
                   height: 5em;
                 }
-                @include e("info") {
+                @include e('info') {
                   width: 52%;
-                  @include e("title") {
+                  @include e('title') {
                     font-size: 0.85em;
                   }
-                  @include e("date") {
+                  @include e('date') {
                     font-size: 0.8em;
                   }
                 }
@@ -1520,8 +1524,8 @@ $hover-color: lighten($sub-main-color, 27%);
             }
           }
 
-          @include e("email") {
-            @include e("content") {
+          @include e('email') {
+            @include e('content') {
               font-size: 0.85em;
             }
             .search-box form {
@@ -1534,16 +1538,16 @@ $hover-color: lighten($sub-main-color, 27%);
         }
       }
 
-      @include e("contact-us") {
+      @include e('contact-us') {
         .contact-us {
           flex-direction: row;
-          @include e("form") {
+          @include e('form') {
             width: 50%;
           }
-          @include e("sub-info") {
+          @include e('sub-info') {
             width: 45%;
             margin: 0 0 0 5%;
-            @include e("title") {
+            @include e('title') {
               font-size: 2.3em;
             }
           }
