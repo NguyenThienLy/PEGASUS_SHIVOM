@@ -1,11 +1,11 @@
-@import "../../default.scss";
-@import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css");
+@import '../../default.scss';
+@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css');
 
 .slider {
   width: 100%;
   position: relative;
 
-  @include e("arrow") {
+  @include e('arrow') {
     z-index: 1;
     position: absolute;
     height: 100%;
@@ -20,7 +20,7 @@
       transition: transform 500ms ease;
     }
   }
-  @include e("prevArrow") {
+  @include e('prevArrow') {
     left: 0;
     i {
       &:hover {
@@ -28,7 +28,7 @@
       }
     }
   }
-  @include e("nextArrow") {
+  @include e('nextArrow') {
     right: 0;
     i {
       &:hover {
@@ -41,21 +41,20 @@
     // opacity: 1;
     // visibility: visible;
   }
-  @include e("slick-autoplay") {
+  @include e('slick-autoplay') {
     width: 100%;
     opacity: 0;
     visibility: hidden;
     transition: all 1s ease;
     // display: none;
-    @include e("item") {
+    @include e('item') {
       position: relative;
       img {
         width: 100%;
-        max-width: 100%;
         height: auto;
         object-fit: cover;
       }
-      @include e("caption") {
+      @include e('caption') {
         color: #fff;
         position: absolute;
         top: 45%;
@@ -63,15 +62,15 @@
         transform: translate(-50%, -50%);
         width: 90%;
         text-align: center;
-        @include e("ani") {
-          @include m("1") {
+        @include e('ani') {
+          @include m('1') {
             animation-name: ani1;
             animation-duration: 6s;
             animation-fill-mode: both;
             animation-iteration-count: 1;
             animation-timing-function: ease-in-out;
           }
-          @include m("2") {
+          @include m('2') {
             animation-name: ani1;
             animation-duration: 5.5s;
             animation-fill-mode: both;
@@ -79,7 +78,7 @@
             animation-delay: 0.5s;
             animation-timing-function: ease-in-out;
           }
-          @include m("3") {
+          @include m('3') {
             animation-name: ani2;
             animation-duration: 5s;
             animation-fill-mode: both;
@@ -87,7 +86,7 @@
             animation-delay: 1s;
             animation-timing-function: ease-in-out;
           }
-          @include m("4") {
+          @include m('4') {
             animation-name: ani2;
             animation-duration: 4.9s;
             animation-fill-mode: both;
@@ -96,46 +95,46 @@
             animation-timing-function: ease-in-out;
           }
         }
-        @include e("title") {
+        @include e('title') {
           font-family: $font-family-special;
           text-transform: capitalize;
           font-size: 3.8em;
           letter-spacing: 0.025em;
           line-height: 1.2em;
         }
-        @include e("content") {
+        @include e('content') {
           padding: 0 8em;
           font-size: 0.9em;
           letter-spacing: 0.025em;
           line-height: 1.5em;
         }
-        @include e("more") {
+        @include e('more') {
           margin-top: 3em;
           display: flex;
           justify-content: center;
           align-items: center;
-          @include e("btn-default") {
+          @include e('btn-default') {
             display: inline-block;
             .default-button {
               text-transform: uppercase;
               color: #fff;
               padding: 0.71em 2em;
-              .default-button__content {
+              @include e('content') {
                 font-size: 0.7em;
                 letter-spacing: 0.2em;
               }
-              .default-button__border {
+              @include e('border') {
                 background-color: #fff;
               }
             }
           }
-          @include e("btn") {
+          @include e('btn') {
             text-transform: uppercase;
             letter-spacing: 0.2em;
             font-size: 0.7em;
             display: inline-block;
             outline: 0;
-            margin-right: 1.5em;
+            margin: 0 1.5em 0 0;
             padding: 1.2em 2em;
             transition: all 300ms ease-in;
             background-color: #fff;
@@ -151,7 +150,7 @@
           }
         }
 
-        @include m("hidden") {
+        @include m('hidden') {
           display: none;
         }
       }

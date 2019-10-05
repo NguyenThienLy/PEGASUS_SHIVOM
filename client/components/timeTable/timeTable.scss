@@ -1,4 +1,4 @@
-@import "../../default.scss";
+@import '../../default.scss';
 
 $hover-color: darken($sub-main-color, 10%);
 $background-table-header-color: lighten($sub-main-color, 25%);
@@ -14,7 +14,7 @@ $background-table-header-color: lighten($sub-main-color, 25%);
     margin: 0px;
   }
 
-  @include e("tabs") {
+  @include e('tabs') {
     margin-bottom: 1.5em;
     padding: 2em 0em;
     display: flex;
@@ -29,47 +29,48 @@ $background-table-header-color: lighten($sub-main-color, 25%);
         font-size: 0.75em;
       }
     }
-    @include e("active") {
+    @include e('active') {
       color: $main-color !important;
     }
   }
-  @include e("list-events") {
+  @include e('list-events') {
     display: none;
     margin-bottom: 1em;
     color: $color-grey;
-    @include e("event") {
-      margin-bottom: 1em;
-      @include e("date") {
+    @include e('event') {
+      margin-bottom: 2em;
+      @include e('date') {
+        margin-bottom: 0.5em;
         text-transform: capitalize;
         font-size: 0.95em;
         font-family: $font-family-special;
       }
-      @include e("class-info") {
+      @include e('class-info') {
         display: flex;
         justify-content: space-between;
         border-bottom: 1px solid $light-border-color;
         padding: 0.8em 0;
-        @include e("class-name") {
+        @include e('class-name') {
           font-size: 0.9em;
           text-decoration: none;
           transition: all 200ms ease;
           color: $color-grey;
-          
+
           &:hover {
             color: $main-color;
           }
         }
-        @include e("class-time") {
+        @include e('class-time') {
           font-size: 0.8em;
           color: $font-color;
         }
       }
     }
   }
-  @include e("table-events") {
+  @include e('table-events') {
     display: block;
     position: relative;
-    @include e("background") {
+    @include e('background') {
       width: 100%;
       height: 100%;
       position: absolute;
@@ -117,22 +118,23 @@ $background-table-header-color: lighten($sub-main-color, 25%);
             flex-direction: column;
             padding: 1em 1em;
             position: relative;
-            @include e("class-name") {
+            @include e('class-name') {
               color: $main-color;
               text-decoration: none;
               font-weight: 500;
-          //     display: block;
-          // width: 100%;
+              font-size: 1em;
+            }
+            @include e('class-time') {
+              margin-top: 0.5em;
+              color: $color-grey;
+              font-size: 0.7em;
+              margin-top: 0.5em;
               word-break: break-all;
             }
-            @include e("class-time") {
-              color: $color-grey;
-              font-size: 1em;
-              margin-top: 0.5em;
-            }
-            @include e("class-teacher") {
+            @include e('class-teacher') {
               color: $font-color;
-              font-size: 1em;
+              font-family: $font-family-special;
+              font-size: 0.9em;
               margin-top: 1em;
             }
             &:not(:nth-child(1)) {
@@ -140,7 +142,7 @@ $background-table-header-color: lighten($sub-main-color, 25%);
             }
           }
           .time-table__table-events__my-tooltip {
-            @include e("content") {
+            @include e('content') {
               max-width: fit-content;
               top: 0;
               left: 50%;
@@ -166,7 +168,7 @@ $background-table-header-color: lighten($sub-main-color, 25%);
                 height: 8px;
                 overflow: hidden;
                 &::after {
-                  content: "";
+                  content: '';
                   position: absolute;
                   width: 8px;
                   height: 8px;

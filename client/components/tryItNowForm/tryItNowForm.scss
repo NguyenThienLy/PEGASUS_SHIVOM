@@ -1,18 +1,18 @@
-@import "../../default.scss";
+@import '../../default.scss';
 .try-it-now {
-  @include e("form") {
+  @include e('form') {
     z-index: 0;
     // margin: 2em;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    @include e("error-message") {
+    @include e('error-message') {
       width: 100%;
       font-size: 0.8em;
       color: red;
     }
-    @include e("input") {
+    @include e('input') {
       box-sizing: border-box;
       width: 100%;
       background: #fff; //#fcfcfc;
@@ -22,7 +22,7 @@
       border: 1px solid $table-border-color;
       border-radius: 5px;
       outline: 0;
-      padding: 1em 0.875em;
+      padding: 0.8em 0.875em;
       margin: 0.5em 0;
 
       &:focus {
@@ -30,7 +30,7 @@
       }
     }
 
-    @include e("select-box") {
+    @include e('select-box') {
       box-sizing: border-box;
       width: 100%;
       background: #fff; //#fcfcfc;
@@ -38,11 +38,11 @@
       //box-shadow: 0 0 10px 0 rgba(0, 0, 0 , 0.03);
       border: 1px solid $table-border-color;
       border-radius: 5px;
-      padding: 0.8em 0.875em;
+      padding: 0.6em 0.875em;
       margin: 0.5em 0;
       outline: 0;
 
-      @include e("select") {
+      @include e('select') {
         width: 100%;
         border: none;
         outline: none;
@@ -54,7 +54,7 @@
       }
     }
 
-    @include e("btn") {
+    @include e('btn') {
       text-transform: uppercase;
       letter-spacing: 0.1em;
       font-size: 0.9em;
@@ -70,11 +70,11 @@
       outline: 0;
       margin: 0;
       margin-top: 0.5em;
-      padding: 1em 0.875em;
+      padding: 0.8em 0.875em;
       transition: all 300ms ease-in;
       cursor: pointer;
 
-      @include m("primary") {
+      @include m('primary') {
         background: $main-color;
         color: #fff;
         border: 1px solid $main-color;

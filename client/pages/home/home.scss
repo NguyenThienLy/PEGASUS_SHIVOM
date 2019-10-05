@@ -1,10 +1,13 @@
-@import "../../default.scss";
-@import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css");
+@import '../../default.scss';
+@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css');
+
+$width-home-992: 85%;
+$width-home-normal: 80%;
 
 .home {
   background-color: #fff;
-  @include e("body") {
-    @include e("slider") {
+  @include e('body') {
+    @include e('slider') {
       position: relative;
       .loading {
         position: absolute;
@@ -21,7 +24,7 @@
         }
       }
     }
-    @include e("intro") {
+    @include e('intro') {
       padding: 0 3.5em;
       margin-top: -8em;
       justify-content: center;
@@ -31,21 +34,26 @@
         height: auto;
         z-index: 1;
         margin-right: 2em;
-        &:nth-child(3) {
+        @include e('inner') {
+          padding: 3em 1.7em;
+        }
+        &:nth-last-child(1) {
           margin-right: 0;
         }
       }
     }
-    @include e("intro-slick-autoplay") {
+    @include e('intro-slick-autoplay') {
       width: 100%;
       margin-top: -8em;
       padding: 0 8%;
       opacity: 0; // hidden though display block
       visibility: hidden;
       transition: all 1s ease;
-      @include e("item") {
+      @include e('item') {
         .introHome {
-          padding: 0 1em;
+          @include e('inner') {
+            padding: 2em 1.7em;
+          }
         }
       }
       .slick-dots {
@@ -79,16 +87,16 @@
         align-items: center;
       }
       .slick-slide {
-        margin: 0 1.5em;
+        margin: 0 1em;
         height: auto;
         width: 100%;
       }
     }
-    @include e("trainingClass") {
-      width: 80%;
+    @include e('trainingClass') {
+      width: $width-home-normal;
       margin: 0 auto;
-      @include e("title") {
-        @include e("inner") {
+      @include e('title') {
+        @include e('inner') {
           padding: 6em 50% 0 0;
           div {
             text-transform: capitalize;
@@ -106,10 +114,10 @@
         }
       }
 
-      @include e("content") {
+      @include e('content') {
         display: grid;
-        grid-template-columns: 48% 48%;
-        column-gap: 2%;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 2.5em;
         row-gap: 2em;
         padding-bottom: 6em;
 
@@ -123,15 +131,15 @@
       }
     }
 
-    @include e("imageShow") {
+    @include e('imageShow') {
     }
 
-    @include e("timeTable") {
-      width: 80%;
+    @include e('timeTable') {
+      width: $width-home-normal;
       margin: 0 auto;
-      @include e("title") {
+      @include e('title') {
         padding: 4em 0 0.8em;
-        @include e("inner") {
+        @include e('inner') {
           padding: 0 20%;
           text-align: center;
           div {
@@ -150,27 +158,27 @@
         }
       }
 
-      @include e("content") {
+      @include e('content') {
       }
     }
 
-    @include e("news") {
-      width: 80%;
+    @include e('news') {
+      width: $width-home-normal;
       margin: 0 auto;
       margin-top: 10em;
 
-      @include e("container") {
+      @include e('container') {
         padding: 0 1%;
       }
     }
 
-    @include e("reviews") {
+    @include e('reviews') {
       width: 100%;
       margin-top: 8em;
-      @include e("introduction") {
+      @include e('introduction') {
         height: 21em;
         background-color: $light-border-color;
-        @include e("inner") {
+        @include e('inner') {
           padding: 5em 25% 0em;
           text-align: center;
           div {
@@ -189,24 +197,24 @@
       }
     }
 
-    @include e("numbers") {
-      width: 80%;
+    @include e('numbers') {
+      width: $width-home-normal;
       margin: 2em auto 0em;
       display: grid;
-      grid-template-columns: 24% 24% 24% 24%;
-      column-gap: 1%;
+      grid-template-columns: repeat(4, 1fr);
+      column-gap: 1em;
       row-gap: 1em;
-      @include e("item") {
+      @include e('item') {
         text-align: center;
       }
     }
 
-    @include e("trainers") {
+    @include e('trainers') {
       margin: 6em 0 0;
-      @include e("introduction") {
-        width: 80%;
+      @include e('introduction') {
+        width: $width-home-normal;
         margin: 0 auto;
-        @include e("inner") {
+        @include e('inner') {
           padding: 1em 30% 0 0;
           div {
             text-transform: capitalize;
@@ -223,7 +231,7 @@
         }
       }
 
-      @include e("background") {
+      @include e('background') {
         width: 100%;
         margin: 0 auto;
         margin-top: -2em;
@@ -240,8 +248,8 @@
         }
       }
 
-      @include e("list") {
-        width: 80%;
+      @include e('list') {
+        width: $width-home-normal;
         margin: 0 auto;
         margin-top: -4.25em;
         .trainer {
@@ -249,14 +257,14 @@
       }
     }
 
-    @include e("brands") {
+    @include e('brands') {
       width: 100%;
       margin-top: 6em;
       background-color: #faf3ed;
 
-      @include e("slick-autoplay") {
+      @include e('slick-autoplay') {
         padding: 6em 10%;
-        @include e("item") {
+        @include e('item') {
           img {
             width: 100%;
             height: auto;
@@ -272,11 +280,11 @@
         }
       }
     }
-    @include e("map") {
+    @include e('map') {
       width: 100%;
     }
-    @include e("contactUs") {
-      width: 80%;
+    @include e('contactUs') {
+      width: $width-home-normal;
       margin: 4em auto 0;
       padding: 3em 0 7em;
     }
@@ -290,35 +298,42 @@
   }
 
   .home__body__slider {
-    .slider__arrow {
-      margin: 0 1.1em;
-      i {
-        font-size: 1.2em;
-      }
-    }
-    .slider__slick-autoplay__item {
-      img {
-        height: 21em;
-      }
-      .slider__slick-autoplay__item__caption {
-        width: 88%;
-        .slider__slick-autoplay__item__caption__title {
-          font-size: 1.9em;
+    .slider {
+      @include e('arrow') {
+        margin: 0 1.1em;
+        i {
+          font-size: 1.4em;
         }
-        .slider__slick-autoplay__item__caption__content {
-          padding: 0 3em;
-          font-size: 0.8em;
-        }
-        .slider__slick-autoplay__item__caption__more {
-          margin-top: 1em;
-          .slider__slick-autoplay__item__caption__more__btn {
-            font-size: 0.5em;
+      }
+      @include e('slick-autoplay') {
+        @include e('item') {
+          img {
+            height: 40em;
           }
-          .slider__slick-autoplay__item__caption__more__btn-default {
-            .default-button {
-              padding: 0.31em 1.6em;
-              .default-button__content {
-                font-size: 0.5em;
+          @include e('caption') {
+            width: 88%;
+            top: 40%;
+            @include e('title') {
+              font-size: 1.9em;
+            }
+            @include e('content') {
+              padding: 0 1em;
+              font-size: 1em;
+            }
+            @include e('more') {
+              margin-top: 2em;
+              flex-direction: column;
+              @include e('btn') {
+                font-size: 0.8em;
+                margin: 0 0 1.5em 0;
+              }
+              @include e('btn-default') {
+                .default-button {
+                  padding: 0.78em 2.7em;
+                  @include e('content') {
+                    font-size: 0.8em;
+                  }
+                }
               }
             }
           }
@@ -332,19 +347,37 @@
   }
   .home__body__intro-slick-autoplay {
     display: block;
-    margin-top: -3em;
+    margin-top: -8em;
+    @include e('item') {
+      .introHome {
+        @include e('inner') {
+          @include e('title') {
+            a {
+              font-size: 1.3em;
+            }
+          }
+          @include e('content') {
+            font-size: 0.85em;
+          }
+        }
+      }
+    }
+    .slick-slide {
+      margin: 0em;
+    }
   }
 
   .home__body__trainingClass {
+    width: $width-home-normal;
     .home__body__trainingClass__title__inner {
       padding: 3.5em 0 0 0;
     }
     .home__body__trainingClass__content {
-      grid-template-columns: 100%;
-      column-gap: 0%;
-      row-gap: 5em;
+      grid-template-columns: repeat(1, 1fr);
+      column-gap: 0;
+      row-gap: 3em;
       padding-bottom: 7em;
-      margin-top: 2em;
+      margin-top: 4em;
       .training-class:nth-child(2n + 1) {
         margin-top: 0em;
       }
@@ -353,13 +386,20 @@
       }
       .training-class {
         flex-direction: column;
-        .training-class__image {
+        @include e('image') {
           width: 100%;
+          height: auto;
+          margin-right: 0;
         }
-        .training-class__info {
+        @include e('info') {
           width: 100%;
-          margin-left: 0%;
-          margin-top: 2em;
+          margin-top: 1em;
+          @include e('name') {
+            font-size: 1.3em;
+          }
+          @include e('detail') {
+            font-size: 0.85em;
+          }
         }
       }
     }
@@ -369,12 +409,12 @@
     .image-show {
       grid-template-columns: repeat(1, 1fr);
       grid-template-areas:
-        "img1"
-        "img2"
-        "img3"
-        "img4"
-        "img5"
-        "img6";
+        'img1'
+        'img2'
+        'img3'
+        'img4'
+        'img5'
+        'img6';
       .image-show__item {
         height: auto;
         img {
@@ -404,6 +444,7 @@
   }
 
   .home__body__timeTable {
+    width: $width-home-normal;
     .home__body__timeTable__title {
       .home__body__timeTable__title__inner {
         padding: 0;
@@ -430,6 +471,7 @@
   }
 
   .home__body__news {
+    width: $width-home-normal;
     margin-top: 5em;
     .home__body__news__container {
       .news {
@@ -459,32 +501,37 @@
   }
 
   .home__body__numbers {
+    width: $width-home-normal;
     grid-template-columns: repeat(1, 1fr);
     column-gap: 0em;
   }
 
   .home__body__trainers {
-    .home__body__trainers__introduction__inner {
-      padding: 1em 0 0 0;
+    @include e('introduction') {
+      width: $width-home-normal;
+      @include e('inner') {
+        padding: 1em 0 0 0;
+      }
     }
-    .home__body__trainers__background {
+    @include e('background') {
       display: none;
     }
-    .home__body__trainers__list {
+    @include e('list') {
+      width: $width-home-normal;
       margin-top: 3em;
       display: grid;
       grid-template-columns: repeat(1, 1fr);
       column-gap: 0em;
       row-gap: 3em;
       .trainer {
-        @include e("image") {
+        @include e('image') {
           a {
             img {
               height: auto;
             }
           }
         }
-        .trainer__info {
+        @include e('info') {
           text-align: left;
           margin-top: 4%;
         }
@@ -509,7 +556,7 @@
       .contact-us__sub-info {
         width: 100%;
         margin: 0 0 2em;
-        @include e("title") {
+        @include e('title') {
           font-size: 1.7em;
         }
       }
@@ -524,35 +571,42 @@
   }
 
   .home__body__slider {
-    .slider__arrow {
-      margin: 0 1.5em;
-      i {
-        font-size: 1.4em;
-      }
-    }
-    .slider__slick-autoplay__item {
-      img {
-        height: auto;
-      }
-      .slider__slick-autoplay__item__caption {
-        width: 85%;
-        .slider__slick-autoplay__item__caption__title {
-          font-size: 2.3em;
+    .slider {
+      @include e('arrow') {
+        margin: 0 1.5em;
+        i {
+          font-size: 1.6em;
         }
-        .slider__slick-autoplay__item__caption__content {
-          padding: 0 4em;
-          font-size: 0.8em;
-        }
-        .slider__slick-autoplay__item__caption__more {
-          margin-top: 1em;
-          .slider__slick-autoplay__item__caption__more__btn {
-            font-size: 0.6em;
+      }
+      @include e('slick-autoplay') {
+        @include e('item') {
+          img {
+            height: 40em;
           }
-          .slider__slick-autoplay__item__caption__more__btn-default {
-            .default-button {
-              padding: 0.54em 2em;
-              .default-button__content {
-                font-size: 0.6em;
+          @include e('caption') {
+            width: 85%;
+            top: 40%;
+            @include e('title') {
+              font-size: 2.3em;
+            }
+            @include e('content') {
+              padding: 0 3em;
+              font-size: 1em;
+            }
+            @include e('more') {
+              margin-top: 2em;
+              flex-direction: row;
+              @include e('btn') {
+                font-size: 0.8em;
+                margin: 0 1.5em 0 0;
+              }
+              @include e('btn-default') {
+                .default-button {
+                  padding: 0.85em 2.7em;
+                  @include e('content') {
+                    font-size: 0.8em;
+                  }
+                }
               }
             }
           }
@@ -566,17 +620,35 @@
   }
   .home__body__intro-slick-autoplay {
     display: block;
-    margin-top: -4em;
+    margin-top: -10em;
+    @include e('item') {
+      .introHome {
+        @include e('inner') {
+          @include e('title') {
+            a {
+              font-size: 1.3em;
+            }
+          }
+          @include e('content') {
+            font-size: 0.85em;
+          }
+        }
+      }
+    }
+    .slick-slide {
+      margin: 0em;
+    }
   }
 
   .home__body__trainingClass {
+    width: $width-home-normal;
     .home__body__trainingClass__title__inner {
       padding: 4em 15% 0 0;
     }
     .home__body__trainingClass__content {
-      grid-template-columns: 48% 48%;
-      column-gap: 4%;
-      row-gap: 2em;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 1em;
+      row-gap: 1em;
       padding-bottom: 8em;
       margin-top: 2em;
       .training-class:nth-child(2n + 1) {
@@ -587,13 +659,20 @@
       }
       .training-class {
         flex-direction: column;
-        .training-class__image {
+        @include e('image') {
           width: 100%;
+          height: auto;
+          margin-right: 0;
         }
-        .training-class__info {
+        @include e('info') {
           width: 100%;
-          margin-left: 0%;
           margin-top: 1em;
+          @include e('name') {
+            font-size: 1.3em;
+          }
+          @include e('detail') {
+            font-size: 0.85em;
+          }
         }
       }
     }
@@ -603,9 +682,9 @@
     .image-show {
       grid-template-columns: repeat(2, 1fr);
       grid-template-areas:
-        "img1 img2"
-        "img3 img4"
-        "img5 img6";
+        'img1 img2'
+        'img3 img4'
+        'img5 img6';
       .image-show__item {
         height: 18em;
       }
@@ -631,6 +710,7 @@
   }
 
   .home__body__timeTable {
+    width: $width-home-normal;
     .home__body__timeTable__title {
       .home__body__timeTable__title__inner {
         padding: 0 4%;
@@ -657,6 +737,7 @@
   }
 
   .home__body__news {
+    width: $width-home-normal;
     margin-top: 5em;
     .home__body__news__container {
       .news {
@@ -686,32 +767,37 @@
   }
 
   .home__body__numbers {
+    width: $width-home-normal;
     grid-template-columns: repeat(1, 1fr);
     column-gap: 0em;
   }
 
   .home__body__trainers {
-    .home__body__trainers__introduction__inner {
-      padding: 1em 0 0 0;
+    @include e('introduction') {
+      width: $width-home-normal;
+      @include e('inner') {
+        padding: 1em 0 0 0;
+      }
     }
-    .home__body__trainers__background {
+    @include e('background') {
       display: none;
     }
-    .home__body__trainers__list {
+    @include e('list') {
+      width: $width-home-normal;
       margin-top: 3em;
       display: grid;
       grid-template-columns: repeat(1, 1fr);
       column-gap: 0em;
       row-gap: 3em;
       .trainer {
-        @include e("image") {
+        @include e('image') {
           a {
             img {
               height: auto;
             }
           }
         }
-        .trainer__info {
+        @include e('info') {
           text-align: left;
           margin-top: 4%;
         }
@@ -735,7 +821,7 @@
       .contact-us__sub-info {
         width: 100%;
         margin: 0 0 2em;
-        @include e("title") {
+        @include e('title') {
           font-size: 1.9em;
         }
       }
@@ -750,35 +836,42 @@
   }
 
   .home__body__slider {
-    .slider__arrow {
-      margin: 0 1.8em;
-      i {
-        font-size: 1.6em;
-      }
-    }
-    .slider__slick-autoplay__item {
-      img {
-        height: auto;
-      }
-      .slider__slick-autoplay__item__caption {
-        width: 85%;
-        .slider__slick-autoplay__item__caption__title {
-          font-size: 2.7em;
+    .slider {
+      @include e('arrow') {
+        margin: 0 1.8em;
+        i {
+          font-size: 1.8em;
         }
-        .slider__slick-autoplay__item__caption__content {
-          padding: 0 4em;
-          font-size: 0.8em;
-        }
-        .slider__slick-autoplay__item__caption__more {
-          margin-top: 2em;
-          .slider__slick-autoplay__item__caption__more__btn {
-            font-size: 0.6em;
+      }
+      @include e('slick-autoplay') {
+        @include e('item') {
+          img {
+            height: 40em;
           }
-          .slider__slick-autoplay__item__caption__more__btn-default {
-            .default-button {
-              padding: 0.54em 2em;
-              .default-button__content {
-                font-size: 0.6em;
+          @include e('caption') {
+            width: 85%;
+            top: 40%;
+            @include e('title') {
+              font-size: 3em;
+            }
+            @include e('content') {
+              padding: 0.5em 4em 0;
+              font-size: 1em;
+            }
+            @include e('more') {
+              margin-top: 2em;
+              flex-direction: row;
+              @include e('btn') {
+                font-size: 0.8em;
+                margin: 0 1.5em 0 0;
+              }
+              @include e('btn-default') {
+                .default-button {
+                  padding: 0.89em 2.7em;
+                  @include e('content') {
+                    font-size: 0.8em;
+                  }
+                }
               }
             }
           }
@@ -792,16 +885,35 @@
   }
   .home__body__intro-slick-autoplay {
     display: block;
-    margin-top: -5.5em;
+    margin-top: -10em;
+    @include e('item') {
+      .introHome {
+        @include e('inner') {
+          padding: 3em 1.7em;
+          @include e('title') {
+            a {
+              font-size: 1.3em;
+            }
+          }
+          @include e('content') {
+            font-size: 0.85em;
+          }
+        }
+      }
+    }
+    .slick-slide {
+      margin: 0 1em;
+    }
   }
 
   .home__body__trainingClass {
+    width: $width-home-normal;
     .home__body__trainingClass__title__inner {
       padding: 5em 30% 0 0;
     }
     .home__body__trainingClass__content {
-      grid-template-columns: 48% 48%;
-      column-gap: 4%;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 2em;
       row-gap: 2em;
       padding-bottom: 7em;
       margin-top: 2em;
@@ -813,13 +925,20 @@
       }
       .training-class {
         flex-direction: column;
-        .training-class__image {
+        @include e('image') {
           width: 100%;
+          height: auto;
+          margin-right: 0;
         }
-        .training-class__info {
+        @include e('info') {
           width: 100%;
-          margin-left: 0%;
           margin-top: 1em;
+          @include e('name') {
+            font-size: 1.3em;
+          }
+          @include e('detail') {
+            font-size: 0.85em;
+          }
         }
       }
     }
@@ -829,8 +948,8 @@
     .image-show {
       grid-template-columns: repeat(3, 1fr);
       grid-template-areas:
-        "img1 img2 img3"
-        "img4 img5 img6";
+        'img1 img2 img3'
+        'img4 img5 img6';
       .image-show__item {
         height: 17em;
       }
@@ -856,6 +975,7 @@
   }
 
   .home__body__timeTable {
+    width: $width-home-normal;
     .home__body__timeTable__title {
       .home__body__timeTable__title__inner {
         padding: 0 8%;
@@ -882,6 +1002,7 @@
   }
 
   .home__body__news {
+    width: $width-home-normal;
     margin-top: 5em;
     .home__body__news__container {
       .news {
@@ -911,32 +1032,37 @@
   }
 
   .home__body__numbers {
+    width: $width-home-normal;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 2em;
   }
 
   .home__body__trainers {
-    .home__body__trainers__introduction__inner {
-      padding: 1em 15% 0 0;
+    @include e('introduction') {
+      width: $width-home-normal;
+      @include e('inner') {
+        padding: 1em 15% 0 0;
+      }
     }
-    .home__body__trainers__background {
+    @include e('background') {
       display: none;
     }
-    .home__body__trainers__list {
+    @include e('list') {
+      width: $width-home-normal;
       margin-top: 3em;
       display: grid;
       grid-template-columns: repeat(1, 1fr);
       column-gap: 0em;
       row-gap: 3em;
       .trainer {
-        @include e("image") {
+        @include e('image') {
           a {
             img {
               height: auto;
             }
           }
         }
-        .trainer__info {
+        @include e('info') {
           text-align: left;
           margin-top: 4%;
         }
@@ -960,7 +1086,7 @@
       .contact-us__sub-info {
         width: 100%;
         margin: 0 0 2em;
-        @include e("title") {
+        @include e('title') {
           font-size: 1.9em;
         }
       }
@@ -975,35 +1101,42 @@
   }
 
   .home__body__slider {
-    .slider__arrow {
-      margin: 0 2em;
-      i {
-        font-size: 1.8em;
-      }
-    }
-    .slider__slick-autoplay__item {
-      img {
-        height: auto;
-      }
-      .slider__slick-autoplay__item__caption {
-        width: 80%;
-        .slider__slick-autoplay__item__caption__title {
-          font-size: 3.3em;
+    .slider {
+      @include e('arrow') {
+        margin: 0 2em;
+        i {
+          font-size: 1.9em;
         }
-        .slider__slick-autoplay__item__caption__content {
-          padding: 0 6em;
-          font-size: 1em;
-        }
-        .slider__slick-autoplay__item__caption__more {
-          margin-top: 2em;
-          .slider__slick-autoplay__item__caption__more__btn {
-            font-size: 0.8em;
+      }
+      @include e('slick-autoplay') {
+        @include e('item') {
+          img {
+            height: auto;
           }
-          .slider__slick-autoplay__item__caption__more__btn-default {
-            .default-button {
-              padding: 0.89em 2.8em;
-              .default-button__content {
+          @include e('caption') {
+            width: 80%;
+            top: 45%;
+            @include e('title') {
+              font-size: 3.3em;
+            }
+            @include e('content') {
+              padding: 1em 6em 0;
+              font-size: 1em;
+            }
+            @include e('more') {
+              margin-top: 2em;
+              flex-direction: row;
+              @include e('btn') {
                 font-size: 0.8em;
+                margin: 0 1.5em 0 0;
+              }
+              @include e('btn-default') {
+                .default-button {
+                  padding: 0.89em 2.7em;
+                  @include e('content') {
+                    font-size: 0.8em;
+                  }
+                }
               }
             }
           }
@@ -1013,20 +1146,28 @@
   }
 
   .home__body__intro {
+    padding: 0 3.5em;
     display: none;
+    margin-top: -5em;
+    .introHome {
+      margin-right: 1em;
+      @include e('inner') {
+        padding: 2.5em 1.7em;
+      }
+    }
   }
   .home__body__intro-slick-autoplay {
-    display: block;
-    margin-top: -8em;
+    display: none;
   }
 
   .home__body__trainingClass {
+    width: $width-home-992;
     .home__body__trainingClass__title__inner {
       padding: 5em 40% 0 0;
     }
     .home__body__trainingClass__content {
-      grid-template-columns: 48% 48%;
-      column-gap: 4%;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 2em;
       row-gap: 2em;
       padding-bottom: 6em;
       margin-top: 0em;
@@ -1038,13 +1179,20 @@
       }
       .training-class {
         flex-direction: row;
-        .training-class__image {
-          width: 50%;
+        @include e('image') {
+          width: 12em;
+          height: 12em;
+          margin-right: 1em;
         }
-        .training-class__info {
-          width: 46%;
-          margin-left: 4%;
+        @include e('info') {
+          width: 36%;
           margin-top: 0em;
+          @include e('name') {
+            font-size: 1.2em;
+          }
+          @include e('detail') {
+            font-size: 0.8em;
+          }
         }
       }
     }
@@ -1054,8 +1202,8 @@
     .image-show {
       grid-template-columns: repeat(3, 1fr);
       grid-template-areas:
-        "img1 img2 img3"
-        "img4 img5 img6";
+        'img1 img2 img3'
+        'img4 img5 img6';
       .image-show__item {
         height: 19em;
       }
@@ -1081,6 +1229,7 @@
   }
 
   .home__body__timeTable {
+    width: $width-home-992;
     .home__body__timeTable__title {
       .home__body__timeTable__title__inner {
         padding: 0 14%;
@@ -1107,6 +1256,7 @@
   }
 
   .home__body__news {
+    width: $width-home-992;
     margin-top: 10em;
     .home__body__news__container {
       .news {
@@ -1136,32 +1286,37 @@
   }
 
   .home__body__numbers {
+    width: $width-home-992;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 2em;
   }
 
   .home__body__trainers {
-    .home__body__trainers__introduction__inner {
-      padding: 1em 30% 0 0;
+    @include e('introduction') {
+      width: $width-home-992;
+      @include e('inner') {
+        padding: 1em 30% 0 0;
+      }
     }
-    .home__body__trainers__background {
+    @include e('background') {
       display: block;
     }
-    .home__body__trainers__list {
+    @include e('list') {
+      width: $width-home-992;
       margin-top: -15em;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       column-gap: 1.5em;
       row-gap: 1.5em;
       .trainer {
-        @include e("image") {
+        @include e('image') {
           a {
             img {
               height: 18em;
             }
           }
         }
-        .trainer__info {
+        @include e('info') {
           text-align: center;
           margin-top: 5%;
         }
@@ -1185,7 +1340,7 @@
       .contact-us__sub-info {
         width: 45%;
         margin: 0 0 0 5%;
-        @include e("title") {
+        @include e('title') {
           font-size: 2.1em;
         }
       }
@@ -1200,35 +1355,42 @@
   }
 
   .home__body__slider {
-    .slider__arrow {
-      margin: 0 2em;
-      i {
-        font-size: 2em;
-      }
-    }
-    .slider__slick-autoplay__item {
-      img {
-        height: auto;
-      }
-      .slider__slick-autoplay__item__caption {
-        width: 80%;
-        .slider__slick-autoplay__item__caption__title {
-          font-size: 3.6em;
+    .slider {
+      @include e('arrow') {
+        margin: 0 2.2em;
+        i {
+          font-size: 2em;
         }
-        .slider__slick-autoplay__item__caption__content {
-          padding: 0 6em;
-          font-size: 1em;
-        }
-        .slider__slick-autoplay__item__caption__more {
-          margin-top: 3em;
-          .slider__slick-autoplay__item__caption__more__btn {
-            font-size: 0.8em;
+      }
+      @include e('slick-autoplay') {
+        @include e('item') {
+          img {
+            height: auto;
           }
-          .slider__slick-autoplay__item__caption__more__btn-default {
-            .default-button {
-              padding: 0.9em 2.8em;
-              .default-button__content {
+          @include e('caption') {
+            width: 60%;
+            top: 45%;
+            @include e('title') {
+              font-size: 3.5em;
+            }
+            @include e('content') {
+              padding: 1em 6em 0;
+              font-size: 1em;
+            }
+            @include e('more') {
+              margin-top: 3em;
+              flex-direction: row;
+              @include e('btn') {
                 font-size: 0.8em;
+                margin: 0 2em 0 0;
+              }
+              @include e('btn-default') {
+                .default-button {
+                  padding: 0.89em 2.7em;
+                  @include e('content') {
+                    font-size: 0.8em;
+                  }
+                }
               }
             }
           }
@@ -1238,19 +1400,28 @@
   }
 
   .home__body__intro {
+    padding: 0 6em;
+    margin-top: -8em;
     display: none; // display none when page starts loading
+    .introHome {
+      margin-right: 2em;
+      @include e('inner') {
+        padding: 3em 1.7em;
+      }
+    }
   }
   .home__body__intro-slick-autoplay {
     display: none;
   }
 
   .home__body__trainingClass {
+    width: $width-home-normal;
     .home__body__trainingClass__title__inner {
       padding: 6em 50% 0 0;
     }
     .home__body__trainingClass__content {
-      grid-template-columns: 48% 48%;
-      column-gap: 4%;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 2em;
       row-gap: 2em;
       padding-bottom: 6em;
       margin-top: 0em;
@@ -1262,13 +1433,20 @@
       }
       .training-class {
         flex-direction: row;
-        .training-class__image {
-          width: 50%;
+        @include e('image') {
+          width: 12em;
+          height: 12em;
+          margin-right: 1.5em;
         }
-        .training-class__info {
-          width: 45%;
-          margin-left: 5%;
+        @include e('info') {
+          width: 44%;
           margin-top: 0em;
+          @include e('name') {
+            font-size: 1.2em;
+          }
+          @include e('detail') {
+            font-size: 0.8em;
+          }
         }
       }
     }
@@ -1278,8 +1456,8 @@
     .image-show {
       grid-template-columns: repeat(3, 1fr);
       grid-template-areas:
-        "img1 img2 img3"
-        "img4 img5 img6";
+        'img1 img2 img3'
+        'img4 img5 img6';
       .image-show__item {
         height: 20em;
       }
@@ -1305,6 +1483,7 @@
   }
 
   .home__body__timeTable {
+    width: $width-home-normal;
     .home__body__timeTable__title {
       .home__body__timeTable__title__inner {
         padding: 0 20%;
@@ -1331,6 +1510,7 @@
   }
 
   .home__body__news {
+    width: $width-home-normal;
     margin-top: 10em;
     .home__body__news__container {
       .news {
@@ -1360,32 +1540,37 @@
   }
 
   .home__body__numbers {
+    width: $width-home-normal;
     grid-template-columns: repeat(4, 1fr);
     column-gap: 1.5em;
   }
 
   .home__body__trainers {
-    .home__body__trainers__introduction__inner {
-      padding: 1em 30% 0 0;
+    @include e('introduction') {
+      width: $width-home-normal;
+      @include e('inner') {
+        padding: 1em 30% 0 0;
+      }
     }
-    .home__body__trainers__background {
+    @include e('background') {
       display: block;
     }
-    .home__body__trainers__list {
+    @include e('list') {
+      width: $width-home-normal;
       margin-top: -15em;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       column-gap: 1.5em;
       row-gap: 1.5em;
       .trainer {
-        @include e("image") {
+        @include e('image') {
           a {
             img {
               height: 19em;
             }
           }
         }
-        .trainer__info {
+        @include e('info') {
           text-align: center;
           margin-top: 5%;
         }
@@ -1409,7 +1594,7 @@
       .contact-us__sub-info {
         width: 45%;
         margin: 0 0 0 5%;
-        @include e("title") {
+        @include e('title') {
           font-size: 2.3em;
         }
       }

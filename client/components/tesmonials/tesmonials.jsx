@@ -1,13 +1,13 @@
-import * as React from "react";
-import "./tesmonials.scss";
-import { Review } from "../../components";
+import * as React from 'react';
+import './tesmonials.scss';
+import { Review } from '../../components';
 export class Tesmonials extends React.Component {
   constructor(props) {
     super(props);
     this.settingSlider = this.settingSlider.bind(this);
   }
   settingSlider() {
-    $(".tesmonials__slick-autoplay").slick({
+    $('.tesmonials__slick-autoplay').slick({
       dots: true,
       arrows: false,
       slidesToShow: 3,
@@ -35,18 +35,18 @@ export class Tesmonials extends React.Component {
         }
       ]
     });
-    $(".tesmonials__slick-autoplay").on("beforeChange", function (
+    $('.tesmonials__slick-autoplay').on('beforeChange', function(
       event,
       slick,
       currentSlide,
       nextSlide
     ) {
-      $(".tesmonials__slick-autoplay .slick-dots li").removeClass(
-        "slick-active"
+      $('.tesmonials__slick-autoplay .slick-dots li').removeClass(
+        'slick-active'
       );
-      $(".tesmonials__slick-autoplay .slick-dots li button")
-        .attr("aria-pressed", "false")
-        .focus(function () {
+      $('.tesmonials__slick-autoplay .slick-dots li button')
+        .attr('aria-pressed', 'false')
+        .focus(function() {
           this.blur();
         });
     });

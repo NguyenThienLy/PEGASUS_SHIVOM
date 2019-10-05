@@ -1,14 +1,14 @@
-@import "../../default.scss";
+@import '../../default.scss';
 
 .contact {
   background-color: #fff;
-  @include e("body") {
-    @include e("title") {
+  @include e('body') {
+    @include e('title') {
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      @include e("inner") {
+      @include e('inner') {
         padding: 0 25%;
         text-align: center;
         color: #fff;
@@ -24,13 +24,13 @@
           line-height: 1.5em;
         }
       }
-      @include e("image") {
+      @include e('image') {
         position: relative;
         img {
           width: 100%;
           height: auto;
         }
-        @include e("info") {
+        @include e('info') {
           position: absolute;
           top: 50%;
           left: 50%;
@@ -52,7 +52,7 @@
         }
       }
     }
-    @include e("intro") {
+    @include e('intro') {
       width: 85%;
       margin: 5em auto 0em;
       display: grid;
@@ -63,13 +63,13 @@
         margin: auto;
       }
     }
-    @include e("brands") {
+    @include e('brands') {
       width: 100%;
       margin-top: 5em;
-      background-color: #faf3ed;
-      @include e("slick-autoplay") {
-        padding: 6em 10%;
-        @include e("item") {
+      background-color: $background-color;
+      @include e('slick-autoplay') {
+        padding: 4em 10%;
+        @include e('item') {
           img {
             width: 100%;
             height: auto;
@@ -79,14 +79,14 @@
           padding: 0;
         }
         .slick-slide {
-          margin: 0 0.3em;
+          margin: 0 0.8em;
         }
       }
     }
-    @include e("map") {
+    @include e('map') {
       width: 100%;
     }
-    @include e("contactUs") {
+    @include e('contactUs') {
       width: 80%;
       margin: 4em auto 0;
       padding: 3em 0 5em;
@@ -146,7 +146,7 @@
       .contact-us__sub-info {
         width: 100%;
         margin: 0 0 2em;
-        @include e("title") {
+        @include e('title') {
           font-size: 1.7em;
         }
       }
@@ -206,7 +206,7 @@
       .contact-us__sub-info {
         width: 100%;
         margin: 0 0 2em;
-        @include e("title") {
+        @include e('title') {
           font-size: 1.9em;
         }
       }
@@ -266,7 +266,7 @@
       .contact-us__sub-info {
         width: 100%;
         margin: 0 0 2em;
-        @include e("title") {
+        @include e('title') {
           font-size: 1.9em;
         }
       }
@@ -282,9 +282,9 @@
 
   .contact__body__title {
     padding: 8em 0em;
-    background-image: url(https://dalia.elated-themes.com/wp-content/uploads/2018/06/about-us-title-img.jpg);
+    background-image: url(https://i.imgur.com/w1YuXlw.jpg);
     //background-attachment: fixed;
-    background-position: center 0px;
+    background-position: right;
     background-repeat: no-repeat;
     .contact__body__title__image {
       display: none;
@@ -322,7 +322,7 @@
       .contact-us__sub-info {
         width: 45%;
         margin: 0 0 0 5%;
-        @include e("title") {
+        @include e('title') {
           font-size: 2.1em;
         }
       }
@@ -338,9 +338,9 @@
 
   .contact__body__title {
     padding: 8em 0em;
-    background-image: url(https://dalia.elated-themes.com/wp-content/uploads/2018/06/about-us-title-img.jpg);
+    background-image: url(https://i.imgur.com/w1YuXlw.jpg);
     //background-attachment: fixed;
-    background-position: center 0px;
+    background-position: right;
     background-repeat: no-repeat;
     .contact__body__title__image {
       display: none;
@@ -378,7 +378,7 @@
       .contact-us__sub-info {
         width: 45%;
         margin: 0 0 0 5%;
-        @include e("title") {
+        @include e('title') {
           font-size: 2.3em;
         }
       }

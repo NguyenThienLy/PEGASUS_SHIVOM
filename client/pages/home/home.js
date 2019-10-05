@@ -1,13 +1,13 @@
-import * as React from "react";
-import { connect } from "react-redux";
-import Head from "next/head";
-import Link from "next/link";
-import { action } from "../../actions";
-import { api } from "../../services";
-import { bindActionCreators } from "redux";
+import * as React from 'react';
+import { connect } from 'react-redux';
+import Head from 'next/head';
+import Link from 'next/link';
+import { action } from '../../actions';
+import { api } from '../../services';
+import { bindActionCreators } from 'redux';
 
-import Swal from "sweetalert2";
-import "./home.scss";
+import Swal from 'sweetalert2';
+import './home.scss';
 import {
   Footer,
   Header,
@@ -23,8 +23,8 @@ import {
   Map,
   Tesmonials,
   Loading
-} from "../../components";
-import { TryItNowModal } from "./components/tryItNowModal/tryItNowModal";
+} from '../../components';
+import { TryItNowModal } from './components/tryItNowModal/tryItNowModal';
 
 class Home extends React.Component {
   constructor(props) {
@@ -92,232 +92,232 @@ class Home extends React.Component {
       // },
       trainingClasses: [
         {
-          category: "fitness",
-          name: "chạy bộ",
-          detail: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-          time: "1 Giờ",
+          category: 'fitness',
+          name: 'chạy bộ',
+          detail: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+          time: '1 Giờ',
           star: 1,
           love: 800,
           image:
-            "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-event-list-2a.jpg",
-          link: "#"
+            'https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-event-list-2a.jpg',
+          link: '#'
         },
         {
-          category: "fitness",
-          name: "chạy bộ",
-          detail: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-          time: "1 Giờ",
+          category: 'fitness',
+          name: 'chạy bộ',
+          detail: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+          time: '1 Giờ',
           star: 1,
           love: 800,
           image:
-            "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-event-list-2a.jpg",
-          link: "#"
+            'https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-event-list-2a.jpg',
+          link: '#'
         },
         {
-          category: "fitness",
-          name: "chạy bộ",
-          detail: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-          time: "1 Giờ",
+          category: 'fitness',
+          name: 'chạy bộ',
+          detail: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+          time: '1 Giờ',
           star: 1,
           love: 800,
           image:
-            "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-event-list-2a.jpg",
-          link: "#"
+            'https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-event-list-2a.jpg',
+          link: '#'
         },
         {
-          category: "fitness",
-          name: "chạy bộ",
-          detail: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-          time: "1 Giờ",
+          category: 'fitness',
+          name: 'chạy bộ',
+          detail: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+          time: '1 Giờ',
           star: 1,
           love: 800,
           image:
-            "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-event-list-2a.jpg",
-          link: "#"
+            'https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-home-event-list-2a.jpg',
+          link: '#'
         }
       ],
       news: {
         image:
-          "https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-img-1.jpg",
-        link: "#",
-        category: "lorem ipsum",
-        title: "certified health professionals",
+          'https://dalia.elated-themes.com/wp-content/uploads/2018/06/fitness-img-1.jpg',
+        link: '#',
+        category: 'lorem ipsum',
+        title: 'certified health professionals',
         content:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum. Nisi nam corporis alias quo qui.",
-        button: "read more"
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum. Nisi nam corporis alias quo qui.',
+        button: 'read more'
       },
       trainers: [
         {
           image:
-            "https://dalia.elated-themes.com/wp-content/uploads/2018/06/team2-img-8-768x766.jpg",
-          link: "#",
-          type: "physiotherapist",
-          name: "jessica fox",
-          facebook: "facebook.com",
-          twitter: "twitter.com",
-          instagram: "instagram.com"
+            'https://dalia.elated-themes.com/wp-content/uploads/2018/06/team2-img-8-768x766.jpg',
+          link: '#',
+          type: 'physiotherapist',
+          name: 'jessica fox',
+          facebook: 'facebook.com',
+          twitter: 'twitter.com',
+          instagram: 'instagram.com'
         },
         {
           image:
-            "https://dalia.elated-themes.com/wp-content/uploads/2018/06/team2-img-2-768x766.jpg",
-          link: "#",
-          type: "fitness trainer",
-          name: "christine johanson",
-          facebook: "facebook.com",
-          twitter: "twitter.com",
-          instagram: "instagram.com"
+            'https://dalia.elated-themes.com/wp-content/uploads/2018/06/team2-img-2-768x766.jpg',
+          link: '#',
+          type: 'fitness trainer',
+          name: 'christine johanson',
+          facebook: 'facebook.com',
+          twitter: 'twitter.com',
+          instagram: 'instagram.com'
         },
         {
           image:
-            "https://dalia.elated-themes.com/wp-content/uploads/2018/06/team2-img-3-768x766.jpg",
-          link: "#",
-          type: "personal trainer",
-          name: "lana tailor",
-          facebook: "facebook.com",
-          twitter: "twitter.com",
-          instagram: "instagram.com"
+            'https://dalia.elated-themes.com/wp-content/uploads/2018/06/team2-img-3-768x766.jpg',
+          link: '#',
+          type: 'personal trainer',
+          name: 'lana tailor',
+          facebook: 'facebook.com',
+          twitter: 'twitter.com',
+          instagram: 'instagram.com'
         }
       ],
       reviews: [
         {
           image:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlp9UWxfO8gXd-LjSk2RhNeCrWXwJy69ruhejIsIY9Zw_HqDsxBQ",
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlp9UWxfO8gXd-LjSk2RhNeCrWXwJy69ruhejIsIY9Zw_HqDsxBQ',
           content:
-            "1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum.",
-          owner: "callie hern"
+            '1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum.',
+          owner: 'callie hern'
         },
         {
           image:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlp9UWxfO8gXd-LjSk2RhNeCrWXwJy69ruhejIsIY9Zw_HqDsxBQ",
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlp9UWxfO8gXd-LjSk2RhNeCrWXwJy69ruhejIsIY9Zw_HqDsxBQ',
           content:
-            "2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum.",
-          owner: "callie hern"
+            '2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum.',
+          owner: 'callie hern'
         },
         {
           image:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlp9UWxfO8gXd-LjSk2RhNeCrWXwJy69ruhejIsIY9Zw_HqDsxBQ",
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlp9UWxfO8gXd-LjSk2RhNeCrWXwJy69ruhejIsIY9Zw_HqDsxBQ',
           content:
-            "3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum.",
-          owner: "callie hern"
+            '3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum.',
+          owner: 'callie hern'
         },
         {
           image:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlp9UWxfO8gXd-LjSk2RhNeCrWXwJy69ruhejIsIY9Zw_HqDsxBQ",
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlp9UWxfO8gXd-LjSk2RhNeCrWXwJy69ruhejIsIY9Zw_HqDsxBQ',
           content:
-            "4 Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum.",
-          owner: "callie hern"
+            '4 Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum.',
+          owner: 'callie hern'
         },
         {
           image:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlp9UWxfO8gXd-LjSk2RhNeCrWXwJy69ruhejIsIY9Zw_HqDsxBQ",
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlp9UWxfO8gXd-LjSk2RhNeCrWXwJy69ruhejIsIY9Zw_HqDsxBQ',
           content:
-            "5 Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum.",
-          owner: "callie hern"
+            '5 Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum.',
+          owner: 'callie hern'
         },
         {
           image:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlp9UWxfO8gXd-LjSk2RhNeCrWXwJy69ruhejIsIY9Zw_HqDsxBQ",
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlp9UWxfO8gXd-LjSk2RhNeCrWXwJy69ruhejIsIY9Zw_HqDsxBQ',
           content:
-            "6 Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum.",
-          owner: "callie hern"
+            '6 Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate inventore similique, autem, eius dolore iure numquam a deserunt officia, quisquam velit nostrum ea cum.',
+          owner: 'callie hern'
         }
       ],
       introHome: [
         {
-          link: "#",
-          image: "https://i.imgur.com/tk1poDX.png",
-          title: "Tâm huyết",
+          link: '#',
+          image: 'https://i.imgur.com/tk1poDX.png',
+          title: 'Tâm huyết',
           content:
-            "Đội ngũ giáo viên chuyên môn cao, luôn nhiệt tình và tâm huyết với những bài dạy - học viên của mình"
+            'Đội ngũ giáo viên chuyên môn cao, luôn nhiệt tình và tâm huyết với những bài dạy - học viên của mình'
         },
         {
-          link: "#",
-          image: "https://i.imgur.com/fIGwVx3.png",
-          title: "Chất lượng",
+          link: '#',
+          image: 'https://i.imgur.com/fIGwVx3.png',
+          title: 'Chất lượng',
           content:
-            "Cơ sở vật chất hiện đại, trang thiết bị đầy đủ  - Giáo trình hướng dẫn khoa học, đạt chuẩn quốc tế"
+            'Cơ sở vật chất hiện đại, trang thiết bị đầy đủ  - Giáo trình hướng dẫn khoa học, đạt chuẩn quốc tế'
         },
         {
-          link: "#",
-          image: "https://i.imgur.com/S86zsCv.png",
-          title: "Uy tín",
+          link: '#',
+          image: 'https://i.imgur.com/S86zsCv.png',
+          title: 'Uy tín',
           content:
-            "Giáo viên có chứng chỉ giảng dạy - Cam kết chất lượng từng khoá học"
+            'Giáo viên có chứng chỉ giảng dạy - Cam kết chất lượng từng khoá học'
         }
       ],
       eventHour: {
-        weekday: "monday",
-        timeStart: "15.00",
-        timeEnd: "16.00",
-        trainer: "alice hattaway"
+        weekday: 'monday',
+        timeStart: '15.00',
+        timeEnd: '16.00',
+        trainer: 'alice hattaway'
       },
       latestPost: {
-        link: "#",
+        link: '#',
         image:
-          "https://dalia.elated-themes.com/wp-content/uploads/2018/05/blog-img-6-150x150.jpg",
-        title: "clean beauty",
-        date: "13th jun"
+          'https://dalia.elated-themes.com/wp-content/uploads/2018/05/blog-img-6-150x150.jpg',
+        title: 'clean beauty',
+        date: '13th jun'
       },
       news2: {
-        link: "#",
+        link: '#',
         author: {
-          name: "jessica smith",
-          link: "#"
+          name: 'jessica smith',
+          link: '#'
         },
         category: {
-          name: "post",
-          link: "#"
+          name: 'post',
+          link: '#'
         },
         tags: [
           {
-            name: "business",
-            link: "#"
+            name: 'business',
+            link: '#'
           },
           {
-            name: "city break",
-            link: "#"
+            name: 'city break',
+            link: '#'
           },
           {
-            name: "vacations",
-            link: "#"
+            name: 'vacations',
+            link: '#'
           }
         ],
-        title: "almond butter fig healthy hair smoothie",
+        title: 'almond butter fig healthy hair smoothie',
         image:
-          "https://dalia.elated-themes.com/wp-content/uploads/2018/06/nutrition-home-blog-img-5-768x569.jpg",
+          'https://dalia.elated-themes.com/wp-content/uploads/2018/06/nutrition-home-blog-img-5-768x569.jpg',
         dateCreated: {
-          link: "#",
-          day: "7th",
-          month: "jun"
+          link: '#',
+          day: '7th',
+          month: 'jun'
         },
         content:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae feugiat magna, ut mattis ligula. Aliquam ut rutrum est. Maecenas sit amet scelerisque orci. Aenean et ex ut elit tincidunt rutrum vitae eleifend metus. Nunc tincidunt venenatis tellus euismod fermentum. Maecenas sed dapibus eros. Phasellus eu mi metus. Nunc mi nisl, viverra id sollicitudin et, auctor sit amet augue. Morbi blandit dolor ac rhoncus semper. Donec rutrum risus vitae arcu interdum condimentum. Pellentesque eu ex metus. Maecenas facilisis est at aliquet blandit. Nullam volutpat ultricies enim, ut pulvinar enim placerat non. Aenean facilisis aliquam felis in fermentum. Aenean ullamcorper pharetra purus.",
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae feugiat magna, ut mattis ligula. Aliquam ut rutrum est. Maecenas sit amet scelerisque orci. Aenean et ex ut elit tincidunt rutrum vitae eleifend metus. Nunc tincidunt venenatis tellus euismod fermentum. Maecenas sed dapibus eros. Phasellus eu mi metus. Nunc mi nisl, viverra id sollicitudin et, auctor sit amet augue. Morbi blandit dolor ac rhoncus semper. Donec rutrum risus vitae arcu interdum condimentum. Pellentesque eu ex metus. Maecenas facilisis est at aliquet blandit. Nullam volutpat ultricies enim, ut pulvinar enim placerat non. Aenean facilisis aliquam felis in fermentum. Aenean ullamcorper pharetra purus.',
         comment: {
-          link: "#",
+          link: '#',
           quantity: 3
         },
         love: {
-          link: "#",
+          link: '#',
           quantity: 0
         },
-        button: "read more"
+        button: 'read more'
       },
       numberAdmin: {
         icon: '<i class="fas fa-id-card-alt"></i>',
-        about: "booking",
+        about: 'booking',
         quantity: 184
       },
       profileAdmin: {
         image:
-          "https://dalia.elated-themes.com/wp-content/uploads/2018/06/team2-img-8.jpg",
-        name: "nisha sharma",
-        phone: "0947161096",
-        email: "nisha_sharma@gmail.com",
-        location: "remote",
+          'https://dalia.elated-themes.com/wp-content/uploads/2018/06/team2-img-8.jpg',
+        name: 'nisha sharma',
+        phone: '0947161096',
+        email: 'nisha_sharma@gmail.com',
+        location: 'remote',
         age: 25,
-        facebook: "facebook.com",
-        twitter: "twitter.com",
-        instagram: "instagram.com"
+        facebook: 'facebook.com',
+        twitter: 'twitter.com',
+        instagram: 'instagram.com'
       },
       isShowTryItNowModal: false,
       windowSize: 0
@@ -349,7 +349,7 @@ class Home extends React.Component {
     if (this.props.tesmonials.items.length === 0) {
       this.props.fetchTesmonial({
         query: {
-          filter: { status: "active" }
+          filter: { status: 'active' }
         }
       });
     }
@@ -359,7 +359,7 @@ class Home extends React.Component {
     if (this.props.masonryHomes.items.length === 0) {
       this.props.fetchMasonryHome({
         query: {
-          filter: { status: "active" },
+          filter: { status: 'active' },
           limit: 6
         }
       });
@@ -380,7 +380,7 @@ class Home extends React.Component {
           filter: {
             isPin: true
           },
-          populates: [{ path: "category", select: "name slug" }]
+          populates: [{ path: 'category', select: 'name slug' }]
         }
       });
     }
@@ -401,15 +401,18 @@ class Home extends React.Component {
   };
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.contacts.isAddSuccess && !prevProps.contacts.isAddSuccess) {
-      Swal.fire("Thành công", "Gửi liên hệ thành công", "success");
+      Swal.fire('Thành công', 'Gửi liên hệ thành công', 'success');
       this.props.addContactRefresh();
     }
     if (this.props.contacts.isAddError && prevProps.contacts.adding) {
-      Swal.fire("Thất bại", "Gửi liên hệ không thành công", "error");
+      Swal.fire('Thất bại', 'Gửi liên hệ không thành công', 'error');
       this.props.addContactRefresh();
     }
-
-    console.log("hello " + this.state.windowSize);
+    
+    $('.home__body__intro-slick-autoplay').css({
+      opacity: '1',
+      visibility: 'visible' // visible when loaded
+    });
   }
   async componentDidMount() {
     this.fetchData();
@@ -469,21 +472,21 @@ class Home extends React.Component {
     //       this.blur();
     //     });
     // });
-    $(window).on("resize", () => {
-      this.setState({ windowSize: $(window).width() });
+    $(window).on('resize', () => {
+      this.setState({ windowSize: $(window).outerWidth() });
     });
 
-    $(window).on("load", () => {
-      this.setState({ windowSize: $(window).width() });
+    $(window).on('load', () => {
+      this.setState({ windowSize: $(window).outerWidth() });
 
-      $(".home__body__intro-slick-autoplay").on("init", function(event, slick) {
-        $(".home__body__intro-slick-autoplay").css({
-          opacity: "1",
-          visibility: "visible" // visible when loaded
+      $('.home__body__intro-slick-autoplay').on('init', function(event, slick) {
+        $('.home__body__intro-slick-autoplay').css({
+          opacity: '1',
+          visibility: 'visible' // visible when loaded
         });
       });
 
-      $(".home__body__intro-slick-autoplay").slick({
+      $('.home__body__intro-slick-autoplay').slick({
         dots: true,
         arrows: false,
         slidesToShow: 2,
@@ -504,17 +507,17 @@ class Home extends React.Component {
         ]
       });
 
-      $(".home__body__intro-slick-autoplay").on("beforeChange", function(
+      $('.home__body__intro-slick-autoplay').on('beforeChange', function(
         event,
         slick,
         currentSlide,
         nextSlide
       ) {
-        $(".home__body__intro-slick-autoplay .slick-dots li").removeClass(
-          "slick-active"
+        $('.home__body__intro-slick-autoplay .slick-dots li').removeClass(
+          'slick-active'
         );
-        $(".home__body__intro-slick-autoplay .slick-dots li button")
-          .attr("aria-pressed", "false")
+        $('.home__body__intro-slick-autoplay .slick-dots li button')
+          .attr('aria-pressed', 'false')
           .focus(function() {
             this.blur();
           });
@@ -564,9 +567,9 @@ class Home extends React.Component {
                 <div
                   className="home__body__intro"
                   style={
-                    this.state.windowSize > 1199
-                      ? { display: "flex" }
-                      : { display: "none" }
+                    this.state.windowSize > 991
+                      ? { display: 'flex' }
+                      : { display: 'none' }
                   }
                 >
                   {this.state.introHome.map((intro, index) => {
@@ -586,7 +589,7 @@ class Home extends React.Component {
                 </div>
               ]
             ) : (
-              <div className="home__body__slider" style={{ height: "50vh" }}>
+              <div className="home__body__slider" style={{ height: '50vh' }}>
                 <Loading />
               </div>
             )}
@@ -758,7 +761,7 @@ class Home extends React.Component {
                   var marker = new window.google.maps.Marker({
                     position: { lat: 21.3518757, lng: 105.9701969 },
                     map: map,
-                    title: "Hiệp Hoà Yoga"
+                    title: 'Hiệp Hoà Yoga'
                   });
                 }}
               />
