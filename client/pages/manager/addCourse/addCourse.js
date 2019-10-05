@@ -62,6 +62,7 @@ class AddCourse extends Component {
       this
     );
 
+    this.canOpenPage = this.canOpenPage.bind(this);
     this.openPage = this.openPage.bind(this);
     this.handleClickPrevious = this.handleClickPrevious.bind(this);
     this.handleClickNext = this.handleClickNext.bind(this);
@@ -81,7 +82,22 @@ class AddCourse extends Component {
   shouldComponentUpdate() {
     return true;
   }
-  openPage = function(pageNumber) {
+
+  canOpenPage = function() {
+    const curPageNumber = this.state.curPageNumber;
+    const pages = this.state.pages;
+
+    if (!pages[curPageNumber - 1].isValid) {
+      alert("Vui lòng kiểm tra lại thông tin");
+      return false;
+    }
+
+    return true;
+  };
+
+  openPage = function(nextPageNumber) {
+    const pages = this.state.pages;
+
     // set up page content
     var i, page, stepBtns;
     page = document.getElementsByClassName(
@@ -95,26 +111,25 @@ class AddCourse extends Component {
       stepBtns[i].style.backgroundColor = "#e1f2f4";
       stepBtns[i].style.color = "#00a3af";
     }
-    document.getElementById(
-      this.state.pages[pageNumber - 1].name
-    ).style.display = "block";
-    $(".stepsLine__btn-" + pageNumber).css({
+    document.getElementById(pages[nextPageNumber - 1].name).style.display =
+      "block";
+    $(".stepsLine__btn-" + nextPageNumber).css({
       backgroundColor: "#00a3af",
       color: "#fff"
     });
 
     // update curPageNumber
-    this.setState({ curPageNumber: pageNumber });
+    this.setState({ curPageNumber: nextPageNumber });
 
     // set up for button previous, next
-    if (pageNumber == this.state.pages.length) {
+    if (nextPageNumber == pages.length) {
       $(".addCourse__body__card__buttons__btn-next").text("Xác nhận");
     } else {
       $(".addCourse__body__card__buttons__btn-next").html(
         "Tiếp theo<i class='fas fa-chevron-right'></i>"
       );
     }
-    if (pageNumber == 1) {
+    if (nextPageNumber == 1) {
       $(".addCourse__body__card__buttons__btn-previous").attr("disabled", true);
     } else {
       $(".addCourse__body__card__buttons__btn-previous").attr(
@@ -128,7 +143,6 @@ class AddCourse extends Component {
     const curPageNumber = this.state.curPageNumber;
     let nextPageNumber = curPageNumber - 1;
     if (nextPageNumber > 0) {
-      this.setState({ curPageNumber: nextPageNumber });
       this.openPage(nextPageNumber);
     }
   };
@@ -136,16 +150,12 @@ class AddCourse extends Component {
   handleClickNext = function() {
     const curPageNumber = this.state.curPageNumber;
     const pages = this.state.pages;
-
-    if (!pages[curPageNumber - 1].isValid) {
-      alert("Vui lòng kiểm tra lại thông tin");
-      return;
-    }
-
     let nextPageNumber = curPageNumber + 1;
+
     if (nextPageNumber <= pages.length) {
-      this.setState({ curPageNumber: nextPageNumber });
-      this.openPage(nextPageNumber);
+      if (this.canOpenPage()) {
+        this.openPage(nextPageNumber);
+      }
     }
     if (nextPageNumber > pages.length) {
       this.submitCourse();
@@ -241,7 +251,9 @@ class AddCourse extends Component {
                 <div className="addCourse__body__card__content__steps">
                   <StepsLine
                     stepQuantity={this.state.pages.length}
+                    canOpenPage={this.canOpenPage}
                     openPage={this.openPage}
+                    curPageNumber={this.state.curPageNumber}
                   ></StepsLine>
                 </div>
                 <div

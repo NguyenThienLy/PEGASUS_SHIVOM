@@ -1,5 +1,5 @@
-import * as React from "react";
-import "./stepsLine.scss";
+import * as React from 'react';
+import './stepsLine.scss';
 
 export class StepsLine extends React.Component {
   constructor(props) {
@@ -11,7 +11,14 @@ export class StepsLine extends React.Component {
 
   handleClick = index => {
     let number = index + 1;
-    this.props.openPage(number);
+
+    if (number > this.props.curPageNumber) {
+      if (this.props.canOpenPage()) {
+        this.props.openPage(number);
+      }
+    } else {
+      this.props.openPage(number);
+    }
   };
 
   componentDidMount() {
@@ -34,8 +41,8 @@ export class StepsLine extends React.Component {
     }
     this.setState({ listData });
 
-    $(window).on("load", function() {
-      $(".stepsLine__btn-1").click();
+    $(window).on('load', function() {
+      $('.stepsLine__btn-1').click();
     });
   }
 
