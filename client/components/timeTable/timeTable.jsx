@@ -449,12 +449,16 @@ export class TimeTable extends React.Component {
     let timeTableItems = this.props.timeTables.forEach(timeTable => {
       const courseName = timeTable.course.name;
       const className = timeTable.class.name;
-      const teacherName = timeTable.class.teacher
+      const classCode = timeTable.class.code;
+      let teacherName = timeTable.class.teacher
         ? timeTable.class.teacher.firstName +
-        " " +
+        ' ' +
         timeTable.class.teacher.lastName
         : null;
-
+      const teacherNameArr = teacherName.split(' ');
+      teacherName = teacherNameArr
+        .slice(teacherNameArr.length - 2, teacherNameArr.length)
+        .join(' ');
       timeTable.items.forEach(item => {
         let data = [
           <div
@@ -468,15 +472,16 @@ export class TimeTable extends React.Component {
             <a
               className="time-table__table-events__class-info__class-name"
               href="#"
-              title={courseName}
+              title={item.topic}
             >
-              {courseName}
+              {item.topic}
             </a>
             <div className="time-table__table-events__class-info__class-time">
-              {item.startTime.hour}:
+              {/* {item.startTime.hour}:
               {item.startTime.minute === 0 ? "00" : item.startTime.minute} -{" "}
               {item.endTime.hour}:
-              {item.endTime.minute === 0 ? "00" : item.endTime.minute}
+              {item.endTime.minute === 0 ? "00" : item.endTime.minute} */}
+              {classCode}
             </div>
             <div className="time-table__table-events__class-info__class-teacher">
               {teacherName}

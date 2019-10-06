@@ -242,34 +242,7 @@ export class Dashboard extends React.Component {
         .format("YYYY-MM-DD HH:mm:ss")
     );
 
-    if (this.props.courses.items.length > 0) {
-      const courseCategoryIndex = this.state.categories.findIndex(item => {
-        return item.key === "course";
-      });
-      const subCategories = this.props.courses.items.map(item => {
-        return {
-          name: item.name,
-          linkHref: `/course/course?slug=${item.slug}`,
-          linkAs: `/khoa-hoc/${item.slug}`
-        };
-      });
-      this.state.categories[courseCategoryIndex].subCategories = subCategories;
-      this.setState({ categories: this.state.categories });
-    }
-    if (this.props.newCategories.items.length > 0) {
-      const newCategoryIndex = this.state.categories.findIndex(item => {
-        return item.key === "news";
-      });
-      const subCategories = this.props.newCategories.items.map(item => {
-        return {
-          name: item.name,
-          linkHref: `/blog/blog?categorySlug=${item.slug}`,
-          linkAs: `/${item.slug}`
-        };
-      });
-      this.state.categories[newCategoryIndex].subCategories = subCategories;
-      this.setState({ categories: this.state.categories });
-    }
+
 
     var heightOfHeader = $(
       ".dashboard .dashboard__header .headerAdmin__wrapper"
@@ -282,40 +255,7 @@ export class Dashboard extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (
-      prevProps.courses.items.length === 0 &&
-      this.props.courses.items.length > 0
-    ) {
-      const courseCategoryIndex = this.state.categories.findIndex(item => {
-        return item.key === "course";
-      });
-      const subCategories = this.props.courses.items.map(item => {
-        return {
-          name: item.name,
-          linkHref: `/course/course?slug=${item.slug}`,
-          linkAs: `/khoa-hoc/${item.slug}`
-        };
-      });
-      this.state.categories[courseCategoryIndex].subCategories = subCategories;
-      this.setState({ categories: this.state.categories });
-    }
-    if (
-      prevProps.newCategories.items.length === 0 &&
-      this.props.newCategories.items.length > 0
-    ) {
-      const newCategoryIndex = this.state.categories.findIndex(item => {
-        return item.key === "news";
-      });
-      const subCategories = this.props.newCategories.items.map(item => {
-        return {
-          name: item.name,
-          linkHref: `/blog/blog?categorySlug=${item.slug}`,
-          linkAs: `/${item.slug}`
-        };
-      });
-      this.state.categories[newCategoryIndex].subCategories = subCategories;
-      this.setState({ categories: this.state.categories });
-    }
+
 
     if (
       prevProps.statisticCourse.statisticForPieChart.fetching &&
