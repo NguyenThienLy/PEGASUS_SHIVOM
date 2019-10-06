@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Router from 'next/router'
 
 import { StepsLine, TinymceEditor } from '../../../../components';
 
@@ -195,8 +196,9 @@ export class AddCourse extends React.Component {
             'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M'
         }
       })
-      .then(res => {
-        Swal.fire('Thành công', 'Thêm khoá học thành công', 'success');
+      .then(async res => {
+        await Swal.fire('Thành công', 'Thêm khoá học thành công', 'success');
+        Router.push(`/manager/course/course?courseId=${res.result.object._id}`, `/quan-ly/khoa-hoc/chi-tiet/${res.result.object._id}`)
       })
       .catch(err => {
         console.log('err');
