@@ -54,6 +54,7 @@ export default class StudentRouter extends CrudRouter<typeof studentController> 
                         properties: {
                             _id: { type: "string" },
                             monthAmount: { type: "number" },
+                            startTime: { type: "string", format: "date-time" },
                             package: { type: "string" },
                             type: { type: "string", enum: ["package", "monthAmount"] },
                             timeTableIds: { type: "array", items: { type: "string" } }
@@ -80,9 +81,12 @@ export default class StudentRouter extends CrudRouter<typeof studentController> 
                 courseId: { type: "string" },
                 isPayFee: { type: "boolean" },
                 startTime: { type: "string", format: "date-time" },
-                endTime: { type: "string", format: "date-time" }
+                monthAmount: { type: "number" },
+                packageId: { type: "string" },
+                type: { type: "string", enum: ["package", "monthAmount"] },
+                timeTableIds: { type: "array", items: { type: "string" } }
             },
-            required: ["courseId", "isPayFee", "startTime", "endTime"],
+            required: ["courseId", "isPayFee", "startTime"],
             additionalProperties: false
         })
         req.body.studentId = req.params._id

@@ -2,6 +2,7 @@ import * as mongoose from 'mongoose';
 import { BaseModel } from './base.model';
 import { RankModel } from './rank.model';
 
+import * as moment from 'moment'
 import * as bcrypt from 'bcryptjs'
 import { utilService } from '../services';
 
@@ -56,7 +57,12 @@ const studentSchema = new Schema({
 
 studentSchema.pre('save', function (next) {
     var student = this as StudentModel
-
+    const timeParsed = utilService.parseDateToWeekMonthYear(moment().format())
+    student.time = {
+        month: timeParsed.month,
+        year: timeParsed.year,
+        week: timeParsed.week
+    }
     // only hash the password if it has been modified (or is new)
     if (!student.isModified('password')) return next();
     bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
