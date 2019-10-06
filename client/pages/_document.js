@@ -26,6 +26,12 @@ class MyDocument extends Document {
                         gtag('config', 'UA-80582137-5');`
             }}
           />
+          <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"
+            type="text/javascript" charset="utf-8"></script>
+          <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"
+            type="text/javascript" charset="utf-8"></script>
+          <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+          <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
           <link rel="manifest" href="/manifest.json" />
           <link rel="icon" href="/bookFeeling.jpg" />
           <link rel="stylesheet" type="text/css" href="/css/nprogress.css" />
