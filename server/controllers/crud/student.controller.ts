@@ -3,7 +3,7 @@ import * as moment from 'moment'
 import * as hash from 'object-hash'
 
 import { CrudController } from '../crud.controller'
-import { studentService, ICrudOption, courseStudentService, classTimeTableService, errorService, classService, checkinService, mailService, tokenService, giftService, giftReceiveService, studentTimeTableService, cacheService, utilService, packageService } from '../../services'
+import { studentService, ICrudOption, courseStudentService, classTimeTableService, errorService, classService, checkinService, mailService, tokenService, giftService, giftReceiveService, studentTimeTableService, cacheService, utilService, packageService, courseService } from '../../services'
 import { CourseStudentModel, StudentModel, CourseModel, GiftModel, GiftReceiveModel, StudentTimeTableModel, PackageModel } from '../../models';
 import { webhookController } from '..';
 import { replyFeedbackEmail, remindExtendCourseEmail, notifyReceiveGiftEmail } from '../../mailTemplate';
@@ -26,9 +26,10 @@ export class StudentController extends CrudController<typeof studentService>{
             const student: StudentModel = await this.service.create(personalInfo)
             results.push(student)
             for (const course of courses) {
-                let startTime = moment().format()
+                let startTime = course.startTime || moment().format()
                 let endTime
                 let packageInfo: PackageModel
+                const courseInfo: CourseModel = await courseService.getItem({ filter: { _id: course._id } })
                 if (course.type === "package") {
                     packageInfo = await packageService.getItem({ filter: { _id: course.package } })
                     endTime = moment().add(packageInfo.monthAmount, "months").format()
@@ -41,7 +42,7 @@ export class StudentController extends CrudController<typeof studentService>{
                     startTime: startTime,
                     endTime: endTime,
                     isPayFee: isPayFee,
-                    package: packageInfo ? packageInfo._id : null
+                    totalFeeAmount: course.type === "package" ? packageInfo.price : courseInfo.pricePerMonth * course.monthAmount,
                 })
                 results.push(courseStudent)
                 const studentTimeTable: StudentTimeTableModel = await studentTimeTableService.create({
@@ -50,6 +51,7 @@ export class StudentController extends CrudController<typeof studentService>{
                     items: course.timeTableIds
                 })
                 results.push(studentTimeTable)
+                courseInfo.update({ $inc: { currentStudentAmount: 1 } }).exec()
             }
             return student
         } catch (err) {
@@ -63,8 +65,11 @@ export class StudentController extends CrudController<typeof studentService>{
         studentId: string
         courseId: string
         startTime: string
-        endTime: string
         isPayFee: string
+        type: string
+        monthAmount: number
+        packageId: string
+        timeTableIds: string[]
     }) {
         const currentCourseStudent: CourseStudentModel = await courseStudentService.model.findOne({
             course: params.courseId,
@@ -73,17 +78,29 @@ export class StudentController extends CrudController<typeof studentService>{
         if (currentCourseStudent) {
             throw errorService.student.courseHaveApplied()
         }
+        const courseInfo: CourseModel = await courseService.getItem({ filter: { _id: params.courseId } })
+        let packageInfo: PackageModel
+        let endTime: string
+        if (params.type === "package") {
+            packageInfo = await packageService.getItem({ filter: { _id: params.packageId } })
+            endTime = moment(params.startTime).add(packageInfo.monthAmount, "months").format()
+        } else {
+            endTime = moment(params.startTime).add(params.monthAmount, "months").format()
+        }
         const courseStudent: CourseStudentModel = await courseStudentService.create({
             student: params.studentId,
             course: params.courseId,
             startTime: params.startTime,
-            endTime: params.endTime,
+            endTime: endTime,
+            totalFeeAmount: params.type === "package" ? packageInfo.price : courseInfo.pricePerMonth * params.monthAmount,
             isPayFee: params.isPayFee
         })
         const studentTimeTable: StudentTimeTableModel = await studentTimeTableService.create({
             course: params.courseId,
-            student: params.studentId
+            student: params.studentId,
+            items: params.timeTableIds
         })
+        courseInfo.update({ $inc: { currentStudentAmount: 1 } }).exec()
         return {
             courseStudent, studentTimeTable
         }

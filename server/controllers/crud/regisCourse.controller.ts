@@ -59,7 +59,7 @@ export class RegisCourseController extends CrudController<typeof regisCourseServ
             result = await courseStudentService.create({
                 student: params.student,
                 course: regisCourse.course,
-                package: params.package,
+                // package: params.package,
                 totalMonth: params.totalMonth,
                 startTime: params.startTime,
                 endTime

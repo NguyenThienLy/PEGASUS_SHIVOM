@@ -3,6 +3,7 @@ import * as moment from "moment";
 
 import Head from "next/head";
 import Link from "next/link";
+import Router from "next/router"
 import { connect } from "react-redux";
 import { api } from "../../../services";
 import { action } from "../../../actions";
@@ -226,8 +227,8 @@ export class Dashboard extends React.Component {
       }
     });
   };
-  handleScroll = () => {};
-  componentWillUnmount() {}
+  handleScroll = () => { };
+  componentWillUnmount() { }
   async componentDidMount() {
     // Lấy năm
     // startTime bắt đầu năm hiện tại
@@ -379,8 +380,15 @@ export class Dashboard extends React.Component {
 
     return true;
   }
-
+  async checkUserAlreadyLogin() {
+    const userType = localStorage.getItem("ut")
+    const tokenExpiredAt = localStorage.getItem("exp")
+    if (!userType || !tokenExpiredAt || moment(tokenExpiredAt).isBefore(moment()) || userType !== "admin") {
+      Router.push("/dang-nhap/admin")
+    }
+  }
   render() {
+    this.checkUserAlreadyLogin()
     return (
       <div className="dashboard">
         <Head>
@@ -413,12 +421,12 @@ export class Dashboard extends React.Component {
               {this.props.statisticCourse.statisticForPieChart.fetching ? (
                 <Loading />
               ) : (
-                this.state.numberAdmins.map((number, index) => {
-                  return (
-                    <NumberAdmin numberAdmin={number} key={index}></NumberAdmin>
-                  );
-                })
-              )}
+                  this.state.numberAdmins.map((number, index) => {
+                    return (
+                      <NumberAdmin numberAdmin={number} key={index}></NumberAdmin>
+                    );
+                  })
+                )}
             </div>
             <div className="dashboard__body__card">
               <div className="dashboard__body__card__title">Thống kê</div>
