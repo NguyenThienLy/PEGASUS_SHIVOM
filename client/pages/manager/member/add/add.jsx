@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as moment from "moment"
+import Router from 'next/router'
 import {
     NewMemberInfo,
     CourseOptions,
@@ -197,9 +198,10 @@ export class AddMember extends React.Component {
             headers: {
                 "x-token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M"
             }
-        }).then(res => {
+        }).then(async res => {
 
-            Swal.fire("Thành công", "Thêm học viên thành công", "success");
+            await Swal.fire("Thành công", "Thêm học viên thành công", "success");
+            Router.push(`/manager/member/member?studentId=${res.result.object._id}`, `/quan-ly/hoc-vien/chi-tiet/${res.result.object._id}`)
         })
             .catch(err => {
 
