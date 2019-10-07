@@ -111,7 +111,7 @@ export class WebhookController extends BaseController {
                         student: student._id,
                         class: classTimeTable.class,
                         course: classTimeTable.course,
-                        checkinAt: moment(Number(timestamps)).format(),
+                        checkinAt: moment.unix(Number(timestamps)).utcOffset("+07:00"),
                         timeTableItem: timeTableItem._id,
                         type: checkInType
                     })
