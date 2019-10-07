@@ -14,9 +14,12 @@ export class UpdateStatisticCourseCronJob {
     }
     // Hàm ghi nhận dữ liệu để thông kê cho khóa học
     async updateStatisticCourse() {
-        // Lấy ra danh sách các checkin của ngày hôm trước
+        //Lấy ra danh sách các checkin của ngày hôm trước
         const startTime = moment().subtract(1, "days").startOf("days").toDate()
         const endTime = moment().subtract(1, "days").endOf("days").toDate()
+
+        // const startTime = moment().startOf("days").toDate()
+        // const endTime = moment().endOf("days").toDate()
 
         // Gom nhóm học viên theo khóa học 
         const listCheckin = await checkinService.model.aggregate([

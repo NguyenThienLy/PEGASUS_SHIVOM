@@ -6,9 +6,9 @@ import { StudentCronjobService } from './student.cronjob.service';
 
 export class CronJobService {
     constructor() {
-        // this.updateStatisticCourse()
-        // this.updateStatisticStudent()
-        // this.updateCheckIns()
+        this.updateStatisticCourse()
+        this.updateStatisticStudent()
+        //this.updateCheckIns()
     }
     async checkStudentBirthdayAndSendMail() {
         cron.schedule('0 9 * * *', () => {
@@ -21,6 +21,7 @@ export class CronJobService {
         })
     }
     // Hàm ghi nhận dữ liệu để thống kê
+    // Chạy lúc 1h 0 p
     async updateStatisticCourse() {
         cron.schedule('0 1 * * *', () => {
             UpdateStatisticCourseCronJob.getInstance().updateStatisticCourse()
@@ -28,15 +29,17 @@ export class CronJobService {
     }
 
     // Hàm ghi nhận dữ liệu để thống kê
+    // Chạy lúc 1h 5 p
     async updateStatisticStudent() {
-        cron.schedule('0 2 * * *', () => {
+        cron.schedule('5 1 * * *', () => {
             UpdateStatisticStudentCronJob.getInstance().updateStatisticStudent();
         });
     }
 
     // Hàm xóa dữ liệu sau 7 ngày tồn tại trong bảng checkin
+    // Chạy lúc 1h 10 p
     async updateCheckIns() {
-        cron.schedule('* * * * *', () => {
+        cron.schedule('10 1 * * *', () => {
             UpdateCheckInsCronJob.getInstance().updateCheckIns();
         });
     }

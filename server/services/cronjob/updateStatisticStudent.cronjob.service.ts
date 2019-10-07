@@ -1,4 +1,4 @@
-import { checkinService, statisticStudentService, utilService } from '../index'
+import { checkinService, statisticStudentService, utilService, courseStudentService } from '../index'
 import * as moment from 'moment'
 import * as _ from 'lodash'
 
@@ -19,6 +19,8 @@ export class UpdateStatisticStudentCronJob {
         // Lấy ra danh sách các checkin của ngày hôm trước
         const startTime = moment().subtract(1, "days").startOf("days").toDate()
         const endTime = moment().subtract(1, "days").endOf("days").toDate()
+        // const startTime = moment().startOf("days").toDate()
+        // const endTime = moment().endOf("days").toDate()
 
         // // Lấy ra tuần hiện tại
         // const currWeek = moment(startTime).week()
@@ -39,6 +41,8 @@ export class UpdateStatisticStudentCronJob {
                 }
             }
         ])
+
+        //console.log(listCheckin[0].checkins)
 
         // Góm nhóm học viên theo type [đúng, trễ, thừa, vắng]
         // on_time, late, redundant, absent
@@ -72,6 +76,13 @@ export class UpdateStatisticStudentCronJob {
                 objRedundant: _.map(listStudentFollowType.redundant, function (item) {
                     return { course: item.course, time: item.checkinAt }
                 })
+            })
+
+            // Cập nhật tổng số ngày vắng
+            this.updateTotalAbsentForStudent({
+                student: student._id,
+                course: student.course,
+                totalAbsent: listStudentFollowType.absent.length
             })
         }
     }
@@ -134,6 +145,22 @@ export class UpdateStatisticStudentCronJob {
                 {
                     upsert: true,
                     new: true
+                }).exec()
+    }
+
+    // Cập nhật số ngày vắng cho gói tập của học viên
+    updateTotalAbsentForStudent(params: {
+        student: string,
+        course: string,
+        totalAbsent: number
+    }) {
+        // Cập nhật số ngày vắng cho gói tập của học viên
+        courseStudentService.model.
+            update({ student: params.student, course: params.course },
+                {
+                    $inc: {
+                        totalAbsent: params.totalAbsent
+                    }
                 }).exec()
     }
 }
