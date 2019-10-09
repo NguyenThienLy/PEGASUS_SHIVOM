@@ -1,0 +1,22 @@
+@import "../../default.scss";
+
+.pagination {
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+    @include e("list"){
+        list-style-type: none;
+        > li {
+            float: left;
+            width: 20px;
+            cursor: pointer;
+            :hover {
+                color: $main-color;
+            }
+        }
+        @include e("active"){
+            color: green;
+        }
+    }
+
+}

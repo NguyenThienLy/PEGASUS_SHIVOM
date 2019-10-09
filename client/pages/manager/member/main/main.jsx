@@ -6,7 +6,7 @@ import {
 import * as moment from 'moment'
 import Router from 'next/router'
 
-import { TableData } from '../../../../components'
+import { Pagination } from '../../../../components'
 
 import './main.scss'
 
@@ -14,25 +14,66 @@ import { action } from '../../../../actions'
 import { api } from '../../../../services'
 import Swal from 'sweetalert2'
 
+import { AddPoint } from './components'
+
+
 export class MainMember extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            students: undefined
+            students: undefined,
+            currentPage: 1,
+            modals: {
+                addPoint: false
+            },
+            selectedStudentId: null
         }
+        this.showHideModal = this.showHideModal.bind(this)
         this.searchByPhone = this.searchByPhone.bind(this)
+        this.searchByCardId = this.searchByCardId.bind(this)
         this.checkin = this.checkin.bind(this)
+        this.changePage = this.changePage.bind(this)
+        this.addPoint = this.addPoint.bind(this)
     }
     shouldComponentUpdate() {
         return true
     }
+    showHideModal(key) {
+        this.state.modals[key] = !this.state.modals[key]
+        this.setState({ modals: this.state.modals })
+    }
     open(studentId) {
         Router.push(`/manager/member/member?studentId=${studentId}`, `/quan-ly/hoc-vien/chi-tiet/${studentId}`)
+    }
+    changePage(pageNum) {
+        this.setState({
+            currentPage: pageNum
+        })
     }
     searchByPhone(e) {
         const { name, value } = e.target
         if (value.length > 0) {
             api.student.searchByPhone(value).then(res => {
+                this.setState({
+                    students: res.results.objects.rows
+                })
+            }).catch(err => {
+
+            })
+        } else {
+            this.setState({
+                students: undefined
+            })
+        }
+    }
+    searchByCardId(e) {
+        const { name, value } = e.target
+        if (value.length > 0) {
+            api.student.getList({
+                query: {
+                    filter: { cardId: value }
+                }
+            }).then(res => {
                 this.setState({
                     students: res.results.objects.rows
                 })
@@ -59,39 +100,28 @@ export class MainMember extends React.Component {
 
         })
     }
+    addPoint(body) {
+        Swal.showLoading()
+        api.student.update(this.state.selectedStudentId, {
+            $inc: { point: body.point }
+        }).then(res => {
+            Swal.fire("Thành công", "Thêm điểm cho học viên thành công", "success")
+        }).catch(err => {
+            Swal.fire("Thất bại", "Thêm điểm cho học viên thất bại", "error")
+        })
+    }
     render() {
-        const students = this.state.students ? this.state.students : this.props.students.items
+        const students = this.state.students ?
+            this.state.students :
+            this.props.students.items.slice(this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10, 10 * this.state.currentPage)
         return (
             <React.Fragment>
+                <AddPoint
+                    show={this.state.modals.addPoint}
+                    hideModal={() => { this.showHideModal("addPoint") }}
+                    addPoint={this.addPoint}
+                />
                 <div className="member-main">
-                    {/* <TableData
-                        tableName="Danh sách học viên"
-                        data={this.props.students.items}
-                        collums={[
-                            {
-                                header: "Ảnh",
-                                customHtml: `<img src={{avatar}} class="img-response avatar-image"/>`
-                            },
-                            {
-                                header: "Họ",
-                                property: "firstName"
-                            },
-                            {
-                                header: "Tên",
-                                property: "lastName"
-                            },
-                            {
-                                header: "Sinh nhật",
-                                customHtml: `moment({{birthday}}).format("DD/MM/YYYY")`
-                            },
-                            {
-                                header: "Thao tác",
-                                custom: (<div>
-                               
-                                    </div>)
-                            }
-                        ]} /> */}
-
                     <div className="member-main__filter">
                         <div>
                             <label>Tìm theo số điện thoại</label><br />
@@ -101,6 +131,16 @@ export class MainMember extends React.Component {
                                 name="phone"
                                 onChange={this.searchByPhone}
                                 onBlur={this.searchByPhone}
+                            ></input>
+                        </div>
+                        <div>
+                            <label>Tìm theo thẻ</label><br />
+                            <input
+                                type="text"
+                                className="member-main__filter__input"
+                                name="cardId"
+                                onChange={this.searchByCardId}
+                                onBlur={this.searchByCardId}
                             ></input>
                         </div>
                     </div>
@@ -124,10 +164,10 @@ export class MainMember extends React.Component {
                                         <th>Thao tác</th>
                                     </tr>
                                     {(students || []).map((item, index) => {
-
+                                        // {[].map((item, index) => {
                                         return (
                                             <tr key={item._id}>
-                                                <td>{index + 1}</td>
+                                                <td>{this.state.currentPage === 1 ? index + 1 : (this.state.currentPage - 1) * 10 + index + 1}</td>
                                                 <td ><img src={item.avatar} className="img-response avatar-image"></img></td>
                                                 <td>{item.firstName} {item.lastName}</td>
                                                 <td>{item.cardId}</td>
@@ -139,6 +179,15 @@ export class MainMember extends React.Component {
                                                         position="top"
                                                     >
                                                         <span className="post-remove-button" onClick={() => this.checkin(item._id)}><i class="far fa-check-circle"></i></span>
+                                                    </Tooltip>
+                                                    <Tooltip
+                                                        title="Cộng điểm"
+                                                        position="top"
+                                                    >
+                                                        <span className="post-remove-button" onClick={() => {
+                                                            this.setState({ selectedStudentId: item._id })
+                                                            this.showHideModal("addPoint")
+                                                        }}><i class="fas fa-plus-circle"></i></span>
                                                     </Tooltip>
                                                     <Tooltip
                                                         title="Chi tiết"
@@ -160,8 +209,13 @@ export class MainMember extends React.Component {
                                     })}
                                 </tbody>
                             </table>
+
+                        </div>
+                        <div className="table__pagination">
+                            <Pagination currentPage={this.state.currentPage} total={50} limit={10} changePage={this.changePage} />
                         </div>
                     </div>
+
                 </div>
             </React.Fragment >
         );

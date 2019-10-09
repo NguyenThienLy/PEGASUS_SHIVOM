@@ -1,6 +1,6 @@
 import * as moment from 'moment'
 import * as _ from 'lodash'
-import { courseStudentService, mailService, studentService } from '..';
+import { courseStudentService, mailService, studentService, activityService } from '..';
 import { remindExtendCourseEmail, congratulationBirthdayEmail } from '../../mailTemplate';
 
 export class StudentCronjobService {
@@ -32,12 +32,23 @@ export class StudentCronjobService {
             }
         ])
         for (const student of listStudents) {
-            if (student.email) {
-                const mailTemplate = await congratulationBirthdayEmail.buildTemplate([student.email], {
-                    name: `${student.firstName} ${student.lastName}`
+            try {
+                studentService.update({ $inc: { point: 1 } }, { filter: { _id: student._id } })
+                activityService.create({
+                    student: student._id,
+                    point: 3,
+                    type: "birthday",
+                    content: "Cộng điểm chúc mừng sinh nhật"
                 })
-                mailService.sendMail({ mailOption: mailTemplate })
+            } catch (err) {
+
             }
+            // if (student.email) {
+            //     const mailTemplate = await congratulationBirthdayEmail.buildTemplate([student.email], {
+            //         name: `${student.firstName} ${student.lastName}`
+            //     })
+            //     mailService.sendMail({ mailOption: mailTemplate })
+            // }
         }
         return listStudents
 

@@ -107,6 +107,11 @@ export class WebhookController extends BaseController {
                 }).then(result => {
                     return result
                 }).catch(async err => {
+                    courseStudent.update({
+                        $inc: {
+                            totalLessonUsed: 1
+                        }
+                    })
                     return await checkinService.create({
                         student: student._id,
                         class: classTimeTable.class,

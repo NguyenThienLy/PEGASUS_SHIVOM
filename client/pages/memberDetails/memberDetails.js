@@ -213,6 +213,7 @@ export class MemberDetails extends React.Component {
       <div className="memberDetails">
         <Head>
           <title>Member's Details</title>
+          <meta name="robots" content="noindex" />
           <meta name="title" content="Member's Details" />
           <meta
             name="description"

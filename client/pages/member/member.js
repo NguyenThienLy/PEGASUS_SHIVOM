@@ -127,8 +127,8 @@ export class Member extends React.Component {
     }
   };
 
-  handleScroll = () => {};
-  componentWillUnmount() {}
+  handleScroll = () => { };
+  componentWillUnmount() { }
   async componentDidMount() {
     // Lấy năm
     // startTime bắt đầu năm hiện tại
@@ -239,6 +239,7 @@ export class Member extends React.Component {
         <Head>
           <title>Trang học viên</title>
           <meta name="title" content="Trang học viên" />
+          <meta name="robots" content="noindex" />
           <meta
             name="description"
             content="Trang học viên trung tâm yoga Hiệp Hòa"
@@ -268,7 +269,7 @@ export class Member extends React.Component {
               <div className="member__body__personal-info__content">
                 <form
                   className="member__body__personal-info__content__form"
-                  //onSubmit={this.submit}
+                //onSubmit={this.submit}
                 >
                   <div className="member__body__personal-info__content__form__info">
                     <div className="member__body__personal-info__content__form__info__item">
@@ -290,7 +291,7 @@ export class Member extends React.Component {
                         type="number"
                         ref="point"
                         name="point"
-                        //onChange={this.handleChange}
+                      //onChange={this.handleChange}
                       />
                     </div>
                     <div className="member__body__personal-info__content__form__info__icon">
@@ -309,7 +310,7 @@ export class Member extends React.Component {
                         type="text"
                         ref="firstName"
                         name="firstName"
-                        //onChange={this.handleChange}
+                      //onChange={this.handleChange}
                       />
                     </div>
                     <div className="member__body__personal-info__content__form__info__item">
@@ -323,7 +324,7 @@ export class Member extends React.Component {
                         type="text"
                         ref="lastName"
                         name="lastName"
-                        //onChange={this.handleChange}
+                      //onChange={this.handleChange}
                       />
                     </div>
                     <div className="member__body__personal-info__content__form__info__item">
@@ -338,7 +339,7 @@ export class Member extends React.Component {
                         required
                         ref="phone"
                         name="phone"
-                        //onChange={this.handleChange}
+                      //onChange={this.handleChange}
                       />
                     </div>
                     <div className="member__body__personal-info__content__form__info__item">
@@ -352,7 +353,7 @@ export class Member extends React.Component {
                         type="date"
                         ref="birthday"
                         name="birthday"
-                        //onChange={this.handleChange}
+                      //onChange={this.handleChange}
                       />
                     </div>
                     <div className="member__body__personal-info__content__form__info__item member__body__personal-info__content__form__info__item--single">
@@ -366,7 +367,7 @@ export class Member extends React.Component {
                         type="text"
                         ref="address"
                         name="address"
-                        //onChange={this.handleChange}
+                      //onChange={this.handleChange}
                       />
                     </div>
                     <div className="member__body__personal-info__content__form__info__icon">
@@ -439,15 +440,15 @@ export class Member extends React.Component {
                   {this.props.statisticCourse.statisticForPieChart.fetching ? (
                     <Loading />
                   ) : (
-                    this.state.numberAdmins.map((number, index) => {
-                      return (
-                        <NumberAdmin
-                          numberAdmin={number}
-                          key={index}
-                        ></NumberAdmin>
-                      );
-                    })
-                  )}
+                      this.state.numberAdmins.map((number, index) => {
+                        return (
+                          <NumberAdmin
+                            numberAdmin={number}
+                            key={index}
+                          ></NumberAdmin>
+                        );
+                      })
+                    )}
                 </div>
 
                 <div className="member__body__chart__content__chart">
