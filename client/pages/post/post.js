@@ -170,7 +170,7 @@ class Post extends React.Component {
           this.setState({ relatedPosts: res.results.objects.rows });
         }
       })
-      .catch(err => {});
+      .catch(err => { });
   }
   getLatestPosts() {
     api.news
@@ -184,7 +184,7 @@ class Post extends React.Component {
       .then(res => {
         this.setState({ latestPosts: res.results.objects.rows });
       })
-      .catch(err => {});
+      .catch(err => { });
   }
   addContact = body => {
     this.props.addContact(body);

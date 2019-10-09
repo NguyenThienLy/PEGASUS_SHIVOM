@@ -1,5 +1,5 @@
 import { CrudController } from '../crud.controller'
-import { feedbackService, studentService, mailService, ICrudOption, settingService } from '../../services/index'
+import { feedbackService, studentService, mailService, ICrudOption, settingService, activityService } from '../../services/index'
 import { StudentModel, FeedbackModel } from '../../models';
 import { replyFeedbackEmail } from '../../mailTemplate';
 
@@ -10,10 +10,16 @@ export class FeedbackController extends CrudController<typeof feedbackService>{
     }
     async create(params: any, option?: ICrudOption) {
         // Cong diem cho hoc vien khi hoc vien gui feedback
-        const settings = await settingService.model.find({}).select("pointConfig")
-        if (settings[0].pointConfig.feedback) {
-            studentService.update({ $inc: { point: settings[0].pointConfig.feedback } }, { filter: { _id: params.student } })
-        }
+        // const settings = await settingService.model.find({}).select("pointConfig")
+        // if (settings[0].pointConfig.feedback) {
+        studentService.update({ $inc: { point: 1 } }, { filter: { _id: params.student } })
+        activityService.create({
+            student: params.student,
+            point: 1,
+            type: "feedback",
+            content: "Gửi feedback"
+        })
+        //}
         // Tao feedback
         return await this.service.create(params, option)
     }

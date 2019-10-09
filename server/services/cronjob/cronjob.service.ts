@@ -9,6 +9,7 @@ export class CronJobService {
         this.updateStatisticCourse()
         this.updateStatisticStudent()
         //this.updateCheckIns()
+        this.checkStudentBirthdayAndSendMail()
     }
     async checkStudentBirthdayAndSendMail() {
         cron.schedule('0 9 * * *', () => {

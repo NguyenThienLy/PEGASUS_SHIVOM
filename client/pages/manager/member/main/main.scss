@@ -5,6 +5,9 @@
 .member-main {
     @include e("filter"){
         margin: 2em 0;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
         @include e("input"){
             width: 200px;
             height: 45px;

@@ -32,7 +32,7 @@ const courseStudentSchema = new Schema({
     totalLessonUsed: { type: Number, default: 0 },
     totalAbsent: { type: Number, default: 0 },
     // totalAbsentPermitted: { type: Number, default: 0 },
-    bonus: { type: Number, default: 0 },
+    // bonus: { type: Number, default: 0 },
     startTime: { type: Date },
     endTime: { type: Date },
     isPayFee: { type: Boolean, default: false },

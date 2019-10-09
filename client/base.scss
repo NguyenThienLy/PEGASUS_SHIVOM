@@ -271,6 +271,9 @@
         }
       }
     }
+    @include e("pagination"){
+      width: 100%;
+    }
   }
   
   /* Extra small devices (phones, 600px and down) */
