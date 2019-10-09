@@ -1,28 +1,20 @@
 import React, { Component } from "react";
 import { Modal } from "../../../../../../modals";
-import "./addPoint.scss"
+import "./relearn.scss"
 
 import { Form } from '../../../../../../components'
 
-export class AddPoint extends Component {
+export class Relearn extends Component {
     constructor(props) {
         super(props);
         this.state = {
             visible: false,
-            title: "Thêm điểm cho học viên",
+            title: "Học viên đi học lại",
             form: {
-                point: {
-                    type: "number",
-                    label: "Số điểm",
-                    placeholder: 1,
-                    value: 1,
-                    isValid: false,
-                    errorMessage: ""
-                },
-                content: {
+                cardId: {
                     type: "text",
-                    label: "Lý do",
-                    placeholder: "Lý do thêm điểm",
+                    label: "Mã thẻ",
+                    placeholder: "123456789",
                     value: "",
                     isValid: false,
                     errorMessage: ""
@@ -30,19 +22,13 @@ export class AddPoint extends Component {
             },
             validate: {
                 rules: {
-                    point: {
-                        required: true
-                    },
-                    content: {
+                    cardId: {
                         required: true
                     }
                 },
                 messages: {
-                    point: {
-                        required: "Bắt buộc nhập số điểm"
-                    },
-                    content: {
-                        required: "Bắt buộc nhập lý do"
+                    cardId: {
+                        required: "Bắt buộc nhập mã thẻ"
                     }
                 }
             }
@@ -58,8 +44,7 @@ export class AddPoint extends Component {
     }
     submit(body) {
         this.props.hideModal();
-
-        this.props.addPoint(body);
+        this.props.relearn(body);
     }
 
     render() {

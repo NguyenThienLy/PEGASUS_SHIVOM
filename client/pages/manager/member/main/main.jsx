@@ -14,7 +14,7 @@ import { action } from '../../../../actions'
 import { api } from '../../../../services'
 import Swal from 'sweetalert2'
 
-import { AddPoint } from './components'
+import { AddPoint, Relearn, Leave } from './components'
 
 
 export class MainMember extends React.Component {
@@ -24,7 +24,9 @@ export class MainMember extends React.Component {
             students: undefined,
             currentPage: 1,
             modals: {
-                addPoint: false
+                addPoint: false,
+                leave: false,
+                relearn: false
             },
             selectedStudentId: null
         }
@@ -34,6 +36,8 @@ export class MainMember extends React.Component {
         this.checkin = this.checkin.bind(this)
         this.changePage = this.changePage.bind(this)
         this.addPoint = this.addPoint.bind(this)
+        this.leave = this.leave.bind(this)
+        this.relearn = this.relearn.bind(this)
     }
     shouldComponentUpdate() {
         return true
@@ -91,7 +95,6 @@ export class MainMember extends React.Component {
         api.student.checkIn(studentId).then(res => {
             Swal.fire("Thành công", "Checkin cho học viên thành công", "success")
         }).catch(err => {
-            console.log("err: ", err)
             if (err.type === "student_exception_course_havent_applied") {
                 Swal.fire("Thất bại", "Học viên không có lịch học vào giờ này", "error")
             } else {
@@ -102,12 +105,53 @@ export class MainMember extends React.Component {
     }
     addPoint(body) {
         Swal.showLoading()
-        api.student.update(this.state.selectedStudentId, {
-            $inc: { point: body.point }
-        }).then(res => {
+        api.student.addPoint(this.state.selectedStudentId, body).then(res => {
             Swal.fire("Thành công", "Thêm điểm cho học viên thành công", "success")
+
         }).catch(err => {
             Swal.fire("Thất bại", "Thêm điểm cho học viên thất bại", "error")
+        })
+        this.setState({
+            selectedStudentId: null
+        })
+    }
+    leave(body) {
+        Swal.showLoading()
+        api.student.leave(this.state.selectedStudentId, body.isRemoveCard).then(res => {
+            Swal.fire("Thành công", "Học viên nghỉ học thành công", "success")
+            const student = res.result.object.find((result) => {
+                return result.hasOwnProperty("cardId")
+            })
+            this.props.dispatch({
+                type: `UPDATE_STUDENT_SUCCESS`,
+                payload: student
+            })
+            this.forceUpdate()
+        }).catch(err => {
+            Swal.fire("Thất bại", "Thay đổi thất bại", "error")
+        })
+        this.setState({
+            selectedStudentId: null
+        })
+    }
+    relearn(body) {
+        Swal.showLoading()
+        api.student.relearn(this.state.selectedStudentId, body).then(res => {
+            Swal.fire("Thành công", "Học viên quay lại học thành công", "success")
+            const student = res.result.object.find((result) => {
+                return result.hasOwnProperty("cardId")
+            })
+
+            this.props.dispatch({
+                type: `UPDATE_STUDENT_SUCCESS`,
+                payload: student
+            })
+            this.forceUpdate()
+        }).catch(err => {
+            Swal.fire("Thất bại", "Thay đổi thất bại", "error")
+        })
+        this.setState({
+            selectedStudentId: null
         })
     }
     render() {
@@ -120,6 +164,16 @@ export class MainMember extends React.Component {
                     show={this.state.modals.addPoint}
                     hideModal={() => { this.showHideModal("addPoint") }}
                     addPoint={this.addPoint}
+                />
+                <Leave
+                    show={this.state.modals.leave}
+                    hideModal={() => { this.showHideModal("leave") }}
+                    addPoint={this.leave}
+                />
+                <Relearn
+                    show={this.state.modals.relearn}
+                    hideModal={() => { this.showHideModal("relearn") }}
+                    relearn={this.relearn}
                 />
                 <div className="member-main">
                     <div className="member-main__filter">
@@ -160,7 +214,7 @@ export class MainMember extends React.Component {
                                         <th>Họ và tên</th>
                                         <th>Mã số</th>
                                         <th>Số điện thoại</th>
-
+                                        <th>Trạng thái</th>
                                         <th>Thao tác</th>
                                     </tr>
                                     {(students || []).map((item, index) => {
@@ -172,37 +226,56 @@ export class MainMember extends React.Component {
                                                 <td>{item.firstName} {item.lastName}</td>
                                                 <td>{item.cardId}</td>
                                                 <td>{item.phone}</td>
+                                                <td>{item.status === "active" ? "Đang học" : "Nghỉ học"}</td>
+                                                {item.status === "active" ?
+                                                    <td className="action-td">
 
-                                                <td className="action-td">
-                                                    <Tooltip
-                                                        title="Checkin"
-                                                        position="top"
-                                                    >
-                                                        <span className="post-remove-button" onClick={() => this.checkin(item._id)}><i class="far fa-check-circle"></i></span>
-                                                    </Tooltip>
-                                                    <Tooltip
-                                                        title="Cộng điểm"
-                                                        position="top"
-                                                    >
-                                                        <span className="post-remove-button" onClick={() => {
-                                                            this.setState({ selectedStudentId: item._id })
-                                                            this.showHideModal("addPoint")
-                                                        }}><i class="fas fa-plus-circle"></i></span>
-                                                    </Tooltip>
-                                                    <Tooltip
-                                                        title="Chi tiết"
-                                                        position="top"
-                                                    >
-                                                        <span className="post-open-button" onClick={() => this.open(item._id)}><i class="fas fa-share-square"></i></span>
-                                                    </Tooltip>
-                                                    <Tooltip
-                                                        title="Chỉnh sửa"
-                                                        position="top"
-                                                    >
-                                                        <span className="post-edit-button" onClick={() => this.edit(item._id)}> <i class="fas fa-pen"></i> </span>
-                                                    </Tooltip>
+                                                        <Tooltip
+                                                            title="Checkin"
+                                                            position="top"
+                                                        >
+                                                            <span className="post-remove-button" onClick={() => this.checkin(item._id)}><i class="far fa-check-circle"></i></span>
+                                                        </Tooltip>
+                                                        <Tooltip
+                                                            title="Cộng điểm"
+                                                            position="top"
+                                                        >
+                                                            <span className="post-remove-button" onClick={() => {
+                                                                this.setState({ selectedStudentId: item._id })
+                                                                this.showHideModal("addPoint")
+                                                            }}><i class="fas fa-plus-circle"></i></span>
+                                                        </Tooltip>
+                                                        <Tooltip
+                                                            title="Nghỉ học"
+                                                            position="top"
+                                                        >
+                                                            <span className="post-remove-button" onClick={() => {
+                                                                this.setState({ selectedStudentId: item._id })
+                                                                this.showHideModal("leave")
+                                                            }}><i class="fas fa-user-times"></i></span>
+                                                        </Tooltip>
+                                                        <Tooltip
+                                                            title="Chi tiết"
+                                                            position="top"
+                                                        >
+                                                            <span className="post-open-button" onClick={() => this.open(item._id)}><i class="fas fa-share-square"></i></span>
+                                                        </Tooltip>
+                                                        <Tooltip
+                                                            title="Chỉnh sửa"
+                                                            position="top"
+                                                        >
+                                                            <span className="post-edit-button" onClick={() => this.edit(item._id)}> <i class="fas fa-pen"></i> </span>
+                                                        </Tooltip>
 
-                                                </td>
+                                                    </td>
+                                                    : <td className="action-td">
+                                                        <button
+                                                            onClick={() => {
+                                                                this.setState({ selectedStudentId: item._id })
+                                                                this.showHideModal("relearn")
+                                                            }}
+                                                        >Học lại</button>
+                                                    </td>}
                                             </tr>
 
                                         )

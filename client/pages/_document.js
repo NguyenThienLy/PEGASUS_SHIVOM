@@ -16,6 +16,10 @@ class MyDocument extends Document {
             async
             src="https://www.googletagmanager.com/gtag/js?id=UA-80582137-5"
           ></script>
+          <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
           <script src="https://cdn.tiny.cloud/1/tlt647bhgwv17djd3zlimks0k38mgbeuhppgf1uz2wjiwjdi/tinymce/5/tinymce.min.js"></script>
           <script
             dangerouslySetInnerHTML={{
