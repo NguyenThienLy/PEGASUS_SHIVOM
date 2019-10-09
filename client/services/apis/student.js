@@ -13,7 +13,8 @@ export class StudentApi extends CrudApi {
       headers: _.merge(
         {
           "User-Agent": "Request-Promise",
-          "Content-Type": "Application/json"
+          "Content-Type": "Application/json",
+          "x-token": localStorage.getItem("token")
         },
         option.headers || {}
       )
@@ -303,6 +304,77 @@ export class StudentApi extends CrudApi {
     const res = await this.exec(url, options);
     if (res.code && res.code === 200) {
       //console.log("res", res);
+      return res;
+    } else {
+      throw res;
+    }
+  }
+  async leave(studentId, isRemoveCard = false, option = {}) {
+    let url = this.baseUrl(`${studentId}/leave`);
+    const query = this._serialize(option.query || {});
+    url += `${query}`;
+    const options = {
+      method: "POST",
+      headers: _.merge(
+        {
+          "User-Agent": "Request-Promise",
+          "Content-Type": "Application/json",
+          "x-token": localStorage.getItem("token")
+        },
+        option.headers || {}
+      ),
+      body: JSON.stringify({
+        isRemoveCard
+      })
+    };
+    const res = await this.exec(url, options);
+    if (res.code && res.code === 200) {
+      return res;
+    } else {
+      throw res;
+    }
+  }
+  async relearn(studentId, body, option = {}) {
+    let url = this.baseUrl(`${studentId}/relearn`);
+    const query = this._serialize(option.query || {});
+    url += `${query}`;
+    const options = {
+      method: "POST",
+      headers: _.merge(
+        {
+          "User-Agent": "Request-Promise",
+          "Content-Type": "Application/json",
+          "x-token": localStorage.getItem("token")
+        },
+        option.headers || {},
+      ),
+      body: JSON.stringify(body)
+    };
+    const res = await this.exec(url, options);
+    if (res.code && res.code === 200) {
+      return res;
+    } else {
+      throw res;
+    }
+  }
+  async addPoint(studentId, body, option = {}) {
+    let url = this.baseUrl(`${studentId}/point`);
+    const query = this._serialize(option.query || {});
+    url += `${query}`;
+    const options = {
+      method: "POST",
+      headers: _.merge(
+        {
+          "User-Agent": "Request-Promise",
+          "Content-Type": "Application/json",
+          "x-token": localStorage.getItem("token")
+        },
+        option.headers || {}
+      ),
+      body: JSON.stringify(body)
+    };
+    const res = await this.exec(url, options);
+    if (res.code && res.code === 200) {
       return res;
     } else {
       throw res;

@@ -29,8 +29,8 @@ export class CreatePackage extends Component {
                 },
                 price: {
                     type: "number",
-                    label: "Giá",
-                    placeholder: "Giá",
+                    label: "Giá thực thu",
+                    placeholder: "Giá thực thu của học viên",
                     value: "",
                     isValid: true,
                     errorMessage: ""
