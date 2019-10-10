@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Router from 'next/router'
+import Router from 'next/router';
 
 import { StepsLine, TinymceEditor } from '../../../../components';
 
@@ -22,15 +22,12 @@ export class AddCourse extends React.Component {
     this.state = {
       pages: [
         {
-          name: 'newCourseInfo',
           isValid: false
         },
         {
-          name: 'tinymceEditor',
           isValid: false
         },
         {
-          name: 'reviewAddCourse',
           isValid: true
         }
       ],
@@ -63,6 +60,7 @@ export class AddCourse extends React.Component {
     this.handleRemoveBenefits = this.handleRemoveBenefits.bind(this);
     this.submitCourse = this.submitCourse.bind(this);
   }
+
   async componentDidMount() {
     var heightOfHeader = $(
       '.addCourse .addCourse__header .headerAdmin__wrapper'
@@ -88,38 +86,19 @@ export class AddCourse extends React.Component {
 
   openPage = function(nextPageNumber) {
     const pages = this.state.pages;
-    // set up page content
-    var i, page, stepBtns;
-    page = document.getElementsByClassName(
-      'addCourse__body__card__content__info'
-    );
-    for (i = 0; i < page.length; i++) {
-      page[i].style.display = 'none';
-    }
-    stepBtns = document.getElementsByClassName('stepsLine__btn');
-    for (i = 0; i < stepBtns.length; i++) {
-      stepBtns[i].style.backgroundColor = '#e1f2f4';
-      stepBtns[i].style.color = '#00a3af';
-    }
-    document.getElementById(pages[nextPageNumber - 1].name).style.display =
-      'block';
-    $('.stepsLine__btn-' + nextPageNumber).css({
-      backgroundColor: '#00a3af',
-      color: '#fff'
-    });
 
     // update curPageNumber
     this.setState({ curPageNumber: nextPageNumber });
 
     // set up for button previous, next
-    if (nextPageNumber == this.state.pages.length) {
+    if (nextPageNumber === pages.length) {
       $('.addCourse__body__card__buttons__btn-next').text('Xác nhận');
     } else {
       $('.addCourse__body__card__buttons__btn-next').html(
         "Tiếp theo<i class='fas fa-chevron-right'></i>"
       );
     }
-    if (nextPageNumber == 1) {
+    if (nextPageNumber === 1) {
       $('.addCourse__body__card__buttons__btn-previous').attr('disabled', true);
     } else {
       $('.addCourse__body__card__buttons__btn-previous').attr(
@@ -131,7 +110,7 @@ export class AddCourse extends React.Component {
 
   handleClickPrevious = function() {
     const curPageNumber = this.state.curPageNumber;
-    let nextPageNumber = curPageNumber - 1;
+    const nextPageNumber = curPageNumber - 1;
     if (nextPageNumber > 0) {
       this.openPage(nextPageNumber);
     }
@@ -141,7 +120,7 @@ export class AddCourse extends React.Component {
     const curPageNumber = this.state.curPageNumber;
     const pages = this.state.pages;
 
-    let nextPageNumber = curPageNumber + 1;
+    const nextPageNumber = curPageNumber + 1;
     if (nextPageNumber <= pages.length) {
       if (this.canOpenPage()) {
         this.openPage(nextPageNumber);
@@ -198,7 +177,10 @@ export class AddCourse extends React.Component {
       })
       .then(async res => {
         await Swal.fire('Thành công', 'Thêm khoá học thành công', 'success');
-        Router.push(`/manager/course/course?courseId=${res.result.object._id}`, `/quan-ly/khoa-hoc/chi-tiet/${res.result.object._id}`)
+        Router.push(
+          `/manager/course/course?courseId=${res.result.object._id}`,
+          `/quan-ly/khoa-hoc/chi-tiet/${res.result.object._id}`
+        );
       })
       .catch(err => {
         console.log('err');
@@ -226,10 +208,14 @@ export class AddCourse extends React.Component {
                   curPageNumber={this.state.curPageNumber}
                 ></StepsLine>
               </div>
+
               <div
-                id="newCourseInfo"
-                className="addCourse__body__card__content__info animated
-                      fadeIn"
+                style={
+                  this.state.curPageNumber === 1
+                    ? { display: 'block' }
+                    : { display: 'none' }
+                }
+                className="addCourse__body__card__content__info animated fadeIn"
               >
                 <NewCourseInfo
                   courseBenefits={this.state.formData.benefits}
@@ -240,10 +226,14 @@ export class AddCourse extends React.Component {
                   pageNumber="1"
                 />
               </div>
+
               <div
-                id="tinymceEditor"
-                className="addCourse__body__card__content__info animated
-                      fadeIn"
+                style={
+                  this.state.curPageNumber === 2
+                    ? { display: 'block' }
+                    : { display: 'none' }
+                }
+                className="addCourse__body__card__content__info animated fadeIn"
               >
                 <TinymceEditor
                   handleChange={this.handleInputForm}
@@ -252,14 +242,19 @@ export class AddCourse extends React.Component {
                   pageNumber="2"
                 ></TinymceEditor>
               </div>
+
               <div
-                id="reviewAddCourse"
-                className="addCourse__body__card__content__info animated
-                      fadeIn"
+                style={
+                  this.state.curPageNumber === 3
+                    ? { display: 'block' }
+                    : { display: 'none' }
+                }
+                className="addCourse__body__card__content__info animated fadeIn"
               >
                 <ReviewAddCourse data={this.state.formData} />
               </div>
             </div>
+
             <div className="addCourse__body__card__buttons">
               <button
                 className="addCourse__body__card__buttons__btn addCourse__body__card__buttons__btn-previous"

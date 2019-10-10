@@ -1,5 +1,5 @@
-import * as React from "react";
-import "./courseOptions.scss";
+import * as React from 'react';
+import './courseOptions.scss';
 
 export class CourseOptions extends React.Component {
   constructor(props) {
@@ -170,11 +170,14 @@ export class CourseOptions extends React.Component {
     };
   }
   handleSelectPackage = (courseId, packageId) => {
-    this.props.handleSelectCoursePackage(courseId, packageId)
-  }
+    this.props.handleSelectCoursePackage(courseId, packageId);
+  };
   handleInputMonth = (courseId, event) => {
-    this.props.handleInputCourseMonthAmount(courseId, Number(event.target.value))
-  }
+    this.props.handleInputCourseMonthAmount(
+      courseId,
+      Number(event.target.value)
+    );
+  };
   render() {
     return (
       <div className="course-options">
@@ -201,7 +204,7 @@ export class CourseOptions extends React.Component {
                           className="course-options__content__course__list-options__option"
                           key={index}
                           onClick={() => {
-                            this.handleSelectPackage(item._id, packageData._id)
+                            this.handleSelectPackage(item._id, packageData._id);
                           }}
                         >
                           <input type="checkbox" />
@@ -211,7 +214,11 @@ export class CourseOptions extends React.Component {
                           <div className="course-options__content__course__list-options__option__discount">
                             <i className="fas fa-tags"></i>
                             {/* {packageData.discount.amount}{packageData.discount.type === "amount" ? " Đồng" : "%"} */}
-                            {new Intl.NumberFormat({ style: 'currency', currency: 'VND' }).format(packageData.discount.amount)}<u>đ</u>
+                            {new Intl.NumberFormat({
+                              style: 'currency',
+                              currency: 'VND'
+                            }).format(packageData.discount.amount)}
+                            <u>đ</u>
                           </div>
                           {/* Giá của gói này
                           <div className="course-options__content__course__list-options__option__discount">
@@ -223,10 +230,12 @@ export class CourseOptions extends React.Component {
                   })}
                   <div className="course-options__content__course__list-options__option--optional">
                     <input
-                      className="course-options__content__course__list-options__option--optional"
                       type="number"
+                      min="1"
                       placeholder="Nhập vào số tháng"
-                      onChange={(event) => { this.handleInputMonth(item._id, event) }}
+                      onChange={event => {
+                        this.handleInputMonth(item._id, event);
+                      }}
                     />
                     {/* <div className="course-options__content__course__list-options__option__discount">
                       <i className="fas fa-tags"></i> {item.pricePerMonth}

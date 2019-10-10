@@ -1,23 +1,162 @@
-import * as React from "react";
-import "./newMemberInfo.scss";
-import { ImageUpload } from "../imageUpload/imageUpload";
+import * as React from 'react';
+import './newMemberInfo.scss';
+import { ImageUpload } from '../imageUpload/imageUpload';
 
 export class NewMemberInfo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
-    this.changeAvatarFile = this.changeAvatarFile.bind(this)
-    this.handleChange = this.handleChange.bind(this)
+    this.state = {
+      form: {
+        cardId: {
+          value: '',
+          isValid: false,
+          errorMessage: ''
+        },
+        firstName: {
+          value: '',
+          isValid: false,
+          errorMessage: ''
+        },
+        lastName: {
+          value: '',
+          isValid: false,
+          errorMessage: ''
+        },
+        phone: {
+          value: '',
+          isValid: false,
+          errorMessage: ''
+        },
+        birthday: {
+          value: '',
+          isValid: false,
+          errorMessage: ''
+        }
+      },
+      validate: {
+        rules: {
+          cardId: {
+            required: true,
+            numberFormat: true
+          },
+          firstName: {
+            required: true
+          },
+          lastName: {
+            required: true
+          },
+          phone: {
+            required: true,
+            numberFormat: true
+          },
+          birthday: {
+            required: true
+          }
+        },
+        messages: {
+          cardId: {
+            required: 'Bắt buộc nhập mã số thẻ',
+            numberFormat: 'Vui lòng nhập mã số thẻ hợp lệ'
+          },
+          firstName: {
+            required: 'Bắt buộc nhập tên'
+          },
+          lastName: {
+            required: 'Bắt buộc nhập họ và tên đệm'
+          },
+          phone: {
+            required: 'Bắt buộc nhập số điện thoại',
+            numberFormat: 'Vui lòng nhập số điện thoại hợp lệ'
+          },
+          birthday: {
+            required: 'Bắt buộc nhập sinh nhật'
+          }
+        }
+      }
+    };
+    this.checkPageValidation = this.checkPageValidation.bind(this);
+    this.changeAvatarFile = this.changeAvatarFile.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(e) {
-    let { name, value } = e.target
-    if (name === "point") value = Number(value)
-    this.props.handleChange("personalInfo", name, value)
+  checkPageValidation() {
+    for (const key in this.state.form) {
+      if (!this.state.form[key].isValid) {
+        return false;
+      }
+    }
+
+    return true;
   }
+
+  handleChange(event) {
+    let { name, value } = event.target;
+    value = value.trim();
+
+    if (name === 'point') value = Number(value);
+
+    this.handleInputValidation(name, value);
+    this.props.handleChange('personalInfo', name, value);
+    this.props.handleIsValid(this.props.pageNumber, this.checkPageValidation());
+  }
+
   changeAvatarFile(file, fileUrl) {
-    this.props.handleChange("personalInfo", "avatar", file)
-    this.props.handleChange("personalInfo", "avatarUrl", fileUrl)
+    this.props.handleChange('personalInfo', 'avatar', file);
+    this.props.handleChange('personalInfo', 'avatarUrl', fileUrl);
+  }
+
+  handleInputValidation = (name, value) => {
+    _.forEach(this.state.validate.rules, (rule, key) => {
+      if (name === key) {
+        if (rule.required && value.length === 0) {
+          this.setState({
+            form: _.merge(this.state.form, {
+              [key]: {
+                value: value,
+                isValid: false,
+                errorMessage: this.state.validate.messages[key].required
+              }
+            })
+          });
+        } else if (
+          rule.numberFormat &&
+          rule.numberFormat === true &&
+          value.length !== 0
+        ) {
+          let isValid = !isNaN(value);
+          this.setState({
+            form: _.merge(this.state.form, {
+              [key]: {
+                value: value,
+                isValid: isValid,
+                errorMessage: isValid
+                  ? ''
+                  : this.state.validate.messages[key].numberFormat
+              }
+            })
+          });
+        } else {
+          this.setState({
+            form: _.merge(this.state.form, {
+              [key]: {
+                value: value,
+                isValid: true,
+                errorMessage: ''
+              }
+            })
+          });
+        }
+        return;
+      }
+    });
+  };
+
+  componentDidMount() {
+    $('.newMemberInfo__input-box--date').datetimepicker({
+      format: 'd/m/Y',
+      timepicker: false,
+      mask: false
+    });
   }
 
   render() {
@@ -25,7 +164,7 @@ export class NewMemberInfo extends React.Component {
       <div className="newMemberInfo">
         <div className="newMemberInfo__title">Thông tin cơ bản</div>
         <hr className="divider" />
-        <form className="newMemberInfo__form" onSubmit={this.submit}>
+        <form className="newMemberInfo__form">
           <div className="newMemberInfo__form__info">
             <div className="newMemberInfo__form__info__item">
               <div className="newMemberInfo__title-text">
@@ -34,21 +173,22 @@ export class NewMemberInfo extends React.Component {
               <input
                 className="newMemberInfo__input-box"
                 placeholder="0123456789"
-                type="number"
-                required
-                ref="cardId"
+                type="text"
                 name="cardId"
                 onChange={this.handleChange}
+                onBlur={this.handleChange}
               />
-
+              <small className="newMemberInfo__form__info__item__error-message">
+                {this.state.form.cardId.errorMessage}
+              </small>
             </div>
             <div className="newMemberInfo__form__info__item">
               <div className="newMemberInfo__title-text">Điểm tích lũy</div>
               <input
                 className="newMemberInfo__input-box"
                 defaultValue={0}
+                min="0"
                 type="number"
-                ref="point"
                 name="point"
                 onChange={this.handleChange}
               />
@@ -59,26 +199,36 @@ export class NewMemberInfo extends React.Component {
           </div>
           <div className="newMemberInfo__form__info">
             <div className="newMemberInfo__form__info__item">
-              <div className="newMemberInfo__title-text">Họ</div>
+              <div className="newMemberInfo__title-text">
+                Họ và tên đệm <span>* (bắt buộc)</span>
+              </div>
               <input
                 className="newMemberInfo__input-box"
                 placeholder="Nguyễn"
                 type="text"
-                ref="firstName"
-                name="firstName"
+                name="lastName"
                 onChange={this.handleChange}
+                onBlur={this.handleChange}
               />
+              <small className="newMemberInfo__form__info__item__error-message">
+                {this.state.form.lastName.errorMessage}
+              </small>
             </div>
             <div className="newMemberInfo__form__info__item">
-              <div className="newMemberInfo__title-text">Tên đệm và tên</div>
+              <div className="newMemberInfo__title-text">
+                Tên <span>* (bắt buộc)</span>
+              </div>
               <input
                 className="newMemberInfo__input-box"
                 placeholder="Văn A"
                 type="text"
-                ref="lastName"
-                name="lastName"
+                name="firstName"
                 onChange={this.handleChange}
+                onBlur={this.handleChange}
               />
+              <small className="newMemberInfo__form__info__item__error-message">
+                {this.state.form.firstName.errorMessage}
+              </small>
             </div>
             <div className="newMemberInfo__form__info__item">
               <div className="newMemberInfo__title-text">
@@ -88,15 +238,28 @@ export class NewMemberInfo extends React.Component {
                 className="newMemberInfo__input-box"
                 placeholder="0123456789"
                 type="text"
-                required
-                ref="phone"
                 name="phone"
                 onChange={this.handleChange}
+                onBlur={this.handleChange}
               />
+              <small className="newMemberInfo__form__info__item__error-message">
+                {this.state.form.phone.errorMessage}
+              </small>
             </div>
             <div className="newMemberInfo__form__info__item">
-              <div className="newMemberInfo__title-text">Sinh nhật</div>
-              <input className="newMemberInfo__input-box" type="date" ref="birthday" name="birthday" onChange={this.handleChange} />
+              <div className="newMemberInfo__title-text">
+                Sinh nhật <span>* (bắt buộc)</span>
+              </div>
+              <input
+                className="newMemberInfo__input-box newMemberInfo__input-box--date"
+                type="text"
+                name="birthday"
+                onChange={this.handleChange}
+                onBlur={this.handleChange}
+              />
+              <small className="newMemberInfo__form__info__item__error-message">
+                {this.state.form.birthday.errorMessage}
+              </small>
             </div>
             <div className="newMemberInfo__form__info__item newMemberInfo__form__info__item--single">
               <div className="newMemberInfo__title-text">Địa chỉ</div>
@@ -104,7 +267,6 @@ export class NewMemberInfo extends React.Component {
                 className="newMemberInfo__input-box"
                 placeholder="số nhà/ đường/ phường/ ..."
                 type="text"
-                ref="address"
                 name="address"
                 onChange={this.handleChange}
               />

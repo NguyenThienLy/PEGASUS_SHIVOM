@@ -1,12 +1,8 @@
-@import "../../default.scss";
+@import '../../default.scss';
 
 .course-options {
-  // box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.04);
-  //   width: 35em;
   width: 100%;
   background-color: #fff;
-  // border-radius: 5px;
-  // font-size: $font-size;
 
   .divider {
     height: 1px;
@@ -15,7 +11,7 @@
     margin: 0px;
   }
 
-  @include e("title") {
+  @include e('title') {
     font-size: 1.1em;
     color: $main-color; //rgba(0, 0, 0, 0.7);
     font-weight: bold;
@@ -25,19 +21,19 @@
     font-family: $font-family-special;
   }
 
-  @include e("content") {
+  @include e('content') {
     list-style: none;
     padding-left: 0;
     margin: 0 0 0 2em;
     padding-bottom: 1em;
 
-    @include e("course") {
+    @include e('course') {
       position: relative;
       border-left: 1px solid rgba(0, 0, 0, 0.1);
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);
       padding: 2em 3em;
 
-      @include e("icon") {
+      @include e('icon') {
         position: absolute;
         left: 0em;
         top: 1.5em;
@@ -56,7 +52,7 @@
         }
       }
 
-      @include e("name") {
+      @include e('name') {
         color: $main-color;
         font-family: $font-family-special;
         font-size: 1em;
@@ -71,18 +67,17 @@
         }
       }
 
-      @include e("list-options") {
+      @include e('list-options') {
         padding-left: 0;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         column-gap: 2em;
         row-gap: 2em;
 
-        @include e("option") {
+        @include e('option') {
           position: relative;
           // padding: 1em 10%;
-          color: $font-color;
-          font-size: 0.9em;
+          color: $color-grey;
           border-radius: 5px;
           border: 1px solid rgba(0, 0, 0, 0.1);
           cursor: pointer;
@@ -94,7 +89,7 @@
             background: lighten($sub-main-color, 25%);
             box-shadow: 1px 1px 5px #ebebeb;
           }
-          & > input[type="checkbox"] {
+          & > input[type='checkbox'] {
             position: absolute;
             left: 0px;
             top: 0px;
@@ -116,14 +111,15 @@
               + .course-options__content__course__list-options__option__name {
             }
           }
-          @include e("name") {
+          @include e('name') {
+            font-size: 0.9em;
             padding: 1em 2em;
           }
-          @include e("discount") {
+          @include e('discount') {
             font-size: 0.8em;
             position: absolute;
             right: -1.5em;
-            top: -0.5em;
+            top: -0.8em;
             color: #fff;
             background-color: #f17300;
             border-radius: 5px;
@@ -133,19 +129,25 @@
               margin-right: 0.2em;
             }
           }
-          @include m("optional") {
-            & > input {
+          @include m('optional') {
+            & > input[type='number'] {
               width: 80%;
               background: #fff;
               color: $color-grey;
               font-family: $font-body;
-              font-size: 0.9em;
+              font-size: 1em;
               border: 1px solid rgba(0, 0, 0, 0.1);
               border-radius: 5px;
               outline: none;
               padding: 1em 10%;
               cursor: pointer;
               transition: 200ms ease;
+              &::-webkit-outer-spin-button,
+              &::-webkit-inner-spin-button {
+                /* display: none; <- Crashes Chrome on hover */
+                -webkit-appearance: none;
+                margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+              }
               &::placeholder {
                 color: $font-color;
                 font-size: 0.9em;
@@ -161,7 +163,7 @@
         }
       }
     }
-    @include e("button") {
+    @include e('button') {
       display: flex;
       justify-content: center;
       padding: 2em 0em 1em;

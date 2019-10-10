@@ -1,7 +1,7 @@
-import * as React from "react";
-import "./newCourseInfo.scss";
+import * as React from 'react';
+import './newCourseInfo.scss';
 
-import { ImageUpload } from '../../../../../../components'
+import { ImageUpload } from '../../../../../../components';
 
 export class NewCourseInfo extends React.Component {
   constructor(props) {
@@ -9,19 +9,19 @@ export class NewCourseInfo extends React.Component {
     this.state = {
       form: {
         name: {
-          value: "",
+          value: '',
           isValid: false,
-          errorMessage: ""
+          errorMessage: ''
         },
         slug: {
-          value: "",
+          value: '',
           isValid: false,
-          errorMessage: ""
+          errorMessage: ''
         },
         shortDescription: {
-          value: "",
+          value: '',
           isValid: false,
-          errorMessage: ""
+          errorMessage: ''
         }
       },
       image: {
@@ -41,13 +41,13 @@ export class NewCourseInfo extends React.Component {
         },
         messages: {
           name: {
-            required: "Bắt buộc nhập tên khóa học"
+            required: 'Bắt buộc nhập tên khóa học'
           },
           slug: {
-            required: "Bắt buộc nhập đường dẫn"
+            required: 'Bắt buộc nhập đường dẫn'
           },
           shortDescription: {
-            required: "Bắt buộc nhập giới thiệu ngắn"
+            required: 'Bắt buộc nhập giới thiệu ngắn'
           }
         }
       }
@@ -56,6 +56,7 @@ export class NewCourseInfo extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.changeImageFile = this.changeImageFile.bind(this);
   }
+
   checkPageValidation() {
     for (const key in this.state.form) {
       if (!this.state.form[key].isValid) {
@@ -69,9 +70,10 @@ export class NewCourseInfo extends React.Component {
 
     return true;
   }
+
   changeImageFile(file, fileUrl) {
-    this.props.handleChange("thumb", file);
-    this.props.handleChange("thumbUrl", fileUrl);
+    this.props.handleChange('thumb', file);
+    this.props.handleChange('thumbUrl', fileUrl);
     this.setState({
       image: _.merge(this.state.image, {
         isValid: true
@@ -79,6 +81,7 @@ export class NewCourseInfo extends React.Component {
     });
     this.props.handleIsValid(this.props.pageNumber, this.checkPageValidation());
   }
+
   handleChange(event) {
     let { name, value } = event.target;
     value = value.trim();
@@ -87,6 +90,7 @@ export class NewCourseInfo extends React.Component {
     this.props.handleChange(name, value);
     this.props.handleIsValid(this.props.pageNumber, this.checkPageValidation());
   }
+
   handleInputValidation = (name, value) => {
     _.forEach(this.state.validate.rules, (rule, key) => {
       if (name === key) {
@@ -106,7 +110,7 @@ export class NewCourseInfo extends React.Component {
               [key]: {
                 value: value,
                 isValid: true,
-                errorMessage: ""
+                errorMessage: ''
               }
             })
           });
@@ -115,6 +119,7 @@ export class NewCourseInfo extends React.Component {
       }
     });
   };
+
   handleRemove(index) {
     this.props.handleRemove(index);
   }
