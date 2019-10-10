@@ -13,6 +13,16 @@ export class StudentController extends CrudController<typeof studentService>{
     constructor() {
         super(studentService);
     }
+    async getListCourseOfStudent(params: {
+        studentId: string
+    }, option: ICrudOption) {
+        const coursesOfStudent = await courseStudentService.model.find({
+            student: params.studentId
+        })
+        return await courseService.getList({
+            filter: { _id: { $in: coursesOfStudent.map((courseOfStudent: CourseStudentModel) => { return courseOfStudent.course }) } }
+        })
+    }
     async addPoint(params: {
         studentId: string
         point: number
@@ -182,6 +192,14 @@ export class StudentController extends CrudController<typeof studentService>{
                     startTime: startTime,
                     endTime: endTime,
                     isPayFee: isPayFee,
+                    history: [{
+                        type: "init",
+                        time: new Date(),
+                        monthAmount: monthAmount,
+                        package: course.package,
+                        fee: course.type === "package" ? packageInfo.price : courseInfo.pricePerMonth * course.monthAmount,
+                        isPayFee: params.isPayFee
+                    }],
                     totalFeeAmount: course.type === "package" ? packageInfo.price : courseInfo.pricePerMonth * course.monthAmount,
                 })
                 results.push(courseStudent)
@@ -222,13 +240,16 @@ export class StudentController extends CrudController<typeof studentService>{
         let packageInfo: PackageModel
         let endTime: string
         let monthAmount: number
+        let feeAmount
         if (params.type === "package") {
             packageInfo = await packageService.getItem({ filter: { _id: params.packageId } })
             endTime = moment(params.startTime).add(packageInfo.monthAmount, "months").format()
             monthAmount = packageInfo.monthAmount
+            feeAmount = packageInfo.price
         } else {
             endTime = moment(params.startTime).add(params.monthAmount, "months").format()
             monthAmount = params.monthAmount
+            feeAmount = params.monthAmount * courseInfo.pricePerMonth
         }
         if (monthAmount >= 3) {
             try {
@@ -248,7 +269,15 @@ export class StudentController extends CrudController<typeof studentService>{
             startTime: params.startTime,
             endTime: endTime,
             totalFeeAmount: params.type === "package" ? packageInfo.price : courseInfo.pricePerMonth * params.monthAmount,
-            isPayFee: params.isPayFee
+            isPayFee: params.isPayFee,
+            history: [{
+                type: "init",
+                time: new Date(),
+                monthAmount: monthAmount,
+                package: params.packageId,
+                fee: feeAmount,
+                isPayFee: params.isPayFee
+            }]
         })
         const studentTimeTable: StudentTimeTableModel = await studentTimeTableService.create({
             course: params.courseId,

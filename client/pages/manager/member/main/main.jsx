@@ -14,7 +14,7 @@ import { action } from '../../../../actions'
 import { api } from '../../../../services'
 import Swal from 'sweetalert2'
 
-import { AddPoint, Relearn, Leave } from './components'
+import { AddPoint, Relearn, Leave, ExtendTimeCourse } from './components'
 
 
 export class MainMember extends React.Component {
@@ -26,7 +26,8 @@ export class MainMember extends React.Component {
             modals: {
                 addPoint: false,
                 leave: false,
-                relearn: false
+                relearn: false,
+                extendTimeCourse: true
             },
             selectedStudentId: null
         }
@@ -38,6 +39,7 @@ export class MainMember extends React.Component {
         this.addPoint = this.addPoint.bind(this)
         this.leave = this.leave.bind(this)
         this.relearn = this.relearn.bind(this)
+        this.extendTimeCourse = this.extendTimeCourse.bind(this)
     }
     shouldComponentUpdate() {
         return true
@@ -154,6 +156,9 @@ export class MainMember extends React.Component {
             selectedStudentId: null
         })
     }
+    extendTimeCourse(body) {
+
+    }
     render() {
         const students = this.state.students ?
             this.state.students :
@@ -174,6 +179,13 @@ export class MainMember extends React.Component {
                     show={this.state.modals.relearn}
                     hideModal={() => { this.showHideModal("relearn") }}
                     relearn={this.relearn}
+                />
+                <ExtendTimeCourse
+                    show={this.state.modals.extendTimeCourse}
+                    hideModal={() => { this.showHideModal("extendTimeCourse") }}
+                    extendTimeCourse={this.extendTimeCourse}
+                    studentId={this.state.selectedStudentId}
+                    {...this.props}
                 />
                 <div className="member-main">
                     <div className="member-main__filter">
@@ -285,7 +297,7 @@ export class MainMember extends React.Component {
 
                         </div>
                         <div className="table__pagination">
-                            <Pagination currentPage={this.state.currentPage} total={50} limit={10} changePage={this.changePage} />
+                            <Pagination currentPage={this.state.currentPage} total={this.props.students.items.length} limit={10} changePage={this.changePage} />
                         </div>
                     </div>
 

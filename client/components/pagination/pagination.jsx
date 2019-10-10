@@ -10,7 +10,9 @@ export class Pagination extends React.Component {
         return (
             <div class="pagination">
                 <ul class="pagination__list">
-                    <li class="disabled">«</li>
+                    <li
+                        onClick={() => { return this.props.changePage(currentPage === 1 ? currentPage : currentPage - 1) }}
+                    >«</li>
                     {Array.apply(null, Array(Math.ceil(total / limit))).map((page, index) => {
 
                         return (
@@ -21,7 +23,9 @@ export class Pagination extends React.Component {
                             </li>
                         )
                     })}
-                    <li>»</li>
+                    <li
+                        onClick={() => { return this.props.changePage(currentPage + 1) }}
+                    >»</li>
                 </ul>
             </div>
         );

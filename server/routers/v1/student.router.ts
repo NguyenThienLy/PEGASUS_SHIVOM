@@ -27,6 +27,19 @@ export default class StudentRouter extends CrudRouter<typeof studentController> 
         this.router.post("/:_id/leave", this.leaveMiddlewares(), this.route(this.leave))
         this.router.post("/:_id/relearn", this.relearnMiddlewares(), this.route(this.relearn))
         this.router.post("/:_id/point", this.addPointMiddlewares(), this.route(this.addPoint))
+        this.router.get("/:_id/course", this.getListCourseOfStudentMiddlewares(), this.route(this.getListCourseOfStudent))
+    }
+    getListCourseOfStudentMiddlewares(): any[] {
+        return [
+            authInfoMiddleware.run(["admin", "student"]),
+            queryInfoMiddleware.run()
+        ]
+    }
+    async getListCourseOfStudent(req: Request, res: Response) {
+        const result = await this.controller.getListCourseOfStudent({
+            studentId: req.params._id
+        }, req.queryInfo)
+        this.onSuccess(res, result)
     }
     addPointMiddlewares(): any[] {
         return [
@@ -143,7 +156,7 @@ export default class StudentRouter extends CrudRouter<typeof studentController> 
                 type: { type: "string", enum: ["package", "monthAmount"] },
                 timeTableIds: { type: "array", items: { type: "string" } }
             },
-            required: ["courseId", "isPayFee", "startTime"],
+            required: ["courseId", "isPayFee", "startTime", "type"],
             additionalProperties: false
         })
         req.body.studentId = req.params._id
