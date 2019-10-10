@@ -126,7 +126,8 @@ const mapDispatchToProps = dispatch => {
             {
                 fetchStudent: action.student.fetch,
                 fetchCourse: action.course.fetch,
-                fetchPackage: action.package.fetch
+                fetchPackage: action.package.fetch,
+
             },
             dispatch
         )

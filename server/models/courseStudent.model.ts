@@ -19,6 +19,14 @@ export type CourseStudentModel = BaseModel & {
     startTime: Date
     endTime: Date
     isPayFee: boolean
+    history: {
+        type: "init" | "extend",
+        time: Date
+        monthAmount: number
+        package: string
+        fee: number
+        isPayFee: boolean
+    }[]
 }
 
 const courseStudentSchema = new Schema({
@@ -36,6 +44,16 @@ const courseStudentSchema = new Schema({
     startTime: { type: Date },
     endTime: { type: Date },
     isPayFee: { type: Boolean, default: false },
+    history: {
+        type: [{
+            type: { type: String, enum: ["init", "extend"], defaultValue: "init" },
+            time: { type: Date },
+            monthAmount: { type: Number },
+            package: { type: String },
+            fee: { type: Number },
+            isPayFee: { type: Boolean }
+        }]
+    },
     status: { type: String, enum: ["active", "deactive"], default: "active" }
 }, { timestamps: true })
 
