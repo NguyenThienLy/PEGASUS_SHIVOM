@@ -26,19 +26,16 @@ export class ExtendTimeCourse extends Component {
     }
 
     componentDidMount() {
-        console.log("student id: ", this.props.studentId)
     }
 
     closeModal() {
         this.props.hideModal();
     }
     submit(body) {
-        console.log(body)
         this.props.hideModal();
-        this.props.extendTimeCourse({
+        this.props.extendTimeCourse(body.courseStudentId, {
             type: body.type,
             package: body.package,
-            courseStudentId: body.courseStudentId,
             monthAmount: body.monthAmount,
             isPayFee: JSON.parse(body.isPayFee)
         });
