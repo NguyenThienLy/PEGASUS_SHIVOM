@@ -156,13 +156,22 @@ export class MainMember extends React.Component {
             selectedStudentId: null
         })
     }
-    extendTimeCourse(body) {
+    extendTimeCourse(courseStudentId, body) {
         console.log("body: ", body)
+        Swal.showLoading()
+        api.courseStudent.extendTimeCourse(courseStudentId, body).then(res => {
+            Swal.fire("Thành công", "Gia hạn thời gian học cho học viên thành công", "success")
+        }).catch(err => {
+            Swal.fire("Thất bại", "Gia hạn thời gian học cho học viên thất bại", "error")
+        })
+        this.setState({
+            selectedStudentId: null
+        })
     }
     render() {
         const students = this.state.students ?
             this.state.students :
-            this.props.students.items.slice(this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10, 10 * this.state.currentPage)
+            (this.props.students.items || []).slice(this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10, 10 * this.state.currentPage)
         return (
             <React.Fragment>
                 <AddPoint
@@ -246,13 +255,13 @@ export class MainMember extends React.Component {
                                                             title="Checkin"
                                                             position="top"
                                                         >
-                                                            <span className="post-remove-button" onClick={() => this.checkin(item._id)}><i class="far fa-check-circle"></i></span>
+                                                            <span className="action-td__item" onClick={() => this.checkin(item._id)}><i class="far fa-check-circle"></i></span>
                                                         </Tooltip>
                                                         <Tooltip
                                                             title="Cộng điểm"
                                                             position="top"
                                                         >
-                                                            <span className="post-remove-button" onClick={() => {
+                                                            <span className="action-td__item" onClick={() => {
                                                                 this.setState({ selectedStudentId: item._id })
                                                                 this.showHideModal("addPoint")
                                                             }}><i class="fas fa-plus-circle"></i></span>
@@ -261,7 +270,7 @@ export class MainMember extends React.Component {
                                                             title="Nghỉ học"
                                                             position="top"
                                                         >
-                                                            <span className="post-remove-button" onClick={() => {
+                                                            <span className="action-td__item" onClick={() => {
                                                                 this.setState({ selectedStudentId: item._id })
                                                                 this.showHideModal("leave")
                                                             }}><i class="fas fa-user-times"></i></span>
@@ -270,22 +279,22 @@ export class MainMember extends React.Component {
                                                             title="Chi tiết"
                                                             position="top"
                                                         >
-                                                            <span className="post-open-button" onClick={() => this.open(item._id)}><i class="fas fa-share-square"></i></span>
+                                                            <span className="action-td__item" onClick={() => this.open(item._id)}><i class="fas fa-share-square"></i></span>
                                                         </Tooltip>
-                                                        <Tooltip
+                                                        {/* <Tooltip
                                                             title="Chỉnh sửa"
                                                             position="top"
                                                         >
-                                                            <span className="post-edit-button" onClick={() => this.edit(item._id)}> <i class="fas fa-pen"></i> </span>
-                                                        </Tooltip>
+                                                            <span className="action-td__item" onClick={() => this.edit(item._id)}> <i class="fas fa-pen"></i> </span>
+                                                        </Tooltip> */}
                                                         <Tooltip
                                                             title="Gia hạn học"
                                                             position="top"
                                                         >
-                                                            <span className="post-edit-button" onClick={() => {
+                                                            <span className="action-td__item" onClick={() => {
                                                                 this.setState({ selectedStudentId: item._id })
                                                                 this.showHideModal("extendTimeCourse")
-                                                            }}> <i class="fas fa-pen"></i> </span>
+                                                            }}> <i class="fas fa-business-time"></i></span>
                                                         </Tooltip>
                                                     </td>
                                                     : <td className="action-td">
@@ -305,7 +314,7 @@ export class MainMember extends React.Component {
 
                         </div>
                         <div className="table__pagination">
-                            <Pagination currentPage={this.state.currentPage} total={this.props.students.items.length} limit={10} changePage={this.changePage} />
+                            <Pagination currentPage={this.state.currentPage} total={(this.props.students.items || []).length} limit={10} changePage={this.changePage} />
                         </div>
                     </div>
 
