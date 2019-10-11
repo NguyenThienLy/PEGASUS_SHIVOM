@@ -27,7 +27,7 @@ export class MainMember extends React.Component {
                 addPoint: false,
                 leave: false,
                 relearn: false,
-                extendTimeCourse: true
+                extendTimeCourse: false
             },
             selectedStudentId: null
         }
@@ -157,7 +157,7 @@ export class MainMember extends React.Component {
         })
     }
     extendTimeCourse(body) {
-
+        console.log("body: ", body)
     }
     render() {
         const students = this.state.students ?
@@ -278,7 +278,15 @@ export class MainMember extends React.Component {
                                                         >
                                                             <span className="post-edit-button" onClick={() => this.edit(item._id)}> <i class="fas fa-pen"></i> </span>
                                                         </Tooltip>
-
+                                                        <Tooltip
+                                                            title="Gia hạn học"
+                                                            position="top"
+                                                        >
+                                                            <span className="post-edit-button" onClick={() => {
+                                                                this.setState({ selectedStudentId: item._id })
+                                                                this.showHideModal("extendTimeCourse")
+                                                            }}> <i class="fas fa-pen"></i> </span>
+                                                        </Tooltip>
                                                     </td>
                                                     : <td className="action-td">
                                                         <button
