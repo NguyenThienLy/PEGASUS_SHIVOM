@@ -26,6 +26,7 @@ import { StatisticStudentApi } from "./apis/statisticStudent";
 import { PackageApi } from "./apis/package";
 import { ImgurApi } from "./imgur";
 import { RoomApi } from "./apis/room";
+import { CourseStudentApi } from './apis/courseStudent'
 
 const crudApi = new CrudApi();
 
@@ -57,6 +58,7 @@ class api {
   static statisticStudent = new StatisticStudentApi();
   static package = new PackageApi()
   static room = new RoomApi()
+  static courseStudent = new CourseStudentApi()
 }
 
 export { crudApi, api };
