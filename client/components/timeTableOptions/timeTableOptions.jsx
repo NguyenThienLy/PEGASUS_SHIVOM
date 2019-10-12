@@ -72,7 +72,16 @@ export class TimeTableOptions extends React.Component {
     this.refreshTimeTable = this.refreshTimeTable.bind(this)
     this.handleChooseTimeTableItem = this.handleChooseTimeTableItem.bind(this)
   }
-  componentDidMount() { }
+  componentDidMount() {
+    const courseIds = this.props.courses.map((course) => { return course._id })
+    if (courseIds.lenght === 0) {
+      this.refreshTimeTable()
+    }
+    else if (!_.isEqual(courseIds.sort(), this.state.currentCourses.sort())) {
+      this.setState({ currentCourses: courseIds })
+      this.fetchData(courseIds)
+    }
+  }
   componentDidUpdate(prevProps) {
     const courseIds = this.props.courses.map((course) => { return course._id })
     if (courseIds.lenght === 0) {

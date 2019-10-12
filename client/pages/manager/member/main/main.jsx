@@ -14,7 +14,7 @@ import { action } from '../../../../actions'
 import { api } from '../../../../services'
 import Swal from 'sweetalert2'
 
-import { AddPoint, Relearn, Leave, ExtendTimeCourse } from './components'
+import { AddPoint, Relearn, Leave, ExtendTimeCourse, RegisNewCourse } from './components'
 
 
 export class MainMember extends React.Component {
@@ -27,7 +27,8 @@ export class MainMember extends React.Component {
                 addPoint: false,
                 leave: false,
                 relearn: false,
-                extendTimeCourse: false
+                extendTimeCourse: false,
+                regisNewCourse: false
             },
             selectedStudentId: null
         }
@@ -40,11 +41,13 @@ export class MainMember extends React.Component {
         this.leave = this.leave.bind(this)
         this.relearn = this.relearn.bind(this)
         this.extendTimeCourse = this.extendTimeCourse.bind(this)
+        this.regisNewCourse = this.regisNewCourse.bind(this)
     }
     shouldComponentUpdate() {
         return true
     }
     showHideModal(key) {
+        console.log("key: ", key)
         this.state.modals[key] = !this.state.modals[key]
         this.setState({ modals: this.state.modals })
     }
@@ -157,12 +160,22 @@ export class MainMember extends React.Component {
         })
     }
     extendTimeCourse(courseStudentId, body) {
-        console.log("body: ", body)
         Swal.showLoading()
         api.courseStudent.extendTimeCourse(courseStudentId, body).then(res => {
             Swal.fire("Thành công", "Gia hạn thời gian học cho học viên thành công", "success")
         }).catch(err => {
             Swal.fire("Thất bại", "Gia hạn thời gian học cho học viên thất bại", "error")
+        })
+        this.setState({
+            selectedStudentId: null
+        })
+    }
+    regisNewCourse(body) {
+        Swal.showLoading()
+        api.student.enrollToCourse(this.state.selectedStudentId, body).then(res => {
+            Swal.fire("Thành công", "Đăng ký khoá học cho học viên thành công", "success")
+        }).catch(err => {
+            Swal.fire("Thất bại", "Đăng ký khoá học cho học viên thất bại", "error")
         })
         this.setState({
             selectedStudentId: null
@@ -193,6 +206,13 @@ export class MainMember extends React.Component {
                     show={this.state.modals.extendTimeCourse}
                     hideModal={() => { this.showHideModal("extendTimeCourse") }}
                     extendTimeCourse={this.extendTimeCourse}
+                    studentId={this.state.selectedStudentId}
+                    {...this.props}
+                />
+                <RegisNewCourse
+                    show={this.state.modals.regisNewCourse}
+                    hideModal={() => { this.showHideModal("regisNewCourse") }}
+                    regisNewCourse={this.regisNewCourse}
                     studentId={this.state.selectedStudentId}
                     {...this.props}
                 />
@@ -295,6 +315,15 @@ export class MainMember extends React.Component {
                                                                 this.setState({ selectedStudentId: item._id })
                                                                 this.showHideModal("extendTimeCourse")
                                                             }}> <i class="fas fa-business-time"></i></span>
+                                                        </Tooltip>
+                                                        <Tooltip
+                                                            title="Đăng ký khoá học"
+                                                            position="top"
+                                                        >
+                                                            <span className="action-td__item" onClick={() => {
+                                                                this.setState({ selectedStudentId: item._id })
+                                                                this.showHideModal("regisNewCourse")
+                                                            }}><i class="fas fa-fist-raised"></i></span>
                                                         </Tooltip>
                                                     </td>
                                                     : <td className="action-td">

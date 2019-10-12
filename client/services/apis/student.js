@@ -259,6 +259,29 @@ export class StudentApi extends CrudApi {
       throw res;
     }
   }
+  async enrollToCourse(studentId, body, option = {}) {
+    let url = this.baseUrl(`${studentId}/enroll`);
+    const query = this._serialize(option.query || {});
+    url += `${query}`;
+    const options = {
+      method: "POST",
+      headers: _.merge(
+        {
+          "User-Agent": "Request-Promise",
+          "Content-Type": "Application/json",
+          "x-token": localStorage.getItem("token")
+        },
+        option.headers || {}
+      ),
+      body: JSON.stringify(body)
+    };
+    const res = await this.exec(url, options);
+    if (res.code && res.code === 200) {
+      return res;
+    } else {
+      throw res;
+    }
+  }
   async sendMailUpcommingPayFee(courseStudentIds, option = {}) {
     let url = this.baseUrl(`sendMailUpcommingPayFee`);
     const query = this._serialize(option.query || {});

@@ -33,8 +33,8 @@ export class ExtendTimeCourse extends Component {
     }
     submit(body) {
         this.props.hideModal();
-        this.props.extendTimeCourse(body.courseStudentId, {
-            type: body.type,
+        this.props.extendTimeCourse(this.state.selectedCourseStudent._id, {
+            type: this.state.selectedType,
             package: body.package,
             monthAmount: body.monthAmount,
             isPayFee: JSON.parse(body.isPayFee)
@@ -173,7 +173,7 @@ export class ExtendTimeCourse extends Component {
                                 },
                                 startTime: {
                                     type: "text",
-                                    label: "Thời gian bắt đầu học",
+                                    label: "Thời gian bắt đầu học hiện tại",
                                     placeholder: moment((this.state.selectedCourseStudent || {}).startTime).format("DD/MM/YYYY"),
                                     value: "",
                                     isValid: true,
@@ -182,7 +182,7 @@ export class ExtendTimeCourse extends Component {
                                 },
                                 endTime: {
                                     type: "text",
-                                    label: "Thời gian kết thúc học",
+                                    label: "Thời gian kết thúc học hiện tại",
                                     placeholder: moment((this.state.selectedCourseStudent || {}).endTime).format("DD/MM/YYYY"),
                                     value: "",
                                     isValid: true,
@@ -258,7 +258,7 @@ export class ExtendTimeCourse extends Component {
                                         required: true
                                     },
                                     monthAmount: {
-                                        required: false
+                                        regexr: /^[+]?\d+([.]\d+)?$/
                                     }
                                 },
                                 messages: {
@@ -266,7 +266,7 @@ export class ExtendTimeCourse extends Component {
                                         required: "Bắt buộc nhập số điểm"
                                     },
                                     monthAmount: {
-                                        required: "Bắt buộc nhập lý do"
+                                        regexr: "Phải nhập số tháng là dương"
                                     }
                                 }
                             }}

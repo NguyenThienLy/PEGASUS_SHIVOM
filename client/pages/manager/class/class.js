@@ -40,6 +40,7 @@ class Class extends Component {
         }
     }
     componentDidMount() {
+        this.checkUserAlreadyLogin()
         this.fetchData()
     }
     fetchData() {
@@ -79,7 +80,7 @@ class Class extends Component {
         }
     }
     render() {
-        this.checkUserAlreadyLogin()
+
         return (
             <div className="manager">
                 <Head>

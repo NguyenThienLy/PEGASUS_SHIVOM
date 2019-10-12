@@ -230,6 +230,7 @@ export class Dashboard extends React.Component {
   handleScroll = () => { };
   componentWillUnmount() { }
   async componentDidMount() {
+    this.checkUserAlreadyLogin()
     // Lấy năm
     // startTime bắt đầu năm hiện tại
     // endTime bắt đầu năm hiện tại
@@ -328,7 +329,7 @@ export class Dashboard extends React.Component {
     }
   }
   render() {
-    this.checkUserAlreadyLogin()
+
     return (
       <div className="dashboard">
         <Head>

@@ -39,6 +39,7 @@ class News extends Component {
         }
     }
     componentDidMount() {
+        this.checkUserAlreadyLogin()
         this.fetchData()
     }
     fetchData() {
@@ -68,7 +69,7 @@ class News extends Component {
         }
     }
     render() {
-        this.checkUserAlreadyLogin()
+
         return (
             <div className="manager">
                 <Head>

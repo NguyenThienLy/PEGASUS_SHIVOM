@@ -34,6 +34,9 @@ class Setting extends Component {
             number: Math.random()
         }
     }
+    componentDidMount() {
+        this.checkUserAlreadyLogin()
+    }
     async checkUserAlreadyLogin() {
         const userType = localStorage.getItem("ut")
         const tokenExpiredAt = localStorage.getItem("exp")
@@ -42,7 +45,7 @@ class Setting extends Component {
         }
     }
     render() {
-        this.checkUserAlreadyLogin()
+
         return (
             <div className="manager">
                 <Head>

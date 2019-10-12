@@ -61,8 +61,6 @@ export class AddClassTimeForm extends React.Component {
     this.toggleTimekeeper = this.toggleTimekeeper.bind(this)
   }
   handleTimeChange(key, time) {
-    console.log("key: ", key)
-    console.log("time: ", time)
     this.setState({
       [key]: {
         show: this.state[key].show,
