@@ -1,4 +1,4 @@
-import { checkinService, courseStudentService, statisticCourseService, utilService } from '../index'
+import { checkinService, courseStudentService, statisticCourseService, utilService, statisticStudentService } from '../index'
 import * as moment from 'moment'
 import * as _ from 'lodash'
 
@@ -21,6 +21,9 @@ export class UpdateStatisticCourseCronJob {
         // const startTime = moment().startOf("days").toDate()
         // const endTime = moment().endOf("days").toDate()
 
+        //console.log("startTime", startTime)
+        //console.log("endTime", endTime)
+
         // Gom nhóm học viên theo khóa học 
         const listCheckin = await checkinService.model.aggregate([
             // Lấy ra danh sách checkin của ngày hôm qua
@@ -34,9 +37,9 @@ export class UpdateStatisticCourseCronJob {
             }
         ])
 
-        //console.log(listCheckin)
+        // console.log(listCheckin[0]._id)
 
-        // Góm nhóm học viên theo type [đúng, trễ, thừa, vắng]
+        // Góm nhóm học viên theo type[đúng, trễ, thừa, vắng]
         // on_time, late, redundant, absent
         for (const course of listCheckin) {
             // Lấy ra danh sách học viên của khóa học đó
@@ -53,12 +56,30 @@ export class UpdateStatisticCourseCronJob {
             //console.log(listStudentTypeLate)
             // Danh sách học viên đi thừa trong ngày
             const listStudentTypeRedundant = listStudentFollowType.redundant || []
-            //console.log(listStudentTypeRedundant)
+            // console.log(listStudentTypeRedundant)
             // Danh sách học viên vắng lấy những học sinh không có trong ds đi học đúng giờ và đi trễ
             const listStudentTypeAbsent = listStudentOfCourse.filter(function (item) {
                 return _.findIndex(_.concat(listStudentTypeOnTime, listStudentTypeLate), { 'student': item.student }) === -1;
             });
-            //console.log(listStudentTypeAbsent)
+
+            /// console.log("  totalAbsent: listStudentTypeAbsent.length,", listStudentTypeAbsent.length)
+
+            // var i = 1
+            // listStudentTypeAbsent.forEach(e => {
+            //     console.log(i++, e.student)
+            // })
+
+            // const temp = await statisticStudentService.model.find({ "type": "week" })
+            // var i = 0;
+            // temp.forEach(e => {
+            //     var a = _.find(course.checkins, { 'student': "5d8225646a259e1e9d5129f0" });
+
+            //     if (a === undefined) {
+            //         console.log(i++, e)
+            //     }
+            // })
+            // var a = _.find(course.checkins, { 'student': Object("5d8225646a259e1e9d5129f0") });
+            // console.log("aaaaaa", a)
 
             // Nếu danh không tồn tại thì sẽ bị lỗi
 
@@ -97,6 +118,7 @@ export class UpdateStatisticCourseCronJob {
         totalOnTime: number,
         totalRedundant: number
     }) {
+
         // Đổi lại cho week thôi
         const tempStartDate = utilService.parseDateToWeekMonthYear(params.startTime)
 

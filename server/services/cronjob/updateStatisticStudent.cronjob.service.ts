@@ -78,12 +78,13 @@ export class UpdateStatisticStudentCronJob {
                 })
             })
 
-            // Cập nhật tổng số ngày vắng
-            this.updateTotalAbsentForStudent({
-                student: student._id,
-                course: student.course,
-                totalAbsent: listStudentFollowType.absent.length
-            })
+            if (listStudentFollowType.absent !== undefined)
+                // Cập nhật tổng số ngày vắng
+                this.updateTotalAbsentForStudent({
+                    student: student._id,
+                    course: student.course,
+                    totalAbsent: listStudentFollowType.absent.length
+                })
         }
     }
 

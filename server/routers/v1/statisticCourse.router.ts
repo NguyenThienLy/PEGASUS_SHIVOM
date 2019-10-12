@@ -11,6 +11,7 @@ export default class StatisticClassRouter extends CrudRouter<typeof statisticCou
     customRouter() {
         this.router.get("/statisticForLineChart/", this.statisticForLineChartMiddlewares(), this.route(this.statisticForLineChart))
         this.router.get("/statisticForPieChart/", this.statisticForPieChartMiddlewares(), this.route(this.statisticForPieChart))
+        this.router.get("/test/", this.route(this.test))
     }
 
     statisticForLineChartMiddlewares(): any[] {
@@ -50,6 +51,13 @@ export default class StatisticClassRouter extends CrudRouter<typeof statisticCou
             additionalProperties: false
         })
         const result = await this.controller.statisticForPieChart(req.query)
+        this.onSuccess(res, result)
+    }
+
+    // Lấy dữ liệu cho khóa học dạng biểu đồ tròn
+    async test(req: Request, res: Response) {
+
+        const result = await this.controller.test(req.query)
         this.onSuccess(res, result)
     }
 
