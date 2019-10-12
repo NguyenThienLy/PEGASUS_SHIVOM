@@ -1,76 +1,48 @@
 import React, { Component } from "react";
 import { Modal } from "../../../../../../modals";
-import "./createPackage.scss"
+import "./addPoint.scss"
 
 import { Form } from '../../../../../../components'
 
-export class CreatePackage extends Component {
+export class AddPoint extends Component {
     constructor(props) {
         super(props);
         this.state = {
             visible: false,
-            title: "Tạo gói",
+            title: "Thêm điểm cho học viên",
             form: {
-                name: {
-                    type: "text",
-                    label: "Tên gói",
-                    placeholder: "Tên gói",
-                    value: "",
-                    isValid: false,
-                    errorMessage: ""
-                },
-                monthAmount: {
+                point: {
                     type: "number",
-                    label: "Số tháng",
-                    placeholder: "Số tháng",
+                    label: "Số điểm",
+                    placeholder: 1,
                     value: 1,
                     isValid: false,
                     errorMessage: ""
                 },
-                price: {
-                    type: "number",
-                    label: "Giá thực thu",
-                    placeholder: "Giá thực thu của học viên",
+                content: {
+                    type: "text",
+                    label: "Lý do",
+                    placeholder: "Lý do thêm điểm",
                     value: "",
-                    isValid: true,
-                    errorMessage: ""
-                },
-                discount: {
-                    type: "number",
-                    label: "Giá giảm",
-                    placeholder: "Giá giảm hiển thị",
-                    value: 0,
                     isValid: false,
                     errorMessage: ""
                 }
             },
             validate: {
                 rules: {
-                    name: {
+                    point: {
                         required: true
                     },
-                    monthAmount: {
-                        required: true
-                    },
-                    price: {
-                        required: true
-                    },
-                    discount: {
+                    content: {
                         required: true
                     }
                 },
                 messages: {
-                    name: {
-                        required: "Bắt buộc nhập tên gói"
+                    point: {
+                        required: "Bắt buộc nhập số điểm"
                     },
-                    monthAmount: {
-                        required: "Bắt buộc nhập số tháng"
-                    },
-                    price: {
-                        required: "Bắt buộc nhập giá"
-                    },
-                    discount: {
-                        required: "Bắt buộc nhập giá giảm"
+                    content: {
+                        required: "Bắt buộc nhập lý do"
                     }
                 }
             }
@@ -86,7 +58,8 @@ export class CreatePackage extends Component {
     }
     submit(body) {
         this.props.hideModal();
-        this.props.createPackage(body);
+
+        this.props.addPoint(body);
     }
 
     render() {

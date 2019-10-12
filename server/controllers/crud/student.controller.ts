@@ -3,8 +3,8 @@ import * as moment from 'moment'
 import * as hash from 'object-hash'
 
 import { CrudController } from '../crud.controller'
-import { studentService, ICrudOption, courseStudentService, classTimeTableService, errorService, classService, checkinService, mailService, tokenService, giftService, giftReceiveService, studentTimeTableService, cacheService, utilService, packageService, courseService } from '../../services'
-import { CourseStudentModel, StudentModel, CourseModel, GiftModel, GiftReceiveModel, StudentTimeTableModel, PackageModel } from '../../models';
+import { studentService, ICrudOption, courseStudentService, classTimeTableService, errorService, classService, checkinService, mailService, tokenService, giftService, giftReceiveService, studentTimeTableService, cacheService, utilService, packageService, courseService, statisticStudentService, activityService } from '../../services'
+import { CourseStudentModel, StudentModel, CourseModel, GiftModel, GiftReceiveModel, StudentTimeTableModel, PackageModel, Promotion } from '../../models';
 import { webhookController } from '..';
 import { replyFeedbackEmail, remindExtendCourseEmail, notifyReceiveGiftEmail } from '../../mailTemplate';
 import { ObjectID } from 'bson';
@@ -13,6 +13,141 @@ export class StudentController extends CrudController<typeof studentService>{
     constructor() {
         super(studentService);
     }
+    async getListCourseOfStudent(params: {
+        studentId: string
+    }, option: ICrudOption) {
+        const coursesOfStudent = await courseStudentService.model.find({
+            student: params.studentId
+        })
+        return await courseService.getList({
+            filter: { _id: { $in: coursesOfStudent.map((courseOfStudent: CourseStudentModel) => { return courseOfStudent.course }) } }
+        })
+    }
+    async addPoint(params: {
+        studentId: string
+        point: number
+        content: string
+    }) {
+        await activityService.create({
+            student: params.studentId,
+            type: "add_point",
+            content: params.content
+        })
+        return await studentService.update({
+            $inc: { point: params.point }
+        }, {
+                filter: {
+                    _id: params.studentId
+                }
+            })
+    }
+    async relearn(params: {
+        studentId: string
+        cardId: boolean
+    }) {
+        const tasks: Promise<any>[] = []
+
+        tasks.push(studentService.update({
+            status: "active",
+            cardId: params.cardId
+        }, {
+                filter: {
+                    _id: params.studentId
+                }
+            }).then(result => {
+                return result
+            }))
+
+
+        tasks.push(studentTimeTableService.update({
+            status: "active"
+        }, {
+                filter: {
+                    student: params.studentId
+                }
+            }).then(result => {
+                return result
+            }))
+        tasks.push(courseStudentService.update({
+            status: "active"
+        }, {
+                filter: {
+                    student: params.studentId
+                }
+            }).then(result => {
+                return result
+            }))
+        tasks.push(statisticStudentService.update({
+            status: "active"
+        }, {
+                filter: {
+                    student: params.studentId
+                }
+            }).then(result => {
+                return result
+            }))
+
+        return await Promise.all(tasks)
+    }
+    async leave(params: {
+        studentId: string
+        isRemoveCard: boolean
+    }) {
+        const tasks: Promise<any>[] = []
+        if (params.isRemoveCard) {
+            tasks.push(studentService.update({
+                status: "deactive",
+                cardId: null
+            }, {
+                    filter: {
+                        _id: params.studentId
+                    }
+                }).then(result => {
+                    return result
+                }))
+        } else {
+            tasks.push(studentService.update({
+                status: "deactive"
+            }, {
+                    filter: {
+                        _id: params.studentId
+                    }
+                }).then(result => {
+                    return result
+                }))
+        }
+
+        tasks.push(studentTimeTableService.update({
+            status: "deactive"
+        }, {
+                filter: {
+                    student: params.studentId
+                }
+            }).then(result => {
+                return result
+            }))
+        tasks.push(courseStudentService.update({
+            status: "deactive"
+        }, {
+                filter: {
+                    student: params.studentId
+                }
+            }).then(result => {
+                return result
+            }))
+        tasks.push(statisticStudentService.update({
+            status: "deactive"
+        }, {
+                filter: {
+                    student: params.studentId
+                }
+            }).then(result => {
+                return result
+            }))
+
+        return await Promise.all(tasks)
+    }
+
     async enroll(params: {
         personalInfo: any
         courses: any[],
@@ -29,12 +164,27 @@ export class StudentController extends CrudController<typeof studentService>{
                 let startTime = course.startTime || moment().format()
                 let endTime
                 let packageInfo: PackageModel
+                let monthAmount
                 const courseInfo: CourseModel = await courseService.getItem({ filter: { _id: course._id } })
                 if (course.type === "package") {
                     packageInfo = await packageService.getItem({ filter: { _id: course.package } })
                     endTime = moment().add(packageInfo.monthAmount, "months").format()
+                    monthAmount = packageInfo.monthAmount
                 } else {
                     endTime = moment().add(course.monthAmount, "months").format()
+                    monthAmount = course.monthAmount
+                }
+                if (monthAmount >= 3) {
+                    try {
+                        studentService.update({ $inc: { point: 10 } }, { filter: { _id: student._id } })
+                        activityService.create({
+                            student: student._id,
+                            type: "enroll_course",
+                            content: "Đăng ký học được cộng điểm"
+                        })
+                    } catch (err) {
+
+                    }
                 }
                 const courseStudent: CourseStudentModel = await courseStudentService.create({
                     student: student._id,
@@ -42,6 +192,14 @@ export class StudentController extends CrudController<typeof studentService>{
                     startTime: startTime,
                     endTime: endTime,
                     isPayFee: isPayFee,
+                    history: [{
+                        type: "init",
+                        time: new Date(),
+                        monthAmount: monthAmount,
+                        package: course.package,
+                        fee: course.type === "package" ? packageInfo.price : courseInfo.pricePerMonth * course.monthAmount,
+                        isPayFee: params.isPayFee
+                    }],
                     totalFeeAmount: course.type === "package" ? packageInfo.price : courseInfo.pricePerMonth * course.monthAmount,
                 })
                 results.push(courseStudent)
@@ -81,11 +239,29 @@ export class StudentController extends CrudController<typeof studentService>{
         const courseInfo: CourseModel = await courseService.getItem({ filter: { _id: params.courseId } })
         let packageInfo: PackageModel
         let endTime: string
+        let monthAmount: number
+        let feeAmount
         if (params.type === "package") {
             packageInfo = await packageService.getItem({ filter: { _id: params.packageId } })
             endTime = moment(params.startTime).add(packageInfo.monthAmount, "months").format()
+            monthAmount = packageInfo.monthAmount
+            feeAmount = packageInfo.price
         } else {
             endTime = moment(params.startTime).add(params.monthAmount, "months").format()
+            monthAmount = params.monthAmount
+            feeAmount = params.monthAmount * courseInfo.pricePerMonth
+        }
+        if (monthAmount >= 3) {
+            try {
+                studentService.update({ $inc: { point: 10 } }, { filter: { _id: params.studentId } })
+                activityService.create({
+                    student: params.studentId,
+                    type: "enroll_course",
+                    content: "Đăng ký học được cộng điểm"
+                })
+            } catch (err) {
+
+            }
         }
         const courseStudent: CourseStudentModel = await courseStudentService.create({
             student: params.studentId,
@@ -93,7 +269,15 @@ export class StudentController extends CrudController<typeof studentService>{
             startTime: params.startTime,
             endTime: endTime,
             totalFeeAmount: params.type === "package" ? packageInfo.price : courseInfo.pricePerMonth * params.monthAmount,
-            isPayFee: params.isPayFee
+            isPayFee: params.isPayFee,
+            history: [{
+                type: "init",
+                time: new Date(),
+                monthAmount: monthAmount,
+                package: params.packageId,
+                fee: feeAmount,
+                isPayFee: params.isPayFee
+            }]
         })
         const studentTimeTable: StudentTimeTableModel = await studentTimeTableService.create({
             course: params.courseId,

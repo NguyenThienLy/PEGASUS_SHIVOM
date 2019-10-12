@@ -31,7 +31,7 @@ export class WebhookControllerHelper {
         return desArray
     }
     getDayOfWeek(timestamps: string) {
-        const day = moment(timestamps).day()
+        const day = moment().utcOffset("+07:00").day()
         switch (day) {
             case 1: return "monday"
             case 2: return "tuesday"

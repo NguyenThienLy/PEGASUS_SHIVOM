@@ -37,7 +37,7 @@ export class WebhookController extends BaseController {
         const checkInAtMinute = moment.unix(Number(timestamps)).utcOffset("+07:00").minute()
         const timestampAtNumber = checkInAtHours * 60 + checkInAtMinute
         // Tìm kiếm thời khoá biểu
-        const dayOfWeek = this.helper.getDayOfWeek(moment(Number(timestamps)).format())
+        const dayOfWeek = this.helper.getDayOfWeek(moment.unix(Number(timestamps)).utcOffset("+07:00").format())
         // let { rows: timeTableItems } = await timeTableItemService.getList({
         //     filter: {
         //         'startAvailableCheckinTime.number': { $lte: timestampAtNumber },
@@ -107,11 +107,20 @@ export class WebhookController extends BaseController {
                 }).then(result => {
                     return result
                 }).catch(async err => {
+                    try {
+                        courseStudent.update({
+                            $inc: {
+                                totalLessonUsed: 1
+                            }
+                        }).exec()
+                    } catch (err) {
+
+                    }
                     return await checkinService.create({
                         student: student._id,
                         class: classTimeTable.class,
                         course: classTimeTable.course,
-                        checkinAt: moment(Number(timestamps)).format(),
+                        checkinAt: moment.unix(Number(timestamps)).utcOffset("+07:00"),
                         timeTableItem: timeTableItem._id,
                         type: checkInType
                     })

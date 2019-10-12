@@ -86,6 +86,9 @@ export class Form extends Component {
                             }
                         })
                     });
+                    if (this.props.form[key].isHandleChange) {
+                        this.props.handleChange(name, value)
+                    }
                 }
                 return;
             }
@@ -100,6 +103,9 @@ export class Form extends Component {
                     }
                 })
             });
+            if (this.props.form[name].isHandleChange) {
+                this.props.handleChange(name, value)
+            }
         }
     };
     changeImageFile(file, fileUrl) {
@@ -117,7 +123,7 @@ export class Form extends Component {
                     onSubmit={this.submit}
                 >
                     {Object.keys(this.props.form).map((keyName, index) => {
-                        if (["text", "number"].indexOf(this.props.form[keyName].type) !== -1) {
+                        if (["text", "number"].indexOf(this.props.form[keyName].type) !== -1 && !this.props.form[keyName].hidden) {
                             return (
                                 <React.Fragment>
                                     <label className="form__body__label">{this.props.form[keyName].label}</label>
@@ -129,6 +135,7 @@ export class Form extends Component {
                                         name={keyName}
                                         onChange={this.handleChange}
                                         onBlur={this.handleChange}
+                                        readOnly={this.props.form[keyName].readonly ? true : false}
                                     />
                                     <small className="form__body__error-message">
                                         {this.props.form[keyName].errorMessage}
@@ -136,7 +143,7 @@ export class Form extends Component {
                                 </React.Fragment>
                             )
                         }
-                        if (["image"].indexOf(this.props.form[keyName].type) !== -1) {
+                        if (["image"].indexOf(this.props.form[keyName].type) !== -1 && !this.props.form[keyName].hidden) {
                             return (
                                 <React.Fragment>
                                     <label className="form__body__label">{this.props.form[keyName].label}</label>
@@ -147,7 +154,7 @@ export class Form extends Component {
                                 </React.Fragment>
                             )
                         }
-                        if (["select"].indexOf(this.props.form[keyName].type) !== -1) {
+                        if (["select"].indexOf(this.props.form[keyName].type) !== -1 && !this.props.form[keyName].hidden) {
                             return (
                                 <React.Fragment>
                                     <label className="form__body__label">{this.props.form[keyName].label}</label>
@@ -165,6 +172,30 @@ export class Form extends Component {
                                             )
                                         })}
                                     </select>
+
+                                    <small className="form__body__error-message">
+                                        {this.props.form[keyName].errorMessage}
+                                    </small>
+                                </React.Fragment>
+                            )
+                        }
+                        if (["radio"].indexOf(this.props.form[keyName].type) !== -1) {
+                            return (
+                                <React.Fragment>
+                                    <label className="form__body__label">{this.props.form[keyName].label}</label>
+                                    {this.props.form[keyName].options.map((option, index) => {
+                                        return (
+                                            <div>
+                                                <input
+                                                    type="radio"
+                                                    name={keyName}
+                                                    value={option.value}
+                                                    onChange={this.handleChange}
+                                                    onBlur={this.handleChange}
+                                                />{option.name}
+                                            </div>
+                                        )
+                                    })}
 
                                     <small className="form__body__error-message">
                                         {this.props.form[keyName].errorMessage}

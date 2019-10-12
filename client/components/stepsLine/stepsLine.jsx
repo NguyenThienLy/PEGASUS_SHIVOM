@@ -1,31 +1,35 @@
 import * as React from 'react';
 import './stepsLine.scss';
 
-export class StepsLine extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      listData: []
-    };
-  }
-
-  handleClick = index => {
+export function StepsLine(props) {
+  const handleClick = index => {
     let number = index + 1;
-    if (number > this.props.curPageNumber) {
-      if (this.props.canOpenPage()) {
-        this.props.openPage(number);
+    if (number > props.curPageNumber) {
+      if (props.canOpenPage()) {
+        props.openPage(number);
       }
     } else {
-      this.props.openPage(number);
+      props.openPage(number);
     }
   };
 
-  componentDidMount() {
+  const createStepsLine = () => {
     let listData = [];
-    for (let i = 0; i < this.props.stepQuantity; i++) {
+    for (let i = 0; i < props.stepQuantity; i++) {
       let data = (
         <button
-          onClick={() => this.handleClick(i)}
+          style={
+            props.curPageNumber === i + 1
+              ? {
+                  backgroundColor: '#00a3af',
+                  color: '#fff'
+                }
+              : {
+                  backgroundColor: '#e1f2f4',
+                  color: '#00a3af'
+                }
+          }
+          onClick={() => handleClick(i)}
           className={`stepsLine__btn stepsLine__btn-${i + 1}`}
         >
           {i + 1}
@@ -34,31 +38,13 @@ export class StepsLine extends React.Component {
       let line = <div className="stepsLine__line"></div>;
 
       listData.push(data);
-      if (i !== this.props.stepQuantity - 1) {
+      if (i !== props.stepQuantity - 1) {
         listData.push(line);
       }
     }
-    this.setState({ listData });
 
-    $(window).on('load', function() {
-      $('.stepsLine__btn-1').click();
-    });
-  }
+    return listData;
+  };
 
-  render() {
-    return (
-      <div className="stepsLine">
-        {this.state.listData.map(item => {
-          return item;
-        })}
-        {/* <button className="stepsLine__btn">1</button>
-        <div className="stepsLine__line"></div>
-        <button className="stepsLine__btn">2</button>
-        <div className="stepsLine__line"></div>
-        <button className="stepsLine__btn">3</button>
-        <div className="stepsLine__line"></div>
-        <button className="stepsLine__btn">4</button> */}
-      </div>
-    );
-  }
+  return <div className="stepsLine">{createStepsLine()}</div>;
 }

@@ -1,15 +1,15 @@
-@import "../../default.scss";
+@import '../../default.scss';
 
 .stepsLine {
   display: flex;
   justify-content: center;
   align-items: center;
-  @include e("line") {
+  @include e('line') {
     height: 2px;
     width: 20%;
     background-color: lighten($sub-main-color, 25%);
   }
-  @include e("btn") {
+  @include e('btn') {
     width: 2.5em;
     height: 2.5em;
     background-color: lighten($sub-main-color, 25%);
@@ -25,5 +25,11 @@
     outline: none;
     margin: 0;
     box-shadow: 1px 1px 5px #ebebeb;
+    cursor: pointer;
+    transition: all 200ms ease;
+    &:hover {
+      background-color: $main-color;
+      color: #fff;
+    }
   }
 }

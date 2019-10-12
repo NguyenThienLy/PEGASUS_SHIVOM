@@ -21,9 +21,11 @@ export default class CourseStudentRouter extends CrudRouter<typeof courseStudent
             type: "object",
             properties: {
                 isPayFee: { type: "boolean" },
-                endTime: { type: "string", format: "date-time" }
+                type: { type: "string", enum: ["package", "monthAmount"] },
+                package: { type: "string" },
+                monthAmount: { type: "number" }
             },
-            required: ["isPayFee", "endTime"],
+            required: ["isPayFee", "type"],
             additionalProperties: false
         })
         req.body.courseStudentId = req.params._id

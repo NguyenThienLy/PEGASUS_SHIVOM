@@ -13,11 +13,21 @@ import Swal from 'sweetalert2'
 
 import { action } from '../../../../actions'
 import { api } from '../../../../services'
+import { Pagination } from '../../../../components'
 
 export class MainClass extends React.Component {
     constructor(props) {
         super(props);
         this.changeStatus = this.changeStatus.bind(this)
+        this.state = {
+            currentPage: 1
+        }
+        this.changePage = this.changePage.bind(this)
+    }
+    changePage(pageNum) {
+        this.setState({
+            currentPage: pageNum
+        })
     }
     shouldComponentUpdate() {
         return true
@@ -70,6 +80,7 @@ export class MainClass extends React.Component {
     }
 
     render() {
+        const courses = this.props.courses.items.slice(this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10, 10 * this.state.currentPage)
         return (
             <React.Fragment>
                 <div className="member-main">
@@ -90,12 +101,11 @@ export class MainClass extends React.Component {
                                         <th>Trạng thái</th>
                                         <th>Thao tác</th>
                                     </tr>
-                                    {this.props.classes.items.map((item, index) => {
+                                    {courses.map((item, index) => {
 
                                         return (
                                             <tr key={item.id}>
                                                 <td>{index + 1}</td>
-
                                                 <td>{item.name}</td>
                                                 <td>{item.shortDescription}</td>
                                                 <td>{item.status === "active" ? "Hoạt động" : "Không hoạt động"}</td>
@@ -137,6 +147,9 @@ export class MainClass extends React.Component {
                                     })}
                                 </tbody>
                             </table>
+                        </div>
+                        <div className="table__pagination">
+                            <Pagination currentPage={this.state.currentPage} total={this.props.courses.items.length} limit={10} changePage={this.changePage} />
                         </div>
                     </div>
                 </div>

@@ -120,15 +120,20 @@ const mapStateToProps = state => {
     return state;
 };
 
-const mapDispatchToProps = dispatch =>
-    bindActionCreators(
-        {
-            fetchStudent: action.student.fetch,
-            fetchCourse: action.course.fetch,
-            fetchPackage: action.package.fetch
-        },
-        dispatch
-    );
+const mapDispatchToProps = dispatch => {
+    return {
+        dispatch, ...bindActionCreators(
+            {
+                fetchStudent: action.student.fetch,
+                fetchCourse: action.course.fetch,
+                fetchPackage: action.package.fetch,
+
+            },
+            dispatch
+        )
+    }
+}
+
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Member);

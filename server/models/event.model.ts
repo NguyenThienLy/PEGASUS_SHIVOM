@@ -4,10 +4,13 @@ import { BaseModel } from './base.model';
 const Schema = mongoose.Schema;
 
 export type EventModel = BaseModel & {
-
+    payload: any
 }
 
 const eventSchema = new Schema({
+    payload: {
+        type: Schema.Types.Mixed
+    },
     status: { type: String, enum: ["active", "deactive"], default: "active" }
 }, { timestamps: true })
 

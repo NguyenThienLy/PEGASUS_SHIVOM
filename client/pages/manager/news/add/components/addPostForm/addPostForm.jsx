@@ -1,6 +1,6 @@
-import * as React from "react";
-import "./addPostForm.scss";
-import { ImageUpload, TinymceEditor } from "../../../../../../components";
+import * as React from 'react';
+import './addPostForm.scss';
+import { ImageUpload, TinymceEditor } from '../../../../../../components';
 
 export class AddPostForm extends React.Component {
   constructor(props) {
@@ -8,34 +8,34 @@ export class AddPostForm extends React.Component {
     this.state = {
       form: {
         title: {
-          value: "",
+          value: '',
           isValid: false,
-          errorMessage: ""
+          errorMessage: ''
         },
         slug: {
-          value: "",
+          value: '',
           isValid: false,
-          errorMessage: ""
+          errorMessage: ''
         },
         description: {
-          value: "",
+          value: '',
           isValid: false,
-          errorMessage: ""
+          errorMessage: ''
         },
         metaTitle: {
-          value: "",
+          value: '',
           isValid: false,
-          errorMessage: ""
+          errorMessage: ''
         },
         metaDescription: {
-          value: "",
+          value: '',
           isValid: false,
-          errorMessage: ""
+          errorMessage: ''
         },
         category: {
-          value: "",
+          value: '',
           isValid: false,
-          errorMessage: ""
+          errorMessage: ''
         }
       },
       image: {
@@ -67,22 +67,22 @@ export class AddPostForm extends React.Component {
         },
         messages: {
           title: {
-            required: "Bắt buộc nhập tiêu đề bài viết"
+            required: 'Bắt buộc nhập tiêu đề bài viết'
           },
           slug: {
-            required: "Bắt buộc nhập đường dẫn"
+            required: 'Bắt buộc nhập đường dẫn'
           },
           description: {
-            required: "Bắt buộc nhập giới thiệu ngắn"
+            required: 'Bắt buộc nhập giới thiệu ngắn'
           },
           metaTitle: {
-            required: "Bắt buộc nhập tiêu đề SEO"
+            required: 'Bắt buộc nhập tiêu đề SEO'
           },
           metaDescription: {
-            required: "Bắt buộc nhập mô tả SEO"
+            required: 'Bắt buộc nhập mô tả SEO'
           },
           category: {
-            required: "Bắt buộc chọn chuyên mục"
+            required: 'Bắt buộc chọn chuyên mục'
           }
         }
       }
@@ -93,6 +93,7 @@ export class AddPostForm extends React.Component {
     this.handleChangeContent = this.handleChangeContent.bind(this);
     this.handleIsValidContent = this.handleIsValidContent.bind(this);
   }
+
   checkFormValidation() {
     for (const key in this.state.form) {
       if (!this.state.form[key].isValid) {
@@ -106,9 +107,10 @@ export class AddPostForm extends React.Component {
 
     return true;
   }
+
   changeImageFile(file, fileUrl) {
-    this.props.handleChange("thumb", file);
-    this.props.handleChange("thumbUrl", fileUrl);
+    this.props.handleChange('thumb', file);
+    this.props.handleChange('thumbUrl', fileUrl);
     this.setState({
       image: _.merge(this.state.image, {
         isValid: true
@@ -116,6 +118,7 @@ export class AddPostForm extends React.Component {
     });
     this.props.handleIsValid(this.props.pageNumber, this.checkFormValidation());
   }
+
   handleChange(event) {
     let { name, value } = event.target;
     value = value.trim();
@@ -124,10 +127,12 @@ export class AddPostForm extends React.Component {
     this.props.handleChange(name, value);
     this.props.handleIsValid(this.props.pageNumber, this.checkFormValidation());
   }
+
   handleChangeContent(name, value) {
     this.props.handleChange(name, value);
     this.props.handleIsValid(this.props.pageNumber, this.checkFormValidation());
   }
+
   handleIsValidContent(pageNumber, isValid) {
     this.setState({
       content: _.merge(this.state.content, {
@@ -135,6 +140,7 @@ export class AddPostForm extends React.Component {
       })
     });
   }
+
   handleInputValidation = (name, value) => {
     _.forEach(this.state.validate.rules, (rule, key) => {
       if (name === key) {
@@ -154,7 +160,7 @@ export class AddPostForm extends React.Component {
               [key]: {
                 value: value,
                 isValid: true,
-                errorMessage: ""
+                errorMessage: ''
               }
             })
           });

@@ -24,8 +24,78 @@ export default class StudentRouter extends CrudRouter<typeof studentController> 
         this.router.post("/:_id/sendGift", this.sendGiftMiddlewares(), this.route(this.sendGift))
         this.router.post("/:_id/enroll", this.enrollToCourseMiddlewares(), this.route(this.enrollToCourse))
         this.router.post("/enroll", this.enrollMiddlewares(), this.route(this.enroll))
+        this.router.post("/:_id/leave", this.leaveMiddlewares(), this.route(this.leave))
+        this.router.post("/:_id/relearn", this.relearnMiddlewares(), this.route(this.relearn))
+        this.router.post("/:_id/point", this.addPointMiddlewares(), this.route(this.addPoint))
+        this.router.get("/:_id/course", this.getListCourseOfStudentMiddlewares(), this.route(this.getListCourseOfStudent))
     }
-
+    getListCourseOfStudentMiddlewares(): any[] {
+        return [
+            authInfoMiddleware.run(["admin", "student"]),
+            queryInfoMiddleware.run()
+        ]
+    }
+    async getListCourseOfStudent(req: Request, res: Response) {
+        const result = await this.controller.getListCourseOfStudent({
+            studentId: req.params._id
+        }, req.queryInfo)
+        this.onSuccess(res, result)
+    }
+    addPointMiddlewares(): any[] {
+        return [
+            authInfoMiddleware.run(["admin"])
+        ]
+    }
+    async addPoint(req: Request, res: Response) {
+        await this.validateJSON(req.body, {
+            type: "object",
+            properties: {
+                point: { type: "number" },
+                content: { type: "string" }
+            },
+            additionalProperties: false,
+            required: ["point", "content"]
+        })
+        req.body.studentId = req.params._id
+        const result = await this.controller.addPoint(req.body)
+        this.onSuccess(res, result)
+    }
+    relearnMiddlewares(): any[] {
+        return [
+            authInfoMiddleware.run(["admin"])
+        ]
+    }
+    async relearn(req: Request, res: Response) {
+        await this.validateJSON(req.body, {
+            type: "object",
+            properties: {
+                cardId: { type: "string" }
+            },
+            additionalProperties: false,
+            required: ["cardId"]
+        })
+        req.body.studentId = req.params._id
+        const result = await this.controller.relearn(req.body)
+        this.onSuccess(res, result)
+    }
+    leaveMiddlewares(): any[] {
+        return [
+            authInfoMiddleware.run(["admin"])
+        ]
+    }
+    async leave(req: Request, res: Response) {
+        await this.validateJSON(req.body, {
+            type: "object",
+            properties: {
+                isRemoveCard: { type: "boolean" }
+            },
+            additionalProperties: false,
+            required: ["isRemoveCard"]
+        })
+        req.body.studentId = req.params._id
+        const result = await this.controller.leave(req.body)
+        this.onSuccess(res, result)
+    }
     enrollMiddlewares(): any[] {
         return [
             authInfoMiddleware.run(["admin"])
@@ -86,7 +156,7 @@ export default class StudentRouter extends CrudRouter<typeof studentController> 
                 type: { type: "string", enum: ["package", "monthAmount"] },
                 timeTableIds: { type: "array", items: { type: "string" } }
             },
-            required: ["courseId", "isPayFee", "startTime"],
+            required: ["courseId", "isPayFee", "startTime", "type"],
             additionalProperties: false
         })
         req.body.studentId = req.params._id

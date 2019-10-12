@@ -38,6 +38,7 @@ import { GiftReceiveService } from './crud/giftReceive.crud.service'
 import { GalleryService } from './crud/gallery.crud.service'
 import { TesmonialService } from './crud/tesmonial.crud.service'
 import { MasonryHomeService } from './crud/masonryHome.crud.service'
+import { ActivityService } from './crud/activity.crud.service'
 
 
 const utilService = new UtilService()
@@ -78,6 +79,7 @@ const giftReceiveService = new GiftReceiveService()
 const galleryService = new GalleryService()
 const tesmonialService = new TesmonialService()
 const masonryHomeService = new MasonryHomeService()
+const activityService = new ActivityService()
 
 
 export {
@@ -119,5 +121,6 @@ export {
     giftReceiveService,
     galleryService,
     tesmonialService,
-    masonryHomeService
+    masonryHomeService,
+    activityService
 }

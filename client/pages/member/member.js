@@ -1,12 +1,12 @@
-import * as React from "react";
+import * as React from 'react';
 
-import Head from "next/head";
-import { connect } from "react-redux";
-import * as moment from "moment";
-import { action } from "../../actions";
-import { bindActionCreators } from "redux";
+import Head from 'next/head';
+import { connect } from 'react-redux';
+import * as moment from 'moment';
+import { action } from '../../actions';
+import { bindActionCreators } from 'redux';
 
-import "./member.scss";
+import './member.scss';
 import {
   Header,
   Footer,
@@ -17,7 +17,7 @@ import {
   Activity,
   Feedback,
   Loading
-} from "../../components";
+} from '../../components';
 
 export class Member extends React.Component {
   constructor(props) {
@@ -27,40 +27,40 @@ export class Member extends React.Component {
       numberAdmins: [
         {
           icon: '<i className="fas fa-id-card-alt"></i>',
-          about: "Đi đúng giờ",
+          about: 'Đi đúng giờ',
           quantity: 184,
-          colorIcon: "#f5365c"
+          colorIcon: '#f5365c'
         },
         {
           icon: '<i className="fas fa-id-card-alt"></i>',
-          about: "Đi trễ",
+          about: 'Đi trễ',
           quantity: 60,
-          colorIcon: "#fb6340"
+          colorIcon: '#fb6340'
         },
         {
           icon: '<i className="fas fa-id-card-alt"></i>',
-          about: "Vắng",
+          about: 'Vắng',
           quantity: 24,
-          colorIcon: "#ffd600"
+          colorIcon: '#ffd600'
         },
         {
           icon: '<i className="fas fa-id-card-alt"></i>',
-          about: "Đi thừa",
+          about: 'Đi thừa',
           quantity: 13,
-          colorIcon: "#11cdef"
+          colorIcon: '#11cdef'
         }
       ],
       newStudent: {
-        nameTable: "Học viên mới tham gia",
-        content: "vừa nhập học"
+        nameTable: 'Học viên mới tham gia',
+        content: 'vừa nhập học'
       },
       columnChartData: {
         labels: null,
         datasets: [
           {
-            label: "Số học viên",
+            label: 'Số học viên',
             data: null,
-            backgroundColor: "rgba(75, 192, 192, 0.6)"
+            backgroundColor: 'rgba(75, 192, 192, 0.6)'
           }
         ],
         isEmpty: true
@@ -71,10 +71,10 @@ export class Member extends React.Component {
           {
             data: null,
             backgroundColor: [
-              "rgba(255, 99, 132, 0.6)",
-              "rgba(255, 206, 86, 0.6)",
-              "rgba(75, 192, 192, 0.6)",
-              "rgba(153, 102, 255, 0.6)"
+              'rgba(255, 99, 132, 0.6)',
+              'rgba(255, 206, 86, 0.6)',
+              'rgba(75, 192, 192, 0.6)',
+              'rgba(153, 102, 255, 0.6)'
             ]
           }
         ],
@@ -89,10 +89,10 @@ export class Member extends React.Component {
 
   fetchData = (startTime, endTime) => {
     const token =
-      "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M";
+      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M';
     this.props.fetchPieChart(
       null,
-      "year",
+      'year',
       `${startTime}Z`,
       `${endTime}Z`,
       token
@@ -100,13 +100,13 @@ export class Member extends React.Component {
     this.props.fetchColumnChart(null, `${startTime}Z`, `${endTime}Z`, token);
     this.props.fetchNewStudent({
       query: {
-        filter: { status: "active" },
+        filter: { status: 'active' },
         limit: 10,
         order: { createdAt: -1 }
       },
       //fields: ["avatar","firstName", "lastName", "createdAt"],
       headers: {
-        "x-token": token
+        'x-token': token
       }
     });
     if (this.props.courses.items.length === 0) {
@@ -135,15 +135,15 @@ export class Member extends React.Component {
     // endTime bắt đầu năm hiện tại
     this.fetchData(
       moment()
-        .startOf("year")
-        .format("YYYY-MM-DD HH:mm:ss"),
+        .startOf('year')
+        .format('YYYY-MM-DD HH:mm:ss'),
       moment()
-        .endOf("year")
-        .format("YYYY-MM-DD HH:mm:ss")
+        .endOf('year')
+        .format('YYYY-MM-DD HH:mm:ss')
     );
 
-    $(".member__body__chart__content__filter__form__input").datetimepicker({
-      format: "d/m/Y",
+    $('.member__body__chart__content__filter__form__input').datetimepicker({
+      format: 'd/m/Y',
       timepicker: false,
       mask: false
     });
@@ -239,6 +239,7 @@ export class Member extends React.Component {
         <Head>
           <title>Trang học viên</title>
           <meta name="title" content="Trang học viên" />
+          <meta name="robots" content="noindex" />
           <meta
             name="description"
             content="Trang học viên trung tâm yoga Hiệp Hòa"
