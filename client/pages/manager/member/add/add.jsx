@@ -26,7 +26,7 @@ export class AddMember extends React.Component {
           isValid: false
         },
         {
-          isValid: false
+          isValid: true
         },
         {
           isValid: true
@@ -299,6 +299,7 @@ export class AddMember extends React.Component {
                 <CourseOptions
                   courses={this.props.courses.items}
                   packages={this.props.package.items}
+                  selectedCourses={this.state.formData.courses}
                   handleSelectCoursePackage={this.handleSelectCoursePackage}
                   handleInputCourseMonthAmount={
                     this.handleInputCourseMonthAmount

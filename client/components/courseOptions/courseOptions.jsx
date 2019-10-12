@@ -169,14 +169,49 @@ export class CourseOptions extends React.Component {
       // ]
     };
   }
+  checkPageValidation() {
+    if (this.props.selectedCourses.length === 0) {
+      return false;
+    }
+
+    return true;
+  }
   handleSelectPackage = (courseId, packageId) => {
-    this.props.handleSelectCoursePackage(courseId, packageId);
+    if ($(`.option_${courseId}_${packageId}`).prop('checked')) {
+      // unselect option month
+      $(`.option_month_${courseId}`).val(null);
+      $(`.option_month_${courseId}`).css({
+        backgroundColor: '#fff',
+        border: '1px solid rgba(0, 0, 0, 0.1)',
+        color: '#363738'
+      });
+
+      this.props.handleSelectCoursePackage(courseId, packageId);
+    }
+
+    this.props.handleIsValid(this.props.pageNumber, this.checkPageValidation());
   };
   handleInputMonth = (courseId, event) => {
-    this.props.handleInputCourseMonthAmount(
-      courseId,
-      Number(event.target.value)
-    );
+    let month = Number(event.target.value.trim());
+    if (month !== 0) {
+      $(event.target).css({
+        backgroundColor: '#e1f2f4',
+        border: '1px solid #e1f2f4',
+        color: '#00a3af'
+      });
+      // uncheck option
+      $(`.option_${courseId}`).prop('checked', false);
+    } else {
+      event.target.value = null;
+      $(event.target).css({
+        backgroundColor: '#fff',
+        border: '1px solid rgba(0, 0, 0, 0.1)',
+        color: '#363738'
+      });
+    }
+
+    this.props.handleInputCourseMonthAmount(courseId, month);
+    this.props.handleIsValid(this.props.pageNumber, this.checkPageValidation());
   };
   render() {
     return (
@@ -184,9 +219,12 @@ export class CourseOptions extends React.Component {
         <div className="course-options__title">Chọn khoá học</div>
         <hr className="divider" />
         <div className="course-options__content">
-          {this.props.courses.map((item, index) => {
+          {this.props.courses.map((item, courseIndex) => {
             return (
-              <div className="course-options__content__course" key={index}>
+              <div
+                className="course-options__content__course"
+                key={courseIndex}
+              >
                 <div className="course-options__content__course__icon">
                   <i className="fab fa-pagelines"></i>
                 </div>
@@ -197,17 +235,20 @@ export class CourseOptions extends React.Component {
                   </span>
                 </div>
                 <div className="course-options__content__course__list-options">
-                  {this.props.packages.map((packageData, index) => {
+                  {this.props.packages.map((packageData, packageIndex) => {
                     if (packageData.course === item._id) {
                       return (
                         <div
                           className="course-options__content__course__list-options__option"
-                          key={index}
+                          key={packageIndex}
                           onClick={() => {
                             this.handleSelectPackage(item._id, packageData._id);
                           }}
                         >
-                          <input type="checkbox" />
+                          <input
+                            className={`option_${item._id} option_${item._id}_${packageData._id}`}
+                            type="checkbox"
+                          />
                           <div className="course-options__content__course__list-options__option__name">
                             {packageData.name}
                           </div>
@@ -230,8 +271,9 @@ export class CourseOptions extends React.Component {
                   })}
                   <div className="course-options__content__course__list-options__option--optional">
                     <input
+                      className={`option_month_${item._id}`}
                       type="number"
-                      min="1"
+                      min="0"
                       placeholder="Nhập vào số tháng"
                       onChange={event => {
                         this.handleInputMonth(item._id, event);

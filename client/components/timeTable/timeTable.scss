@@ -108,7 +108,7 @@ $background-table-header-color: lighten($sub-main-color, 25%);
           padding: 0;
           &:nth-child(1) {
             vertical-align: middle;
-            padding: 0 0.2em;
+            padding: 1em 0.2em;
           }
           .time-table__table-events__class-time {
             color: $font-color;

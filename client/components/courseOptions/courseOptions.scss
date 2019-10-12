@@ -105,7 +105,6 @@
               background: lighten($sub-main-color, 25%);
               border: 1px solid lighten($sub-main-color, 25%);
               color: $main-color;
-              box-shadow: none;
             }
             &:not(:checked)
               + .course-options__content__course__list-options__option__name {
@@ -153,9 +152,9 @@
                 font-size: 0.9em;
               }
               &:hover {
-                border: 1px solid lighten($sub-main-color, 25%);
-                color: $main-color;
-                background: lighten($sub-main-color, 25%);
+                border: 1px solid lighten($sub-main-color, 25%) !important; // because it does set css via jquery
+                color: $main-color !important;
+                background: lighten($sub-main-color, 25%) !important;
                 box-shadow: 1px 1px 5px #ebebeb;
               }
             }

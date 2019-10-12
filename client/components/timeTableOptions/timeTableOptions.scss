@@ -1,4 +1,4 @@
-@import "../../default.scss";
+@import '../../default.scss';
 
 $font-size-table-content: 0.9em;
 $hover-color: darken($sub-main-color, 10%);
@@ -15,7 +15,7 @@ $background-table-header-color: lighten($sub-main-color, 25%);
     margin: 0px;
   }
 
-  @include e("title") {
+  @include e('title') {
     font-size: 1.1em;
     color: $main-color; //rgba(0, 0, 0, 0.7);
     font-weight: bold;
@@ -24,7 +24,7 @@ $background-table-header-color: lighten($sub-main-color, 25%);
     padding: 1em 0;
     font-family: $font-family-special;
   }
-  @include e("table-events") {
+  @include e('table-events') {
     margin: 2em 1em 0;
     table,
     th,
@@ -54,13 +54,17 @@ $background-table-header-color: lighten($sub-main-color, 25%);
           vertical-align: top;
           &:nth-child(1) {
             vertical-align: middle;
+            padding: 0 0.2em;
           }
           .time-table-options__table-events__class-time {
             color: $font-color;
           }
           .time-table-options__table-events__class-info {
             position: relative;
-            & > input[type="checkbox"] {
+            &:not(:nth-child(1)) {
+              border-top: 1px solid $table-border-color;
+            }
+            & > input[type='checkbox'] {
               position: absolute;
               left: 0px;
               top: 0px;
@@ -83,32 +87,32 @@ $background-table-header-color: lighten($sub-main-color, 25%);
               }
               &:not(:checked)
                 + .time-table-options__table-events__class-info__wrapper {
-                background-color: #fff;
-                .time-table-options__table-events__class-info__wrapper__class-name {
-                  color: $color-grey;
-                }
-                .time-table-options__table-events__class-info__wrapper__class-teacher {
-                  color: $font-color;
-                }
+                // background-color: #fff;
+                // .time-table-options__table-events__class-info__wrapper__class-name {
+                //   color: $color-grey;
+                // }
+                // .time-table-options__table-events__class-info__wrapper__class-teacher {
+                //   color: $font-color;
+                // }
               }
             }
-            @include e("wrapper") {
+            @include e('wrapper') {
               display: flex;
               flex-direction: column;
               padding: 1em 1em;
               position: relative;
-              @include e("class-name") {
+              @include e('class-name') {
                 color: $color-grey;
                 text-decoration: none;
                 font-weight: 500;
                 margin-bottom: 1em;
               }
-              @include e("class-teacher") {
+              @include e('class-teacher') {
                 color: $font-color;
               }
             }
-            @include e("my-tooltip") {
-              @include e("content") {
+            @include e('my-tooltip') {
+              @include e('content') {
                 max-width: fit-content;
                 top: 0;
                 left: 50%;
@@ -134,7 +138,7 @@ $background-table-header-color: lighten($sub-main-color, 25%);
                   height: 8px;
                   overflow: hidden;
                   &::after {
-                    content: "";
+                    content: '';
                     position: absolute;
                     width: 8px;
                     height: 8px;
@@ -156,7 +160,7 @@ $background-table-header-color: lighten($sub-main-color, 25%);
       }
     }
   }
-  @include e("button") {
+  @include e('button') {
     display: flex;
     justify-content: center;
     padding: 2em 0em 1em;
