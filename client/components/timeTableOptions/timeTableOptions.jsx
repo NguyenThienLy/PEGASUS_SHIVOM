@@ -1,32 +1,32 @@
-import * as React from "react";
-import "./timeTableOptions.scss";
-import { HoverDivAnimation } from "../hoverDivAnimation/hoverDivAnimation";
+import * as React from 'react';
+import './timeTableOptions.scss';
+import { HoverDivAnimation } from '../hoverDivAnimation/hoverDivAnimation';
 
-import * as _ from "lodash";
+import * as _ from 'lodash';
 
-import { api } from '../../services'
+import { api } from '../../services';
 
 export class TimeTableOptions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       dayOfWeekMapping: [
-        "monday",
-        "tuesday",
-        "wednesday",
-        "thursday",
-        "friday",
-        "saturday",
-        "sunday"
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',
+        'sunday'
       ],
       dayOfWeekVietnamese: [
-        "Thứ hai",
-        "Thứ ba",
-        "Thứ tư",
-        "Thứ năm",
-        "Thứ sáu",
-        "Thứ bảy",
-        "Chủ nhật"
+        'Thứ hai',
+        'Thứ ba',
+        'Thứ tư',
+        'Thứ năm',
+        'Thứ sáu',
+        'Thứ bảy',
+        'Chủ nhật'
       ],
       timeTableListData: {
         monday: [],
@@ -68,28 +68,30 @@ export class TimeTableOptions extends React.Component {
       },
       currentCourses: []
     };
-    this.fetchData = this.fetchData.bind(this)
-    this.refreshTimeTable = this.refreshTimeTable.bind(this)
-    this.handleChooseTimeTableItem = this.handleChooseTimeTableItem.bind(this)
+    this.fetchData = this.fetchData.bind(this);
+    this.refreshTimeTable = this.refreshTimeTable.bind(this);
+    this.handleChooseTimeTableItem = this.handleChooseTimeTableItem.bind(this);
   }
   componentDidMount() {
-    const courseIds = this.props.courses.map((course) => { return course._id })
-    if (courseIds.lenght === 0) {
-      this.refreshTimeTable()
-    }
-    else if (!_.isEqual(courseIds.sort(), this.state.currentCourses.sort())) {
-      this.setState({ currentCourses: courseIds })
-      this.fetchData(courseIds)
+    const courseIds = this.props.courses.map(course => {
+      return course._id;
+    });
+    if (courseIds.length === 0) {
+      this.refreshTimeTable();
+    } else if (!_.isEqual(courseIds.sort(), this.state.currentCourses.sort())) {
+      this.setState({ currentCourses: courseIds });
+      this.fetchData(courseIds);
     }
   }
   componentDidUpdate(prevProps) {
-    const courseIds = this.props.courses.map((course) => { return course._id })
-    if (courseIds.lenght === 0) {
-      this.refreshTimeTable()
-    }
-    else if (!_.isEqual(courseIds.sort(), this.state.currentCourses.sort())) {
-      this.setState({ currentCourses: courseIds })
-      this.fetchData(courseIds)
+    const courseIds = this.props.courses.map(course => {
+      return course._id;
+    });
+    if (courseIds.length === 0) {
+      this.refreshTimeTable();
+    } else if (!_.isEqual(courseIds.sort(), this.state.currentCourses.sort())) {
+      this.setState({ currentCourses: courseIds });
+      this.fetchData(courseIds);
     }
   }
   refreshTimeTable() {
@@ -133,20 +135,36 @@ export class TimeTableOptions extends React.Component {
         }
       },
       currentCourses: []
-    })
+    });
+  }
+  checkPageValidation() {
+    let isValid = true;
+
+    for (var selectedCourse of this.props.courses) {
+      if (selectedCourse.timeTables.length === 0) {
+        isValid = false;
+        break;
+      }
+    }
+
+    return isValid;
   }
   handleChooseTimeTableItem(courseId, timeTableItemId) {
-    this.props.handleChooseTimeTableItem(courseId, timeTableItemId)
+    this.props.handleChooseTimeTableItem(courseId, timeTableItemId);
+    this.props.handleIsValid(this.props.pageNumber, this.checkPageValidation());
   }
   async fetchData(courseIds) {
-
-    const { results: { objects: { rows: timeTables } } } = await api.course.getAllTimeTable({
+    const {
+      results: {
+        objects: { rows: timeTables }
+      }
+    } = await api.course.getAllTimeTable({
       query: {
         filter: {
           course: { $in: courseIds }
         }
       }
-    })
+    });
     let timeTableData = {
       morning: {
         monday: [],
@@ -189,18 +207,23 @@ export class TimeTableOptions extends React.Component {
       const className = timeTable.class.name;
       const teacherName = timeTable.class.teacher
         ? timeTable.class.teacher.firstName +
-        " " +
-        timeTable.class.teacher.lastName
+          ' ' +
+          timeTable.class.teacher.lastName
         : null;
 
       timeTable.items.forEach(item => {
         let data = [
-          <div className="time-table-options__table-events__class-info" onClick={() => { this.handleChooseTimeTableItem(timeTable.course._id, item._id) }}>
+          <div
+            className="time-table-options__table-events__class-info"
+            onClick={() => {
+              this.handleChooseTimeTableItem(timeTable.course._id, item._id);
+            }}
+          >
             <input type="checkbox" name="placeholder" />
             <div className="time-table-options__table-events__class-info__wrapper time-table-options__table-events__class-info__my-tooltip">
               <div className="time-table-options__table-events__class-info__my-tooltip__content">
                 {item.endTime.number - item.startTime.number} phút
-               <i />
+                <i />
               </div>
               <div
                 className="time-table-options__table-events__class-info__wrapper__class-name"
@@ -209,16 +232,15 @@ export class TimeTableOptions extends React.Component {
               >
                 {courseName} <br />
                 {item.startTime.hour}:
-              {item.startTime.minute === 0 ? "00" : item.startTime.minute} -{" "}
+                {item.startTime.minute === 0 ? '00' : item.startTime.minute} -{' '}
                 {item.endTime.hour}:
-              {item.endTime.minute === 0 ? "00" : item.endTime.minute}
+                {item.endTime.minute === 0 ? '00' : item.endTime.minute}
               </div>
               <div className="time-table-options__table-events__class-info__wrapper__class-teacher">
                 {teacherName}
               </div>
             </div>
-          </div>,
-          <hr className="divider" />
+          </div>
         ];
         // let listItemData = (
         //   <div
