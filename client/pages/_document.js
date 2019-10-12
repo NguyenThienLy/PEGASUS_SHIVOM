@@ -41,6 +41,7 @@ class MyDocument extends Document {
           <link rel="stylesheet" type="text/css" href="/css/nprogress.css" />
           <link rel="stylesheet" type="text/css" href="/css/tippy.css" />
           <link rel="stylesheet" type="text/css" href="/css/dayPicker.css" />
+          <link rel="stylesheet" type="text/css" href="/css/react-datepicker.css" />
           <link
             rel="https://fonts.googleapis.com/css?family=Merriweather:400,700"
             media="screen"

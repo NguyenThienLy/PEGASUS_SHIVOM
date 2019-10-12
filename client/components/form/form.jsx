@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import "./form.scss"
 
-import { ImageUpload } from '../index'
+import { ImageUpload, TimePickerModal } from '../index'
+import DatePicker from "react-datepicker"
+import * as moment from 'moment'
 
 export class Form extends Component {
     constructor(props) {
@@ -16,12 +18,19 @@ export class Form extends Component {
     checkFormValid() {
         for (const key in this.props.form) {
             if (!this.props.form[key].isValid) {
+                console.log("key khong valid: ", this.props.form[key])
                 return false;
             }
         }
         return true;
     }
-    componentDidMount() { }
+    componentDidMount() {
+        $('.newMemberInfo__input-box--date').datetimepicker({
+            format: 'd/m/Y',
+            timepicker: false,
+            mask: false
+        });
+    }
     submit(e) {
         e.preventDefault();
         if (this.checkFormValid()) {
@@ -41,6 +50,7 @@ export class Form extends Component {
         }
     }
     handleChange = event => {
+
         let { name, value } = event.target;
         value = value.trim();
         this.handleInputValidation(name, value);
@@ -111,8 +121,9 @@ export class Form extends Component {
     changeImageFile(file, fileUrl) {
         this.handleInputValidation(this.keyName, file)
     }
+
     render() {
-        const { show } = this.props;
+
         return (
             <div class="form">
                 <div>
@@ -131,7 +142,7 @@ export class Form extends Component {
                                         type={this.props.form[keyName].type}
                                         placeholder={this.props.form[keyName].placeholder}
                                         className="form__body__input"
-                                        ref="name"
+                                        ref={keyName}
                                         name={keyName}
                                         onChange={this.handleChange}
                                         onBlur={this.handleChange}
@@ -203,14 +214,48 @@ export class Form extends Component {
                                 </React.Fragment>
                             )
                         }
+                        if (["datetime"].indexOf(this.props.form[keyName].type) !== -1) {
+
+                            return (
+                                <React.Fragment>
+                                    <label className="form__body__label">{this.props.form[keyName].label}</label>
+                                    {/* <input
+                                        type="text"
+                                        placeholder={this.props.form[keyName].placeholder}
+                                        className="form__body__input newMemberInfo__input-box newMemberInfo__input-box--date"
+                                        ref={keyName}
+                                        name={keyName}
+                                        onChange={this.handleChange}
+                                        onBlur={this.handleChange}
+                                    /> */}
+
+                                    <DatePicker
+                                        className="form__body__input"
+                                        selected={moment(this.props.form[keyName].value).toDate()}
+                                        onChange={(date) => {
+                                            return this.handleInputValidation(keyName, moment(date).format())
+                                        }}
+                                        showTimeSelect
+                                        timeFormat="HH:mm"
+                                        timeIntervals={15}
+                                        dateFormat="dd/MM/yyyy"
+                                        timeCaption="time"
+                                    />
+                                    {/* <TimePickerModal varName="endTime" time={this.props.form[keyName].value} show={this.props.form[keyName].show} hideModal={this.toggleTimekeeper} handleTimeChange={this.handleTimeChange} /> */}
+                                    <small className="form__body__error-message">
+                                        {this.props.form[keyName].errorMessage}
+                                    </small>
+                                </React.Fragment>
+                            )
+                        }
                     })
                     }
                     <button
                         type="submit"
                         className="form__body__btn form__body__btn--primary"
                     >
-                        gửi
-                        </button>
+                        {this.props.buttonTitle || "Gửi"}
+                    </button>
                 </form>
             </div>
         );
