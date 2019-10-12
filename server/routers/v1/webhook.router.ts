@@ -3,7 +3,7 @@ import * as _ from 'lodash';
 import { BaseRouter, Request, Response } from '../base';
 import { CrudController, webhookController } from '../../controllers/index'
 import { queryInfoMiddleware, checkinMiddleware } from '../../middlewares'
-import { tokenService } from '../../services';
+import { tokenService, eventService } from '../../services';
 
 export default class WebhookRouter extends BaseRouter {
     router: express.Router;
@@ -22,6 +22,13 @@ export default class WebhookRouter extends BaseRouter {
         ]
     }
     async checkin(req: Request, res: Response) {
+        try {
+            eventService.create({
+                payload: req.checkInPayload
+            })
+        } catch (err) {
+
+        }
         const result = await webhookController.onCheckInEvent(req.checkInPayload)
         this.onSuccess(res, result)
     }
