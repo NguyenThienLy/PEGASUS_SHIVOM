@@ -35,6 +35,7 @@ export class WebhookController extends BaseController {
         const { student, timestamps, isFromAdmin = false } = params
         const checkInAtHours = moment.unix(Number(timestamps)).utcOffset("+07:00").hours()
         const checkInAtMinute = moment.unix(Number(timestamps)).utcOffset("+07:00").minute()
+        const checkInTime = moment.unix(Number(timestamps)).utcOffset("+07:00").format()
         const timestampAtNumber = checkInAtHours * 60 + checkInAtMinute
         // Tìm kiếm thời khoá biểu
         const dayOfWeek = this.helper.getDayOfWeek(moment.unix(Number(timestamps)).utcOffset("+07:00").format())
@@ -52,13 +53,15 @@ export class WebhookController extends BaseController {
                         endTimeNumber: "$endTime.number",
                         startAvailableCheckinTimeNumber: "$startAvailableCheckinTime.number",
                         dayOfWeek: 1,
-                        startTime: 1
+                        startTime: 1,
+                        status: 1
                     }
                 }, {
                     $match: {
                         'startAvailableCheckinTimeNumber': { $lte: timestampAtNumber },
                         'endTimeNumber': { $gte: timestampAtNumber },
-                        dayOfWeek
+                        dayOfWeek,
+                        status: "active"
                     }
                 }, {
                     $sort: {
@@ -89,24 +92,30 @@ export class WebhookController extends BaseController {
                         course: classTimeTable.course
                     }
                 })
+                const startAvailableCheckinTime = moment(checkInTime).hour(Math.floor(timeTableItem.startAvailableCheckinTimeNumber / 60)).minute(timeTableItem.startAvailableCheckinTimeNumber % 60).utcOffset("+07:00").format()
+                const endTime = moment(checkInTime).hour(Math.floor(timeTableItem.endTimeNumber / 60)).minute(timeTableItem.endTimeNumber % 60).utcOffset("+07:00").format()
+
                 const checkInType = await this.helper.getCheckinType({
                     timestampAtNumber: timestampAtNumber,
                     student,
                     courseId: classTimeTable.course as string,
-                    timeTableItem: timeTableItem
+                    timeTableItem: timeTableItem,
+                    checkInTime
                 })
-
-                // Neu da checkin vao lich nay roi thi khong tao nua
                 const checkinData = await checkinService.getItem({
                     filter: {
                         student: student._id,
                         class: classTimeTable.class,
                         course: classTimeTable.course,
-                        timeTableItem: timeTableItem._id
+                        timeTableItem: timeTableItem._id,
+                        checkinAt: {
+                            $gte: startAvailableCheckinTime, $lte: endTime
+                        }
                     }
                 }).then(result => {
                     return result
                 }).catch(async err => {
+
                     try {
                         courseStudent.update({
                             $inc: {

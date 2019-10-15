@@ -46,18 +46,20 @@ export class WebhookControllerHelper {
         timestampAtNumber: number
         timeTableItem: TimeTableItemModel
         student: StudentModel
-        courseId: string
+        courseId: string,
+        checkInTime: string
     }) {
-        const { timestampAtNumber, timeTableItem, student, courseId } = params
-        console.log(timeTableItem)
-        const startDay = moment().utcOffset("+07:00").startOf("days").format()
+        const { timestampAtNumber, timeTableItem, student, courseId, checkInTime } = params
+        const startDay = moment(checkInTime).utcOffset("+07:00").startOf("days").format()
+        const endDay = moment(checkInTime).utcOffset("+07:00").endOf("days").format()
         const minuteDiff = timestampAtNumber - timeTableItem.startTime.number
         let checkInType: string
         const { rows: lastCheckinInDay } = await checkinService.getList({
             filter: {
                 student: student._id,
                 course: courseId,
-                checkinAt: { $gte: startDay }
+                checkinAt: { $gte: startDay, $lte: endDay },
+                type: { $ne: "absent" }
             }
         })
         if (lastCheckinInDay.length > 0) {
