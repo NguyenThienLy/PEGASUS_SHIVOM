@@ -10,8 +10,8 @@ import "./feedbackAdmin.scss";
 export class FeedbackAdmin extends React.Component {
   constructor(props) {
     super(props);
-    this.onConfirmFeedbacks = this.onConfirmFeedbacks.bind(this);
-    this.onIgnoreFeedbacks = this.onIgnoreFeedbacks.bind(this);
+    this.updateConfirmFeedbacks = this.updateConfirmFeedbacks.bind(this);
+    this.updateIgnoreFeedbacks = this.updateIgnoreFeedbacks.bind(this);
   }
 
   updateConfirmFeedbacks(feedback) {
@@ -23,7 +23,7 @@ export class FeedbackAdmin extends React.Component {
     };
 
     this.props.updateConfirmFeedbacks(feedback._id, body);
-    //this.forceUpdate()
+    this.forceUpdate()
   }
 
   updateIgnoreFeedbacks(feedback) {
@@ -32,7 +32,7 @@ export class FeedbackAdmin extends React.Component {
     };
 
     this.props.updateIgnoreFeedbacks(feedback._id, body);
-    //this.forceUpdate()
+    this.forceUpdate()
   }
 
   render() {

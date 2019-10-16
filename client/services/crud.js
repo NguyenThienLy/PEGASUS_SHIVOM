@@ -144,7 +144,6 @@ export class CrudApi {
   }
 
   async update(id, body, option = {}) {
-    console.log("id: ", id)
     let url = this.baseUrl(id);
     const query = this._serialize(option.query || {});
     url += `${query}`;

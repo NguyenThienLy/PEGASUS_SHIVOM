@@ -10,7 +10,7 @@ export default class FeedbackRouter extends CrudRouter<typeof feedbackController
     }
     customRouter() {
         this.router.post("/:_id/reply", this.replyFeedbackMiddlewares(), this.route(this.replyFeedback))
-        this.router.put("/:_id", this.updateConfirmFeedbackMiddlewares(), this.route(this.updateConfirmFeedback))
+        this.router.put("/:_id/updateConfirmFeedbacks", this.updateConfirmFeedbackMiddlewares(), this.route(this.updateConfirmFeedback))
     }
 
     replyFeedbackMiddlewares(): any[] {

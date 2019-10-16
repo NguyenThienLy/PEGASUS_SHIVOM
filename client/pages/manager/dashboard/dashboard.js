@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { api } from "../../../services";
 import { action } from "../../../actions";
 import { bindActionCreators } from "redux";
+import Swal from 'sweetalert2'
 
 import "./dashboard.scss";
 import {
@@ -229,13 +230,33 @@ export class Dashboard extends React.Component {
   };
 
   updateIgnoreFeedbacks(id, body) {
+    // Swal.showLoading()
+    // this.props.updateIgnoreFeedbacks(id, body).then(res => {
+    //   Swal.fire("Thành công", "Bỏ qua phản hồi thành công", "success")
+    // }).catch(err => {
+    //   Swal.fire("Thất bại", "Bỏ qua phản hồi thất bại", "error")
+    // })
+
     this.props.updateIgnoreFeedbacks(id, body)
     this.forceUpdate()
   };
 
-  updateConfirmFeedbacks(id) {
+  updateConfirmFeedbacks(id, body) {
+    //Swal.showLoading()
+
     this.props.updateConfirmFeedbacks(id, body)
     this.forceUpdate()
+
+    // if (this.props.updateConfirmFeedbacks(id, body).isUpdateSuccess &&
+    //   this.props.updateConfirmFeedbacks(id, body).isDeleteSuccess)
+    //   Swal.fire("Thành công", "Xác nhận phản hồi thành công", "success")
+    // else
+    //   Swal.fire("Thất bại", "Xác nhận phản hồi thất bại", "error")
+    // then(res => {
+    //   Swal.fire("Thành công", "Xác nhận phản hồi thành công", "success")
+    // }).catch(err => {
+    //   Swal.fire("Thất bại", "Xác nhận phản hồi thất bại", "error")
+    // })
   }
 
   handleScroll = () => { };
@@ -479,7 +500,7 @@ const mapDispatchToProps = dispatch =>
       fetchNewStudent: action.student.fetchForNewStudents,
       fetchTopPoint: action.student.fetchForTopPoint,
       fetchFeedBack: action.feedback.fetch,
-      updateIgnoreFeedbacks: action.feedback.updateIgroneFeedbacks,
+      updateIgnoreFeedbacks: action.feedback.updateIgnoreFeedbacks,
       updateConfirmFeedbacks: action.feedback.updateConfirmFeedbacks
     },
     dispatch

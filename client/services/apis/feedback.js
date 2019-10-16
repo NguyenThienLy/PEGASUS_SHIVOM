@@ -30,7 +30,7 @@ export class FeedbackApi extends CrudApi {
         }
     }
     async updateConfirmFeedbacks(feedbackId, body, option = {}) {
-        let url = this.baseUrl(`${feedbackId}`);
+        let url = this.baseUrl(`${feedbackId}/updateConfirmFeedbacks`);
         const query = this._serialize(option.query || {});
         url += `${query}`;
         const options = {
