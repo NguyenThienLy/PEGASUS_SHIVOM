@@ -16,7 +16,6 @@ export class StudentAction extends BaseAction {
       this.api
         .statisticForColumnChart(course, startTime, endTime, token)
         .then(res => {
-          //console.log("res", res);
           dispatch({
             type: `FETCHCOLUMNCHART_${this.name}_SUCCESS`,
             payload: res.result.object
@@ -73,8 +72,8 @@ export class StudentAction extends BaseAction {
           // Xử lí dữ liệu chuẩn
           let i = 1;
           res.results.objects.rows.forEach(element => {
-            element.suport = element.point + " điểm";
-            element.header = "top " + i++;
+            element.suport = "Đã tích: " + element.point + " điểm";
+            element.header = "Top " + i++;
           });
 
           dispatch({
@@ -107,7 +106,7 @@ export class StudentAction extends BaseAction {
               "years"
             );
             element.suport =
-              "Ngày sinh: " + moment(element.birthday).format("L");
+              "Sinh nhật: " + moment(element.birthday).format("L");
             element.header = day.diff(moment(), "days") + " ngày nữa";
           });
 

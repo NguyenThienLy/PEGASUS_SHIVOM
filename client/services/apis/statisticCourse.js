@@ -15,7 +15,7 @@ export class StatisticCourseApi extends CrudApi {
       endTime
     });
     url += `${query}`;
-    console.log("Lineurl", url);
+
     const options = {
       method: "GET",
       headers: _.merge({
@@ -26,7 +26,6 @@ export class StatisticCourseApi extends CrudApi {
     };
     const res = await this.exec(url, options);
     if (res.code && res.code === 200) {
-      //console.log("res", res);
       return res;
     } else {
       throw res;

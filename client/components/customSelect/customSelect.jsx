@@ -10,15 +10,7 @@ export class CustomSelect extends React.Component {
   }
 
   onChange(index) {
-    // console.log(
-    //   "startTime",
-    //   moment()
-    //     .year(this.props.customSelect.options[index])
-    //     .startOf("year")
-    //     .format("YYYY-MM-DDTHH:mm:ss")
-    // );
-
-    this.props.fetchData(
+    this.props.fetchDataFollowYear(
       moment()
         .year(this.props.customSelect.options[index])
         .startOf("year")

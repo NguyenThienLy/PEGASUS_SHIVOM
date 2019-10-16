@@ -36,7 +36,7 @@ export default class FeedbackRouter extends CrudRouter<typeof feedbackController
     }
     getItemMiddlewares(): any[] {
         return [
-            //  authInfoMiddleware.run(["admin", "student"]),
+            authInfoMiddleware.run(["admin", "student"]),
             queryInfoMiddleware.run()
         ]
     }
@@ -47,7 +47,7 @@ export default class FeedbackRouter extends CrudRouter<typeof feedbackController
     }
     updateMiddlewares(): any[] {
         return [
-            authInfoMiddleware.run(["student"]),
+            authInfoMiddleware.run(["admin", "student"]),
             queryInfoMiddleware.run()
         ]
     }

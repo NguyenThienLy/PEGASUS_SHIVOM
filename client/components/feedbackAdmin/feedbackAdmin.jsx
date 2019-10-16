@@ -1,54 +1,88 @@
 import * as React from "react";
 import * as moment from "moment";
+import { Loading } from "../../components";
+
+import { api } from '../../services'
+import Swal from 'sweetalert2'
 
 import "./feedbackAdmin.scss";
 
 export class FeedbackAdmin extends React.Component {
   constructor(props) {
     super(props);
+    this.onConfirmFeedbacks = this.onConfirmFeedbacks.bind(this);
+    this.onIgnoreFeedbacks = this.onIgnoreFeedbacks.bind(this);
   }
-  render() {
-    const { feedbackAdmins, staticContent, timeKey } = this.props;
-    //const { nameTable } = this.props;
 
-    // console.log("activities", activities);
+  updateConfirmFeedbacks(feedback) {
+    const body = {
+      studentId: feedback.student._id,
+      isReply: true,
+      content: "Phản hồi về chất lượng dịch vụ",
+      point: 1
+    };
+
+    this.props.updateConfirmFeedbacks(feedback._id, body);
+    //this.forceUpdate()
+  }
+
+  updateIgnoreFeedbacks(feedback) {
+    const body = {
+      isReply: true
+    };
+
+    this.props.updateIgnoreFeedbacks(feedback._id, body);
+    //this.forceUpdate()
+  }
+
+  render() {
+    const { feedbackAdmins, staticContent, isFetching } = this.props;
+
     return (
       <div className="feedbackAdmin">
         <div className="feedbackAdmin__title">{staticContent.nameTable}</div>
         <hr className="divider" />
-        <ul className="feedbackAdmin__actions">
-          {feedbackAdmins.map((feedbackAdmin, index) => {
-            return (
-              <li className="feedbackAdmin__actions__detail" key={index}>
-                <div className="feedbackAdmin__actions__detail__img">
-                  <img src={(feedbackAdmin.student || {}).avatar}></img>
-                </div>
-                <div className="feedbackAdmin__actions__detail__content">
-                  <div className="feedbackAdmin__actions__detail__content__time">
-                    {moment().diff(feedbackAdmin.createdAt, "days") +
-                      " ngày trước"}
+        {!feedbackAdmins.length && !isFetching && "Dữ liệu trống"}
+        {isFetching && !feedbackAdmins.length && <Loading />}
+        {!isFetching && feedbackAdmins.length && (
+          <ul className="feedbackAdmin__actions">
+            {feedbackAdmins.map((feedbackAdmin, index) => {
+              return (
+                <li className="feedbackAdmin__actions__detail" key={index}>
+                  <div className="feedbackAdmin__actions__detail__img">
+                    <img src={(feedbackAdmin.student || {}).avatar}></img>
                   </div>
-                  <div className="feedbackAdmin__actions__detail__content__time">
-                    {(feedbackAdmin.student || {}).firstName}{" "}
-                    {(feedbackAdmin.student || {}).lastName}
-                    {" ("}
-                    {(feedbackAdmin.student || {}).point}
-                    {" điểm)"}
+                  <div className="feedbackAdmin__actions__detail__content">
+                    <div className="feedbackAdmin__actions__detail__content__time">
+                      {moment().diff(feedbackAdmin.createdAt, "days") +
+                        " ngày trước"}
+                    </div>
+                    <div className="feedbackAdmin__actions__detail__content__time">
+                      {(feedbackAdmin.student || {}).firstName}{" "}
+                      {(feedbackAdmin.student || {}).lastName}
+                      {" ("}
+                      {(feedbackAdmin.student || {}).point}
+                      {" điểm)"}
+                    </div>
+                    <div className="feedbackAdmin__actions__detail__content__text">
+                      {feedbackAdmin.content}
+                    </div>
                   </div>
-                  <div className="feedbackAdmin__actions__detail__content__text">
-                    {feedbackAdmin.content}
-                  </div>
-                </div>
-                <a href="#" className="feedbackAdmin__actions__detail__btn">
-                  Trả lời
-                </a>
-                <a href="#" className="feedbackAdmin__actions__detail__btn">
-                  Bỏ qua
-                </a>
-              </li>
-            );
-          })}
-        </ul>
+                  <button className="feedbackAdmin__actions__detail__btn" onClick={() => {
+                    this.updateConfirmFeedbacks(feedbackAdmins[index]);
+                  }}>
+                    Xác nhận
+                </button>
+                  <button className="feedbackAdmin__actions__detail__btn" onClick={() => {
+                    this.updateIgnoreFeedbacks(feedbackAdmins[index]);
+                  }}>
+                    Bỏ qua
+                </button>
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </div>
     );
   }
