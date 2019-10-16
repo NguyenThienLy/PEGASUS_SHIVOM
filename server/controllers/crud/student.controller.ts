@@ -464,7 +464,7 @@ export class StudentController extends CrudController<typeof studentService>{
                 }
             }, {
                 $match: {
-                    day: { $gte: startDay, $lte: endDay }
+                    day: { $gt: startDay, $lte: endDay }
                 }
             },
             { $sort: { birthday: 1 } }
