@@ -202,7 +202,7 @@ export class StudentReducer extends BaseReducer {
         );
 
       // Đang lấy dữ liệu cho upcomming birthday
-      case this.customActions.fetcUpcommingBirthdayPending:
+      case this.customActions.fetchUpcommingBirthdayPending:
         return _.merge(
           {},
           {

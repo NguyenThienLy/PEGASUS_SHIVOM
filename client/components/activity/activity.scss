@@ -88,6 +88,13 @@
           margin-bottom: 0.5em;
         }
 
+        @include e("suport") {
+          font-style: italic;
+          font-size: 0.75em;
+          color: $font-color; //rgba(0, 0, 0, 0.6);
+          margin-bottom: 0.5em;
+        }
+
         @include e("text") {
           font-size: 0.9em;
           color: $color-grey; //rgba(0, 0, 0, 0.8);

@@ -18,6 +18,8 @@ export class BaseReducer {
         isAddError: false,
         addError: null,
         deleting: false,
+        isDeleteError: false,
+        isDeleteSuccess: false,
         deleteError: null
       },
       this.customInitState
@@ -35,6 +37,7 @@ export class BaseReducer {
         deletePending: `DELETE_${this.name}_PENDING`,
         deleteSuccess: `DELETE_${this.name}_SUCCESS`,
         deleteError: `DELETE_${this.name}_ERROR`,
+        deleteRefresh: `DELETE_${this.name}_REFRESH`,
         updatePending: `UPDATE_${this.name}_PENDING`,
         updateSuccess: `UPDATE_${this.name}_SUCCESS`,
         updateError: `UPDATE_${this.name}_ERROR`,
@@ -83,9 +86,10 @@ export class BaseReducer {
         };
         break;
       case this.actions.deletePending:
+        state = { ...state, deleting: true };
         break;
       case this.actions.deleteSuccess:
-        state = { ...state, updating: false, isUpdateSuccess: true };
+        state = { ...state, deleting: false, isDeleteSuccess: true };
         itemIndex = state.items.findIndex(item => {
           return item._id === action.payload._id;
         });
@@ -94,6 +98,21 @@ export class BaseReducer {
         }
         break;
       case this.actions.deleteError:
+        state = {
+          ...state,
+          deleting: false,
+          isDeleteError: true,
+          deleteError: action.payload
+        };
+        break;
+      case this.actions.deleteRefresh:
+        state = {
+          ...state,
+          deleting: false,
+          isDeleteError: false,
+          deleteError: null,
+          isDeleteSuccess: false
+        };
         break;
       case this.actions.updatePending:
         state = { ...state, updating: true };
@@ -102,11 +121,9 @@ export class BaseReducer {
         itemIndex = state.items.findIndex(item => {
           return item._id === action.payload._id;
         });
-        console.log("index: ", itemIndex)
         if (itemIndex !== -1) {
           state.items[itemIndex] = action.payload;
         }
-        console.log("state items: ", state.items)
         break;
       case this.actions.updateError:
         state = {

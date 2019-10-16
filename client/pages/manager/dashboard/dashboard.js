@@ -72,7 +72,7 @@ export class Dashboard extends React.Component {
       },
       birthday: {
         nameTable: "Sinh nhật học viên",
-        content: "sắp tới ngày sinh nhật"
+        content: "sắp tới ngày sinh"
       },
       newStudent: {
         nameTable: "Học viên mới tham gia",
@@ -147,11 +147,15 @@ export class Dashboard extends React.Component {
         isEmpty: true
       }
     };
+
+    this.updateIgnoreFeedbacks = this.updateIgnoreFeedbacks.bind(this)
+    this.updateConfirmFeedbacks = this.updateConfirmFeedbacks.bind(this)
   }
   static async getInitialProps({ req, query }) {
     return {};
   }
-  fetchData = (startTime, endTime) => {
+
+  fetchDataFollowYear = (startTime, endTime) => {
     const token =
       "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M";
 
@@ -172,14 +176,11 @@ export class Dashboard extends React.Component {
     );
 
     this.props.fetchColumnChart(null, `${startTime}Z`, `${endTime}Z`, token);
+  };
 
-    // this.props.fetchBirthday({
-    //   query: {
-    //     filter: { status: "active" },
-    //     limit: 10
-    //   },
-    //   order: {}
-    // })
+  fetchData = () => {
+    const token =
+      "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M";
 
     this.props.fetchBirthday({
       query: {
@@ -199,7 +200,6 @@ export class Dashboard extends React.Component {
         limit: 10,
         order: { createdAt: -1 }
       },
-      //fields: ["avatar","firstName", "lastName", "createdAt"],
       headers: {
         "x-token": token
       }
@@ -227,6 +227,17 @@ export class Dashboard extends React.Component {
       }
     });
   };
+
+  updateIgnoreFeedbacks(id, body) {
+    this.props.updateIgnoreFeedbacks(id, body)
+    this.forceUpdate()
+  };
+
+  updateConfirmFeedbacks(id) {
+    this.props.updateConfirmFeedbacks(id, body)
+    this.forceUpdate()
+  }
+
   handleScroll = () => { };
   componentWillUnmount() { }
   async componentDidMount() {
@@ -234,7 +245,7 @@ export class Dashboard extends React.Component {
     // Lấy năm
     // startTime bắt đầu năm hiện tại
     // endTime bắt đầu năm hiện tại
-    this.fetchData(
+    this.fetchDataFollowYear(
       moment()
         .startOf("year")
         .format("YYYY-MM-DD HH:mm:ss"),
@@ -243,7 +254,7 @@ export class Dashboard extends React.Component {
         .format("YYYY-MM-DD HH:mm:ss")
     );
 
-
+    this.fetchData();
 
     var heightOfHeader = $(
       ".dashboard .dashboard__header .headerAdmin__wrapper"
@@ -321,6 +332,7 @@ export class Dashboard extends React.Component {
 
     return true;
   }
+
   async checkUserAlreadyLogin() {
     const userType = localStorage.getItem("ut")
     const tokenExpiredAt = localStorage.getItem("exp")
@@ -328,6 +340,7 @@ export class Dashboard extends React.Component {
       Router.push("/dang-nhap/admin")
     }
   }
+
   render() {
 
     return (
@@ -376,7 +389,7 @@ export class Dashboard extends React.Component {
                   <div className="dashboard__body__card__content__chart__filter">
                     <CustomSelect
                       customSelect={this.state.customSelect}
-                      fetchData={this.fetchData}
+                      fetchDataFollowYear={this.fetchDataFollowYear}
                     ></CustomSelect>
                   </div>
                   <div className="dashboard__body__card__content__chart__row">
@@ -409,26 +422,40 @@ export class Dashboard extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="dashboard__body__table">
+            <div className="dashboard__body__feedback">
               <FeedbackAdmin
                 feedbackAdmins={this.props.feedbacks.items}
                 staticContent={this.state.feedbackAdmin}
+                isFetching={
+                  this.props.feedbacks.fetching
+                }
+                updateIgnoreFeedbacks={this.updateIgnoreFeedbacks}
+                updateConfirmFeedbacks={this.updateConfirmFeedbacks}
               ></FeedbackAdmin>
             </div>
             <div className="dashboard__body__activities">
               <Activity
                 activities={this.props.students.itemsNewStudents.data}
                 staticContent={this.state.newStudent}
+                isFetching={
+                  this.props.students.itemsNewStudents.fetching
+                }
               ></Activity>
 
               <Activity
                 activities={this.props.students.itemsTopPoint.data}
                 staticContent={this.state.topPoint}
+                isFetching={
+                  this.props.students.itemsTopPoint.fetching
+                }
               ></Activity>
 
               <Activity
                 activities={this.props.students.itemsUpcommingBirthday.data}
                 staticContent={this.state.birthday}
+                isFetching={
+                  this.props.students.itemsUpcommingBirthday.fetching
+                }
               ></Activity>
             </div>
           </div>
@@ -451,7 +478,9 @@ const mapDispatchToProps = dispatch =>
       fetchBirthday: action.student.fetchForUpcommingBirthday,
       fetchNewStudent: action.student.fetchForNewStudents,
       fetchTopPoint: action.student.fetchForTopPoint,
-      fetchFeedBack: action.feedback.fetch
+      fetchFeedBack: action.feedback.fetch,
+      updateIgnoreFeedbacks: action.feedback.updateIgroneFeedbacks,
+      updateConfirmFeedbacks: action.feedback.updateConfirmFeedbacks
     },
     dispatch
   );
