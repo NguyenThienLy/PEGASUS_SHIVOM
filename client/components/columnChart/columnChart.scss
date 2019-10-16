@@ -1,4 +1,4 @@
-@import "../../default.scss";
+@import '../../default.scss';
 
 $background-color-chart: lighten($sub-main-color, 30%);
 
@@ -10,7 +10,7 @@ $background-color-chart: lighten($sub-main-color, 30%);
   border: 1px solid $table-border-color;
   background-color: #fff;
   margin-right: 2%;
-  @include e("title") {
+  @include e('title') {
     display: flex;
     justify-content: left;
     align-items: center;
@@ -21,20 +21,20 @@ $background-color-chart: lighten($sub-main-color, 30%);
       padding: 1em;
     }
   }
-  @include e("select") {
+  @include e('select') {
     display: flex;
     justify-content: space-between;
     padding: 1em;
     background-color: $background-color-chart;
     border-bottom: 1px solid $table-border-color;
-    @include e("info") {
+    @include e('info') {
       color: $font-color;
       font-size: 0.9em;
     }
-    @include e("date") {
+    @include e('date') {
     }
-    @include e("full") {
-      @include e("btn") {
+    @include e('full') {
+      @include e('btn') {
         text-transform: capitalize;
         border: 0;
         outline: 0;
@@ -44,7 +44,7 @@ $background-color-chart: lighten($sub-main-color, 30%);
         padding: 0.6em;
         transition: all 200ms ease-in;
         cursor: pointer;
-        @include m("primary") {
+        @include m('primary') {
           background: $main-color;
           box-shadow: 1px 1px 2px 0 rgba(0, 163, 175, 0.5);
           &:hover {
@@ -58,8 +58,8 @@ $background-color-chart: lighten($sub-main-color, 30%);
       }
     }
   }
-  @include e("content") {
-    @include e("inner") {
+  @include e('content') {
+    @include e('inner') {
       // height: 10em;
       padding: 2em 0.5em;
       font-size: 0.9em;
