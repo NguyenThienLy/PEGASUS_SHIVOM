@@ -47,4 +47,35 @@ export class FeedbackController extends CrudController<typeof feedbackService>{
             message: "Trả lời thành công"
         }
     }
+
+    async updateConfirmFeedback(feedbackId: string, params: {
+        studentId: string,
+        isReply: boolean,
+        content: string,
+        point: number
+    }) {
+        const { studentId, isReply, content, point } = params;
+
+        const currUpdate = await this.service.update({
+            isReply: isReply
+        }, {
+            filter: {
+                _id: feedbackId
+            }
+        })
+        await studentService.update({
+            $inc: { point: point }
+        }, {
+            filter: {
+                _id: studentId
+            }
+        })
+        await activityService.create({
+            type: "add_point",
+            student: studentId,
+            content: content
+        })
+
+        return currUpdate
+    }
 }
