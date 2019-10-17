@@ -8,15 +8,35 @@
   @include e('list') {
     list-style-type: none;
     > li {
+      text-align: center;
       float: left;
       width: 20px;
+      padding: 0.3em;
+      background-color: #fff;
+      color: $main-color;
+      border-left: 1px solid $sub-main-color;
+      border-top: 1px solid $sub-main-color;
+      border-bottom: 1px solid $sub-main-color;
       cursor: pointer;
-      :hover {
-        color: $main-color;
+      transition: 200ms ease;
+      &:nth-last-child(1) {
+        border-right: 1px solid $sub-main-color;
+      }
+      &:hover {
+        color: #fff;
+        background-color: $main-color;
+        border-left: 1px solid $main-color;
+        border-top: 1px solid $main-color;
+        border-bottom: 1px solid $main-color;
       }
     }
     @include e('active') {
-      color: green;
+      font-weight: bold;
+      color: #fff !important;
+      background-color: $main-color !important;
+      border-left: 1px solid $main-color !important;
+      border-top: 1px solid $main-color !important;
+      border-bottom: 1px solid $main-color !important;
     }
   }
 }

@@ -80,7 +80,7 @@ export class NewMemberInfo extends React.Component {
   }
 
   checkPageValidation() {
-    for (const key in this.state.form) {
+    for (var key in this.state.form) {
       if (!this.state.form[key].isValid) {
         return false;
       }
@@ -124,6 +124,11 @@ export class NewMemberInfo extends React.Component {
           value.length !== 0
         ) {
           let isValid = !isNaN(value);
+
+          if (key === 'point') {
+            isValid = isValid ? (value < 0 ? false : true) : isValid;
+          }
+
           this.setState({
             form: _.merge(this.state.form, {
               [key]: {

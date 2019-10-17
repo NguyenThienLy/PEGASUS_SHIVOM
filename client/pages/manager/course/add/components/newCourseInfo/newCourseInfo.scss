@@ -28,7 +28,7 @@
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
       /* display: none; <- Crashes Chrome on hover */
-      -webkit-appearance: none;
+      -webkit-appearance: inner-spin-button;
       margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
     }
     &::placeholder {

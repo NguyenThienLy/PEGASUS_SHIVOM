@@ -407,7 +407,11 @@ export class MainMember extends React.Component {
                   <button
                     style={
                       this.state.isFilterByUpcommingBirthday
-                        ? { backgroundColor: 'green' }
+                        ? {
+                            backgroundColor: '#e1f2f4',
+                            color: '#00a3af',
+                            border: '1px solid #e1f2f4'
+                          }
                         : null
                     }
                     onClick={this.filterByUpcommingBirthday}
@@ -445,25 +449,25 @@ export class MainMember extends React.Component {
 
             <div className="base-table">
               <div className="base-table__content">
-                {this.state.isLoading === true ? (
-                  <Loading />
-                ) : (
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Thứ tự</th>
-                        <th>Ảnh</th>
-                        <th>Họ và tên</th>
-                        <th>Mã số</th>
-                        <th>Điểm</th>
-                        <th>Sinh nhật</th>
-                        <th>Số điện thoại</th>
-                        <th>Trạng thái</th>
-                        <th>Thao tác</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {(students || []).map((item, index) => {
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Thứ tự</th>
+                      <th>Ảnh</th>
+                      <th>Họ và tên</th>
+                      <th>Mã số</th>
+                      <th>Điểm</th>
+                      <th>Sinh nhật</th>
+                      <th>Số điện thoại</th>
+                      <th>Trạng thái</th>
+                      <th>Thao tác</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {this.state.isLoading === true ? (
+                      <Loading />
+                    ) : (
+                      (students || []).map((item, index) => {
                         // {[].map((item, index) => {
                         return (
                           <tr key={item._id}>
@@ -495,17 +499,21 @@ export class MainMember extends React.Component {
                             </td>
                             {item.status === 'active' ? (
                               <td className="action-td">
-                                <Tooltip title="Checkin" position="top">
-                                  <span
-                                    className="action-td__item"
-                                    onClick={() => this.checkin(item._id)}
-                                  >
-                                    <i class="far fa-check-circle"></i>
+                                <Tooltip
+                                  title="Checkin"
+                                  position="top"
+                                  className="action-td__item"
+                                >
+                                  <span onClick={() => this.checkin(item._id)}>
+                                    <i class="fas fa-check"></i>
                                   </span>
                                 </Tooltip>
-                                <Tooltip title="Cộng điểm" position="top">
+                                <Tooltip
+                                  title="Cộng điểm"
+                                  position="top"
+                                  className="action-td__item"
+                                >
                                   <span
-                                    className="action-td__item"
                                     onClick={() => {
                                       this.setState({
                                         selectedStudentId: item._id
@@ -513,12 +521,15 @@ export class MainMember extends React.Component {
                                       this.showHideModal('addPoint');
                                     }}
                                   >
-                                    <i class="fas fa-plus-circle"></i>
+                                    <i class="fas fa-plus"></i>
                                   </span>
                                 </Tooltip>
-                                <Tooltip title="Nghỉ học" position="top">
+                                <Tooltip
+                                  title="Nghỉ học"
+                                  position="top"
+                                  className="action-td__item"
+                                >
                                   <span
-                                    className="action-td__item"
                                     onClick={() => {
                                       this.setState({
                                         selectedStudentId: item._id
@@ -526,15 +537,16 @@ export class MainMember extends React.Component {
                                       this.showHideModal('leave');
                                     }}
                                   >
-                                    <i class="fas fa-user-times"></i>
+                                    <i class="fas fa-user-minus"></i>
                                   </span>
                                 </Tooltip>
-                                <Tooltip title="Chi tiết" position="top">
-                                  <span
-                                    className="action-td__item"
-                                    onClick={() => this.open(item._id)}
-                                  >
-                                    <i class="fas fa-share-square"></i>
+                                <Tooltip
+                                  title="Chi tiết"
+                                  position="top"
+                                  className="action-td__item"
+                                >
+                                  <span onClick={() => this.open(item._id)}>
+                                    <i class="fas fa-info"></i>
                                   </span>
                                 </Tooltip>
                                 {/* <Tooltip
@@ -543,9 +555,12 @@ export class MainMember extends React.Component {
                                                         >
                                                             <span className="action-td__item" onClick={() => this.edit(item._id)}> <i class="fas fa-pen"></i> </span>
                                                         </Tooltip> */}
-                                <Tooltip title="Gia hạn học" position="top">
+                                <Tooltip
+                                  title="Gia hạn học"
+                                  position="top"
+                                  className="action-td__item"
+                                >
                                   <span
-                                    className="action-td__item"
                                     onClick={() => {
                                       this.setState({
                                         selectedStudentId: item._id
@@ -553,16 +568,15 @@ export class MainMember extends React.Component {
                                       this.showHideModal('extendTimeCourse');
                                     }}
                                   >
-                                    {' '}
-                                    <i class="fas fa-business-time"></i>
+                                    <i class="fas fa-hourglass-half"></i>
                                   </span>
                                 </Tooltip>
                                 <Tooltip
                                   title="Đăng ký khoá học"
                                   position="top"
+                                  className="action-td__item"
                                 >
                                   <span
-                                    className="action-td__item"
                                     onClick={() => {
                                       this.setState({
                                         selectedStudentId: item._id
@@ -570,13 +584,14 @@ export class MainMember extends React.Component {
                                       this.showHideModal('regisNewCourse');
                                     }}
                                   >
-                                    <i class="fas fa-fist-raised"></i>
+                                    <i class="fas fa-edit"></i>
                                   </span>
                                 </Tooltip>
                               </td>
                             ) : (
-                              <td className="action-td">
+                              <td className="action-td--single">
                                 <button
+                                  className="action-td__button"
                                   onClick={() => {
                                     this.setState({
                                       selectedStudentId: item._id
@@ -590,11 +605,12 @@ export class MainMember extends React.Component {
                             )}
                           </tr>
                         );
-                      })}
-                    </tbody>
-                  </table>
-                )}
+                      })
+                    )}
+                  </tbody>
+                </table>
               </div>
+              <div className="base-table__divider"></div>
               <div className="base-table__pagination">
                 {!this.state.students ? (
                   <Pagination

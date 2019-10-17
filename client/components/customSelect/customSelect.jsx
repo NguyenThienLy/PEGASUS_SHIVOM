@@ -10,18 +10,25 @@ export class CustomSelect extends React.Component {
   }
 
   onChange(index) {
-    this.props.fetchDataFollowYear(
-      moment()
-        .year(this.props.customSelect.options[index])
-        .startOf('year')
-        .format('YYYY-MM-DDTHH:mm:ss'),
-      moment()
-        .year(this.props.customSelect.options[index])
-        .endOf('year')
-        .format('YYYY-MM-DDTHH:mm:ss')
-    );
-    this.props.filterByPoints(this.props.customSelect.values[index]);
-    this.props.filterByStatus(this.props.customSelect.values[index]);
+    if (this.props.fetchDataFollowYear) {
+      this.props.fetchDataFollowYear(
+        moment()
+          .year(this.props.customSelect.options[index])
+          .startOf('year')
+          .format('YYYY-MM-DDTHH:mm:ss'),
+        moment()
+          .year(this.props.customSelect.options[index])
+          .endOf('year')
+          .format('YYYY-MM-DDTHH:mm:ss')
+      );
+    }
+
+    if (this.props.filterByPoints) {
+      this.props.filterByPoints(this.props.customSelect.values[index]);
+    }
+    if (this.props.filterByStatus) {
+      this.props.filterByStatus(this.props.customSelect.values[index]);
+    }
   }
 
   render() {

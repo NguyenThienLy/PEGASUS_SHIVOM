@@ -1,4 +1,4 @@
-@import "../../../../../../default.scss";
+@import '../../../../../../default.scss';
 
 .new-class-info {
   // box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.04);
@@ -36,7 +36,7 @@
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
       /* display: none; <- Crashes Chrome on hover */
-      -webkit-appearance: none;
+      -webkit-appearance: inner-spin-button;
       margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
     }
     &::placeholder {
@@ -59,7 +59,7 @@
     padding: 0.5em 5%;
     outline: 0;
 
-    @include e("select") {
+    @include e('select') {
       width: 100%;
       border: none;
       outline: none;
@@ -100,7 +100,7 @@
     margin: 0px;
   }
 
-  @include e("title") {
+  @include e('title') {
     font-size: 1.1em;
     color: $main-color; //rgba(0, 0, 0, 0.7);
     font-weight: bold;
@@ -110,12 +110,12 @@
     font-family: $font-family-special;
   }
 
-  @include e("form") {
+  @include e('form') {
     padding-left: 0;
     margin: 0 0 0 2em;
     padding-bottom: 1em;
 
-    @include e("info") {
+    @include e('info') {
       position: relative;
       border-left: 1px solid rgba(0, 0, 0, 0.1);
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -127,7 +127,7 @@
       // @include m("two-columns") {
       //   grid-template-columns: repeat(2, 1fr);
       // }
-      @include e("item") {
+      @include e('item') {
         .new-class-info__title-text {
           width: 100%;
           margin-bottom: 1em;
@@ -135,11 +135,16 @@
         .new-class-info__input-box {
           width: 90%;
         }
+        @include e('error-message') {
+          width: 100%;
+          font-size: 0.8em;
+          color: red;
+        }
         // @include m("double") {
         //   grid-column-start: 1;
         //   grid-column-end: 3;
         // }
-        @include e("add-btn") {
+        @include e('add-btn') {
           margin-top: 1em;
           text-align: center;
           button {
@@ -167,7 +172,7 @@
         //   grid-column-end: 3;
         // }
       }
-      @include e("icon") {
+      @include e('icon') {
         position: absolute;
         left: 0em;
         top: 1.5em;
@@ -197,7 +202,7 @@
       }
     }
 
-    @include e("button") {
+    @include e('button') {
       display: flex;
       justify-content: center;
       padding: 2em 0em 1em;
