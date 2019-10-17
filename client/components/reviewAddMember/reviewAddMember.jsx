@@ -177,6 +177,7 @@ export class ReviewAddMember extends React.Component {
             <span className="reviewAddMember__more__sum__content">
               {this.getTotalPrice()}
             </span>
+            <input type="checkbox" name="isPayFee" value={true} onClick={this.props.handleCheckIsPayFee} />Đã thanh toán
           </div>
           {/* <div className="reviewAddMember__more__button">
             <button>Xác nhận</button>
