@@ -22,6 +22,7 @@ $hover-color: lighten($sub-main-color, 27%);
     right: 1.5em;
     top: 1.2em;
     color: #ccc;
+    cursor: pointer;
   }
 
   @include e('placeholder') {
@@ -29,7 +30,7 @@ $hover-color: lighten($sub-main-color, 27%);
     display: block;
     // width: 100%;
     height: 100%;
-    padding: 1em 2em;
+    padding: 0.8em 2em;
     background: #fff;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
     cursor: pointer;
@@ -84,7 +85,7 @@ $hover-color: lighten($sub-main-color, 27%);
       display: block;
       // width: 100%;
       height: 100%;
-      padding: 1.2em 2em;
+      padding: 0.8em 2em;
       background: rgba(255, 255, 255, 1);
       border-top: 1px solid rgba(0, 0, 0, 0.05);
       cursor: pointer;
@@ -99,7 +100,7 @@ $hover-color: lighten($sub-main-color, 27%);
     input {
       display: none;
       &:checked ~ span.customSelect__option__title {
-        padding: 1em 2em;
+        padding: 0.8em 2em;
         position: absolute;
         display: block;
         z-index: 0;

@@ -1,5 +1,5 @@
-import * as React from "react";
-import "./newClassTimetable.scss";
+import * as React from 'react';
+import './newClassTimetable.scss';
 
 export class NewClassTimetable extends React.Component {
   constructor(props) {
@@ -8,39 +8,34 @@ export class NewClassTimetable extends React.Component {
       weekdays: {
         monday: {
           value: 1,
-          text: "Thứ hai"
+          text: 'Thứ hai'
         },
         tuesday: {
           value: 2,
-          text: "Thứ ba"
+          text: 'Thứ ba'
         },
         wednesday: {
           value: 3,
-          text: "Thứ tư"
+          text: 'Thứ tư'
         },
         thursday: {
           value: 4,
-          text: "Thứ năm"
+          text: 'Thứ năm'
         },
         friday: {
           value: 5,
-          text: "Thứ sáu"
+          text: 'Thứ sáu'
         },
         saturday: {
           value: 6,
-          text: "Thứ bảy"
+          text: 'Thứ bảy'
         },
         sunday: {
           value: 7,
-          text: "Chủ nhật"
+          text: 'Chủ nhật'
         }
       }
     };
-    this.handleChange = this.handleChange.bind(this);
-  }
-  handleChange(e) {
-    const { name, value } = e.target;
-    this.props.handleChange(name, value);
   }
   handleRemove(index) {
     this.props.handleRemove(index);

@@ -85,27 +85,8 @@ export class AddCourse extends React.Component {
   };
 
   openPage = function(nextPageNumber) {
-    const pages = this.state.pages;
-
     // update curPageNumber
     this.setState({ curPageNumber: nextPageNumber });
-
-    // set up for button previous, next
-    if (nextPageNumber === pages.length) {
-      $('.addCourse__body__card__buttons__btn-next').text('Xác nhận');
-    } else {
-      $('.addCourse__body__card__buttons__btn-next').html(
-        "Tiếp theo<i class='fas fa-chevron-right'></i>"
-      );
-    }
-    if (nextPageNumber === 1) {
-      $('.addCourse__body__card__buttons__btn-previous').attr('disabled', true);
-    } else {
-      $('.addCourse__body__card__buttons__btn-previous').attr(
-        'disabled',
-        false
-      );
-    }
   };
 
   handleClickPrevious = function() {
@@ -256,18 +237,40 @@ export class AddCourse extends React.Component {
             </div>
 
             <div className="addCourse__body__card__buttons">
-              <button
-                className="addCourse__body__card__buttons__btn addCourse__body__card__buttons__btn-previous"
-                onClick={this.handleClickPrevious}
-              >
-                <i className="fas fa-chevron-left"></i>Quay lại
-              </button>
-              <button
-                className="addCourse__body__card__buttons__btn addCourse__body__card__buttons__btn-next"
-                onClick={this.handleClickNext}
-              >
-                Tiếp tục<i className="fas fa-chevron-right"></i>
-              </button>
+              {this.state.curPageNumber === 1 ? (
+                <button
+                  disabled="true"
+                  className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-previous"
+                  onClick={this.handleClickPrevious}
+                >
+                  <i className="fas fa-chevron-left"></i>Quay lại
+                </button>
+              ) : (
+                <button
+                  disabled="false"
+                  className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-previous"
+                  onClick={this.handleClickPrevious}
+                >
+                  <i className="fas fa-chevron-left"></i>Quay lại
+                </button>
+              )}
+
+              {this.state.curPageNumber === this.state.pages.length ? (
+                <button
+                  className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-next"
+                  onClick={this.handleClickNext}
+                >
+                  Xác nhận
+                </button>
+              ) : (
+                <button
+                  className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-next"
+                  onClick={this.handleClickNext}
+                  dangerouslySetInnerHTML={{
+                    __html: 'Tiếp theo<i className="fas fa-chevron-right"></i>'
+                  }}
+                ></button>
+              )}
             </div>
           </div>
           {/* <div className="addCourse__body__card">
