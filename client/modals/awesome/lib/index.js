@@ -67,7 +67,12 @@ var Modal = function (_Component) {
                     // Use Pixels
                     var _width = this.props.width.slice(0, -2);
                     _style2.default[effect].panel.width = _width + 'px';
-                } else {
+                } else if (this.props.width === 'auto') {
+                    // Use Pixels
+
+                    _style2.default[effect].panel.width = "auto";
+                }
+                else {
                     // Defaults
                     _style2.default[effect].panel.width = this.props.width + 'px';
                 }
@@ -83,7 +88,7 @@ var Modal = function (_Component) {
                     _style2.default[effect].panel.height = _height + 'px';
                 } else if (this.props.height === 'auto') {
                     // Use Pixels
-                    
+
                     _style2.default[effect].panel.height = "auto";
                 } else {
                     // Defaults

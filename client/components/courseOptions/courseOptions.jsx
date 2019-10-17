@@ -185,10 +185,8 @@ export class CourseOptions extends React.Component {
         border: '1px solid rgba(0, 0, 0, 0.1)',
         color: '#363738'
       });
-
-      this.props.handleSelectCoursePackage(courseId, packageId);
     }
-
+    this.props.handleSelectCoursePackage(courseId, packageId);
     this.props.handleIsValid(this.props.pageNumber, this.checkPageValidation());
   };
   handleInputMonth = (courseId, event) => {

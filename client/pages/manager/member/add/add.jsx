@@ -66,7 +66,7 @@ export class AddMember extends React.Component {
     $('.addMember .addMember__body').css('margin-top', heightOfHeader + 'px');
   }
 
-  canOpenPage = function() {
+  canOpenPage = function () {
     const curPageNumber = this.state.curPageNumber;
     const pages = this.state.pages;
 
@@ -78,7 +78,7 @@ export class AddMember extends React.Component {
     return true;
   };
 
-  openPage = function(nextPageNumber) {
+  openPage = function (nextPageNumber) {
     const pages = this.state.pages;
 
     // update curPageNumber
@@ -102,7 +102,7 @@ export class AddMember extends React.Component {
     }
   };
 
-  handleClickPrevious = function() {
+  handleClickPrevious = function () {
     const curPageNumber = this.state.curPageNumber;
     const nextPageNumber = curPageNumber - 1;
     if (nextPageNumber > 0) {
@@ -110,7 +110,7 @@ export class AddMember extends React.Component {
     }
   };
 
-  handleClickNext = function() {
+  handleClickNext = function () {
     const curPageNumber = this.state.curPageNumber;
     const pages = this.state.pages;
 
@@ -125,7 +125,7 @@ export class AddMember extends React.Component {
     }
   };
 
-  handleIsValid = function(pageNumber, isValid) {
+  handleIsValid = function (pageNumber, isValid) {
     const pages = this.state.pages;
     pages[pageNumber - 1].isValid = isValid;
     this.setState({ pages: pages });
@@ -134,28 +134,35 @@ export class AddMember extends React.Component {
   static async getInitialProps({ req, query }) {
     return {};
   }
-  fetchData() {}
+  fetchData() { }
 
   shouldComponentUpdate() {
     return true;
   }
 
-  componentDidUpdate(prevProps, prevState) {}
+  componentDidUpdate(prevProps, prevState) { }
   handleChange = (step, key, value) => {
+    const formData = this.state.formData
+    // if (step === 'personalInfo') {
+    //   this.state.formData[step][key] = value;
+    // }
+    // this.setState({ formData: this.state.formData });
     if (step === 'personalInfo') {
-      this.state.formData[step][key] = value;
+      formData[step][key] = value;
     }
-    this.setState({ formData: this.state.formData });
+    this.setState({ formData: formData });
   };
   handleSelectCoursePackage = (courseId, packageId) => {
-    const courseIndex = this.state.formData.courses.findIndex(course => {
+    console.log("vao day", courseId)
+    const formData = this.state.formData
+    const courseIndex = formData.courses.findIndex(course => {
       return courseId === course._id;
     });
     const packageData = this.props.package.items.find(packageData => {
       return packageData._id === packageId;
     });
     if (courseIndex === -1) {
-      this.state.formData.courses.push({
+      formData.courses.push({
         _id: courseId,
         package: packageId,
         timeTables: [],
@@ -163,21 +170,52 @@ export class AddMember extends React.Component {
         type: 'package'
       });
     } else {
-      if (packageId === this.state.formData.courses[courseIndex].package) {
-        this.state.formData.courses.splice(courseIndex, 1);
+      if (packageId === formData.courses[courseIndex].package) {
+        formData.courses.splice(courseIndex, 1);
       } else {
-        this.state.formData.courses[courseIndex] = {
+        formData.courses[courseIndex] = {
           _id: courseId,
           package: packageId,
-          timeTables: this.state.formData.courses[courseIndex].timeTables,
+          timeTables: formData.courses[courseIndex].timeTables,
           price: packageData.price,
           type: 'package'
         };
       }
     }
-    this.setState({ formData: this.state.formData });
+    this.setState(() => { formData: formData });
+
+    // const courseIndex = this.state.formData.courses.findIndex(cåourse => {
+    //   return courseId === course._id;
+    // });
+    // const packageData = this.props.package.items.find(packageData => {
+    //   return packageData._id === packageId;
+    // });
+    // if (courseIndex === -1) {
+    //   this.state.formData.courses.push({
+    //     _id: courseId,
+    //     package: packageId,
+    //     timeTables: [],
+    //     price: packageData.price,
+    //     type: 'package'
+    //   });
+    // } else {
+    //   if (packageId === this.state.formData.courses[courseIndex].package) {
+    //     this.state.formData.courses.splice(courseIndex, 1);
+    //   } else {
+    //     this.state.formData.courses[courseIndex] = {
+    //       _id: courseId,
+    //       package: packageId,
+    //       timeTables: this.state.formData.courses[courseIndex].timeTables,
+    //       price: packageData.price,
+    //       type: 'package'
+    //     };
+    //   }
+    // }
+    // console.log("course : ", this.state.formData.courses)
+    // this.setState({ formData: this.state.formData });
   };
   handleInputCourseMonthAmount = (courseId, monthAmount) => {
+    console.log("select course amount")
     const courseIndex = this.state.formData.courses.findIndex(course => {
       return courseId === course._id;
     });
