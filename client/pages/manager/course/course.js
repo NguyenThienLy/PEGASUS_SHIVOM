@@ -113,7 +113,11 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
     bindActionCreators(
         {
-            fetchCourse: action.course.fetch
+            fetchCourse: action.course.fetch,
+            fetchLineChart: action.statisticCourse.fetchForLineChart,
+            fetchPieChart: action.statisticCourse.fetchForPieChart,
+            fetchColumnChart: action.student.fetchForColumnChart,
+            fetchListDetail: action.statisticStudent.fetchForListDetail
         },
         dispatch
     );

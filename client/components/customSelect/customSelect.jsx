@@ -1,7 +1,7 @@
-import * as React from "react";
-import * as moment from "moment";
+import * as React from 'react';
+import * as moment from 'moment';
 
-import "./customSelect.scss";
+import './customSelect.scss';
 
 export class CustomSelect extends React.Component {
   constructor(props) {
@@ -13,13 +13,15 @@ export class CustomSelect extends React.Component {
     this.props.fetchDataFollowYear(
       moment()
         .year(this.props.customSelect.options[index])
-        .startOf("year")
-        .format("YYYY-MM-DDTHH:mm:ss"),
+        .startOf('year')
+        .format('YYYY-MM-DDTHH:mm:ss'),
       moment()
         .year(this.props.customSelect.options[index])
-        .endOf("year")
-        .format("YYYY-MM-DDTHH:mm:ss")
+        .endOf('year')
+        .format('YYYY-MM-DDTHH:mm:ss')
     );
+    this.props.filterByPoints(this.props.customSelect.values[index]);
+    this.props.filterByStatus(this.props.customSelect.values[index]);
   }
 
   render() {
