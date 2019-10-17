@@ -72,27 +72,40 @@ export class TimeTableOptions extends React.Component {
     this.refreshTimeTable = this.refreshTimeTable.bind(this);
     this.handleChooseTimeTableItem = this.handleChooseTimeTableItem.bind(this);
   }
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("next props: ", nextProps)
+    console.log("current props: ", this.props)
+    return false
+  }
   componentDidMount() {
-    const courseIds = this.props.courses.map(course => {
-      return course._id;
-    });
-    if (courseIds.length === 0) {
-      this.refreshTimeTable();
-    } else if (!_.isEqual(courseIds.sort(), this.state.currentCourses.sort())) {
-      this.setState({ currentCourses: courseIds });
-      this.fetchData(courseIds);
-    }
+    console.log("TIME mounted")
+    // const courseIds = this.props.courses.map(course => {
+    //   return course._id;
+    // });
+    // if (courseIds.length === 0) {
+    //   this.refreshTimeTable();
+    // } else if (!_.isEqual(courseIds.sort(), this.state.currentCourses.sort())) {
+    //   this.setState({ currentCourses: courseIds });
+    //   this.fetchData(courseIds);
+    // }
   }
   componentDidUpdate(prevProps) {
+    console.log("current: ", this.props.courses.length)
+    console.log("next: ", prevProps.courses.length)
     const courseIds = this.props.courses.map(course => {
       return course._id;
     });
-    if (courseIds.length === 0) {
-      this.refreshTimeTable();
-    } else if (!_.isEqual(courseIds.sort(), this.state.currentCourses.sort())) {
-      this.setState({ currentCourses: courseIds });
-      this.fetchData(courseIds);
-    }
+    const currentCourseIds = prevProps.courses.map(course => {
+      return course._id;
+    });
+    console.log("course ids: ", courseIds)
+    console.log("current course id: ", currentCourseIds)
+    // if (courseIds.length === 0) {
+    //   this.refreshTimeTable();
+    // } else if (!_.isEqual(courseIds.sort(), this.state.currentCourses.sort())) {
+    //   this.setState({ currentCourses: courseIds });
+    //   this.fetchData(courseIds);
+    // }
   }
   refreshTimeTable() {
     this.setState({
@@ -151,7 +164,9 @@ export class TimeTableOptions extends React.Component {
   }
   handleChooseTimeTableItem(courseId, timeTableItemId) {
     this.props.handleChooseTimeTableItem(courseId, timeTableItemId);
-    this.props.handleIsValid(this.props.pageNumber, this.checkPageValidation());
+    if (this.props.handleIsValid) {
+      this.props.handleIsValid(this.props.pageNumber, this.checkPageValidation());
+    }
   }
   async fetchData(courseIds) {
     const {
@@ -207,8 +222,8 @@ export class TimeTableOptions extends React.Component {
       const className = timeTable.class.name;
       const teacherName = timeTable.class.teacher
         ? timeTable.class.teacher.firstName +
-          ' ' +
-          timeTable.class.teacher.lastName
+        ' ' +
+        timeTable.class.teacher.lastName
         : null;
 
       timeTable.items.forEach(item => {
@@ -307,116 +322,7 @@ export class TimeTableOptions extends React.Component {
                     </td>
                   );
                 })}
-                {/* <td>
-                  <div className="time-table-options__table-events__class-info">
-                    <input type="checkbox" name="placeholder" />
-                    <div className="time-table-options__table-events__class-info__wrapper time-table-options__table-events__class-info__my-tooltip">
-                      <div className="time-table-options__table-events__class-info__my-tooltip__content">
-                        45 phút
-                        <i />
-                      </div>
-                      <div
-                        className="time-table-options__table-events__class-info__wrapper__class-name"
-                        href="#"
-                        title="Body Balance"
-                      >
-                        Cân bằng <br />
-                        cơ thể
-                      </div>
-                      <div className="time-table-options__table-events__class-info__wrapper__class-teacher">
-                        Ngọc Hạnh
-                      </div>
-                    </div>
-                  </div>
-                  <hr className="divider" />
-                  <div className="time-table-options__table-events__class-info">
-                    <input type="checkbox" name="placeholder" />
-                    <div className="time-table-options__table-events__class-info__wrapper time-table-options__table-events__class-info__my-tooltip">
-                      <div className="time-table-options__table-events__class-info__my-tooltip__content">
-                        45 phút
-                        <i />
-                      </div>
-                      <div
-                        className="time-table-options__table-events__class-info__wrapper__class-name"
-                        href="#"
-                        title="Body Balance"
-                      >
-                        Duỗi người
-                      </div>
-                      <div className="time-table-options__table-events__class-info__wrapper__class-teacher">
-                        Ngọc Hạnh
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div className="time-table-options__table-events__class-info">
-                    <input type="checkbox" name="placeholder" />
-                    <div className="time-table-options__table-events__class-info__wrapper time-table-options__table-events__class-info__my-tooltip">
-                      <div className="time-table-options__table-events__class-info__my-tooltip__content">
-                        45 phút
-                        <i />
-                      </div>
-                      <div
-                        className="time-table-options__table-events__class-info__wrapper__class-name"
-                        href="#"
-                        title="Body Balance"
-                      >
-                        Cân bằng <br />
-                        cơ thể
-                      </div>
-                      <div className="time-table-options__table-events__class-info__wrapper__class-teacher">
-                        Ngọc Hạnh
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div className="time-table-options__table-events__class-info">
-                    <input type="checkbox" name="placeholder" />
-                    <div className="time-table-options__table-events__class-info__wrapper time-table-options__table-events__class-info__my-tooltip">
-                      <div className="time-table-options__table-events__class-info__my-tooltip__content">
-                        45 phút
-                        <i />
-                      </div>
-                      <div
-                        className="time-table-options__table-events__class-info__wrapper__class-name"
-                        href="#"
-                        title="Body Balance"
-                      >
-                        Cân bằng <br />
-                        cơ thể
-                      </div>
-                      <div className="time-table-options__table-events__class-info__wrapper__class-teacher">
-                        Ngọc Hạnh
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td />
-                <td>
-                  <div className="time-table-options__table-events__class-info">
-                    <input type="checkbox" name="placeholder" />
-                    <div className="time-table-options__table-events__class-info__wrapper time-table-options__table-events__class-info__my-tooltip">
-                      <div className="time-table-options__table-events__class-info__my-tooltip__content">
-                        45 phút
-                        <i />
-                      </div>
-                      <div
-                        className="time-table-options__table-events__class-info__wrapper__class-name"
-                        href="#"
-                        title="Body Balance"
-                      >
-                        Cân bằng <br />
-                        cơ thể
-                      </div>
-                      <div className="time-table-options__table-events__class-info__wrapper__class-teacher">
-                        Ngọc Hạnh
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td /> */}
+
               </tr>
               <tr>
                 <td>
@@ -431,96 +337,7 @@ export class TimeTableOptions extends React.Component {
                     </td>
                   );
                 })}
-                {/* <td>
-                  <div className="time-table-options__table-events__class-info">
-                    <input type="checkbox" name="placeholder" />
-                    <div className="time-table-options__table-events__class-info__wrapper time-table-options__table-events__class-info__my-tooltip">
-                      <div className="time-table-options__table-events__class-info__my-tooltip__content">
-                        45 phút
-                        <i />
-                      </div>
-                      <div
-                        className="time-table-options__table-events__class-info__wrapper__class-name"
-                        href="#"
-                        title="Body Balance"
-                      >
-                        Cân bằng <br />
-                        cơ thể
-                      </div>
-                      <div className="time-table-options__table-events__class-info__wrapper__class-teacher">
-                        Ngọc Hạnh
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div className="time-table-options__table-events__class-info">
-                    <input type="checkbox" name="placeholder" />
-                    <div className="time-table-options__table-events__class-info__wrapper time-table-options__table-events__class-info__my-tooltip">
-                      <div className="time-table-options__table-events__class-info__my-tooltip__content">
-                        45 phút
-                        <i />
-                      </div>
-                      <div
-                        className="time-table-options__table-events__class-info__wrapper__class-name"
-                        href="#"
-                        title="Body Balance"
-                      >
-                        Cân bằng <br />
-                        cơ thể
-                      </div>
-                      <div className="time-table-options__table-events__class-info__wrapper__class-teacher">
-                        Ngọc Hạnh
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div className="time-table-options__table-events__class-info">
-                    <input type="checkbox" name="placeholder" />
-                    <div className="time-table-options__table-events__class-info__wrapper time-table-options__table-events__class-info__my-tooltip">
-                      <div className="time-table-options__table-events__class-info__my-tooltip__content">
-                        45 phút
-                        <i />
-                      </div>
-                      <div
-                        className="time-table-options__table-events__class-info__wrapper__class-name"
-                        href="#"
-                        title="Body Balance"
-                      >
-                        Cân bằng <br />
-                        cơ thể
-                      </div>
-                      <div className="time-table-options__table-events__class-info__wrapper__class-teacher">
-                        Ngọc Hạnh
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td />
-                <td>
-                  <div className="time-table-options__table-events__class-info">
-                    <input type="checkbox" name="placeholder" />
-                    <div className="time-table-options__table-events__class-info__wrapper time-table-options__table-events__class-info__my-tooltip">
-                      <div className="time-table-options__table-events__class-info__my-tooltip__content">
-                        45 phút
-                        <i />
-                      </div>
-                      <div
-                        className="time-table-options__table-events__class-info__wrapper__class-name"
-                        href="#"
-                        title="Body Balance"
-                      >
-                        Cân bằng <br />
-                        cơ thể
-                      </div>
-                      <div className="time-table-options__table-events__class-info__wrapper__class-teacher">
-                        Ngọc Hạnh
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td /> */}
+
               </tr>
               <tr>
                 <td>
@@ -535,96 +352,7 @@ export class TimeTableOptions extends React.Component {
                     </td>
                   );
                 })}
-                {/* <td>
-                  <div className="time-table-options__table-events__class-info">
-                    <input type="checkbox" name="placeholder" />
-                    <div className="time-table-options__table-events__class-info__wrapper time-table-options__table-events__class-info__my-tooltip">
-                      <div className="time-table-options__table-events__class-info__my-tooltip__content">
-                        45 phút
-                        <i />
-                      </div>
-                      <div
-                        className="time-table-options__table-events__class-info__wrapper__class-name"
-                        href="#"
-                        title="Body Balance"
-                      >
-                        Cân bằng <br />
-                        cơ thể
-                      </div>
-                      <div className="time-table-options__table-events__class-info__wrapper__class-teacher">
-                        Ngọc Hạnh
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div className="time-table-options__table-events__class-info">
-                    <input type="checkbox" name="placeholder" />
-                    <div className="time-table-options__table-events__class-info__wrapper time-table-options__table-events__class-info__my-tooltip">
-                      <div className="time-table-options__table-events__class-info__my-tooltip__content">
-                        45 phút
-                        <i />
-                      </div>
-                      <div
-                        className="time-table-options__table-events__class-info__wrapper__class-name"
-                        href="#"
-                        title="Body Balance"
-                      >
-                        Cân bằng <br />
-                        cơ thể
-                      </div>
-                      <div className="time-table-options__table-events__class-info__wrapper__class-teacher">
-                        Ngọc Hạnh
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div className="time-table-options__table-events__class-info">
-                    <input type="checkbox" name="placeholder" />
-                    <div className="time-table-options__table-events__class-info__wrapper time-table-options__table-events__class-info__my-tooltip">
-                      <div className="time-table-options__table-events__class-info__my-tooltip__content">
-                        45 phút
-                        <i />
-                      </div>
-                      <div
-                        className="time-table-options__table-events__class-info__wrapper__class-name"
-                        href="#"
-                        title="Body Balance"
-                      >
-                        Cân bằng <br />
-                        cơ thể
-                      </div>
-                      <div className="time-table-options__table-events__class-info__wrapper__class-teacher">
-                        Ngọc Hạnh
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td />
-                <td>
-                  <div className="time-table-options__table-events__class-info">
-                    <input type="checkbox" name="placeholder" />
-                    <div className="time-table-options__table-events__class-info__wrapper time-table-options__table-events__class-info__my-tooltip">
-                      <div className="time-table-options__table-events__class-info__my-tooltip__content">
-                        45 phút
-                        <i />
-                      </div>
-                      <div
-                        className="time-table-options__table-events__class-info__wrapper__class-name"
-                        href="#"
-                        title="Body Balance"
-                      >
-                        Cân bằng <br />
-                        cơ thể
-                      </div>
-                      <div className="time-table-options__table-events__class-info__wrapper__class-teacher">
-                        Ngọc Hạnh
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td /> */}
+
               </tr>
             </tbody>
           </table>
