@@ -455,20 +455,62 @@ export class StudentController extends CrudController<typeof studentService>{
     }, option: ICrudOption) {
         if (!params.startTime) params.startTime = moment().format()
         if (!params.endTime) params.endTime = moment().add(1, "months").format()
-        const startDay = moment(params.startTime).dayOfYear()
-        const endDay = moment(params.endTime).dayOfYear()
-        const listStudent = await this.service.model.aggregate([
-            {
-                $project: {
-                    day: { $dayOfYear: "$birthday" }
-                }
-            }, {
-                $match: {
-                    day: { $gte: startDay, $lte: endDay }
-                }
-            },
-            { $sort: { birthday: 1 } }
-        ])
+        // const startDay = moment(params.startTime).dayOfYear()
+        // const endDay = moment(params.endTime).dayOfYear()
+        // const startDayOfMonth = moment(params.startTime).date()
+        // const startMonth = moment(params.startTime).month() + 1
+        // const endDayOfMonth = moment(params.startTime).date()
+        // const endMonth = moment(params.startTime).month() + 1
+        // console.log("start day: ", startDay)
+        // const listStudent = await this.service.model.aggregate([
+        //     {
+        //         $project: {
+        //             day: { $dayOfMonth: "$birthday" },
+        //             month: { $month: "$birthday" },
+        //             birthday: 1
+        //         }
+        //     }
+        //     , {
+        //         $match: {
+        //             month: { $gte: startMonth, $lte: endMonth },
+        //             day: { $gte: startDayOfMonth, $lte: endDayOfMonth },
+        //         }
+        //     },
+        //     { $sort: { birthday: 1 } }
+        // ])
+        // return await this.service.getList(_.merge(option, {
+        //     filter: {
+        //         _id: { $in: listStudent.map((student: any) => { return student._id }) }
+        //     }
+        // }))
+        const today = moment(params.startTime).toDate();
+        const listStudent = await studentService.model.aggregate([{
+            $addFields: {
+                today: { $dateFromParts: { year: { $year: today }, month: { $month: today }, day: { $dayOfMonth: today } } },
+                birthdayThisYear: { $dateFromParts: { year: { $year: today }, month: { $month: "$birthday" }, day: { $dayOfMonth: "$birthday" } } },
+                birthdayNextYear: { $dateFromParts: { year: { $add: [1, { $year: today }] }, month: { $month: "$birthday" }, day: { $dayOfMonth: "$birthday" } } }
+            }
+        }, {
+            $addFields: {
+                nextBirthday: { $cond: [{ $gte: ["$birthdayThisYear", "$today"] }, "$birthdayThisYear", "$birthdayNextYear"] }
+            }
+        }, {
+            $project: {
+                name: 1,
+                birthday: 1,
+                daysTillNextBirthday: {
+                    $divide: [
+                        { $subtract: ["$nextBirthday", "$today"] },
+                        24 * 60 * 60 * 1000  /* milliseconds in a day */
+                    ]
+                },
+                _id: 1
+            }
+        }, {
+            $match: {
+                daysTillNextBirthday: { $gte: 0, $lt: 30 }
+            }
+        }, { $sort: { daysTillNextBirthday: 1 } }]);
         return await this.service.getList(_.merge(option, {
             filter: {
                 _id: { $in: listStudent.map((student: any) => { return student._id }) }
