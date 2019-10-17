@@ -46,7 +46,8 @@ export class AddMember extends React.Component {
           avatar: '',
           avatarUrl: ''
         },
-        courses: []
+        courses: [],
+        isPayFee: false
       }
     };
     this.canOpenPage = this.canOpenPage.bind(this);
@@ -263,6 +264,7 @@ export class AddMember extends React.Component {
     this.setState({ formData: this.state.formData });
   };
   async submitEnroll() {
+
     Swal.showLoading();
     let imageLink;
     if (this.state.formData.personalInfo.avatar !== '') {
@@ -374,6 +376,13 @@ export class AddMember extends React.Component {
                 <ReviewAddMember
                   data={this.state.formData}
                   courses={this.props.courses.items}
+                  handleCheckIsPayFee={() => {
+                    console.log("is Pay Fee")
+                    this.state.formData.isPayFee = !this.state.formData.isPayFee
+                    this.setState({
+                      formData: this.state.formData
+                    })
+                  }}
                 />
               </div>
             </div>
