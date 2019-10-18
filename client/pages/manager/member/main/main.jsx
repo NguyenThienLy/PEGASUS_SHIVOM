@@ -627,7 +627,7 @@ export class MainMember extends React.Component {
               <div className="base-table__pagination">
                 {this.state.students ?
                   <Pagination currentPage={this.state.currentPage} total={this.state.students.length} limit={10} changePage={this.changePage} />
-                  : <Pagination currentPage={this.state.currentPage} total={this.props.students.items.length} limit={10} changePage={this.changePage} />}
+                  : <Pagination currentPage={this.state.currentPage} total={(this.props.students.items || []).length} limit={10} changePage={this.changePage} />}
               </div>
             </div>
           </div>
