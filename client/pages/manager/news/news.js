@@ -45,7 +45,10 @@ class News extends Component {
     fetchData() {
         this.props.fetchNews({
             query: {
-                limit: 0
+                limit: 0,
+                filter: {
+                    status: "active"
+                }
             },
             headers: {
                 "x-token":
@@ -54,7 +57,10 @@ class News extends Component {
         })
         this.props.fetchCategory({
             query: {
-                limit: 0
+                limit: 0,
+                filter: {
+                    status: "active"
+                }
             }
         });
     }

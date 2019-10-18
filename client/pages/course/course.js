@@ -211,6 +211,9 @@ export class Course extends React.Component {
         query: {
           limit: 5,
           order: { createdAt: -1 },
+          filter: {
+            status: "active"
+          },
           populates: [{ path: "category", select: "name slug" }]
         }
       })
@@ -221,13 +224,31 @@ export class Course extends React.Component {
   }
   fetchData() {
     if (this.props.courses.items.length === 0) {
-      this.props.fetchCourse();
+      this.props.fetchCourse({
+        query: {
+          filter: {
+            status: "active"
+          }
+        }
+      });
     }
     if (!this.props.setting.fetched) {
-      this.props.fetchSetting();
+      this.props.fetchSetting({
+        query: {
+          filter: {
+            status: "active"
+          }
+        }
+      });
     }
     if (this.props.newCategories.items.length === 0) {
-      this.props.fetchNewCategory();
+      this.props.fetchNewCategory({
+        query: {
+          filter: {
+            status: "active"
+          }
+        }
+      });
     }
   }
   addContact = body => {

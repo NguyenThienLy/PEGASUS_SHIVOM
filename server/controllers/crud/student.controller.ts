@@ -86,7 +86,18 @@ export class StudentController extends CrudController<typeof studentService>{
             }).then(result => {
                 return result
             }))
+        try {
+            const courseStudentAmount = courseStudentService.model.count({
+                student: params.studentId
+            })
+            courseService.update({
+                $inc: {
+                    currentStudentAmount: courseStudentAmount
+                }
+            })
+        } catch (err) {
 
+        }
         return await Promise.all(tasks)
     }
     async leave(params: {
@@ -144,7 +155,18 @@ export class StudentController extends CrudController<typeof studentService>{
             }).then(result => {
                 return result
             }))
+        try {
+            const courseStudentAmount = courseStudentService.model.count({
+                student: params.studentId
+            })
+            courseService.update({
+                $inc: {
+                    currentStudentAmount: - courseStudentAmount
+                }
+            })
+        } catch (err) {
 
+        }
         return await Promise.all(tasks)
     }
 

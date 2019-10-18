@@ -66,7 +66,7 @@ export class CrudApi {
         {
           "User-Agent": "Request-Promise",
           "Content-Type": "Application/json",
-          "x-token": localStorage.getItem("token")
+          "x-token": process.browser ? localStorage.getItem("token") : ""
         },
         option.headers || {}
       )
@@ -153,7 +153,7 @@ export class CrudApi {
         {
           "User-Agent": "Request-Promise",
           "Content-Type": "Application/json",
-          "x-token": localStorage.getItem("token")
+          "x-token": process.browser ? localStorage.getItem("token") : ""
         },
         option.headers || {}
       ),
@@ -175,7 +175,8 @@ export class CrudApi {
       headers: _.merge(
         {
           "User-Agent": "Request-Promise",
-          "Content-Type": "Application/json"
+          "Content-Type": "Application/json",
+          "x-token": process.browser ? localStorage.getItem("token") : ""
         },
         option.headers || {}
       ),
