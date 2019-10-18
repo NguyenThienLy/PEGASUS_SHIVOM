@@ -309,7 +309,7 @@ export default class StudentRouter extends CrudRouter<typeof studentController> 
                 startTime: { type: "string", format: "date-time" },
                 endTime: { type: "string", format: "date-time" }
             },
-            additionalProperties: false
+            additionalProperties: true
         })
         const result = await this.controller.getListStudentUpcommingBirthday(req.query, req.queryInfo)
         this.onSuccessAsList(res, result, null, req.queryInfo)

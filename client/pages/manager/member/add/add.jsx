@@ -46,7 +46,8 @@ export class AddMember extends React.Component {
           avatar: '',
           avatarUrl: ''
         },
-        courses: []
+        courses: [],
+        isPayFee: false
       }
     };
     this.canOpenPage = this.canOpenPage.bind(this);
@@ -66,7 +67,7 @@ export class AddMember extends React.Component {
     $('.addMember .addMember__body').css('margin-top', heightOfHeader + 'px');
   }
 
-  canOpenPage = function() {
+  canOpenPage = function () {
     const curPageNumber = this.state.curPageNumber;
     const pages = this.state.pages;
 
@@ -78,31 +79,12 @@ export class AddMember extends React.Component {
     return true;
   };
 
-  openPage = function(nextPageNumber) {
-    const pages = this.state.pages;
-
+  openPage = function (nextPageNumber) {
     // update curPageNumber
     this.setState({ curPageNumber: nextPageNumber });
-
-    // set up for button previous, next
-    if (nextPageNumber === pages.length) {
-      $('.addMember__body__card__buttons__btn-next').text('Xác nhận');
-    } else {
-      $('.addMember__body__card__buttons__btn-next').html(
-        "Tiếp theo<i class='fas fa-chevron-right'></i>"
-      );
-    }
-    if (nextPageNumber === 1) {
-      $('.addMember__body__card__buttons__btn-previous').attr('disabled', true);
-    } else {
-      $('.addMember__body__card__buttons__btn-previous').attr(
-        'disabled',
-        false
-      );
-    }
   };
 
-  handleClickPrevious = function() {
+  handleClickPrevious = function () {
     const curPageNumber = this.state.curPageNumber;
     const nextPageNumber = curPageNumber - 1;
     if (nextPageNumber > 0) {
@@ -110,7 +92,7 @@ export class AddMember extends React.Component {
     }
   };
 
-  handleClickNext = function() {
+  handleClickNext = function () {
     const curPageNumber = this.state.curPageNumber;
     const pages = this.state.pages;
 
@@ -125,7 +107,7 @@ export class AddMember extends React.Component {
     }
   };
 
-  handleIsValid = function(pageNumber, isValid) {
+  handleIsValid = function (pageNumber, isValid) {
     const pages = this.state.pages;
     pages[pageNumber - 1].isValid = isValid;
     this.setState({ pages: pages });
@@ -134,28 +116,34 @@ export class AddMember extends React.Component {
   static async getInitialProps({ req, query }) {
     return {};
   }
-  fetchData() {}
+  fetchData() { }
 
   shouldComponentUpdate() {
     return true;
   }
 
-  componentDidUpdate(prevProps, prevState) {}
+  componentDidUpdate(prevProps, prevState) { }
   handleChange = (step, key, value) => {
+    const formData = this.state.formData
+    // if (step === 'personalInfo') {
+    //   this.state.formData[step][key] = value;
+    // }
+    // this.setState({ formData: this.state.formData });
     if (step === 'personalInfo') {
-      this.state.formData[step][key] = value;
+      formData[step][key] = value;
     }
-    this.setState({ formData: this.state.formData });
+    this.setState({ formData: formData });
   };
   handleSelectCoursePackage = (courseId, packageId) => {
-    const courseIndex = this.state.formData.courses.findIndex(course => {
+    const formData = this.state.formData
+    const courseIndex = formData.courses.findIndex(course => {
       return courseId === course._id;
     });
     const packageData = this.props.package.items.find(packageData => {
       return packageData._id === packageId;
     });
     if (courseIndex === -1) {
-      this.state.formData.courses.push({
+      formData.courses.push({
         _id: courseId,
         package: packageId,
         timeTables: [],
@@ -163,19 +151,49 @@ export class AddMember extends React.Component {
         type: 'package'
       });
     } else {
-      if (packageId === this.state.formData.courses[courseIndex].package) {
-        this.state.formData.courses.splice(courseIndex, 1);
+      if (packageId === formData.courses[courseIndex].package) {
+        formData.courses.splice(courseIndex, 1);
       } else {
-        this.state.formData.courses[courseIndex] = {
+        formData.courses[courseIndex] = {
           _id: courseId,
           package: packageId,
-          timeTables: this.state.formData.courses[courseIndex].timeTables,
+          timeTables: formData.courses[courseIndex].timeTables,
           price: packageData.price,
           type: 'package'
         };
       }
     }
-    this.setState({ formData: this.state.formData });
+    this.setState(() => { formData: formData });
+
+    // const courseIndex = this.state.formData.courses.findIndex(cåourse => {
+    //   return courseId === course._id;
+    // });
+    // const packageData = this.props.package.items.find(packageData => {
+    //   return packageData._id === packageId;
+    // });
+    // if (courseIndex === -1) {
+    //   this.state.formData.courses.push({
+    //     _id: courseId,
+    //     package: packageId,
+    //     timeTables: [],
+    //     price: packageData.price,
+    //     type: 'package'
+    //   });
+    // } else {
+    //   if (packageId === this.state.formData.courses[courseIndex].package) {
+    //     this.state.formData.courses.splice(courseIndex, 1);
+    //   } else {
+    //     this.state.formData.courses[courseIndex] = {
+    //       _id: courseId,
+    //       package: packageId,
+    //       timeTables: this.state.formData.courses[courseIndex].timeTables,
+    //       price: packageData.price,
+    //       type: 'package'
+    //     };
+    //   }
+    // }
+    // console.log("course : ", this.state.formData.courses)
+    // this.setState({ formData: this.state.formData });
   };
   handleInputCourseMonthAmount = (courseId, monthAmount) => {
     const courseIndex = this.state.formData.courses.findIndex(course => {
@@ -234,28 +252,30 @@ export class AddMember extends React.Component {
       this.state.formData.personalInfo.avatar = imageLink;
     } else {
       imageLink = 'https://i.imgur.com/KLKaw6K.png';
+      this.state.formData.personalInfo.avatar = imageLink;
     }
     this.state.formData.personalInfo.birthday = moment(
       this.state.formData.personalInfo.birthday
-    ).format();
-    api.student
-      .enroll(this.state.formData, {
-        headers: {
-          'x-token':
-            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M'
-        }
-      })
-      .then(async res => {
-        await Swal.fire('Thành công', 'Thêm học viên thành công', 'success');
-        Router.push(
-          `/manager/member/member?studentId=${res.result.object._id}`,
-          `/quan-ly/hoc-vien/chi-tiet/${res.result.object._id}`
-        );
-      })
-      .catch(err => {
-        console.log('err');
-        Swal.fire('Thất bại', 'Thêm học viên không thành công', 'error');
-      });
+      , "DD/MM/YYYY").format();
+    console.log("dataa: ", this.state.formData)
+    // api.student
+    //   .enroll(this.state.formData, {
+    //     headers: {
+    //       'x-token':
+    //         'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M'
+    //     }
+    //   })
+    //   .then(async res => {
+    //     await Swal.fire('Thành công', 'Thêm học viên thành công', 'success');
+    //     Router.push(
+    //       `/manager/member/member?studentId=${res.result.object._id}`,
+    //       `/quan-ly/hoc-vien/chi-tiet/${res.result.object._id}`
+    //     );
+    //   })
+    //   .catch(err => {
+    //     console.log('err');
+    //     Swal.fire('Thất bại', 'Thêm học viên không thành công', 'error');
+    //   });
   }
   render() {
     return (
@@ -321,6 +341,7 @@ export class AddMember extends React.Component {
                   courses={this.state.formData.courses}
                   handleChooseTimeTableItem={this.handleChooseTimeTableItem}
                   handleIsValid={this.handleIsValid}
+                  timeTables={this.props.timeTable.items}
                   pageNumber="3"
                 ></TimeTableOptions>
               </div>
@@ -336,22 +357,50 @@ export class AddMember extends React.Component {
                 <ReviewAddMember
                   data={this.state.formData}
                   courses={this.props.courses.items}
+                  handleCheckIsPayFee={() => {
+                    this.state.formData.isPayFee = !this.state.formData.isPayFee
+                    this.setState({
+                      formData: this.state.formData
+                    })
+                  }}
                 />
               </div>
             </div>
             <div className="addMember__body__card__buttons">
-              <button
-                className="addMember__body__card__buttons__btn addMember__body__card__buttons__btn-previous"
-                onClick={this.handleClickPrevious}
-              >
-                <i className="fas fa-chevron-left"></i>Quay lại
-              </button>
-              <button
-                className="addMember__body__card__buttons__btn addMember__body__card__buttons__btn-next"
-                onClick={this.handleClickNext}
-              >
-                Tiếp tục<i className="fas fa-chevron-right"></i>
-              </button>
+              {this.state.curPageNumber === 1 ? (
+                <button
+                  disabled="true"
+                  className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-previous"
+                  onClick={this.handleClickPrevious}
+                >
+                  <i className="fas fa-chevron-left"></i>Quay lại
+                </button>
+              ) : (
+                  <button
+                    disabled="false"
+                    className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-previous"
+                    onClick={this.handleClickPrevious}
+                  >
+                    <i className="fas fa-chevron-left"></i>Quay lại
+                </button>
+                )}
+
+              {this.state.curPageNumber === this.state.pages.length ? (
+                <button
+                  className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-next"
+                  onClick={this.handleClickNext}
+                >
+                  Xác nhận
+                </button>
+              ) : (
+                  <button
+                    className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-next"
+                    onClick={this.handleClickNext}
+                    dangerouslySetInnerHTML={{
+                      __html: 'Tiếp theo<i className="fas fa-chevron-right"></i>'
+                    }}
+                  ></button>
+                )}
             </div>
           </div>
         </div>

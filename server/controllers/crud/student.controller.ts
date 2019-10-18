@@ -86,7 +86,18 @@ export class StudentController extends CrudController<typeof studentService>{
             }).then(result => {
                 return result
             }))
+        try {
+            const courseStudentAmount = courseStudentService.model.count({
+                student: params.studentId
+            })
+            courseService.update({
+                $inc: {
+                    currentStudentAmount: courseStudentAmount
+                }
+            })
+        } catch (err) {
 
+        }
         return await Promise.all(tasks)
     }
     async leave(params: {
@@ -144,7 +155,18 @@ export class StudentController extends CrudController<typeof studentService>{
             }).then(result => {
                 return result
             }))
+        try {
+            const courseStudentAmount = courseStudentService.model.count({
+                student: params.studentId
+            })
+            courseService.update({
+                $inc: {
+                    currentStudentAmount: - courseStudentAmount
+                }
+            })
+        } catch (err) {
 
+        }
         return await Promise.all(tasks)
     }
 
@@ -455,25 +477,48 @@ export class StudentController extends CrudController<typeof studentService>{
     }, option: ICrudOption) {
         if (!params.startTime) params.startTime = moment().format()
         if (!params.endTime) params.endTime = moment().add(1, "months").format()
-        const startDay = moment(params.startTime).dayOfYear()
-        const endDay = moment(params.endTime).dayOfYear()
-        const listStudent = await this.service.model.aggregate([
-            {
-                $project: {
-                    day: { $dayOfYear: "$birthday" }
-                }
-            }, {
-                $match: {
-                    day: { $gt: startDay, $lte: endDay }
-                }
-            },
-            { $sort: { birthday: 1 } }
-        ])
-        return await this.service.getList(_.merge(option, {
+
+        const today = moment(params.startTime).toDate();
+        const listStudent = await studentService.model.aggregate([{
+            $addFields: {
+                today: { $dateFromParts: { year: { $year: today }, month: { $month: today }, day: { $dayOfMonth: today } } },
+                birthdayThisYear: { $dateFromParts: { year: { $year: today }, month: { $month: "$birthday" }, day: { $dayOfMonth: "$birthday" } } },
+                birthdayNextYear: { $dateFromParts: { year: { $add: [1, { $year: today }] }, month: { $month: "$birthday" }, day: { $dayOfMonth: "$birthday" } } }
+            }
+        }, {
+            $addFields: {
+                nextBirthday: { $cond: [{ $gte: ["$birthdayThisYear", "$today"] }, "$birthdayThisYear", "$birthdayNextYear"] }
+            }
+        }, {
+            $project: {
+                name: 1,
+                birthday: 1,
+                daysTillNextBirthday: {
+                    $divide: [
+                        { $subtract: ["$nextBirthday", "$today"] },
+                        24 * 60 * 60 * 1000  /* milliseconds in a day */
+                    ]
+                },
+                _id: 1
+            }
+        }, {
+            $match: {
+                daysTillNextBirthday: { $gte: 0, $lt: 30 }
+            }
+        }, { $sort: { daysTillNextBirthday: 1 } }]);
+        const studentIds = listStudent.map((student: any) => { return student._id })
+        const students = await this.service.getList(_.merge(option, {
             filter: {
                 _id: { $in: listStudent.map((student: any) => { return student._id }) }
             }
         }))
+        const sortedStudent = listStudent.map((student: any) => {
+            return students.rows.find(item => { return item._id.toString() === student._id.toString() })
+        })
+        return {
+            rows: sortedStudent,
+            count: students.count
+        }
     }
     async getListClassOfStudent(params: {
         studentId: string

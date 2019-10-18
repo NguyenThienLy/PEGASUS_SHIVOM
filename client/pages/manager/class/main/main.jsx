@@ -13,16 +13,45 @@ import Swal from 'sweetalert2'
 
 import { action } from '../../../../actions'
 import { api } from '../../../../services'
-import { Pagination } from '../../../../components'
+import { Pagination, CustomSelect } from '../../../../components'
 
 export class MainClass extends React.Component {
     constructor(props) {
         super(props);
         this.changeStatus = this.changeStatus.bind(this)
         this.state = {
-            currentPage: 1
+            currentPage: 1,
+            isLoading: false,
+            classes: null,
+            filterByStatus: {
+                placeholder: 'Chọn trạng thái',
+                options: ['Tất cả', 'Hoạt động', 'Không hoạt động'],
+                values: ['all', 'active', 'deactive']
+            },
         }
         this.changePage = this.changePage.bind(this)
+        this.filterByStatus = this.filterByStatus.bind(this);
+    }
+    filterByStatus(value) {
+        // const { name, value } = e.target;
+        if (value !== 'all') {
+            this.setState({
+                isLoading: true
+            });
+            const classes = this.props.classes.items.filter(classInfo => {
+                return classInfo.status === value;
+            });
+            this.setState({
+                classes,
+                isLoading: false,
+                currentPage: 1
+            });
+        } else {
+            this.setState({
+                classes: undefined,
+                currentPage: 1
+            });
+        }
     }
     changePage(pageNum) {
         this.setState({
@@ -80,19 +109,36 @@ export class MainClass extends React.Component {
     }
 
     render() {
-        const courses = this.props.courses.items.slice(this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10, 10 * this.state.currentPage)
+        // const classes = this.props.classes.items.slice(this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10, 10 * this.state.currentPage)
+        const classes = this.state.classes
+            ? this.state.classes.slice(
+                this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10,
+                10 * this.state.currentPage
+            )
+            : (this.props.classes.items || []).slice(
+                this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10,
+                10 * this.state.currentPage
+            );
         return (
             <React.Fragment>
                 <div className="member-main">
-                    <div className="table">
-                        <div className="table__title">
-                            <div className="table__title__icon">
-                                <i className="fas fa-clipboard-list" />
+                    <div className="member-main__title">Danh sách lớp học</div>
+                    <div className="member-main__content">
+                        <div className="member-main__content__filter">
+
+                            <div>
+                                <div>Lọc theo trạng thái</div>
+                                <CustomSelect
+                                    customSelect={this.state.filterByStatus}
+                                    filterByStatus={this.filterByStatus}
+                                ></CustomSelect>
+
                             </div>
-                            <div className="table__title__content">Danh sách lớp học</div>
                         </div>
-                        <div className="table__content">
-                            <table className="member-table">
+                    </div>
+                    <div className="base-table">
+                        <div className="base-table__content">
+                            <table>
                                 <tbody>
                                     <tr>
                                         <th>Thứ tự</th>
@@ -101,7 +147,7 @@ export class MainClass extends React.Component {
                                         <th>Trạng thái</th>
                                         <th>Thao tác</th>
                                     </tr>
-                                    {courses.map((item, index) => {
+                                    {(classes || []).map((item, index) => {
 
                                         return (
                                             <tr key={item.id}>
@@ -149,11 +195,13 @@ export class MainClass extends React.Component {
                             </table>
                         </div>
                         <div className="table__pagination">
-                            <Pagination currentPage={this.state.currentPage} total={this.props.courses.items.length} limit={10} changePage={this.changePage} />
+                            {this.state.classes ?
+                                <Pagination currentPage={this.state.currentPage} total={this.state.classes.length} limit={10} changePage={this.changePage} />
+                                : <Pagination currentPage={this.state.currentPage} total={this.props.classes.items.length} limit={10} changePage={this.changePage} />}
                         </div>
                     </div>
                 </div>
-            </React.Fragment>
+            </React.Fragment >
         );
     }
 }

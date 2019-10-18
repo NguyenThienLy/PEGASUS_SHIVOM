@@ -91,14 +91,16 @@ export class MainMember extends React.Component {
         .then(res => {
           this.setState({
             students: res.results.objects.rows,
-            isLoading: false
+            isLoading: false,
+            currentPage: 1
           });
         })
-        .catch(err => {});
+        .catch(err => { });
     } else {
       this.setState({
         students: undefined,
-        isLoading: false
+        isLoading: false,
+        currentPage: 1
       });
     }
   }
@@ -117,14 +119,16 @@ export class MainMember extends React.Component {
         .then(res => {
           this.setState({
             students: res.results.objects.rows,
-            isLoading: false
+            isLoading: false,
+            currentPage: 1
           });
         })
-        .catch(err => {});
+        .catch(err => { });
     } else {
       this.setState({
         students: undefined,
-        isLoading: false
+        isLoading: false,
+        currentPage: 1
       });
     }
   }
@@ -139,11 +143,13 @@ export class MainMember extends React.Component {
       });
       this.setState({
         students,
-        isLoading: false
+        isLoading: false,
+        currentPage: 1
       });
     } else {
       this.setState({
-        students: undefined
+        students: undefined,
+        currentPage: 1
       });
     }
   }
@@ -156,7 +162,8 @@ export class MainMember extends React.Component {
       case 'all':
         this.setState({
           students: null,
-          isLoading: false
+          isLoading: false,
+          currentPage: 1
         });
         break;
       case 'high':
@@ -172,7 +179,8 @@ export class MainMember extends React.Component {
       case 'low':
         this.setState({
           students: _.sortBy(this.props.students.items, 'point', 'asc'),
-          isLoading: false
+          isLoading: false,
+          currentPage: 1
         });
         break;
       default:
@@ -190,14 +198,16 @@ export class MainMember extends React.Component {
         .then(res => {
           this.setState({
             students: res.results.objects.rows,
-            isLoading: false
+            isLoading: false,
+            currentPage: 1
           });
         })
-        .catch(err => {});
+        .catch(err => { });
     } else {
       this.setState({
         students: undefined,
-        isLoading: false
+        isLoading: false,
+        currentPage: 1
       });
     }
     this.setState({
@@ -328,11 +338,14 @@ export class MainMember extends React.Component {
   }
   render() {
     const students = this.state.students
-      ? this.state.students
+      ? this.state.students.slice(
+        this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10,
+        10 * this.state.currentPage
+      )
       : (this.props.students.items || []).slice(
-          this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10,
-          10 * this.state.currentPage
-        );
+        this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10,
+        10 * this.state.currentPage
+      );
     return (
       <React.Fragment>
         <AddPoint
@@ -407,7 +420,11 @@ export class MainMember extends React.Component {
                   <button
                     style={
                       this.state.isFilterByUpcommingBirthday
-                        ? { backgroundColor: 'green' }
+                        ? {
+                          backgroundColor: '#e1f2f4',
+                          color: '#00a3af',
+                          border: '1px solid #e1f2f4'
+                        }
                         : null
                     }
                     onClick={this.filterByUpcommingBirthday}
@@ -445,165 +462,172 @@ export class MainMember extends React.Component {
 
             <div className="base-table">
               <div className="base-table__content">
-                {this.state.isLoading === true ? (
-                  <Loading />
-                ) : (
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Thứ tự</th>
-                        <th>Ảnh</th>
-                        <th>Họ và tên</th>
-                        <th>Mã số</th>
-                        <th>Điểm</th>
-                        <th>Sinh nhật</th>
-                        <th>Số điện thoại</th>
-                        <th>Trạng thái</th>
-                        <th>Thao tác</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {(students || []).map((item, index) => {
-                        // {[].map((item, index) => {
-                        return (
-                          <tr key={item._id}>
-                            <td>
-                              {this.state.currentPage === 1
-                                ? index + 1
-                                : (this.state.currentPage - 1) * 10 + index + 1}
-                            </td>
-                            <td>
-                              <img
-                                alt=""
-                                src={item.avatar}
-                                className="img-response avatar-image"
-                              ></img>
-                            </td>
-                            <td>
-                              {item.firstName} {item.lastName}
-                            </td>
-                            <td>{item.cardId}</td>
-                            <td>{item.point}</td>
-                            <td>
-                              {moment(item.birthday).format('DD/MM/YYYY')}
-                            </td>
-                            <td>{item.phone}</td>
-                            <td>
-                              {item.status === 'active'
-                                ? 'Đang học'
-                                : 'Nghỉ học'}
-                            </td>
-                            {item.status === 'active' ? (
-                              <td className="action-td">
-                                <Tooltip title="Checkin" position="top">
-                                  <span
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Thứ tự</th>
+                      <th>Ảnh</th>
+                      <th>Họ và tên</th>
+                      <th>Mã số</th>
+                      <th>Điểm</th>
+                      <th>Sinh nhật</th>
+                      <th>Số điện thoại</th>
+                      <th>Trạng thái</th>
+                      <th>Thao tác</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {this.state.isLoading === true ? (
+                      <Loading />
+                    ) : (
+                        (students || []).map((item, index) => {
+                          // {[].map((item, index) => {
+                          return (
+                            <tr key={item._id}>
+                              <td>
+                                {this.state.currentPage === 1
+                                  ? index + 1
+                                  : (this.state.currentPage - 1) * 10 + index + 1}
+                              </td>
+                              <td>
+                                <img
+                                  alt=""
+                                  src={item.avatar}
+                                  className="img-response avatar-image"
+                                ></img>
+                              </td>
+                              <td>
+                                {item.firstName} {item.lastName}
+                              </td>
+                              <td>{item.cardId}</td>
+                              <td>{item.point}</td>
+                              <td>
+                                {moment(item.birthday).format('DD/MM/YYYY')}
+                              </td>
+                              <td>{item.phone}</td>
+                              <td>
+                                {item.status === 'active'
+                                  ? 'Đang học'
+                                  : 'Nghỉ học'}
+                              </td>
+                              {item.status === 'active' ? (
+                                <td className="action-td">
+                                  <Tooltip
+                                    title="Checkin"
+                                    position="top"
                                     className="action-td__item"
-                                    onClick={() => this.checkin(item._id)}
                                   >
-                                    <i class="far fa-check-circle"></i>
-                                  </span>
-                                </Tooltip>
-                                <Tooltip title="Cộng điểm" position="top">
-                                  <span
+                                    <span onClick={() => this.checkin(item._id)}>
+                                      <i class="fas fa-check"></i>
+                                    </span>
+                                  </Tooltip>
+                                  <Tooltip
+                                    title="Cộng điểm"
+                                    position="top"
                                     className="action-td__item"
-                                    onClick={() => {
-                                      this.setState({
-                                        selectedStudentId: item._id
-                                      });
-                                      this.showHideModal('addPoint');
-                                    }}
                                   >
-                                    <i class="fas fa-plus-circle"></i>
-                                  </span>
-                                </Tooltip>
-                                <Tooltip title="Nghỉ học" position="top">
-                                  <span
+                                    <span
+                                      onClick={() => {
+                                        this.setState({
+                                          selectedStudentId: item._id
+                                        });
+                                        this.showHideModal('addPoint');
+                                      }}
+                                    >
+                                      <i class="fas fa-plus"></i>
+                                    </span>
+                                  </Tooltip>
+                                  <Tooltip
+                                    title="Nghỉ học"
+                                    position="top"
                                     className="action-td__item"
-                                    onClick={() => {
-                                      this.setState({
-                                        selectedStudentId: item._id
-                                      });
-                                      this.showHideModal('leave');
-                                    }}
                                   >
-                                    <i class="fas fa-user-times"></i>
-                                  </span>
-                                </Tooltip>
-                                <Tooltip title="Chi tiết" position="top">
-                                  <span
+                                    <span
+                                      onClick={() => {
+                                        this.setState({
+                                          selectedStudentId: item._id
+                                        });
+                                        this.showHideModal('leave');
+                                      }}
+                                    >
+                                      <i class="fas fa-user-minus"></i>
+                                    </span>
+                                  </Tooltip>
+                                  <Tooltip
+                                    title="Chi tiết"
+                                    position="top"
                                     className="action-td__item"
-                                    onClick={() => this.open(item._id)}
                                   >
-                                    <i class="fas fa-share-square"></i>
-                                  </span>
-                                </Tooltip>
-                                {/* <Tooltip
+                                    <span onClick={() => this.open(item._id)}>
+                                      <i class="fas fa-info"></i>
+                                    </span>
+                                  </Tooltip>
+                                  {/* <Tooltip
                                                             title="Chỉnh sửa"
                                                             position="top"
                                                         >
                                                             <span className="action-td__item" onClick={() => this.edit(item._id)}> <i class="fas fa-pen"></i> </span>
                                                         </Tooltip> */}
-                                <Tooltip title="Gia hạn học" position="top">
-                                  <span
+                                  <Tooltip
+                                    title="Gia hạn học"
+                                    position="top"
                                     className="action-td__item"
-                                    onClick={() => {
-                                      this.setState({
-                                        selectedStudentId: item._id
-                                      });
-                                      this.showHideModal('extendTimeCourse');
-                                    }}
                                   >
-                                    {' '}
-                                    <i class="fas fa-business-time"></i>
-                                  </span>
-                                </Tooltip>
-                                <Tooltip
-                                  title="Đăng ký khoá học"
-                                  position="top"
-                                >
-                                  <span
+                                    <span
+                                      onClick={() => {
+                                        this.setState({
+                                          selectedStudentId: item._id
+                                        });
+                                        this.showHideModal('extendTimeCourse');
+                                      }}
+                                    >
+                                      <i class="fas fa-hourglass-half"></i>
+                                    </span>
+                                  </Tooltip>
+                                  <Tooltip
+                                    title="Đăng ký khoá học"
+                                    position="top"
                                     className="action-td__item"
-                                    onClick={() => {
-                                      this.setState({
-                                        selectedStudentId: item._id
-                                      });
-                                      this.showHideModal('regisNewCourse');
-                                    }}
                                   >
-                                    <i class="fas fa-fist-raised"></i>
-                                  </span>
-                                </Tooltip>
-                              </td>
-                            ) : (
-                              <td className="action-td">
-                                <button
-                                  onClick={() => {
-                                    this.setState({
-                                      selectedStudentId: item._id
-                                    });
-                                    this.showHideModal('relearn');
-                                  }}
-                                >
-                                  Học lại
+                                    <span
+                                      onClick={() => {
+                                        this.setState({
+                                          selectedStudentId: item._id
+                                        });
+                                        this.showHideModal('regisNewCourse');
+                                      }}
+                                    >
+                                      <i class="fas fa-edit"></i>
+                                    </span>
+                                  </Tooltip>
+                                </td>
+                              ) : (
+                                  <td className="action-td--single">
+                                    <button
+                                      className="action-td__button"
+                                      onClick={() => {
+                                        this.setState({
+                                          selectedStudentId: item._id
+                                        });
+                                        this.showHideModal('relearn');
+                                      }}
+                                    >
+                                      Học lại
                                 </button>
-                              </td>
-                            )}
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                )}
+                                  </td>
+                                )}
+                            </tr>
+                          );
+                        })
+                      )}
+                  </tbody>
+                </table>
               </div>
+              <div className="base-table__divider"></div>
               <div className="base-table__pagination">
-                {!this.state.students ? (
-                  <Pagination
-                    currentPage={this.state.currentPage}
-                    total={(this.props.students.items || []).length}
-                    limit={10}
-                    changePage={this.changePage}
-                  />
-                ) : null}
+                {this.state.students ?
+                  <Pagination currentPage={this.state.currentPage} total={this.state.students.length} limit={10} changePage={this.changePage} />
+                  : <Pagination currentPage={this.state.currentPage} total={this.props.students.items.length} limit={10} changePage={this.changePage} />}
               </div>
             </div>
           </div>

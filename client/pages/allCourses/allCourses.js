@@ -129,13 +129,31 @@ export class AllCourses extends React.Component {
   }
   fetchData() {
     if (this.props.courses.items.length === 0) {
-      this.props.fetchCourse();
+      this.props.fetchCourse({
+        query: {
+          filter: {
+            status: "active"
+          }
+        }
+      });
     }
     if (!this.props.setting.fetched) {
-      this.props.fetchSetting();
+      this.props.fetchSetting({
+        query: {
+          filter: {
+            status: "active"
+          }
+        }
+      });
     }
     if (this.props.newCategories.items.length === 0) {
-      this.props.fetchNewCategory();
+      this.props.fetchNewCategory({
+        query: {
+          filter: {
+            status: "active"
+          }
+        }
+      });
     }
   }
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -160,13 +178,16 @@ export class AllCourses extends React.Component {
         query: {
           limit: 5,
           order: { createdAt: -1 },
+          filter: {
+            status: "active"
+          },
           populates: [{ path: "category", select: "name slug" }]
         }
       })
       .then(res => {
         this.setState({ latestNews: res.results.objects.rows });
       })
-      .catch(err => {});
+      .catch(err => { });
   }
   addContact = body => {
     this.props.addContact(body);
@@ -208,13 +229,13 @@ export class AllCourses extends React.Component {
                 </div>
                 {this.props.courses.fetching === false
                   ? this.props.courses.items.map((trainingClass, index) => {
-                      return (
-                        <TrainingClass
-                          trainingClass={trainingClass}
-                          key={index}
-                        />
-                      );
-                    })
+                    return (
+                      <TrainingClass
+                        trainingClass={trainingClass}
+                        key={index}
+                      />
+                    );
+                  })
                   : null}
               </div>
 

@@ -1,4 +1,4 @@
-@import "../../../../../../default.scss";
+@import '../../../../../../default.scss';
 
 .new-post-info {
   width: 100%;
@@ -27,7 +27,7 @@
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
       /* display: none; <- Crashes Chrome on hover */
-      -webkit-appearance: none;
+      -webkit-appearance: inner-spin-button;
       margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
     }
     &::placeholder {
@@ -54,7 +54,7 @@
       border: 1px solid $main-color;
     }
 
-    @include e("select") {
+    @include e('select') {
       width: 100%;
       border: none;
       outline: none;
@@ -96,7 +96,7 @@
     margin: 0px;
   }
 
-  @include e("title") {
+  @include e('title') {
     font-size: 1.1em;
     color: $main-color;
     font-weight: bold;
@@ -106,12 +106,12 @@
     font-family: $font-family-special;
   }
 
-  @include e("form") {
+  @include e('form') {
     padding-left: 0;
     margin: 0 0 0 2em;
     padding-bottom: 1em;
 
-    @include e("info") {
+    @include e('info') {
       position: relative;
       border-left: 1px solid rgba(0, 0, 0, 0.1);
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -120,18 +120,18 @@
       grid-template-columns: repeat(1, 1fr);
       column-gap: 2em;
       row-gap: 1em;
-      @include e("item") {
+      @include e('item') {
         .new-post-info__title-text {
           width: 100%;
           margin-bottom: 1em;
         }
-        @include e("error-message") {
+        @include e('error-message') {
           width: 100%;
           font-size: 0.8em;
           color: red;
         }
       }
-      @include e("icon") {
+      @include e('icon') {
         position: absolute;
         left: 0em;
         top: 1.5em;
@@ -154,7 +154,7 @@
         grid-column-start: 1;
         grid-column-end: 2;
       }
-      @include e("add-photo") {
+      @include e('add-photo') {
         width: 100%;
         grid-column-start: 1;
         grid-column-end: 2;

@@ -65,6 +65,16 @@ class Member extends Component {
                 limit: 0
             }
         })
+        if (this.props.timeTable.items.length === 0) {
+            this.props.fetchTimeTable({
+                query: {
+                    limit: 0,
+                    filter: {
+                        status: "active"
+                    }
+                }
+            });
+        }
     }
     componentWillReceiveProps(nextProps) {
         this.setState({ number: Math.random() })
@@ -128,7 +138,7 @@ const mapDispatchToProps = dispatch => {
                 fetchStudent: action.student.fetch,
                 fetchCourse: action.course.fetch,
                 fetchPackage: action.package.fetch,
-
+                fetchTimeTable: action.timeTable.fetch,
             },
             dispatch
         )

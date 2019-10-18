@@ -70,13 +70,31 @@ export class Contact extends React.Component {
   }
   fetchData() {
     if (this.props.courses.items.length === 0) {
-      this.props.fetchCourse();
+      this.props.fetchCourse({
+        query: {
+          filter: {
+            status: "active"
+          }
+        }
+      });
     }
     if (!this.props.setting.fetched) {
-      this.props.fetchSetting();
+      this.props.fetchSetting({
+        query: {
+          filter: {
+            status: "active"
+          }
+        }
+      });
     }
     if (this.props.newCategories.items.length === 0) {
-      this.props.fetchNewCategory();
+      this.props.fetchNewCategory({
+        query: {
+          filter: {
+            status: "active"
+          }
+        }
+      });
     }
   }
   componentDidMount() {
@@ -124,7 +142,7 @@ export class Contact extends React.Component {
         }
       ]
     });
-    $('.contact__body__brands__slick-autoplay').on('beforeChange', function(
+    $('.contact__body__brands__slick-autoplay').on('beforeChange', function (
       event,
       slick,
       currentSlide,
@@ -135,7 +153,7 @@ export class Contact extends React.Component {
       );
       $('.contact__body__brands__slick-autoplay .slick-dots li button')
         .attr('aria-pressed', 'false')
-        .focus(function() {
+        .focus(function () {
           this.blur();
         });
     });

@@ -142,6 +142,7 @@ export class Form extends Component {
                                         type={this.props.form[keyName].type}
                                         placeholder={this.props.form[keyName].placeholder}
                                         className="form__body__input"
+                                        defaultValue={this.props.form[keyName].defaultValue}
                                         ref={keyName}
                                         name={keyName}
                                         onChange={this.handleChange}

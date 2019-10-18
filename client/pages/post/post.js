@@ -103,13 +103,31 @@ class Post extends React.Component {
   }
   fetchData() {
     if (this.props.courses.items.length === 0) {
-      this.props.fetchCourse();
+      this.props.fetchCourse({
+        query: {
+          filter: {
+            status: "active"
+          }
+        }
+      });
     }
     if (!this.props.setting.fetched) {
-      this.props.fetchSetting();
+      this.props.fetchSetting({
+        query: {
+          filter: {
+            status: "active"
+          }
+        }
+      });
     }
     if (this.props.newCategories.items.length === 0) {
-      this.props.fetchNewCategory();
+      this.props.fetchNewCategory({
+        query: {
+          filter: {
+            status: "active"
+          }
+        }
+      });
     }
   }
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -139,7 +157,8 @@ class Post extends React.Component {
           offset: randomOffset,
           filter: {
             category: this.props.newsData.category._id,
-            _id: { $ne: this.props.newsData._id }
+            _id: { $ne: this.props.newsData._id },
+            status: "active"
           },
           populates: [
             { path: "category", select: "name slug" },
@@ -155,7 +174,8 @@ class Post extends React.Component {
                 limit: 2,
                 filter: {
                   category: this.props.newsData.category._id,
-                  _id: { $ne: this.props.newsData._id }
+                  _id: { $ne: this.props.newsData._id },
+                  status: "active"
                 },
                 populates: [
                   { path: "category", select: "name slug" },
@@ -178,6 +198,9 @@ class Post extends React.Component {
         query: {
           limit: 5,
           order: { createdAt: -1 },
+          filter: {
+            status: "active"
+          },
           populates: [{ path: "category", select: "name slug" }]
         }
       })

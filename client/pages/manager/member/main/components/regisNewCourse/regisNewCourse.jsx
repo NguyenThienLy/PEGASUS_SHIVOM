@@ -324,6 +324,7 @@ export class RegisNewCourse extends Component {
                                     <TimeTableOptions
                                         courses={[this.state.selectedCourse]}
                                         handleChooseTimeTableItem={this.handleChooseTimeTableItem}
+                                        timeTables={this.props.timeTable.items}
                                     // handleIsValid={this.handleIsValid}
                                     // pageNumber="3"
                                     ></TimeTableOptions>
