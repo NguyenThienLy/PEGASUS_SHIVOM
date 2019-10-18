@@ -79,7 +79,7 @@ export class AddMember extends React.Component {
     return true;
   };
 
-  openPage = function(nextPageNumber) {
+  openPage = function (nextPageNumber) {
     // update curPageNumber
     this.setState({ curPageNumber: nextPageNumber });
   };
@@ -135,7 +135,6 @@ export class AddMember extends React.Component {
     this.setState({ formData: formData });
   };
   handleSelectCoursePackage = (courseId, packageId) => {
-    console.log("vao day", courseId)
     const formData = this.state.formData
     const courseIndex = formData.courses.findIndex(course => {
       return courseId === course._id;
@@ -197,7 +196,6 @@ export class AddMember extends React.Component {
     // this.setState({ formData: this.state.formData });
   };
   handleInputCourseMonthAmount = (courseId, monthAmount) => {
-    console.log("select course amount")
     const courseIndex = this.state.formData.courses.findIndex(course => {
       return courseId === course._id;
     });
@@ -245,7 +243,6 @@ export class AddMember extends React.Component {
     this.setState({ formData: this.state.formData });
   };
   async submitEnroll() {
-
     Swal.showLoading();
     let imageLink;
     if (this.state.formData.personalInfo.avatar !== '') {
@@ -258,7 +255,7 @@ export class AddMember extends React.Component {
     }
     this.state.formData.personalInfo.birthday = moment(
       this.state.formData.personalInfo.birthday
-    ).format();
+      , "DD/MM/YYYY").format();
     api.student
       .enroll(this.state.formData, {
         headers: {
@@ -377,14 +374,14 @@ export class AddMember extends React.Component {
                   <i className="fas fa-chevron-left"></i>Quay lại
                 </button>
               ) : (
-                <button
-                  disabled="false"
-                  className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-previous"
-                  onClick={this.handleClickPrevious}
-                >
-                  <i className="fas fa-chevron-left"></i>Quay lại
+                  <button
+                    disabled="false"
+                    className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-previous"
+                    onClick={this.handleClickPrevious}
+                  >
+                    <i className="fas fa-chevron-left"></i>Quay lại
                 </button>
-              )}
+                )}
 
               {this.state.curPageNumber === this.state.pages.length ? (
                 <button
@@ -394,14 +391,14 @@ export class AddMember extends React.Component {
                   Xác nhận
                 </button>
               ) : (
-                <button
-                  className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-next"
-                  onClick={this.handleClickNext}
-                  dangerouslySetInnerHTML={{
-                    __html: 'Tiếp theo<i className="fas fa-chevron-right"></i>'
-                  }}
-                ></button>
-              )}
+                  <button
+                    className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-next"
+                    onClick={this.handleClickNext}
+                    dangerouslySetInnerHTML={{
+                      __html: 'Tiếp theo<i className="fas fa-chevron-right"></i>'
+                    }}
+                  ></button>
+                )}
             </div>
           </div>
         </div>

@@ -90,7 +90,8 @@ export class AddClassTimeForm extends React.Component {
         hour: this.state.startAvailableCheckinTime.hour,
         minute: this.state.startAvailableCheckinTime.minute
       },
-      room: this.refs.room.value
+      room: this.refs.room.value,
+      topic: this.refs.topic.value
     };
     $(".add-class-time__form__item__input").val("");
     $(".add-class-time__form__item__select-box__select").val("");
@@ -101,6 +102,19 @@ export class AddClassTimeForm extends React.Component {
       <React.Fragment>
         <form className="add-class-time__form" onSubmit={this.submit}>
           <div className="add-class-time__form__title">thêm lịch biểu</div>
+          <div className="add-class-time__form__item">
+            <div className="add-class-time__form__item__title">
+              Chủ đề
+            </div>
+
+            <input
+              className="add-class-time__form__item__input"
+              type="text"
+              name="topic"
+              ref="topic"
+              required
+            />
+          </div>
           <div className="add-class-time__form__item">
             <div className="add-class-time__form__item__title">
               Ngày trong tuần
