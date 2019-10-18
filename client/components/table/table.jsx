@@ -40,7 +40,7 @@ export class Table extends React.Component {
   }
 
   render() {
-    const { tableContents, staticContent, formatKey } = this.props;
+    const { tableContents, formatKey } = this.props;
     //console.log("tableContents", tableContents);
 
     return (
@@ -54,7 +54,7 @@ export class Table extends React.Component {
           <div className="table__title__icon">
             <i className="fas fa-clipboard-list" />
           </div>
-          <div className="table__title__content">{staticContent.nameTable}</div>
+          <div className="table__title__content">{tableContents.nameTable}</div>
         </div>
         <div className="table__content">
           <table>
@@ -83,8 +83,8 @@ export class Table extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {tableContents &&
-                tableContents.map((tableContent, index) => {
+              {tableContents.data &&
+                tableContents.data.map((tableContent, index) => {
                   return (
                     <tr key={index}>
                       <td data-title="#">{index + 1}</td>

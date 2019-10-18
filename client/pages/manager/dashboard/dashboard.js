@@ -36,37 +36,34 @@ export class Dashboard extends React.Component {
           "https://cdn1.iconfinder.com/data/icons/avatars-1-5/136/87-512.png",
         name: "Avril Lavigne"
       },
-
-      numberAdmins: [
-        {
-          icon: '<i class="fas fa-id-card-alt"></i>',
-          about: "Đi đúng giờ",
-          quantity: 0,
-          colorIcon: "#f5365c",
-          isEmpty: true
-        },
-        {
-          icon: '<i class="fas fa-id-card-alt"></i>',
-          about: "Đi trễ",
-          quantity: 0,
-          colorIcon: "#fb6340",
-          isEmpty: true
-        },
-        {
+      numberAdmins: {
+        isEmpty: true,
+        isFetching: true,
+        absent: {
           icon: '<i class="fas fa-id-card-alt"></i>',
           about: "Vắng",
           quantity: 0,
-          colorIcon: "#ffd600",
-          isEmpty: true
+          colorIcon: "#ffd600"
         },
-        {
+        late: {
+          icon: '<i class="fas fa-id-card-alt"></i>',
+          about: "Đi trễ",
+          quantity: 0,
+          colorIcon: "#fb6340"
+        },
+        onTime: {
+          icon: '<i class="fas fa-id-card-alt"></i>',
+          about: "Đi đúng giờ",
+          quantity: 0,
+          colorIcon: "#f5365c"
+        },
+        redundant: {
           icon: '<i class="fas fa-id-card-alt"></i>',
           about: "Đi thừa",
           quantity: 0,
-          colorIcon: "#11cdef",
-          isEmpty: true
+          colorIcon: "#11cdef"
         }
-      ],
+      },
       customSelect: {
         placeholder: "Chọn năm...",
         options: [2019, 2020, 2021, 2022, 2023]
@@ -89,17 +86,20 @@ export class Dashboard extends React.Component {
       },
       columnChartData: {
         labels: null,
+        isFetching: true,
+        isEmpty: true,
         datasets: [
           {
             label: "Số học viên",
             data: null,
             backgroundColor: "rgba(75, 192, 192, 0.6)"
           }
-        ],
-        isEmpty: true
+        ]
       },
       pieChartData: {
         labels: null,
+        isFetching: true,
+        isEmpty: true,
         datasets: [
           {
             data: null,
@@ -110,11 +110,12 @@ export class Dashboard extends React.Component {
               "rgba(153, 102, 255, 0.6)"
             ]
           }
-        ],
-        isEmpty: true
+        ]
       },
       lineChartData: {
         labels: null,
+        isEmpty: true,
+        isFetching: true,
         datasets: [
           {
             label: "Vắng học",
@@ -145,7 +146,6 @@ export class Dashboard extends React.Component {
             borderColor: "rgba(153, 102, 255, 0.6)"
           }
         ],
-        isEmpty: true
       }
     };
 
@@ -298,16 +298,17 @@ export class Dashboard extends React.Component {
       const newPieChartData = prevState.pieChartData;
 
       // Gán số lượng loại chuyên cần cho component admin
-      newNumberAdmins[0].quantity = this.props.statisticCourse.statisticForPieChart.data.totalOnTime;
-      newNumberAdmins[1].quantity = this.props.statisticCourse.statisticForPieChart.data.totalLate;
-      newNumberAdmins[2].quantity = this.props.statisticCourse.statisticForPieChart.data.totalAbsent;
-      newNumberAdmins[3].quantity = this.props.statisticCourse.statisticForPieChart.data.totalRedundant;
+      newNumberAdmins.absent.quantity = this.props.statisticCourse.statisticForPieChart.data.totalAbsent;
+      newNumberAdmins.late.quantity = this.props.statisticCourse.statisticForPieChart.data.totalLate;
+      newNumberAdmins.onTime.quantity = this.props.statisticCourse.statisticForPieChart.data.totalOnTime;
+      newNumberAdmins.redundant.quantity = this.props.statisticCourse.statisticForPieChart.data.totalRedundant;
 
-      newNumberAdmins[0].isEmpty = newNumberAdmins[1].isEmpty = newNumberAdmins[2].isEmpty = newNumberAdmins[3].isEmpty = this.props.statisticCourse.statisticForPieChart.data.isEmpty;
       // Thống kê trên biểu đồ tròn
       newPieChartData.datasets[0].data = this.props.statisticCourse.statisticForPieChart.data.data;
       newPieChartData.labels = this.props.statisticCourse.statisticForPieChart.data.labels;
-      newPieChartData.isEmpty = this.props.statisticCourse.statisticForPieChart.data.isEmpty;
+
+      newNumberAdmins.isEmpty = newPieChartData.isEmpty = this.props.statisticCourse.statisticForPieChart.data.isEmpty;
+      newNumberAdmins.isFetching = newPieChartData.isFetching = this.props.statisticCourse.statisticForPieChart.fetching;
 
       this.setState({
         numberAdmins: newNumberAdmins,
@@ -324,7 +325,9 @@ export class Dashboard extends React.Component {
       // Thống kê trên biểu đồ cột
       newColumnChartData.datasets[0].data = this.props.students.statisticForColumnChart.data.data;
       newColumnChartData.labels = this.props.students.statisticForColumnChart.data.labels;
+
       newColumnChartData.isEmpty = this.props.students.statisticForColumnChart.data.isEmpty;
+      newColumnChartData.isFetching = this.props.students.statisticForColumnChart.fetching
 
       this.setState({
         columnChartData: newColumnChartData
@@ -344,7 +347,9 @@ export class Dashboard extends React.Component {
       newLineChartData.datasets[3].data = this.props.statisticCourse.statisticForLineChart.data.dataRedundants;
 
       newLineChartData.labels = this.props.statisticCourse.statisticForLineChart.data.labels;
+
       newLineChartData.isEmpty = this.props.statisticCourse.statisticForLineChart.data.isEmpty;
+      newLineChartData.isFetching = this.props.statisticCourse.statisticForLineChart.fetching;
 
       this.setState({
         lineChartData: newLineChartData
@@ -393,15 +398,34 @@ export class Dashboard extends React.Component {
           </div>
           <div className="dashboard__body">
             <div className="dashboard__body__numbers">
-              {this.props.statisticCourse.statisticForPieChart.fetching ? (
-                <Loading />
-              ) : (
-                  this.state.numberAdmins.map((number, index) => {
-                    return (
-                      <NumberAdmin numberAdmin={number} key={index}></NumberAdmin>
-                    );
-                  })
-                )}
+              <NumberAdmin
+                numberAdmin={this.state.numberAdmins.absent}
+
+                isFetching={this.state.numberAdmins.isFetching}
+                isEmpty={this.state.numberAdmins.isEmpty}>
+              </NumberAdmin>
+
+              <NumberAdmin
+                numberAdmin={this.state.numberAdmins.late}
+
+                isFetching={this.state.numberAdmins.isFetching}
+                isEmpty={this.state.numberAdmins.isEmpty}>
+              </NumberAdmin>
+
+              <NumberAdmin
+                numberAdmin={this.state.numberAdmins.onTime}
+
+                isFetching={this.state.numberAdmins.isFetching}
+                isEmpty={this.state.numberAdmins.isEmpty}>
+              </NumberAdmin>
+
+              <NumberAdmin
+                numberAdmin={this.state.numberAdmins.redundant}
+
+                isFetching={this.state.numberAdmins.isFetching}
+                isEmpty={this.state.numberAdmins.isEmpty}>
+              </NumberAdmin>
+
             </div>
             <div className="dashboard__body__card">
               <div className="dashboard__body__card__title">Thống kê</div>
@@ -416,27 +440,22 @@ export class Dashboard extends React.Component {
                   <div className="dashboard__body__card__content__chart__row">
                     <ColumnChart
                       columnChartData={this.state.columnChartData}
-                      isFetching={
-                        this.props.students.statisticForColumnChart.fetching
-                      }
+
+                      isFetching={this.state.columnChartData.isFetching}
                       isEmpty={this.state.columnChartData.isEmpty}
                     ></ColumnChart>
 
                     <PieChart
                       pieChartData={this.state.pieChartData}
-                      isFetching={
-                        this.props.statisticCourse.statisticForPieChart.fetching
-                      }
+
+                      isFetching={this.state.pieChartData.isFetching}
                       isEmpty={this.state.pieChartData.isEmpty}
                     ></PieChart>
                   </div>
                   <div className="dashboard__body__card__content__chart__row-single">
                     <LineChart
                       lineChartData={this.state.lineChartData}
-                      isFetching={
-                        this.props.statisticCourse.statisticForLineChart
-                          .fetching
-                      }
+                      isFetching={this.state.lineChartData.isFetching}
                       isEmpty={this.state.lineChartData.isEmpty}
                     ></LineChart>
                   </div>
@@ -447,9 +466,10 @@ export class Dashboard extends React.Component {
               <FeedbackAdmin
                 feedbackAdmins={this.props.feedbacks.items}
                 staticContent={this.state.feedbackAdmin}
-                isFetching={
-                  this.props.feedbacks.fetching
-                }
+
+                isFetching={this.props.feedbacks.fetching}
+                isEmpty={this.props.feedbacks.items.length}
+
                 updateIgnoreFeedbacks={this.updateIgnoreFeedbacks}
                 updateConfirmFeedbacks={this.updateConfirmFeedbacks}
               ></FeedbackAdmin>
@@ -458,25 +478,25 @@ export class Dashboard extends React.Component {
               <Activity
                 activities={this.props.students.itemsNewStudents.data}
                 staticContent={this.state.newStudent}
-                isFetching={
-                  this.props.students.itemsNewStudents.fetching
-                }
+
+                isFetching={this.props.students.itemsNewStudents.fetching}
+                isEmpty={this.props.students.itemsNewStudents.data.length}
               ></Activity>
 
               <Activity
                 activities={this.props.students.itemsTopPoint.data}
                 staticContent={this.state.topPoint}
-                isFetching={
-                  this.props.students.itemsTopPoint.fetching
-                }
+
+                isFetching={this.props.students.itemsTopPoint.fetching}
+                isEmpty={this.props.students.itemsTopPoint.data.length}
               ></Activity>
 
               <Activity
                 activities={this.props.students.itemsUpcommingBirthday.data}
                 staticContent={this.state.birthday}
-                isFetching={
-                  this.props.students.itemsUpcommingBirthday.fetching
-                }
+
+                isFetching={this.props.students.itemsUpcommingBirthday.fetching}
+                isEmpty={this.props.students.itemsUpcommingBirthday.data.length}
               ></Activity>
             </div>
           </div>

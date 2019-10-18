@@ -45,12 +45,28 @@ $hover-color: lighten($sub-main-color, 30%);
       tbody tr {
         display: table !important;
         width: 100%;
-        table-layout: fixed;
+
       }
       tbody {
         display: block !important;
         max-height: 28em;
         overflow-y: auto;
+
+        &::-webkit-scrollbar-track {
+          -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+          box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+          background-color: #fafafa;
+        }
+
+        &::-webkit-scrollbar {
+          height: 8px;
+          width: 8px;
+          background-color: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: #83ccd2;
+        }
       }
       tr {
         border-bottom: 1px solid $table-border-color;

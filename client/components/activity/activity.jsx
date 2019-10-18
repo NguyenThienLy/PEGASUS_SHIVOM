@@ -7,15 +7,15 @@ export class Activity extends React.Component {
     super(props);
   }
   render() {
-    const { activities, staticContent, isFetching } = this.props;
+    const { activities, staticContent, isFetching, isEmpty } = this.props;
 
     return (
       <div className="activity">
         <div className="activity__title">{staticContent.nameTable}</div>
         <hr className="divider" />
-        {!activities.length && !isFetching && "Dữ liệu trống"}
-        {isFetching && !activities.length && <Loading />}
-        {!isFetching && activities.length && (
+        {!isEmpty && !isFetching && "Dữ liệu trống"}
+        {isFetching && !isEmpty && <Loading />}
+        {!isFetching && isEmpty && (
           <ul className="activity__actions">
             {activities.map((activity, index) => {
               return (

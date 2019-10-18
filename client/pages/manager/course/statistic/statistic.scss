@@ -5,7 +5,7 @@ body {
   background-color: lighten($sub-main-color, 27%);
 }
 
-.courseDetails {
+.courseStatistic {
   display: flex;
   flex-direction: row;
   //height: 100vh;
@@ -213,7 +213,7 @@ body {
     font-size: $font-size-375 !important;
   }
 
-  .courseDetails__sidebar {
+  .courseStatistic__sidebar {
     width: 0%;
     .sidebar {
       position: fixed;
@@ -221,12 +221,12 @@ body {
     }
   }
 
-  .courseDetails__body {
+  .courseStatistic__body {
     width: 90%;
     margin: 0 5%;
   }
 
-  .courseDetails__body__numbers {
+  .courseStatistic__body__numbers {
     grid-template-columns: auto;
     column-gap: 0em;
     .numberAdmin__inner__info {
@@ -236,7 +236,7 @@ body {
     }
   }
 
-  .courseDetails__body__card__content__course__info {
+  .courseStatistic__body__card__content__course__info {
     flex-direction: column;
     align-items: center;
     .courseInfo {
@@ -249,7 +249,7 @@ body {
     }
   }
 
-  .courseDetails__body__card__content__chart__row {
+  .courseStatistic__body__card__content__chart__row {
     .pieChart {
       width: 100%;
     }
@@ -262,7 +262,7 @@ body {
     font-size: $font-size-600 !important;
   }
 
-  .courseDetails__sidebar {
+  .courseStatistic__sidebar {
     width: 0%;
     .sidebar {
       position: fixed;
@@ -270,12 +270,12 @@ body {
     }
   }
 
-  .courseDetails__body {
+  .courseStatistic__body {
     width: 90%;
     margin: 0 5%;
   }
 
-  .courseDetails__body__numbers {
+  .courseStatistic__body__numbers {
     grid-template-columns: auto auto;
     column-gap: 1em;
     .numberAdmin__inner__info {
@@ -285,7 +285,7 @@ body {
     }
   }
 
-  .courseDetails__body__card__content__course__info {
+  .courseStatistic__body__card__content__course__info {
     flex-direction: column;
     align-items: center;
     .courseInfo {
@@ -298,7 +298,7 @@ body {
     }
   }
 
-  .courseDetails__body__card__content__chart__row {
+  .courseStatistic__body__card__content__chart__row {
     .pieChart {
       width: 100%;
     }
@@ -311,7 +311,7 @@ body {
     font-size: $font-size-768 !important;
   }
 
-  .courseDetails__sidebar {
+  .courseStatistic__sidebar {
     width: 0%;
     .sidebar {
       position: fixed;
@@ -319,12 +319,12 @@ body {
     }
   }
 
-  .courseDetails__body {
+  .courseStatistic__body {
     width: 90%;
     margin: 0 5%;
   }
 
-  .courseDetails__body__numbers {
+  .courseStatistic__body__numbers {
     grid-template-columns: auto auto;
     column-gap: 2em;
     .numberAdmin__inner__info {
@@ -334,7 +334,7 @@ body {
     }
   }
 
-  .courseDetails__body__card__content__course__info {
+  .courseStatistic__body__card__content__course__info {
     flex-direction: row;
     align-items: flex-start;
     .courseInfo {
@@ -347,7 +347,7 @@ body {
     }
   }
 
-  .courseDetails__body__card__content__chart__row {
+  .courseStatistic__body__card__content__chart__row {
     .pieChart {
       width: 50%;
     }
@@ -360,7 +360,7 @@ body {
     font-size: $font-size-992 !important;
   }
 
-  .courseDetails__sidebar {
+  .courseStatistic__sidebar {
     width: 20%;
     .sidebar {
       position: fixed;
@@ -368,12 +368,12 @@ body {
     }
   }
 
-  .courseDetails__body {
+  .courseStatistic__body {
     width: 100%;
     margin: 0 1%;
   }
 
-  .courseDetails__body__numbers {
+  .courseStatistic__body__numbers {
     grid-template-columns: auto auto auto auto;
     column-gap: 0.5em;
     .numberAdmin__inner__icon {
@@ -387,7 +387,7 @@ body {
     }
   }
 
-  .courseDetails__body__card__content__course__info {
+  .courseStatistic__body__card__content__course__info {
     flex-direction: row;
     align-items: flex-start;
     .courseInfo {
@@ -400,7 +400,7 @@ body {
     }
   }
 
-  .courseDetails__body__card__content__chart__row {
+  .courseStatistic__body__card__content__chart__row {
     .pieChart {
       width: 50%;
     }
@@ -413,7 +413,7 @@ body {
     font-size: $font-size-1200 !important;
   }
 
-  .courseDetails__sidebar {
+  .courseStatistic__sidebar {
     width: 20%;
     .sidebar {
       position: fixed;
@@ -421,12 +421,12 @@ body {
     }
   }
 
-  .courseDetails__body {
+  .courseStatistic__body {
     width: 100%;
     margin: 0 1%;
   }
 
-  // .courseDetails__body__numbers {
+  // .courseStatistic__body__numbers {
   //   grid-template-columns: auto auto auto auto;
   //   column-gap: 1em;
   //   .numberAdmin__inner__info {
@@ -436,7 +436,7 @@ body {
   //   }
   // }
 
-  .courseDetails__body__numbers {
+  .courseStatistic__body__numbers {
     grid-template-columns: repeat(4, 1fr);
     column-gap: 1em;
     row-gap: 1em;
@@ -447,7 +447,7 @@ body {
     }
   }
 
-  .courseDetails__body__card__content__course__info {
+  .courseStatistic__body__card__content__course__info {
     flex-direction: row;
     align-items: flex-start;
     .courseInfo {
@@ -460,7 +460,7 @@ body {
     }
   }
 
-  .courseDetails__body__card__content__chart__row {
+  .courseStatistic__body__card__content__chart__row {
     .pieChart {
       width: 30%;
     }
