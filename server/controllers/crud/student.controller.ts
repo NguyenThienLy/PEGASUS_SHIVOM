@@ -455,34 +455,7 @@ export class StudentController extends CrudController<typeof studentService>{
     }, option: ICrudOption) {
         if (!params.startTime) params.startTime = moment().format()
         if (!params.endTime) params.endTime = moment().add(1, "months").format()
-        // const startDay = moment(params.startTime).dayOfYear()
-        // const endDay = moment(params.endTime).dayOfYear()
-        // const startDayOfMonth = moment(params.startTime).date()
-        // const startMonth = moment(params.startTime).month() + 1
-        // const endDayOfMonth = moment(params.startTime).date()
-        // const endMonth = moment(params.startTime).month() + 1
-        // console.log("start day: ", startDay)
-        // const listStudent = await this.service.model.aggregate([
-        //     {
-        //         $project: {
-        //             day: { $dayOfMonth: "$birthday" },
-        //             month: { $month: "$birthday" },
-        //             birthday: 1
-        //         }
-        //     }
-        //     , {
-        //         $match: {
-        //             month: { $gte: startMonth, $lte: endMonth },
-        //             day: { $gte: startDayOfMonth, $lte: endDayOfMonth },
-        //         }
-        //     },
-        //     { $sort: { birthday: 1 } }
-        // ])
-        // return await this.service.getList(_.merge(option, {
-        //     filter: {
-        //         _id: { $in: listStudent.map((student: any) => { return student._id }) }
-        //     }
-        // }))
+
         const today = moment(params.startTime).toDate();
         const listStudent = await studentService.model.aggregate([{
             $addFields: {
@@ -511,11 +484,19 @@ export class StudentController extends CrudController<typeof studentService>{
                 daysTillNextBirthday: { $gte: 0, $lt: 30 }
             }
         }, { $sort: { daysTillNextBirthday: 1 } }]);
-        return await this.service.getList(_.merge(option, {
+        const studentIds = listStudent.map((student: any) => { return student._id })
+        const students = await this.service.getList(_.merge(option, {
             filter: {
                 _id: { $in: listStudent.map((student: any) => { return student._id }) }
             }
         }))
+        const sortedStudent = listStudent.map((student: any) => {
+            return students.rows.find(item => { return item._id.toString() === student._id.toString() })
+        })
+        return {
+            rows: sortedStudent,
+            count: students.count
+        }
     }
     async getListClassOfStudent(params: {
         studentId: string
