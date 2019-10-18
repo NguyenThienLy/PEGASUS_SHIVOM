@@ -159,19 +159,21 @@ class Blog extends React.Component {
   static async getInitialProps({ req, query }) {
     // Lấy slug của danh mục tin tức
     const slug = query.categorySlug;
+    console.log("slug: ", slug)
     try {
       const category = await api.newCategory.getNewsCategoryBySlug(slug);
+      console.log("category: ", category)
       const res = await api.news.getList({
         query: {
-          filter: { category: category._id }
+          filter: { category: category._id },
+          status: "active"
         },
         populates: [{ path: "author", select: "firstName%20lastName" }]
       });
-
+      console.log("res: ", res)
       return { lstNews: res.results.objects.rows, category: category };
     } catch (error) {
-      console.log("Error: ", error);
-      Router.push("/");
+      console.log("err: ", error)
     }
   }
 
@@ -201,18 +203,39 @@ class Blog extends React.Component {
         query: {
           limit: 5,
           order: { createdAt: -1 },
+          filter: {
+            status: "active"
+          },
           populates: [{ path: "category", select: "name slug" }]
         }
       })
       .then(res => {
         this.setState({ latestNews: res.results.objects.rows });
       })
-      .catch(err => {});
+      .catch(err => { });
   }
   fetchData() {
-    this.props.fetchCourse();
-    this.props.fetchSetting();
-    this.props.fetchNewCategory();
+    this.props.fetchCourse({
+      query: {
+        filter: {
+          status: "active"
+        }
+      }
+    });
+    this.props.fetchSetting({
+      query: {
+        filter: {
+          status: "active"
+        }
+      }
+    });
+    this.props.fetchNewCategory({
+      query: {
+        filter: {
+          status: "active"
+        }
+      }
+    });
   }
   addContact = body => {
     this.props.addContact(body);

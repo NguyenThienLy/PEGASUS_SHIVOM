@@ -83,13 +83,15 @@ export class WebhookController extends BaseController {
             try {
                 const classTimeTable: ClassTimeTableModel = await classTimeTableService.getItem({
                     filter: {
-                        items: timeTableItem._id
+                        items: timeTableItem._id,
+                        status: "active"
                     }
                 })
                 const courseStudent: CourseStudentModel = await courseStudentService.getItem({
                     filter: {
                         student: student._id,
-                        course: classTimeTable.course
+                        course: classTimeTable.course,
+                        status: "active"
                     }
                 })
                 const startAvailableCheckinTime = moment(checkInTime).hour(Math.floor(timeTableItem.startAvailableCheckinTimeNumber / 60)).minute(timeTableItem.startAvailableCheckinTimeNumber % 60).utcOffset("+07:00").format()
