@@ -252,6 +252,7 @@ export class AddMember extends React.Component {
       this.state.formData.personalInfo.avatar = imageLink;
     } else {
       imageLink = 'https://i.imgur.com/KLKaw6K.png';
+      this.state.formData.personalInfo.avatar = imageLink;
     }
     this.state.formData.personalInfo.birthday = moment(
       this.state.formData.personalInfo.birthday
