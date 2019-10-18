@@ -29,17 +29,16 @@
 // #C2E6F4
 //DCF0F9
 // #EDF7FC
-.action-td {
-  display: flex;
-  justify-content: space-evenly;
-  @include e('item') {
-    margin-right: 16px;
-  }
-}
+// .action-td {
+//   display: flex;
+//   justify-content: space-evenly;
+//   @include e('item') {
+//     margin-right: 16px;
+//   }
+// }
 .manager {
   display: flex;
   flex-direction: row;
-  height: 100vh;
   @include e('header') {
   }
   @include e('sidebar') {
@@ -52,7 +51,7 @@
   @include e('body') {
     min-height: calc(100% - 100px);
     width: 78%;
-    margin: 100px 1%;
+    margin: 5em 1%;
     @include e('card') {
       margin: 4em 0 3em;
       background-color: #fff;
@@ -188,8 +187,8 @@
             column-gap: 0em !important;
           }
           @include e('item') {
-            width: 20px;
             margin: auto;
+            width: 20px;
             border: 1px solid $main-color;
             outline: 0;
             padding: 0;
@@ -198,9 +197,15 @@
             padding: 0.3em;
             transition: all 200ms ease;
             cursor: pointer;
-            text-align: center;
             background: #fff;
+            text-align: center;
             // box-shadow: 1px 1px 2px 0 rgba(0, 163, 175, 0.5);
+            &:nth-child(2n + 1) {
+              margin-right: 0;
+            }
+            &:nth-child(2n) {
+              margin-left: 0;
+            }
             &:hover {
               background: $main-color;
               color: #fff;

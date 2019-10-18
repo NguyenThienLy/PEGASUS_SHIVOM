@@ -24,9 +24,6 @@ export class AddClass extends React.Component {
           isValid: false
         },
         {
-          isValid: false
-        },
-        {
           isValid: true
         }
       ],
@@ -40,7 +37,7 @@ export class AddClass extends React.Component {
         description: '',
         quantity: 0,
         teacher: null,
-        code: null,
+        code: null
       },
       classId: null
     };
@@ -74,7 +71,7 @@ export class AddClass extends React.Component {
     return true;
   }
 
-  canOpenPage = function () {
+  canOpenPage = function() {
     const curPageNumber = this.state.curPageNumber;
     const pages = this.state.pages;
 
@@ -86,12 +83,12 @@ export class AddClass extends React.Component {
     return true;
   };
 
-  openPage = function (nextPageNumber) {
+  openPage = function(nextPageNumber) {
     // update curPageNumber
     this.setState({ curPageNumber: nextPageNumber });
   };
 
-  handleClickPrevious = function () {
+  handleClickPrevious = function() {
     const curPageNumber = this.state.curPageNumber;
     const nextPageNumber = curPageNumber - 1;
     if (nextPageNumber > 0) {
@@ -102,19 +99,22 @@ export class AddClass extends React.Component {
   handleClickNext = async () => {
     const curPageNumber = this.state.curPageNumber;
     const pages = this.state.pages;
-
     const nextPageNumber = curPageNumber + 1;
+
     if (nextPageNumber <= pages.length) {
       if (this.canOpenPage()) {
+        if (nextPageNumber === 2) {
+          await this.submitClass();
+        }
         this.openPage(nextPageNumber);
       }
     }
     if (nextPageNumber > pages.length) {
-      this.submitCourse();
+      // this.submitClass();
     }
   };
 
-  handleIsValid = function (pageNumber, isValid) {
+  handleIsValid = function(pageNumber, isValid) {
     const pages = this.state.pages;
     pages[pageNumber - 1].isValid = isValid;
     this.setState({ pages: pages });
@@ -130,13 +130,13 @@ export class AddClass extends React.Component {
   showAddClassTimeModal() {
     this.setState({ isShowAddClassTimeModal: true });
   }
-  fetchData() { }
+  fetchData() {}
 
   handleInputForm(name, value) {
     this.state.formData[name] = value;
     this.setState({ formData: this.state.formData });
   }
-  handleAddClassTime = function (body) {
+  handleAddClassTime = function(body) {
     if (!this.state.classId) {
       Swal.fire(
         'Chưa tạo lớp học',
@@ -263,7 +263,7 @@ export class AddClass extends React.Component {
                 ></NewClassTimetable>
               </div>
 
-              <div
+              {/* <div
                 style={
                   this.state.curPageNumber === 3
                     ? { display: 'block' }
@@ -272,7 +272,7 @@ export class AddClass extends React.Component {
                 className="add-class__body__card__content__info animated fadeIn"
               >
                 <ReviewAddClass data={this.state.formData} />
-              </div>
+              </div> */}
             </div>
 
             <div className="add-class__body__card__buttons">
@@ -285,30 +285,30 @@ export class AddClass extends React.Component {
                   <i className="fas fa-chevron-left"></i>Quay lại
                 </button>
               ) : (
-                  <button
-                    className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-previous"
-                    onClick={this.handleClickPrevious}
-                  >
-                    <i className="fas fa-chevron-left"></i>Quay lại
+                <button
+                  className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-previous"
+                  onClick={this.handleClickPrevious}
+                >
+                  <i className="fas fa-chevron-left"></i>Quay lại
                 </button>
-                )}
+              )}
 
               {this.state.curPageNumber === this.state.pages.length ? (
                 <button
                   className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-next"
                   onClick={this.handleClickNext}
                 >
-                  Xác nhận
+                  Hoàn thành
                 </button>
               ) : (
-                  <button
-                    className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-next"
-                    onClick={this.handleClickNext}
-                    dangerouslySetInnerHTML={{
-                      __html: 'Tiếp theo<i className="fas fa-chevron-right"></i>'
-                    }}
-                  ></button>
-                )}
+                <button
+                  className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-next"
+                  onClick={this.handleClickNext}
+                  dangerouslySetInnerHTML={{
+                    __html: 'Tiếp theo<i className="fas fa-chevron-right"></i>'
+                  }}
+                ></button>
+              )}
             </div>
           </div>
         </div>

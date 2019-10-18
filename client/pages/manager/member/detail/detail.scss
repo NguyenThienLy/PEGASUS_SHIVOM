@@ -23,7 +23,7 @@
         // justify-content: space-between;
         // align-items: center;
         display: grid;
-        grid-template-columns: auto auto auto auto;
+        grid-template-columns:  repeat(4, 1fr);
         column-gap: 2em;
         row-gap: 1em;
       }
@@ -201,7 +201,7 @@
     }
   
     .memberDetails__body__numbers {
-      grid-template-columns: auto auto;
+      grid-template-columns: repeat(2, 1fr);
       column-gap: 1em;
       .numberAdmin__inner__info {
         .numberAdmin__inner__info__quantity {
@@ -253,7 +253,7 @@
     }
   
     .memberDetails__body__numbers {
-      grid-template-columns: auto auto;
+      grid-template-columns: repeat(2, 1fr);
       column-gap: 2em;
       .numberAdmin__inner__info {
         .numberAdmin__inner__info__quantity {
@@ -305,7 +305,7 @@
     }
   
     .memberDetails__body__numbers {
-      grid-template-columns: auto auto auto auto;
+      grid-template-columns:  repeat(4, 1fr);
       column-gap: 0.5em;
       .numberAdmin__inner__icon {
         margin-right: 0.5em;
@@ -361,7 +361,7 @@
     }
   
     .memberDetails__body__numbers {
-      grid-template-columns: auto auto auto auto;
+      grid-template-columns:  repeat(4, 1fr);
       column-gap: 1em;
       .numberAdmin__inner__info {
         .numberAdmin__inner__info__quantity {

@@ -1,0 +1,70 @@
+@import '../../../../default.scss';
+
+.course-main {
+  margin: 0 0 3em;
+  background-color: #fff;
+  padding: 1em;
+  border-radius: 5px;
+  -webkit-box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2em 0em;
+    .lds-dual-ring {
+      width: 40px;
+      height: 40px;
+    }
+    .lds-dual-ring:after {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  @include e('title') {
+    position: absolute;
+    top: -0.8em;
+    left: 0.8em;
+    padding: 1em;
+    text-align: center;
+    background-color: $main-color;
+    color: #fff;
+    border-radius: 5px;
+    -webkit-box-shadow: 1px 1px 5px rgba(0, 163, 175, 0.5);
+    box-shadow: 1px 1px 5px rgba(0, 163, 175, 0.5);
+  }
+
+  @include e('content') {
+    @include e('filter') {
+      margin: 3em 0 1em;
+      display: flex;
+      justify-content: flex-start;
+      & > div {
+        & > div {
+          margin-bottom: 0.7em;
+        }
+        .customSelect {
+          @include e('toggle') {
+            top: 0.8em;
+          }
+          @include e('placeholder') {
+            padding: 0.6em 2em;
+          }
+          @include e('option') {
+            @include e('title') {
+              padding: 0.6em 2em;
+            }
+            input {
+              &:checked ~ span.customSelect__option__title {
+                padding: 0.6em 2em;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

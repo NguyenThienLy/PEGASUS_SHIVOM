@@ -1,16 +1,16 @@
-import * as React from "react";
-import * as moment from "moment";
+import * as React from 'react';
+import * as moment from 'moment';
 
-import Head from "next/head";
-import Link from "next/link";
-import Router from "next/router"
-import { connect } from "react-redux";
-import { api } from "../../../services";
-import { action } from "../../../actions";
-import { bindActionCreators } from "redux";
-import Swal from 'sweetalert2'
+import Head from 'next/head';
+import Link from 'next/link';
+import Router from 'next/router';
+import { connect } from 'react-redux';
+import { api } from '../../../services';
+import { action } from '../../../actions';
+import { bindActionCreators } from 'redux';
+import Swal from 'sweetalert2';
 
-import "./dashboard.scss";
+import './dashboard.scss';
 import {
   Sidebar,
   HeaderAdmin,
@@ -24,8 +24,8 @@ import {
   FeedbackAdmin,
   AdminSidebar,
   Loading
-} from "../../../components";
-import GoogleMapReact from "google-map-react";
+} from '../../../components';
+import GoogleMapReact from 'google-map-react';
 
 export class Dashboard extends React.Component {
   constructor(props) {
@@ -33,55 +33,55 @@ export class Dashboard extends React.Component {
     this.state = {
       headerAdmin: {
         avatar:
-          "https://cdn1.iconfinder.com/data/icons/avatars-1-5/136/87-512.png",
-        name: "Avril Lavigne"
+          'https://cdn1.iconfinder.com/data/icons/avatars-1-5/136/87-512.png',
+        name: 'Avril Lavigne'
       },
       numberAdmins: {
         isEmpty: true,
         isFetching: true,
         absent: {
           icon: '<i class="fas fa-id-card-alt"></i>',
-          about: "Vắng",
+          about: 'Vắng',
           quantity: 0,
-          colorIcon: "#ffd600"
+          colorIcon: '#ffd600'
         },
         late: {
           icon: '<i class="fas fa-id-card-alt"></i>',
-          about: "Đi trễ",
+          about: 'Đi trễ',
           quantity: 0,
-          colorIcon: "#fb6340"
+          colorIcon: '#fb6340'
         },
         onTime: {
           icon: '<i class="fas fa-id-card-alt"></i>',
-          about: "Đi đúng giờ",
+          about: 'Đi đúng giờ',
           quantity: 0,
-          colorIcon: "#f5365c"
+          colorIcon: '#f5365c'
         },
         redundant: {
           icon: '<i class="fas fa-id-card-alt"></i>',
-          about: "Đi thừa",
+          about: 'Đi thừa',
           quantity: 0,
-          colorIcon: "#11cdef"
+          colorIcon: '#11cdef'
         }
       },
       customSelect: {
-        placeholder: "Chọn năm...",
+        placeholder: 'Chọn năm...',
         options: [2019, 2020, 2021, 2022, 2023]
       },
       birthday: {
-        nameTable: "Sinh nhật học viên",
-        content: "sắp tới ngày sinh"
+        nameTable: 'Sinh nhật học viên',
+        content: 'sắp tới ngày sinh'
       },
       newStudent: {
-        nameTable: "Học viên mới tham gia",
-        content: "vừa nhập học"
+        nameTable: 'Học viên mới tham gia',
+        content: 'vừa nhập học'
       },
       topPoint: {
-        nameTable: "Bảng xếp hạng tích điểm",
+        nameTable: 'Bảng xếp hạng tích điểm',
         content: null
       },
       feedbackAdmin: {
-        nameTable: "Phản hồi từ học viên",
+        nameTable: 'Phản hồi từ học viên',
         content: null
       },
       columnChartData: {
@@ -90,9 +90,9 @@ export class Dashboard extends React.Component {
         isEmpty: true,
         datasets: [
           {
-            label: "Số học viên",
+            label: 'Số học viên',
             data: null,
-            backgroundColor: "rgba(75, 192, 192, 0.6)"
+            backgroundColor: 'rgba(75, 192, 192, 0.6)'
           }
         ]
       },
@@ -104,10 +104,10 @@ export class Dashboard extends React.Component {
           {
             data: null,
             backgroundColor: [
-              "rgba(255, 99, 132, 0.6)",
-              "rgba(255, 206, 86, 0.6)",
-              "rgba(75, 192, 192, 0.6)",
-              "rgba(153, 102, 255, 0.6)"
+              'rgba(255, 99, 132, 0.6)',
+              'rgba(255, 206, 86, 0.6)',
+              'rgba(75, 192, 192, 0.6)',
+              'rgba(153, 102, 255, 0.6)'
             ]
           }
         ]
@@ -118,39 +118,39 @@ export class Dashboard extends React.Component {
         isFetching: true,
         datasets: [
           {
-            label: "Vắng học",
+            label: 'Vắng học',
             fill: false,
             data: null,
-            backgroundColor: "rgba(255, 99, 132, 0.6)",
-            borderColor: "rgba(255, 99, 132, 0.6)"
+            backgroundColor: 'rgba(255, 99, 132, 0.6)',
+            borderColor: 'rgba(255, 99, 132, 0.6)'
           },
           {
-            label: "Trễ giờ",
+            label: 'Trễ giờ',
             fill: false,
             data: null,
-            backgroundColor: "rgba(255, 206, 86, 0.6)",
-            borderColor: "rgba(255, 206, 86, 0.6)"
+            backgroundColor: 'rgba(255, 206, 86, 0.6)',
+            borderColor: 'rgba(255, 206, 86, 0.6)'
           },
           {
-            label: "Đúng giờ",
+            label: 'Đúng giờ',
             fill: false,
             data: null,
-            backgroundColor: "rgba(75, 192, 192, 0.6)",
-            borderColor: "rgba(75, 192, 192, 0.6)"
+            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+            borderColor: 'rgba(75, 192, 192, 0.6)'
           },
           {
-            label: "Đi thừa",
+            label: 'Đi thừa',
             fill: false,
             data: null,
-            backgroundColor: "rgba(153, 102, 255, 0.6)",
-            borderColor: "rgba(153, 102, 255, 0.6)"
+            backgroundColor: 'rgba(153, 102, 255, 0.6)',
+            borderColor: 'rgba(153, 102, 255, 0.6)'
           }
-        ],
+        ]
       }
     };
 
-    this.updateIgnoreFeedbacks = this.updateIgnoreFeedbacks.bind(this)
-    this.updateConfirmFeedbacks = this.updateConfirmFeedbacks.bind(this)
+    this.updateIgnoreFeedbacks = this.updateIgnoreFeedbacks.bind(this);
+    this.updateConfirmFeedbacks = this.updateConfirmFeedbacks.bind(this);
   }
   static async getInitialProps({ req, query }) {
     return {};
@@ -158,11 +158,11 @@ export class Dashboard extends React.Component {
 
   fetchDataFollowYear = (startTime, endTime) => {
     const token =
-      "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M";
+      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M';
 
     this.props.fetchLineChart(
       null,
-      "week",
+      'week',
       `${startTime}Z`,
       `${endTime}Z`,
       token
@@ -170,7 +170,7 @@ export class Dashboard extends React.Component {
 
     this.props.fetchPieChart(
       null,
-      "year",
+      'year',
       `${startTime}Z`,
       `${endTime}Z`,
       token
@@ -181,39 +181,39 @@ export class Dashboard extends React.Component {
 
   fetchData = () => {
     const token =
-      "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M";
+      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M';
 
     this.props.fetchBirthday({
       query: {
         endTime: `${moment()
-          .endOf("year")
-          .subtract(7, "hours")
-          .format("YYYY-MM-DDTHH:mm:ss")}Z`
+          .endOf('year')
+          .subtract(7, 'hours')
+          .format('YYYY-MM-DDTHH:mm:ss')}Z`
       },
       headers: {
-        "x-token": token
+        'x-token': token
       }
     });
 
     this.props.fetchNewStudent({
       query: {
-        filter: { status: "active" },
+        filter: { status: 'active' },
         limit: 10,
         order: { createdAt: -1 }
       },
       headers: {
-        "x-token": token
+        'x-token': token
       }
     });
 
     this.props.fetchTopPoint({
       query: {
-        filter: { status: "active" },
+        filter: { status: 'active' },
         limit: 10,
         order: { point: -1 }
       },
       headers: {
-        "x-token": token
+        'x-token': token
       }
     });
 
@@ -221,10 +221,10 @@ export class Dashboard extends React.Component {
       query: {
         filter: { isReply: false },
         order: { createdAt: -1 },
-        populates: ["student"]
+        populates: ['student']
       },
       headers: {
-        "x-token": token
+        'x-token': token
       }
     });
   };
@@ -237,15 +237,15 @@ export class Dashboard extends React.Component {
     //   Swal.fire("Thất bại", "Bỏ qua phản hồi thất bại", "error")
     // })
 
-    this.props.updateIgnoreFeedbacks(id, body)
-    this.forceUpdate()
-  };
+    this.props.updateIgnoreFeedbacks(id, body);
+    this.forceUpdate();
+  }
 
   updateConfirmFeedbacks(id, body) {
     //Swal.showLoading()
 
-    this.props.updateConfirmFeedbacks(id, body)
-    this.forceUpdate()
+    this.props.updateConfirmFeedbacks(id, body);
+    this.forceUpdate();
 
     // if (this.props.updateConfirmFeedbacks(id, body).isUpdateSuccess &&
     //   this.props.updateConfirmFeedbacks(id, body).isDeleteSuccess)
@@ -259,28 +259,23 @@ export class Dashboard extends React.Component {
     // })
   }
 
-  handleScroll = () => { };
-  componentWillUnmount() { }
+  handleScroll = () => {};
+  componentWillUnmount() {}
   async componentDidMount() {
-    this.checkUserAlreadyLogin()
+    this.checkUserAlreadyLogin();
     // Lấy năm
     // startTime bắt đầu năm hiện tại
     // endTime bắt đầu năm hiện tại
     this.fetchDataFollowYear(
       moment()
-        .startOf("year")
-        .format("YYYY-MM-DD HH:mm:ss"),
+        .startOf('year')
+        .format('YYYY-MM-DD HH:mm:ss'),
       moment()
-        .endOf("year")
-        .format("YYYY-MM-DD HH:mm:ss")
+        .endOf('year')
+        .format('YYYY-MM-DD HH:mm:ss')
     );
 
     this.fetchData();
-
-    var heightOfHeader = $(
-      ".dashboard .dashboard__header .headerAdmin__wrapper"
-    ).height();
-    $(".dashboard .dashboard__body").css("margin-top", heightOfHeader + "px");
   }
 
   shouldComponentUpdate() {
@@ -288,8 +283,6 @@ export class Dashboard extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-
-
     if (
       prevProps.statisticCourse.statisticForPieChart.fetching &&
       !this.props.statisticCourse.statisticForPieChart.fetching
@@ -327,7 +320,7 @@ export class Dashboard extends React.Component {
       newColumnChartData.labels = this.props.students.statisticForColumnChart.data.labels;
 
       newColumnChartData.isEmpty = this.props.students.statisticForColumnChart.data.isEmpty;
-      newColumnChartData.isFetching = this.props.students.statisticForColumnChart.fetching
+      newColumnChartData.isFetching = this.props.students.statisticForColumnChart.fetching;
 
       this.setState({
         columnChartData: newColumnChartData
@@ -360,15 +353,19 @@ export class Dashboard extends React.Component {
   }
 
   async checkUserAlreadyLogin() {
-    const userType = localStorage.getItem("ut")
-    const tokenExpiredAt = localStorage.getItem("exp")
-    if (!userType || !tokenExpiredAt || moment(tokenExpiredAt).isBefore(moment()) || userType !== "admin") {
-      Router.push("/dang-nhap/admin")
+    const userType = localStorage.getItem('ut');
+    const tokenExpiredAt = localStorage.getItem('exp');
+    if (
+      !userType ||
+      !tokenExpiredAt ||
+      moment(tokenExpiredAt).isBefore(moment()) ||
+      userType !== 'admin'
+    ) {
+      Router.push('/dang-nhap/admin');
     }
   }
 
   render() {
-
     return (
       <div className="dashboard">
         <Head>
@@ -400,32 +397,27 @@ export class Dashboard extends React.Component {
             <div className="dashboard__body__numbers">
               <NumberAdmin
                 numberAdmin={this.state.numberAdmins.absent}
-
                 isFetching={this.state.numberAdmins.isFetching}
-                isEmpty={this.state.numberAdmins.isEmpty}>
-              </NumberAdmin>
+                isEmpty={this.state.numberAdmins.isEmpty}
+              ></NumberAdmin>
 
               <NumberAdmin
                 numberAdmin={this.state.numberAdmins.late}
-
                 isFetching={this.state.numberAdmins.isFetching}
-                isEmpty={this.state.numberAdmins.isEmpty}>
-              </NumberAdmin>
+                isEmpty={this.state.numberAdmins.isEmpty}
+              ></NumberAdmin>
 
               <NumberAdmin
                 numberAdmin={this.state.numberAdmins.onTime}
-
                 isFetching={this.state.numberAdmins.isFetching}
-                isEmpty={this.state.numberAdmins.isEmpty}>
-              </NumberAdmin>
+                isEmpty={this.state.numberAdmins.isEmpty}
+              ></NumberAdmin>
 
               <NumberAdmin
                 numberAdmin={this.state.numberAdmins.redundant}
-
                 isFetching={this.state.numberAdmins.isFetching}
-                isEmpty={this.state.numberAdmins.isEmpty}>
-              </NumberAdmin>
-
+                isEmpty={this.state.numberAdmins.isEmpty}
+              ></NumberAdmin>
             </div>
             <div className="dashboard__body__card">
               <div className="dashboard__body__card__title">Thống kê</div>
@@ -440,14 +432,12 @@ export class Dashboard extends React.Component {
                   <div className="dashboard__body__card__content__chart__row">
                     <ColumnChart
                       columnChartData={this.state.columnChartData}
-
                       isFetching={this.state.columnChartData.isFetching}
                       isEmpty={this.state.columnChartData.isEmpty}
                     ></ColumnChart>
 
                     <PieChart
                       pieChartData={this.state.pieChartData}
-
                       isFetching={this.state.pieChartData.isFetching}
                       isEmpty={this.state.pieChartData.isEmpty}
                     ></PieChart>
@@ -466,10 +456,8 @@ export class Dashboard extends React.Component {
               <FeedbackAdmin
                 feedbackAdmins={this.props.feedbacks.items}
                 staticContent={this.state.feedbackAdmin}
-
                 isFetching={this.props.feedbacks.fetching}
                 isEmpty={this.props.feedbacks.items.length}
-
                 updateIgnoreFeedbacks={this.updateIgnoreFeedbacks}
                 updateConfirmFeedbacks={this.updateConfirmFeedbacks}
               ></FeedbackAdmin>
@@ -478,7 +466,6 @@ export class Dashboard extends React.Component {
               <Activity
                 activities={this.props.students.itemsNewStudents.data}
                 staticContent={this.state.newStudent}
-
                 isFetching={this.props.students.itemsNewStudents.fetching}
                 isEmpty={this.props.students.itemsNewStudents.data.length}
               ></Activity>
@@ -486,7 +473,6 @@ export class Dashboard extends React.Component {
               <Activity
                 activities={this.props.students.itemsTopPoint.data}
                 staticContent={this.state.topPoint}
-
                 isFetching={this.props.students.itemsTopPoint.fetching}
                 isEmpty={this.props.students.itemsTopPoint.data.length}
               ></Activity>
@@ -494,7 +480,6 @@ export class Dashboard extends React.Component {
               <Activity
                 activities={this.props.students.itemsUpcommingBirthday.data}
                 staticContent={this.state.birthday}
-
                 isFetching={this.props.students.itemsUpcommingBirthday.fetching}
                 isEmpty={this.props.students.itemsUpcommingBirthday.data.length}
               ></Activity>

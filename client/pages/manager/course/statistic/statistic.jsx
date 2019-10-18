@@ -348,15 +348,15 @@ export class StatisticCourse extends React.Component {
 
 
         var heightOfHeader = $(
-            '.courseStatistic .courseStatistic__header .headerAdmin__wrapper'
+            '.course-statistics .course-statistics__header .headerAdmin__wrapper'
         ).height();
-        $('.courseStatistic .courseStatistic__body').css(
+        $('.course-statistics .course-statistics__body').css(
             'margin-top',
             heightOfHeader + 'px'
         );
 
         $(
-            '.courseStatistic__body__card__content__chart__filter__form__input'
+            '.course-statistics__body__card__content__chart__filter__form__input'
         ).datetimepicker({
             format: 'd/m/Y',
             timepicker: false,
@@ -434,12 +434,12 @@ export class StatisticCourse extends React.Component {
     render() {
 
         return (
-            <div>
+            <div className="course-statistics">
                 {/* <CreatePackage show={this.state.modals.createPackage} hideModal={() => { this.showHideModal("createPackage") }} createPackage={this.createPackage} /> */}
                 <React.Fragment>
 
-                    <div className="courseStatistic__body">
-                        <div className="courseStatistic__body__numbers">
+                    <div className="course-statistics__body">
+                        <div className="course-statistics__body__numbers">
                             <NumberAdmin
                                 numberAdmin={this.state.numberAdmins.data.absent}
                                 isFetching={this.state.numberAdmins.isFetching}
@@ -464,18 +464,18 @@ export class StatisticCourse extends React.Component {
                                 isEmpty={this.state.numberAdmins.isEmpty}
                             ></NumberAdmin>
                         </div>
-                        {/* <div className="courseStatistic__body__card">
-                            <div className="courseStatistic__body__card__title">
+                        {/* <div className="course-statistics__body__card">
+                            <div className="course-statistics__body__card__title">
                                 Thông tin khóa học
                            </div>
-                            <div className="courseStatistic__body__card__content">
-                                <div className="courseStatistic__body__card__content__course">
-                                    <div className="courseStatistic__body__card__content__course__filter">
+                            <div className="course-statistics__body__card__content">
+                                <div className="course-statistics__body__card__content__course">
+                                    <div className="course-statistics__body__card__content__course__filter">
                                         <CustomSelect
                                             customSelect={this.state.customSelectCourse}
                                         ></CustomSelect>
                                     </div>
-                                    <div className="courseStatistic__body__card__content__course__info">
+                                    <div className="course-statistics__body__card__content__course__info">
                                         {this.props.courses.fetching ? (
                                             'đang tải ...'
                                         ) : (
@@ -491,33 +491,33 @@ export class StatisticCourse extends React.Component {
                                 </div>
                             </div>
                         </div> */}
-                        <div className="courseStatistic__body__card">
-                            <div className="courseStatistic__body__card__title">
+                        <div className="course-statistics__body__card">
+                            <div className="course-statistics__body__card__title">
                                 Thống kê khóa học
                               </div>
-                            <div className="courseStatistic__body__card__content">
-                                <div className="courseStatistic__body__card__content__chart">
-                                    <div className="courseStatistic__body__card__content__chart__filter">
-                                        <form className="courseStatistic__body__card__content__chart__filter__form">
+                            <div className="course-statistics__body__card__content">
+                                <div className="course-statistics__body__card__content__chart">
+                                    <div className="course-statistics__body__card__content__chart__filter">
+                                        <form className="course-statistics__body__card__content__chart__filter__form">
                                             <input
                                                 type="text"
-                                                className="courseStatistic__body__card__content__chart__filter__form__input"
+                                                className="course-statistics__body__card__content__chart__filter__form__input"
                                                 placeholder="Chọn ngày bắt đầu"
                                             />
                                             <input
                                                 type="text"
-                                                className="courseStatistic__body__card__content__chart__filter__form__input"
+                                                className="course-statistics__body__card__content__chart__filter__form__input"
                                                 placeholder="Chọn ngày kết thúc"
                                             />
                                             <button
                                                 type="button"
-                                                className="courseStatistic__body__card__content__chart__filter__form__btn courseStatistic__body__card__content__chart__filter__form__btn--primary"
+                                                className="course-statistics__body__card__content__chart__filter__form__btn course-statistics__body__card__content__chart__filter__form__btn--primary"
                                             >
                                                 thống kê
                                             </button>
                                         </form>
                                     </div>
-                                    <div className="courseStatistic__body__card__content__chart__row">
+                                    <div className="course-statistics__body__card__content__chart__row">
                                         <ColumnChart
                                             columnChartData={this.state.columnChartData}
                                             isFetching={this.state.columnChartData.isFetching}
@@ -530,7 +530,7 @@ export class StatisticCourse extends React.Component {
                                             isEmpty={this.state.pieChartData.isEmpty}
                                         ></PieChart>
                                     </div>
-                                    <div className="courseStatistic__body__card__content__chart__row">
+                                    <div className="course-statistics__body__card__content__chart__row">
                                         <LineChart
                                             lineChartData={this.state.lineChartData}
                                             isFetching={this.state.lineChartData.isFetching}
@@ -540,7 +540,7 @@ export class StatisticCourse extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="courseStatistic__body__table">
+                        <div className="course-statistics__body__table">
                             <Table
                                 tableContents={this.state.tableDetails.data.absent}
                                 isFetching={this.state.tableDetails.isFetching}
