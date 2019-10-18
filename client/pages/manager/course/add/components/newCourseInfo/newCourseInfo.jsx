@@ -22,7 +22,12 @@ export class NewCourseInfo extends React.Component {
           value: '',
           isValid: false,
           errorMessage: ''
-        }
+        },
+        quantity: {
+          value: '',
+          isValid: false,
+          errorMessage: ''
+        },
       },
       image: {
         isValid: false
@@ -37,6 +42,9 @@ export class NewCourseInfo extends React.Component {
           },
           shortDescription: {
             required: true
+          },
+          quantity: {
+            required: true
           }
         },
         messages: {
@@ -48,6 +56,9 @@ export class NewCourseInfo extends React.Component {
           },
           shortDescription: {
             required: 'Bắt buộc nhập giới thiệu ngắn'
+          },
+          quantity: {
+            required: 'Bắt buộc nhập số lượng học viên'
           }
         }
       }
@@ -162,6 +173,22 @@ export class NewCourseInfo extends React.Component {
               />
               <small className="newCourseInfo__form__info__item__error-message">
                 {this.state.form.slug.errorMessage}
+              </small>
+            </div>
+            <div className="newCourseInfo__form__info__item">
+              <div className="newCourseInfo__title-text">
+                Số lượng học viên tối đa <span>* (bắt buộc)</span>
+              </div>
+              <input
+                className="newCourseInfo__input-box"
+                placeholder={0}
+                type="number"
+                name="quantity"
+                onChange={this.handleChange}
+                onBlur={this.handleChange}
+              />
+              <small className="newCourseInfo__form__info__item__error-message">
+                {this.state.form.quantity.errorMessage}
               </small>
             </div>
 

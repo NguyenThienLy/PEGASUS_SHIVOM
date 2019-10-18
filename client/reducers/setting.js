@@ -10,6 +10,7 @@ export class SettingReducer extends BaseReducer {
             fetchError: null,
             updating: false,
             updateError: null,
+            _id: null,
             logo: null,
             contact: {
                 branch: null,
@@ -32,9 +33,9 @@ export class SettingReducer extends BaseReducer {
             fetchPending: `FETCH_${this.name}_PENDING`,
             fetchSuccess: `FETCH_${this.name}_SUCCESS`,
             fetchError: `FETCH_${this.name}_ERROR`,
-            updatePending: `EDIT_${this.name}_PENDING`,
-            updateSuccess: `EDIT_${this.name}_SUCCESS`,
-            updateError: `EDIT_${this.name}_ERROR`
+            updatePending: `UPDATE_${this.name}_PENDING`,
+            updateSuccess: `UPDATE_${this.name}_SUCCESS`,
+            updateError: `UPDATE_${this.name}_ERROR`
         }
     }
 
@@ -45,7 +46,8 @@ export class SettingReducer extends BaseReducer {
                 state = { ...state, fetching: true };
                 break
             case this.actions.fetchSuccess:
-                state = { ...state, logo: action.payload.logo, contact: action.payload.contact, social: action.payload.social, fetched: true };
+
+                state = { ...state, logo: action.payload.logo, contact: action.payload.contact, social: action.payload.social, _id: action.payload._id, fetched: true, fetching: false };
                 break
             case this.actions.fetchError:
                 state = { ...state, fetching: false, fetchError: action.payload };
@@ -53,10 +55,7 @@ export class SettingReducer extends BaseReducer {
             case this.actions.updatePending:
                 break
             case this.actions.updateSuccess:
-                itemIndex = state.findIndex((item) => { return item._id === action.payload._id })
-                if (itemIndex !== -1) {
-                    state[itemIndex] = action.payload
-                }
+                state = { ...state, _id: action.payload._id, logo: action.payload.logo, contact: action.payload.contact, social: action.payload.social };
                 break
             case this.actions.updateError:
                 break

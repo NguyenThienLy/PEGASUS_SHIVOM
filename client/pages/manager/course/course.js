@@ -94,7 +94,7 @@ class Course extends Component {
                             <SwitchRouter routes={
                                 [
                                     { path: "/quan-ly/khoa-hoc", component: <MainCourse {...this.props} /> },
-                                    { path: "/quan-ly/khoa-hoc/them", component: <AddCourse /> },
+                                    { path: "/quan-ly/khoa-hoc/them", component: <AddCourse {...this.props} /> },
                                     { path: "/quan-ly/khoa-hoc/chi-tiet/:courseId", component: <DetailCourse {...this.props} /> }
                                 ]
                             } />
@@ -110,16 +110,19 @@ const mapStateToProps = state => {
     return state;
 };
 
-const mapDispatchToProps = dispatch =>
-    bindActionCreators(
-        {
-            fetchCourse: action.course.fetch,
-            fetchLineChart: action.statisticCourse.fetchForLineChart,
-            fetchPieChart: action.statisticCourse.fetchForPieChart,
-            fetchColumnChart: action.student.fetchForColumnChart,
-            fetchListDetail: action.statisticStudent.fetchForListDetail
-        },
-        dispatch
-    );
+const mapDispatchToProps = dispatch => {
+    return {
+        dispatch, ...bindActionCreators(
+            {
+                fetchCourse: action.course.fetch,
+                fetchLineChart: action.statisticCourse.fetchForLineChart,
+                fetchPieChart: action.statisticCourse.fetchForPieChart,
+                fetchColumnChart: action.student.fetchForColumnChart,
+                fetchListDetail: action.statisticStudent.fetchForListDetail
+            },
+            dispatch
+        )
+    }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Course);
