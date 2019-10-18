@@ -95,7 +95,7 @@ export class MainMember extends React.Component {
             currentPage: 1
           });
         })
-        .catch(err => { });
+        .catch(err => {});
     } else {
       this.setState({
         students: undefined,
@@ -123,7 +123,7 @@ export class MainMember extends React.Component {
             currentPage: 1
           });
         })
-        .catch(err => { });
+        .catch(err => {});
     } else {
       this.setState({
         students: undefined,
@@ -202,7 +202,7 @@ export class MainMember extends React.Component {
             currentPage: 1
           });
         })
-        .catch(err => { });
+        .catch(err => {});
     } else {
       this.setState({
         students: undefined,
@@ -339,13 +339,13 @@ export class MainMember extends React.Component {
   render() {
     const students = this.state.students
       ? this.state.students.slice(
-        this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10,
-        10 * this.state.currentPage
-      )
+          this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10,
+          10 * this.state.currentPage
+        )
       : (this.props.students.items || []).slice(
-        this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10,
-        10 * this.state.currentPage
-      );
+          this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10,
+          10 * this.state.currentPage
+        );
     return (
       <React.Fragment>
         <AddPoint
@@ -421,10 +421,10 @@ export class MainMember extends React.Component {
                     style={
                       this.state.isFilterByUpcommingBirthday
                         ? {
-                          backgroundColor: '#e1f2f4',
-                          color: '#00a3af',
-                          border: '1px solid #e1f2f4'
-                        }
+                            backgroundColor: '#e1f2f4',
+                            color: '#00a3af',
+                            border: '1px solid #e1f2f4'
+                          }
                         : null
                     }
                     onClick={this.filterByUpcommingBirthday}
@@ -466,7 +466,7 @@ export class MainMember extends React.Component {
                   <thead>
                     <tr>
                       <th>Thứ tự</th>
-                      <th>Ảnh</th>
+                      <th style={{ width: '15%' }}>Ảnh</th>
                       <th>Họ và tên</th>
                       <th>Mã số</th>
                       <th>Điểm</th>
@@ -480,44 +480,47 @@ export class MainMember extends React.Component {
                     {this.state.isLoading === true ? (
                       <Loading />
                     ) : (
-                        (students || []).map((item, index) => {
-                          // {[].map((item, index) => {
-                          return (
-                            <tr key={item._id}>
+                      (students || []).map((item, index) => {
+                        // {[].map((item, index) => {
+                        return (
+                          <tr key={item._id}>
+                            <td>
+                              {this.state.currentPage === 1
+                                ? index + 1
+                                : (this.state.currentPage - 1) * 10 + index + 1}
+                            </td>
+                            <td style={{ width: '15%' }}>
+                              <img
+                                alt=""
+                                src={item.avatar}
+                                className="img-response avatar-image"
+                              ></img>
+                            </td>
+                            <td>
+                              {item.firstName} {item.lastName}
+                            </td>
+                            <td>{item.cardId}</td>
+                            <td>{item.point}</td>
+                            <td>
+                              {moment(item.birthday).format('DD/MM/YYYY')}
+                            </td>
+                            <td>{item.phone}</td>
+                            <td>
+                              {item.status === 'active'
+                                ? 'Đang học'
+                                : 'Nghỉ học'}
+                            </td>
+                            {item.status === 'active' ? (
                               <td>
-                                {this.state.currentPage === 1
-                                  ? index + 1
-                                  : (this.state.currentPage - 1) * 10 + index + 1}
-                              </td>
-                              <td>
-                                <img
-                                  alt=""
-                                  src={item.avatar}
-                                  className="img-response avatar-image"
-                                ></img>
-                              </td>
-                              <td>
-                                {item.firstName} {item.lastName}
-                              </td>
-                              <td>{item.cardId}</td>
-                              <td>{item.point}</td>
-                              <td>
-                                {moment(item.birthday).format('DD/MM/YYYY')}
-                              </td>
-                              <td>{item.phone}</td>
-                              <td>
-                                {item.status === 'active'
-                                  ? 'Đang học'
-                                  : 'Nghỉ học'}
-                              </td>
-                              {item.status === 'active' ? (
-                                <td className="action-td">
+                                <div className="action-td">
                                   <Tooltip
                                     title="Checkin"
                                     position="top"
                                     className="action-td__item"
                                   >
-                                    <span onClick={() => this.checkin(item._id)}>
+                                    <span
+                                      onClick={() => this.checkin(item._id)}
+                                    >
                                       <i class="fas fa-check"></i>
                                     </span>
                                   </Tooltip>
@@ -600,34 +603,47 @@ export class MainMember extends React.Component {
                                       <i class="fas fa-edit"></i>
                                     </span>
                                   </Tooltip>
-                                </td>
-                              ) : (
-                                  <td className="action-td--single">
-                                    <button
-                                      className="action-td__button"
-                                      onClick={() => {
-                                        this.setState({
-                                          selectedStudentId: item._id
-                                        });
-                                        this.showHideModal('relearn');
-                                      }}
-                                    >
-                                      Học lại
+                                </div>
+                              </td>
+                            ) : (
+                              <td className="action-td--single">
+                                <button
+                                  className="action-td__button"
+                                  onClick={() => {
+                                    this.setState({
+                                      selectedStudentId: item._id
+                                    });
+                                    this.showHideModal('relearn');
+                                  }}
+                                >
+                                  Học lại
                                 </button>
-                                  </td>
-                                )}
-                            </tr>
-                          );
-                        })
-                      )}
+                              </td>
+                            )}
+                          </tr>
+                        );
+                      })
+                    )}
                   </tbody>
                 </table>
               </div>
               <div className="base-table__divider"></div>
               <div className="base-table__pagination">
-                {this.state.students ?
-                  <Pagination currentPage={this.state.currentPage} total={this.state.students.length} limit={10} changePage={this.changePage} />
-                  : <Pagination currentPage={this.state.currentPage} total={this.props.students.items.length} limit={10} changePage={this.changePage} />}
+                {this.state.students ? (
+                  <Pagination
+                    currentPage={this.state.currentPage}
+                    total={this.state.students.length}
+                    limit={10}
+                    changePage={this.changePage}
+                  />
+                ) : (
+                  <Pagination
+                    currentPage={this.state.currentPage}
+                    total={this.props.students.items.length}
+                    limit={10}
+                    changePage={this.changePage}
+                  />
+                )}
               </div>
             </div>
           </div>

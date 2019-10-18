@@ -8,13 +8,12 @@ body {
 .dashboard {
   display: flex;
   flex-direction: row;
-  // height: 100vh;
 
   .loading {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 2em 0em;
+    margin: 2em 0;
     .lds-dual-ring {
       width: 40px;
       height: 40px;
@@ -39,10 +38,10 @@ body {
   @include e('body') {
     min-height: 100%;
     width: 78%;
-    margin: 0 1%;
+    margin: 5em 1%;
 
     @include e('numbers') {
-      margin: 2em 0 3em;
+      margin: 0 0 3em;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       column-gap: 2em;
@@ -160,7 +159,7 @@ body {
 
   .dashboard__body {
     width: 90%;
-    margin: 0 5%;
+    margin: 5em 5%;
   }
 
   .dashboard__body__numbers {
@@ -217,7 +216,7 @@ body {
 
   .dashboard__body {
     width: 90%;
-    margin: 0 5%;
+    margin: 5em 5%;
   }
 
   .dashboard__body__numbers {
@@ -274,7 +273,7 @@ body {
 
   .dashboard__body {
     width: 90%;
-    margin: 0 5%;
+    margin: 5em 5%;
   }
 
   .dashboard__body__numbers {
@@ -331,7 +330,7 @@ body {
 
   .dashboard__body {
     width: 78%;
-    margin: 0 1%;
+    margin: 5em 1%;
   }
 
   .dashboard__body__numbers {
@@ -388,7 +387,7 @@ body {
 
   .dashboard__body {
     width: 78%;
-    margin: 0 1%;
+    margin: 5em 1%;
   }
 
   .dashboard__body__numbers {
