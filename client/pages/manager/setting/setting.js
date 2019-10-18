@@ -7,6 +7,8 @@ import { connect } from "react-redux";
 import { api } from "../../../services";
 import { action } from "../../../actions";
 
+import { bindActionCreators } from 'redux';
+
 import "./setting.scss";
 import {
     HeaderAdmin,
@@ -27,6 +29,7 @@ class Setting extends Component {
                 name: "Avril Lavigne"
             }
         };
+        this.fetchData = this.fetchData.bind(this)
     }
 
     static async getInitialProps({ req, query }) {
@@ -36,6 +39,18 @@ class Setting extends Component {
     }
     componentDidMount() {
         this.checkUserAlreadyLogin()
+        this.fetchData()
+    }
+    fetchData() {
+        if (!this.props.setting.fetched) {
+            this.props.fetchSetting({
+                query: {
+                    filter: {
+                        status: "active"
+                    }
+                }
+            });
+        }
     }
     async checkUserAlreadyLogin() {
         const userType = localStorage.getItem("ut")
@@ -43,6 +58,9 @@ class Setting extends Component {
         if (!userType || !tokenExpiredAt || moment(tokenExpiredAt).isBefore(moment()) || userType !== "admin") {
             Router.push("/dang-nhap/admin")
         }
+    }
+    componentWillReceiveProps(nextProps) {
+        this.setState({ number: Math.random() })
     }
     render() {
 
@@ -70,10 +88,10 @@ class Setting extends Component {
                         <AdminSidebar />
                     </div>
                     <div className="manager__body">
-                        <div>
+                        <div key={this.state.number}>
                             <SwitchRouter routes={
                                 [
-                                    { path: "/quan-ly/thiet-lap", component: <MainSetting /> },
+                                    { path: "/quan-ly/thiet-lap", component: <MainSetting {...this.props} /> },
 
                                 ]
                             } />
@@ -88,5 +106,15 @@ class Setting extends Component {
 const mapStateToProps = state => {
     return state;
 };
+const mapDispatchToProps = dispatch => {
+    return {
+        dispatch, ...bindActionCreators(
+            {
+                fetchSetting: action.setting.fetch
+            },
+            dispatch
+        )
+    }
+}
 
-export default connect(mapStateToProps)(Setting);
+export default connect(mapStateToProps, mapDispatchToProps)(Setting);
