@@ -17,6 +17,11 @@ export class NewClassInfo extends React.Component {
           isValid: false,
           errorMessage: ''
         },
+        code: {
+          value: '',
+          isValid: false,
+          errorMessage: ''
+        },
         teacher: {
           value: '',
           isValid: false,
@@ -37,6 +42,9 @@ export class NewClassInfo extends React.Component {
             required: true,
             numberFormat: true
           },
+          code: {
+            required: true
+          },
           teacher: {
             required: true
           },
@@ -51,6 +59,9 @@ export class NewClassInfo extends React.Component {
           quantity: {
             required: 'Bắt buộc nhập số lượng học viên',
             numberFormat: 'Vui lòng nhập số lượng hợp lệ'
+          },
+          code: {
+            required: 'Bắt buộc nhập mã lớp'
           },
           teacher: {
             required: 'Bắt buộc chọn giáo viên'
@@ -176,6 +187,22 @@ export class NewClassInfo extends React.Component {
               />
               <small className="new-class-info__form__info__item__error-message">
                 {this.state.form.quantity.errorMessage}
+              </small>
+            </div>
+            <div className="new-class-info__form__info__item">
+              <div className="new-class-info__title-text">
+                Mã lớp <span>* (bắt buộc)</span>
+              </div>
+              <input
+                className="new-class-info__input-box"
+                placeholder=""
+                type="text"
+                name="code"
+                onChange={this.handleChange}
+                onBlur={this.handleChange}
+              />
+              <small className="new-class-info__form__info__item__error-message">
+                {this.state.form.code.errorMessage}
               </small>
             </div>
 
