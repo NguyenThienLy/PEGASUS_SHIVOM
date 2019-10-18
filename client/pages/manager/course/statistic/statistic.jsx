@@ -2,9 +2,10 @@ import * as React from "react";
 import { action } from '../../../../actions'
 import { api } from '../../../../services'
 
-import { CreatePackage } from './components'
+// import { CreatePackage } from './components'
 
 import Swal from 'sweetalert2'
+
 import {
     Sidebar,
     HeaderAdmin,
@@ -19,10 +20,10 @@ import {
     Loading
 } from '../../../../components';
 import * as moment from 'moment'
-import "./detail.scss"
+import "./statistic.scss"
 import { tsTupleType } from "@babel/types";
 
-export class DetailCourse extends React.Component {
+export class StatisticCourse extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -347,15 +348,15 @@ export class DetailCourse extends React.Component {
 
 
         var heightOfHeader = $(
-            '.courseDetails .courseDetails__header .headerAdmin__wrapper'
+            '.courseStatistic .courseStatistic__header .headerAdmin__wrapper'
         ).height();
-        $('.courseDetails .courseDetails__body').css(
+        $('.courseStatistic .courseStatistic__body').css(
             'margin-top',
             heightOfHeader + 'px'
         );
 
         $(
-            '.courseDetails__body__card__content__chart__filter__form__input'
+            '.courseStatistic__body__card__content__chart__filter__form__input'
         ).datetimepicker({
             format: 'd/m/Y',
             timepicker: false,
@@ -434,11 +435,11 @@ export class DetailCourse extends React.Component {
 
         return (
             <div>
-                <CreatePackage show={this.state.modals.createPackage} hideModal={() => { this.showHideModal("createPackage") }} createPackage={this.createPackage} />
+                {/* <CreatePackage show={this.state.modals.createPackage} hideModal={() => { this.showHideModal("createPackage") }} createPackage={this.createPackage} /> */}
                 <React.Fragment>
 
-                    <div className="courseDetails__body">
-                        {/* <div className="courseDetails__body__numbers">
+                    <div className="courseStatistic__body">
+                        <div className="courseStatistic__body__numbers">
                             <NumberAdmin
                                 numberAdmin={this.state.numberAdmins.data.absent}
                                 isFetching={this.state.numberAdmins.isFetching}
@@ -462,19 +463,19 @@ export class DetailCourse extends React.Component {
                                 isFetching={this.state.numberAdmins.isFetching}
                                 isEmpty={this.state.numberAdmins.isEmpty}
                             ></NumberAdmin>
-                        </div> */}
-                        <div className="courseDetails__body__card">
-                            <div className="courseDetails__body__card__title">
+                        </div>
+                        {/* <div className="courseStatistic__body__card">
+                            <div className="courseStatistic__body__card__title">
                                 Thông tin khóa học
                            </div>
-                            <div className="courseDetails__body__card__content">
-                                <div className="courseDetails__body__card__content__course">
-                                    <div className="courseDetails__body__card__content__course__filter">
+                            <div className="courseStatistic__body__card__content">
+                                <div className="courseStatistic__body__card__content__course">
+                                    <div className="courseStatistic__body__card__content__course__filter">
                                         <CustomSelect
                                             customSelect={this.state.customSelectCourse}
                                         ></CustomSelect>
                                     </div>
-                                    <div className="courseDetails__body__card__content__course__info">
+                                    <div className="courseStatistic__body__card__content__course__info">
                                         {this.props.courses.fetching ? (
                                             'đang tải ...'
                                         ) : (
@@ -484,39 +485,39 @@ export class DetailCourse extends React.Component {
                                             )}
 
                                         <ProfileAdmin
-                                            profileAdmin={this.state.profileAdmin}
-                                        ></ProfileAdmin>
+                      profileAdmin={this.state.profileAdmin}
+                    ></ProfileAdmin>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        {/* <div className="courseDetails__body__card">
-                            <div className="courseDetails__body__card__title">
+                        </div> */}
+                        <div className="courseStatistic__body__card">
+                            <div className="courseStatistic__body__card__title">
                                 Thống kê khóa học
                               </div>
-                            <div className="courseDetails__body__card__content">
-                                <div className="courseDetails__body__card__content__chart">
-                                    <div className="courseDetails__body__card__content__chart__filter">
-                                        <form className="courseDetails__body__card__content__chart__filter__form">
+                            <div className="courseStatistic__body__card__content">
+                                <div className="courseStatistic__body__card__content__chart">
+                                    <div className="courseStatistic__body__card__content__chart__filter">
+                                        <form className="courseStatistic__body__card__content__chart__filter__form">
                                             <input
                                                 type="text"
-                                                className="courseDetails__body__card__content__chart__filter__form__input"
+                                                className="courseStatistic__body__card__content__chart__filter__form__input"
                                                 placeholder="Chọn ngày bắt đầu"
                                             />
                                             <input
                                                 type="text"
-                                                className="courseDetails__body__card__content__chart__filter__form__input"
+                                                className="courseStatistic__body__card__content__chart__filter__form__input"
                                                 placeholder="Chọn ngày kết thúc"
                                             />
                                             <button
                                                 type="button"
-                                                className="courseDetails__body__card__content__chart__filter__form__btn courseDetails__body__card__content__chart__filter__form__btn--primary"
+                                                className="courseStatistic__body__card__content__chart__filter__form__btn courseStatistic__body__card__content__chart__filter__form__btn--primary"
                                             >
                                                 thống kê
                                             </button>
                                         </form>
                                     </div>
-                                    <div className="courseDetails__body__card__content__chart__row">
+                                    <div className="courseStatistic__body__card__content__chart__row">
                                         <ColumnChart
                                             columnChartData={this.state.columnChartData}
                                             isFetching={this.state.columnChartData.isFetching}
@@ -529,7 +530,7 @@ export class DetailCourse extends React.Component {
                                             isEmpty={this.state.pieChartData.isEmpty}
                                         ></PieChart>
                                     </div>
-                                    <div className="courseDetails__body__card__content__chart__row">
+                                    <div className="courseStatistic__body__card__content__chart__row">
                                         <LineChart
                                             lineChartData={this.state.lineChartData}
                                             isFetching={this.state.lineChartData.isFetching}
@@ -539,7 +540,7 @@ export class DetailCourse extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="courseDetails__body__table">
+                        <div className="courseStatistic__body__table">
                             <Table
                                 tableContents={this.state.tableDetails.data.absent}
                                 isFetching={this.state.tableDetails.isFetching}
@@ -567,7 +568,7 @@ export class DetailCourse extends React.Component {
                                 isEmpty={this.state.tableDetails.isEmpty}
                                 formatKey="redundant"
                             ></Table>
-                        </div> */}
+                        </div>
                     </div>
                 </React.Fragment>
             </div>

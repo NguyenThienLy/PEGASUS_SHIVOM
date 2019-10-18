@@ -18,8 +18,11 @@ export class MainCourse extends React.Component {
     shouldComponentUpdate() {
         return true
     }
-    open(courseId) {
+    openDetail(courseId) {
         Router.push(`/manager/course/course?courseId=${courseId}`, `/quan-ly/khoa-hoc/chi-tiet/${courseId}`)
+    }
+    openStatistic(courseId) {
+        Router.push(`/manager/course/course?courseId=${courseId}`, `/quan-ly/khoa-hoc/thong-ke/${courseId}`)
     }
     render() {
         return (
@@ -57,7 +60,13 @@ export class MainCourse extends React.Component {
                                                         title="Chi tiết"
                                                         position="top"
                                                     >
-                                                        <span className="post-open-button" onClick={() => this.open(item._id)}><i class="fas fa-share-square"></i></span>
+                                                        <span className="post-open-button" onClick={() => this.openDetail(item._id)}><i class="fas fa-share-square"></i></span>
+                                                    </Tooltip>
+                                                    <Tooltip
+                                                        title="Thống kê"
+                                                        position="top"
+                                                    >
+                                                        <span className="post-open-button" onClick={() => this.openStatistic(item._id)}><i class="fas fa-info"></i></span>
                                                     </Tooltip>
                                                     {/* <Tooltip
                                                         title="Chỉnh sửa"
@@ -65,12 +74,12 @@ export class MainCourse extends React.Component {
                                                     >
                                                         <span className="post-edit-button" onClick={() => this.edit(item._id)}> <i class="fas fa-pen"></i> </span>
                                                     </Tooltip> */}
-                                                    <Tooltip
+                                                    {/* <Tooltip
                                                         title="Xoá"
                                                         position="top"
                                                     >
                                                         <span className="post-remove-button" onClick={() => this.delete(item._id)}><i class="fas fa-times"></i></span>
-                                                    </Tooltip>
+                                                    </Tooltip> */}
                                                 </td>
                                             </tr>
 

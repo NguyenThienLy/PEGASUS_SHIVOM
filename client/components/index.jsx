@@ -5,6 +5,7 @@ export * from "./headline/headline";
 export * from "./customRouter/Router";
 export * from "./customRouterLink/Link";
 export * from "./loading/loading";
+export * from "./loadingSmall/loadingSmall";
 export * from "./cloudImage/cloudImage";
 export * from "./componentLoading/componentLoading";
 export * from "./timeTable/timeTable";

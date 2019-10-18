@@ -1,15 +1,16 @@
 import * as React from "react";
 import "./numberAdmin.scss";
+import { Loading, LoadingSmall } from "../../components";
 
 export class NumberAdmin extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  componentDidMount() {}
+  componentDidMount() { }
 
   render() {
-    const { numberAdmin } = this.props;
+    const { numberAdmin, isFetching, isEmpty } = this.props;
 
     return (
       <div className="numberAdmin">
@@ -18,7 +19,6 @@ export class NumberAdmin extends React.Component {
             className="numberAdmin__inner__icon"
             style={{ backgroundColor: numberAdmin.colorIcon }}
           >
-            {/* <div dangerouslySetInnerHTML={{ __html: numberAdmin.icon }}></div> */}
             <div>
               <i class="fas fa-id-card-alt"></i>
             </div>
@@ -27,9 +27,12 @@ export class NumberAdmin extends React.Component {
             <div className="numberAdmin__inner__info__about">
               {numberAdmin.about}
             </div>
-            <div className="numberAdmin__inner__info__quantity">
-              {numberAdmin.quantity}
-            </div>
+            {isFetching && isEmpty && <LoadingSmall />}
+            {isEmpty && !isFetching && "trống"}
+            {!isFetching && !isEmpty && (
+              <div className="numberAdmin__inner__info__quantity">
+                {numberAdmin.quantity}
+              </div>)}
           </div>
         </div>
       </div>

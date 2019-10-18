@@ -36,15 +36,15 @@ export class FeedbackAdmin extends React.Component {
   }
 
   render() {
-    const { feedbackAdmins, staticContent, isFetching } = this.props;
+    const { feedbackAdmins, staticContent, isFetching, isEmpty } = this.props;
 
     return (
       <div className="feedbackAdmin">
         <div className="feedbackAdmin__title">{staticContent.nameTable}</div>
         <hr className="divider" />
-        {!feedbackAdmins.length && !isFetching && "Dữ liệu trống"}
-        {isFetching && !feedbackAdmins.length && <Loading />}
-        {!isFetching && feedbackAdmins.length && (
+        {!isEmpty && !isFetching && "Dữ liệu trống"}
+        {isFetching && !isEmpty && <Loading />}
+        {!isFetching && isEmpty && (
           <ul className="feedbackAdmin__actions">
             {feedbackAdmins.map((feedbackAdmin, index) => {
               return (

@@ -20,6 +20,7 @@ import {
 import { MainCourse } from './main/main'
 import { AddCourse } from './add/add'
 import { DetailCourse } from './detail/detail'
+import { StatisticCourse } from './statistic/statistic'
 
 class Course extends Component {
     constructor(props) {
@@ -71,7 +72,7 @@ class Course extends Component {
                 <Head>
                     <title>Quản lý khoá học</title>
                     <meta name="robots" content="noindex" />
-                    <meta name="title" content="Quản lý lơp học" />
+                    <meta name="title" content="Quản lý lớp học" />
                     <meta
                         name="description"
                         content="Thêm khóa học tại trung tâm Yoga Hiệp Hòa"
@@ -95,7 +96,8 @@ class Course extends Component {
                                 [
                                     { path: "/quan-ly/khoa-hoc", component: <MainCourse {...this.props} /> },
                                     { path: "/quan-ly/khoa-hoc/them", component: <AddCourse /> },
-                                    { path: "/quan-ly/khoa-hoc/chi-tiet/:courseId", component: <DetailCourse {...this.props} /> }
+                                    { path: "/quan-ly/khoa-hoc/chi-tiet/:courseId", component: <DetailCourse {...this.props} /> },
+                                    { path: "/quan-ly/khoa-hoc/thong-ke/:courseId", component: <StatisticCourse {...this.props} /> }
                                 ]
                             } />
                         </div>
@@ -114,10 +116,10 @@ const mapDispatchToProps = dispatch =>
     bindActionCreators(
         {
             fetchCourse: action.course.fetch,
-            fetchLineChart: action.statisticCourse.fetchForLineChart,
-            fetchPieChart: action.statisticCourse.fetchForPieChart,
-            fetchColumnChart: action.student.fetchForColumnChart,
-            fetchListDetail: action.statisticStudent.fetchForListDetail
+            // fetchLineChart: action.statisticCourse.fetchForLineChart,
+            // fetchPieChart: action.statisticCourse.fetchForPieChart,
+            // fetchColumnChart: action.student.fetchForColumnChart,
+            // fetchListDetail: action.statisticStudent.fetchForListDetail
         },
         dispatch
     );
