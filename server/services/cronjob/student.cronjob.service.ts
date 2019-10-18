@@ -15,22 +15,34 @@ export class StudentCronjobService {
         return this.instance
     }
     async checkStudentBirthdayAndSendMail() {
-        const startDay = moment().add(7, "days").dayOfYear()
-
-        const listStudents = await studentService.model.aggregate([
-            {
-                $project: {
-                    day: { $dayOfYear: "$birthday" },
-                    email: 1,
-                    firstName: 1,
-                    lastName: 1
-                }
-            }, {
-                $match: {
-                    day: startDay
-                }
+        const today = moment().toDate();
+        const listStudents = await studentService.model.aggregate([{
+            $addFields: {
+                today: { $dateFromParts: { year: { $year: today }, month: { $month: today }, day: { $dayOfMonth: today } } },
+                birthdayThisYear: { $dateFromParts: { year: { $year: today }, month: { $month: "$birthday" }, day: { $dayOfMonth: "$birthday" } } },
+                birthdayNextYear: { $dateFromParts: { year: { $add: [1, { $year: today }] }, month: { $month: "$birthday" }, day: { $dayOfMonth: "$birthday" } } }
             }
-        ])
+        }, {
+            $addFields: {
+                nextBirthday: { $cond: [{ $gte: ["$birthdayThisYear", "$today"] }, "$birthdayThisYear", "$birthdayNextYear"] }
+            }
+        }, {
+            $project: {
+                name: 1,
+                birthday: 1,
+                daysTillNextBirthday: {
+                    $divide: [
+                        { $subtract: ["$nextBirthday", "$today"] },
+                        24 * 60 * 60 * 1000  /* milliseconds in a day */
+                    ]
+                },
+                _id: 1
+            }
+        }, {
+            $match: {
+                daysTillNextBirthday: { $gte: 0, $lt: 30 }
+            }
+        }, { $sort: { daysTillNextBirthday: 1 } }]);
         for (const student of listStudents) {
             try {
                 studentService.update({ $inc: { point: 1 } }, { filter: { _id: student._id } })
