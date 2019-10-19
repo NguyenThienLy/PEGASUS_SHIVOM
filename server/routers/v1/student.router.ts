@@ -127,7 +127,7 @@ export default class StudentRouter extends CrudRouter<typeof studentController> 
                             startTime: { type: "string", format: "date-time" },
                             package: { type: "string" },
                             type: { type: "string", enum: ["package", "monthAmount"] },
-                            timeTableIds: { type: "array", items: { type: "string" } }
+                            timeTables: { type: "array", items: { type: "string" } }
                         }
                     }
                 },

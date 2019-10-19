@@ -228,7 +228,7 @@ export class StudentController extends CrudController<typeof studentService>{
                 const studentTimeTable: StudentTimeTableModel = await studentTimeTableService.create({
                     course: course._id,
                     student: student._id,
-                    items: course.timeTableIds
+                    items: course.timeTables
                 })
                 results.push(studentTimeTable)
                 courseInfo.update({ $inc: { currentStudentAmount: 1 } }).exec()
