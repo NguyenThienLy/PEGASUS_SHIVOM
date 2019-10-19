@@ -266,6 +266,14 @@ export class AddMember extends React.Component {
       })
       .then(async res => {
         await Swal.fire('Thành công', 'Thêm học viên thành công', 'success');
+        try {
+          this.props.dispatch({
+            type: "ADD_STUDENT_SUCCESS",
+            payload: res.result.object
+          })
+        } catch (err) {
+
+        }
         Router.push(
           `/manager/member/member?studentId=${res.result.object._id}`,
           `/quan-ly/hoc-vien/chi-tiet/${res.result.object._id}`
