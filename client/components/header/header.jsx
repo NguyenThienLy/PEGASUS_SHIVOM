@@ -34,21 +34,7 @@ export class Header extends React.Component {
           name: "tin tức",
           key: "news",
           subCategories: [
-            {
-              name: "khoá học môt",
-              linkHref: "/blog/blog?categorySlug=khoa-hoc-not",
-              linkAs: "/khoa-hoc-mot"
-            },
-            {
-              name: "khoá học hai",
-              linkHref: "/home/home",
-              linkAs: "/"
-            },
-            {
-              name: "khoá học ba",
-              linkHref: "/home/home",
-              linkAs: "/"
-            }
+
           ]
         },
         {
@@ -208,7 +194,7 @@ export class Header extends React.Component {
       });
     }
 
-    window.onscroll = function() {
+    window.onscroll = function () {
       currentScrollPos = window.pageYOffset;
       if (prevScrollPos > currentScrollPos && currentScrollPos < posToExpose) {
         $(".header .header__sub-wrapper").css({
@@ -240,14 +226,14 @@ export class Header extends React.Component {
       prevScrollPos = currentScrollPos;
     };
 
-    $(".header__wrapper__page-menu-area__left__sidebar").click(function(e) {
+    $(".header__wrapper__page-menu-area__left__sidebar").click(function (e) {
       e.stopPropagation();
       $(".header > .sidebar").addClass("sidebar__show-menu");
       $(".background-overlay").css("display", "block");
       $("body, html").css("cursor", "pointer");
     });
 
-    $(".header__sub-wrapper__page-menu-area__left__sidebar").click(function(e) {
+    $(".header__sub-wrapper__page-menu-area__left__sidebar").click(function (e) {
       e.stopPropagation();
       $(".header > .sidebar").addClass("sidebar__show-menu");
       $(".background-overlay").css("display", "block");
@@ -264,11 +250,11 @@ export class Header extends React.Component {
       });
     });
 
-    $(".header > .sidebar").click(function(e) {
+    $(".header > .sidebar").click(function (e) {
       e.stopPropagation();
     });
 
-    $("body,html").click(function(e) {
+    $("body,html").click(function (e) {
       $("body, html").css("cursor", "default");
       $(".header > .sidebar").removeClass("sidebar__show-menu");
       if (
@@ -289,7 +275,7 @@ export class Header extends React.Component {
       $(".background-overlay").css("display", "none");
     });
 
-    $(window).on("resize", function() {
+    $(window).on("resize", function () {
       var win = $(this);
       if (win.outerWidth() > 991) {
         if ($(".sidebar").hasClass("sidebar__show-menu")) {
@@ -372,16 +358,16 @@ export class Header extends React.Component {
                           </div>
                         </li>
                       ) : (
-                        <Link
-                          href={category.linkHref}
-                          as={category.linkAs}
-                          key={index}
-                        >
-                          <li className="header__wrapper__page-menu-area__left__navbar__list-items__item">
-                            <HoverDivAnimation title={category.name} />
-                          </li>
-                        </Link>
-                      );
+                          <Link
+                            href={category.linkHref}
+                            as={category.linkAs}
+                            key={index}
+                          >
+                            <li className="header__wrapper__page-menu-area__left__navbar__list-items__item">
+                              <HoverDivAnimation title={category.name} />
+                            </li>
+                          </Link>
+                        );
                     })}
                   </ul>
                 </div>
@@ -449,16 +435,16 @@ export class Header extends React.Component {
                           </div>
                         </li>
                       ) : (
-                        <Link
-                          href={category.linkHref}
-                          as={category.linkAs}
-                          key={index}
-                        >
-                          <li className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item">
-                            <HoverDivAnimation title={category.name} />
-                          </li>
-                        </Link>
-                      );
+                          <Link
+                            href={category.linkHref}
+                            as={category.linkAs}
+                            key={index}
+                          >
+                            <li className="header__sub-wrapper__page-menu-area__left__navbar__list-items__item">
+                              <HoverDivAnimation title={category.name} />
+                            </li>
+                          </Link>
+                        );
                     })}
                   </ul>
                 </div>

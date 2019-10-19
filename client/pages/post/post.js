@@ -270,7 +270,7 @@ class Post extends React.Component {
                   </div>
                   <div className="post__body__wrapper__main-content__info__category">
                     <Link
-                      href={`/blog/blog?categorySlug=${this.props.news.category}`}
+                      href={`/blog/blog?categorySlug=${this.props.newsData.category.slug}`}
                       as={`/${this.props.newsData.category.slug}`}
                     >
                       <a href={`/${this.props.newsData.category.slug}`}>

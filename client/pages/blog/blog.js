@@ -159,18 +159,15 @@ class Blog extends React.Component {
   static async getInitialProps({ req, query }) {
     // Lấy slug của danh mục tin tức
     const slug = query.categorySlug;
-    console.log("slug: ", slug)
     try {
       const category = await api.newCategory.getNewsCategoryBySlug(slug);
-      console.log("category: ", category)
       const res = await api.news.getList({
         query: {
-          filter: { category: category._id },
-          status: "active"
+          filter: { category: category._id, status: "active" },
+
         },
         populates: [{ path: "author", select: "firstName%20lastName" }]
       });
-      console.log("res: ", res)
       return { lstNews: res.results.objects.rows, category: category };
     } catch (error) {
       console.log("err: ", error)

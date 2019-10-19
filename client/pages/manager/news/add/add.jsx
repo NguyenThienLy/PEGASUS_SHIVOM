@@ -6,6 +6,9 @@ import { AddPostForm } from "./components";
 import { action } from '../../../../actions'
 import {api } from '../../../../services'
 
+import Router from 'next/router';
+
+
 import "./add.scss"
 export class AddNews extends React.Component {
     constructor(props) {
@@ -47,7 +50,7 @@ export class AddNews extends React.Component {
         this.state.formData[name] = value;
         this.setState({ formData: this.state.formData });
     }
-    async submitPost() {
+    async submitPost(status) {
         if (!this.state.isValidSubmit) {
             alert("Vui lòng kiểm tra lại thông tin");
             return;
@@ -59,6 +62,7 @@ export class AddNews extends React.Component {
             imageLink = await api.imgur.uploadImage(this.state.formData.thumb);
             this.state.formData.thumb = imageLink;
         }
+        this.state.formData.status = status
         api.news
             .create(this.state.formData, {
                 headers: {
@@ -68,6 +72,18 @@ export class AddNews extends React.Component {
             })
             .then(res => {
                 Swal.fire("Thành công", "Thêm bài viết thành công", "success");
+                try {
+                    this.props.dispatch({
+                        type: "ADD_NEWS_SUCCESS",
+                        payload: res.result.object
+                      })
+                      Router.push(
+                        `/manager/news/news?newsId=${res.result.object._id}`,
+                        `/quan-ly/tin-tuc/chi-tiet/${res.result.object._id}`
+                      );
+                } catch(err){
+
+                }
             })
             .catch(err => {
                 console.log("err");
@@ -97,12 +113,15 @@ export class AddNews extends React.Component {
                 </div>
               </div>
               <div className="add-post__body__card__buttons">
-                <button className="add-post__body__card__buttons__btn">
+                <button 
+                className="add-post__body__card__buttons__btn"
+                onClick={() => { this.submitPost("deactive")}}
+                >
                   Lưu nháp
                 </button>
                 <button
                   className="add-post__body__card__buttons__btn"
-                  onClick={this.submitPost}
+                  onClick={() => { this.submitPost("active")}}
                 >
                   Đăng
                 </button>

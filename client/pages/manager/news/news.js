@@ -45,10 +45,7 @@ class News extends Component {
     fetchData() {
         this.props.fetchNews({
             query: {
-                limit: 0,
-                filter: {
-                    status: "active"
-                }
+                limit: 0
             },
             headers: {
                 "x-token":
@@ -58,9 +55,6 @@ class News extends Component {
         this.props.fetchCategory({
             query: {
                 limit: 0,
-                filter: {
-                    status: "active"
-                }
             }
         });
     }
@@ -119,13 +113,16 @@ class News extends Component {
 const mapStateToProps = state => {
     return state;
 };
-const mapDispatchToProps = dispatch =>
-    bindActionCreators(
-        {
-            fetchNews: action.news.fetch,
-            fetchCategory: action.newCategory.fetch
-        },
-        dispatch
-    );
+const mapDispatchToProps = dispatch => {
+    return {
+        dispatch, ...bindActionCreators(
+            {
+                fetchNews: action.news.fetch,
+                fetchCategory: action.newCategory.fetch
+            },
+            dispatch
+        )
+    }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(News);
