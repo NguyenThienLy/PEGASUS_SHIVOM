@@ -211,7 +211,7 @@ export class NewMemberInfo extends React.Component {
                 className="newMemberInfo__input-box"
                 placeholder="Nguyễn"
                 type="text"
-                name="lastName"
+                name="firstName"
                 onChange={this.handleChange}
                 onBlur={this.handleChange}
               />
@@ -227,7 +227,7 @@ export class NewMemberInfo extends React.Component {
                 className="newMemberInfo__input-box"
                 placeholder="Văn A"
                 type="text"
-                name="firstName"
+                name="lastName"
                 onChange={this.handleChange}
                 onBlur={this.handleChange}
               />
