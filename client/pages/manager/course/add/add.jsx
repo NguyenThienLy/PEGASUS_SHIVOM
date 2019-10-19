@@ -159,14 +159,18 @@ export class AddCourse extends React.Component {
       })
       .then(async res => {
         await Swal.fire('Thành công', 'Thêm khoá học thành công', 'success');
-        this.props.dispatch({
-          type: "ADD_COURSE_SUCCESS",
-          payload: res.result.object
-        })
-        Router.push(
-          `/manager/course/course?courseId=${res.result.object._id}`,
-          `/quan-ly/khoa-hoc/chi-tiet/${res.result.object._id}`
-        );
+        try {
+          this.props.dispatch({
+            type: "ADD_COURSE_SUCCESS",
+            payload: res.result.object
+          })
+          Router.push(
+            `/manager/course/course?courseId=${res.result.object._id}`,
+            `/quan-ly/khoa-hoc/chi-tiet/${res.result.object._id}`
+          );
+        } catch (err) {
+
+        }
       })
       .catch(err => {
         console.log('err');
