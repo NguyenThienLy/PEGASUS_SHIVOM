@@ -113,13 +113,13 @@ export class MainClass extends React.Component {
     // const classes = this.props.classes.items.slice(this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10, 10 * this.state.currentPage)
     const classes = this.state.classes
       ? this.state.classes.slice(
-          this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10,
-          10 * this.state.currentPage
-        )
+        this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10,
+        10 * this.state.currentPage
+      )
       : (this.props.classes.items || []).slice(
-          this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10,
-          10 * this.state.currentPage
-        );
+        this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10,
+        10 * this.state.currentPage
+      );
     return (
       <React.Fragment>
         <div className="class-main">
@@ -154,7 +154,7 @@ export class MainClass extends React.Component {
                         <td>{index + 1}</td>
                         <td style={{ 'text-align': 'left' }}>{item.name}</td>
                         <td style={{ 'text-align': 'left', width: '30%' }}>
-                          {item.shortDescription}
+                          {item.shortDescription.length > 100 ? item.shortDescription.slice(0, 100) + "..." : item.shortDescription}
                         </td>
                         <td>
                           {item.status === 'active'
@@ -189,20 +189,20 @@ export class MainClass extends React.Component {
                                 </span>
                               </Tooltip>
                             ) : (
-                              <Tooltip
-                                title="Tắt hoạt động"
-                                position="top"
-                                className="action-td__item"
-                              >
-                                <span
-                                  onClick={() =>
-                                    this.changeStatus(item._id, 'deactive')
-                                  }
+                                <Tooltip
+                                  title="Tắt hoạt động"
+                                  position="top"
+                                  className="action-td__item"
                                 >
-                                  <i class="fas fa-toggle-off"></i>
-                                </span>
-                              </Tooltip>
-                            )}
+                                  <span
+                                    onClick={() =>
+                                      this.changeStatus(item._id, 'deactive')
+                                    }
+                                  >
+                                    <i class="fas fa-toggle-off"></i>
+                                  </span>
+                                </Tooltip>
+                              )}
 
                             {/* < Tooltip
                                                         title="Xoá"
@@ -228,13 +228,13 @@ export class MainClass extends React.Component {
                   changePage={this.changePage}
                 />
               ) : (
-                <Pagination
-                  currentPage={this.state.currentPage}
-                  total={this.props.classes.items.length}
-                  limit={10}
-                  changePage={this.changePage}
-                />
-              )}
+                  <Pagination
+                    currentPage={this.state.currentPage}
+                    total={this.props.classes.items.length}
+                    limit={10}
+                    changePage={this.changePage}
+                  />
+                )}
             </div>
           </div>
         </div>
