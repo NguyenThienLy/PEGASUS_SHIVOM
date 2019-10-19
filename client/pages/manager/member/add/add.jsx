@@ -257,25 +257,24 @@ export class AddMember extends React.Component {
     this.state.formData.personalInfo.birthday = moment(
       this.state.formData.personalInfo.birthday
       , "DD/MM/YYYY").format();
-    console.log("dataa: ", this.state.formData)
-    // api.student
-    //   .enroll(this.state.formData, {
-    //     headers: {
-    //       'x-token':
-    //         'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M'
-    //     }
-    //   })
-    //   .then(async res => {
-    //     await Swal.fire('Thành công', 'Thêm học viên thành công', 'success');
-    //     Router.push(
-    //       `/manager/member/member?studentId=${res.result.object._id}`,
-    //       `/quan-ly/hoc-vien/chi-tiet/${res.result.object._id}`
-    //     );
-    //   })
-    //   .catch(err => {
-    //     console.log('err');
-    //     Swal.fire('Thất bại', 'Thêm học viên không thành công', 'error');
-    //   });
+    api.student
+      .enroll(this.state.formData, {
+        headers: {
+          'x-token':
+            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M'
+        }
+      })
+      .then(async res => {
+        await Swal.fire('Thành công', 'Thêm học viên thành công', 'success');
+        Router.push(
+          `/manager/member/member?studentId=${res.result.object._id}`,
+          `/quan-ly/hoc-vien/chi-tiet/${res.result.object._id}`
+        );
+      })
+      .catch(err => {
+        console.log('err');
+        Swal.fire('Thất bại', 'Thêm học viên không thành công', 'error');
+      });
   }
   render() {
     return (
