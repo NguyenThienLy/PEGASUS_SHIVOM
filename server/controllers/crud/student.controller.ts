@@ -87,14 +87,20 @@ export class StudentController extends CrudController<typeof studentService>{
                 return result
             }))
         try {
-            const courseStudentAmount = courseStudentService.model.count({
+            const courseOfStudents = await courseStudentService.model.find({
                 student: params.studentId
             })
-            courseService.update({
-                $inc: {
-                    currentStudentAmount: courseStudentAmount
-                }
-            })
+            courseService.model.updateMany({
+
+                _id: courseOfStudents.map((courseStudent: any) => { return courseStudent.course })
+
+            }, {
+                    $inc: {
+                        currentStudentAmount: 1
+                    }
+                }, {
+                    new: true, multi: true
+                }).exec()
         } catch (err) {
 
         }
@@ -156,14 +162,20 @@ export class StudentController extends CrudController<typeof studentService>{
                 return result
             }))
         try {
-            const courseStudentAmount = courseStudentService.model.count({
+            const courseOfStudents = await courseStudentService.model.find({
                 student: params.studentId
             })
-            courseService.update({
-                $inc: {
-                    currentStudentAmount: - courseStudentAmount
-                }
-            })
+            courseService.model.updateMany({
+
+                _id: courseOfStudents.map((courseStudent: any) => { return courseStudent.course })
+
+            }, {
+                    $inc: {
+                        currentStudentAmount: - 1
+                    }
+                }, {
+                    new: true, multi: true
+                }).exec()
         } catch (err) {
 
         }
