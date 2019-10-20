@@ -259,8 +259,9 @@ export class Dashboard extends React.Component {
     // })
   }
 
-  handleScroll = () => {};
-  componentWillUnmount() {}
+  handleScroll = () => { };
+  componentWillUnmount() { }
+
   async componentDidMount() {
     this.checkUserAlreadyLogin();
     // Lấy năm
@@ -456,8 +457,10 @@ export class Dashboard extends React.Component {
               <FeedbackAdmin
                 feedbackAdmins={this.props.feedbacks.items}
                 staticContent={this.state.feedbackAdmin}
+
                 isFetching={this.props.feedbacks.fetching}
                 isEmpty={this.props.feedbacks.items.length}
+
                 updateIgnoreFeedbacks={this.updateIgnoreFeedbacks}
                 updateConfirmFeedbacks={this.updateConfirmFeedbacks}
               ></FeedbackAdmin>
@@ -466,6 +469,7 @@ export class Dashboard extends React.Component {
               <Activity
                 activities={this.props.students.itemsNewStudents.data}
                 staticContent={this.state.newStudent}
+
                 isFetching={this.props.students.itemsNewStudents.fetching}
                 isEmpty={this.props.students.itemsNewStudents.data.length}
               ></Activity>
@@ -473,6 +477,7 @@ export class Dashboard extends React.Component {
               <Activity
                 activities={this.props.students.itemsTopPoint.data}
                 staticContent={this.state.topPoint}
+
                 isFetching={this.props.students.itemsTopPoint.fetching}
                 isEmpty={this.props.students.itemsTopPoint.data.length}
               ></Activity>
@@ -480,6 +485,7 @@ export class Dashboard extends React.Component {
               <Activity
                 activities={this.props.students.itemsUpcommingBirthday.data}
                 staticContent={this.state.birthday}
+
                 isFetching={this.props.students.itemsUpcommingBirthday.fetching}
                 isEmpty={this.props.students.itemsUpcommingBirthday.data.length}
               ></Activity>

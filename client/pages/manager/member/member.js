@@ -21,6 +21,7 @@ import {
 import { MainMember } from './main/main'
 import { AddMember } from './add/add'
 import { DetailMember } from './detail/detail'
+import { StatisticMember } from './statistic/statistic'
 
 class Member extends Component {
     constructor(props) {
@@ -55,26 +56,26 @@ class Member extends Component {
                     "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M"
             }
         })
-        this.props.fetchCourse({
-            query: {
-                limit: 0
-            }
-        })
-        this.props.fetchPackage({
-            query: {
-                limit: 0
-            }
-        })
-        if (this.props.timeTable.items.length === 0) {
-            this.props.fetchTimeTable({
-                query: {
-                    limit: 0,
-                    filter: {
-                        status: "active"
-                    }
-                }
-            });
-        }
+        // this.props.fetchCourse({
+        //     query: {
+        //         limit: 0
+        //     }
+        // })
+        // this.props.fetchPackage({
+        //     query: {
+        //         limit: 0
+        //     }
+        // })
+        // if (this.props.timeTable.items.length === 0) {
+        //     this.props.fetchTimeTable({
+        //         query: {
+        //             limit: 0,
+        //             filter: {
+        //                 status: "active"
+        //             }
+        //         }
+        //     });
+        // }
     }
     componentWillReceiveProps(nextProps) {
         this.setState({ number: Math.random() })
@@ -116,7 +117,8 @@ class Member extends Component {
                                 [
                                     { path: "/quan-ly/hoc-vien", component: <MainMember {...this.props} /> },
                                     { path: "/quan-ly/hoc-vien/them", component: <AddMember {...this.props} /> },
-                                    { path: "/quan-ly/hoc-vien/chi-tiet/:studentId", component: <DetailMember {...this.props} /> }
+                                    { path: "/quan-ly/hoc-vien/chi-tiet/:studentId", component: <DetailMember {...this.props} /> },
+                                    { path: "/quan-ly/hoc-vien/thong-ke/:studentId", component: <StatisticMember {...this.props} /> }
                                 ]
                             } />
                         </div>
@@ -136,9 +138,9 @@ const mapDispatchToProps = dispatch => {
         dispatch, ...bindActionCreators(
             {
                 fetchStudent: action.student.fetch,
-                fetchCourse: action.course.fetch,
-                fetchPackage: action.package.fetch,
-                fetchTimeTable: action.timeTable.fetch,
+                //fetchCourse: action.course.fetch,
+                //fetchPackage: action.package.fetch,
+                //fetchTimeTable: action.timeTable.fetch,
             },
             dispatch
         )

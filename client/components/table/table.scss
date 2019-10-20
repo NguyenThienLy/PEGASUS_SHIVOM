@@ -35,6 +35,38 @@ $hover-color: lighten($sub-main-color, 30%);
     width: 95%;
     margin: auto;
     overflow: hidden;
+    @include e('search-input') {
+      background: #fff;
+      color: $font-color;
+      font-family: $font-body;
+      font-size: 1em;
+      border: 1px solid $table-border-color;
+      border-radius: 5px;
+      outline: none;
+      padding: 0.5em 1em;
+      margin-right: 0.5em;
+      // width: 90%;
+      &:nth-last-child(1) {
+        margin-right: 0;
+      }
+      @include m('date') {
+        padding: 1em 5%;
+      }
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        /* display: none; <- Crashes Chrome on hover */
+        -webkit-appearance: inner-spin-button;
+        margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+      }
+      &::placeholder {
+        color: rgba(0, 0, 0, 0.3);
+        font-size: 0.9em;
+      }
+      &:focus {
+        outline: none;
+        border: 1px solid $main-color;
+      }
+  }
     @include e("firstCol") {
       width: 5em;
     }
