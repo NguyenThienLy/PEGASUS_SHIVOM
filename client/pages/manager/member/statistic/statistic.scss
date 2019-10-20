@@ -1,6 +1,6 @@
 @import "../../../../default.scss";
 
-.memberDetails {
+.memberStatistic {
     display: flex;
     flex-direction: row;
     // height: 100vh;
@@ -135,7 +135,7 @@
       font-size: $font-size-375 !important;
     }
   
-    .memberDetails__sidebar {
+    .memberStatistic__sidebar {
       width: 0%;
       .sidebar {
         position: fixed;
@@ -143,12 +143,12 @@
       }
     }
   
-    .memberDetails__body {
+    .memberStatistic__body {
       width: 90%;
       margin: 0 5%;
     }
   
-    .memberDetails__body__numbers {
+    .memberStatistic__body__numbers {
       grid-template-columns: auto;
       column-gap: 0em;
       .numberAdmin__inner__info {
@@ -158,7 +158,7 @@
       }
     }
   
-    .memberDetails__body__card__content__member__info {
+    .memberStatistic__body__card__content__member__info {
       .memberInfo {
         flex-direction: column;
         .memberInfo__left {
@@ -174,7 +174,7 @@
       }
     }
   
-    .memberDetails__body__card__content__chart__row {
+    .memberStatistic__body__card__content__chart__row {
       .pieChart {
         width: 100%;
       }
@@ -187,7 +187,7 @@
       font-size: $font-size-600 !important;
     }
   
-    .memberDetails__sidebar {
+    .memberStatistic__sidebar {
       width: 0%;
       .sidebar {
         position: fixed;
@@ -195,12 +195,12 @@
       }
     }
   
-    .memberDetails__body {
+    .memberStatistic__body {
       width: 90%;
       margin: 0 5%;
     }
   
-    .memberDetails__body__numbers {
+    .memberStatistic__body__numbers {
       grid-template-columns: repeat(2, 1fr);
       column-gap: 1em;
       .numberAdmin__inner__info {
@@ -210,7 +210,7 @@
       }
     }
   
-    .memberDetails__body__card__content__member__info {
+    .memberStatistic__body__card__content__member__info {
       .memberInfo {
         flex-direction: column;
         .memberInfo__left {
@@ -226,7 +226,7 @@
       }
     }
   
-    .memberDetails__body__card__content__chart__row {
+    .memberStatistic__body__card__content__chart__row {
       .pieChart {
         width: 100%;
       }
@@ -239,7 +239,7 @@
       font-size: $font-size-768 !important;
     }
   
-    .memberDetails__sidebar {
+    .memberStatistic__sidebar {
       width: 0%;
       .sidebar {
         position: fixed;
@@ -247,12 +247,12 @@
       }
     }
   
-    .memberDetails__body {
+    .memberStatistic__body {
       width: 90%;
       margin: 0 5%;
     }
   
-    .memberDetails__body__numbers {
+    .memberStatistic__body__numbers {
       grid-template-columns: repeat(2, 1fr);
       column-gap: 2em;
       .numberAdmin__inner__info {
@@ -262,7 +262,7 @@
       }
     }
   
-    .memberDetails__body__card__content__member__info {
+    .memberStatistic__body__card__content__member__info {
       .memberInfo {
         flex-direction: row;
         .memberInfo__left {
@@ -278,7 +278,7 @@
       }
     }
   
-    .memberDetails__body__card__content__chart__row {
+    .memberStatistic__body__card__content__chart__row {
       .pieChart {
         width: 50%;
       }
@@ -291,7 +291,7 @@
       font-size: $font-size-992 !important;
     }
   
-    .memberDetails__sidebar {
+    .memberStatistic__sidebar {
       width: 20%;
       .sidebar {
         position: fixed;
@@ -299,12 +299,12 @@
       }
     }
   
-    .memberDetails__body {
+    .memberStatistic__body {
       width: 100%;
       margin: 0 1%;
     }
   
-    .memberDetails__body__numbers {
+    .memberStatistic__body__numbers {
       grid-template-columns:  repeat(4, 1fr);
       column-gap: 0.5em;
       .numberAdmin__inner__icon {
@@ -318,7 +318,7 @@
       }
     }
   
-    .memberDetails__body__card__content__member__info {
+    .memberStatistic__body__card__content__member__info {
       .memberInfo {
         flex-direction: row;
         .memberInfo__left {
@@ -334,7 +334,7 @@
       }
     }
   
-    .memberDetails__body__card__content__chart__row {
+    .memberStatistic__body__card__content__chart__row {
       .pieChart {
         width: 50%;
       }
@@ -347,7 +347,7 @@
       font-size: $font-size-1200 !important;
     }
   
-    .memberDetails__sidebar {
+    .memberStatistic__sidebar {
       width: 20%;
       .sidebar {
         position: fixed;
@@ -355,12 +355,12 @@
       }
     }
   
-    .memberDetails__body {
+    .memberStatistic__body {
       width: 100%;
       margin: 0 1%;
     }
   
-    .memberDetails__body__numbers {
+    .memberStatistic__body__numbers {
       grid-template-columns:  repeat(4, 1fr);
       column-gap: 1em;
       .numberAdmin__inner__info {
@@ -370,7 +370,7 @@
       }
     }
   
-    .memberDetails__body__card__content__member__info {
+    .memberStatistic__body__card__content__member__info {
       .memberInfo {
         flex-direction: row;
         .memberInfo__left {
@@ -386,7 +386,7 @@
       }
     }
   
-    .memberDetails__body__card__content__chart__row {
+    .memberStatistic__body__card__content__chart__row {
       .pieChart {
         width: 30%;
       }

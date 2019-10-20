@@ -21,6 +21,33 @@ $background-color-chart: lighten($sub-main-color, 30%);
 
     letter-spacing: 0.025em;
   }
+  @include e('update-button') {
+    margin: auto;
+    width: 20px;
+    border: 1px solid $main-color;
+    outline: 0;
+    padding: 0;
+    color: $main-color;
+    border-radius: 5px;
+    padding: 0.3em;
+    transition: all 200ms ease;
+    cursor: pointer;
+    background: #fff;
+    text-align: center;
+    // box-shadow: 1px 1px 2px 0 rgba(0, 163, 175, 0.5);
+    &:hover {
+      background: $main-color;
+      color: #fff;
+    }
+    &:active {
+      background: $main-color;
+      color: #fff;
+      box-shadow: 1px 1px 5px 0 rgba(0, 163, 175, 0.3);
+    }
+    i {
+      // margin: 0 0.3em;
+    }
+  }
   @include e("description") {
     padding: 0.5em 1em;
     background-color: $background-color-chart;

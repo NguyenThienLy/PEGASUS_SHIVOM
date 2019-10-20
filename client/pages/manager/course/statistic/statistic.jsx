@@ -2,8 +2,6 @@ import * as React from "react";
 import { action } from '../../../../actions'
 import { api } from '../../../../services'
 
-// import { CreatePackage } from './components'
-
 import Swal from 'sweetalert2'
 
 import {
@@ -14,10 +12,8 @@ import {
     LineChart,
     Table,
     CustomSelect,
-    ProfileAdmin,
     ColumnChart,
-    CourseInfo,
-    Loading
+    LoadingSmall
 } from '../../../../components';
 import * as moment from 'moment'
 import "./statistic.scss"
@@ -27,7 +23,11 @@ export class StatisticCourse extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            course: null,
+            course: {
+                isFetching: true,
+                isEmpty: true,
+                data: null
+            },
             modals: {
                 createPackage: false
             },
@@ -71,33 +71,25 @@ export class StatisticCourse extends React.Component {
                 data: {
                     absent: {
                         nameTable: 'Danh sách học viên vắng học',
-                        data: null
+                        data: null,
+                        formatKey: "absents"
                     },
                     late: {
                         nameTable: 'Danh sách học viên trễ giờ',
-                        data: null
+                        data: null,
+                        formatKey: "lates"
                     },
                     onTime: {
                         nameTable: 'Danh sách học viên đúng giờ',
-                        data: null
+                        data: null,
+                        formatKey: "onTimes"
                     },
                     redundant: {
                         nameTable: 'Danh sách học viên đi thừa',
-                        data: null
+                        data: null,
+                        formatKey: "redundants"
                     }
                 }
-            },
-            profileAdmin: {
-                image:
-                    'https://dalia.elated-themes.com/wp-content/uploads/2018/06/team2-img-8.jpg',
-                name: 'nisha sharma',
-                phone: '0947161096',
-                email: 'nisha_sharma@gmail.com',
-                location: 'remote',
-                age: 25,
-                facebook: 'facebook.com',
-                twitter: 'twitter.com',
-                instagram: 'instagram.com'
             },
             columnChartData: {
                 labels: null,
@@ -161,6 +153,11 @@ export class StatisticCourse extends React.Component {
                         borderColor: 'rgba(153, 102, 255, 0.6)'
                     }
                 ]
+            },
+            filterByTimeType: {
+                placeholder: 'Chọn loại thống kê',
+                options: ['Thời gian thực', 'Theo tuần', 'Theo tháng', 'Theo năm'],
+                values: ['all', 'active', 'deactive']
             }
         }
         this.showHideModal = this.showHideModal.bind(this)
@@ -191,17 +188,26 @@ export class StatisticCourse extends React.Component {
     }
 
     fetchData = async (startTime, endTime) => {
-
-        if (!this.state.course) {
-            let course = this.props.courses.items.find((course) => { return course._id === this.props.params.courseId })
-            if (!course) {
-                const res = await api.course.getItem(this.props.params.courseId)
-                course = res.result.object
-            }
-            this.setState({ course: course })
-        }
         const token =
             'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M';
+
+        if (this.state.course.isFetching) {
+            const newCourse = this.state.course;
+
+            newCourse.data = this.props.courses.items.find(course => {
+                return course._id === this.props.params.courseId;
+            });
+
+            if (!newCourse.data) {
+                const res = await api.course.getItem(this.props.params.courseId);
+                newCourse.data = res.result.object;
+            }
+
+            newCourse.isFetching = false;
+            newCourse.isEmpty = false;
+
+            this.setState({ course: newCourse });
+        }
 
         if (this.state.lineChartData.isFetching) {
             api.statisticCourse
@@ -215,8 +221,8 @@ export class StatisticCourse extends React.Component {
                     newLineChartData.datasets[1].data = res.result.object.dataLates;
                     newLineChartData.datasets[2].data = res.result.object.dataOnTimes;
                     newLineChartData.datasets[3].data = res.result.object.dataRedundants;
-
                     newLineChartData.labels = res.result.object.labels;
+
                     newLineChartData.isEmpty = res.result.object.isEmpty;
                     newLineChartData.isFetching = false;
 
@@ -227,6 +233,7 @@ export class StatisticCourse extends React.Component {
                 }).catch(error => {
                     const newLineChartData = this.state.lineChartData;
 
+                    newLineChartData.isEmpty = true;
                     newLineChartData.isFetching = false;
 
                     this.setState({
@@ -266,7 +273,8 @@ export class StatisticCourse extends React.Component {
                     const newNumberAdmins = this.state.numberAdmins;
                     const newPieChartData = this.state.pieChartData;
 
-                    newNumberAdmins[0].isFetching = newNumberAdmins[1].isFetching = newNumberAdmins[2].isFetching = newNumberAdmins[3].isFetching = false;
+                    newNumberAdmins.isEmpty = newPieChartData.isEmpty = true;
+                    newNumberAdmins.isFetching = newPieChartData.isFetching = false;
 
                     this.setState({
                         numberAdmins: newNumberAdmins,
@@ -284,6 +292,7 @@ export class StatisticCourse extends React.Component {
                     // Thống kê trên biểu đồ cột
                     newColumnChartData.datasets[0].data = res.result.object.data;
                     newColumnChartData.labels = res.result.object.labels;
+
                     newColumnChartData.isEmpty = res.result.object.isEmpty;
                     newColumnChartData.isFetching = false;
 
@@ -293,6 +302,8 @@ export class StatisticCourse extends React.Component {
 
                 }).catch(error => {
                     const newColumnChartData = this.state.columnChartData;
+
+                    newColumnChartData.isEmpty = true;
                     newColumnChartData.isFetching = false;
 
                     this.setState({
@@ -314,6 +325,7 @@ export class StatisticCourse extends React.Component {
                     newTableDetails.data.absent.data = res.result.object.absents;
                     newTableDetails.data.redundant.data = res.result.object.redundants;
 
+                    newTableDetails.isEmpty = res.result.object.isEmpty;
                     newTableDetails.isFetching = false;
 
                     this.setState({
@@ -323,6 +335,7 @@ export class StatisticCourse extends React.Component {
                 }).catch(error => {
                     const newTableDetails = this.state.tableDetails;
 
+                    ewTableDetails.isEmpty = true;
                     newTableDetails.isFetching = false;
 
                     this.setState({
@@ -345,8 +358,6 @@ export class StatisticCourse extends React.Component {
                 .format('YYYY-MM-DD HH:mm:ss')
         );
 
-
-
         var heightOfHeader = $(
             '.course-statistics .course-statistics__header .headerAdmin__wrapper'
         ).height();
@@ -368,76 +379,11 @@ export class StatisticCourse extends React.Component {
         return true;
     }
 
-    // componentDidUpdate(prevProps, prevState) {
-    //     if (
-    //         prevProps.statisticCourse.statisticForPieChart.fetching &&
-    //         !this.props.statisticCourse.statisticForPieChart.fetching
-    //     ) {
-    //         const newNumberAdmins = prevState.numberAdmins;
-    //         const newPieChartData = prevState.pieChartData;
-
-    //         // Gán số lượng loại chuyên cần cho component admin
-    //         newNumberAdmins[0].quantity = this.props.statisticCourse.statisticForPieChart.data.totalOnTime;
-    //         newNumberAdmins[1].quantity = this.props.statisticCourse.statisticForPieChart.data.totalLate;
-    //         newNumberAdmins[2].quantity = this.props.statisticCourse.statisticForPieChart.data.totalAbsent;
-    //         newNumberAdmins[3].quantity = this.props.statisticCourse.statisticForPieChart.data.totalRedundant;
-
-    //         newNumberAdmins[0].isEmpty = newNumberAdmins[1].isEmpty = newNumberAdmins[2].isEmpty = newNumberAdmins[3].isEmpty = this.props.statisticCourse.statisticForPieChart.data.isEmpty;
-    //         // Thống kê trên biểu đồ tròn
-    //         newPieChartData.datasets[0].data = this.props.statisticCourse.statisticForPieChart.data.data;
-    //         newPieChartData.labels = this.props.statisticCourse.statisticForPieChart.data.labels;
-    //         newPieChartData.isEmpty = this.props.statisticCourse.statisticForPieChart.data.isEmpty;
-
-    //         this.setState({
-    //             numberAdmins: newNumberAdmins,
-    //             pieChartData: newPieChartData
-    //         });
-    //     }
-
-    //     if (
-    //         prevProps.students.statisticForColumnChart.fetching &&
-    //         !this.props.students.statisticForColumnChart.fetching
-    //     ) {
-    //         const newColumnChartData = prevState.columnChartData;
-
-    //         // Thống kê trên biểu đồ cột
-    //         newColumnChartData.datasets[0].data = this.props.students.statisticForColumnChart.data.data;
-    //         newColumnChartData.labels = this.props.students.statisticForColumnChart.data.labels;
-    //         newColumnChartData.isEmpty = this.props.students.statisticForColumnChart.data.isEmpty;
-
-    //         this.setState({
-    //             columnChartData: newColumnChartData
-    //         });
-    //     }
-
-    //     if (
-    //         prevProps.statisticCourse.statisticForLineChart.fetching &&
-    //         !this.props.statisticCourse.statisticForLineChart.fetching
-    //     ) {
-    //         const newLineChartData = prevState.lineChartData;
-
-    //         // Thông kê trên biểu đồ đường
-    //         newLineChartData.datasets[0].data = this.props.statisticCourse.statisticForLineChart.data.dataAbsents;
-    //         newLineChartData.datasets[1].data = this.props.statisticCourse.statisticForLineChart.data.dataLates;
-    //         newLineChartData.datasets[2].data = this.props.statisticCourse.statisticForLineChart.data.dataOnTimes;
-    //         newLineChartData.datasets[3].data = this.props.statisticCourse.statisticForLineChart.data.dataRedundants;
-
-    //         newLineChartData.labels = this.props.statisticCourse.statisticForLineChart.data.labels;
-    //         newLineChartData.isEmpty = this.props.statisticCourse.statisticForLineChart.data.isEmpty;
-
-    //         this.setState({
-    //             lineChartData: newLineChartData
-    //         });
-    //     }
-    // }
-
     render() {
 
         return (
             <div className="course-statistics">
-                {/* <CreatePackage show={this.state.modals.createPackage} hideModal={() => { this.showHideModal("createPackage") }} createPackage={this.createPackage} /> */}
                 <React.Fragment>
-
                     <div className="course-statistics__body">
                         <div className="course-statistics__body__numbers">
                             <NumberAdmin
@@ -464,41 +410,18 @@ export class StatisticCourse extends React.Component {
                                 isEmpty={this.state.numberAdmins.isEmpty}
                             ></NumberAdmin>
                         </div>
-                        {/* <div className="course-statistics__body__card">
-                            <div className="course-statistics__body__card__title">
-                                Thông tin khóa học
-                           </div>
-                            <div className="course-statistics__body__card__content">
-                                <div className="course-statistics__body__card__content__course">
-                                    <div className="course-statistics__body__card__content__course__filter">
-                                        <CustomSelect
-                                            customSelect={this.state.customSelectCourse}
-                                        ></CustomSelect>
-                                    </div>
-                                    <div className="course-statistics__body__card__content__course__info">
-                                        {this.props.courses.fetching ? (
-                                            'đang tải ...'
-                                        ) : (
-                                                <CourseInfo
-                                                    courseInfo={this.props.courses.items[0]}
-                                                ></CourseInfo>
-                                            )}
 
-                                        <ProfileAdmin
-                      profileAdmin={this.state.profileAdmin}
-                    ></ProfileAdmin>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> */}
                         <div className="course-statistics__body__card">
                             <div className="course-statistics__body__card__title">
-                                Thống kê khóa học
-                              </div>
+                                {this.state.course.isFetching && this.state.course.isEmpty && <LoadingSmall />}
+                                {this.state.course.isEmpty && !this.state.course.isFetching && "trống"}
+                                {!this.state.course.isFetching && !this.state.course.isEmpty && (
+                                    this.state.course.data.name)}
+                            </div>
                             <div className="course-statistics__body__card__content">
                                 <div className="course-statistics__body__card__content__chart">
                                     <div className="course-statistics__body__card__content__chart__filter">
-                                        <form className="course-statistics__body__card__content__chart__filter__form">
+                                        <div className="course-statistics__body__card__content__chart__filter__form">
                                             <input
                                                 type="text"
                                                 className="course-statistics__body__card__content__chart__filter__form__input"
@@ -509,13 +432,16 @@ export class StatisticCourse extends React.Component {
                                                 className="course-statistics__body__card__content__chart__filter__form__input"
                                                 placeholder="Chọn ngày kết thúc"
                                             />
+                                            <CustomSelect
+                                                customSelect={this.state.filterByTimeType}
+                                            ></CustomSelect>
                                             <button
                                                 type="button"
                                                 className="course-statistics__body__card__content__chart__filter__form__btn course-statistics__body__card__content__chart__filter__form__btn--primary"
                                             >
                                                 thống kê
                                             </button>
-                                        </form>
+                                        </div>
                                     </div>
                                     <div className="course-statistics__body__card__content__chart__row">
                                         <ColumnChart
@@ -545,28 +471,24 @@ export class StatisticCourse extends React.Component {
                                 tableContents={this.state.tableDetails.data.absent}
                                 isFetching={this.state.tableDetails.isFetching}
                                 isEmpty={this.state.tableDetails.isEmpty}
-                                formatKey="absent"
                             ></Table>
 
                             <Table
                                 tableContents={this.state.tableDetails.data.late}
                                 isFetching={this.state.tableDetails.isFetching}
                                 isEmpty={this.state.tableDetails.isEmpty}
-                                formatKey="late"
                             ></Table>
 
                             <Table
                                 tableContents={this.state.tableDetails.data.onTime}
                                 isFetching={this.state.tableDetails.isFetching}
                                 isEmpty={this.state.tableDetails.isEmpty}
-                                formatKey="onTime"
                             ></Table>
 
                             <Table
                                 tableContents={this.state.tableDetails.data.redundant}
                                 isFetching={this.state.tableDetails.isFetching}
                                 isEmpty={this.state.tableDetails.isEmpty}
-                                formatKey="redundant"
                             ></Table>
                         </div>
                     </div>

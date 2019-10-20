@@ -1,24 +1,15 @@
 import * as React from "react";
 import {
-    MemberInfo
+    NumberAdmin,
+    PieChart,
+    LineChart,
+    Table
 } from '../../../../components'
-import { api } from '../../../../services';
-import "./detail.scss";
-
-export class DetailMember extends React.Component {
+import "./statistic.scss"
+export class StatisticMember extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            student: {
-                isFetching: true,
-                isEmpty: true,
-                data: null
-            },
-            courseOfStudent: {
-                isFetching: true,
-                isEmpty: true,
-                data: null
-            },
             headerAdmin: {
                 avatar:
                     "https://cdn1.iconfinder.com/data/icons/avatars-1-5/136/87-512.png",
@@ -89,85 +80,30 @@ export class DetailMember extends React.Component {
                     quantity: 13,
                     colorIcon: "#11cdef"
                 }
-            ]
+            ],
+            customSelectMember: {
+                placeholder: "Chọn học viên...",
+                options: ["Nguyễn Thiên Lý", "Hoàng Thị Ngọc Hạnh"]
+            }
         };
     }
-
-    fetchData = async () => {
-        const token =
-            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M';
-
-        if (this.state.student.isFetching) {
-            const newStudent = this.state.student;
-
-            newStudent.data = this.props.students.items.find(student => {
-                return student._id === this.props.params.studentId;
-            });
-
-            if (!newStudent.data) {
-                const res = await api.student.getItem(this.props.params.studentId);
-                newStudent.data = res.result.object;
-            }
-
-            newStudent.isFetching = false;
-            newStudent.isEmpty = false;
-
-            this.setState({ student: newStudent });
-        }
-
-        if (this.state.courseOfStudent.isFetching) {
-            api.courseStudent.getList(
-                {
-                    query: {
-                        filter: { student: this.props.params.studentId },
-                        populates: ['course']
-
-                    },
-                    headers: {
-                        'x-token': token
-                    }
-                }).then(res => {
-                    const newCourseOfStudent = this.state.courseOfStudent;
-
-                    newCourseOfStudent.data = res.results.objects.rows;
-
-                    newCourseOfStudent.isFetching = false;
-                    newCourseOfStudent.isEmpty = false;
-
-                    console.log("newCourseOfStudent", newCourseOfStudent)
-
-                    this.setState({ courseOfStudent: newCourseOfStudent });
-                }).catch(err => {
-                    const newCourseOfStudent = this.state.courseOfStudent;
-
-                    newCourseOfStudent.isFetching = false;
-                    newCourseOfStudent.isEmpty = true;
-
-                    this.setState({ courseOfStudent: newCourseOfStudent });
-                })
-        }
-    };
-
     componentDidMount() {
-        this.fetchData();
-
         var heightOfHeader = $(
-            ".memberDetails .memberDetails__header .headerAdmin__wrapper"
+            ".memberStatistic .memberStatistic__header .headerAdmin__wrapper"
         ).height();
-        $(".memberDetails .memberDetails__body").css(
+        $(".memberStatistic .memberStatistic__body").css(
             "margin-top",
             heightOfHeader + "px"
         );
 
         $(
-            ".memberDetails__body__card__content__chart__filter__form__input"
+            ".memberStatistic__body__card__content__chart__filter__form__input"
         ).datetimepicker({
             format: "d/m/Y",
             timepicker: false,
             mask: false
         });
     }
-
     componentDidUpdate(prevProps, prevState) {
 
         if (
@@ -187,28 +123,53 @@ export class DetailMember extends React.Component {
 
     render() {
         return (
-            <div className="memberDetails">
-                <div className="memberDetails__body">
-
-                    <div className="memberDetails__body__card">
-                        <div className="memberDetails__body__card__title">
-                            Thông tin học viên
+            <div className="memberStatistic">
+                <div className="memberStatistic__body">
+                    <div className="memberStatistic__body__numbers">
+                        {this.state.numberAdmins.map(number => {
+                            return <NumberAdmin numberAdmin={number}></NumberAdmin>;
+                        })}
                     </div>
-                        <div className="memberDetails__body__card__content">
-                            <div className="memberDetails__body__card__content__member">
-                                <div className="memberDetails__body__card__content__member__info">
-                                    <MemberInfo
-                                        memberInfo={this.state.student.data}
-                                        isFetchingMemberInfo={this.state.student.isFetching}
-                                        isEmptyMemberInfo={this.state.student.isEmpty}
 
-                                        courseOfStudent={this.state.courseOfStudent.data}
-                                        isFetchingCourseOfStudent={this.state.courseOfStudent.isFetching}
-                                        isEmptyCourseOfStudent={this.state.courseOfStudent.isEmpty}>
-                                    </MemberInfo>
+                    <div className="memberStatistic__body__card">
+                        <div className="memberStatistic__body__card__title">
+                            Thống kê khóa học
+                  </div>
+                        <div className="memberStatistic__body__card__content">
+                            <div className="memberStatistic__body__card__content__chart">
+                                <div className="memberStatistic__body__card__content__chart__filter">
+                                    <div className="memberStatistic__body__card__content__chart__filter__form">
+                                        <input
+                                            type="text"
+                                            className="memberStatistic__body__card__content__chart__filter__form__input"
+                                            placeholder="Chọn ngày bắt đầu"
+                                        />
+                                        <input
+                                            type="text"
+                                            className="memberStatistic__body__card__content__chart__filter__form__input"
+                                            placeholder="Chọn ngày kết thúc"
+                                        />
+                                        <button
+                                            type="button"
+                                            className="memberStatistic__body__card__content__chart__filter__form__btn memberStatistic__body__card__content__chart__filter__form__btn--primary"
+                                        >
+                                            thống kê
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className="memberStatistic__body__card__content__chart__row">
+                                    <LineChart></LineChart>
+                                </div>
+                                <div className="memberStatistic__body__card__content__chart__row">
+                                    <PieChart></PieChart>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div className="memberStatistic__body__table">
+                        {/* <Table
+
+                            ></Table> */}
                     </div>
                 </div>
             </div>
