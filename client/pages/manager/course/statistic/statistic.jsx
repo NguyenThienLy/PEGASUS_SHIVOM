@@ -1,9 +1,8 @@
 import * as React from "react";
-import { action } from '../../../../actions'
 import { api } from '../../../../services'
-
+import { tsTupleType } from "@babel/types";
 import Swal from 'sweetalert2'
-
+import * as moment from 'moment'
 import {
     Sidebar,
     HeaderAdmin,
@@ -15,9 +14,9 @@ import {
     ColumnChart,
     LoadingSmall
 } from '../../../../components';
-import * as moment from 'moment'
+
 import "./statistic.scss"
-import { tsTupleType } from "@babel/types";
+
 
 export class StatisticCourse extends React.Component {
     constructor(props) {
@@ -27,6 +26,12 @@ export class StatisticCourse extends React.Component {
                 isFetching: true,
                 isEmpty: true,
                 data: null
+            },
+            startTime: {
+                data: moment().startOf('year').format("DD/MM/YYYY")
+            },
+            endTime: {
+                data: moment().endOf('year').format("DD/MM/YYYY")
             },
             modals: {
                 createPackage: false
@@ -155,14 +160,18 @@ export class StatisticCourse extends React.Component {
                 ]
             },
             filterByTimeType: {
-                placeholder: 'Chọn loại thống kê',
+                placeholder: 'Theo tuần',
                 options: ['Thời gian thực', 'Theo tuần', 'Theo tháng', 'Theo năm'],
-                values: ['all', 'active', 'deactive']
+                values: ['realTime', 'week', 'month', 'year']
             }
         }
         this.showHideModal = this.showHideModal.bind(this)
         this.createPackage = this.createPackage.bind(this)
+        this.filterByTimeType = this.filterByTimeType.bind(this);
+        this.changeStartTime = this.changeStartTime.bind(this);
+        this.changeEndTime = this.changeEndTime.bind(this);
     }
+
     showHideModal(key) {
         this.state.modals[key] = !this.state.modals[key]
         this.setState({ modals: this.state.modals })
@@ -187,163 +196,177 @@ export class StatisticCourse extends React.Component {
         })
     }
 
-    fetchData = async (startTime, endTime) => {
+    fetchData = async (startTime, endTime, timeType) => {
         const token =
             'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M';
 
-        if (this.state.course.isFetching) {
-            const newCourse = this.state.course;
+        const newCourse = this.state.course;
 
-            newCourse.data = this.props.courses.items.find(course => {
-                return course._id === this.props.params.courseId;
-            });
+        newCourse.data = this.props.courses.items.find(course => {
+            return course._id === this.props.params.courseId;
+        });
 
-            if (!newCourse.data) {
-                const res = await api.course.getItem(this.props.params.courseId);
-                newCourse.data = res.result.object;
-            }
-
-            newCourse.isFetching = false;
-            newCourse.isEmpty = false;
-
-            this.setState({ course: newCourse });
+        if (!newCourse.data) {
+            const res = await api.course.getItem(this.props.params.courseId);
+            newCourse.data = res.result.object;
         }
 
-        if (this.state.lineChartData.isFetching) {
-            api.statisticCourse
-                .statisticForLineChart(this.props.params.courseId, 'week', `${startTime}Z`, `${endTime}Z`, token)
-                .then(res => {
+        newCourse.isFetching = false;
+        newCourse.isEmpty = false;
 
-                    const newLineChartData = this.state.lineChartData;
+        this.setState({ course: newCourse });
 
-                    // Thông kê trên biểu đồ đường
-                    newLineChartData.datasets[0].data = res.result.object.dataAbsents;
-                    newLineChartData.datasets[1].data = res.result.object.dataLates;
-                    newLineChartData.datasets[2].data = res.result.object.dataOnTimes;
-                    newLineChartData.datasets[3].data = res.result.object.dataRedundants;
-                    newLineChartData.labels = res.result.object.labels;
+        api.statisticCourse
+            .statisticForLineChart(this.props.params.courseId, timeType, `${startTime}Z`, `${endTime}Z`, token)
+            .then(res => {
 
-                    newLineChartData.isEmpty = res.result.object.isEmpty;
-                    newLineChartData.isFetching = false;
+                const newLineChartData = this.state.lineChartData;
 
-                    this.setState({
-                        lineChartData: newLineChartData
-                    });
+                // Thông kê trên biểu đồ đường
+                newLineChartData.datasets[0].data = res.result.object.dataAbsents;
+                newLineChartData.datasets[1].data = res.result.object.dataLates;
+                newLineChartData.datasets[2].data = res.result.object.dataOnTimes;
+                newLineChartData.datasets[3].data = res.result.object.dataRedundants;
+                newLineChartData.labels = res.result.object.labels;
 
-                }).catch(error => {
-                    const newLineChartData = this.state.lineChartData;
+                newLineChartData.isEmpty = res.result.object.isEmpty;
+                newLineChartData.isFetching = false;
 
-                    newLineChartData.isEmpty = true;
-                    newLineChartData.isFetching = false;
+                this.setState({
+                    lineChartData: newLineChartData
+                });
 
-                    this.setState({
-                        lineChartData: newLineChartData
-                    });
-                })
-        }
+            }).catch(error => {
+                const newLineChartData = this.state.lineChartData;
 
-        if (this.state.pieChartData.isFetching) {
-            api.statisticCourse
-                .statisticForPieChart(
-                    this.props.params.courseId, 'week', `${startTime}Z`, `${endTime}Z`, token)
-                .then(res => {
-                    const newNumberAdmins = this.state.numberAdmins;
-                    const newPieChartData = this.state.pieChartData;
+                newLineChartData.isEmpty = true;
+                newLineChartData.isFetching = false;
 
-                    // Gán số lượng loại chuyên cần cho component admin
-                    newNumberAdmins.data.onTime.quantity = res.result.object.totalOnTime;
-                    newNumberAdmins.data.late.quantity = res.result.object.totalLate;
-                    newNumberAdmins.data.absent.quantity = res.result.object.totalAbsent;
-                    newNumberAdmins.data.redundant.quantity = res.result.object.totalRedundant;
+                this.setState({
+                    lineChartData: newLineChartData
+                });
+            })
 
-                    // Thống kê trên biểu đồ tròn
-                    newPieChartData.datasets[0].data = res.result.object.data;
-                    newPieChartData.labels = res.result.object.labels;
-                    newPieChartData.isEmpty = res.result.object.isEmpty;
+        api.statisticCourse
+            .statisticForPieChart(
+                this.props.params.courseId, timeType, `${startTime}Z`, `${endTime}Z`, token)
+            .then(res => {
+                const newNumberAdmins = this.state.numberAdmins;
+                const newPieChartData = this.state.pieChartData;
 
-                    newNumberAdmins.isEmpty = newPieChartData.isEmpty = res.result.object.isEmpty;
-                    newNumberAdmins.isFetching = newPieChartData.isFetching = false;
+                // Gán số lượng loại chuyên cần cho component admin
+                newNumberAdmins.data.onTime.quantity = res.result.object.totalOnTime;
+                newNumberAdmins.data.late.quantity = res.result.object.totalLate;
+                newNumberAdmins.data.absent.quantity = res.result.object.totalAbsent;
+                newNumberAdmins.data.redundant.quantity = res.result.object.totalRedundant;
 
-                    this.setState({
-                        numberAdmins: newNumberAdmins,
-                        pieChartData: newPieChartData
-                    });
+                // Thống kê trên biểu đồ tròn
+                newPieChartData.datasets[0].data = res.result.object.data;
+                newPieChartData.labels = res.result.object.labels;
+                newPieChartData.isEmpty = res.result.object.isEmpty;
 
-                }).catch(error => {
-                    const newNumberAdmins = this.state.numberAdmins;
-                    const newPieChartData = this.state.pieChartData;
+                newNumberAdmins.isEmpty = newPieChartData.isEmpty = res.result.object.isEmpty;
+                newNumberAdmins.isFetching = newPieChartData.isFetching = false;
 
-                    newNumberAdmins.isEmpty = newPieChartData.isEmpty = true;
-                    newNumberAdmins.isFetching = newPieChartData.isFetching = false;
+                this.setState({
+                    numberAdmins: newNumberAdmins,
+                    pieChartData: newPieChartData
+                });
 
-                    this.setState({
-                        numberAdmins: newNumberAdmins,
-                        pieChartData: newPieChartData
-                    });
-                })
-        }
+            }).catch(error => {
+                const newNumberAdmins = this.state.numberAdmins;
+                const newPieChartData = this.state.pieChartData;
 
-        if (this.state.columnChartData.isFetching) {
-            api.student
-                .statisticForColumnChart(this.props.params.courseId, `${startTime}Z`, `${endTime}Z`, token)
-                .then(res => {
-                    const newColumnChartData = this.state.columnChartData;
+                newNumberAdmins.isEmpty = newPieChartData.isEmpty = true;
+                newNumberAdmins.isFetching = newPieChartData.isFetching = false;
 
-                    // Thống kê trên biểu đồ cột
-                    newColumnChartData.datasets[0].data = res.result.object.data;
-                    newColumnChartData.labels = res.result.object.labels;
+                this.setState({
+                    numberAdmins: newNumberAdmins,
+                    pieChartData: newPieChartData
+                });
+            })
 
-                    newColumnChartData.isEmpty = res.result.object.isEmpty;
-                    newColumnChartData.isFetching = false;
+        api.student
+            .statisticForColumnChart(this.props.params.courseId, `${startTime}Z`, `${endTime}Z`, token)
+            .then(res => {
+                const newColumnChartData = this.state.columnChartData;
 
-                    this.setState({
-                        columnChartData: newColumnChartData
-                    });
+                // Thống kê trên biểu đồ cột
+                newColumnChartData.datasets[0].data = res.result.object.data;
+                newColumnChartData.labels = res.result.object.labels;
 
-                }).catch(error => {
-                    const newColumnChartData = this.state.columnChartData;
+                newColumnChartData.isEmpty = res.result.object.isEmpty;
+                newColumnChartData.isFetching = false;
 
-                    newColumnChartData.isEmpty = true;
-                    newColumnChartData.isFetching = false;
+                this.setState({
+                    columnChartData: newColumnChartData
+                });
 
-                    this.setState({
-                        columnChartData: newColumnChartData
-                    });
-                })
-        }
+            }).catch(error => {
+                const newColumnChartData = this.state.columnChartData;
 
-        if (this.state.tableDetails.isFetching) {
-            api.statisticStudent
-                .statisticForListDetail(this.props.params.courseId, 'week', `${startTime}Z`, `${endTime}Z`, token)
-                .then(res => {
+                newColumnChartData.isEmpty = true;
+                newColumnChartData.isFetching = false;
 
-                    const newTableDetails = this.state.tableDetails;
+                this.setState({
+                    columnChartData: newColumnChartData
+                });
+            })
 
-                    // Gán số lượng loại chuyên cần cho component admin
-                    newTableDetails.data.onTime.data = res.result.object.onTimes;
-                    newTableDetails.data.late.data = res.result.object.lates;
-                    newTableDetails.data.absent.data = res.result.object.absents;
-                    newTableDetails.data.redundant.data = res.result.object.redundants;
+        api.statisticStudent
+            .statisticForListDetail(this.props.params.courseId, timeType, `${startTime}Z`, `${endTime}Z`, token)
+            .then(res => {
 
-                    newTableDetails.isEmpty = res.result.object.isEmpty;
-                    newTableDetails.isFetching = false;
+                const newTableDetails = this.state.tableDetails;
 
-                    this.setState({
-                        tableDetails: newTableDetails
-                    });
+                // Gán số lượng loại chuyên cần cho component admin
+                newTableDetails.data.onTime.data = res.result.object.onTimes;
+                newTableDetails.data.late.data = res.result.object.lates;
+                newTableDetails.data.absent.data = res.result.object.absents;
+                newTableDetails.data.redundant.data = res.result.object.redundants;
 
-                }).catch(error => {
-                    const newTableDetails = this.state.tableDetails;
+                newTableDetails.isEmpty = res.result.object.isEmpty;
+                newTableDetails.isFetching = false;
 
-                    ewTableDetails.isEmpty = true;
-                    newTableDetails.isFetching = false;
+                this.setState({
+                    tableDetails: newTableDetails
+                });
 
-                    this.setState({
-                        tableDetails: newTableDetails
-                    });
-                })
-        }
+            }).catch(error => {
+                const newTableDetails = this.state.tableDetails;
+
+                newTableDetails.isEmpty = true;
+                newTableDetails.isFetching = false;
+
+                this.setState({
+                    tableDetails: newTableDetails
+                });
+            })
+
     };
+
+    filterByTimeType(timeType) {
+        const startTime = moment(this.refs.startTime.value.split("/").reverse().join("/")).startOf('dates').format('YYYY-MM-DD HH:mm:ss');
+        const endTime = moment(this.refs.endTime.value.split("/").reverse().join("/")).endOf('dates').format('YYYY-MM-DD HH:mm:ss');
+
+        this.fetchData(startTime, endTime, timeType);
+    }
+
+    changeStartTime() {
+        const newStartTime = this.state.startTime;
+        newStartTime.data = this.refs.startTime.value
+
+        this.setState({ startTime: newStartTime });
+
+        console.log("startTime", newStartTime)
+    }
+
+    changeEndTime() {
+        const newEndTime = this.state.endTime;
+        newEndTime.data = this.refs.endTime.value
+
+        this.setState({ endTime: newEndTime });
+    }
 
     handleScroll = () => { };
     componentWillUnmount() { }
@@ -355,7 +378,8 @@ export class StatisticCourse extends React.Component {
                 .format('YYYY-MM-DD HH:mm:ss'),
             moment()
                 .endOf('year')
-                .format('YYYY-MM-DD HH:mm:ss')
+                .format('YYYY-MM-DD HH:mm:ss'),
+            'week'
         );
 
         var heightOfHeader = $(
@@ -380,7 +404,6 @@ export class StatisticCourse extends React.Component {
     }
 
     render() {
-
         return (
             <div className="course-statistics">
                 <React.Fragment>
@@ -426,21 +449,25 @@ export class StatisticCourse extends React.Component {
                                                 type="text"
                                                 className="course-statistics__body__card__content__chart__filter__form__input"
                                                 placeholder="Chọn ngày bắt đầu"
+                                                value={this.state.startTime.data}
+                                                onChange={() => { this.changeStartTime() }}
+
+                                                ref="startTime"
                                             />
                                             <input
                                                 type="text"
                                                 className="course-statistics__body__card__content__chart__filter__form__input"
                                                 placeholder="Chọn ngày kết thúc"
+                                                value={this.state.endTime.data}
+                                                onChange={() => { this.changeEndTime() }}
+                                                readonly
+                                                ref="endTime"
                                             />
                                             <CustomSelect
                                                 customSelect={this.state.filterByTimeType}
+                                                filterByTimeType={this.filterByTimeType}
+                                                this
                                             ></CustomSelect>
-                                            <button
-                                                type="button"
-                                                className="course-statistics__body__card__content__chart__filter__form__btn course-statistics__body__card__content__chart__filter__form__btn--primary"
-                                            >
-                                                thống kê
-                                            </button>
                                         </div>
                                     </div>
                                     <div className="course-statistics__body__card__content__chart__row">

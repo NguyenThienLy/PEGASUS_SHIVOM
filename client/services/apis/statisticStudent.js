@@ -74,8 +74,6 @@ export class StatisticStudentApi extends CrudApi {
     });
     url += `${query}`;
 
-    console.log("listDetailUrl", url);
-
     const options = {
       method: "GET",
       headers: _.merge({
@@ -84,7 +82,6 @@ export class StatisticStudentApi extends CrudApi {
         "x-token": token
       })
     };
-    //console.log("listDetailUrl", url);
 
     const res = await this.exec(url, options);
     if (res.code && res.code === 200) {

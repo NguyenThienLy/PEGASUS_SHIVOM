@@ -6,28 +6,25 @@ import './customSelect.scss';
 export class CustomSelect extends React.Component {
   constructor(props) {
     super(props);
+
     this.onChange = this.onChange.bind(this);
   }
 
   onChange(index) {
-    if (this.props.fetchDataFollowYear) {
-      this.props.fetchDataFollowYear(
-        moment()
-          .year(this.props.customSelect.options[index])
-          .startOf('year')
-          .format('YYYY-MM-DDTHH:mm:ss'),
-        moment()
-          .year(this.props.customSelect.options[index])
-          .endOf('year')
-          .format('YYYY-MM-DDTHH:mm:ss')
-      );
+    if (this.props.filterByYear) {
+      this.props.filterByYear(this.props.customSelect.values[index]);
     }
 
     if (this.props.filterByPoints) {
       this.props.filterByPoints(this.props.customSelect.values[index]);
     }
+
     if (this.props.filterByStatus) {
       this.props.filterByStatus(this.props.customSelect.values[index]);
+    }
+
+    if (this.props.filterByTimeType) {
+      this.props.filterByTimeType(this.props.customSelect.values[index])
     }
   }
 
