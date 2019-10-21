@@ -25,6 +25,8 @@ export class StatisticCourseApi extends CrudApi {
       })
     };
     const res = await this.exec(url, options);
+    //console.log("lineDetailUrl", url);
+
     if (res.code && res.code === 200) {
       return res;
     } else {
@@ -34,7 +36,6 @@ export class StatisticCourseApi extends CrudApi {
 
   async statisticForPieChart(course, type, startTime, endTime, token) {
     let url = this.baseUrl("statisticForPieChart");
-    //console.log("url", url);
     const query = this._serialize({
       course,
       type,
@@ -52,10 +53,8 @@ export class StatisticCourseApi extends CrudApi {
     };
     const res = await this.exec(url, options);
     if (res.code && res.code === 200) {
-      //console.log("result Api call", res);
       return res;
     } else {
-      //console.log("error call api");
       throw res;
     }
   }

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as moment from 'moment';
-
 import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
@@ -65,8 +64,9 @@ export class Dashboard extends React.Component {
         }
       },
       customSelect: {
-        placeholder: 'Chọn năm...',
-        options: [2019, 2020, 2021, 2022, 2023]
+        placeholder: moment().year(),
+        options: [2019, 2020, 2021, 2022, 2023],
+        values: [2019, 2020, 2021, 2022, 2023]
       },
       birthday: {
         nameTable: 'Sinh nhật học viên',
@@ -151,12 +151,28 @@ export class Dashboard extends React.Component {
 
     this.updateIgnoreFeedbacks = this.updateIgnoreFeedbacks.bind(this);
     this.updateConfirmFeedbacks = this.updateConfirmFeedbacks.bind(this);
+    this.filterByYear = this.filterByYear.bind(this);
   }
+
   static async getInitialProps({ req, query }) {
     return {};
   }
 
-  fetchDataFollowYear = (startTime, endTime) => {
+  filterByYear(value) {
+    const startTime = moment()
+      .year(value)
+      .startOf('year')
+      .format('YYYY-MM-DDTHH:mm:ss');
+
+    const endTime = moment()
+      .year(value)
+      .endOf('year')
+      .format('YYYY-MM-DDTHH:mm:ss');
+
+    this.fetchDataFollowYear(startTime, endTime);
+  };
+
+  fetchDataFollowYear = async (startTime, endTime) => {
     const token =
       'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M';
 
@@ -179,7 +195,7 @@ export class Dashboard extends React.Component {
     this.props.fetchColumnChart(null, `${startTime}Z`, `${endTime}Z`, token);
   };
 
-  fetchData = () => {
+  fetchData() {
     const token =
       'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M';
 
@@ -230,36 +246,17 @@ export class Dashboard extends React.Component {
   };
 
   updateIgnoreFeedbacks(id, body) {
-    // Swal.showLoading()
-    // this.props.updateIgnoreFeedbacks(id, body).then(res => {
-    //   Swal.fire("Thành công", "Bỏ qua phản hồi thành công", "success")
-    // }).catch(err => {
-    //   Swal.fire("Thất bại", "Bỏ qua phản hồi thất bại", "error")
-    // })
-
     this.props.updateIgnoreFeedbacks(id, body);
     this.forceUpdate();
   }
 
   updateConfirmFeedbacks(id, body) {
-    //Swal.showLoading()
-
     this.props.updateConfirmFeedbacks(id, body);
     this.forceUpdate();
-
-    // if (this.props.updateConfirmFeedbacks(id, body).isUpdateSuccess &&
-    //   this.props.updateConfirmFeedbacks(id, body).isDeleteSuccess)
-    //   Swal.fire("Thành công", "Xác nhận phản hồi thành công", "success")
-    // else
-    //   Swal.fire("Thất bại", "Xác nhận phản hồi thất bại", "error")
-    // then(res => {
-    //   Swal.fire("Thành công", "Xác nhận phản hồi thành công", "success")
-    // }).catch(err => {
-    //   Swal.fire("Thất bại", "Xác nhận phản hồi thất bại", "error")
-    // })
   }
 
   handleScroll = () => { };
+
   componentWillUnmount() { }
 
   async componentDidMount() {
@@ -427,7 +424,7 @@ export class Dashboard extends React.Component {
                   <div className="dashboard__body__card__content__chart__filter">
                     <CustomSelect
                       customSelect={this.state.customSelect}
-                      fetchDataFollowYear={this.fetchDataFollowYear}
+                      filterByYear={this.filterByYear}
                     ></CustomSelect>
                   </div>
                   <div className="dashboard__body__card__content__chart__row">

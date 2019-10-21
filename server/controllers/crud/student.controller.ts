@@ -36,10 +36,10 @@ export class StudentController extends CrudController<typeof studentService>{
         return await studentService.update({
             $inc: { point: params.point }
         }, {
-                filter: {
-                    _id: params.studentId
-                }
-            })
+            filter: {
+                _id: params.studentId
+            }
+        })
     }
     async relearn(params: {
         studentId: string
@@ -51,41 +51,41 @@ export class StudentController extends CrudController<typeof studentService>{
             status: "active",
             cardId: params.cardId
         }, {
-                filter: {
-                    _id: params.studentId
-                }
-            }).then(result => {
-                return result
-            }))
+            filter: {
+                _id: params.studentId
+            }
+        }).then(result => {
+            return result
+        }))
 
 
         tasks.push(studentTimeTableService.update({
             status: "active"
         }, {
-                filter: {
-                    student: params.studentId
-                }
-            }).then(result => {
-                return result
-            }))
+            filter: {
+                student: params.studentId
+            }
+        }).then(result => {
+            return result
+        }))
         tasks.push(courseStudentService.update({
             status: "active"
         }, {
-                filter: {
-                    student: params.studentId
-                }
-            }).then(result => {
-                return result
-            }))
+            filter: {
+                student: params.studentId
+            }
+        }).then(result => {
+            return result
+        }))
         tasks.push(statisticStudentService.update({
             status: "active"
         }, {
-                filter: {
-                    student: params.studentId
-                }
-            }).then(result => {
-                return result
-            }))
+            filter: {
+                student: params.studentId
+            }
+        }).then(result => {
+            return result
+        }))
         try {
             const courseOfStudents = await courseStudentService.model.find({
                 student: params.studentId
@@ -116,51 +116,51 @@ export class StudentController extends CrudController<typeof studentService>{
                 status: "deactive",
                 cardId: null
             }, {
-                    filter: {
-                        _id: params.studentId
-                    }
-                }).then(result => {
-                    return result
-                }))
+                filter: {
+                    _id: params.studentId
+                }
+            }).then(result => {
+                return result
+            }))
         } else {
             tasks.push(studentService.update({
                 status: "deactive"
             }, {
-                    filter: {
-                        _id: params.studentId
-                    }
-                }).then(result => {
-                    return result
-                }))
+                filter: {
+                    _id: params.studentId
+                }
+            }).then(result => {
+                return result
+            }))
         }
 
         tasks.push(studentTimeTableService.update({
             status: "deactive"
         }, {
-                filter: {
-                    student: params.studentId
-                }
-            }).then(result => {
-                return result
-            }))
+            filter: {
+                student: params.studentId
+            }
+        }).then(result => {
+            return result
+        }))
         tasks.push(courseStudentService.update({
             status: "deactive"
         }, {
-                filter: {
-                    student: params.studentId
-                }
-            }).then(result => {
-                return result
-            }))
+            filter: {
+                student: params.studentId
+            }
+        }).then(result => {
+            return result
+        }))
         tasks.push(statisticStudentService.update({
             status: "deactive"
         }, {
-                filter: {
-                    student: params.studentId
-                }
-            }).then(result => {
-                return result
-            }))
+            filter: {
+                student: params.studentId
+            }
+        }).then(result => {
+            return result
+        }))
         try {
             const courseOfStudents = await courseStudentService.model.find({
                 student: params.studentId
@@ -377,9 +377,9 @@ export class StudentController extends CrudController<typeof studentService>{
             student: params.studentId,
             gift: params.gift
         }, {
-                upsert: true,
-                new: true
-            })
+            upsert: true,
+            new: true
+        })
         // Gửi mail toi nguoi dung
 
         try {
@@ -402,10 +402,10 @@ export class StudentController extends CrudController<typeof studentService>{
         return await this.service.update({
             cardId: params.code
         }, {
-                filter: {
-                    _id: params.studentId
-                }
-            })
+            filter: {
+                _id: params.studentId
+            }
+        })
     }
     async login(params: {
         phone: string
@@ -667,8 +667,8 @@ export class StudentController extends CrudController<typeof studentService>{
             const { course, startTime, endTime } = params
 
             // Đổi sang tuần theo type
-            const totalWeekStartTime = (moment(startTime).month() - 1) * 4 + moment(startTime).year() * 52
-            const totalWeekEndTime = (moment(endTime).month() - 1) * 4 + moment(endTime).year() * 52
+            const totalWeekStartTime = moment(startTime).month() * 4 + moment(startTime).year() * 52
+            const totalWeekEndTime = moment(endTime).month() * 4 + moment(endTime).year() * 52
 
             // // Thống kê theo kiểu realTime
             // if (type === "realTime")

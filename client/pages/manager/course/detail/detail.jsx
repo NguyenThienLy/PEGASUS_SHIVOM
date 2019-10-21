@@ -167,6 +167,7 @@ export class DetailCourse extends React.Component {
   }
 
   handleScroll = () => { };
+
   componentWillUnmount() { }
 
   componentDidMount() {
