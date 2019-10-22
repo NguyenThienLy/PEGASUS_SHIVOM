@@ -39,6 +39,7 @@ export class DetailCourse extends React.Component {
     };
     this.showHideModal = this.showHideModal.bind(this);
     this.createPackage = this.createPackage.bind(this);
+    this.deletePackageOfCourse = this.deletePackageOfCourse.bind(this)
   }
   showHideModal(key) {
     this.state.modals[key] = !this.state.modals[key];
@@ -60,10 +61,39 @@ export class DetailCourse extends React.Component {
         }
       })
       .then(res => {
+
         Swal.fire('Thành công', 'Tạo gói cho khoá học thành công', 'success');
+        this.state.packageOfCourse.data.push(res.result.object)
+        this.setState({
+          packageOfCourse: this.state.packageOfCourse
+        })
       })
       .catch(err => {
         Swal.fire('Thất bại', 'Tạo gói cho khoá học thất bại', 'error');
+      });
+  }
+  async deletePackageOfCourse(packageId) {
+    Swal.showLoading();
+
+    api.package
+      .delete(packageId, {
+        headers: {
+          'x-token': localStorage.getItem('token')
+        }
+      })
+      .then(res => {
+
+        Swal.fire('Thành công', 'Xoá gói của khoá học thành công', 'success');
+        const packageIndex = this.state.packageOfCourse.data.findIndex((packageData) => {
+          return packageData._id === packageId
+        })
+        this.state.packageOfCourse.data.splice(packageIndex, 1)
+        this.setState({
+          packageOfCourse: this.state.packageOfCourse
+        })
+      })
+      .catch(err => {
+        Swal.fire('Thất bại', 'Xoá gói của khoá học thất bại', 'error');
       });
   }
 
@@ -92,24 +122,28 @@ export class DetailCourse extends React.Component {
     if (this.state.timeTableOfCourse.isFetching) {
       api.course.getTimeTableOfCourse(
         this.props.params.courseId
-      ).then(res => {
-        const newTimeTableOfCourse = this.state.timeTableOfCourse;
+        , {
+          query: {
+            isRefresh: true
+          }
+        }).then(res => {
+          const newTimeTableOfCourse = this.state.timeTableOfCourse;
 
-        newTimeTableOfCourse.data = res.result.object;
+          newTimeTableOfCourse.data = res.result.object;
 
-        newTimeTableOfCourse.isFetching = false;
-        newTimeTableOfCourse.isEmpty = false;
+          newTimeTableOfCourse.isFetching = false;
+          newTimeTableOfCourse.isEmpty = false;
 
-        this.setState({ timeTableOfCourse: newTimeTableOfCourse });
+          this.setState({ timeTableOfCourse: newTimeTableOfCourse });
 
-      }).catch(err => {
-        const newTimeTableOfCourse = this.state.timeTableOfCourse;
+        }).catch(err => {
+          const newTimeTableOfCourse = this.state.timeTableOfCourse;
 
-        newTimeTableOfCourse.isFetching = false;
-        newTimeTableOfCourse.isEmpty = true;
+          newTimeTableOfCourse.isFetching = false;
+          newTimeTableOfCourse.isEmpty = true;
 
-        this.setState({ timeTableOfCourse: newTimeTableOfCourse });
-      })
+          this.setState({ timeTableOfCourse: newTimeTableOfCourse });
+        })
     }
 
     if (this.state.packageOfCourse.isFetching) {
@@ -119,7 +153,7 @@ export class DetailCourse extends React.Component {
             filter: { course: this.props.params.courseId }
           },
           headers: {
-            'x-token': token
+            'x-token': localStorage.getItem("token")
           }
         }).then(res => {
           const newPackageOfCourse = this.state.packageOfCourse;
@@ -151,19 +185,49 @@ export class DetailCourse extends React.Component {
     newTimeTableOfCourse.isFetching = true;
 
     this.setState({ timeTableOfCourse: newTimeTableOfCourse })
+    Swal.showLoading();
+    api.class
+      .changeStatus(classId, "deactive", {
+        headers: {
+          'x-token': localStorage.getItem("token")
+        }
+      })
+      .then(res => {
+        Swal.fire('Thành công', 'Thay đổi trạng thái lớp học thành công', 'success');
+        this.props.dispatch({
+          type: `UPDATE_CLASS_SUCCESS`,
+          payload: res.result.object
+        });
+        const newTimeTableOfCourse = this.state.timeTableOfCourse;
 
-    api.class.update(classId, body, {}).then(res => {
-      const newTimeTableOfCourse = this.state.timeTableOfCourse;
+        const indexNeedUpdate = newTimeTableOfCourse.data.findIndex(item => {
+          return classId === item.class._id;
+        });
 
-      const indexNeedUpdate = newTimeTableOfCourse.data.findIndex(item => {
-        return classId === item.class._id;
+        newTimeTableOfCourse.data.splice(indexNeedUpdate, 1);
+        newTimeTableOfCourse.isFetching = false;
+
+        this.setState({ timeTableOfCourse: newTimeTableOfCourse })
+      })
+      .catch(err => {
+        Swal.fire('Thất bại', 'Thay đổi trạng thái lớp học thất bại', 'error');
+        this.props.dispatch({
+          type: `UPDATE_CLASS_ERROR`,
+          payload: err.message
+        });
       });
+    // api.class.update(classId, body, {}).then(res => {
+    //   const newTimeTableOfCourse = this.state.timeTableOfCourse;
 
-      newTimeTableOfCourse.data.splice(indexNeedUpdate, 1);
-      newTimeTableOfCourse.isFetching = false;
+    //   const indexNeedUpdate = newTimeTableOfCourse.data.findIndex(item => {
+    //     return classId === item.class._id;
+    //   });
 
-      this.setState({ timeTableOfCourse: newTimeTableOfCourse })
-    })
+    //   newTimeTableOfCourse.data.splice(indexNeedUpdate, 1);
+    //   newTimeTableOfCourse.isFetching = false;
+
+    //   this.setState({ timeTableOfCourse: newTimeTableOfCourse })
+    // })
   }
 
   handleScroll = () => { };
@@ -227,6 +291,8 @@ export class DetailCourse extends React.Component {
                       packageOfCourse={this.state.packageOfCourse.data}
                       isFetchingPackage={this.state.packageOfCourse.isFetching}
                       isEmptyPackage={this.state.packageOfCourse.isEmpty}
+                      showAddPackage={() => { this.showHideModal("createPackage") }}
+                      deletePackageOfCourse={this.deletePackageOfCourse}
                     ></CourseInfo>
                   </div>
                 </div>
