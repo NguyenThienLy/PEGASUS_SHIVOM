@@ -9,11 +9,18 @@ import { Tooltip } from 'react-tippy';
 export class Table extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       calendarModal: {
         isShow: false,
         arrTime: []
-      }
+      },
+      tableContents: {
+        data: this.props.tableContents,
+        isFetching: this.props.isFetching,
+        isEmpty: this.props.isEmpty
+      },
+      statisticDataTable: null
     };
 
     this.hideCalendarModal = this.hideCalendarModal.bind(this);
@@ -52,11 +59,57 @@ export class Table extends React.Component {
   }
 
   searchInTableFollowName(formatKey) {
-    console.log("content", formatKey)
+    if (formatKey === this.state.tableContents.data.formatKey) {
+      const newTableContents = this.state.tableContents;
+      // Gán để lấy lại dữ liệu đầy đủ truyền vào
+      let dataFilter = this.state.statisticDataTable
+
+      if (this.refs.searchFollowName.value.length > 0) {
+        newTableContents.data.data = dataFilter.filter((student) => {
+          return student.students_docs[0].lastName.indexOf(this.refs.searchFollowName.value) !== -1;
+        })
+
+        if (newTableContents.data.data.length === 0)
+          newTableContents.isEmpty = true;
+        else
+          newTableContents.isEmpty = false;
+      }
+      else {
+        newTableContents.data.data = this.state.statisticDataTable
+        newTableContents.isEmpty = false;
+      }
+
+      this.setState({ tableContents: newTableContents })
+    }
+  }
+
+  componentDidMount() {
+    const newTableContents = this.state.tableContents;
+
+    newTableContents.isFetching = true;
+
+    this.setState({ tableContents: newTableContents })
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.isFetching && !this.props.isFetching) {
+
+      const newTableContents = this.state.tableContents;
+
+      newTableContents.data = this.props.tableContents;
+      newTableContents.isFetching = this.props.isFetching;
+      newTableContents.isEmpty = this.props.isEmpty;
+
+      this.setState({
+        tableContents: newTableContents,
+        statisticDataTable: newTableContents.data.data
+      })
+
+    }
   }
 
   render() {
-    const { tableContents, isFetching, isEmpty } = this.props;
+    // const { tableContents, isFetching, isEmpty } = this.props;
 
     return (
       <div className="table">
@@ -69,7 +122,7 @@ export class Table extends React.Component {
           <div className="table__title__icon">
             <i className="fas fa-clipboard-list" />
           </div>
-          <div className="table__title__content">{tableContents.nameTable}</div>
+          <div className="table__title__content">{this.state.tableContents.data.nameTable}</div>
         </div>
         <div className="table__content">
 
@@ -77,7 +130,8 @@ export class Table extends React.Component {
             className="table__content__search-input"
             type="text"
             laceholder="Tìm kiếm theo tên"
-            onChange={() => { this.searchInTableFollowName(tableContents.formatKey) }}
+            ref="searchFollowName"
+            onChange={() => { this.searchInTableFollowName(this.state.tableContents.data.formatKey) }}
           /></div>
 
           <table>
@@ -101,12 +155,12 @@ export class Table extends React.Component {
                 <th className="table__content__right">Tác vụ</th>
               </tr>
             </thead>
-            {isFetching && isEmpty && <Loading />}
-            {isEmpty && !isFetching && "Dữ liệu trống"}
-            {!isFetching && !isEmpty && (
+            {this.state.tableContents.isFetching && <Loading />}
+            {this.state.tableContents.isEmpty && !this.state.tableContents.isFetching && "Dữ liệu trống"}
+            {!this.state.tableContents.isFetching && !this.state.tableContents.isEmpty && (
               <tbody>
-                {tableContents.data &&
-                  tableContents.data.map((tableContent, index) => {
+                {
+                  this.state.tableContents.data.data.map((tableContent, index) => {
                     return (
                       <tr key={index}>
                         <td data-title="#">{index + 1}</td>
@@ -134,7 +188,7 @@ export class Table extends React.Component {
                             type="button"
                             className="table__content__btn table__content__btn--primary"
                             onClick={() => {
-                              this.showCalendar(tableContent[tableContents.formatKey]);
+                              this.showCalendar(tableContent[this.state.tableContents.data.formatKey]);
                             }}
                           >
                             <i class="far fa-calendar-alt"></i>

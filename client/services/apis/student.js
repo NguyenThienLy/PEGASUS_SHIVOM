@@ -315,7 +315,7 @@ export class StudentApi extends CrudApi {
       endTime
     });
     url += `${query}`;
-    console.log("url", url);
+
     const options = {
       method: "GET",
       headers: _.merge({

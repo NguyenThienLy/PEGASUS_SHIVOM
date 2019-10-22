@@ -37,7 +37,7 @@ export class ColumnChart extends React.Component {
         </div>
         <div className="columnChart__content">
           <div className="columnChart__content__inner">
-            {isFetching && isEmpty && <Loading />}
+            {isFetching && <Loading />}
             {isEmpty && !isFetching && "Dữ liệu trống"}
             {!isFetching && !isEmpty && (
               <Bar
