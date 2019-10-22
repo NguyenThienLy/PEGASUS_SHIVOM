@@ -21,9 +21,10 @@ import "./statistic.scss"
 export class StatisticCourse extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
             course: {
-                isFetching: true,
+                isFetching: false,
                 isEmpty: true,
                 data: null
             },
@@ -37,32 +38,32 @@ export class StatisticCourse extends React.Component {
                 createPackage: false
             },
             numberAdmins: {
-                isFetching: true,
+                isFetching: false,
                 isEmpty: true,
                 data: {
                     onTime: {
                         icon: '<i className="fas fa-id-card-alt"></i>',
                         about: 'Đi đúng giờ',
                         quantity: 0,
-                        colorIcon: '#f5365c'
+                        colorIcon: 'rgba(75, 192, 192, 0.6)'
                     },
                     late: {
                         icon: '<i className="fas fa-id-card-alt"></i>',
                         about: 'Đi trễ',
                         quantity: 0,
-                        colorIcon: '#fb6340'
+                        colorIcon: 'rgba(255, 206, 86, 0.6)'
                     },
                     absent: {
                         icon: '<i className="fas fa-id-card-alt"></i>',
                         about: 'Vắng',
                         quantity: 0,
-                        colorIcon: '#ffd600'
+                        colorIcon: 'rgba(255, 99, 132, 0.6)'
                     },
                     redundant: {
                         icon: '<i className="fas fa-id-card-alt"></i>',
                         about: 'Đi thừa',
                         quantity: 0,
-                        colorIcon: '#11cdef'
+                        colorIcon: 'rgba(153, 102, 255, 0.6)'
                     }
                 }
             },
@@ -71,7 +72,7 @@ export class StatisticCourse extends React.Component {
                 options: ['Yoga cho người cao tuổi', 'Yoga cộng đồng']
             },
             tableDetails: {
-                isFetching: true,
+                isFetching: false,
                 isEmpty: true,
                 data: {
                     absent: {
@@ -99,7 +100,7 @@ export class StatisticCourse extends React.Component {
             columnChartData: {
                 labels: null,
                 isEmpty: true,
-                isFetching: true,
+                isFetching: false,
                 datasets: [
                     {
                         label: 'Số học viên',
@@ -111,7 +112,7 @@ export class StatisticCourse extends React.Component {
             pieChartData: {
                 labels: null,
                 isEmpty: true,
-                isFetching: true,
+                isFetching: false,
                 datasets: [
                     {
                         data: null,
@@ -127,7 +128,7 @@ export class StatisticCourse extends React.Component {
             lineChartData: {
                 labels: null,
                 isEmpty: true,
-                isFetching: true,
+                isFetching: false,
                 datasets: [
                     {
                         label: 'Vắng học',
@@ -165,6 +166,7 @@ export class StatisticCourse extends React.Component {
                 values: ['realTime', 'week', 'month', 'year']
             }
         }
+
         this.showHideModal = this.showHideModal.bind(this)
         this.createPackage = this.createPackage.bind(this)
         this.filterByTimeType = this.filterByTimeType.bind(this);
@@ -349,6 +351,7 @@ export class StatisticCourse extends React.Component {
         const startTime = moment(this.refs.startTime.value.split("/").reverse().join("/")).startOf('dates').format('YYYY-MM-DD HH:mm:ss');
         const endTime = moment(this.refs.endTime.value.split("/").reverse().join("/")).endOf('dates').format('YYYY-MM-DD HH:mm:ss');
 
+        this.changeIsFetching(true);
         this.fetchData(startTime, endTime, timeType);
     }
 
@@ -368,10 +371,34 @@ export class StatisticCourse extends React.Component {
         this.setState({ endTime: newEndTime });
     }
 
+    changeIsFetching(isFetching) {
+        const newLineChartData = this.state.lineChartData;
+        const newNumberAdmins = this.state.numberAdmins;
+        const newPieChartData = this.state.pieChartData;
+        const newColumnChartData = this.state.columnChartData;
+        const newTableDetails = this.state.tableDetails;
+
+        newLineChartData.isFetching = isFetching;
+        newNumberAdmins.isFetching = isFetching;
+        newPieChartData.isFetching = isFetching;
+        newColumnChartData.isFetching = isFetching
+        newTableDetails.isFetching = isFetching
+
+        this.setState({
+            lineChartData: newLineChartData,
+            numberAdmins: newNumberAdmins,
+            pieChartData: newPieChartData,
+            columnChartData: newColumnChartData,
+            tableDetails: newTableDetails
+        });
+    }
+
     handleScroll = () => { };
     componentWillUnmount() { }
 
     componentDidMount() {
+        this.changeIsFetching(true);
+
         this.fetchData(
             moment()
                 .startOf('year')
@@ -451,7 +478,8 @@ export class StatisticCourse extends React.Component {
                                                 placeholder="Chọn ngày bắt đầu"
                                                 value={this.state.startTime.data}
                                                 onChange={() => { this.changeStartTime() }}
-
+                                                //onBlur={() => { this.changeStartTime() }}
+                                                readonly
                                                 ref="startTime"
                                             />
                                             <input
@@ -460,6 +488,7 @@ export class StatisticCourse extends React.Component {
                                                 placeholder="Chọn ngày kết thúc"
                                                 value={this.state.endTime.data}
                                                 onChange={() => { this.changeEndTime() }}
+                                                //onBlur={() => { this.changeEndTime() }}
                                                 readonly
                                                 ref="endTime"
                                             />

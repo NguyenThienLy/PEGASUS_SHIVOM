@@ -15,7 +15,7 @@ export class StatisticStudentService extends CrudService<typeof StatisticStudent
         totalWeekStartTime: number,
         totalWeekEndTime: number
     }) {
-        let absents = [], lates = [], onTimes = [], redundants = []
+        let absents = [], lates = [], onTimes = [], redundants = [], isEmpty = true
 
         const tempListStudent = await this.model.aggregate([
             // Kết với docs courseStudents
@@ -132,18 +132,26 @@ export class StatisticStudentService extends CrudService<typeof StatisticStudent
         tempListStudent.forEach(item => {
             if (item.absents.length > 0) {
                 absents.push(_.omit(item, ['lates', 'onTimes', 'redundants']))
+
+                isEmpty = false
             }
 
             if (item.lates.length > 0) {
                 lates.push(_.omit(item, ['absents', 'onTimes', 'redundants']))
+
+                isEmpty = false
             }
 
             if (item.onTimes.length > 0) {
                 onTimes.push(_.omit(item, ['absents', 'lates', 'redundants']))
+
+                isEmpty = false
             }
 
             if (item.redundants.length > 0) {
                 redundants.push(_.omit(item, ['absents', 'lates', 'onTimes']))
+
+                isEmpty = false
             }
         })
 
@@ -151,7 +159,8 @@ export class StatisticStudentService extends CrudService<typeof StatisticStudent
             absents: absents,
             lates: lates,
             onTimes: onTimes,
-            redundants: redundants
+            redundants: redundants,
+            isEmpty: isEmpty
         }
     }
 

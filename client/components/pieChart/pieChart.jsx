@@ -23,7 +23,7 @@ export class PieChart extends React.Component {
         </div>
         <div className="pieChart__content">
           <div className="pieChart__content__inner">
-            {isFetching && isEmpty && <Loading />}
+            {isFetching && <Loading />}
             {isEmpty && !isFetching && "Dữ liệu trống"}
             {!isFetching && !isEmpty && (
               <Pie

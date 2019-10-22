@@ -1,14 +1,11 @@
 import * as React from 'react';
 import { action } from '../../../../actions';
 import { api } from '../../../../services';
-
 import { CreatePackage } from './components';
-
 import Swal from 'sweetalert2';
 import {
   Sidebar,
-  CourseInfo,
-  LoadingSmall
+  CourseInfo
 } from '../../../../components';
 import * as moment from 'moment';
 import './detail.scss';
@@ -19,28 +16,30 @@ export class DetailCourse extends React.Component {
     super(props);
     this.state = {
       course: {
-        isFetching: true,
         isEmpty: true,
+        isFetching: false,
         data: null
       },
       timeTableOfCourse: {
-        isFetching: true,
         isEmpty: true,
+        isFetching: false,
         data: null
       },
       packageOfCourse: {
-        isFetching: true,
         isEmpty: true,
+        isFetching: false,
         data: null
       },
       modals: {
         createPackage: false
       }
     };
+
     this.showHideModal = this.showHideModal.bind(this);
     this.createPackage = this.createPackage.bind(this);
     this.deletePackageOfCourse = this.deletePackageOfCourse.bind(this)
   }
+
   showHideModal(key) {
     this.state.modals[key] = !this.state.modals[key];
     this.setState({ modals: this.state.modals });
@@ -101,80 +100,113 @@ export class DetailCourse extends React.Component {
     const token =
       'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M';
 
-    if (this.state.course.isFetching) {
-      const newCourse = this.state.course;
+    const newCourse = this.state.course;
 
-      newCourse.data = this.props.courses.items.find(course => {
-        return course._id === this.props.params.courseId;
-      });
+    newCourse.data = this.props.courses.items.find(course => {
+      return course._id === this.props.params.courseId;
+    });
 
-      if (!newCourse.data) {
-        const res = await api.course.getItem(this.props.params.courseId);
-        newCourse.data = res.result.object;
+    if (!newCourse.data) {
+      const res = await api.course.getItem(this.props.params.courseId);
+      newCourse.data = res.result.object;
+    }
+    const newPackageOfCourse = this.state.packageOfCourse;
+    newCourse.isFetching = false;
+    newCourse.isEmpty = false;
+
+    this.setState({ course: newCourse });
+
+    // if (this.state.timeTableOfCourse.isFetching) {
+    //   api.course.getTimeTableOfCourse(
+    //     this.props.params.courseId
+    //     , {
+    //       query: {
+    //         isRefresh: true
+    //       }
+    //     }).then(res => {
+    //       const newTimeTableOfCourse = this.state.timeTableOfCourse;
+
+    //       newTimeTableOfCourse.data = res.result.object;
+
+    //       newTimeTableOfCourse.isFetching = false;
+    //       newTimeTableOfCourse.isEmpty = false;
+
+    //       this.setState({ timeTableOfCourse: newTimeTableOfCourse });
+
+    //     }).catch(err => {
+    //       const newTimeTableOfCourse = this.state.timeTableOfCourse;
+
+    //       newTimeTableOfCourse.isFetching = false;
+    //       newTimeTableOfCourse.isEmpty = true;
+
+    //       this.setState({ timeTableOfCourse: newTimeTableOfCourse });
+    //     })
+    // }
+
+    // if (this.state.packageOfCourse.isFetching) {
+    //   api.package.getList(
+    //     {
+    //       query: {
+    //         filter: { course: this.props.params.courseId }
+    //       },
+    //       headers: {
+    //         'x-token': localStorage.getItem("token")
+    //       }
+    //     }).then(res => {
+
+
+    api.course.getTimeTableOfCourse(
+      this.props.params.courseId,
+      {
+        query: {
+          isRefresh: true
+        }
       }
+    ).then(res => {
+      const newTimeTableOfCourse = this.state.timeTableOfCourse;
 
-      newCourse.isFetching = false;
-      newCourse.isEmpty = false;
+      newTimeTableOfCourse.data = res.result.object;
 
-      this.setState({ course: newCourse });
-    }
+      newTimeTableOfCourse.isFetching = false;
+      newTimeTableOfCourse.isEmpty = false;
 
-    if (this.state.timeTableOfCourse.isFetching) {
-      api.course.getTimeTableOfCourse(
-        this.props.params.courseId
-        , {
-          query: {
-            isRefresh: true
-          }
-        }).then(res => {
-          const newTimeTableOfCourse = this.state.timeTableOfCourse;
+      this.setState({ timeTableOfCourse: newTimeTableOfCourse });
 
-          newTimeTableOfCourse.data = res.result.object;
+    }).catch(err => {
+      const newTimeTableOfCourse = this.state.timeTableOfCourse;
 
-          newTimeTableOfCourse.isFetching = false;
-          newTimeTableOfCourse.isEmpty = false;
+      newTimeTableOfCourse.isFetching = false;
+      newTimeTableOfCourse.isEmpty = true;
 
-          this.setState({ timeTableOfCourse: newTimeTableOfCourse });
+      this.setState({ timeTableOfCourse: newTimeTableOfCourse });
+    })
 
-        }).catch(err => {
-          const newTimeTableOfCourse = this.state.timeTableOfCourse;
+    api.package.getList(
+      {
+        query: {
+          filter: { course: this.props.params.courseId }
+        },
+        headers: {
+          'x-token': token
+        }
+      }).then(res => {
+        const newPackageOfCourse = this.state.packageOfCourse;
 
-          newTimeTableOfCourse.isFetching = false;
-          newTimeTableOfCourse.isEmpty = true;
+        newPackageOfCourse.data = res.results.objects.rows;
 
-          this.setState({ timeTableOfCourse: newTimeTableOfCourse });
-        })
-    }
+        newPackageOfCourse.isFetching = false;
+        newPackageOfCourse.isEmpty = false;
 
-    if (this.state.packageOfCourse.isFetching) {
-      api.package.getList(
-        {
-          query: {
-            filter: { course: this.props.params.courseId }
-          },
-          headers: {
-            'x-token': localStorage.getItem("token")
-          }
-        }).then(res => {
-          const newPackageOfCourse = this.state.packageOfCourse;
+        this.setState({ packageOfCourse: newPackageOfCourse });
 
-          newPackageOfCourse.data = res.results.objects.rows;
+      }).catch(err => {
+        const newPackageOfCourse = this.state.packageOfCourse;
 
-          newPackageOfCourse.isFetching = false;
-          newPackageOfCourse.isEmpty = false;
+        newPackageOfCourse.isFetching = false;
+        newPackageOfCourse.isEmpty = true;
 
-          this.setState({ packageOfCourse: newPackageOfCourse });
-
-        }).catch(err => {
-          const newPackageOfCourse = this.state.packageOfCourse;
-
-          newPackageOfCourse.isFetching = false;
-          newPackageOfCourse.isEmpty = true;
-
-          this.setState({ packageOfCourse: newPackageOfCourse });
-        })
-    }
-
+        this.setState({ packageOfCourse: newPackageOfCourse });
+      })
   };
 
   deactiveClass = async (classId) => {
@@ -230,11 +262,29 @@ export class DetailCourse extends React.Component {
     // })
   }
 
+  changeIsFetching(isFetching) {
+    const newCourse = this.state.course;
+    const newTimeTableOfCourse = this.state.timeTableOfCourse;
+    const newPackageOfCourse = this.state.packageOfCourse;
+
+    newCourse.isFetching = isFetching;
+    newTimeTableOfCourse.isFetching = isFetching;
+    newPackageOfCourse.isFetching = isFetching;
+
+    this.setState({
+      course: newCourse,
+      timeTableOfCourse: newTimeTableOfCourse,
+      packageOfCourse: newPackageOfCourse
+    });
+  }
+
   handleScroll = () => { };
 
   componentWillUnmount() { }
 
   componentDidMount() {
+    this.changeIsFetching(true);
+
     this.fetchData(
     );
 

@@ -27,7 +27,7 @@ export class NumberAdmin extends React.Component {
             <div className="numberAdmin__inner__info__about">
               {numberAdmin.about}
             </div>
-            {isFetching && isEmpty && <LoadingSmall />}
+            {isFetching && <LoadingSmall />}
             {isEmpty && !isFetching && "trống"}
             {!isFetching && !isEmpty && (
               <div className="numberAdmin__inner__info__quantity">

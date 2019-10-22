@@ -37,30 +37,32 @@ export class Dashboard extends React.Component {
       },
       numberAdmins: {
         isEmpty: true,
-        isFetching: true,
-        absent: {
-          icon: '<i class="fas fa-id-card-alt"></i>',
-          about: 'Vắng',
-          quantity: 0,
-          colorIcon: '#ffd600'
-        },
-        late: {
-          icon: '<i class="fas fa-id-card-alt"></i>',
-          about: 'Đi trễ',
-          quantity: 0,
-          colorIcon: '#fb6340'
-        },
-        onTime: {
-          icon: '<i class="fas fa-id-card-alt"></i>',
-          about: 'Đi đúng giờ',
-          quantity: 0,
-          colorIcon: '#f5365c'
-        },
-        redundant: {
-          icon: '<i class="fas fa-id-card-alt"></i>',
-          about: 'Đi thừa',
-          quantity: 0,
-          colorIcon: '#11cdef'
+        isFetching: false,
+        data: {
+          onTime: {
+            icon: '<i className="fas fa-id-card-alt"></i>',
+            about: 'Đi đúng giờ',
+            quantity: 0,
+            colorIcon: 'rgba(75, 192, 192, 0.6)'
+          },
+          late: {
+            icon: '<i className="fas fa-id-card-alt"></i>',
+            about: 'Đi trễ',
+            quantity: 0,
+            colorIcon: 'rgba(255, 206, 86, 0.6)'
+          },
+          absent: {
+            icon: '<i className="fas fa-id-card-alt"></i>',
+            about: 'Vắng',
+            quantity: 0,
+            colorIcon: 'rgba(255, 99, 132, 0.6)'
+          },
+          redundant: {
+            icon: '<i className="fas fa-id-card-alt"></i>',
+            about: 'Đi thừa',
+            quantity: 0,
+            colorIcon: 'rgba(153, 102, 255, 0.6)'
+          }
         }
       },
       customSelect: {
@@ -86,7 +88,7 @@ export class Dashboard extends React.Component {
       },
       columnChartData: {
         labels: null,
-        isFetching: true,
+        isFetching: false,
         isEmpty: true,
         datasets: [
           {
@@ -98,7 +100,7 @@ export class Dashboard extends React.Component {
       },
       pieChartData: {
         labels: null,
-        isFetching: true,
+        isFetching: false,
         isEmpty: true,
         datasets: [
           {
@@ -115,7 +117,7 @@ export class Dashboard extends React.Component {
       lineChartData: {
         labels: null,
         isEmpty: true,
-        isFetching: true,
+        isFetching: false,
         datasets: [
           {
             label: 'Vắng học',
@@ -169,10 +171,12 @@ export class Dashboard extends React.Component {
       .endOf('year')
       .format('YYYY-MM-DDTHH:mm:ss');
 
+    this.changeIsFetching(true);
+
     this.fetchDataFollowYear(startTime, endTime);
   };
 
-  fetchDataFollowYear = async (startTime, endTime) => {
+  fetchDataFollowYear(startTime, endTime) {
     const token =
       'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M';
 
@@ -255,15 +259,34 @@ export class Dashboard extends React.Component {
     this.forceUpdate();
   }
 
+  changeIsFetching(isFetching) {
+    const newNumberAdmins = this.state.numberAdmins;
+    const newPieChartData = this.state.pieChartData;
+    const newColumnChartData = this.state.columnChartData;
+    const newLineChartData = this.state.lineChartData;
+
+    newNumberAdmins.isFetching = isFetching;
+    newPieChartData.isFetching = isFetching;
+    newColumnChartData.isFetching = isFetching
+    newLineChartData.isFetching = isFetching;
+
+    this.setState({
+      numberAdmins: newNumberAdmins,
+      pieChartData: newPieChartData,
+      columnChartData: newColumnChartData,
+      lineChartData: newLineChartData
+    });
+  }
+
   handleScroll = () => { };
 
   componentWillUnmount() { }
 
   async componentDidMount() {
     this.checkUserAlreadyLogin();
-    // Lấy năm
-    // startTime bắt đầu năm hiện tại
-    // endTime bắt đầu năm hiện tại
+
+    this.changeIsFetching(true);
+
     this.fetchDataFollowYear(
       moment()
         .startOf('year')
@@ -289,10 +312,10 @@ export class Dashboard extends React.Component {
       const newPieChartData = prevState.pieChartData;
 
       // Gán số lượng loại chuyên cần cho component admin
-      newNumberAdmins.absent.quantity = this.props.statisticCourse.statisticForPieChart.data.totalAbsent;
-      newNumberAdmins.late.quantity = this.props.statisticCourse.statisticForPieChart.data.totalLate;
-      newNumberAdmins.onTime.quantity = this.props.statisticCourse.statisticForPieChart.data.totalOnTime;
-      newNumberAdmins.redundant.quantity = this.props.statisticCourse.statisticForPieChart.data.totalRedundant;
+      newNumberAdmins.data.absent.quantity = this.props.statisticCourse.statisticForPieChart.data.totalAbsent;
+      newNumberAdmins.data.late.quantity = this.props.statisticCourse.statisticForPieChart.data.totalLate;
+      newNumberAdmins.data.onTime.quantity = this.props.statisticCourse.statisticForPieChart.data.totalOnTime;
+      newNumberAdmins.data.redundant.quantity = this.props.statisticCourse.statisticForPieChart.data.totalRedundant;
 
       // Thống kê trên biểu đồ tròn
       newPieChartData.datasets[0].data = this.props.statisticCourse.statisticForPieChart.data.data;
@@ -394,25 +417,25 @@ export class Dashboard extends React.Component {
           <div className="dashboard__body">
             <div className="dashboard__body__numbers">
               <NumberAdmin
-                numberAdmin={this.state.numberAdmins.absent}
+                numberAdmin={this.state.numberAdmins.data.absent}
                 isFetching={this.state.numberAdmins.isFetching}
                 isEmpty={this.state.numberAdmins.isEmpty}
               ></NumberAdmin>
 
               <NumberAdmin
-                numberAdmin={this.state.numberAdmins.late}
+                numberAdmin={this.state.numberAdmins.data.late}
                 isFetching={this.state.numberAdmins.isFetching}
                 isEmpty={this.state.numberAdmins.isEmpty}
               ></NumberAdmin>
 
               <NumberAdmin
-                numberAdmin={this.state.numberAdmins.onTime}
+                numberAdmin={this.state.numberAdmins.data.onTime}
                 isFetching={this.state.numberAdmins.isFetching}
                 isEmpty={this.state.numberAdmins.isEmpty}
               ></NumberAdmin>
 
               <NumberAdmin
-                numberAdmin={this.state.numberAdmins.redundant}
+                numberAdmin={this.state.numberAdmins.data.redundant}
                 isFetching={this.state.numberAdmins.isFetching}
                 isEmpty={this.state.numberAdmins.isEmpty}
               ></NumberAdmin>

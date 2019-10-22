@@ -37,7 +37,7 @@ export class LineChart extends React.Component {
         </div>
         <div className="lineChart__content">
           <div className="lineChart__content__inner">
-            {isFetching && isEmpty && <Loading />}
+            {isFetching && <Loading />}
             {isEmpty && !isFetching && "Dữ liệu trống"}
             {!isFetching && !isEmpty && (
               <Line
