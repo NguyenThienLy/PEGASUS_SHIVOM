@@ -87,8 +87,7 @@ export class MainClass extends React.Component {
     api.class
       .changeStatus(classId, status, {
         headers: {
-          'x-token':
-            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M'
+          'x-token': localStorage.getItem("token")
         }
       })
       .then(res => {

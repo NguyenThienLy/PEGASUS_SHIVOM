@@ -8,8 +8,10 @@ export class CourseInfo extends React.Component {
   constructor(props) {
     super(props);
 
-    //this.addNewClass = this.addNewClass.bind(this);
-    //this.deactiveClass = this.deactiveClass.bind(this);
+    this.addNewClass = this.addNewClass.bind(this);
+    this.deactiveClass = this.deactiveClass.bind(this);
+    this.addNewCoursePackage = this.addNewCoursePackage.bind(this)
+    this.deletePackageOfCourse = this.deletePackageOfCourse.bind(this)
   }
 
   addNewClass() {
@@ -18,9 +20,15 @@ export class CourseInfo extends React.Component {
       `/quan-ly/lop-hoc/them`
     );
   }
+  addNewCoursePackage() {
+    this.props.showAddPackage()
+  }
 
   deactiveClass(classId) {
     this.props.deactiveClass(classId);
+  }
+  deletePackageOfCourse(packageId) {
+    this.props.deletePackageOfCourse(packageId)
   }
 
   render() {
@@ -131,9 +139,9 @@ export class CourseInfo extends React.Component {
             title="Thêm gói khuyến mãi mới"
             position="top"
             className="courseInfo__update-button"
-            onClick={() => this.addNewClass()}
+
           >
-            <span>
+            <span onClick={this.addNewCoursePackage}>
               <i class="fas fa-plus"></i>
             </span>
           </Tooltip></div>
@@ -167,9 +175,9 @@ export class CourseInfo extends React.Component {
                           title="Xóa gói khuyến mãi khỏi khóa học"
                           position="top"
                           className="courseInfo__update-button"
-                          onClick={() => this.deactiveClass(packageCourse._id)}
+
                         >
-                          <span>
+                          <span onClick={() => this.deletePackageOfCourse(packageCourse._id)}>
                             <i class="fas fa-ban"></i>
                           </span>
                         </Tooltip>
@@ -189,9 +197,9 @@ export class CourseInfo extends React.Component {
             title="Thêm lớp học mới"
             position="top"
             className="courseInfo__update-button"
-            onClick={() => this.addNewClass()}
+
           >
-            <span>
+            <span onClick={this.addNewClass}>
               <i class="fas fa-plus"></i>
             </span>
           </Tooltip></div>
@@ -251,12 +259,12 @@ export class CourseInfo extends React.Component {
                       <div className="courseInfo__timeTable__event__class-info__class-time">
 
                         <Tooltip
-                          title="Xóa lớp học khỏi khóa học"
+                          title="Tạm thời xoá lớp học"
                           position="top"
                           className="courseInfo__update-button"
-                          onClick={() => this.deactiveClass(classData.class._id)}
+
                         >
-                          <span>
+                          <span onClick={() => this.deactiveClass(classData.class._id)}>
                             <i class="fas fa-ban"></i>
                           </span>
                         </Tooltip>

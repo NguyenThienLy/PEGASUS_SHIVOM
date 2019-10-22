@@ -38,7 +38,8 @@ export default class CourseRouter extends CrudRouter<typeof courseController> {
     }
     async getTimeTableOfCourse(req: Request, res: Response) {
         const result = await this.controller.getTimeTableOfCourse({
-            courseId: req.params._id
+            courseId: req.params._id,
+            isRefresh: req.query.isRefresh || false
         }, req.queryInfo)
         this.onSuccess(res, result)
     }
