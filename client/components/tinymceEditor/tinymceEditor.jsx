@@ -92,7 +92,7 @@ export class TinymceEditor extends React.Component {
             {this.state.description.errorMessage}
           </small>
           <Editor
-            initialValue=""
+            initialValue={this.props.content}
             init={{
               height: 500,
               menubar: false,

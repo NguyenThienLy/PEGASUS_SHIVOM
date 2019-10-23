@@ -94,7 +94,7 @@ export class Table extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.isFetching && !this.props.isFetching) {
 
-      const newTableContents = this.state.tableContents;
+      const newTableContents = prevState.tableContents;
 
       newTableContents.data = this.props.tableContents;
       newTableContents.isFetching = this.props.isFetching;
@@ -104,13 +104,10 @@ export class Table extends React.Component {
         tableContents: newTableContents,
         statisticDataTable: newTableContents.data.data
       })
-
     }
   }
 
   render() {
-    // const { tableContents, isFetching, isEmpty } = this.props;
-
     return (
       <div className="table">
         <CalendarCustomModal

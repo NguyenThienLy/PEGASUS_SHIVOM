@@ -360,8 +360,6 @@ export class StatisticCourse extends React.Component {
         newStartTime.data = this.refs.startTime.value
 
         this.setState({ startTime: newStartTime });
-
-        console.log("startTime", newStartTime)
     }
 
     changeEndTime() {
