@@ -22,7 +22,7 @@ export class CourseStudentApi extends CrudApi {
         };
         const res = await this.exec(url, options);
         if (res.code && res.code === 200) {
-            return res.result.object;
+            return res;
         } else {
             throw res;
         }

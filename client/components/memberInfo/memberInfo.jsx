@@ -7,6 +7,7 @@ export class MemberInfo extends React.Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     const { memberInfo, isFetchingMemberInfo, isEmptyMemberInfo,
       courseOfStudent, isFetchingCourseOfStudent, isEmptyCourseOfStudent } = this.props;
@@ -98,7 +99,7 @@ export class MemberInfo extends React.Component {
                   position="top"
                   className="courseInfo__update-button"
                 >
-                  <span>
+                  <span onClick={this.props.regisNewCourse}>
                     <i class="fas fa-plus"></i>
                   </span>
                 </Tooltip>
@@ -112,18 +113,18 @@ export class MemberInfo extends React.Component {
                 {isFetchingCourseOfStudent && <Loading />}
                 {isEmptyCourseOfStudent && !isFetchingCourseOfStudent && "Dữ liệu trống"}
                 {!isFetchingCourseOfStudent && !isEmptyCourseOfStudent && (
-                  courseOfStudent.map((course, index) => {
+                  courseOfStudent.map((courseStudent, index) => {
                     return (
                       <div key={index} className="memberInfo__right__info__item">
                         <div className="memberInfo__right__info__item__content">
-                          {course.course.name}
+                          {courseStudent.course.name}
                         </div>
                         <Tooltip
                           title="Gia hạn"
                           position="top"
                           className="courseInfo__update-button"
                         >
-                          <span>
+                          <span onClick={() => { return this.props.extendTimeCourse(courseStudent) }}>
                             <i class="fas fa-hourglass-half"></i>
                           </span>
                         </Tooltip>

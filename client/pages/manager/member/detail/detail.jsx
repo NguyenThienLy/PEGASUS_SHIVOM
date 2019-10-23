@@ -5,6 +5,9 @@ import {
 import { api } from '../../../../services';
 import "./detail.scss";
 
+import { RegisNewCourse } from '../main/components'
+import { ExtendTimeCourse } from './components'
+import Swal from 'sweetalert2'
 export class DetailMember extends React.Component {
     constructor(props) {
         super(props);
@@ -19,78 +22,22 @@ export class DetailMember extends React.Component {
                 isEmpty: true,
                 data: null
             },
-            headerAdmin: {
-                avatar:
-                    "https://cdn1.iconfinder.com/data/icons/avatars-1-5/136/87-512.png",
-                name: "Avril Lavigne"
+            modals: {
+                extendTimeCourse: false,
+                regisNewCourse: false
             },
-            categories: [
-                {
-                    name: "trang chủ",
-                    linkHref: "/home/home",
-                    linkAs: "/",
-                    key: "home"
-                },
-                {
-                    name: "khoá học",
-                    key: "course",
-                    subCategories: []
-                },
-                {
-                    name: "tin tức",
-                    key: "news",
-                    subCategories: [
-                        {
-                            name: "khoá học môt",
-                            linkHref: "/blog/blog?categorySlug=khoa-hoc-not",
-                            linkAs: "/khoa-hoc-mot"
-                        },
-                        {
-                            name: "khoá học hai",
-                            linkHref: "/home/home",
-                            linkAs: "/"
-                        },
-                        {
-                            name: "khoá học ba",
-                            linkHref: "/home/home",
-                            linkAs: "/"
-                        }
-                    ]
-                },
-                {
-                    name: "về chúng tôi",
-                    linkHref: "/contact/contact",
-                    linkAs: "/lien-he",
-                    key: "about"
-                }
-            ],
-            numberAdmins: [
-                {
-                    icon: '<i className="fas fa-id-card-alt"></i>',
-                    about: "Đi đúng giờ",
-                    quantity: 184,
-                    colorIcon: "#f5365c"
-                },
-                {
-                    icon: '<i className="fas fa-id-card-alt"></i>',
-                    about: "Đi trễ",
-                    quantity: 60,
-                    colorIcon: "#fb6340"
-                },
-                {
-                    icon: '<i className="fas fa-id-card-alt"></i>',
-                    about: "Vắng",
-                    quantity: 24,
-                    colorIcon: "#ffd600"
-                },
-                {
-                    icon: '<i className="fas fa-id-card-alt"></i>',
-                    about: "Đi thừa",
-                    quantity: 13,
-                    colorIcon: "#11cdef"
-                }
-            ]
+            selectedStudentId: props.params.studentId,
+            selectedCourseStudent: {}
         };
+        this.showHideModal = this.showHideModal.bind(this);
+        this.extendTimeCourse = this.extendTimeCourse.bind(this);
+        this.regisNewCourse = this.regisNewCourse.bind(this);
+        this.showExtendTimeCourse = this.showExtendTimeCourse.bind(this)
+    }
+    showHideModal(key) {
+        this.state.modals[key] = !this.state.modals[key];
+        this.setState({ modals: this.state.modals });
+        this.forceUpdate()
     }
 
     fetchData = async () => {
@@ -105,14 +52,18 @@ export class DetailMember extends React.Component {
             });
 
             if (!newStudent.data) {
-                const res = await api.student.getItem(this.props.params.studentId);
+                const res = await api.student.getItem(this.props.params.studentId, {
+                    headers: {
+                        "x-token": localStorage.getItem("token")
+                    }
+                });
                 newStudent.data = res.result.object;
             }
 
             newStudent.isFetching = false;
             newStudent.isEmpty = false;
 
-            this.setState({ student: newStudent });
+            this.setState({ student: newStudent, selectedStudentId: newStudent.data._id });
         }
 
         if (this.state.courseOfStudent.isFetching) {
@@ -134,7 +85,6 @@ export class DetailMember extends React.Component {
                     newCourseOfStudent.isFetching = false;
                     newCourseOfStudent.isEmpty = false;
 
-                    console.log("newCourseOfStudent", newCourseOfStudent)
 
                     this.setState({ courseOfStudent: newCourseOfStudent });
                 }).catch(err => {
@@ -184,10 +134,95 @@ export class DetailMember extends React.Component {
         }
         return true;
     }
+    extendTimeCourse(courseStudentId, body) {
+        Swal.showLoading();
+        api.courseStudent
+            .extendTimeCourse(courseStudentId, body)
+            .then(res => {
+                Swal.fire(
+                    'Thành công',
+                    'Gia hạn thời gian học cho học viên thành công',
+                    'success'
+                );
+                try {
+                    const courseStudentIndex = this.state.courseOfStudent.data.findIndex((courseStudent) => { return courseStudentId === courseStudent._id })
 
+                    this.state.courseOfStudent.data[courseStudentIndex].endTime = res.result.object.endTime
+                    this.state.courseOfStudent.data[courseStudentIndex].history = res.result.object.history
+                    this.setState({
+                        courseOfStudent: this.state.courseOfStudent,
+                        selectedCourseStudent: this.state.courseOfStudent.data[courseStudentIndex]
+                    })
+                } catch (err) {
+                }
+            })
+            .catch(err => {
+                Swal.fire(
+                    'Thất bại',
+                    'Gia hạn thời gian học cho học viên thất bại',
+                    'error'
+                );
+            });
+    }
+    regisNewCourse(body) {
+        Swal.showLoading();
+        api.student
+            .enrollToCourse(this.state.student.data._id, body)
+            .then(res => {
+                Swal.fire(
+                    'Thành công',
+                    'Đăng ký khoá học cho học viên thành công',
+                    'success'
+                );
+                try {
+                    const course = this.props.courses.items.find((course) => { return res.result.object.courseStudent.course === course._id })
+                    if (course) {
+                        res.result.object.courseStudent.course = course
+                    }
+                    this.state.courseOfStudent.data.push(res.result.object.courseStudent)
+                    this.setState({
+                        courseOfStudent: this.state.courseOfStudent
+                    })
+                } catch (err) {
+
+                }
+            })
+            .catch(err => {
+                Swal.fire(
+                    'Thất bại',
+                    'Đăng ký khoá học cho học viên thất bại',
+                    'error'
+                );
+            });
+    }
+    showExtendTimeCourse(courseStudent) {
+        this.setState({ selectedCourseStudent: courseStudent })
+        this.showHideModal("extendTimeCourse")
+    }
     render() {
         return (
+
             <div className="memberDetails">
+                <ExtendTimeCourse
+                    show={this.state.modals.extendTimeCourse}
+                    hideModal={() => {
+                        this.showHideModal('extendTimeCourse');
+                    }}
+                    extendTimeCourse={this.extendTimeCourse}
+                    studentId={this.state.selectedStudentId}
+                    selectedCourseStudent={this.state.selectedCourseStudent}
+                    {...this.props}
+                />
+                <RegisNewCourse
+                    show={this.state.modals.regisNewCourse}
+                    hideModal={() => {
+                        this.showHideModal('regisNewCourse');
+                    }}
+                    regisNewCourse={this.regisNewCourse}
+                    studentId={this.state.selectedStudentId}
+
+                    {...this.props}
+                />
                 <div className="memberDetails__body">
 
                     <div className="memberDetails__body__card">
@@ -204,7 +239,11 @@ export class DetailMember extends React.Component {
 
                                         courseOfStudent={this.state.courseOfStudent.data}
                                         isFetchingCourseOfStudent={this.state.courseOfStudent.isFetching}
+                                        extendTimeCourse={this.showExtendTimeCourse}
+                                        regisNewCourse={() => { return this.showHideModal("regisNewCourse") }}
                                         isEmptyCourseOfStudent={this.state.courseOfStudent.isEmpty}>
+
+
                                     </MemberInfo>
                                 </div>
                             </div>
