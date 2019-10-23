@@ -20,6 +20,7 @@ import {
 import { MainCourse } from './main/main'
 import { AddCourse } from './add/add'
 import { DetailCourse } from './detail/detail'
+import { UpdateCourse } from './update/update'
 import { StatisticCourse } from './statistic/statistic'
 
 class Course extends Component {
@@ -97,7 +98,7 @@ class Course extends Component {
                                     { path: "/quan-ly/khoa-hoc", component: <MainCourse {...this.props} /> },
                                     { path: "/quan-ly/khoa-hoc/them", component: <AddCourse /> },
                                     { path: "/quan-ly/khoa-hoc/chi-tiet/:courseId", component: <DetailCourse {...this.props} /> },
-                                    { path: "/quan-ly/khoa-hoc/cap-nhat/:courseId", component: <AddCourse {...this.props} /> },
+                                    { path: "/quan-ly/khoa-hoc/cap-nhat/:courseId", component: <UpdateCourse {...this.props} /> },
                                     { path: "/quan-ly/khoa-hoc/thong-ke/:courseId", component: <StatisticCourse {...this.props} /> }
                                 ]
                             } />

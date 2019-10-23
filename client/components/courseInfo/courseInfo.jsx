@@ -1,34 +1,37 @@
 import * as React from "react";
 import "./courseInfo.scss";
 import { Loading } from "../../components";
-import Router from 'next/router';
 import { Tooltip } from 'react-tippy';
 
 export class CourseInfo extends React.Component {
   constructor(props) {
     super(props);
 
+    this.updateCourse = this.updateCourse.bind(this);
     this.addNewClass = this.addNewClass.bind(this);
     this.deactiveClass = this.deactiveClass.bind(this);
     this.addNewCoursePackage = this.addNewCoursePackage.bind(this)
     this.deletePackageOfCourse = this.deletePackageOfCourse.bind(this)
   }
 
-  addNewClass() {
-    Router.push(
-      `/manager/class/class`,
-      `/quan-ly/lop-hoc/them`
-    );
+  updateCourse() {
+    this.props.updateCourse();
   }
+
+  addNewClass() {
+    this.props.addNewClass();
+  }
+
   addNewCoursePackage() {
-    this.props.showAddPackage()
+    this.props.showAddPackage();
   }
 
   deactiveClass(classId) {
     this.props.deactiveClass(classId);
   }
+
   deletePackageOfCourse(packageId) {
-    this.props.deletePackageOfCourse(packageId)
+    this.props.deletePackageOfCourse(packageId);
   }
 
   render() {
@@ -48,8 +51,9 @@ export class CourseInfo extends React.Component {
               position="top"
               className="courseInfo__update-button"
             >
-              <span>
-                <i class="fas fa-info"></i>
+              <span
+                onClick={() => this.updateCourse()}>
+                <i class="fas fa-edit"></i>
               </span>
             </Tooltip>
             <div className="courseInfo__description">{courseInfo.slug}</div>
@@ -139,7 +143,6 @@ export class CourseInfo extends React.Component {
             title="Thêm gói khuyến mãi mới"
             position="top"
             className="courseInfo__update-button"
-
           >
             <span onClick={this.addNewCoursePackage}>
               <i class="fas fa-plus"></i>
@@ -175,7 +178,6 @@ export class CourseInfo extends React.Component {
                           title="Xóa gói khuyến mãi khỏi khóa học"
                           position="top"
                           className="courseInfo__update-button"
-
                         >
                           <span onClick={() => this.deletePackageOfCourse(packageCourse._id)}>
                             <i class="fas fa-ban"></i>

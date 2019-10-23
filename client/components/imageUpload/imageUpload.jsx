@@ -58,6 +58,7 @@ export class ImageUpload extends Component {
     this.setState({ uploadFiles: acceptedFiles, thumbs: thumbs });
     this.props.changeImage(acceptedFiles[0], fileUrl);
   };
+
   render() {
     return (
       <div>
