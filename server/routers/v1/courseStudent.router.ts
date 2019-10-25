@@ -10,6 +10,40 @@ export default class CourseStudentRouter extends CrudRouter<typeof courseStudent
     }
     customRouter() {
         this.router.post("/:_id/extend", this.extendMiddlewares(), this.route(this.extend))
+        this.router.post("/:_id/cancel", this.cancelMiddlewares(), this.route(this.cancel))
+        this.router.post("/:_id/relearn", this.relearnMiddlewares(), this.route(this.relearn))
+    }
+    relearnMiddlewares(): any[] {
+        return [
+            authInfoMiddleware.run(["admin"])
+        ]
+    }
+    async relearn(req: Request, res: Response) {
+        await this.validateJSON(req.body, {
+            type: "object",
+            properties: {
+                isPayFee: { type: "boolean" },
+                type: { type: "string", enum: ["package", "monthAmount"] },
+                package: { type: "string" },
+                monthAmount: { type: "number" },
+                startTime: { type: "string", format: "date-time" }
+            },
+            required: ["isPayFee", "type"],
+            additionalProperties: false
+        })
+        req.body.courseStudentId = req.params._id
+        const result = await this.controller.relearn(req.body)
+        this.onSuccess(res, result)
+    }
+    cancelMiddlewares(): any[] {
+        return [
+            authInfoMiddleware.run(["admin"])
+        ]
+    }
+    async cancel(req: Request, res: Response) {
+        req.body.courseStudentId = req.params._id
+        const result = await this.controller.cancel(req.body)
+        this.onSuccess(res, result)
     }
     extendMiddlewares(): any[] {
         return [
@@ -55,8 +89,7 @@ export default class CourseStudentRouter extends CrudRouter<typeof courseStudent
     }
     deleteMiddlewares(): any[] {
         return [
-            authInfoMiddleware.run(["admin"]),
-            queryInfoMiddleware.run()
+            blockMiddleware.run()
         ]
     }
     deleteAllMiddlewares(): any[] {

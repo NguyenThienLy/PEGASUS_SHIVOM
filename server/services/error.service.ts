@@ -8,6 +8,7 @@ import { AuthErrorService } from './error/authErrorService'
 import { DatabaseErrorService } from './error/databaseErrorService'
 import { GiftErrorService } from './error/giftErrorService'
 import { GiftReceiveErrorService } from './error/giftReceiveErrorService'
+import { CourseStudentErrorService } from './error/courseStudentErrorService';
 
 export class ErrorService {
     constructor() {
@@ -20,6 +21,7 @@ export class ErrorService {
         this.database = new DatabaseErrorService()
         this.gift = new GiftErrorService()
         this.giftReceive = new GiftReceiveErrorService()
+        this.courseStudent = new CourseStudentErrorService()
     }
     student: StudentErrorService
     customer: CustomerErrorService
@@ -30,5 +32,6 @@ export class ErrorService {
     database: DatabaseErrorService
     gift: GiftErrorService
     giftReceive: GiftReceiveErrorService
+    courseStudent: CourseStudentErrorService
 
 }
