@@ -20,12 +20,13 @@ export type CourseStudentModel = BaseModel & {
     endTime: Date
     isPayFee: boolean
     history: {
-        type: "init" | "extend",
+        type: "init" | "extend" | "cancel" | "relearn",
         time: Date
         monthAmount: number
         package: string
         fee: number
         isPayFee: boolean
+        reason: string
     }[]
 }
 
@@ -46,12 +47,13 @@ const courseStudentSchema = new Schema({
     isPayFee: { type: Boolean, default: false },
     history: {
         type: [{
-            type: { type: String, enum: ["init", "extend"], defaultValue: "init" },
+            type: { type: String, enum: ["init", "extend", "cancel", "relearn"], defaultValue: "init" },
             time: { type: Date },
             monthAmount: { type: Number },
             package: { type: String },
             fee: { type: Number },
-            isPayFee: { type: Boolean }
+            isPayFee: { type: Boolean },
+            reason: { type: String }
         }]
     },
     status: { type: String, enum: ["active", "deactive"], default: "active" }
