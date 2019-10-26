@@ -97,7 +97,6 @@ export class MainCourse extends React.Component {
                     <th style={{ width: '15%' }}>Ảnh</th>
                     <th>Tên</th>
                     <th>Sĩ số</th>
-                    <th>Sĩ số tối đa</th>
                     <th style={{ width: '30%' }}>Mô tả ngắn</th>
                     <th>Trạng thái</th>
                     <th>Thao tác</th>
@@ -116,8 +115,10 @@ export class MainCourse extends React.Component {
                           ></img>
                         </td>
                         <td style={{ 'text-align': 'left' }}>{item.name}</td>
-                        <td>{item.currentStudentAmount}</td>
-                        <td>{item.quantity}</td>
+                        <td>
+                          {item.currentStudentAmount}&nbsp;/&nbsp;
+                          {item.quantity}
+                        </td>
                         <td style={{ 'text-align': 'left', width: '30%' }}>
                           {item.shortDescription}
                         </td>

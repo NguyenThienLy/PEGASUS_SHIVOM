@@ -1,16 +1,81 @@
-@import "../../default.scss";
+@import '../../default.scss';
 
-$background-color-chart: lighten($sub-main-color, 30%);
-
-.courseInfo {
+.course-info {
   width: 100%;
   // margin-right: 3%;
+  border: 1px solid $table-border-color;
   border-radius: 5px;
   transition: 300ms;
-  -webkit-box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
-  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+  // -webkit-box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+  // box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
   color: $color-grey;
-  @include e("name") {
+
+  .loading {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    .lds-dual-ring {
+      width: 40px;
+      height: 40px;
+    }
+    .lds-dual-ring:after {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  @include e('button') {
+    margin: auto;
+    width: 20px;
+    // border: 1px solid $main-color;
+    // outline: 0;
+    font-size: 1em;
+    color: $main-color;
+    // border-radius: 5px;
+    // padding: 0.3em;
+    // transition: all 200ms ease;
+    cursor: pointer;
+    // background: #fff;
+    // text-align: center;
+    // box-shadow: 1px 1px 2px 0 rgba(0, 163, 175, 0.5);
+    // &:hover {
+    //   background: $main-color;
+    //   color: #fff;
+    // }
+    // &:active {
+    //   background: $main-color;
+    //   color: #fff;
+    //   box-shadow: 1px 1px 5px 0 rgba(0, 163, 175, 0.3);
+    // }
+    i {
+      // margin: 0 0.3em;
+    }
+  }
+
+  @include e('hover-title') {
+    margin: auto;
+    margin-bottom: 1.5em;
+    color: $main-color;
+    position: relative;
+    display: inline-block;
+    padding: 0 0.5em;
+    z-index: 0;
+
+    @include m('hover') {
+      position: absolute;
+      left: 0;
+      bottom: -0.5em;
+      height: 1em;
+      width: 100%;
+      background-color: $hover-color;
+      z-index: -1;
+    }
+  }
+
+  @include e('title') {
     padding: 1em 0;
     text-align: center;
     font-family: $font-family-special;
@@ -18,105 +83,225 @@ $background-color-chart: lighten($sub-main-color, 30%);
     color: $main-color;
     text-transform: capitalize;
     font-weight: 600;
-
     letter-spacing: 0.025em;
   }
-  @include e('update-button') {
-    margin: auto;
-    width: 20px;
-    border: 1px solid $main-color;
-    outline: 0;
-    padding: 0;
-    color: $main-color;
-    border-radius: 5px;
-    padding: 0.3em;
-    transition: all 200ms ease;
-    cursor: pointer;
-    background: #fff;
-    text-align: center;
-    // box-shadow: 1px 1px 2px 0 rgba(0, 163, 175, 0.5);
-    &:hover {
-      background: $main-color;
-      color: #fff;
-    }
-    &:active {
-      background: $main-color;
-      color: #fff;
-      box-shadow: 1px 1px 5px 0 rgba(0, 163, 175, 0.3);
-    }
-    i {
-      // margin: 0 0.3em;
-    }
-  }
-  @include e("description") {
+
+  @include e('sub-title') {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2em;
+    row-gap: 1em;
     padding: 0.5em 1em;
-    background-color: $background-color-chart;
+    background-color: $hover-color;
     border-bottom: 1px solid $table-border-color;
     border-top: 1px solid $table-border-color;
-    color: $font-color;
-    font-size: 0.8em;
-  }
-  @include e("details") {
-    margin: 0.5em 0;
-    border-bottom: 1px solid $table-border-color;
-    @include e("row") {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.5em 1em 1.5em;
-      @include e("holder") {
-        margin-right: 3em;
-        @include e("title") {
-          font-size: 0.85em;
-          color: $main-color;
-          margin-bottom: 0.2em;
-        }
-        @include e("content") {
-          font-size: 0.8em;
-          color: $font-color;
-          letter-spacing: 0.05em;
-        }
-        &:nth-last-child(1) {
-          margin-right: 0;
-        }
-      }
-      &:nth-last-child(1) {
-        padding: 0.5em 1em 1em;
-      }
+
+    @include e('name') {
+      color: $main-color;
+      font-weight: bold;
+      font-size: 1em;
+      font-family: $font-family-special;
+    }
+
+    .course-info__button {
+      margin-right: 0em;
     }
   }
-  @include e("timeTable") {
-    padding: 0.5em 1em 1.5em;
-    @include e("event") {
-      margin: 0.5em 0;
-      @include e("date") {
-        text-transform: capitalize;
-        font-size: 0.8em;
-        font-family: $font-family-special;
-      }
-      @include e("class-info") {
-        display: flex;
-        justify-content: space-between;
-        border-bottom: 1px solid $light-border-color;
-        padding: 0.85em 0;
-        @include e("class-name") {
+
+  @include e('details') {
+    padding: 1em;
+
+    @include e('short-info') {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 1em;
+      row-gap: 1em;
+
+      @include e('wrapper') {
+        @include e('title') {
+          font-size: 0.9em;
+          color: $main-color;
+          margin-bottom: 0.3em;
+        }
+
+        @include e('content') {
           font-size: 0.85em;
-          text-decoration: none;
-          transition: all 200ms ease;
           color: $color-grey;
-          &:hover {
-            color: $main-color;
+          letter-spacing: 0.05em;
+          img {
+            width: 100%;
+            height: auto;
           }
         }
-        @include e("class-time") {
-          font-size: 0.8em;
-          color: $font-color;
+      }
+    }
+
+    @include e('description') {
+      margin-top: 1em;
+      @include e('wrapper') {
+        text-align: center;
+        margin: 1em 0;
+
+        .course-info__hover-title {
+          font-size: 0.9em;
+          margin-bottom: 1.5em;
+        }
+
+        @include e('content') {
+          text-align: left;
+          font-size: 0.85em;
+
+          .course-list-benefits {
+            @include e('content') {
+              .course-benefit {
+                @include e('content') {
+                  font-size: inherit;
+                  font-family: $font-body;
+                }
+              }
+            }
+          }
+
+          img {
+            width: 100%;
+            height: auto;
+          }
         }
       }
     }
   }
-  &:hover {
-    -webkit-box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.2);
-    box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.2);
+
+  @include e('promo-packages') {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2em;
+    row-gap: 1em;
+    padding: 1em;
+
+    .loading {
+      grid-column: 1 / span 2;
+    }
+
+    @include e('package') {
+      color: $color-grey;
+      border-radius: 5px;
+      border: 1px solid $table-border-color;
+      background-color: #fff;
+      transition: all 300ms ease;
+
+      &:hover {
+        background-color: $hover-color;
+        box-shadow: 2px 2px 10px $hover-color;
+      }
+
+      @include e('title') {
+        display: grid;
+        grid-template-columns: 18% 60% 18%;
+        column-gap: 2%;
+        row-gap: 1em;
+        border-bottom: 1px solid $table-border-color;
+        padding: 0.5em;
+
+        @include e('name') {
+          text-align: center;
+          font-weight: bold;
+          font-size: 0.85em;
+        }
+
+        .course-info__button {
+          font-size: 0.85em;
+          margin-right: 0em;
+          color: $color-grey;
+        }
+      }
+      @include e('info') {
+        font-size: 0.85em;
+        text-align: center;
+        padding: 0.5em;
+
+        @include e('no-of-month') {
+          margin-bottom: 0.5em;
+        }
+
+        @include e('original-price') {
+          text-decoration: line-through;
+        }
+
+        @include e('promo-price') {
+          color: red;
+        }
+      }
+    }
   }
+
+  @include e('class') {
+    padding: 1em;
+    border-bottom: 1px solid $table-border-color;
+    &:nth-last-child(1) {
+      border-bottom: none;
+    }
+
+    @include e('title') {
+      display: grid;
+      grid-template-columns: 18% 60% 18%;
+      column-gap: 2%;
+      row-gap: 1em;
+      text-align: center;
+
+      .course-info__hover-title {
+        font-size: 0.9em;
+        margin-bottom: 1em;
+      }
+
+      .course-info__button {
+        margin-right: 0em;
+        margin-top: 0em;
+        font-size: 0.9em;
+      }
+    }
+
+    @include e('trainer') {
+      text-align: center;
+      font-size: 0.9em;
+      color: $color-grey;
+    }
+
+    @include e('time-table') {
+      padding: 1em 0em 0em;
+
+      @include e('event') {
+        padding: 0.8em 0em;
+        border-bottom: 1px solid $light-border-color;
+        &:nth-last-child(1) {
+          border-bottom: none;
+        }
+
+        @include e('weekday') {
+          text-transform: capitalize;
+          font-size: 0.85em;
+          font-family: $font-family-special;
+        }
+
+        @include e('class-info') {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 0.5em;
+          color: $color-grey;
+
+          @include e('class-name') {
+            font-size: 0.85em;
+          }
+
+          @include e('class-time') {
+            font-size: 0.8em;
+          }
+        }
+      }
+    }
+  }
+
+  // &:hover {
+  //   -webkit-box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.2);
+  //   box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.2);
+  // }
 }
