@@ -1,7 +1,7 @@
-import * as React from "react";
-import "./pieChart.scss";
-import { Pie } from "react-chartjs-2";
-import { Loading } from "../../components";
+import * as React from 'react';
+import './pieChart.scss';
+import { Pie } from 'react-chartjs-2';
+import { Loading } from '../../components';
 
 export class PieChart extends React.Component {
   constructor(props) {
@@ -10,7 +10,7 @@ export class PieChart extends React.Component {
 
   static defaultProps = {
     displayLegend: true,
-    legendPosition: "bottom"
+    legendPosition: 'bottom'
   };
 
   render() {
@@ -24,7 +24,7 @@ export class PieChart extends React.Component {
         <div className="pieChart__content">
           <div className="pieChart__content__inner">
             {isFetching && <Loading />}
-            {isEmpty && !isFetching && "Dữ liệu trống"}
+            {isEmpty && !isFetching && 'Dữ liệu trống'}
             {!isFetching && !isEmpty && (
               <Pie
                 data={pieChartData}
@@ -40,7 +40,7 @@ export class PieChart extends React.Component {
         </div>
         <div className="pieChart__select">
           <div className="pieChart__select__info">
-            <div>Thống kê tỉ lệ chuyên cần trong năm</div>
+            <div>Thống kê tỉ lệ chuyên cần trong {pieChartData.timeType}</div>
           </div>
           {/* <div className="pieChart__select__date">
             <input type="date" />

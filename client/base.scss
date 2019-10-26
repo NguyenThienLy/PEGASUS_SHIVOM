@@ -51,7 +51,7 @@
   @include e('body') {
     min-height: calc(100% - 100px);
     width: 78%;
-    margin: 5em 1%;
+    margin: 6em 1% 0em 1%;
     @include e('card') {
       margin: 4em 0 3em;
       background-color: #fff;
@@ -145,16 +145,13 @@
     width: 95%;
     margin: auto;
     overflow: hidden;
-    @include e('firstCol') {
-      width: 5em;
-    }
     table {
       width: 100%;
       border-collapse: collapse;
-      thead {
-        position: sticky;
-        top: 0;
-      }
+      // thead {
+      //   position: sticky;
+      //   top: 0;
+      // }
       tbody {
         padding: 0 4px;
         display: block !important;

@@ -4,10 +4,7 @@ import { api } from '../../../../services';
 import { CreatePackage } from './components';
 import Swal from 'sweetalert2';
 import Router from 'next/router';
-import {
-  Sidebar,
-  CourseInfo
-} from '../../../../components';
+import { Sidebar, CourseInfo } from '../../../../components';
 import * as moment from 'moment';
 import './detail.scss';
 import { tsTupleType } from '@babel/types';
@@ -38,7 +35,7 @@ export class DetailCourse extends React.Component {
 
     this.showHideModal = this.showHideModal.bind(this);
     this.createPackage = this.createPackage.bind(this);
-    this.deletePackageOfCourse = this.deletePackageOfCourse.bind(this)
+    this.deletePackageOfCourse = this.deletePackageOfCourse.bind(this);
     this.updateCourse = this.updateCourse.bind(this);
   }
 
@@ -62,12 +59,11 @@ export class DetailCourse extends React.Component {
         }
       })
       .then(res => {
-
         Swal.fire('Thành công', 'Tạo gói cho khoá học thành công', 'success');
-        this.state.packageOfCourse.data.push(res.result.object)
+        this.state.packageOfCourse.data.push(res.result.object);
         this.setState({
           packageOfCourse: this.state.packageOfCourse
-        })
+        });
       })
       .catch(err => {
         Swal.fire('Thất bại', 'Tạo gói cho khoá học thất bại', 'error');
@@ -84,15 +80,16 @@ export class DetailCourse extends React.Component {
         }
       })
       .then(res => {
-
         Swal.fire('Thành công', 'Xoá gói của khoá học thành công', 'success');
-        const packageIndex = this.state.packageOfCourse.data.findIndex((packageData) => {
-          return packageData._id === packageId
-        })
-        this.state.packageOfCourse.data.splice(packageIndex, 1)
+        const packageIndex = this.state.packageOfCourse.data.findIndex(
+          packageData => {
+            return packageData._id === packageId;
+          }
+        );
+        this.state.packageOfCourse.data.splice(packageIndex, 1);
         this.setState({
           packageOfCourse: this.state.packageOfCourse
-        })
+        });
       })
       .catch(err => {
         Swal.fire('Thất bại', 'Xoá gói của khoá học thất bại', 'error');
@@ -119,41 +116,41 @@ export class DetailCourse extends React.Component {
 
     this.setState({ course: newCourse });
 
-    api.course.getTimeTableOfCourse(
-      this.props.params.courseId,
-      {
+    api.course
+      .getTimeTableOfCourse(this.props.params.courseId, {
         query: {
           isRefresh: true
         }
-      }
-    ).then(res => {
-      const newTimeTableOfCourse = this.state.timeTableOfCourse;
+      })
+      .then(res => {
+        const newTimeTableOfCourse = this.state.timeTableOfCourse;
 
-      newTimeTableOfCourse.data = res.result.object;
+        newTimeTableOfCourse.data = res.result.object;
 
-      newTimeTableOfCourse.isFetching = false;
-      newTimeTableOfCourse.isEmpty = false;
+        newTimeTableOfCourse.isFetching = false;
+        newTimeTableOfCourse.isEmpty = false;
 
-      this.setState({ timeTableOfCourse: newTimeTableOfCourse });
+        this.setState({ timeTableOfCourse: newTimeTableOfCourse });
+      })
+      .catch(err => {
+        const newTimeTableOfCourse = this.state.timeTableOfCourse;
 
-    }).catch(err => {
-      const newTimeTableOfCourse = this.state.timeTableOfCourse;
+        newTimeTableOfCourse.isFetching = false;
+        newTimeTableOfCourse.isEmpty = true;
 
-      newTimeTableOfCourse.isFetching = false;
-      newTimeTableOfCourse.isEmpty = true;
+        this.setState({ timeTableOfCourse: newTimeTableOfCourse });
+      });
 
-      this.setState({ timeTableOfCourse: newTimeTableOfCourse });
-    })
-
-    api.package.getList(
-      {
+    api.package
+      .getList({
         query: {
           filter: { course: this.props.params.courseId }
         },
         headers: {
           'x-token': token
         }
-      }).then(res => {
+      })
+      .then(res => {
         const newPackageOfCourse = this.state.packageOfCourse;
 
         newPackageOfCourse.data = res.results.objects.rows;
@@ -162,32 +159,36 @@ export class DetailCourse extends React.Component {
         newPackageOfCourse.isEmpty = false;
 
         this.setState({ packageOfCourse: newPackageOfCourse });
-
-      }).catch(err => {
+      })
+      .catch(err => {
         const newPackageOfCourse = this.state.packageOfCourse;
 
         newPackageOfCourse.isFetching = false;
         newPackageOfCourse.isEmpty = true;
 
         this.setState({ packageOfCourse: newPackageOfCourse });
-      })
+      });
   };
 
-  deactiveClass = async (classId) => {
+  deactiveClass = async classId => {
     const newTimeTableOfCourse = this.state.timeTableOfCourse;
     newTimeTableOfCourse.isFetching = true;
 
-    this.setState({ timeTableOfCourse: newTimeTableOfCourse })
+    this.setState({ timeTableOfCourse: newTimeTableOfCourse });
 
     Swal.showLoading();
     api.class
-      .changeStatus(classId, "deactive", {
+      .changeStatus(classId, 'deactive', {
         headers: {
-          'x-token': localStorage.getItem("token")
+          'x-token': localStorage.getItem('token')
         }
       })
       .then(res => {
-        Swal.fire('Thành công', 'Thay đổi trạng thái lớp học thành công', 'success');
+        Swal.fire(
+          'Thành công',
+          'Thay đổi trạng thái lớp học thành công',
+          'success'
+        );
 
         this.props.dispatch({
           type: `UPDATE_CLASS_SUCCESS`,
@@ -202,7 +203,7 @@ export class DetailCourse extends React.Component {
         newTimeTableOfCourse.data.splice(indexNeedUpdate, 1);
         newTimeTableOfCourse.isFetching = false;
 
-        this.setState({ timeTableOfCourse: newTimeTableOfCourse })
+        this.setState({ timeTableOfCourse: newTimeTableOfCourse });
       })
       .catch(err => {
         Swal.fire('Thất bại', 'Thay đổi trạng thái lớp học thất bại', 'error');
@@ -211,7 +212,7 @@ export class DetailCourse extends React.Component {
           payload: err.message
         });
       });
-  }
+  };
 
   changeIsFetching(isFetching) {
     const newCourse = this.state.course;
@@ -230,10 +231,7 @@ export class DetailCourse extends React.Component {
   }
 
   addNewClass() {
-    Router.push(
-      `/manager/class/class`,
-      `/quan-ly/lop-hoc/them`
-    );
+    Router.push(`/manager/class/class`, `/quan-ly/lop-hoc/them`);
   }
 
   updateCourse() {
@@ -243,31 +241,30 @@ export class DetailCourse extends React.Component {
     );
   }
 
-  handleScroll = () => { };
+  handleScroll = () => {};
 
-  componentWillUnmount() { }
+  componentWillUnmount() {}
 
   componentDidMount() {
     this.changeIsFetching(true);
 
-    this.fetchData(
-    );
+    this.fetchData();
 
-    var heightOfHeader = $(
-      '.course-details .course-details__header .headerAdmin__wrapper'
-    ).height();
-    $('.course-details .course-details__body').css(
-      'margin-top',
-      heightOfHeader + 'px'
-    );
+    // var heightOfHeader = $(
+    //   '.course-details .course-details__header .headerAdmin__wrapper'
+    // ).height();
+    // $('.course-details .course-details__body').css(
+    //   'margin-top',
+    //   heightOfHeader + 'px'
+    // );
 
-    $(
-      '.course-details__body__card__content__chart__filter__form__input'
-    ).datetimepicker({
-      format: 'd/m/Y',
-      timepicker: false,
-      mask: false
-    });
+    // $(
+    //   '.course-details__body__card__content__chart__filter__form__input'
+    // ).datetimepicker({
+    //   format: 'd/m/Y',
+    //   timepicker: false,
+    //   mask: false
+    // });
   }
 
   shouldComponentUpdate() {
@@ -298,20 +295,20 @@ export class DetailCourse extends React.Component {
                       isFetchingCourseInfo={this.state.course.isFetching}
                       isEmptyCourseInfo={this.state.course.isEmpty}
                       updateCourse={this.updateCourse}
-
                       deactiveClass={this.deactiveClass}
                       addNewClass={this.addNewClass}
-
                       timeTableOfCourse={this.state.timeTableOfCourse.data}
-                      isFetchingTimeTable={this.state.timeTableOfCourse.isFetching}
+                      isFetchingTimeTable={
+                        this.state.timeTableOfCourse.isFetching
+                      }
                       isEmptyTimeTable={this.state.timeTableOfCourse.isEmpty}
-
                       packageOfCourse={this.state.packageOfCourse.data}
                       isFetchingPackage={this.state.packageOfCourse.isFetching}
                       isEmptyPackage={this.state.packageOfCourse.isEmpty}
-                      showAddPackage={() => { this.showHideModal("createPackage") }}
+                      showAddPackage={() => {
+                        this.showHideModal('createPackage');
+                      }}
                       deletePackageOfCourse={this.deletePackageOfCourse}
-
                     ></CourseInfo>
                   </div>
                 </div>
