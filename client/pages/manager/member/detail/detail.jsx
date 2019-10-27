@@ -6,7 +6,7 @@ import { api } from '../../../../services';
 import "./detail.scss";
 
 import { RegisNewCourse } from '../main/components'
-import { ExtendTimeCourse } from './components'
+import { ExtendTimeCourse, RelearnCourse } from './components'
 import Swal from 'sweetalert2'
 export class DetailMember extends React.Component {
     constructor(props) {
@@ -24,7 +24,8 @@ export class DetailMember extends React.Component {
             },
             modals: {
                 extendTimeCourse: false,
-                regisNewCourse: false
+                regisNewCourse: false,
+                relearnCourse: false
             },
             selectedStudentId: props.params.studentId,
             selectedCourseStudent: {}
@@ -33,6 +34,9 @@ export class DetailMember extends React.Component {
         this.extendTimeCourse = this.extendTimeCourse.bind(this);
         this.regisNewCourse = this.regisNewCourse.bind(this);
         this.showExtendTimeCourse = this.showExtendTimeCourse.bind(this)
+        this.cancelCourse = this.cancelCourse.bind(this)
+        this.relearnCourse = this.relearnCourse.bind(this)
+        this.showRelearnCourse = this.showRelearnCourse.bind(this)
     }
     showHideModal(key) {
         this.state.modals[key] = !this.state.modals[key];
@@ -195,9 +199,87 @@ export class DetailMember extends React.Component {
                 );
             });
     }
+    async cancelCourse(courseStudentId) {
+        const result = await Swal.fire({
+            title: "Lý do nghỉ học khoá này",
+            type: "input",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            animation: "slide-from-top",
+            input: "text",
+            inputPlaceholder: "Nhập lý do nghỉ học của học viên"
+        })
+        console.log("result: ", result)
+        if (result.value) {
+            Swal.showLoading();
+            api.courseStudent
+                .cancel(courseStudentId, { reason: result.value })
+                .then(res => {
+                    Swal.fire(
+                        'Thành công',
+                        'Học viên nghỉ học khoá này thành công',
+                        'success'
+                    );
+                    try {
+                        const courseStudentIndex = this.state.courseOfStudent.data.findIndex((courseStudent) => { return courseStudentId === courseStudent._id })
+                        console.log("courseStudentIndex: ", courseStudentIndex)
+                        this.state.courseOfStudent.data[courseStudentIndex].status = res.result.object.status
+                        this.state.courseOfStudent.data[courseStudentIndex].history = res.result.object.history
+                        this.setState({
+                            courseOfStudent: this.state.courseOfStudent
+                        })
+                    } catch (err) {
+
+                    }
+                })
+                .catch(err => {
+                    Swal.fire(
+                        'Thất bại',
+                        'Học viên nghỉ học khoá này thấy bại',
+                        'error'
+                    );
+                });
+        }
+    }
+    async relearnCourse(courseStudentId, body) {
+
+        Swal.showLoading();
+        api.courseStudent
+            .relearn(courseStudentId, body)
+            .then(res => {
+                Swal.fire(
+                    'Thành công',
+                    'Học viên học lại khoá này thành công',
+                    'success'
+                );
+                try {
+                    const courseStudentIndex = this.state.courseOfStudent.data.findIndex((courseStudent) => { return courseStudentId === courseStudent._id })
+                    console.log("courseStudentIndex: ", courseStudentIndex)
+                    this.state.courseOfStudent.data[courseStudentIndex].status = res.result.object.status
+                    this.state.courseOfStudent.data[courseStudentIndex].history = res.result.object.history
+                    this.setState({
+                        courseOfStudent: this.state.courseOfStudent
+                    })
+                } catch (err) {
+
+                }
+            })
+            .catch(err => {
+                Swal.fire(
+                    'Thất bại',
+                    'Học viên học lại khoá này thấy bại',
+                    'error'
+                );
+            });
+
+    }
     showExtendTimeCourse(courseStudent) {
         this.setState({ selectedCourseStudent: courseStudent })
         this.showHideModal("extendTimeCourse")
+    }
+    showRelearnCourse(courseStudent) {
+        this.setState({ selectedCourseStudent: courseStudent })
+        this.showHideModal("relearnCourse")
     }
     render() {
         return (
@@ -223,6 +305,16 @@ export class DetailMember extends React.Component {
 
                     {...this.props}
                 />
+                <RelearnCourse
+                    show={this.state.modals.relearnCourse}
+                    hideModal={() => {
+                        this.showHideModal('relearnCourse');
+                    }}
+                    relearnCourse={this.relearnCourse}
+                    studentId={this.state.selectedStudentId}
+                    selectedCourseStudent={this.state.selectedCourseStudent}
+                    {...this.props}
+                />
                 <div className="memberDetails__body">
 
                     <div className="memberDetails__body__card">
@@ -240,6 +332,8 @@ export class DetailMember extends React.Component {
                                         courseOfStudent={this.state.courseOfStudent.data}
                                         isFetchingCourseOfStudent={this.state.courseOfStudent.isFetching}
                                         extendTimeCourse={this.showExtendTimeCourse}
+                                        cancelCourse={this.cancelCourse}
+                                        relearnCourse={this.showRelearnCourse}
                                         regisNewCourse={() => { return this.showHideModal("regisNewCourse") }}
                                         isEmptyCourseOfStudent={this.state.courseOfStudent.isEmpty}>
 
