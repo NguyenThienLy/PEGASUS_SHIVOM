@@ -114,30 +114,44 @@ export class MemberInfo extends React.Component {
                 {isEmptyCourseOfStudent && !isFetchingCourseOfStudent && "Dữ liệu trống"}
                 {!isFetchingCourseOfStudent && !isEmptyCourseOfStudent && (
                   courseOfStudent.map((courseStudent, index) => {
+                    console.log("course student: ", courseStudent)
                     return (
                       <div key={index} className="memberInfo__right__info__item">
                         <div className="memberInfo__right__info__item__content">
                           {courseStudent.course.name}
                         </div>
-                        <Tooltip
-                          title="Gia hạn"
-                          position="top"
-                          className="courseInfo__update-button"
-                        >
-                          <span onClick={() => { return this.props.extendTimeCourse(courseStudent) }}>
-                            <i class="fas fa-hourglass-half"></i>
-                          </span>
-                        </Tooltip>
+                        {courseStudent.status === "active" ?
+                          <React.Fragment>
+                            <Tooltip
+                              title="Gia hạn"
+                              position="top"
+                              className="courseInfo__update-button"
+                            >
+                              <span onClick={() => { return this.props.extendTimeCourse(courseStudent) }}>
+                                <i class="fas fa-hourglass-half"></i>
+                              </span>
+                            </Tooltip>
 
-                        <Tooltip
-                          title="Nghỉ học"
-                          position="top"
-                          className="courseInfo__update-button"
-                        >
-                          <span>
-                            <i class="fas fa-user-minus"></i>
-                          </span>
-                        </Tooltip>
+                            <Tooltip
+                              title="Nghỉ học"
+                              position="top"
+                              className="courseInfo__update-button"
+                            >
+                              <span onClick={() => { return this.props.cancelCourse(courseStudent._id) }}>
+                                <i class="fas fa-user-minus"></i>
+                              </span>
+                            </Tooltip>
+                          </React.Fragment> : <React.Fragment>
+                            <Tooltip
+                              title="Học lại"
+                              position="top"
+                              className="courseInfo__update-button"
+                            >
+                              <span onClick={() => { return this.props.relearnCourse(courseStudent) }}>
+                                <i class="fas fa-user-plus"></i>
+                              </span>
+                            </Tooltip>
+                          </React.Fragment>}
                       </div>
                     );
                   }))}
