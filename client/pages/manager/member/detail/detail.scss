@@ -1,395 +1,394 @@
-@import "../../../../default.scss";
+@import '../../../../default.scss';
 
-.memberDetails {
-    display: flex;
-    flex-direction: row;
-    // height: 100vh;
-    @include e("header") {
-    }
-    @include e("sidebar") {
-      width: 20%;
-      .sidebar {
-        position: fixed;
-        width: 20%;
-      }
-    }
-    @include e("body") {
-      min-height: 100%;
-      width: 100%;
-      margin: 0 1%;
-      @include e("numbers") {
-        margin: 1em 0 3em;
-        // display: flex;
-        // justify-content: space-between;
-        // align-items: center;
-        display: grid;
-        grid-template-columns:  repeat(4, 1fr);
-        column-gap: 2em;
-        row-gap: 1em;
-      }
-  
-      @include e("card") {
-        margin: 0 0 3em;
-        background-color: #fff;
-        padding: 1em;
+html,
+body {
+  background-color: lighten($sub-main-color, 27%);
+}
+
+.member-details {
+  display: flex;
+  flex-direction: row;
+  // height: 100vh;
+
+  @include e('body') {
+    min-height: 100%;
+    width: 100%;
+    margin: 0 1%;
+    // @include e('numbers') {
+    //   margin: 1em 0 3em;
+    //   // display: flex;
+    //   // justify-content: space-between;
+    //   // align-items: center;
+    //   display: grid;
+    //   grid-template-columns: repeat(4, 1fr);
+    //   column-gap: 2em;
+    //   row-gap: 1em;
+    // }
+
+    @include e('card') {
+      margin: 0 0 3em;
+      background-color: #fff;
+      padding: 1em;
+      border-radius: 5px;
+      -webkit-box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+      position: relative;
+
+      @include e('title') {
+        width: 10em;
+        position: absolute;
+        top: -0.8em;
+        left: 0.8em;
+        padding: 1em 0;
+        text-align: center;
+        background-color: $main-color;
+        color: #fff;
         border-radius: 5px;
-        -webkit-box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
-        box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
-        position: relative;
-        @include e("title") {
-          width: 10em;
-          position: absolute;
-          top: -0.8em;
-          left: 0.8em;
-          padding: 1em 0;
-          text-align: center;
-          background-color: $main-color;
-          color: #fff;
-          border-radius: 5px;
-          -webkit-box-shadow: 1px 1px 5px rgba(0, 163, 175, 0.5);
-          box-shadow: 1px 1px 5px rgba(0, 163, 175, 0.5);
-        }
-        @include e("content") {
-          padding: 3em 0;
-          @include e("member") {
-            @include e("filter") {
-            }
-            @include e("info") {
-              margin: 2em 0 0;
-              display: flex;
-              justify-content: space-between;
-            }
-          }
-  
-          @include e("chart") {
-            @include e("filter") {
-              @include e("form") {
-                @include e("input") {
-                  width: 12em;
-                  background: #fff;
-                  color: $font-color;
-                  font-family: $font-body;
-                  font-size: 0.8em;
-                  border: 1px solid $table-border-color;
-                  border-radius: 5px;
-                  outline: 0;
-                  padding: 1em 2em;
-                  margin-right: 1em;
-                  margin-top: 1em;
-                }
-                @include e("btn") {
-                  border: 0;
-                  outline: 0;
-                  padding: 0;
-                  color: #fff;
-                  border-radius: 5px;
-                  padding: 1em 2em;
-                  margin-top: 1em;
-                  font-family: $font-body;
-                  font-size: 0.8em;
-                  transition: all 200ms ease;
-                  cursor: pointer;
-                  &::first-letter {
-                    text-transform: capitalize;
-                  }
-                  @include m("primary") {
-                    background: $main-color;
-                    box-shadow: 1px 1px 2px 0 rgba(0, 163, 175, 0.5);
-                    &:hover {
-                      background: darken($main-color, 5%);
-                    }
-                    &:active {
-                      background: $main-color;
-                      box-shadow: 1px 1px 5px 0 rgba(0, 163, 175, 0.3);
-                    }
-                    i {
-                      margin: 0 0.3em;
-                    }
-                  }
-                }
-              }
-            }
-            @include e("row") {
-              margin: 2em 0 1em;
-              .lineChart {
-                width: 100%;
-                margin-right: 0;
-              }
-              .pieChart {
-                width: 50%;
-                margin: auto;
-              }
-            }
-          }
-        }
+        -webkit-box-shadow: 1px 1px 5px rgba(0, 163, 175, 0.5);
+        box-shadow: 1px 1px 5px rgba(0, 163, 175, 0.5);
       }
-      @include e("table") {
-        margin: 0 0 3em;
+
+      @include e('content') {
+        padding: 3em 0;
+
+        @include e('member') {
+          @include e('filter') {
+          }
+          @include e('info') {
+            // margin: 2em 0 0;
+            display: flex;
+            justify-content: space-between;
+          }
+        }
+
+        // @include e('chart') {
+        //   @include e('filter') {
+        //     @include e('form') {
+        //       @include e('input') {
+        //         width: 12em;
+        //         background: #fff;
+        //         color: $font-color;
+        //         font-family: $font-body;
+        //         font-size: 0.8em;
+        //         border: 1px solid $table-border-color;
+        //         border-radius: 5px;
+        //         outline: 0;
+        //         padding: 1em 2em;
+        //         margin-right: 1em;
+        //         margin-top: 1em;
+        //       }
+        //       @include e('btn') {
+        //         border: 0;
+        //         outline: 0;
+        //         padding: 0;
+        //         color: #fff;
+        //         border-radius: 5px;
+        //         padding: 1em 2em;
+        //         margin-top: 1em;
+        //         font-family: $font-body;
+        //         font-size: 0.8em;
+        //         transition: all 200ms ease;
+        //         cursor: pointer;
+        //         &::first-letter {
+        //           text-transform: capitalize;
+        //         }
+        //         @include m('primary') {
+        //           background: $main-color;
+        //           box-shadow: 1px 1px 2px 0 rgba(0, 163, 175, 0.5);
+        //           &:hover {
+        //             background: darken($main-color, 5%);
+        //           }
+        //           &:active {
+        //             background: $main-color;
+        //             box-shadow: 1px 1px 5px 0 rgba(0, 163, 175, 0.3);
+        //           }
+        //           i {
+        //             margin: 0 0.3em;
+        //           }
+        //         }
+        //       }
+        //     }
+        //   }
+        //   @include e('row') {
+        //     margin: 2em 0 1em;
+        //     .lineChart {
+        //       width: 100%;
+        //       margin-right: 0;
+        //     }
+        //     .pieChart {
+        //       width: 50%;
+        //       margin: auto;
+        //     }
+        //   }
+        // }
+      }
+    }
+    // @include e('table') {
+    //   margin: 0 0 3em;
+    // }
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 599px) {
+  html {
+    font-size: $font-size-375 !important;
+  }
+
+  // .member-details__sidebar {
+  //   width: 0%;
+  //   .sidebar {
+  //     position: fixed;
+  //     width: 0%;
+  //   }
+  // }
+
+  .member-details__body {
+    width: 90%;
+    margin: 0 5%;
+  }
+
+  // .member-details__body__numbers {
+  //   grid-template-columns: auto;
+  //   column-gap: 0em;
+  //   .numberAdmin__inner__info {
+  //     .numberAdmin__inner__info__quantity {
+  //       float: right;
+  //     }
+  //   }
+  // }
+
+  .member-details__body__card__content__member__info {
+    .memberInfo {
+      flex-direction: column;
+      .memberInfo__left {
+        width: 100%;
+        margin-right: 0%;
+      }
+      .memberInfo__right {
+        width: 100%;
+      }
+      .memberInfo__right__content__row {
+        padding: 0.5em 1em 1.5em;
       }
     }
   }
-  
-  /* Extra small devices (phones, 600px and down) */
-  @media only screen and (max-width: 599px) {
-    html {
-      font-size: $font-size-375 !important;
-    }
-  
-    .memberDetails__sidebar {
-      width: 0%;
-      .sidebar {
-        position: fixed;
-        width: 0%;
+
+  // .member-details__body__card__content__chart__row {
+  //   .pieChart {
+  //     width: 100%;
+  //   }
+  // }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  html {
+    font-size: $font-size-600 !important;
+  }
+
+  // .member-details__sidebar {
+  //   width: 0%;
+  //   .sidebar {
+  //     position: fixed;
+  //     width: 0%;
+  //   }
+  // }
+
+  .member-details__body {
+    width: 90%;
+    margin: 0 5%;
+  }
+
+  // .member-details__body__numbers {
+  //   grid-template-columns: repeat(2, 1fr);
+  //   column-gap: 1em;
+  //   .numberAdmin__inner__info {
+  //     .numberAdmin__inner__info__quantity {
+  //       float: right;
+  //     }
+  //   }
+  // }
+
+  .member-details__body__card__content__member__info {
+    .memberInfo {
+      flex-direction: column;
+      .memberInfo__left {
+        width: 100%;
+        margin-right: 0%;
       }
-    }
-  
-    .memberDetails__body {
-      width: 90%;
-      margin: 0 5%;
-    }
-  
-    .memberDetails__body__numbers {
-      grid-template-columns: auto;
-      column-gap: 0em;
-      .numberAdmin__inner__info {
-        .numberAdmin__inner__info__quantity {
-          float: right;
-        }
-      }
-    }
-  
-    .memberDetails__body__card__content__member__info {
-      .memberInfo {
-        flex-direction: column;
-        .memberInfo__left {
-          width: 100%;
-          margin-right: 0%;
-        }
-        .memberInfo__right {
-          width: 100%;
-        }
+      .memberInfo__right {
+        width: 100%;
         .memberInfo__right__content__row {
-          padding: 0.5em 1em 1.5em;
+          padding: 0.5em 2em 1.5em;
         }
-      }
-    }
-  
-    .memberDetails__body__card__content__chart__row {
-      .pieChart {
-        width: 100%;
       }
     }
   }
-  
-  /* Small devices (portrait tablets and large phones, 600px and up) */
-  @media only screen and (min-width: 600px) {
-    html {
-      font-size: $font-size-600 !important;
-    }
-  
-    .memberDetails__sidebar {
-      width: 0%;
-      .sidebar {
-        position: fixed;
-        width: 0%;
+
+  // .member-details__body__card__content__chart__row {
+  //   .pieChart {
+  //     width: 100%;
+  //   }
+  // }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  html {
+    font-size: $font-size-768 !important;
+  }
+
+  // .member-details__sidebar {
+  //   width: 0%;
+  //   .sidebar {
+  //     position: fixed;
+  //     width: 0%;
+  //   }
+  // }
+
+  .member-details__body {
+    width: 90%;
+    margin: 0 5%;
+  }
+
+  // .member-details__body__numbers {
+  //   grid-template-columns: repeat(2, 1fr);
+  //   column-gap: 2em;
+  //   .numberAdmin__inner__info {
+  //     .numberAdmin__inner__info__quantity {
+  //       float: right;
+  //     }
+  //   }
+  // }
+
+  .member-details__body__card__content__member__info {
+    .memberInfo {
+      flex-direction: row;
+      .memberInfo__left {
+        width: 39%;
+        margin-right: 1%;
       }
-    }
-  
-    .memberDetails__body {
-      width: 90%;
-      margin: 0 5%;
-    }
-  
-    .memberDetails__body__numbers {
-      grid-template-columns: repeat(2, 1fr);
-      column-gap: 1em;
-      .numberAdmin__inner__info {
-        .numberAdmin__inner__info__quantity {
-          float: right;
+      .memberInfo__right {
+        width: 60%;
+        .memberInfo__right__content__row {
+          padding: 0.5em 1.2em 1.5em;
         }
-      }
-    }
-  
-    .memberDetails__body__card__content__member__info {
-      .memberInfo {
-        flex-direction: column;
-        .memberInfo__left {
-          width: 100%;
-          margin-right: 0%;
-        }
-        .memberInfo__right {
-          width: 100%;
-          .memberInfo__right__content__row {
-            padding: 0.5em 2em 1.5em;
-          }
-        }
-      }
-    }
-  
-    .memberDetails__body__card__content__chart__row {
-      .pieChart {
-        width: 100%;
       }
     }
   }
-  
-  /* Medium devices (landscape tablets, 768px and up) */
-  @media only screen and (min-width: 768px) {
-    html {
-      font-size: $font-size-768 !important;
-    }
-  
-    .memberDetails__sidebar {
-      width: 0%;
-      .sidebar {
-        position: fixed;
-        width: 0%;
+
+  // .member-details__body__card__content__chart__row {
+  //   .pieChart {
+  //     width: 50%;
+  //   }
+  // }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  html {
+    font-size: $font-size-992 !important;
+  }
+
+  // .member-details__sidebar {
+  //   width: 20%;
+  //   .sidebar {
+  //     position: fixed;
+  //     width: 20%;
+  //   }
+  // }
+
+  .member-details__body {
+    width: 100%;
+    margin: 0 1%;
+  }
+
+  // .member-details__body__numbers {
+  //   grid-template-columns: repeat(4, 1fr);
+  //   column-gap: 0.5em;
+  //   .numberAdmin__inner__icon {
+  //     margin-right: 0.5em;
+  //   }
+  //   .numberAdmin__inner__info {
+  //     margin-right: 0.5em;
+  //     .numberAdmin__inner__info__quantity {
+  //       float: none;
+  //     }
+  //   }
+  // }
+
+  .member-details__body__card__content__member__info {
+    .memberInfo {
+      flex-direction: row;
+      .memberInfo__left {
+        width: 39%;
+        margin-right: 1%;
       }
-    }
-  
-    .memberDetails__body {
-      width: 90%;
-      margin: 0 5%;
-    }
-  
-    .memberDetails__body__numbers {
-      grid-template-columns: repeat(2, 1fr);
-      column-gap: 2em;
-      .numberAdmin__inner__info {
-        .numberAdmin__inner__info__quantity {
-          float: right;
+      .memberInfo__right {
+        width: 60%;
+        .memberInfo__right__content__row {
+          padding: 0.5em 1.2em 1.5em;
         }
-      }
-    }
-  
-    .memberDetails__body__card__content__member__info {
-      .memberInfo {
-        flex-direction: row;
-        .memberInfo__left {
-          width: 39%;
-          margin-right: 1%;
-        }
-        .memberInfo__right {
-          width: 60%;
-          .memberInfo__right__content__row {
-            padding: 0.5em 1.2em 1.5em;
-          }
-        }
-      }
-    }
-  
-    .memberDetails__body__card__content__chart__row {
-      .pieChart {
-        width: 50%;
       }
     }
   }
-  
-  /* Large devices (laptops/desktops, 992px and up) */
-  @media only screen and (min-width: 992px) {
-    html {
-      font-size: $font-size-992 !important;
-    }
-  
-    .memberDetails__sidebar {
-      width: 20%;
-      .sidebar {
-        position: fixed;
-        width: 20%;
+
+  // .member-details__body__card__content__chart__row {
+  //   .pieChart {
+  //     width: 50%;
+  //   }
+  // }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  html {
+    font-size: $font-size-1200 !important;
+  }
+
+  // .member-details__sidebar {
+  //   width: 20%;
+  //   .sidebar {
+  //     position: fixed;
+  //     width: 20%;
+  //   }
+  // }
+
+  .member-details__body {
+    width: 100%;
+    margin: 0 1%;
+  }
+
+  // .member-details__body__numbers {
+  //   grid-template-columns: repeat(4, 1fr);
+  //   column-gap: 1em;
+  //   .numberAdmin__inner__info {
+  //     .numberAdmin__inner__info__quantity {
+  //       float: none;
+  //     }
+  //   }
+  // }
+
+  .member-details__body__card__content__member__info {
+    .memberInfo {
+      flex-direction: row;
+      .memberInfo__left {
+        width: 39%;
+        margin-right: 1%;
       }
-    }
-  
-    .memberDetails__body {
-      width: 100%;
-      margin: 0 1%;
-    }
-  
-    .memberDetails__body__numbers {
-      grid-template-columns:  repeat(4, 1fr);
-      column-gap: 0.5em;
-      .numberAdmin__inner__icon {
-        margin-right: 0.5em;
-      }
-      .numberAdmin__inner__info {
-        margin-right: 0.5em;
-        .numberAdmin__inner__info__quantity {
-          float: none;
+      .memberInfo__right {
+        width: 60%;
+        .memberInfo__right__content__row {
+          padding: 0.5em 1.2em 1.5em;
         }
-      }
-    }
-  
-    .memberDetails__body__card__content__member__info {
-      .memberInfo {
-        flex-direction: row;
-        .memberInfo__left {
-          width: 39%;
-          margin-right: 1%;
-        }
-        .memberInfo__right {
-          width: 60%;
-          .memberInfo__right__content__row {
-            padding: 0.5em 1.2em 1.5em;
-          }
-        }
-      }
-    }
-  
-    .memberDetails__body__card__content__chart__row {
-      .pieChart {
-        width: 50%;
       }
     }
   }
-  
-  /* Extra large devices (large laptops and desktops, 1200px and up) */
-  @media only screen and (min-width: 1200px) {
-    html {
-      font-size: $font-size-1200 !important;
-    }
-  
-    .memberDetails__sidebar {
-      width: 20%;
-      .sidebar {
-        position: fixed;
-        width: 20%;
-      }
-    }
-  
-    .memberDetails__body {
-      width: 100%;
-      margin: 0 1%;
-    }
-  
-    .memberDetails__body__numbers {
-      grid-template-columns:  repeat(4, 1fr);
-      column-gap: 1em;
-      .numberAdmin__inner__info {
-        .numberAdmin__inner__info__quantity {
-          float: none;
-        }
-      }
-    }
-  
-    .memberDetails__body__card__content__member__info {
-      .memberInfo {
-        flex-direction: row;
-        .memberInfo__left {
-          width: 39%;
-          margin-right: 1%;
-        }
-        .memberInfo__right {
-          width: 60%;
-          .memberInfo__right__content__row {
-            padding: 0.5em 1.2em 1.5em;
-          }
-        }
-      }
-    }
-  
-    .memberDetails__body__card__content__chart__row {
-      .pieChart {
-        width: 30%;
-      }
-    }
-  }
-  
+
+  // .member-details__body__card__content__chart__row {
+  //   .pieChart {
+  //     width: 30%;
+  //   }
+  // }
+}

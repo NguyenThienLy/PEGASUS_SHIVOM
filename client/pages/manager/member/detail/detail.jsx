@@ -105,21 +105,21 @@ export class DetailMember extends React.Component {
     componentDidMount() {
         this.fetchData();
 
-        var heightOfHeader = $(
-            ".memberDetails .memberDetails__header .headerAdmin__wrapper"
-        ).height();
-        $(".memberDetails .memberDetails__body").css(
-            "margin-top",
-            heightOfHeader + "px"
-        );
+        // var heightOfHeader = $(
+        //     ".member-details .member-details__header .headerAdmin__wrapper"
+        // ).height();
+        // $(".member-details .member-details__body").css(
+        //     "margin-top",
+        //     heightOfHeader + "px"
+        // );
 
-        $(
-            ".memberDetails__body__card__content__chart__filter__form__input"
-        ).datetimepicker({
-            format: "d/m/Y",
-            timepicker: false,
-            mask: false
-        });
+        // $(
+        //     ".member-details__body__card__content__chart__filter__form__input"
+        // ).datetimepicker({
+        //     format: "d/m/Y",
+        //     timepicker: false,
+        //     mask: false
+        // });
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -284,7 +284,7 @@ export class DetailMember extends React.Component {
     render() {
         return (
 
-            <div className="memberDetails">
+            <div className="member-details">
                 <ExtendTimeCourse
                     show={this.state.modals.extendTimeCourse}
                     hideModal={() => {
@@ -315,15 +315,14 @@ export class DetailMember extends React.Component {
                     selectedCourseStudent={this.state.selectedCourseStudent}
                     {...this.props}
                 />
-                <div className="memberDetails__body">
-
-                    <div className="memberDetails__body__card">
-                        <div className="memberDetails__body__card__title">
+                <div className="member-details__body">
+                    <div className="member-details__body__card">
+                        <div className="member-details__body__card__title">
                             Thông tin học viên
-                    </div>
-                        <div className="memberDetails__body__card__content">
-                            <div className="memberDetails__body__card__content__member">
-                                <div className="memberDetails__body__card__content__member__info">
+                        </div>
+                        <div className="member-details__body__card__content">
+                            <div className="member-details__body__card__content__member">
+                                <div className="member-details__body__card__content__member__info">
                                     <MemberInfo
                                         memberInfo={this.state.student.data}
                                         isFetchingMemberInfo={this.state.student.isFetching}
@@ -336,8 +335,6 @@ export class DetailMember extends React.Component {
                                         relearnCourse={this.showRelearnCourse}
                                         regisNewCourse={() => { return this.showHideModal("regisNewCourse") }}
                                         isEmptyCourseOfStudent={this.state.courseOfStudent.isEmpty}>
-
-
                                     </MemberInfo>
                                 </div>
                             </div>

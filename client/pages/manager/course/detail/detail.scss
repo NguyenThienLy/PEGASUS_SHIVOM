@@ -10,9 +10,6 @@ body {
   flex-direction: row;
   //height: 100vh;
 
-  @include e('header') {
-  }
-
   @include e('body') {
     min-height: 100%;
     width: 100%;
@@ -64,6 +61,7 @@ body {
       -webkit-box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
       box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
       position: relative;
+
       @include e('title') {
         width: 10em;
         position: absolute;
@@ -77,6 +75,7 @@ body {
         -webkit-box-shadow: 1px 1px 5px rgba(0, 163, 175, 0.5);
         box-shadow: 1px 1px 5px rgba(0, 163, 175, 0.5);
       }
+
       @include e('content') {
         // padding: 3em 0;
         @include e('course') {

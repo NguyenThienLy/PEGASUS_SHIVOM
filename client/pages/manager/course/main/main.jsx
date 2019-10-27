@@ -93,20 +93,20 @@ export class MainCourse extends React.Component {
               <table>
                 <thead>
                   <tr>
-                    <th>Thứ tự</th>
+                    <th style={{ width: '5%' }}>Thứ tự</th>
                     <th style={{ width: '15%' }}>Ảnh</th>
                     <th>Tên</th>
                     <th>Sĩ số</th>
                     <th style={{ width: '30%' }}>Mô tả ngắn</th>
                     <th>Trạng thái</th>
-                    <th>Thao tác</th>
+                    <th>Tác vụ</th>
                   </tr>
                 </thead>
                 <tbody>
                   {(courses || []).map((item, index) => {
                     return (
                       <tr key={item.id}>
-                        <td>{index + 1}</td>
+                        <td style={{ width: '5%' }}>{index + 1}</td>
                         <td style={{ width: '15%' }}>
                           <img
                             alt=""

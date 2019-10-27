@@ -49,7 +49,7 @@ export class CourseInfo extends React.Component {
     return (
       <div className="course-info">
         {isFetchingCourseInfo && <Loading />}
-        {isEmptyCourseInfo && !isFetchingCourseInfo && 'Dữ liệu trống'}
+        {!isFetchingCourseInfo && isEmptyCourseInfo && 'Dữ liệu trống'}
         {!isFetchingCourseInfo && !isEmptyCourseInfo && (
           <>
             <div className="course-info__title">{courseInfo.name}</div>
@@ -175,44 +175,45 @@ export class CourseInfo extends React.Component {
 
         <div className="course-info__promo-packages">
           {isFetchingPackage && <Loading />}
-          {isEmptyPackage && !isFetchingPackage && 'Dữ liệu trống'}
+          {!isFetchingPackage && isEmptyPackage && 'Dữ liệu trống'}
           {!isFetchingPackage &&
             !isEmptyPackage &&
             packageOfCourse.map((packageCourse, index) => {
               return (
-                <div key={index}>
-                  <div className="course-info__promo-packages__package">
-                    <div className="course-info__promo-packages__package__title">
-                      <span></span>
-                      <div className="course-info__promo-packages__package__title__name">
-                        {packageCourse.name}
-                      </div>
-                      <Tooltip
-                        title="Xóa gói khuyến mãi"
-                        position="top"
-                        className="course-info__button"
+                <div
+                  key={index}
+                  className="course-info__promo-packages__package"
+                >
+                  <div className="course-info__promo-packages__package__title">
+                    <span></span>
+                    <div className="course-info__promo-packages__package__title__name">
+                      {packageCourse.name}
+                    </div>
+                    <Tooltip
+                      title="Xóa gói khuyến mãi"
+                      position="top"
+                      className="course-info__button"
+                    >
+                      <span
+                        onClick={() =>
+                          this.deletePackageOfCourse(packageCourse._id)
+                        }
                       >
-                        <span
-                          onClick={() =>
-                            this.deletePackageOfCourse(packageCourse._id)
-                          }
-                        >
-                          <i class="fas fa-times"></i>
-                        </span>
-                      </Tooltip>
-                    </div>
+                        <i class="fas fa-times"></i>
+                      </span>
+                    </Tooltip>
+                  </div>
 
-                    <div className="course-info__promo-packages__package__info">
-                      <div className="course-info__promo-packages__package__info__no-of-month">
-                        Kéo dài&nbsp;{packageCourse.monthAmount}&nbsp;tháng
-                      </div>
-                      <span className="course-info__promo-packages__package__info__original-price">
-                        {packageCourse.priceBeforeDiscount}đ
-                      </span>
-                      <span className="course-info__promo-packages__package__info__promo-price">
-                        &emsp;{packageCourse.price}đ
-                      </span>
+                  <div className="course-info__promo-packages__package__info">
+                    <div className="course-info__promo-packages__package__info__no-of-month">
+                      Kéo dài&nbsp;{packageCourse.monthAmount}&nbsp;tháng
                     </div>
+                    <span className="course-info__promo-packages__package__info__original-price">
+                      {packageCourse.priceBeforeDiscount}đ
+                    </span>
+                    <span className="course-info__promo-packages__package__info__promo-price">
+                      &emsp;{packageCourse.price}đ
+                    </span>
                   </div>
                 </div>
               );
@@ -233,7 +234,7 @@ export class CourseInfo extends React.Component {
         </div>
 
         {isFetchingTimeTable && <Loading />}
-        {isEmptyTimeTable && !isFetchingTimeTable && 'Dữ liệu trống'}
+        {!isFetchingTimeTable && isEmptyTimeTable && 'Dữ liệu trống'}
         {!isFetchingTimeTable &&
           !isEmptyTimeTable &&
           timeTableOfCourse.map((classData, index) => {
@@ -268,70 +269,68 @@ export class CourseInfo extends React.Component {
               }
             };
             return (
-              <>
-                <div key={index} className="course-info__class">
-                  <div className="course-info__class__title">
-                    <span></span>
-                    <div className="course-info__hover-title">
-                      <div>{classData.class.name}</div>
-                      <div className="course-info__hover-title--hover" />
-                    </div>
-                    <Tooltip
-                      title="Tạm thời xoá lớp học"
-                      position="top"
-                      className="course-info__button"
+              <div key={index} className="course-info__class">
+                <div className="course-info__class__title">
+                  <span></span>
+                  <div className="course-info__hover-title">
+                    <div>{classData.class.name}</div>
+                    <div className="course-info__hover-title--hover" />
+                  </div>
+                  <Tooltip
+                    title="Tạm thời xoá lớp học"
+                    position="top"
+                    className="course-info__button"
+                  >
+                    <span
+                      onClick={() => this.deactiveClass(classData.class._id)}
                     >
-                      <span
-                        onClick={() => this.deactiveClass(classData.class._id)}
-                      >
-                        <i class="fas fa-times"></i>
-                      </span>
-                    </Tooltip>
-                  </div>
+                      <i class="fas fa-times"></i>
+                    </span>
+                  </Tooltip>
+                </div>
 
-                  <div className="course-info__class__trainer">
-                    {classData.class.teacher.firstName}&nbsp;
-                    {classData.class.teacher.lastName}
-                  </div>
+                <div className="course-info__class__trainer">
+                  {classData.class.teacher.firstName}&nbsp;
+                  {classData.class.teacher.lastName}
+                </div>
 
-                  <div className="course-info__class__time-table">
-                    {classData.items
-                      .sort(function(a, b) {
-                        return (
-                          sorter[a.dayOfWeek].value - sorter[b.dayOfWeek].value
-                        );
-                      })
-                      .map((timeTableItem, index) => {
-                        return (
-                          <div
-                            key={index}
-                            className="course-info__class__time-table__event"
-                          >
-                            <div className="course-info__class__time-table__event__weekday">
-                              {sorter[timeTableItem.dayOfWeek].text}
+                <div className="course-info__class__time-table">
+                  {classData.items
+                    .sort(function(a, b) {
+                      return (
+                        sorter[a.dayOfWeek].value - sorter[b.dayOfWeek].value
+                      );
+                    })
+                    .map((timeTableItem, index) => {
+                      return (
+                        <div
+                          key={index}
+                          className="course-info__class__time-table__event"
+                        >
+                          <div className="course-info__class__time-table__event__weekday">
+                            {sorter[timeTableItem.dayOfWeek].text}
+                          </div>
+
+                          <div className="course-info__class__time-table__event__class-info">
+                            <div className="course-info__class__time-table__event__class-info__class-name">
+                              {timeTableItem.topic}
                             </div>
-
-                            <div className="course-info__class__time-table__event__class-info">
-                              <div className="course-info__class__time-table__event__class-info__class-name">
-                                {timeTableItem.topic}
-                              </div>
-                              <div className="course-info__class__time-table__event__class-info__class-time">
-                                {timeTableItem.startTime.hour}:
-                                {timeTableItem.startTime.minute === 0
-                                  ? '00'
-                                  : timeTableItem.startTime.minute}
-                                &nbsp;-&nbsp;{timeTableItem.endTime.hour}:
-                                {timeTableItem.endTime.minute === 0
-                                  ? '00'
-                                  : timeTableItem.endTime.minute}
-                              </div>
+                            <div className="course-info__class__time-table__event__class-info__class-time">
+                              {timeTableItem.startTime.hour}:
+                              {timeTableItem.startTime.minute === 0
+                                ? '00'
+                                : timeTableItem.startTime.minute}
+                              &nbsp;-&nbsp;{timeTableItem.endTime.hour}:
+                              {timeTableItem.endTime.minute === 0
+                                ? '00'
+                                : timeTableItem.endTime.minute}
                             </div>
                           </div>
-                        );
-                      })}
-                  </div>
+                        </div>
+                      );
+                    })}
                 </div>
-              </>
+              </div>
             );
           })}
       </div>
