@@ -388,7 +388,7 @@ class Home extends React.Component {
         query: {
           limit: 0,
           filter: {
-            status: "active"
+            status: 'active'
           }
         }
       });
@@ -398,7 +398,7 @@ class Home extends React.Component {
         query: {
           filter: {
             isPin: true,
-            status: "active"
+            status: 'active'
           },
           populates: [{ path: 'category', select: 'name slug' }]
         }
@@ -499,7 +499,7 @@ class Home extends React.Component {
     $(window).on('load', () => {
       this.setState({ windowSize: $(window).outerWidth() });
 
-      $('.home__body__intro-slick-autoplay').on('init', function (event, slick) {
+      $('.home__body__intro-slick-autoplay').on('init', function(event, slick) {
         $('.home__body__intro-slick-autoplay').css({
           opacity: '1',
           visibility: 'visible' // visible when loaded
@@ -527,7 +527,7 @@ class Home extends React.Component {
         ]
       });
 
-      $('.home__body__intro-slick-autoplay').on('beforeChange', function (
+      $('.home__body__intro-slick-autoplay').on('beforeChange', function(
         event,
         slick,
         currentSlide,
@@ -538,7 +538,7 @@ class Home extends React.Component {
         );
         $('.home__body__intro-slick-autoplay .slick-dots li button')
           .attr('aria-pressed', 'false')
-          .focus(function () {
+          .focus(function() {
             this.blur();
           });
       });
@@ -564,7 +564,7 @@ class Home extends React.Component {
           <meta name="title" content="Trang chủ" />
           <meta
             name="description"
-            content="Hiệp Hoà Yoga nơi yoga chính thống được hội tụ cùng đội ngũ giáo viên tâm huyết"
+            content="Hiệp Hoà Yoga - nơi yoga chính thống được hội tụ cùng đội ngũ giáo viên tâm huyết"
           />
           <meta
             name="viewport"
@@ -609,10 +609,10 @@ class Home extends React.Component {
                 </div>
               ]
             ) : (
-                <div className="home__body__slider" style={{ height: '50vh' }}>
-                  <Loading />
-                </div>
-              )}
+              <div className="home__body__slider" style={{ height: '50vh' }}>
+                <Loading />
+              </div>
+            )}
 
             {/* <div className="home__body__intro">
               {this.state.introHome.map((intro, index) => {
@@ -643,13 +643,13 @@ class Home extends React.Component {
               <div className="home__body__trainingClass__content">
                 {this.props.courses.fetching === false
                   ? this.props.courses.items.map((trainingClass, index) => {
-                    return (
-                      <TrainingClass
-                        trainingClass={trainingClass}
-                        key={index}
-                      />
-                    );
-                  })
+                      return (
+                        <TrainingClass
+                          trainingClass={trainingClass}
+                          key={index}
+                        />
+                      );
+                    })
                   : null}
                 {/* {this.state.trainingClasses.map(trainingClass => {
                   return <TrainingClass trainingClass={trainingClass} />;
@@ -738,8 +738,8 @@ class Home extends React.Component {
               <div className="home__body__trainers__list">
                 {this.props.teachers.fetching === false
                   ? this.props.teachers.items.map((trainer, index) => {
-                    return <Trainer trainer={trainer} key={index} />;
-                  })
+                      return <Trainer trainer={trainer} key={index} />;
+                    })
                   : null}
                 {/* {this.state.trainers.map(trainer => {
                   return <Trainer trainer={trainer} />;

@@ -87,7 +87,7 @@ export class MainClass extends React.Component {
     api.class
       .changeStatus(classId, status, {
         headers: {
-          'x-token': localStorage.getItem("token")
+          'x-token': localStorage.getItem('token')
         }
       })
       .then(res => {
@@ -112,13 +112,13 @@ export class MainClass extends React.Component {
     // const classes = this.props.classes.items.slice(this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10, 10 * this.state.currentPage)
     const classes = this.state.classes
       ? this.state.classes.slice(
-        this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10,
-        10 * this.state.currentPage
-      )
+          this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10,
+          10 * this.state.currentPage
+        )
       : (this.props.classes.items || []).slice(
-        this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10,
-        10 * this.state.currentPage
-      );
+          this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10,
+          10 * this.state.currentPage
+        );
     return (
       <React.Fragment>
         <div className="class-main">
@@ -139,21 +139,23 @@ export class MainClass extends React.Component {
               <table>
                 <thead>
                   <tr>
-                    <th>Thứ tự</th>
+                    <th style={{ width: '5%' }}>Thứ tự</th>
                     <th>Tên</th>
                     <th style={{ width: '30%' }}>Mô tả ngắn</th>
                     <th>Trạng thái</th>
-                    <th>Thao tác</th>
+                    <th>Tác vụ</th>
                   </tr>
                 </thead>
                 <tbody>
                   {(classes || []).map((item, index) => {
                     return (
                       <tr key={item.id}>
-                        <td>{index + 1}</td>
+                        <td style={{ width: '5%' }}>{index + 1}</td>
                         <td style={{ 'text-align': 'left' }}>{item.name}</td>
                         <td style={{ 'text-align': 'left', width: '30%' }}>
-                          {item.shortDescription.length > 100 ? item.shortDescription.slice(0, 100) + "..." : item.shortDescription}
+                          {item.shortDescription.length > 100
+                            ? item.shortDescription.slice(0, 100) + '...'
+                            : item.shortDescription}
                         </td>
                         <td>
                           {item.status === 'active'
@@ -188,20 +190,20 @@ export class MainClass extends React.Component {
                                 </span>
                               </Tooltip>
                             ) : (
-                                <Tooltip
-                                  title="Tắt hoạt động"
-                                  position="top"
-                                  className="action-td__item"
+                              <Tooltip
+                                title="Tắt hoạt động"
+                                position="top"
+                                className="action-td__item"
+                              >
+                                <span
+                                  onClick={() =>
+                                    this.changeStatus(item._id, 'deactive')
+                                  }
                                 >
-                                  <span
-                                    onClick={() =>
-                                      this.changeStatus(item._id, 'deactive')
-                                    }
-                                  >
-                                    <i class="fas fa-toggle-off"></i>
-                                  </span>
-                                </Tooltip>
-                              )}
+                                  <i class="fas fa-toggle-off"></i>
+                                </span>
+                              </Tooltip>
+                            )}
 
                             {/* < Tooltip
                                                         title="Xoá"
@@ -227,13 +229,13 @@ export class MainClass extends React.Component {
                   changePage={this.changePage}
                 />
               ) : (
-                  <Pagination
-                    currentPage={this.state.currentPage}
-                    total={this.props.classes.items.length}
-                    limit={10}
-                    changePage={this.changePage}
-                  />
-                )}
+                <Pagination
+                  currentPage={this.state.currentPage}
+                  total={this.props.classes.items.length}
+                  limit={10}
+                  changePage={this.changePage}
+                />
+              )}
             </div>
           </div>
         </div>

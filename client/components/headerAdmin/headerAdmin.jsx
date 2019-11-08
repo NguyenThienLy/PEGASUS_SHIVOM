@@ -127,13 +127,14 @@ export class HeaderAdmin extends React.Component {
         localStorage.removeItem('_id');
         Router.push('/dang-nhap/admin');
         break;
+      default:
     }
   }
   test() {
     console.log('vãi');
   }
   render() {
-    const { headerAdmin, sidebar, logo } = this.props;
+    const { headerAdmin } = this.props;
     return (
       <div className="headerAdmin">
         {/* <Sidebar sidebar={sidebar} logo={logo}></Sidebar> */}

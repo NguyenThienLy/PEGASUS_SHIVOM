@@ -67,7 +67,7 @@ export class AddMember extends React.Component {
     $('.addMember .addMember__body').css('margin-top', heightOfHeader + 'px');
   }
 
-  canOpenPage = function () {
+  canOpenPage = function() {
     const curPageNumber = this.state.curPageNumber;
     const pages = this.state.pages;
 
@@ -79,12 +79,12 @@ export class AddMember extends React.Component {
     return true;
   };
 
-  openPage = function (nextPageNumber) {
+  openPage = function(nextPageNumber) {
     // update curPageNumber
     this.setState({ curPageNumber: nextPageNumber });
   };
 
-  handleClickPrevious = function () {
+  handleClickPrevious = function() {
     const curPageNumber = this.state.curPageNumber;
     const nextPageNumber = curPageNumber - 1;
     if (nextPageNumber > 0) {
@@ -92,7 +92,7 @@ export class AddMember extends React.Component {
     }
   };
 
-  handleClickNext = function () {
+  handleClickNext = function() {
     const curPageNumber = this.state.curPageNumber;
     const pages = this.state.pages;
 
@@ -107,7 +107,7 @@ export class AddMember extends React.Component {
     }
   };
 
-  handleIsValid = function (pageNumber, isValid) {
+  handleIsValid = function(pageNumber, isValid) {
     const pages = this.state.pages;
     pages[pageNumber - 1].isValid = isValid;
     this.setState({ pages: pages });
@@ -116,15 +116,15 @@ export class AddMember extends React.Component {
   static async getInitialProps({ req, query }) {
     return {};
   }
-  fetchData() { }
+  fetchData() {}
 
   shouldComponentUpdate() {
     return true;
   }
 
-  componentDidUpdate(prevProps, prevState) { }
+  componentDidUpdate(prevProps, prevState) {}
   handleChange = (step, key, value) => {
-    const formData = this.state.formData
+    const formData = this.state.formData;
     // if (step === 'personalInfo') {
     //   this.state.formData[step][key] = value;
     // }
@@ -135,7 +135,7 @@ export class AddMember extends React.Component {
     this.setState({ formData: formData });
   };
   handleSelectCoursePackage = (courseId, packageId) => {
-    const formData = this.state.formData
+    const formData = this.state.formData;
     const courseIndex = formData.courses.findIndex(course => {
       return courseId === course._id;
     });
@@ -163,7 +163,9 @@ export class AddMember extends React.Component {
         };
       }
     }
-    this.setState(() => { formData: formData });
+    this.setState(() => {
+      formData;
+    });
 
     // const courseIndex = this.state.formData.courses.findIndex(cåourse => {
     //   return courseId === course._id;
@@ -255,8 +257,9 @@ export class AddMember extends React.Component {
       this.state.formData.personalInfo.avatar = imageLink;
     }
     this.state.formData.personalInfo.birthday = moment(
-      this.state.formData.personalInfo.birthday
-      , "DD/MM/YYYY").format();
+      this.state.formData.personalInfo.birthday,
+      'DD/MM/YYYY'
+    ).format();
     api.student
       .enroll(this.state.formData, {
         headers: {
@@ -268,12 +271,10 @@ export class AddMember extends React.Component {
         await Swal.fire('Thành công', 'Thêm học viên thành công', 'success');
         try {
           this.props.dispatch({
-            type: "ADD_STUDENT_SUCCESS",
+            type: 'ADD_STUDENT_SUCCESS',
             payload: res.result.object
-          })
-        } catch (err) {
-
-        }
+          });
+        } catch (err) {}
         Router.push(
           `/manager/member/member?studentId=${res.result.object._id}`,
           `/quan-ly/hoc-vien/chi-tiet/${res.result.object._id}`
@@ -365,10 +366,11 @@ export class AddMember extends React.Component {
                   data={this.state.formData}
                   courses={this.props.courses.items}
                   handleCheckIsPayFee={() => {
-                    this.state.formData.isPayFee = !this.state.formData.isPayFee
+                    this.state.formData.isPayFee = !this.state.formData
+                      .isPayFee;
                     this.setState({
                       formData: this.state.formData
-                    })
+                    });
                   }}
                 />
               </div>
@@ -376,21 +378,20 @@ export class AddMember extends React.Component {
             <div className="addMember__body__card__buttons">
               {this.state.curPageNumber === 1 ? (
                 <button
-                  disabled="true"
+                  disabled
                   className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-previous"
                   onClick={this.handleClickPrevious}
                 >
                   <i className="fas fa-chevron-left"></i>Quay lại
                 </button>
               ) : (
-                  <button
-                    disabled="false"
-                    className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-previous"
-                    onClick={this.handleClickPrevious}
-                  >
-                    <i className="fas fa-chevron-left"></i>Quay lại
+                <button
+                  className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-previous"
+                  onClick={this.handleClickPrevious}
+                >
+                  <i className="fas fa-chevron-left"></i>Quay lại
                 </button>
-                )}
+              )}
 
               {this.state.curPageNumber === this.state.pages.length ? (
                 <button
@@ -400,14 +401,14 @@ export class AddMember extends React.Component {
                   Xác nhận
                 </button>
               ) : (
-                  <button
-                    className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-next"
-                    onClick={this.handleClickNext}
-                    dangerouslySetInnerHTML={{
-                      __html: 'Tiếp theo<i className="fas fa-chevron-right"></i>'
-                    }}
-                  ></button>
-                )}
+                <button
+                  className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-next"
+                  onClick={this.handleClickNext}
+                  dangerouslySetInnerHTML={{
+                    __html: 'Tiếp theo<i className="fas fa-chevron-right"></i>'
+                  }}
+                ></button>
+              )}
             </div>
           </div>
         </div>

@@ -174,7 +174,7 @@ export class Dashboard extends React.Component {
     this.changeIsFetching(true);
 
     this.fetchDataFollowYear(startTime, endTime);
-  };
+  }
 
   fetchDataFollowYear(startTime, endTime) {
     const token =
@@ -197,7 +197,7 @@ export class Dashboard extends React.Component {
     );
 
     this.props.fetchColumnChart(null, `${startTime}Z`, `${endTime}Z`, token);
-  };
+  }
 
   fetchData() {
     const token =
@@ -247,7 +247,11 @@ export class Dashboard extends React.Component {
         'x-token': token
       }
     });
-  };
+
+    if (!this.props.setting.fetched) {
+      this.props.fetchSetting();
+    }
+  }
 
   updateIgnoreFeedbacks(id, body) {
     this.props.updateIgnoreFeedbacks(id, body);
@@ -267,7 +271,7 @@ export class Dashboard extends React.Component {
 
     newNumberAdmins.isFetching = isFetching;
     newPieChartData.isFetching = isFetching;
-    newColumnChartData.isFetching = isFetching
+    newColumnChartData.isFetching = isFetching;
     newLineChartData.isFetching = isFetching;
 
     this.setState({
@@ -278,9 +282,9 @@ export class Dashboard extends React.Component {
     });
   }
 
-  handleScroll = () => { };
+  handleScroll = () => {};
 
-  componentWillUnmount() { }
+  componentWillUnmount() {}
 
   async componentDidMount() {
     this.checkUserAlreadyLogin();
@@ -405,11 +409,7 @@ export class Dashboard extends React.Component {
         <React.Fragment>
           <div className="background-overlay"></div>
           <div className="dashboard__header">
-            <HeaderAdmin
-              sidebar={this.state.categories}
-              headerAdmin={this.state.headerAdmin}
-              logo={this.props.setting.logo}
-            ></HeaderAdmin>
+            <HeaderAdmin headerAdmin={this.state.headerAdmin}></HeaderAdmin>
           </div>
           <div className="dashboard__sidebar">
             <AdminSidebar logo={this.props.setting.logo} />
@@ -477,10 +477,8 @@ export class Dashboard extends React.Component {
               <FeedbackAdmin
                 feedbackAdmins={this.props.feedbacks.items}
                 staticContent={this.state.feedbackAdmin}
-
                 isFetching={this.props.feedbacks.fetching}
                 isEmpty={this.props.feedbacks.items.length}
-
                 updateIgnoreFeedbacks={this.updateIgnoreFeedbacks}
                 updateConfirmFeedbacks={this.updateConfirmFeedbacks}
               ></FeedbackAdmin>
@@ -489,7 +487,6 @@ export class Dashboard extends React.Component {
               <Activity
                 activities={this.props.students.itemsNewStudents.data}
                 staticContent={this.state.newStudent}
-
                 isFetching={this.props.students.itemsNewStudents.fetching}
                 isEmpty={this.props.students.itemsNewStudents.data.length}
               ></Activity>
@@ -497,7 +494,6 @@ export class Dashboard extends React.Component {
               <Activity
                 activities={this.props.students.itemsTopPoint.data}
                 staticContent={this.state.topPoint}
-
                 isFetching={this.props.students.itemsTopPoint.fetching}
                 isEmpty={this.props.students.itemsTopPoint.data.length}
               ></Activity>
@@ -505,7 +501,6 @@ export class Dashboard extends React.Component {
               <Activity
                 activities={this.props.students.itemsUpcommingBirthday.data}
                 staticContent={this.state.birthday}
-
                 isFetching={this.props.students.itemsUpcommingBirthday.fetching}
                 isEmpty={this.props.students.itemsUpcommingBirthday.data.length}
               ></Activity>
@@ -532,7 +527,8 @@ const mapDispatchToProps = dispatch =>
       fetchTopPoint: action.student.fetchForTopPoint,
       fetchFeedBack: action.feedback.fetch,
       updateIgnoreFeedbacks: action.feedback.updateIgnoreFeedbacks,
-      updateConfirmFeedbacks: action.feedback.updateConfirmFeedbacks
+      updateConfirmFeedbacks: action.feedback.updateConfirmFeedbacks,
+      fetchSetting: action.setting.fetch
     },
     dispatch
   );

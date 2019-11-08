@@ -32,6 +32,16 @@ export class RegisNewCourse extends Component {
     }
 
     componentDidMount() {
+        if (this.props.studentId) {
+            this.setState({
+                isLoading: true
+            })
+            const student = this.props.students.items.find((student) => {
+                return student._id === this.props.studentId
+            })
+            this.setState({ student: student })
+            this.getCourseOfStudent(this.props.studentId)
+        }
     }
 
     closeModal() {
@@ -55,7 +65,6 @@ export class RegisNewCourse extends Component {
         })
     }
     componentWillReceiveProps(nextProps) {
-
         if (nextProps.show && nextProps.studentId !== this.props.studentId) {
             this.setState({
                 isLoading: true
@@ -229,6 +238,7 @@ export class RegisNewCourse extends Component {
                                             type: "number",
                                             label: "Số tháng",
                                             placeholder: "Số tháng học",
+                                            defaultValue: 1,
                                             value: 1,
                                             isValid: true,
                                             errorMessage: "",

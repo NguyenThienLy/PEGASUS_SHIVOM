@@ -8,7 +8,6 @@ body {
 .course-statistics {
   display: flex;
   flex-direction: row;
-  //height: 100vh;
 
   .loading {
     display: flex;
@@ -25,20 +24,9 @@ body {
     }
   }
 
-  // @include e('header') {
-  // }
-
-  // @include e('sidebar') {
-  //   width: 20%;
-  //   .sidebar {
-  //     position: fixed;
-  //     width: 20%;
-  //   }
-  // }
-
   @include e('body') {
     min-height: 100%;
-    width: 78%;
+    width: 98%;
     margin: 0 1%;
 
     // @include e("numbers") {
@@ -88,6 +76,7 @@ body {
       -webkit-box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
       box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
       position: relative;
+
       @include e('title') {
         width: 10em;
         position: absolute;
@@ -103,6 +92,7 @@ body {
       }
       @include e('content') {
         padding: 3em 0;
+
         @include e('course') {
           //width: 100%;
           @include e('filter') {
@@ -122,69 +112,70 @@ body {
               display: flex;
               justify-content: flex-start;
               align-items: center;
+
               .customSelect {
-                margin-right: 0.5em;
-                margin: unset;
+                margin: 1em 0 0;
+                // margin-right: 0.5em;
+                // margin: unset;
                 // width: 100%;
                 @include e('toggle') {
                   top: 0.8em;
                 }
                 @include e('placeholder') {
-                  padding: 0.6em 2em;
+                  padding: 0.65em 2em;
                 }
                 @include e('option') {
                   @include e('title') {
-                    padding: 0.6em 2em;
+                    padding: 0.65em 2em;
                   }
                   input {
                     &:checked ~ span.customSelect__option__title {
-                      padding: 0.6em 2em;
+                      padding: 0.65em 2em;
                     }
                   }
                 }
               }
+
               @include e('input') {
-                  background: #fff;
-                  color: $font-color;
-                  font-family: $font-body;
-                  font-size: 1em;
-                  border: 1px solid $table-border-color;
-                  border-radius: 5px;
+                background: #fff;
+                color: $font-color;
+                font-family: $font-body;
+                font-size: 1em;
+                border: 1px solid $table-border-color;
+                border-radius: 5px;
+                outline: none;
+                padding: 0.5em 1em;
+                margin-right: 0.5em;
+                margin-top: 1em;
+                // width: 90%;
+                &:nth-last-child(1) {
+                  margin-right: 0;
+                }
+                &::-webkit-outer-spin-button,
+                &::-webkit-inner-spin-button {
+                  /* display: none; <- Crashes Chrome on hover */
+                  -webkit-appearance: inner-spin-button;
+                  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+                }
+                &::placeholder {
+                  color: rgba(0, 0, 0, 0.3);
+                  font-size: 0.9em;
+                }
+                &:focus {
                   outline: none;
-                  padding: 0.5em 1em;
-                  margin-right: 0.5em;
-                  // width: 90%;
-                  &:nth-last-child(1) {
-                    margin-right: 0;
-                  }
-                  @include m('date') {
-                    padding: 1em 5%;
-                  }
-                  &::-webkit-outer-spin-button,
-                  &::-webkit-inner-spin-button {
-                    /* display: none; <- Crashes Chrome on hover */
-                    -webkit-appearance: inner-spin-button;
-                    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
-                  }
-                  &::placeholder {
-                    color: rgba(0, 0, 0, 0.3);
-                    font-size: 0.9em;
-                  }
-                  &:focus {
-                    outline: none;
-                    border: 1px solid $main-color;
-                  }
+                  border: 1px solid $main-color;
+                }
               }
+
               @include e('btn') {
-                border: 0;
-                outline: 0;
-                padding: 0;
+                border: none;
+                outline: none;
                 color: #fff;
                 border-radius: 5px;
                 padding: 0.8em 2em;
-                // margin-top: 1em;
+                margin-top: 1em;
                 font-family: $font-body;
-                font-size: 0.8em;
+                font-size: 0.85em;
                 transition: all 200ms ease;
                 cursor: pointer;
                 &::first-letter {
@@ -207,16 +198,20 @@ body {
               }
             }
           }
+
           @include e('row') {
             display: flex;
             flex-direction: row;
             .columnChart {
               margin-top: 2em;
-              margin-bottom: 1em;
+              // margin-bottom: 1em;
             }
             .pieChart {
               margin-top: 2em;
-              margin-bottom: 1em;
+              // margin-bottom: 1em;
+            }
+            .lineChart {
+              margin-top: 2em;
             }
           }
         }
@@ -282,7 +277,7 @@ body {
     .pieChart {
       margin: auto;
       margin-top: 2em;
-      margin-bottom: 1em;
+      // margin-bottom: 1em;
       width: 100%;
     }
   }
@@ -339,7 +334,7 @@ body {
     .pieChart {
       margin: auto;
       margin-top: 2em;
-      margin-bottom: 1em;
+      // margin-bottom: 1em;
       width: 100%;
     }
   }
@@ -396,7 +391,7 @@ body {
     .pieChart {
       margin: auto;
       margin-top: 2em;
-      margin-bottom: 1em;
+      // margin-bottom: 1em;
       width: 70%;
     }
   }
@@ -457,7 +452,7 @@ body {
     .pieChart {
       margin: auto;
       margin-top: 2em;
-      margin-bottom: 1em;
+      // margin-bottom: 1em;
       width: 70%;
     }
   }

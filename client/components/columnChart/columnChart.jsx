@@ -1,7 +1,7 @@
-import * as React from "react";
-import "./columnChart.scss";
-import { Bar } from "react-chartjs-2";
-import { Loading } from "../../components";
+import * as React from 'react';
+import './columnChart.scss';
+import { Bar } from 'react-chartjs-2';
+import { Loading } from '../../components';
 
 export class ColumnChart extends React.Component {
   constructor(props) {
@@ -10,7 +10,7 @@ export class ColumnChart extends React.Component {
 
   static defaultProps = {
     displayLegend: true,
-    legendPosition: "bottom"
+    legendPosition: 'bottom'
   };
 
   render() {
@@ -23,7 +23,7 @@ export class ColumnChart extends React.Component {
         </div>
         <div className="columnChart__select">
           <div className="columnChart__select__info">
-            <div>Thống kê sĩ số học sinh theo từng tháng trong năm</div>
+            <div>Thống kê sĩ số học viên theo {columnChartData.timeType}</div>
           </div>
           {/* <div className="lineChart__select__date">
             <input type="date" />
@@ -38,7 +38,7 @@ export class ColumnChart extends React.Component {
         <div className="columnChart__content">
           <div className="columnChart__content__inner">
             {isFetching && <Loading />}
-            {isEmpty && !isFetching && "Dữ liệu trống"}
+            {isEmpty && !isFetching && 'Dữ liệu trống'}
             {!isFetching && !isEmpty && (
               <Bar
                 data={columnChartData}

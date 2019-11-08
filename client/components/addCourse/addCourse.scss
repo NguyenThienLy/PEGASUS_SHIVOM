@@ -1,177 +1,176 @@
-@import "../../default.scss";
+@import '../../default.scss';
 
-.course-info {
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.04);
-    //   width: 35em;
-    width: 70%;
-    background-color: #fff;
-    border-radius: 5px;
+.add-course {
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.04);
+  //   width: 35em;
+  width: 70%;
+  background-color: #fff;
+  border-radius: 5px;
 
-    .course-info__title-text {
-        color: $main-color;
-        font-family: $font-family-special;
-        font-size: 1.1em;
+  .add-course__title-text {
+    color: $main-color;
+    font-family: $font-family-special;
+    font-size: 1.1em;
 
-        span {
-            color: #ee827c;
-            font-style: italic;
-            font-size: 0.8em;
-        }
+    span {
+      color: #ee827c;
+      font-style: italic;
+      font-size: 0.8em;
+    }
+  }
+
+  .add-course__input-box {
+    background: none;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    height: 2.5em;
+    font-size: 1em;
+    font-family: $font-family-special;
+
+    &::placeholder {
+      color: rgba(0, 0, 0, 0.3);
+      font-size: 0.9em;
     }
 
-    .course-info__input-box {
-        background: none;
-        border-radius: 0;
-        border: none;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        height: 2.5em;
-        font-size: 1em;
-        font-family: $font-family-special;
+    &:focus {
+      outline: none;
+      border: none;
+      border-bottom: 1px solid $main-color;
+    }
+  }
 
-        &::placeholder {
-            color: rgba(0, 0, 0, 0.3);
-            font-size: 0.9em;
+  .divider {
+    height: 1px;
+    background-color: $table-border-color; //rgba(0, 0, 0, 0.1);
+    border: none;
+    margin: 0px;
+  }
+
+  @include e('title') {
+    font-size: 1em;
+    color: $color-grey; //rgba(0, 0, 0, 0.7);
+    margin-left: 1.5em;
+    letter-spacing: 0.2px;
+    padding: 1em 0;
+    // font-weight: 700;
+  }
+
+  @include e('form') {
+    padding-left: 0;
+    margin: 0 0 0 2em;
+    padding-bottom: 1em;
+
+    @include e('detail') {
+      position: relative;
+      border-left: 1px solid rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      padding: 1em 5em 1em 3em;
+      justify-content: space-between;
+      align-items: center;
+
+      @include e('course-name') {
+        display: flex;
+        margin-bottom: 1em;
+        justify-content: space-between;
+        align-items: center;
+
+        input {
+          flex-basis: 50%;
+        }
+      }
+
+      @include e('path') {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        input {
+          flex-basis: 50%;
+        }
+      }
+
+      @include e('benefits') {
+        input {
+          width: 100%;
         }
 
-        &:focus {
-            outline: none;
+        @include e('list-items') {
+          list-style: none;
+          font-family: $font-family-special;
+
+          @include e('item') {
+            margin-bottom: 5px;
+            color: $color-grey;
+
+            i {
+              color: $main-color;
+            }
+          }
+        }
+
+        @include e('add-benefits') {
+          justify-content: center;
+          align-items: center;
+          display: flex;
+
+          button {
+            font-size: 2.5em;
+            background: none;
             border: none;
-            border-bottom: 1px solid $main-color;
+            color: $sub-main-color;
+            cursor: pointer;
+
+            &:hover {
+              color: $main-color;
+            }
+
+            &:focus {
+              outline: none;
+            }
+          }
         }
-    }
+      }
 
-    .divider {
-        height: 1px;
-        background-color: $table-border-color; //rgba(0, 0, 0, 0.1);
-        border: none;
-        margin: 0px;
-    }
+      @include e('add-photo') {
+        justify-content: center;
+        align-items: center;
+        display: flex;
 
-    @include e("title") {
-        font-size: 1em;
-        color: $color-grey; //rgba(0, 0, 0, 0.7);
-        margin-left: 1.5em;
-        letter-spacing: 0.2px;
-        padding: 1em 0;
-        // font-weight: 700;
-    }
+        button {
+          font-size: 2.5em;
+          background: none;
+          border: none;
+          color: $sub-main-color;
+          cursor: pointer;
 
-    @include e("form") {
-        padding-left: 0;
-        margin: 0 0 0 2em;
-        padding-bottom: 1em;
+          &:hover {
+            color: $main-color;
+          }
 
-        @include e('detail') {
-            position: relative;
-            border-left: 1px solid rgba(0, 0, 0, 0.1);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            padding: 1em 5em 1em 3em;
-            justify-content: space-between;
-            align-items: center;
-
-            @include e('course-name') {
-                display: flex;
-                margin-bottom: 1em;
-                justify-content: space-between;
-                align-items: center;
-
-                input {
-                    flex-basis: 50%;
-                }
-            }
-
-            @include e('path') {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-
-                input {
-                    flex-basis: 50%;
-                }
-            }
-
-            @include e('benefits') {
-                input {
-                    width: 100%;
-                }
-
-                @include e('list-items') {
-                    list-style: none;
-                    font-family: $font-family-special;
-
-                    @include e('item') {
-                        margin-bottom: 5px;
-                        color: $color-grey;
-
-                        i {
-                            color: $main-color;
-                        }
-                    }
-                }
-
-                @include e('add-benefits') {
-                    justify-content: center;
-                    align-items: center;
-                    display: flex;
-
-                    button {
-                        font-size: 2.5em;
-                        background: none;
-                        border: none;
-                        color: $sub-main-color;
-                        cursor: pointer;
-
-                        &:hover {
-                            color: $main-color;
-                        }
-
-                        &:focus {
-                            outline: none;
-                        }
-
-                    }
-                }
-            }
-
-            @include e('add-photo') {
-                justify-content: center;
-                align-items: center;
-                display: flex;
-
-                button {
-                    font-size: 2.5em;
-                    background: none;
-                    border: none;
-                    color: $sub-main-color;
-                    cursor: pointer;
-
-                    &:hover {
-                        color: $main-color;
-                    }
-
-                    &:focus {
-                        outline: none;
-                    }
-                }
-            }
-
-            @include e("icon") {
-                position: absolute;
-                left: -1.05em;
-                top: 1.5em;
-                width: 2.1em;
-                height: 2.1em;
-                border-radius: 999px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                background: lighten($sub-main-color, 25%); //#ebebeb;
-                box-shadow: 1px 1px 10px #ebebeb;
-
-                i {
-                    color: $main-color;
-                }
-            }
+          &:focus {
+            outline: none;
+          }
         }
+      }
+
+      @include e('icon') {
+        position: absolute;
+        left: -1.05em;
+        top: 1.5em;
+        width: 2.1em;
+        height: 2.1em;
+        border-radius: 999px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: lighten($sub-main-color, 25%); //#ebebeb;
+        box-shadow: 1px 1px 10px #ebebeb;
+
+        i {
+          color: $main-color;
+        }
+      }
     }
+  }
 }

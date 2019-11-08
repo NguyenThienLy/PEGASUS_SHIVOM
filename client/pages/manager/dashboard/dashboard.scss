@@ -36,9 +36,9 @@ body {
   }
 
   @include e('body') {
-    min-height: 100%;
+    min-height: calc(100% - 100px);
     width: 78%;
-    margin: 5em 1%;
+    margin: 6em 1% 0em 1%;
 
     @include e('numbers') {
       margin: 0 0 3em;
@@ -46,11 +46,6 @@ body {
       grid-template-columns: repeat(4, 1fr);
       column-gap: 2em;
       row-gap: 1em;
-
-      .loading {
-        grid-column-start: 1;
-        grid-column-end: 5;
-      }
 
       .numberAdmin {
         @include e('inner') {

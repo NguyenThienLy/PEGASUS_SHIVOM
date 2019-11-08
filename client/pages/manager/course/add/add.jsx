@@ -73,7 +73,7 @@ export class AddCourse extends React.Component {
     return true;
   }
 
-  canOpenPage = function () {
+  canOpenPage = function() {
     const curPageNumber = this.state.curPageNumber;
     const pages = this.state.pages;
 
@@ -85,12 +85,12 @@ export class AddCourse extends React.Component {
     return true;
   };
 
-  openPage = function (nextPageNumber) {
+  openPage = function(nextPageNumber) {
     // update curPageNumber
     this.setState({ curPageNumber: nextPageNumber });
   };
 
-  handleClickPrevious = function () {
+  handleClickPrevious = function() {
     const curPageNumber = this.state.curPageNumber;
     const nextPageNumber = curPageNumber - 1;
     if (nextPageNumber > 0) {
@@ -98,7 +98,7 @@ export class AddCourse extends React.Component {
     }
   };
 
-  handleClickNext = function () {
+  handleClickNext = function() {
     const curPageNumber = this.state.curPageNumber;
     const pages = this.state.pages;
 
@@ -113,7 +113,7 @@ export class AddCourse extends React.Component {
     }
   };
 
-  handleIsValid = function (pageNumber, isValid) {
+  handleIsValid = function(pageNumber, isValid) {
     const pages = this.state.pages;
     pages[pageNumber - 1].isValid = isValid;
     this.setState({ pages: pages });
@@ -134,7 +134,7 @@ export class AddCourse extends React.Component {
     this.state.formData[name] = value;
     this.setState({ formData: this.state.formData });
   }
-  handleAddBenefits = function (body) {
+  handleAddBenefits = function(body) {
     this.state.formData.benefits.push(body.name);
     this.setState({ formData: this.state.formData });
   };
@@ -161,16 +161,14 @@ export class AddCourse extends React.Component {
         await Swal.fire('Thành công', 'Thêm khoá học thành công', 'success');
         try {
           this.props.dispatch({
-            type: "ADD_COURSE_SUCCESS",
+            type: 'ADD_COURSE_SUCCESS',
             payload: res.result.object
-          })
+          });
           Router.push(
             `/manager/course/course?courseId=${res.result.object._id}`,
             `/quan-ly/khoa-hoc/chi-tiet/${res.result.object._id}`
           );
-        } catch (err) {
-
-        }
+        } catch (err) {}
       })
       .catch(err => {
         Swal.fire('Thất bại', 'Thêm khoá học không thành công', 'error');
@@ -247,21 +245,20 @@ export class AddCourse extends React.Component {
             <div className="addCourse__body__card__buttons">
               {this.state.curPageNumber === 1 ? (
                 <button
-                  disabled="true"
+                  disabled
                   className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-previous"
                   onClick={this.handleClickPrevious}
                 >
                   <i className="fas fa-chevron-left"></i>Quay lại
                 </button>
               ) : (
-                  <button
-                    disabled="false"
-                    className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-previous"
-                    onClick={this.handleClickPrevious}
-                  >
-                    <i className="fas fa-chevron-left"></i>Quay lại
+                <button
+                  className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-previous"
+                  onClick={this.handleClickPrevious}
+                >
+                  <i className="fas fa-chevron-left"></i>Quay lại
                 </button>
-                )}
+              )}
 
               {this.state.curPageNumber === this.state.pages.length ? (
                 <button
@@ -271,14 +268,14 @@ export class AddCourse extends React.Component {
                   Xác nhận
                 </button>
               ) : (
-                  <button
-                    className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-next"
-                    onClick={this.handleClickNext}
-                    dangerouslySetInnerHTML={{
-                      __html: 'Tiếp theo<i className="fas fa-chevron-right"></i>'
-                    }}
-                  ></button>
-                )}
+                <button
+                  className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-next"
+                  onClick={this.handleClickNext}
+                  dangerouslySetInnerHTML={{
+                    __html: 'Tiếp theo<i className="fas fa-chevron-right"></i>'
+                  }}
+                ></button>
+              )}
             </div>
           </div>
           {/* <div className="addCourse__body__card">

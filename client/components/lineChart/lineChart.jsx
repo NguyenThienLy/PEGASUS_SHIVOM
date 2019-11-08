@@ -1,7 +1,7 @@
-import * as React from "react";
-import "./lineChart.scss";
-import { Line } from "react-chartjs-2";
-import { Loading } from "../../components";
+import * as React from 'react';
+import './lineChart.scss';
+import { Line } from 'react-chartjs-2';
+import { Loading } from '../../components';
 
 export class LineChart extends React.Component {
   constructor(props) {
@@ -10,7 +10,7 @@ export class LineChart extends React.Component {
 
   static defaultProps = {
     displayLegend: true,
-    legendPosition: "bottom"
+    legendPosition: 'bottom'
   };
 
   render() {
@@ -23,7 +23,7 @@ export class LineChart extends React.Component {
         </div>
         <div className="lineChart__select">
           <div className="lineChart__select__info">
-            <div>Theo dõi chuyên cần theo tuần trong năm</div>
+            <div>Theo dõi chuyên cần theo {lineChartData.timeType}</div>
           </div>
           {/* <div className="lineChart__select__date">
             <input type="date" />
@@ -38,7 +38,7 @@ export class LineChart extends React.Component {
         <div className="lineChart__content">
           <div className="lineChart__content__inner">
             {isFetching && <Loading />}
-            {isEmpty && !isFetching && "Dữ liệu trống"}
+            {isEmpty && !isFetching && 'Dữ liệu trống'}
             {!isFetching && !isEmpty && (
               <Line
                 data={lineChartData}
