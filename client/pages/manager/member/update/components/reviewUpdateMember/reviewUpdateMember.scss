@@ -1,9 +1,9 @@
-@import "../../default.scss";
+@import '../../../../../../default.scss';
 
 $background-color-chart: lighten($sub-main-color, 30%);
 $hover-color: lighten($sub-main-color, 27%);
 
-.reviewAddMember {
+.reviewUpdateMember {
   .divider {
     height: 1px;
     background-color: $table-border-color; //rgba(0, 0, 0, 0.1);

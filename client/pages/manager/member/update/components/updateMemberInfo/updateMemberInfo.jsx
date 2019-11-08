@@ -1,8 +1,8 @@
 import * as React from 'react';
-import './newMemberInfo.scss';
-import { ImageUpload } from '../imageUpload/imageUpload';
+import './updateMemberInfo.scss';
+import { ImageUpload } from '../../../../../../components';
 
-export class NewMemberInfo extends React.Component {
+export class UpdateMemberInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -157,7 +157,7 @@ export class NewMemberInfo extends React.Component {
   };
 
   componentDidMount() {
-    $('.newMemberInfo__input-box--date').datetimepicker({
+    $('.updateMemberInfo__input-box--date').datetimepicker({
       format: 'd/m/Y',
       timepicker: false,
       mask: false
@@ -166,31 +166,31 @@ export class NewMemberInfo extends React.Component {
 
   render() {
     return (
-      <div className="newMemberInfo">
-        <div className="newMemberInfo__title">Thông tin cơ bản</div>
+      <div className="updateMemberInfo">
+        <div className="updateMemberInfo__title">Thông tin cơ bản</div>
         <hr className="divider" />
-        <form className="newMemberInfo__form">
-          <div className="newMemberInfo__form__info">
-            <div className="newMemberInfo__form__info__item">
-              <div className="newMemberInfo__title-text">
+        <form className="updateMemberInfo__form">
+          <div className="updateMemberInfo__form__info">
+            <div className="updateMemberInfo__form__info__item">
+              <div className="updateMemberInfo__title-text">
                 Mã số thẻ <span>* (bắt buộc)</span>
               </div>
               <input
-                className="newMemberInfo__input-box"
+                className="updateMemberInfo__input-box"
                 placeholder="0123456789"
                 type="text"
                 name="cardId"
                 onChange={this.handleChange}
                 onBlur={this.handleChange}
               />
-              <small className="newMemberInfo__form__info__item__error-message">
+              <small className="updateMemberInfo__form__info__item__error-message">
                 {this.state.form.cardId.errorMessage}
               </small>
             </div>
-            <div className="newMemberInfo__form__info__item">
-              <div className="newMemberInfo__title-text">Điểm tích lũy</div>
+            <div className="updateMemberInfo__form__info__item">
+              <div className="updateMemberInfo__title-text">Điểm tích lũy</div>
               <input
-                className="newMemberInfo__input-box"
+                className="updateMemberInfo__input-box"
                 defaultValue={0}
                 min="0"
                 type="number"
@@ -198,99 +198,99 @@ export class NewMemberInfo extends React.Component {
                 onChange={this.handleChange}
               />
             </div>
-            <div className="newMemberInfo__form__info__icon">
+            <div className="updateMemberInfo__form__info__icon">
               <i className="fas fa-address-card"></i>
             </div>
           </div>
-          <div className="newMemberInfo__form__info">
-            <div className="newMemberInfo__form__info__item">
-              <div className="newMemberInfo__title-text">
+          <div className="updateMemberInfo__form__info">
+            <div className="updateMemberInfo__form__info__item">
+              <div className="updateMemberInfo__title-text">
                 Họ và tên đệm <span>* (bắt buộc)</span>
               </div>
               <input
-                className="newMemberInfo__input-box"
+                className="updateMemberInfo__input-box"
                 placeholder="Nguyễn"
                 type="text"
                 name="firstName"
                 onChange={this.handleChange}
                 onBlur={this.handleChange}
               />
-              <small className="newMemberInfo__form__info__item__error-message">
+              <small className="updateMemberInfo__form__info__item__error-message">
                 {this.state.form.lastName.errorMessage}
               </small>
             </div>
-            <div className="newMemberInfo__form__info__item">
-              <div className="newMemberInfo__title-text">
+            <div className="updateMemberInfo__form__info__item">
+              <div className="updateMemberInfo__title-text">
                 Tên <span>* (bắt buộc)</span>
               </div>
               <input
-                className="newMemberInfo__input-box"
+                className="updateMemberInfo__input-box"
                 placeholder="Văn A"
                 type="text"
                 name="lastName"
                 onChange={this.handleChange}
                 onBlur={this.handleChange}
               />
-              <small className="newMemberInfo__form__info__item__error-message">
+              <small className="updateMemberInfo__form__info__item__error-message">
                 {this.state.form.firstName.errorMessage}
               </small>
             </div>
-            <div className="newMemberInfo__form__info__item">
-              <div className="newMemberInfo__title-text">
+            <div className="updateMemberInfo__form__info__item">
+              <div className="updateMemberInfo__title-text">
                 Số điện thoại <span>* (bắt buộc)</span>
               </div>
               <input
-                className="newMemberInfo__input-box"
+                className="updateMemberInfo__input-box"
                 placeholder="0123456789"
                 type="text"
                 name="phone"
                 onChange={this.handleChange}
                 onBlur={this.handleChange}
               />
-              <small className="newMemberInfo__form__info__item__error-message">
+              <small className="updateMemberInfo__form__info__item__error-message">
                 {this.state.form.phone.errorMessage}
               </small>
             </div>
-            <div className="newMemberInfo__form__info__item">
-              <div className="newMemberInfo__title-text">
+            <div className="updateMemberInfo__form__info__item">
+              <div className="updateMemberInfo__title-text">
                 Sinh nhật <span>* (bắt buộc)</span>
               </div>
               <input
-                className="newMemberInfo__input-box newMemberInfo__input-box--date"
+                className="updateMemberInfo__input-box updateMemberInfo__input-box--date"
                 type="text"
                 name="birthday"
                 onChange={this.handleChange}
                 onBlur={this.handleChange}
               />
-              <small className="newMemberInfo__form__info__item__error-message">
+              <small className="updateMemberInfo__form__info__item__error-message">
                 {this.state.form.birthday.errorMessage}
               </small>
             </div>
-            <div className="newMemberInfo__form__info__item newMemberInfo__form__info__item--single">
-              <div className="newMemberInfo__title-text">Địa chỉ</div>
+            <div className="updateMemberInfo__form__info__item updateMemberInfo__form__info__item--single">
+              <div className="updateMemberInfo__title-text">Địa chỉ</div>
               <input
-                className="newMemberInfo__input-box"
+                className="updateMemberInfo__input-box"
                 placeholder="số nhà/ đường/ phường/ ..."
                 type="text"
                 name="address"
                 onChange={this.handleChange}
               />
             </div>
-            <div className="newMemberInfo__form__info__icon">
+            <div className="updateMemberInfo__form__info__icon">
               <i className="fas fa-user-alt"></i>
             </div>
           </div>
-          <div className="newMemberInfo__form__info">
-            <div className="newMemberInfo__title-text">Thêm ảnh đại diện</div>
-            <div className="newMemberInfo__form__info__add-photo">
+          <div className="updateMemberInfo__form__info">
+            <div className="updateMemberInfo__title-text">Thêm ảnh đại diện</div>
+            <div className="updateMemberInfo__form__info__add-photo">
               <ImageUpload changeImage={this.changeAvatarFile}></ImageUpload>
             </div>
 
-            <div className="newMemberInfo__form__info__icon">
+            <div className="updateMemberInfo__form__info__icon">
               <i className="fas fa-camera-retro"></i>
             </div>
           </div>
-          {/* <div className="newMemberInfo__form__button">
+          {/* <div className="updateMemberInfo__form__button">
             <button>
               Tiếp tục <i className="fas fa-chevron-right"></i>
             </button>

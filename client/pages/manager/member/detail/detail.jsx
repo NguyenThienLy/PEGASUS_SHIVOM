@@ -86,7 +86,7 @@ export class DetailMember extends React.Component {
         this.relearnCourse = this.relearnCourse.bind(this)
         this.showRelearnCourse = this.showRelearnCourse.bind(this)
     }
-        
+
     showHideModal(key) {
         this.state.modals[key] = !this.state.modals[key];
         this.setState({ modals: this.state.modals });
@@ -99,29 +99,23 @@ export class DetailMember extends React.Component {
 
         const newStudent = this.state.student;
 
-            newStudent.data = this.props.students.items.find(student => {
-                return student._id === this.props.params.studentId;
+        newStudent.data = this.props.students.items.find(student => {
+            return student._id === this.props.params.studentId;
+        });
+
+        if (!newStudent.data) {
+            const res = await api.student.getItem(this.props.params.studentId, {
+                headers: {
+                    "x-token": localStorage.getItem("token")
+                }
             });
-
-            if (!newStudent.data) {
-                const res = await api.student.getItem(this.props.params.studentId, {
-                    headers: {
-                        "x-token": localStorage.getItem("token")
-                    }
-                });
-                newStudent.data = res.result.object;
-            }
-
-            newStudent.isFetching = false;
-            newStudent.isEmpty = false;
-
-            this.setState({ student: newStudent, selectedStudentId: newStudent.data._id });
+            newStudent.data = res.result.object;
         }
 
         newStudent.isFetching = false;
         newStudent.isEmpty = false;
 
-        this.setState({ student: newStudent });
+        this.setState({ student: newStudent, selectedStudentId: newStudent.data._id });
 
         api.courseStudent.getList(
             {
@@ -135,7 +129,7 @@ export class DetailMember extends React.Component {
                 }
             }).then(res => {
                 const newCourseOfStudent = this.state.courseOfStudent;
-                  
+
                 newCourseOfStudent.data = res.results.objects.rows;
                 newCourseOfStudent.isFetching = false;
                 newCourseOfStudent.isEmpty = false;

@@ -30,7 +30,7 @@ export class MemberInfo extends React.Component {
         {isFetchingMemberInfo && <Loading />}
         {!isFetchingMemberInfo && isEmptyMemberInfo && 'Dữ liệu trống'}
         {!isFetchingMemberInfo && !isEmptyMemberInfo && (
-
+          <div>
             <div className="member-info__title">
               {memberInfo.firstName}&nbsp;{memberInfo.lastName}
             </div>
@@ -38,7 +38,8 @@ export class MemberInfo extends React.Component {
             <div className="member-info__sub-title">
               <div className="member-info__sub-title__name">
                 Thông tin chi tiết
-              </div>
+            </div>
+
               <Tooltip
                 title="Chỉnh sửa"
                 position="top"
@@ -49,7 +50,6 @@ export class MemberInfo extends React.Component {
                 </span>
               </Tooltip>
             </div>
-
 
             <div className="member-info__details">
               <div className="member-info__details__left">
@@ -200,20 +200,20 @@ export class MemberInfo extends React.Component {
                             </Tooltip>
                           </div>
                         ) : (
-                          <Tooltip
-                            title="Học lại"
-                            position="top"
-                            className="member-info__button"
-                          >
-                            <span
-                              onClick={() => {
-                                return this.props.relearnCourse(courseStudent);
-                              }}
+                            <Tooltip
+                              title="Học lại"
+                              position="top"
+                              className="member-info__button"
                             >
-                              <i class="fas fa-user-plus"></i>
-                            </span>
-                          </Tooltip>
-                        )}
+                              <span
+                                onClick={() => {
+                                  return this.props.relearnCourse(courseStudent);
+                                }}
+                              >
+                                <i class="fas fa-user-plus"></i>
+                              </span>
+                            </Tooltip>
+                          )}
                       </div>
                     </div>
                   );
@@ -255,7 +255,7 @@ export class MemberInfo extends React.Component {
                 </div>
               </div>
             </div>
-          </>
+          </div>
         )}
       </div>
     );
