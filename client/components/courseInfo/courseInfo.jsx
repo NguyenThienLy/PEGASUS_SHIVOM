@@ -38,6 +38,7 @@ export class CourseInfo extends React.Component {
     const { courseInfo, isFetchingCourseInfo, isEmptyCourseInfo,
       timeTableOfCourse, isFetchingTimeTable, isEmptyTimeTable,
       packageOfCourse, isFetchingPackage, isEmptyPackage } = this.props;
+
     return (
 
       <div className="courseInfo">

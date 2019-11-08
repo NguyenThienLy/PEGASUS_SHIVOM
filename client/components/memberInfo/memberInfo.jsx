@@ -6,7 +6,14 @@ import { Tooltip } from 'react-tippy';
 export class MemberInfo extends React.Component {
   constructor(props) {
     super(props);
+
+    this.updateMember = this.updateMember.bind(this);
   }
+
+  updateMember() {
+    this.props.updateMember();
+  }
+
   render() {
     const { memberInfo, isFetchingMemberInfo, isEmptyMemberInfo,
       courseOfStudent, isFetchingCourseOfStudent, isEmptyCourseOfStudent } = this.props;
@@ -16,6 +23,7 @@ export class MemberInfo extends React.Component {
         {isFetchingMemberInfo && <Loading />}
         {isEmptyMemberInfo && !isFetchingMemberInfo && "Dữ liệu trống"}
         {!isFetchingMemberInfo && !isEmptyMemberInfo && (
+
           <div>
             <div className="memberInfo__left">
               <div className="memberInfo__left__avatar">
@@ -28,6 +36,16 @@ export class MemberInfo extends React.Component {
                 <span>{memberInfo.firstName}&nbsp;{memberInfo.lastName}</span>
               </div>
             </div>
+            <Tooltip
+              title="Chỉnh sửa"
+              position="top"
+              className="courseInfo__update-button"
+            >
+              <span
+                onClick={() => this.updateMember()}>
+                <i class="fas fa-edit"></i>
+              </span>
+            </Tooltip>
             <div className="memberInfo__right">
               <div className="memberInfo__right__title">
                 <div className="memberInfo__right__title__inner">

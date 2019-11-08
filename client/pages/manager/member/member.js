@@ -21,6 +21,7 @@ import {
 import { MainMember } from './main/main'
 import { AddMember } from './add/add'
 import { DetailMember } from './detail/detail'
+import { UpdateMember } from './update/update'
 import { StatisticMember } from './statistic/statistic'
 
 class Member extends Component {
@@ -118,6 +119,7 @@ class Member extends Component {
                                     { path: "/quan-ly/hoc-vien", component: <MainMember {...this.props} /> },
                                     { path: "/quan-ly/hoc-vien/them", component: <AddMember {...this.props} /> },
                                     { path: "/quan-ly/hoc-vien/chi-tiet/:studentId", component: <DetailMember {...this.props} /> },
+                                    { path: "/quan-ly/hoc-vien/cap-nhat/:studentId", component: <UpdateMember {...this.props} /> },
                                     { path: "/quan-ly/hoc-vien/thong-ke/:studentId", component: <StatisticMember {...this.props} /> }
                                 ]
                             } />

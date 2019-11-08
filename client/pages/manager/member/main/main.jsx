@@ -81,6 +81,12 @@ export class MainMember extends React.Component {
       `/quan-ly/hoc-vien/thong-ke/${studentId}`
     );
   }
+  edit(studentId) {
+    Router.push(
+      `/manager/member/member?studentId=${studentId}`,
+      `/quan-ly/hoc-vien/cap-nhat/${studentId}`
+    );
+  }
   changePage(pageNum) {
     this.setState({
       currentPage: pageNum
@@ -530,6 +536,7 @@ export class MainMember extends React.Component {
                                         <i class="fas fa-check"></i>
                                       </span>
                                     </Tooltip>
+
                                     <Tooltip
                                       title="Cộng điểm"
                                       position="top"
@@ -546,6 +553,7 @@ export class MainMember extends React.Component {
                                         <i class="fas fa-plus"></i>
                                       </span>
                                     </Tooltip>
+
                                     <Tooltip
                                       title="Nghỉ học"
                                       position="top"
@@ -562,6 +570,7 @@ export class MainMember extends React.Component {
                                         <i class="fas fa-user-minus"></i>
                                       </span>
                                     </Tooltip>
+
                                     <Tooltip
                                       title="Chi tiết"
                                       position="top"
@@ -571,6 +580,7 @@ export class MainMember extends React.Component {
                                         <i class="fas fa-info"></i>
                                       </span>
                                     </Tooltip>
+
                                     <Tooltip
                                       title="Thống kê"
                                       position="top"
@@ -580,12 +590,24 @@ export class MainMember extends React.Component {
                                         <i class="fas fa-chart-bar"></i>
                                       </span>
                                     </Tooltip>
-                                    {/* <Tooltip
-                                                            title="Chỉnh sửa"
-                                                            position="top"
-                                                        >
-                                                            <span className="action-td__item" onClick={() => this.edit(item._id)}> <i class="fas fa-pen"></i> </span>
-                                                        </Tooltip> */}
+
+                                    <Tooltip
+                                      title="Đăng ký khoá học"
+                                      position="top"
+                                      className="action-td__item"
+                                    >
+                                      <span
+                                        onClick={() => {
+                                          this.setState({
+                                            selectedStudentId: item._id
+                                          });
+                                          this.showHideModal('regisNewCourse');
+                                        }}
+                                      >
+                                        <i class="far fa-edit"></i>
+                                      </span>
+                                    </Tooltip>
+
                                     <Tooltip
                                       title="Gia hạn học"
                                       position="top"
@@ -602,6 +624,7 @@ export class MainMember extends React.Component {
                                         <i class="fas fa-hourglass-half"></i>
                                       </span>
                                     </Tooltip>
+
                                     <Tooltip
                                       title="Đăng ký khoá học"
                                       position="top"
@@ -615,7 +638,7 @@ export class MainMember extends React.Component {
                                           this.showHideModal('regisNewCourse');
                                         }}
                                       >
-                                        <i class="fas fa-edit"></i>
+                                        <i class="far fa-plus-square"></i>
                                       </span>
                                     </Tooltip>
                                   </div>

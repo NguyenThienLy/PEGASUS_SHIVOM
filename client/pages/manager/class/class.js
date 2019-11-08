@@ -19,7 +19,8 @@ import {
 
 import { MainClass } from './main/main';
 import { AddClass } from './add/add';
-import { DetailClass } from './detail/detail'
+import { UpdateClass } from './update/update';
+import { DetailClass } from './detail/detail';
 
 class Class extends Component {
     constructor(props) {
@@ -110,6 +111,7 @@ class Class extends Component {
                                 [
                                     { path: "/quan-ly/lop-hoc", component: <MainClass {...this.props} /> },
                                     { path: "/quan-ly/lop-hoc/them", component: <AddClass {...this.props} /> },
+                                    { path: "/quan-ly/lop-hoc/cap-nhat/:classId", component: <UpdateClass {...this.props} /> },
                                     { path: "/quan-ly/lop-hoc/chi-tiet/:classId", component: <DetailClass {...this.props} /> }
                                 ]
                             } />

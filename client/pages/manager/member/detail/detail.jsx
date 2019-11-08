@@ -4,18 +4,24 @@ import {
 } from '../../../../components'
 import { api } from '../../../../services';
 import "./detail.scss";
+import Router from 'next/router';
 
 export class DetailMember extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             student: {
-                isFetching: true,
+                isFetching: false,
                 isEmpty: true,
                 data: null
             },
             courseOfStudent: {
-                isFetching: true,
+                isFetching: false,
+                isEmpty: true,
+                data: null
+            },
+            timeTableOfStudent: {
+                isFetching: false,
                 isEmpty: true,
                 data: null
             },
@@ -63,92 +69,84 @@ export class DetailMember extends React.Component {
                     linkAs: "/lien-he",
                     key: "about"
                 }
-            ],
-            numberAdmins: [
-                {
-                    icon: '<i className="fas fa-id-card-alt"></i>',
-                    about: "Đi đúng giờ",
-                    quantity: 184,
-                    colorIcon: "#f5365c"
-                },
-                {
-                    icon: '<i className="fas fa-id-card-alt"></i>',
-                    about: "Đi trễ",
-                    quantity: 60,
-                    colorIcon: "#fb6340"
-                },
-                {
-                    icon: '<i className="fas fa-id-card-alt"></i>',
-                    about: "Vắng",
-                    quantity: 24,
-                    colorIcon: "#ffd600"
-                },
-                {
-                    icon: '<i className="fas fa-id-card-alt"></i>',
-                    about: "Đi thừa",
-                    quantity: 13,
-                    colorIcon: "#11cdef"
-                }
             ]
         };
+
+        this.updateMember = this.updateMember.bind(this);
     }
 
     fetchData = async () => {
         const token =
             'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M';
 
-        if (this.state.student.isFetching) {
-            const newStudent = this.state.student;
+        const newStudent = this.state.student;
 
-            newStudent.data = this.props.students.items.find(student => {
-                return student._id === this.props.params.studentId;
-            });
+        newStudent.data = this.props.students.items.find(student => {
+            return student._id === this.props.params.studentId;
+        });
 
-            if (!newStudent.data) {
-                const res = await api.student.getItem(this.props.params.studentId);
-                newStudent.data = res.result.object;
-            }
-
-            newStudent.isFetching = false;
-            newStudent.isEmpty = false;
-
-            this.setState({ student: newStudent });
+        if (!newStudent.data) {
+            const res = await api.student.getItem(this.props.params.studentId);
+            newStudent.data = res.result.object;
         }
 
-        if (this.state.courseOfStudent.isFetching) {
-            api.courseStudent.getList(
-                {
-                    query: {
-                        filter: { student: this.props.params.studentId },
-                        populates: ['course']
+        newStudent.isFetching = false;
+        newStudent.isEmpty = false;
 
-                    },
-                    headers: {
-                        'x-token': token
-                    }
-                }).then(res => {
-                    const newCourseOfStudent = this.state.courseOfStudent;
+        this.setState({ student: newStudent });
 
-                    newCourseOfStudent.data = res.results.objects.rows;
+        api.courseStudent.getList(
+            {
+                query: {
+                    filter: { student: this.props.params.studentId },
+                    populates: ['course']
 
-                    newCourseOfStudent.isFetching = false;
-                    newCourseOfStudent.isEmpty = false;
+                },
+                headers: {
+                    'x-token': token
+                }
+            }).then(res => {
+                const newCourseOfStudent = this.state.courseOfStudent;
 
-                    console.log("newCourseOfStudent", newCourseOfStudent)
+                newCourseOfStudent.data = res.results.objects.rows;
 
-                    this.setState({ courseOfStudent: newCourseOfStudent });
-                }).catch(err => {
-                    const newCourseOfStudent = this.state.courseOfStudent;
+                newCourseOfStudent.isFetching = false;
+                newCourseOfStudent.isEmpty = false;
 
-                    newCourseOfStudent.isFetching = false;
-                    newCourseOfStudent.isEmpty = true;
+                this.setState({ courseOfStudent: newCourseOfStudent });
+            }).catch(err => {
+                const newCourseOfStudent = this.state.courseOfStudent;
 
-                    this.setState({ courseOfStudent: newCourseOfStudent });
-                })
-        }
+                newCourseOfStudent.isFetching = false;
+                newCourseOfStudent.isEmpty = true;
+
+                this.setState({ courseOfStudent: newCourseOfStudent });
+            })
     };
 
+    changeIsFetching(isFetching) {
+        const newStudent = this.state.student;
+        const newCourseOfStudent = this.state.courseOfStudent;
+
+        newStudent.isFetching = isFetching;
+        newCourseOfStudent.isFetching = isFetching;
+
+        this.setState({
+            student: newStudent,
+            courseOfStudent: newCourseOfStudent
+        });
+    }
+
+    updateMember() {
+        Router.push(
+            `/manager/member/member?studentId=${this.props.params.studentId}`,
+            `/quan-ly/hoc-vien/cap-nhat/${this.props.params.studentId}`
+        );
+    }
+
     componentDidMount() {
+        this.changeIsFetching(true);
+
         this.fetchData();
 
         var heightOfHeader = $(
@@ -201,6 +199,7 @@ export class DetailMember extends React.Component {
                                         memberInfo={this.state.student.data}
                                         isFetchingMemberInfo={this.state.student.isFetching}
                                         isEmptyMemberInfo={this.state.student.isEmpty}
+                                        updateMember={this.updateMember}
 
                                         courseOfStudent={this.state.courseOfStudent.data}
                                         isFetchingCourseOfStudent={this.state.courseOfStudent.isFetching}

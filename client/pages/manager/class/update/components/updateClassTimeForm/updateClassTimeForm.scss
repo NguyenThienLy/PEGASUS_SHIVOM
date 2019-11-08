@@ -1,0 +1,116 @@
+@import '../../../../../../default.scss';
+
+.update-class-time {
+  @include e('form') {
+    z-index: 0;
+    margin: 2em;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 50%;
+    align-items: flex-start;
+    justify-content: center;
+    @include e('title') {
+      margin-bottom: 1em;
+      font-size: 1.2em;
+      color: $main-color;
+      &::first-letter {
+        text-transform: capitalize;
+      }
+    }
+    @include e('item') {
+      width: 100%;
+      margin-bottom: 1em;
+      @include e('title') {
+        color: $color-grey;
+        font-size: 1em;
+        margin-bottom: 0.5em;
+      }
+      @include e('input') {
+        width: 90%;
+        background: #fff;
+        color: $font-color;
+        font-family: $font-body;
+        font-size: 1em;
+        border: 1px solid $table-border-color;
+        border-radius: 5px;
+        outline: none;
+        padding: 0.5em 5%;
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          /* display: none; <- Crashes Chrome on hover */
+          -webkit-appearance: inner-spin-button;
+          margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+        }
+        &::placeholder {
+          color: rgba(0, 0, 0, 0.3);
+          font-size: 0.9em;
+        }
+        &:focus {
+          outline: none;
+          border: 1px solid $main-color;
+        }
+      }
+      @include e('select-box') {
+        box-sizing: border-box;
+        width: 100%;
+        background: #fff;
+        color: $font-color;
+        border: 1px solid $table-border-color;
+        border-radius: 5px;
+        padding: 0.5em 5%;
+        outline: 0;
+
+        @include e('select') {
+          width: 100%;
+          border: none;
+          outline: none;
+          background: none;
+          -webkit-appearance: none;
+          color: inherit;
+          font-size: 1em;
+          font-family: $font-body;
+        }
+      }
+    }
+
+    @include e('btn') {
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.9em;
+      width: 100%;
+      display: block;
+      font-family: $font-body;
+      // background: transparent;
+      // color: inherit;
+      // font: inherit;
+      // border-radius: 2px;
+      border: 0;
+      border-radius: 5px;
+      outline: 0;
+      margin: 0;
+      margin-top: 0.5em;
+      padding: 1em 0.875em;
+      transition: all 300ms ease-in;
+      cursor: pointer;
+
+      @include m('primary') {
+        background: $main-color;
+        color: #fff;
+        border: 1px solid $main-color;
+
+        &:hover {
+          // background: darken($main-color, 4%);
+          background-color: transparent;
+          color: $main-color;
+          border: 1px solid $main-color;
+        }
+
+        &:active {
+          // background: $main-color;
+          // // box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, .2);
+          // box-shadow: 1px 1px 10px 0 $sub-main-color;
+        }
+      }
+    }
+  }
+}

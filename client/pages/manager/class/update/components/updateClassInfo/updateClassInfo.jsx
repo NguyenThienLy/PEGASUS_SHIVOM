@@ -1,30 +1,35 @@
 import * as React from 'react';
-import './newClassInfo.scss';
+import './updateClassInfo.scss';
 import { ImageUpload } from '../../../../../../components';
 
-export class NewClassInfo extends React.Component {
+export class UpdateClassInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       form: {
         name: {
           value: '',
-          isValid: false,
+          isValid: true,
           errorMessage: ''
         },
+        // quantity: {
+        //   value: '',
+        //   isValid: false,
+        //   errorMessage: ''
+        // },
         code: {
           value: '',
-          isValid: false,
+          isValid: true,
           errorMessage: ''
         },
         teacher: {
           value: '',
-          isValid: false,
+          isValid: true,
           errorMessage: ''
         },
         course: {
           value: '',
-          isValid: false,
+          isValid: true,
           errorMessage: ''
         }
       },
@@ -33,6 +38,10 @@ export class NewClassInfo extends React.Component {
           name: {
             required: true
           },
+          // quantity: {
+          //   required: true,
+          //   numberFormat: true
+          // },
           code: {
             required: true
           },
@@ -47,6 +56,10 @@ export class NewClassInfo extends React.Component {
           name: {
             required: 'Bắt buộc nhập tên lớp học'
           },
+          // quantity: {
+          //   required: 'Bắt buộc nhập số lượng học viên',
+          //   numberFormat: 'Vui lòng nhập số lượng hợp lệ'
+          // },
           code: {
             required: 'Bắt buộc nhập mã lớp'
           },
@@ -63,6 +76,7 @@ export class NewClassInfo extends React.Component {
     this.checkPageValidation = this.checkPageValidation.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
+
   checkPageValidation() {
     for (var key in this.state.form) {
       if (!this.state.form[key].isValid) {
@@ -76,8 +90,6 @@ export class NewClassInfo extends React.Component {
   handleChange(event) {
     let { name, value } = event.target;
     value = value.trim();
-
-    if (name === 'quantity') value = Number(value);
 
     this.handleInputValidation(name, value);
     this.props.handleChange(name, value);
@@ -97,28 +109,6 @@ export class NewClassInfo extends React.Component {
               }
             })
           });
-        } else if (
-          rule.numberFormat &&
-          rule.numberFormat === true &&
-          value.length !== 0
-        ) {
-          let isValid = !isNaN(value);
-
-          if (key === 'quantity') {
-            isValid = isValid ? (value < 10 ? false : true) : isValid;
-          }
-
-          this.setState({
-            form: _.merge(this.state.form, {
-              [key]: {
-                value: value,
-                isValid: isValid,
-                errorMessage: isValid
-                  ? ''
-                  : this.state.validate.messages[key].numberFormat
-              }
-            })
-          });
         } else {
           this.setState({
             form: _.merge(this.state.form, {
@@ -135,70 +125,75 @@ export class NewClassInfo extends React.Component {
     });
   };
 
+
   render() {
     return (
-      <div className="new-class-info">
-        <div className="new-class-info__title">Thông tin cơ bản</div>
+      <div className="update-class-info">
+        <div className="update-class-info__title">Cập nhật lớp học</div>
         <hr className="divider" />
-        <form className="new-class-info__form">
-          <div className="new-class-info__form__info">
-            <div className="new-class-info__form__info__item">
-              <div className="new-class-info__title-text">
+        <form className="update-class-info__form">
+          <div className="update-class-info__form__info">
+            <div className="update-class-info__form__info__item">
+              <div className="update-class-info__title-text">
                 Tên lớp học <span>* (bắt buộc)</span>
               </div>
               <input
-                className="new-class-info__input-box"
+                className="update-class-info__input-box"
                 placeholder="Yoga cộng đồng buổi sáng"
                 type="text"
                 name="name"
+                value={this.props.data.name}
                 onChange={this.handleChange}
                 onBlur={this.handleChange}
               />
-              <small className="new-class-info__form__info__item__error-message">
+              <small className="update-class-info__form__info__item__error-message">
                 {this.state.form.name.errorMessage}
               </small>
             </div>
-
-            {/* <div className="new-class-info__form__info__item">
-              <div className="new-class-info__title-text">
+            {/* 
+            <div className="update-class-info__form__info__item">
+              <div className="update-class-info__title-text">
                 Sĩ số <span>* (bắt buộc)</span>
               </div>
               <input
-                className="new-class-info__input-box"
+                className="update-class-info__input-box"
                 placeholder="50"
                 type="number"
                 min="10"
                 name="quantity"
+                value={this.props.data.quantity}
                 onChange={this.handleChange}
                 onBlur={this.handleChange}
               />
-              <small className="new-class-info__form__info__item__error-message">
+              <small className="update-class-info__form__info__item__error-message">
                 {this.state.form.quantity.errorMessage}
               </small>
-            </div> */}
-            <div className="new-class-info__form__info__item">
-              <div className="new-class-info__title-text">
+            </div>
+             */}
+            <div className="update-class-info__form__info__item">
+              <div className="update-class-info__title-text">
                 Mã lớp <span>* (bắt buộc)</span>
               </div>
               <input
-                className="new-class-info__input-box"
-                placeholder="CONGDONG5H00_6H00"
+                className="update-class-info__input-box"
+                placeholder=""
                 type="text"
                 name="code"
+                value={this.props.data.code}
                 onChange={this.handleChange}
                 onBlur={this.handleChange}
               />
-              <small className="new-class-info__form__info__item__error-message">
+              <small className="update-class-info__form__info__item__error-message">
                 {this.state.form.code.errorMessage}
               </small>
             </div>
 
-            {/* <div className="new-class-info__form__info__item">
-              <div className="new-class-info__title-text">
+            {/* <div className="update-class-info__form__info__item">
+              <div className="update-class-info__title-text">
                 Code <span>* (bắt buộc)</span>
               </div>
               <input
-                className="new-class-info__input-box"
+                className="update-class-info__input-box"
                 placeholder="Code 1"
                 type="text"
                 name="slug"
@@ -206,20 +201,21 @@ export class NewClassInfo extends React.Component {
               />
             </div> */}
 
-            <div className="new-class-info__form__info__icon">
+            <div className="update-class-info__form__info__icon">
               <i className="fas fa-address-card"></i>
             </div>
           </div>
 
-          <div className="new-class-info__form__info">
-            <div className="new-class-info__form__info__item">
-              <div className="new-class-info__title-text">
+          <div className="update-class-info__form__info">
+            <div className="update-class-info__form__info__item">
+              <div className="update-class-info__title-text">
                 Khóa học <span>* (bắt buộc)</span>
               </div>
-              <div className="new-class-info__select-box">
+              <div className="update-class-info__select-box">
                 <select
-                  className="new-class-info__select-box__select"
+                  className="update-class-info__select-box__select"
                   name="course"
+                  value={this.props.data.course}
                   onChange={this.handleChange}
                   onBlur={this.handleChange}
                 >
@@ -235,19 +231,20 @@ export class NewClassInfo extends React.Component {
                   })}
                 </select>
               </div>
-              <small className="new-class-info__form__info__item__error-message">
+              <small className="update-class-info__form__info__item__error-message">
                 {this.state.form.course.errorMessage}
               </small>
             </div>
 
-            <div className="new-class-info__form__info__item">
-              <div className="new-class-info__title-text">
+            <div className="update-class-info__form__info__item">
+              <div className="update-class-info__title-text">
                 Giáo viên <span>* (bắt buộc)</span>
               </div>
-              <div className="new-class-info__select-box">
+              <div className="update-class-info__select-box">
                 <select
-                  className="new-class-info__select-box__select"
+                  className="update-class-info__select-box__select"
                   name="teacher"
+                  value={this.props.data.teacher}
                   onChange={this.handleChange}
                   onBlur={this.handleChange}
                 >
@@ -263,30 +260,31 @@ export class NewClassInfo extends React.Component {
                   })}
                 </select>
               </div>
-              <small className="new-class-info__form__info__item__error-message">
+              <small className="update-class-info__form__info__item__error-message">
                 {this.state.form.teacher.errorMessage}
               </small>
             </div>
 
-            <div className="new-class-info__form__info__icon">
+            <div className="update-class-info__form__info__icon">
               <i className="fas fa-user-alt"></i>
             </div>
           </div>
 
-          <div className="new-class-info__form__info">
-            <div className="new-class-info__title-text">Giới thiệu ngắn</div>
-            <div className="new-class-info__text-area">
+          <div className="update-class-info__form__info">
+            <div className="update-class-info__title-text">Giới thiệu ngắn</div>
+            <div className="update-class-info__text-area">
               <textarea
                 rows="10"
                 maxLength="100"
                 placeholder="Lớp học giúp bạn dẻo dai hơn"
                 name="shortDescription"
+                value={this.props.data.shortDescription}
                 onChange={this.handleChange}
                 onBlur={this.handleChange}
               ></textarea>
             </div>
 
-            <div className="new-class-info__form__info__icon">
+            <div className="update-class-info__form__info__icon">
               <i className="fas fa-camera-retro"></i>
             </div>
           </div>

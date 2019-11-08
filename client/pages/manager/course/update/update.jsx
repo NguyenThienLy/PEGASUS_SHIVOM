@@ -1,16 +1,12 @@
 import * as React from 'react';
 import Router from 'next/router';
-
 import { StepsLine, TinymceEditor } from '../../../../components';
-
 import Swal from 'sweetalert2';
-
 import {
     UpdateCourseBenefitsModal,
     UpdateCourseInfo,
     ReviewAddCourse
 } from './components';
-
 import { action } from '../../../../actions';
 import { api } from '../../../../services';
 
@@ -42,12 +38,13 @@ export class UpdateCourse extends React.Component {
                 thumbUrl: '',
                 description: '',
                 shortDescription: ''
-            },
-            courseId: null
+            }
         };
+
         this.hideUpdateCourseBenefitsModal = this.hideUpdateCourseBenefitsModal.bind(
             this
         );
+
         this.showUpdateCourseBenefitsModal = this.showUpdateCourseBenefitsModal.bind(
             this
         );
@@ -175,8 +172,7 @@ export class UpdateCourse extends React.Component {
         newFormData.shortDescription = course.shortDescription;
 
         this.setState({
-            formData: newFormData,
-            courseId: course._id
+            formData: newFormData
         })
     };
 
@@ -188,7 +184,7 @@ export class UpdateCourse extends React.Component {
             this.state.formData.thumb = imageLink;
         }
         api.course
-            .update(this.state.courseId, this.state.formData, {
+            .update(this.props.params.courseId, this.state.formData, {
                 headers: {
                     'x-token':
                         'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M'
@@ -313,7 +309,7 @@ export class UpdateCourse extends React.Component {
                                         className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-next"
                                         onClick={this.handleClickNext}
                                         dangerouslySetInnerHTML={{
-                                            __html: 'Tiếp theo<i className="fas fa-chevron-right"></i>'
+                                            __html: 'Cập nhật<i className="fas fa-chevron-right"></i>'
                                         }}
                                     ></button>
                                 )}
