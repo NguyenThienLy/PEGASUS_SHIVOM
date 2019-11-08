@@ -322,7 +322,7 @@ export class StatisticCourse extends React.Component {
             })
 
         api.statisticStudent
-            .statisticForListDetail(this.props.params.courseId, timeType, `${startTime}Z`, `${endTime}Z`, token)
+            .statisticForListDetail(this.props.params.courseId, "year", `${startTime}Z`, `${endTime}Z`, token)
             .then(res => {
 
                 const newTableDetails = this.state.tableDetails;

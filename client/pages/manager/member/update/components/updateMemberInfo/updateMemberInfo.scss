@@ -1,0 +1,164 @@
+@import '../../default.scss';
+
+.newMemberInfo {
+  width: 100%;
+  background-color: #fff;
+
+  .newMemberInfo__title-text {
+    width: 100%;
+    color: $color-grey;
+    font-size: 1em;
+    span {
+      color: #ee827c;
+      font-style: italic;
+      font-size: 0.8em;
+    }
+  }
+
+  .newMemberInfo__input-box {
+    background: #fff;
+    color: $font-color;
+    font-family: $font-body;
+    font-size: 1em;
+    border: 1px solid $table-border-color;
+    border-radius: 5px;
+    outline: none;
+    padding: 0.5em 5%;
+    width: 90%;
+    @include m('date') {
+      padding: 1em 5%;
+    }
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      /* display: none; <- Crashes Chrome on hover */
+      -webkit-appearance: inner-spin-button;
+      margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    }
+    &::placeholder {
+      color: rgba(0, 0, 0, 0.3);
+      font-size: 0.9em;
+    }
+    &:focus {
+      outline: none;
+      border: 1px solid $main-color;
+    }
+  }
+
+  .divider {
+    height: 1px;
+    background-color: $table-border-color;
+    border: none;
+    margin: 0px;
+  }
+
+  @include e('title') {
+    font-size: 1.1em;
+    color: $main-color;
+    font-weight: bold;
+    margin-left: 1.75em;
+    letter-spacing: 0.05em;
+    padding: 1em 0;
+    font-family: $font-family-special;
+  }
+
+  @include e('form') {
+    padding-left: 0;
+    margin: 0 0 0 2em;
+    padding-bottom: 1em;
+
+    @include e('info') {
+      position: relative;
+      border-left: 1px solid rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      padding: 1.2em 3em;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 2em;
+      row-gap: 1em;
+      @include e('item') {
+        .newMemberInfo__title-text {
+          margin-bottom: 1em;
+        }
+        // input[type='number'] {
+        //   -moz-appearance: textfield; /* Firefox */
+        // }
+        @include e('error-message') {
+          width: 100%;
+          font-size: 0.8em;
+          color: red;
+        }
+        @include m('single') {
+          grid-column-start: 1;
+          grid-column-end: 3;
+        }
+      }
+      @include e('icon') {
+        position: absolute;
+        left: 0em;
+        top: 1.5em;
+        transform: translateX(-50%);
+        width: 2.3em;
+        height: 2.3em;
+        border-radius: 999px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: lighten($sub-main-color, 25%);
+        box-shadow: 1px 1px 10px #ebebeb;
+        i {
+          color: $main-color;
+          font-size: 0.9em;
+        }
+      }
+      & > .newMemberInfo__title-text {
+        width: 100%;
+        grid-column-start: 1;
+        grid-column-end: 3;
+      }
+      @include e('add-photo') {
+        width: 100%;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        padding: 1em 0;
+        .container {
+          width: 100%;
+          text-align: center;
+        }
+      }
+    }
+
+    // @include e('button') {
+    //   display: flex;
+    //   justify-content: center;
+    //   padding: 2em 0em 1em;
+    //   // width: 5em;
+    //   // height: 1em;
+    //   button {
+    //     font-size: 1em;
+    //     padding: 0.6em 1.8em;
+    //     text-align: center;
+    //     border: none;
+    //     border-radius: 5px;
+    //     outline: none;
+    //     font-family: $font-body;
+    //     transition: 200ms ease;
+    //     color: $main-color;
+    //     background-color: lighten($sub-main-color, 25%);
+    //     box-shadow: 1px 1px 5px #ebebeb;
+    //     text-transform: uppercase;
+    //     cursor: pointer;
+    //     i {
+    //       font-size: 0.9em;
+    //       margin-left: 0.3em;
+    //     }
+    //     &:hover {
+    //       background-color: $main-color;
+    //       color: #fff;
+    //     }
+    //   }
+    // }
+  }
+}

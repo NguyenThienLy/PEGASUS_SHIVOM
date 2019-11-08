@@ -171,7 +171,6 @@ export class AddCourse extends React.Component {
         } catch (err) {}
       })
       .catch(err => {
-        console.log('err');
         Swal.fire('Thất bại', 'Thêm khoá học không thành công', 'error');
       });
   }

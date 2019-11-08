@@ -19,6 +19,7 @@ import {
 
 import { MainClass } from './main/main';
 import { AddClass } from './add/add';
+import { UpdateClass } from './update/update';
 import { DetailClass } from './detail/detail';
 
 class Class extends Component {
@@ -126,9 +127,14 @@ class Class extends Component {
                   {
                     path: '/quan-ly/lop-hoc/chi-tiet/:classId',
                     component: <DetailClass {...this.props} />
-                  }
+                  },
+                  { 
+                     path: "/quan-ly/lop-hoc/cap-nhat/:classId", 
+                      component: <UpdateClass {...this.props} /> 
+                  },
                 ]}
               />
+
             </div>
           </div>
         </React.Fragment>

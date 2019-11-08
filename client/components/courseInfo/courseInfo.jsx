@@ -35,6 +35,7 @@ export class CourseInfo extends React.Component {
   }
 
   render() {
+
     const {
       courseInfo,
       isFetchingCourseInfo,
@@ -46,6 +47,7 @@ export class CourseInfo extends React.Component {
       isFetchingPackage,
       isEmptyPackage
     } = this.props;
+
     return (
       <div className="course-info">
         {isFetchingCourseInfo && <Loading />}

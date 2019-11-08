@@ -12,7 +12,7 @@ export class MemberInfo extends React.Component {
   }
 
   updateMember() {
-    // this.props.updateMember();
+    this.props.updateMember();
   }
 
   render() {
@@ -30,7 +30,7 @@ export class MemberInfo extends React.Component {
         {isFetchingMemberInfo && <Loading />}
         {!isFetchingMemberInfo && isEmptyMemberInfo && 'Dữ liệu trống'}
         {!isFetchingMemberInfo && !isEmptyMemberInfo && (
-          <>
+
             <div className="member-info__title">
               {memberInfo.firstName}&nbsp;{memberInfo.lastName}
             </div>
@@ -49,6 +49,7 @@ export class MemberInfo extends React.Component {
                 </span>
               </Tooltip>
             </div>
+
 
             <div className="member-info__details">
               <div className="member-info__details__left">

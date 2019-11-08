@@ -19,6 +19,7 @@ export class MainCourse extends React.Component {
         values: ['all', 'active', 'deactive']
       }
     };
+
     this.filterByStatus = this.filterByStatus.bind(this);
     this.changePage = this.changePage.bind(this);
   }
@@ -27,6 +28,7 @@ export class MainCourse extends React.Component {
       currentPage: pageNum
     });
   }
+
   filterByStatus(value) {
     // const { name, value } = e.target;
     if (value !== 'all') {
@@ -48,31 +50,42 @@ export class MainCourse extends React.Component {
       });
     }
   }
+
   shouldComponentUpdate() {
     return true;
   }
+
   openDetail(courseId) {
     Router.push(
       `/manager/course/course?courseId=${courseId}`,
       `/quan-ly/khoa-hoc/chi-tiet/${courseId}`
     );
   }
+
   openStatistic(courseId) {
     Router.push(
       `/manager/course/course?courseId=${courseId}`,
       `/quan-ly/khoa-hoc/thong-ke/${courseId}`
     );
   }
+
+  edit(courseId) {
+    Router.push(
+      `/manager/course/course?courseId=${courseId}`,
+      `/quan-ly/khoa-hoc/cap-nhat/${courseId}`
+    );
+  }
+
   render() {
     const courses = this.state.courses
       ? this.state.courses.slice(
-          this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10,
-          10 * this.state.currentPage
-        )
+        this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10,
+        10 * this.state.currentPage
+      )
       : (this.props.courses.items || []).slice(
-          this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10,
-          10 * this.state.currentPage
-        );
+        this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10,
+        10 * this.state.currentPage
+      );
     return (
       <React.Fragment>
         <div className="course-main">
@@ -139,6 +152,7 @@ export class MainCourse extends React.Component {
                                 <i class="fas fa-info"></i>
                               </span>
                             </Tooltip>
+
                             <Tooltip
                               title="Thống kê"
                               position="top"
@@ -150,18 +164,18 @@ export class MainCourse extends React.Component {
                                 <i class="fas fa-chart-bar"></i>
                               </span>
                             </Tooltip>
-                            {/* <Tooltip
-                                                        title="Chỉnh sửa"
-                                                        position="top"
-                                                    >
-                                                        <span className="post-edit-button" onClick={() => this.edit(item._id)}> <i class="fas fa-pen"></i> </span>
-                                                    </Tooltip> */}
-                            {/* <Tooltip
-                                                        title="Xoá"
-                                                        position="top"
-                                                    >
-                                                        <span className="post-remove-button" onClick={() => this.delete(item._id)}><i class="fas fa-times"></i></span>
-                                                    </Tooltip> */}
+
+                            <Tooltip
+                              title="Chỉnh sửa"
+                              position="top"
+                              className="action-td__item"
+                            >
+                              <span
+                                onClick={() => this.edit(item._id)}
+                              >
+                                <i class="fas fa-edit"></i>
+                              </span>
+                            </Tooltip>
                           </div>
                         </td>
                       </tr>
@@ -180,13 +194,13 @@ export class MainCourse extends React.Component {
                   changePage={this.changePage}
                 />
               ) : (
-                <Pagination
-                  currentPage={this.state.currentPage}
-                  total={this.props.courses.items.length}
-                  limit={10}
-                  changePage={this.changePage}
-                />
-              )}
+                  <Pagination
+                    currentPage={this.state.currentPage}
+                    total={this.props.courses.items.length}
+                    limit={10}
+                    changePage={this.changePage}
+                  />
+                )}
             </div>
           </div>
         </div>

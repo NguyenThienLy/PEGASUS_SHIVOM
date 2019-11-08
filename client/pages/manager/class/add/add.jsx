@@ -34,8 +34,6 @@ export class AddClass extends React.Component {
         name: '',
         course: null,
         shortDescription: '',
-        description: '',
-        quantity: 0,
         teacher: null,
         code: null
       },
@@ -71,7 +69,7 @@ export class AddClass extends React.Component {
     return true;
   }
 
-  canOpenPage = function() {
+  canOpenPage = function () {
     const curPageNumber = this.state.curPageNumber;
     const pages = this.state.pages;
 
@@ -83,12 +81,12 @@ export class AddClass extends React.Component {
     return true;
   };
 
-  openPage = function(nextPageNumber) {
+  openPage = function (nextPageNumber) {
     // update curPageNumber
     this.setState({ curPageNumber: nextPageNumber });
   };
 
-  handleClickPrevious = function() {
+  handleClickPrevious = function () {
     const curPageNumber = this.state.curPageNumber;
     const nextPageNumber = curPageNumber - 1;
     if (nextPageNumber > 0) {
@@ -114,7 +112,7 @@ export class AddClass extends React.Component {
     }
   };
 
-  handleIsValid = function(pageNumber, isValid) {
+  handleIsValid = function (pageNumber, isValid) {
     const pages = this.state.pages;
     pages[pageNumber - 1].isValid = isValid;
     this.setState({ pages: pages });
@@ -130,13 +128,13 @@ export class AddClass extends React.Component {
   showAddClassTimeModal() {
     this.setState({ isShowAddClassTimeModal: true });
   }
-  fetchData() {}
+  fetchData() { }
 
   handleInputForm(name, value) {
     this.state.formData[name] = value;
     this.setState({ formData: this.state.formData });
   }
-  handleAddClassTime = function(body) {
+  handleAddClassTime = function (body) {
     if (!this.state.classId) {
       Swal.fire(
         'Chưa tạo lớp học',
@@ -193,16 +191,28 @@ export class AddClass extends React.Component {
   async submitClass() {
     Swal.showLoading();
     try {
-      const res = await api.class.create(this.state.formData, {
+      api.class.create(this.state.formData, {
         headers: {
           'x-token':
             'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M'
         }
-      });
-      this.setState({ classId: res.result.object._id });
-      Swal.fire('Thành công', 'Thêm lớp học thành công', 'success');
+      }).then(async res => {
+        await Swal.fire('Thành công', 'Thêm lớp học thành công', 'success');
+        try {
+          this.props.dispatch({
+            type: "ADD_CLASS_SUCCESS",
+            payload: res.result.object
+          })
+          Router.push(
+            `/manager/class/class?classId=${res.result.object._id}`,
+            `/quan-ly/lop-hoc/chi-tiet/${res.result.object._id}`
+          );
+        } catch (err) {
+
+        }
+      })
+      //this.setState({ classId: res.result.object._id });
     } catch (err) {
-      console.log('err');
       Swal.fire('Thất bại', 'Thêm lớp học không thành công', 'error');
     }
   }
@@ -285,13 +295,13 @@ export class AddClass extends React.Component {
                   <i className="fas fa-chevron-left"></i>Quay lại
                 </button>
               ) : (
-                <button
-                  className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-previous"
-                  onClick={this.handleClickPrevious}
-                >
-                  <i className="fas fa-chevron-left"></i>Quay lại
+                  <button
+                    className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-previous"
+                    onClick={this.handleClickPrevious}
+                  >
+                    <i className="fas fa-chevron-left"></i>Quay lại
                 </button>
-              )}
+                )}
 
               {this.state.curPageNumber === this.state.pages.length ? (
                 <button
@@ -301,14 +311,14 @@ export class AddClass extends React.Component {
                   Hoàn thành
                 </button>
               ) : (
-                <button
-                  className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-next"
-                  onClick={this.handleClickNext}
-                  dangerouslySetInnerHTML={{
-                    __html: 'Tiếp theo<i className="fas fa-chevron-right"></i>'
-                  }}
-                ></button>
-              )}
+                  <button
+                    className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-next"
+                    onClick={this.handleClickNext}
+                    dangerouslySetInnerHTML={{
+                      __html: 'Tiếp theo<i className="fas fa-chevron-right"></i>'
+                    }}
+                  ></button>
+                )}
             </div>
           </div>
         </div>

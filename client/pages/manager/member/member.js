@@ -18,10 +18,12 @@ import {
   SwitchRouter
 } from '../../../components';
 
-import { MainMember } from './main/main';
-import { AddMember } from './add/add';
-import { DetailMember } from './detail/detail';
-import { StatisticMember } from './statistic/statistic';
+import { MainMember } from './main/main'
+import { AddMember } from './add/add'
+import { DetailMember } from './detail/detail'
+import { UpdateMember } from './update/update'
+import { StatisticMember } from './statistic/statistic'
+
 
 class Member extends Component {
   constructor(props) {
@@ -134,7 +136,11 @@ class Member extends Component {
                   {
                     path: '/quan-ly/hoc-vien/thong-ke/:studentId',
                     component: <StatisticMember {...this.props} />
-                  }
+                  },
+                  { 
+                    path: "/quan-ly/hoc-vien/cap-nhat/:studentId", 
+                    component: <UpdateMember {...this.props} /> 
+                  },
                 ]}
               />
             </div>

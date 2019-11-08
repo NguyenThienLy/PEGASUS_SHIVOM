@@ -10,27 +10,27 @@ export class UpdateCourseInfo extends React.Component {
       form: {
         name: {
           value: '',
-          isValid: false,
+          isValid: true,
           errorMessage: ''
         },
         slug: {
           value: '',
-          isValid: false,
+          isValid: true,
           errorMessage: ''
         },
         shortDescription: {
           value: '',
-          isValid: false,
+          isValid: true,
           errorMessage: ''
         },
         quantity: {
           value: '',
-          isValid: false,
+          isValid: true,
           errorMessage: ''
         },
       },
       image: {
-        isValid: false
+        isValid: true
       },
       validate: {
         rules: {
@@ -96,6 +96,8 @@ export class UpdateCourseInfo extends React.Component {
   handleChange(event) {
     let { name, value } = event.target;
     value = value.trim();
+
+    //if (name === 'quantity') value = Number(value);
 
     this.handleInputValidation(name, value);
     this.props.handleChange(name, value);

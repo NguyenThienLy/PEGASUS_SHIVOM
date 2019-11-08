@@ -81,6 +81,12 @@ export class MainMember extends React.Component {
       `/quan-ly/hoc-vien/thong-ke/${studentId}`
     );
   }
+  edit(studentId) {
+    Router.push(
+      `/manager/member/member?studentId=${studentId}`,
+      `/quan-ly/hoc-vien/cap-nhat/${studentId}`
+    );
+  }
   changePage(pageNum) {
     this.setState({
       currentPage: pageNum
@@ -527,6 +533,7 @@ export class MainMember extends React.Component {
                                     <span
                                       onClick={() => this.checkin(item._id)}
                                     >
+
                                       <i class="fas fa-check"></i>
                                     </span>
                                   </Tooltip>

@@ -4,6 +4,7 @@ import {
 } from '../../../../components'
 import { api } from '../../../../services';
 import "./detail.scss";
+import Router from 'next/router';
 
 import { RegisNewCourse } from '../main/components'
 import { ExtendTimeCourse, RelearnCourse } from './components'
@@ -13,12 +14,17 @@ export class DetailMember extends React.Component {
         super(props);
         this.state = {
             student: {
-                isFetching: true,
+                isFetching: false,
                 isEmpty: true,
                 data: null
             },
             courseOfStudent: {
-                isFetching: true,
+                isFetching: false,
+                isEmpty: true,
+                data: null
+            },
+            timeTableOfStudent: {
+                isFetching: false,
                 isEmpty: true,
                 data: null
             },
@@ -28,8 +34,50 @@ export class DetailMember extends React.Component {
                 relearnCourse: false
             },
             selectedStudentId: props.params.studentId,
-            selectedCourseStudent: {}
+            selectedCourseStudent: {},
+            categories: [
+                {
+                    name: "trang chủ",
+                    linkHref: "/home/home",
+                    linkAs: "/",
+                    key: "home"
+                },
+                {
+                    name: "khoá học",
+                    key: "course",
+                    subCategories: []
+                },
+                {
+                    name: "tin tức",
+                    key: "news",
+                    subCategories: [
+                        {
+                            name: "khoá học môt",
+                            linkHref: "/blog/blog?categorySlug=khoa-hoc-not",
+                            linkAs: "/khoa-hoc-mot"
+                        },
+                        {
+                            name: "khoá học hai",
+                            linkHref: "/home/home",
+                            linkAs: "/"
+                        },
+                        {
+                            name: "khoá học ba",
+                            linkHref: "/home/home",
+                            linkAs: "/"
+                        }
+                    ]
+                },
+                {
+                    name: "về chúng tôi",
+                    linkHref: "/contact/contact",
+                    linkAs: "/lien-he",
+                    key: "about"
+                }
+            ]
         };
+
+        this.updateMember = this.updateMember.bind(this);
         this.showHideModal = this.showHideModal.bind(this);
         this.extendTimeCourse = this.extendTimeCourse.bind(this);
         this.regisNewCourse = this.regisNewCourse.bind(this);
@@ -38,6 +86,7 @@ export class DetailMember extends React.Component {
         this.relearnCourse = this.relearnCourse.bind(this)
         this.showRelearnCourse = this.showRelearnCourse.bind(this)
     }
+        
     showHideModal(key) {
         this.state.modals[key] = !this.state.modals[key];
         this.setState({ modals: this.state.modals });
@@ -48,8 +97,7 @@ export class DetailMember extends React.Component {
         const token =
             'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M';
 
-        if (this.state.student.isFetching) {
-            const newStudent = this.state.student;
+        const newStudent = this.state.student;
 
             newStudent.data = this.props.students.items.find(student => {
                 return student._id === this.props.params.studentId;
@@ -70,39 +118,62 @@ export class DetailMember extends React.Component {
             this.setState({ student: newStudent, selectedStudentId: newStudent.data._id });
         }
 
-        if (this.state.courseOfStudent.isFetching) {
-            api.courseStudent.getList(
-                {
-                    query: {
-                        filter: { student: this.props.params.studentId },
-                        populates: ['course']
+        newStudent.isFetching = false;
+        newStudent.isEmpty = false;
 
-                    },
-                    headers: {
-                        'x-token': token
-                    }
-                }).then(res => {
-                    const newCourseOfStudent = this.state.courseOfStudent;
+        this.setState({ student: newStudent });
 
-                    newCourseOfStudent.data = res.results.objects.rows;
+        api.courseStudent.getList(
+            {
+                query: {
+                    filter: { student: this.props.params.studentId },
+                    populates: ['course']
 
-                    newCourseOfStudent.isFetching = false;
-                    newCourseOfStudent.isEmpty = false;
+                },
+                headers: {
+                    'x-token': token
+                }
+            }).then(res => {
+                const newCourseOfStudent = this.state.courseOfStudent;
+                  
+                newCourseOfStudent.data = res.results.objects.rows;
+                newCourseOfStudent.isFetching = false;
+                newCourseOfStudent.isEmpty = false;
 
+                this.setState({ courseOfStudent: newCourseOfStudent });
+            }).catch(err => {
+                const newCourseOfStudent = this.state.courseOfStudent;
 
-                    this.setState({ courseOfStudent: newCourseOfStudent });
-                }).catch(err => {
-                    const newCourseOfStudent = this.state.courseOfStudent;
+                newCourseOfStudent.isFetching = false;
+                newCourseOfStudent.isEmpty = true;
 
-                    newCourseOfStudent.isFetching = false;
-                    newCourseOfStudent.isEmpty = true;
-
-                    this.setState({ courseOfStudent: newCourseOfStudent });
-                })
-        }
+                this.setState({ courseOfStudent: newCourseOfStudent });
+            })
     };
 
+    changeIsFetching(isFetching) {
+        const newStudent = this.state.student;
+        const newCourseOfStudent = this.state.courseOfStudent;
+
+        newStudent.isFetching = isFetching;
+        newCourseOfStudent.isFetching = isFetching;
+
+        this.setState({
+            student: newStudent,
+            courseOfStudent: newCourseOfStudent
+        });
+    }
+
+    updateMember() {
+        Router.push(
+            `/manager/member/member?studentId=${this.props.params.studentId}`,
+            `/quan-ly/hoc-vien/cap-nhat/${this.props.params.studentId}`
+        );
+    }
+
     componentDidMount() {
+        this.changeIsFetching(true);
+
         this.fetchData();
 
         // var heightOfHeader = $(
@@ -327,6 +398,7 @@ export class DetailMember extends React.Component {
                                         memberInfo={this.state.student.data}
                                         isFetchingMemberInfo={this.state.student.isFetching}
                                         isEmptyMemberInfo={this.state.student.isEmpty}
+                                        updateMember={this.updateMember}
 
                                         courseOfStudent={this.state.courseOfStudent.data}
                                         isFetchingCourseOfStudent={this.state.courseOfStudent.isFetching}

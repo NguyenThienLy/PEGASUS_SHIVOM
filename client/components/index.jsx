@@ -22,6 +22,7 @@ export * from "./numberSection/numberSection";
 export * from "./postAuthor/postAuthor";
 export * from "./introHome/introHome";
 export * from "./classTimeItem/classTimeItem";
+export * from "./classInfo/classInfo";
 export * from "./latestPost/latestPost";
 export * from "./introHome2/introHome2";
 export * from "./news2/news2";
