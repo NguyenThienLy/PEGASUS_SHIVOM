@@ -23,12 +23,14 @@ export class ReviewUpdateMember extends React.Component {
         <hr className="divider" />
         <div className="reviewUpdateMember__content">
           <div className="reviewUpdateMember__content__left">
+
             <div className="reviewUpdateMember__content__left__avatar">
               <img
                 src={this.props.data.personalInfo.avatarUrl}
                 alt=""
               />
             </div>
+
             <div className="reviewUpdateMember__content__left__name">
               <span>{this.props.data.personalInfo.firstName} {this.props.data.personalInfo.lastName}</span>
             </div>
@@ -40,6 +42,7 @@ export class ReviewUpdateMember extends React.Component {
                 <div className="reviewUpdateMember__content__right__title__inner--hover" />
               </div>
             </div>
+
             <div className="reviewUpdateMember__content__right__info">
               <div className="reviewUpdateMember__content__right__info__item">
                 <div className="reviewUpdateMember__content__right__info__item__title">
@@ -66,6 +69,7 @@ export class ReviewUpdateMember extends React.Component {
                   {this.props.data.personalInfo.firstName}
                 </div>
               </div>
+
               <div className="reviewUpdateMember__content__right__info__item">
                 <div className="reviewUpdateMember__content__right__info__item__title">
                   Tên đệm và tên
@@ -83,6 +87,7 @@ export class ReviewUpdateMember extends React.Component {
                   {this.props.data.personalInfo.phone}
                 </div>
               </div>
+
               <div className="reviewUpdateMember__content__right__info__item">
                 <div className="reviewUpdateMember__content__right__info__item__title">
                   Sinh nhật
@@ -101,87 +106,7 @@ export class ReviewUpdateMember extends React.Component {
                 </div>
               </div>
             </div>
-
-            <div className="reviewUpdateMember__content__right__title">
-              <div className="reviewUpdateMember__content__right__title__inner">
-                <div>Đăng ký khóa học</div>
-                <div className="reviewUpdateMember__content__right__title__inner--hover" />
-              </div>
-            </div>
-            <div className="reviewUpdateMember__content__right__info">
-              {this.props.data.courses.map((course, index) => {
-                const courseData = this.props.courses.find((courseData) => { return courseData._id === course._id })
-                return (<div className="reviewUpdateMember__content__right__info__item">
-                  <div className="reviewUpdateMember__content__right__info__item__content">
-                    {courseData.name}
-                  </div>
-                </div>)
-              })}
-              {/* <div className="reviewUpdateMember__content__right__info__item">
-                <div className="reviewUpdateMember__content__right__info__item__content">
-                  Yoga cộng đồng
-                </div>
-              </div>
-              <div className="reviewUpdateMember__content__right__info__item">
-                <div className="reviewUpdateMember__content__right__info__item__content">
-                  Yoga trị liệu
-                </div>
-              </div>
-              <div className="reviewUpdateMember__content__right__info__item">
-                <div className="reviewUpdateMember__content__right__info__item__content">
-                  Yoga bà bầu
-                </div>
-              </div> */}
-            </div>
-
-            {/* <div className="reviewUpdateMember__content__right__title">
-              <div className="reviewUpdateMember__content__right__title__inner">
-                <div>Lịch học</div>
-                <div className="reviewUpdateMember__content__right__title__inner--hover" />
-              </div>
-            </div>
-            <div className="reviewUpdateMember__content__right__timeTable">
-              <div className="reviewUpdateMember__content__right__timeTable__event">
-                <div className="reviewUpdateMember__content__right__timeTable__event__date">
-                  Thứ hai
-                </div>
-                <div className="reviewUpdateMember__content__right__timeTable__event__class-info">
-                  <div className="reviewUpdateMember__content__right__timeTable__event__class-info__class-name">
-                    Cân bằng cơ thể
-                  </div>
-                  <div className="reviewUpdateMember__content__right__timeTable__event__class-info__class-time">
-                    07:00 - 09:00
-                  </div>
-                </div>
-              </div>
-              <div className="reviewUpdateMember__content__right__timeTable__event">
-                <div className="reviewUpdateMember__content__right__timeTable__event__date">
-                  Thứ ba
-                </div>
-                <div className="reviewUpdateMember__content__right__timeTable__event__class-info">
-                  <div className="reviewUpdateMember__content__right__timeTable__event__class-info__class-name">
-                    Duỗi người
-                  </div>
-                  <div className="reviewUpdateMember__content__right__timeTable__event__class-info__class-time">
-                    07:00 - 09:00
-                  </div>
-                </div>
-              </div>
-            </div> */}
           </div>
-        </div>
-        <hr className="divider" />
-        <div className="reviewUpdateMember__more">
-          <div className="reviewUpdateMember__more__sum">
-            <span className="reviewUpdateMember__more__sum__title">Tổng tiền</span>
-            <span className="reviewUpdateMember__more__sum__content">
-              {this.getTotalPrice()}
-            </span>
-            <input type="checkbox" name="isPayFee" value={true} onClick={this.props.handleCheckIsPayFee} />Đã thanh toán
-          </div>
-          {/* <div className="reviewUpdateMember__more__button">
-            <button>Xác nhận</button>
-          </div> */}
         </div>
       </div>
     );

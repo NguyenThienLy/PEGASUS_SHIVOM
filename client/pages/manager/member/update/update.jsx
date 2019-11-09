@@ -38,11 +38,10 @@ export class UpdateMember extends React.Component {
                     address: '',
                     avatar: '',
                     avatarUrl: ''
-                },
-                courses: [],
-                isPayFee: false
+                }
             }
         };
+
         this.canOpenPage = this.canOpenPage.bind(this);
         this.openPage = this.openPage.bind(this);
         this.handleClickPrevious = this.handleClickPrevious.bind(this);
@@ -109,8 +108,6 @@ export class UpdateMember extends React.Component {
     static async getInitialProps({ req, query }) {
         return {};
     }
-
-    fetchData() { }
 
     shouldComponentUpdate() {
         return true;
@@ -241,6 +238,33 @@ export class UpdateMember extends React.Component {
         this.setState({ formData: this.state.formData });
     };
 
+    fetchData = async () => {
+        let student = this.props.students.items.find(student => {
+            return student._id === this.props.params.studentId;
+        });
+
+        if (!student) {
+            const res = await api.student.getItem(this.props.params.studentId);
+            student = res.result.object;
+        }
+
+        const newFormData = this.state.formData;
+
+        newFormData.personalInfo.cardId = student.cardId;
+        newFormData.personalInfo.phone = student.phone;
+        newFormData.personalInfo.point = student.point;
+        newFormData.personalInfo.firstName = student.firstName;
+        newFormData.personalInfo.lastName = student.lastName;
+        newFormData.personalInfo.birthday = moment(student.birthday).format("DD/MM/YYYY");
+        newFormData.personalInfo.address = student.address;
+        newFormData.personalInfo.avatar = student.avatar;
+        newFormData.personalInfo.avatarUrl = student.avatar;
+
+        this.setState({
+            formData: newFormData
+        });
+    };
+
     async submitEnroll() {
         Swal.showLoading();
         let imageLink;
@@ -256,18 +280,19 @@ export class UpdateMember extends React.Component {
         this.state.formData.personalInfo.birthday = moment(
             this.state.formData.personalInfo.birthday
             , "DD/MM/YYYY").format();
+
         api.student
-            .enroll(this.state.formData, {
+            .update(this.props.params.studentId, this.state.formData.personalInfo, {
                 headers: {
                     'x-token':
                         'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4iLCJfaWQiOiI1ZDQ4ZWM1ZmFiMGRhYTlkMmM0MDgwYzgiLCJleHBpcmVkQXQiOiIyMDE5LTA4LTI1VDIzOjE0OjA3KzA3OjAwIn0.ngV8I2vD652qTIwum2F4lTEx1brQ8TABgiOmVfY7v8M'
                 }
             })
             .then(async res => {
-                await Swal.fire('Thành công', 'Thêm học viên thành công', 'success');
+                await Swal.fire('Thành công', 'Cập nhật học viên thành công', 'success');
                 try {
                     this.props.dispatch({
-                        type: "ADD_STUDENT_SUCCESS",
+                        type: "UPDATE_STUDENT_SUCCESS",
                         payload: res.result.object
                     })
                 } catch (err) {
@@ -279,8 +304,7 @@ export class UpdateMember extends React.Component {
                 );
             })
             .catch(err => {
-                console.log('err');
-                Swal.fire('Thất bại', 'Thêm học viên không thành công', 'error');
+                Swal.fire('Thất bại', 'Cập nhật học viên không thành công', 'error');
             });
     }
 
@@ -311,6 +335,7 @@ export class UpdateMember extends React.Component {
                                 <UpdateMemberInfo
                                     handleChange={this.handleChange}
                                     handleIsValid={this.handleIsValid}
+                                    data={this.state.formData}
                                     pageNumber="1"
                                 />
                             </div>
