@@ -9,27 +9,27 @@ export class UpdateMemberInfo extends React.Component {
       form: {
         cardId: {
           value: '',
-          isValid: false,
+          isValid: true,
           errorMessage: ''
         },
         firstName: {
           value: '',
-          isValid: false,
+          isValid: true,
           errorMessage: ''
         },
         lastName: {
           value: '',
-          isValid: false,
+          isValid: true,
           errorMessage: ''
         },
         phone: {
           value: '',
-          isValid: false,
+          isValid: true,
           errorMessage: ''
         },
         birthday: {
           value: '',
-          isValid: false,
+          isValid: true,
           errorMessage: ''
         }
       },
@@ -180,6 +180,7 @@ export class UpdateMemberInfo extends React.Component {
                 placeholder="0123456789"
                 type="text"
                 name="cardId"
+                value={this.props.data.personalInfo.cardId}
                 onChange={this.handleChange}
                 onBlur={this.handleChange}
               />
@@ -195,6 +196,7 @@ export class UpdateMemberInfo extends React.Component {
                 min="0"
                 type="number"
                 name="point"
+                value={this.props.data.personalInfo.point}
                 onChange={this.handleChange}
               />
             </div>
@@ -212,6 +214,7 @@ export class UpdateMemberInfo extends React.Component {
                 placeholder="Nguyễn"
                 type="text"
                 name="firstName"
+                value={this.props.data.personalInfo.firstName}
                 onChange={this.handleChange}
                 onBlur={this.handleChange}
               />
@@ -228,6 +231,7 @@ export class UpdateMemberInfo extends React.Component {
                 placeholder="Văn A"
                 type="text"
                 name="lastName"
+                value={this.props.data.personalInfo.lastName}
                 onChange={this.handleChange}
                 onBlur={this.handleChange}
               />
@@ -244,6 +248,7 @@ export class UpdateMemberInfo extends React.Component {
                 placeholder="0123456789"
                 type="text"
                 name="phone"
+                value={this.props.data.personalInfo.phone}
                 onChange={this.handleChange}
                 onBlur={this.handleChange}
               />
@@ -259,6 +264,7 @@ export class UpdateMemberInfo extends React.Component {
                 className="updateMemberInfo__input-box updateMemberInfo__input-box--date"
                 type="text"
                 name="birthday"
+                value={this.props.data.personalInfo.birthday}
                 onChange={this.handleChange}
                 onBlur={this.handleChange}
               />
@@ -273,6 +279,7 @@ export class UpdateMemberInfo extends React.Component {
                 placeholder="số nhà/ đường/ phường/ ..."
                 type="text"
                 name="address"
+                value={this.props.data.personalInfo.address}
                 onChange={this.handleChange}
               />
             </div>
