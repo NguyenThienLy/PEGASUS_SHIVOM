@@ -134,12 +134,12 @@ class Member extends Component {
                     component: <DetailMember {...this.props} />
                   },
                   {
-                    path: '/quan-ly/hoc-vien/thong-ke/:studentId',
+                    path: '/quan-ly/hoc-vien/thong-ke/:studentId/:courseId',
                     component: <StatisticMember {...this.props} />
                   },
-                  { 
-                    path: "/quan-ly/hoc-vien/cap-nhat/:studentId", 
-                    component: <UpdateMember {...this.props} /> 
+                  {
+                    path: "/quan-ly/hoc-vien/cap-nhat/:studentId",
+                    component: <UpdateMember {...this.props} />
                   },
                 ]}
               />

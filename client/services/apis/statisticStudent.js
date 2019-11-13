@@ -31,6 +31,7 @@ export class StatisticStudentApi extends CrudApi {
       })
     };
     const res = await this.exec(url, options);
+    console.log("calendarUrl", url)
     if (res.code && res.code === 200) {
       return res;
     } else {

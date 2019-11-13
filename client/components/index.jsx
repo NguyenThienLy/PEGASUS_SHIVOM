@@ -32,6 +32,7 @@ export * from "./table/table";
 export * from "./lineChart/lineChart";
 export * from "./columnChart/columnChart";
 export * from "./pieChart/pieChart";
+export * from "./calendarChart/calendarChart";
 export * from "./feedback/feedback";
 export * from "./imageShow/imageShow";
 export * from "./sidebar/sidebar";

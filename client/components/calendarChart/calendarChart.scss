@@ -1,0 +1,66 @@
+@import '../../default.scss';
+
+$background-color-chart: lighten($sub-main-color, 30%);
+
+.calendarChart {
+  width: 100%;
+  border-radius: 5px;
+  // -webkit-box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+  // box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid $table-border-color;
+  @include e('title') {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    border-bottom: 1px solid $table-border-color;
+    span {
+      text-transform: capitalize;
+      font-size: 1em;
+      padding: 1em;
+    }
+  }
+  @include e('select') {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5em 1em;
+    background-color: $background-color-chart;
+    border-bottom: 1px solid $table-border-color;
+    @include e('info') {
+      color: $font-color;
+      font-size: 0.9em;
+    }
+    @include e('date') {
+    }
+    @include e('full') {
+      @include e('btn') {
+        text-transform: capitalize;
+        border: 0;
+        outline: 0;
+        padding: 0;
+        color: #fff;
+        border-radius: 5px;
+        padding: 0.6em;
+        transition: all 200ms ease-in;
+        cursor: pointer;
+        @include m('primary') {
+          background: $main-color;
+          box-shadow: 1px 1px 2px 0 rgba(0, 163, 175, 0.5);
+          &:hover {
+            background: darken($main-color, 5%);
+          }
+          &:active {
+            background: $main-color;
+            box-shadow: 1px 1px 5px 0 rgba(0, 163, 175, 0.3);
+          }
+        }
+      }
+    }
+  }
+  @include e('content') {
+    @include e('inner') {
+      // height: 80%;
+      padding: 2em 0.5em;
+      font-size: 0.9em;
+    }
+  }
+}
