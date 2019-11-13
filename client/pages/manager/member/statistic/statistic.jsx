@@ -114,25 +114,7 @@ export class StatisticMember extends React.Component {
         labels: null,
         isEmpty: true,
         isFetching: false,
-        datasets: [
-          [{ type: 'date', id: 'Date' }, { type: 'number', id: 'Won/Loss' }],
-          [new Date(2013, 2, 4), 10],
-          [new Date(2013, 2, 5), 3],
-          [new Date(2013, 2, 7), -1],
-          [new Date(2013, 2, 8), 2],
-          [new Date(2013, 2, 12), -1],
-          [new Date(2013, 2, 13), 1],
-          [new Date(2013, 2, 15), 1],
-          [new Date(2013, 2, 16), -4],
-          [new Date(2013, 1, 4), 10],
-          [new Date(2013, 1, 5), 3],
-          [new Date(2013, 1, 7), -1],
-          [new Date(2013, 1, 8), 2],
-          [new Date(2013, 1, 12), -1],
-          [new Date(2013, 1, 13), 1],
-          [new Date(2013, 1, 15), 1],
-          [new Date(2013, 1, 16), -4],
-        ]
+        datasets: []
       },
       filterByTimeType: {
         placeholder: 'Theo tuần',
@@ -172,6 +154,15 @@ export class StatisticMember extends React.Component {
         this.props.params.courseId, timeType, `${startTime}Z`, `${endTime}Z`, token)
       .then(res => {
         const newCalendarChartData = this.state.calendarChartData;
+        newCalendarChartData.datasets = [];
+
+        newCalendarChartData.datasets.push([{ type: 'date', id: 'Date' }, { type: 'number', id: 'Won/Loss' }]);
+
+        res.result.object.data.forEach(element => {
+          var date = moment(element[0]);
+
+          newCalendarChartData.datasets.push([new Date(date.year(), date.month(), date.day()), element[1]])
+        });
 
         newCalendarChartData.timeType = timeTypeVi;
         newCalendarChartData.isEmpty = false;
@@ -180,6 +171,7 @@ export class StatisticMember extends React.Component {
         this.setState({
           calendarChartData: newCalendarChartData
         });
+
       }).catch(error => {
         const newCalendarChartData = this.state.calendarChartData;
 
@@ -259,15 +251,18 @@ export class StatisticMember extends React.Component {
     const newCalendarChartData = this.state.calendarChartData;
     const newPieChartData = this.state.pieChartData;
     const newNumberAdmins = this.state.numberAdmins;
+    const newMember = this.state.member;
 
     newCalendarChartData.isFetching = isFetching;
     newPieChartData.isFetching = isFetching;
     newNumberAdmins.isFetching = isFetching;
+    newMember.isFetching = isFetching;
 
     this.setState({
       calendarChartData: newCalendarChartData,
       pieChartData: newPieChartData,
-      numberAdmins: newNumberAdmins
+      numberAdmins: newNumberAdmins,
+      member: newMember
     });
   }
 
@@ -344,7 +339,8 @@ export class StatisticMember extends React.Component {
                 {this.state.member.isFetching && this.state.member.isEmpty && <LoadingSmall />}
                 {this.state.member.isEmpty && !this.state.member.isFetching && "trống"}
                 {!this.state.member.isFetching && !this.state.member.isEmpty && (
-                  this.state.member.data.name)}
+                  <div> {this.state.member.data.firstName} {this.state.member.data.lastName}</div>
+                )}
               </div>
               <div className="member-statistics__body__card__content">
                 <div className="member-statistics__body__card__content__chart">
@@ -377,6 +373,16 @@ export class StatisticMember extends React.Component {
                     </div>
                   </div>
 
+
+
+                  <div className="member-statistics__body__card__content__chart__row">
+                    <CalendarChart
+                      calendarChartData={this.state.calendarChartData}
+                      isFetching={this.state.calendarChartData.isFetching}
+                      isEmpty={this.state.calendarChartData.isEmpty}
+                    ></CalendarChart>
+                  </div>
+
                   <div className="member-statistics__body__card__content__chart__row">
                     {/* <ColumnChart
                       columnChartData={this.state.columnChartData}
@@ -389,14 +395,6 @@ export class StatisticMember extends React.Component {
                       isFetching={this.state.pieChartData.isFetching}
                       isEmpty={this.state.pieChartData.isEmpty}
                     ></PieChart>
-                  </div>
-
-                  <div className="member-statistics__body__card__content__chart__row">
-                    <CalendarChart
-                      calendarChartData={this.state.calendarChartData}
-                      isFetching={this.state.calendarChartData.isFetching}
-                      isEmpty={this.state.calendarChartData.isEmpty}
-                    ></CalendarChart>
                   </div>
                 </div>
               </div>
