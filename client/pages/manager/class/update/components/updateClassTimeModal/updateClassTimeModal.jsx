@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import Modal from 'react-awesome-modal';
 import "./updateClassTimeModal.scss";
 import { Modal } from "../../../../../../modals";
-import { UpdateClassTimeForm } from "../UpdateClassTimeForm/UpdateClassTimeForm";
+import { UpdateClassTimeForm } from "../updateClassTimeForm/updateClassTimeForm";
 
 export class UpdateClassTimeModal extends Component {
   constructor(props) {
