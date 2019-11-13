@@ -15,7 +15,7 @@ export class CalendarChart extends React.Component {
 
   render() {
     const { calendarChartData, isFetching, isEmpty } = this.props;
-    //console.log("calendarChartData", calendarChartData);
+    console.log("calendarChartData", calendarChartData);
     return (
       <div className="calendarChart">
         <div className="calendarChart__title">
@@ -41,11 +41,11 @@ export class CalendarChart extends React.Component {
             {isEmpty && !isFetching && 'Dữ liệu trống'}
             {!isFetching && !isEmpty && (
               <Chart
-                data={calendarChartData}
+                data={calendarChartData.datasets}
                 chartType="Calendar"
                 loader={<div>Loading Chart</div>}
                 options={{
-                  title: 'Red Sox Attendance',
+                  title: 'Trạng thái tập',
                 }}
                 rootProps={{ 'data-testid': '2' }}
               />
