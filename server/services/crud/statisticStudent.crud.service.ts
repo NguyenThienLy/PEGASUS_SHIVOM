@@ -171,7 +171,7 @@ export class StatisticStudentService extends CrudService<typeof StatisticStudent
         totalWeekStartTime: number,
         totalWeekEndTime: number
     }) {
-        let timeLine = []
+        let data = [], isEmpty = true;
 
         const tempTimeLine = await this.model.aggregate([
             // Lọc ra theo khóa học và type phù hợp
@@ -254,22 +254,30 @@ export class StatisticStudentService extends CrudService<typeof StatisticStudent
 
         // Đẩy element type absent vào arr timeLine
         _.flatten(tempTimeLine[0].absent).forEach(item => {
-            timeLine.push({ time: item, type: "absent" })
+            data.push([item, -10])
+
+            isEmpty = false
         })
 
         // Đẩy element type late vào arr timeLine
         _.flatten(tempTimeLine[0].late).forEach(item => {
-            timeLine.push({ time: item, type: "late" })
+            data.push([item, -5])
+
+            isEmpty = false
         })
 
         // Đẩy element type on_time vào arr timeLine
         _.flatten(tempTimeLine[0].onTime).forEach(item => {
-            timeLine.push({ time: item, type: "on_time" })
+            data.push([item, 10])
+
+            isEmpty = false
         })
 
         // Đẩy element type redundant vào arr timeLine
-        _.fltten(tempTimeLine[0].redundant).forEach(item => {
-            timeLine.push({ time: item, type: "redundant" })
+        _.flatten(tempTimeLine[0].redundant).forEach(item => {
+            data.push([item, 5])
+
+            isEmpty = false
         })
 
         return {
@@ -277,7 +285,8 @@ export class StatisticStudentService extends CrudService<typeof StatisticStudent
             lates: _.flatten(tempTimeLine[0].late),
             onTimes: _.flatten(tempTimeLine[0].onTime),
             redundants: _.flatten(tempTimeLine[0].redundant),
-            timeLines: timeLine
+            data: data,
+            isEmpty: isEmpty
         }
     }
 
@@ -289,7 +298,12 @@ export class StatisticStudentService extends CrudService<typeof StatisticStudent
         totalWeekEndTime: number
     }) {
 
-        return await this.model.aggregate([
+        let labels = ["Vắng học", "Trễ giờ", "Đúng giờ", "Đi thừa"],
+            data = [0, 0, 0, 0], totalAbsent = 0,
+            totalLate = 0, totalOnTime = 0, totalRedundant = 0,
+            isEmpty = true
+
+        const tempDataPieChart = await this.model.aggregate([
             // Lọc ra theo khóa học và type phù hợp
             {
                 $match: {
@@ -365,7 +379,7 @@ export class StatisticStudentService extends CrudService<typeof StatisticStudent
                     totalAbsent: { $sum: "$totalAbsent" },
                     totalLate: { $sum: "$totalLate" },
                     totalOnTime: { $sum: "$totalOnTime" },
-                    totalRedundat: { $sum: "$totalRedundant" },
+                    totalRedundant: { $sum: "$totalRedundant" },
                 }
             },
             // Bỏ id
@@ -375,5 +389,31 @@ export class StatisticStudentService extends CrudService<typeof StatisticStudent
                 }
             }
         ])
+
+        if (tempDataPieChart.length > 0) {
+            data[0] = tempDataPieChart[0].totalAbsent
+            totalAbsent = tempDataPieChart[0].totalAbsent
+
+            data[1] = tempDataPieChart[0].totalLate
+            totalLate = tempDataPieChart[0].totalLate
+
+            data[2] = tempDataPieChart[0].totalOnTime
+            totalOnTime = tempDataPieChart[0].totalOnTime
+
+            data[3] = tempDataPieChart[0].totalRedundant
+            totalRedundant = tempDataPieChart[0].totalRedundant
+
+            isEmpty = false
+        }
+
+        return {
+            labels: labels,
+            data: data,
+            totalAbsent: totalAbsent,
+            totalLate: totalLate,
+            totalOnTime: totalOnTime,
+            totalRedundant: totalRedundant,
+            isEmpty: isEmpty
+        }
     }
 }
