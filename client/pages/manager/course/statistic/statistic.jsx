@@ -1,11 +1,7 @@
 import * as React from "react";
 import { api } from '../../../../services'
-import { tsTupleType } from "@babel/types";
-import Swal from 'sweetalert2'
 import * as moment from 'moment'
 import {
-    Sidebar,
-    HeaderAdmin,
     NumberAdmin,
     PieChart,
     LineChart,
@@ -16,7 +12,6 @@ import {
 } from '../../../../components';
 
 import "./statistic.scss"
-
 
 export class StatisticCourse extends React.Component {
     constructor(props) {
@@ -170,35 +165,9 @@ export class StatisticCourse extends React.Component {
             }
         }
 
-        this.showHideModal = this.showHideModal.bind(this)
-        this.createPackage = this.createPackage.bind(this)
         this.filterByTimeType = this.filterByTimeType.bind(this);
         this.changeStartTime = this.changeStartTime.bind(this);
         this.changeEndTime = this.changeEndTime.bind(this);
-    }
-
-    showHideModal(key) {
-        this.state.modals[key] = !this.state.modals[key]
-        this.setState({ modals: this.state.modals })
-    }
-
-    async createPackage(body) {
-        Swal.showLoading()
-        body.course = this.props.params.courseId
-        body.priceBeforeDiscount = body.price + body.discount
-        body.discount = {
-            type: "amount",
-            amount: body.discount
-        }
-        api.package.create(body, {
-            headers: {
-                "x-token": localStorage.getItem("token")
-            }
-        }).then(res => {
-            Swal.fire("Thành công", "Tạo gói cho khoá học thành công", "success")
-        }).catch(err => {
-            Swal.fire("Thất bại", "Tạo gói cho khoá học thất bại", "error")
-        })
     }
 
     fetchData = async (startTime, endTime, timeType) => {

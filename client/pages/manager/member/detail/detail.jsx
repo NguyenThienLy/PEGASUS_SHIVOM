@@ -80,6 +80,7 @@ export class DetailMember extends React.Component {
         this.updateMember = this.updateMember.bind(this);
         this.showHideModal = this.showHideModal.bind(this);
         this.extendTimeCourse = this.extendTimeCourse.bind(this);
+        this.openStatistic = this.openStatistic.bind(this);
         this.regisNewCourse = this.regisNewCourse.bind(this);
         this.showExtendTimeCourse = this.showExtendTimeCourse.bind(this)
         this.cancelCourse = this.cancelCourse.bind(this)
@@ -203,6 +204,7 @@ export class DetailMember extends React.Component {
         }
         return true;
     }
+
     extendTimeCourse(courseStudentId, body) {
         Swal.showLoading();
         api.courseStudent
@@ -233,6 +235,14 @@ export class DetailMember extends React.Component {
                 );
             });
     }
+
+    openStatistic(courseId) {
+        Router.push(
+            `/manager/member/member?studentId=${this.props.params.studentId}/courseId=${courseId}`,
+            `/quan-ly/hoc-vien/thong-ke/${this.props.params.studentId}/${courseId}`
+        );
+    }
+
     regisNewCourse(body) {
         Swal.showLoading();
         api.student
@@ -264,6 +274,7 @@ export class DetailMember extends React.Component {
                 );
             });
     }
+
     async cancelCourse(courseStudentId) {
         const result = await Swal.fire({
             title: "Lý do nghỉ học khoá này",
@@ -274,7 +285,7 @@ export class DetailMember extends React.Component {
             input: "text",
             inputPlaceholder: "Nhập lý do nghỉ học của học viên"
         })
-        console.log("result: ", result)
+        //console.log("result: ", result)
         if (result.value) {
             Swal.showLoading();
             api.courseStudent
@@ -287,7 +298,7 @@ export class DetailMember extends React.Component {
                     );
                     try {
                         const courseStudentIndex = this.state.courseOfStudent.data.findIndex((courseStudent) => { return courseStudentId === courseStudent._id })
-                        console.log("courseStudentIndex: ", courseStudentIndex)
+                        //console.log("courseStudentIndex: ", courseStudentIndex)
                         this.state.courseOfStudent.data[courseStudentIndex].status = res.result.object.status
                         this.state.courseOfStudent.data[courseStudentIndex].history = res.result.object.history
                         this.setState({
@@ -306,6 +317,7 @@ export class DetailMember extends React.Component {
                 });
         }
     }
+
     async relearnCourse(courseStudentId, body) {
 
         Swal.showLoading();
@@ -319,7 +331,7 @@ export class DetailMember extends React.Component {
                 );
                 try {
                     const courseStudentIndex = this.state.courseOfStudent.data.findIndex((courseStudent) => { return courseStudentId === courseStudent._id })
-                    console.log("courseStudentIndex: ", courseStudentIndex)
+                    //console.log("courseStudentIndex: ", courseStudentIndex)
                     this.state.courseOfStudent.data[courseStudentIndex].status = res.result.object.status
                     this.state.courseOfStudent.data[courseStudentIndex].history = res.result.object.history
                     this.setState({
@@ -338,14 +350,17 @@ export class DetailMember extends React.Component {
             });
 
     }
+
     showExtendTimeCourse(courseStudent) {
         this.setState({ selectedCourseStudent: courseStudent })
         this.showHideModal("extendTimeCourse")
     }
+
     showRelearnCourse(courseStudent) {
         this.setState({ selectedCourseStudent: courseStudent })
         this.showHideModal("relearnCourse")
     }
+
     render() {
         return (
 
@@ -398,6 +413,7 @@ export class DetailMember extends React.Component {
                                         isFetchingCourseOfStudent={this.state.courseOfStudent.isFetching}
                                         extendTimeCourse={this.showExtendTimeCourse}
                                         cancelCourse={this.cancelCourse}
+                                        openStatistic={this.openStatistic}
                                         relearnCourse={this.showRelearnCourse}
                                         regisNewCourse={() => { return this.showHideModal("regisNewCourse") }}
                                         isEmptyCourseOfStudent={this.state.courseOfStudent.isEmpty}>

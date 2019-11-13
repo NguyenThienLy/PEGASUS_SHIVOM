@@ -7,7 +7,6 @@ export class StatisticStudentAction extends BaseAction {
   }
 
   fetchForListDetail = (course, type, startTime, endTime, token) => {
-    //console.log("token", token);
     return dispatch => {
       dispatch({
         type: `FETCHLISTDETAIL_${this.name}_PENDING`
@@ -66,7 +65,7 @@ export class StatisticStudentAction extends BaseAction {
         type: `FETCHCALENDARCHART_${this.name}_PENDING`
       });
       this.api
-        .statisticForPieChart(student, course, type, startTime, endTime, token)
+        .statisticForCalendarChart(student, course, type, startTime, endTime, token)
         .then(res => {
           dispatch({
             type: `FETCHCALENDARCHART_${this.name}_SUCCESS`,

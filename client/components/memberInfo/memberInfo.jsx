@@ -158,7 +158,7 @@ export class MemberInfo extends React.Component {
               {!isFetchingCourseOfStudent &&
                 !isEmptyCourseOfStudent &&
                 courseOfStudent.map((courseStudent, index) => {
-                  console.log('course student: ', courseStudent);
+                  //console.log('course student: ', courseStudent);
                   return (
                     <div key={index} className="member-info__courses__course">
                       <div className="member-info__courses__course__title">
@@ -167,6 +167,20 @@ export class MemberInfo extends React.Component {
                         </div>
                         {courseStudent.status === 'active' ? (
                           <div>
+                            <Tooltip
+                              title="Thống kê"
+                              position="top"
+                              className="member-info__button"
+                            >
+                              <span
+                                onClick={() =>
+                                  this.props.openStatistic(courseStudent.course._id)
+                                }
+                              >
+                                <i class="fas fa-chart-bar"></i>
+                              </span>
+                            </Tooltip>
+
                             <Tooltip
                               title="Gia hạn"
                               position="top"

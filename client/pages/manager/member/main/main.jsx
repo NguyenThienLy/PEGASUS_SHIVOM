@@ -62,36 +62,43 @@ export class MainMember extends React.Component {
     this.extendTimeCourse = this.extendTimeCourse.bind(this);
     this.regisNewCourse = this.regisNewCourse.bind(this);
   }
+
   shouldComponentUpdate() {
     return true;
   }
+
   showHideModal(key) {
     this.state.modals[key] = !this.state.modals[key];
     this.setState({ modals: this.state.modals });
   }
+
   openDetail(studentId) {
     Router.push(
       `/manager/member/member?studentId=${studentId}`,
       `/quan-ly/hoc-vien/chi-tiet/${studentId}`
     );
   }
+
   openStatistic(studentId) {
     Router.push(
       `/manager/member/member?studentId=${studentId}`,
       `/quan-ly/hoc-vien/thong-ke/${studentId}`
     );
   }
+
   edit(studentId) {
     Router.push(
       `/manager/member/member?studentId=${studentId}`,
       `/quan-ly/hoc-vien/cap-nhat/${studentId}`
     );
   }
+
   changePage(pageNum) {
     this.setState({
       currentPage: pageNum
     });
   }
+
   searchByPhone(e) {
     const { name, value } = e.target;
     if (value.length > 0) {
@@ -107,7 +114,7 @@ export class MainMember extends React.Component {
             currentPage: 1
           });
         })
-        .catch(err => {});
+        .catch(err => { });
     } else {
       this.setState({
         students: undefined,
@@ -116,6 +123,7 @@ export class MainMember extends React.Component {
       });
     }
   }
+
   searchByCardId(e) {
     const { name, value } = e.target;
     if (value.length > 0) {
@@ -135,7 +143,7 @@ export class MainMember extends React.Component {
             currentPage: 1
           });
         })
-        .catch(err => {});
+        .catch(err => { });
     } else {
       this.setState({
         students: undefined,
@@ -144,6 +152,7 @@ export class MainMember extends React.Component {
       });
     }
   }
+
   filterByStatus(value) {
     // const { name, value } = e.target;
     if (value !== 'all') {
@@ -165,6 +174,7 @@ export class MainMember extends React.Component {
       });
     }
   }
+
   filterByPoints(value) {
     // const { name, value } = e.target;
     this.setState({
@@ -198,6 +208,7 @@ export class MainMember extends React.Component {
       default:
     }
   }
+
   filterByUpcommingBirthday() {
     this.setState({
       isLoading: true
@@ -214,7 +225,7 @@ export class MainMember extends React.Component {
             currentPage: 1
           });
         })
-        .catch(err => {});
+        .catch(err => { });
     } else {
       this.setState({
         students: undefined,
@@ -226,6 +237,7 @@ export class MainMember extends React.Component {
       isFilterByUpcommingBirthday: !this.state.isFilterByUpcommingBirthday
     });
   }
+
   checkin(studentId) {
     Swal.showLoading();
     api.student
@@ -245,6 +257,7 @@ export class MainMember extends React.Component {
         }
       });
   }
+
   addPoint(body) {
     Swal.showLoading();
     api.student
@@ -259,6 +272,7 @@ export class MainMember extends React.Component {
       selectedStudentId: null
     });
   }
+
   leave(body) {
     Swal.showLoading();
     api.student
@@ -281,6 +295,7 @@ export class MainMember extends React.Component {
       selectedStudentId: null
     });
   }
+
   relearn(body) {
     Swal.showLoading();
     api.student
@@ -304,6 +319,7 @@ export class MainMember extends React.Component {
       selectedStudentId: null
     });
   }
+
   extendTimeCourse(courseStudentId, body) {
     Swal.showLoading();
     api.courseStudent
@@ -326,6 +342,7 @@ export class MainMember extends React.Component {
       selectedStudentId: null
     });
   }
+
   regisNewCourse(body) {
     Swal.showLoading();
     api.student
@@ -348,16 +365,17 @@ export class MainMember extends React.Component {
       selectedStudentId: null
     });
   }
+
   render() {
     const students = this.state.students
       ? this.state.students.slice(
-          this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10,
-          10 * this.state.currentPage
-        )
+        this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10,
+        10 * this.state.currentPage
+      )
       : (this.props.students.items || []).slice(
-          this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10,
-          10 * this.state.currentPage
-        );
+        this.state.currentPage === 1 ? 0 : (this.state.currentPage - 1) * 10,
+        10 * this.state.currentPage
+      );
     return (
       <React.Fragment>
         <AddPoint
@@ -433,10 +451,10 @@ export class MainMember extends React.Component {
                     style={
                       this.state.isFilterByUpcommingBirthday
                         ? {
-                            backgroundColor: '#e1f2f4',
-                            color: '#00a3af',
-                            border: '1px solid #e1f2f4'
-                          }
+                          backgroundColor: '#e1f2f4',
+                          color: '#00a3af',
+                          border: '1px solid #e1f2f4'
+                        }
                         : null
                     }
                     onClick={this.filterByUpcommingBirthday}
@@ -492,166 +510,155 @@ export class MainMember extends React.Component {
                     {this.state.isLoading === true ? (
                       <Loading />
                     ) : (
-                      (students || []).map((item, index) => {
-                        // {[].map((item, index) => {
-                        return (
-                          <tr key={item._id}>
-                            <td style={{ width: '5%' }}>
-                              {this.state.currentPage === 1
-                                ? index + 1
-                                : (this.state.currentPage - 1) * 10 + index + 1}
-                            </td>
-                            <td style={{ width: '15%' }}>
-                              <img
-                                alt=""
-                                src={item.avatar}
-                                className="img-response avatar-image"
-                              ></img>
-                            </td>
-                            <td>
-                              {item.firstName} {item.lastName}
-                            </td>
-                            <td>{item.cardId}</td>
-                            <td>{item.point}</td>
-                            <td>
-                              {moment(item.birthday).format('DD/MM/YYYY')}
-                            </td>
-                            <td>{item.phone}</td>
-                            <td>
-                              {item.status === 'active'
-                                ? 'Đang học'
-                                : 'Nghỉ học'}
-                            </td>
-                            {item.status === 'active' ? (
+                        (students || []).map((item, index) => {
+                          // {[].map((item, index) => {
+                          return (
+                            <tr key={item._id}>
+                              <td style={{ width: '5%' }}>
+                                {this.state.currentPage === 1
+                                  ? index + 1
+                                  : (this.state.currentPage - 1) * 10 + index + 1}
+                              </td>
+                              <td style={{ width: '15%' }}>
+                                <img
+                                  alt=""
+                                  src={item.avatar}
+                                  className="img-response avatar-image"
+                                ></img>
+                              </td>
                               <td>
-                                <div className="action-td">
-                                  <Tooltip
-                                    title="Checkin"
-                                    position="top"
-                                    className="action-td__item"
-                                  >
-                                    <span
-                                      onClick={() => this.checkin(item._id)}
+                                {item.firstName} {item.lastName}
+                              </td>
+                              <td>{item.cardId}</td>
+                              <td>{item.point}</td>
+                              <td>
+                                {moment(item.birthday).format('DD/MM/YYYY')}
+                              </td>
+                              <td>{item.phone}</td>
+                              <td>
+                                {item.status === 'active'
+                                  ? 'Đang học'
+                                  : 'Nghỉ học'}
+                              </td>
+                              {item.status === 'active' ? (
+                                <td>
+                                  <div className="action-td">
+                                    <Tooltip
+                                      title="Checkin"
+                                      position="top"
+                                      className="action-td__item"
                                     >
+                                      <span
+                                        onClick={() => this.checkin(item._id)}
+                                      >
 
-                                      <i class="fas fa-check"></i>
-                                    </span>
-                                  </Tooltip>
-                                  <Tooltip
-                                    title="Cộng điểm"
-                                    position="top"
-                                    className="action-td__item"
-                                  >
-                                    <span
-                                      onClick={() => {
-                                        this.setState({
-                                          selectedStudentId: item._id
-                                        });
-                                        this.showHideModal('addPoint');
-                                      }}
+                                        <i class="fas fa-check"></i>
+                                      </span>
+                                    </Tooltip>
+                                    <Tooltip
+                                      title="Cộng điểm"
+                                      position="top"
+                                      className="action-td__item"
                                     >
-                                      <i class="fas fa-plus"></i>
-                                    </span>
-                                  </Tooltip>
-                                  <Tooltip
-                                    title="Nghỉ học"
-                                    position="top"
-                                    className="action-td__item"
-                                  >
-                                    <span
-                                      onClick={() => {
-                                        this.setState({
-                                          selectedStudentId: item._id
-                                        });
-                                        this.showHideModal('leave');
-                                      }}
+                                      <span
+                                        onClick={() => {
+                                          this.setState({
+                                            selectedStudentId: item._id
+                                          });
+                                          this.showHideModal('addPoint');
+                                        }}
+                                      >
+                                        <i class="fas fa-plus"></i>
+                                      </span>
+                                    </Tooltip>
+                                    <Tooltip
+                                      title="Nghỉ học"
+                                      position="top"
+                                      className="action-td__item"
                                     >
-                                      <i class="fas fa-user-minus"></i>
-                                    </span>
-                                  </Tooltip>
-                                  <Tooltip
-                                    title="Chi tiết"
-                                    position="top"
-                                    className="action-td__item"
-                                  >
-                                    <span
-                                      onClick={() => this.openDetail(item._id)}
+                                      <span
+                                        onClick={() => {
+                                          this.setState({
+                                            selectedStudentId: item._id
+                                          });
+                                          this.showHideModal('leave');
+                                        }}
+                                      >
+                                        <i class="fas fa-user-minus"></i>
+                                      </span>
+                                    </Tooltip>
+                                    <Tooltip
+                                      title="Chi tiết"
+                                      position="top"
+                                      className="action-td__item"
                                     >
-                                      <i class="fas fa-info"></i>
-                                    </span>
-                                  </Tooltip>
-                                  <Tooltip
-                                    title="Thống kê"
-                                    position="top"
-                                    className="action-td__item"
-                                  >
-                                    <span
-                                      onClick={() =>
-                                        this.openStatistic(item._id)
-                                      }
-                                    >
-                                      <i class="fas fa-chart-bar"></i>
-                                    </span>
-                                  </Tooltip>
-                                  {/* <Tooltip
+                                      <span
+                                        onClick={() => this.openDetail(item._id)}
+                                      >
+                                        <i class="fas fa-info"></i>
+                                      </span>
+                                    </Tooltip>
+
+
+                                    {/* <Tooltip
                                                             title="Chỉnh sửa"
                                                             position="top"
                                                         >
                                                             <span className="action-td__item" onClick={() => this.edit(item._id)}> <i class="fas fa-pen"></i> </span>
                                                         </Tooltip> */}
-                                  <Tooltip
-                                    title="Gia hạn học"
-                                    position="top"
-                                    className="action-td__item"
-                                  >
-                                    <span
+                                    <Tooltip
+                                      title="Gia hạn học"
+                                      position="top"
+                                      className="action-td__item"
+                                    >
+                                      <span
+                                        onClick={() => {
+                                          this.setState({
+                                            selectedStudentId: item._id
+                                          });
+                                          this.showHideModal('extendTimeCourse');
+                                        }}
+                                      >
+                                        <i class="fas fa-hourglass-half"></i>
+                                      </span>
+                                    </Tooltip>
+                                    <Tooltip
+                                      title="Đăng ký khoá học"
+                                      position="top"
+                                      className="action-td__item"
+                                    >
+                                      <span
+                                        onClick={() => {
+                                          this.setState({
+                                            selectedStudentId: item._id
+                                          });
+                                          this.showHideModal('regisNewCourse');
+                                        }}
+                                      >
+                                        <i class="fas fa-edit"></i>
+                                      </span>
+                                    </Tooltip>
+                                  </div>
+                                </td>
+                              ) : (
+                                  <td className="action-td--single">
+                                    <button
+                                      className="action-td__button"
                                       onClick={() => {
                                         this.setState({
                                           selectedStudentId: item._id
                                         });
-                                        this.showHideModal('extendTimeCourse');
+                                        this.showHideModal('relearn');
                                       }}
                                     >
-                                      <i class="fas fa-hourglass-half"></i>
-                                    </span>
-                                  </Tooltip>
-                                  <Tooltip
-                                    title="Đăng ký khoá học"
-                                    position="top"
-                                    className="action-td__item"
-                                  >
-                                    <span
-                                      onClick={() => {
-                                        this.setState({
-                                          selectedStudentId: item._id
-                                        });
-                                        this.showHideModal('regisNewCourse');
-                                      }}
-                                    >
-                                      <i class="fas fa-edit"></i>
-                                    </span>
-                                  </Tooltip>
-                                </div>
-                              </td>
-                            ) : (
-                              <td className="action-td--single">
-                                <button
-                                  className="action-td__button"
-                                  onClick={() => {
-                                    this.setState({
-                                      selectedStudentId: item._id
-                                    });
-                                    this.showHideModal('relearn');
-                                  }}
-                                >
-                                  Học lại
+                                      Học lại
                                 </button>
-                              </td>
-                            )}
-                          </tr>
-                        );
-                      })
-                    )}
+                                  </td>
+                                )}
+                            </tr>
+                          );
+                        })
+                      )}
                   </tbody>
                 </table>
               </div>
@@ -665,13 +672,13 @@ export class MainMember extends React.Component {
                     changePage={this.changePage}
                   />
                 ) : (
-                  <Pagination
-                    currentPage={this.state.currentPage}
-                    total={(this.props.students.items || []).length}
-                    limit={10}
-                    changePage={this.changePage}
-                  />
-                )}
+                    <Pagination
+                      currentPage={this.state.currentPage}
+                      total={(this.props.students.items || []).length}
+                      limit={10}
+                      changePage={this.changePage}
+                    />
+                  )}
               </div>
             </div>
           </div>

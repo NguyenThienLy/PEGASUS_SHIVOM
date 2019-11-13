@@ -29,15 +29,43 @@ body {
     width: 98%;
     margin: 0 1%;
 
+    // @include e("numbers") {
+    //   margin: 1em 0 3em;
+    //   display: flex;
+    //   justify-content: space-between;
+    //   align-items: center;
+    //   display: grid;
+    //   grid-template-columns: auto auto auto auto;
+    //   column-gap: 2em;
+    //   row-gap: 1em;
+    // }
+
     @include e('numbers') {
       margin: 0 0 3em;
-      // display: flex;
-      // justify-content: space-between;
-      // align-items: center;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       column-gap: 2em;
       row-gap: 1em;
+
+      .loading {
+        grid-column-start: 1;
+        grid-column-end: 5;
+      }
+
+      .numberAdmin {
+        @include e('inner') {
+          padding: 1.5em 5%;
+          @include e('icon') {
+          }
+          @include e('info') {
+            @include e('about') {
+            }
+            @include e('quantity') {
+              text-align: left;
+            }
+          }
+        }
+      }
     }
 
     @include e('card') {
@@ -62,17 +90,19 @@ body {
         -webkit-box-shadow: 1px 1px 5px rgba(0, 163, 175, 0.5);
         box-shadow: 1px 1px 5px rgba(0, 163, 175, 0.5);
       }
-
       @include e('content') {
         padding: 3em 0;
 
-        @include e('member') {
+        @include e('course') {
+          //width: 100%;
           @include e('filter') {
           }
           @include e('info') {
             margin: 2em 0 0;
             display: flex;
+            flex-direction: row;
             justify-content: space-between;
+            align-items: flex-start;
           }
         }
 
@@ -107,7 +137,6 @@ body {
               }
 
               @include e('input') {
-                // width: 12em;
                 background: #fff;
                 color: $font-color;
                 font-family: $font-body;
@@ -118,6 +147,7 @@ body {
                 padding: 0.5em 1em;
                 margin-right: 0.5em;
                 margin-top: 1em;
+                // width: 90%;
                 &:nth-last-child(1) {
                   margin-right: 0;
                 }
@@ -170,22 +200,28 @@ body {
           }
 
           @include e('row') {
-            margin: 2em 0 1em;
-            .lineChart {
-              width: 100%;
-              margin-right: 0;
+            display: flex;
+            flex-direction: row;
+            .columnChart {
+              margin-top: 2em;
+              // margin-bottom: 1em;
             }
             .pieChart {
-              width: 50%;
-              margin: auto;
+              margin-top: 2em;
+              // margin-bottom: 1em;
+            }
+            .lineChart {
+              margin-top: 2em;
             }
           }
         }
       }
     }
-
     @include e('table') {
       margin: 0 0 3em;
+      .table {
+        margin: 3em 0;
+      }
     }
   }
 }
@@ -210,7 +246,7 @@ body {
   }
 
   .member-statistics__body__numbers {
-    grid-template-columns: auto;
+    grid-template-columns: repeat(1, 1fr);
     column-gap: 0em;
     .numberAdmin__inner__info {
       .numberAdmin__inner__info__quantity {
@@ -219,24 +255,29 @@ body {
     }
   }
 
-  .member-statistics__body__card__content__member__info {
-    .memberInfo {
-      flex-direction: column;
-      .memberInfo__left {
-        width: 100%;
-        margin-right: 0%;
-      }
-      .memberInfo__right {
-        width: 100%;
-      }
-      .memberInfo__right__content__row {
-        padding: 0.5em 1em 1.5em;
-      }
+  .member-statistics__body__card__content__course__info {
+    flex-direction: column;
+    align-items: center;
+    .courseInfo {
+      width: 100%;
+      margin-right: 0%;
+    }
+    .profileAdmin {
+      margin-top: 2em;
+      width: 100%;
     }
   }
 
   .member-statistics__body__card__content__chart__row {
+    flex-direction: column;
+    .columnChart {
+      width: 100%;
+      margin-right: 0;
+    }
     .pieChart {
+      margin: auto;
+      margin-top: 2em;
+      // margin-bottom: 1em;
       width: 100%;
     }
   }
@@ -271,24 +312,29 @@ body {
     }
   }
 
-  .member-statistics__body__card__content__member__info {
-    .memberInfo {
-      flex-direction: column;
-      .memberInfo__left {
-        width: 100%;
-        margin-right: 0%;
-      }
-      .memberInfo__right {
-        width: 100%;
-        .memberInfo__right__content__row {
-          padding: 0.5em 2em 1.5em;
-        }
-      }
+  .member-statistics__body__card__content__course__info {
+    flex-direction: column;
+    align-items: center;
+    .courseInfo {
+      width: 100%;
+      margin-right: 0%;
+    }
+    .profileAdmin {
+      margin-top: 2em;
+      width: 60%;
     }
   }
 
   .member-statistics__body__card__content__chart__row {
+    flex-direction: column;
+    .columnChart {
+      width: 100%;
+      margin-right: 0;
+    }
     .pieChart {
+      margin: auto;
+      margin-top: 2em;
+      // margin-bottom: 1em;
       width: 100%;
     }
   }
@@ -323,25 +369,30 @@ body {
     }
   }
 
-  .member-statistics__body__card__content__member__info {
-    .memberInfo {
-      flex-direction: row;
-      .memberInfo__left {
-        width: 39%;
-        margin-right: 1%;
-      }
-      .memberInfo__right {
-        width: 60%;
-        .memberInfo__right__content__row {
-          padding: 0.5em 1.2em 1.5em;
-        }
-      }
+  .member-statistics__body__card__content__course__info {
+    flex-direction: row;
+    align-items: flex-start;
+    .courseInfo {
+      width: 55%;
+      margin-right: 3%;
+    }
+    .profileAdmin {
+      margin-top: 0em;
+      width: 42%;
     }
   }
 
   .member-statistics__body__card__content__chart__row {
+    flex-direction: column;
+    .columnChart {
+      width: 100%;
+      margin-right: 0;
+    }
     .pieChart {
-      width: 50%;
+      margin: auto;
+      margin-top: 2em;
+      // margin-bottom: 1em;
+      width: 70%;
     }
   }
 }
@@ -379,25 +430,30 @@ body {
     }
   }
 
-  .member-statistics__body__card__content__member__info {
-    .memberInfo {
-      flex-direction: row;
-      .memberInfo__left {
-        width: 39%;
-        margin-right: 1%;
-      }
-      .memberInfo__right {
-        width: 60%;
-        .memberInfo__right__content__row {
-          padding: 0.5em 1.2em 1.5em;
-        }
-      }
+  .member-statistics__body__card__content__course__info {
+    flex-direction: row;
+    align-items: flex-start;
+    .courseInfo {
+      width: 55%;
+      margin-right: 3%;
+    }
+    .profileAdmin {
+      margin-top: 0em;
+      width: 42%;
     }
   }
 
   .member-statistics__body__card__content__chart__row {
+    flex-direction: column;
+    .columnChart {
+      width: 100%;
+      margin-right: 0;
+    }
     .pieChart {
-      width: 50%;
+      margin: auto;
+      margin-top: 2em;
+      // margin-bottom: 1em;
+      width: 70%;
     }
   }
 }
@@ -421,35 +477,50 @@ body {
     margin: 0 1%;
   }
 
+  // .member-statistics__body__numbers {
+  //   grid-template-columns: auto auto auto auto;
+  //   column-gap: 1em;
+  //   .numberAdmin__inner__info {
+  //     .numberAdmin__inner__info__quantity {
+  //       float: none;
+  //     }
+  //   }
+  // }
+
   .member-statistics__body__numbers {
     grid-template-columns: repeat(4, 1fr);
     column-gap: 1em;
-    .numberAdmin__inner__info {
-      .numberAdmin__inner__info__quantity {
-        float: none;
-      }
+    row-gap: 1em;
+
+    .loading {
+      grid-column-start: 1;
+      grid-column-end: 5;
     }
   }
 
-  .member-statistics__body__card__content__member__info {
-    .memberInfo {
-      flex-direction: row;
-      .memberInfo__left {
-        width: 39%;
-        margin-right: 1%;
-      }
-      .memberInfo__right {
-        width: 60%;
-        .memberInfo__right__content__row {
-          padding: 0.5em 1.2em 1.5em;
-        }
-      }
+  .member-statistics__body__card__content__course__info {
+    flex-direction: row;
+    align-items: flex-start;
+    .courseInfo {
+      width: 100%;
+      margin-right: 3%;
+    }
+    .profileAdmin {
+      margin-top: 0em;
+      width: 37%;
     }
   }
 
   .member-statistics__body__card__content__chart__row {
+    flex-direction: row;
+    .columnChart {
+      width: 58%;
+      margin-right: 2%;
+    }
     .pieChart {
-      width: 30%;
+      margin-top: 2em;
+      width: 40%;
+      height: fit-content;
     }
   }
 }
