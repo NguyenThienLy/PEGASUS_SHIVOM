@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './calendarChart.scss';
-import { Line } from 'react-chartjs-2';
+import { Chart } from "react-google-charts";
 import { Loading } from '../../components';
 
 export class CalendarChart extends React.Component {
@@ -40,14 +40,14 @@ export class CalendarChart extends React.Component {
             {isFetching && <Loading />}
             {isEmpty && !isFetching && 'Dữ liệu trống'}
             {!isFetching && !isEmpty && (
-              <Line
+              <Chart
                 data={calendarChartData}
+                chartType="Calendar"
+                loader={<div>Loading Chart</div>}
                 options={{
-                  legend: {
-                    display: this.props.displayLegend,
-                    position: this.props.legendPosition
-                  }
+                  title: 'Red Sox Attendance',
                 }}
+                rootProps={{ 'data-testid': '2' }}
               />
             )}
           </div>

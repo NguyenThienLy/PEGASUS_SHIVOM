@@ -115,34 +115,23 @@ export class StatisticMember extends React.Component {
         isEmpty: true,
         isFetching: false,
         datasets: [
-          {
-            label: 'Vắng học',
-            fill: false,
-            data: null,
-            backgroundColor: 'rgba(255, 99, 132, 0.6)',
-            borderColor: 'rgba(255, 99, 132, 0.6)'
-          },
-          {
-            label: 'Trễ giờ',
-            fill: false,
-            data: null,
-            backgroundColor: 'rgba(255, 206, 86, 0.6)',
-            borderColor: 'rgba(255, 206, 86, 0.6)'
-          },
-          {
-            label: 'Đúng giờ',
-            fill: false,
-            data: null,
-            backgroundColor: 'rgba(75, 192, 192, 0.6)',
-            borderColor: 'rgba(75, 192, 192, 0.6)'
-          },
-          {
-            label: 'Đi thừa',
-            fill: false,
-            data: null,
-            backgroundColor: 'rgba(153, 102, 255, 0.6)',
-            borderColor: 'rgba(153, 102, 255, 0.6)'
-          }
+          [{ type: 'date', id: 'Date' }, { type: 'number', id: 'Won/Loss' }],
+          [new Date(2013, 2, 4), 10],
+          [new Date(2013, 2, 5), 3],
+          [new Date(2013, 2, 7), -1],
+          [new Date(2013, 2, 8), 2],
+          [new Date(2013, 2, 12), -1],
+          [new Date(2013, 2, 13), 1],
+          [new Date(2013, 2, 15), 1],
+          [new Date(2013, 2, 16), -4],
+          [new Date(2013, 1, 4), 10],
+          [new Date(2013, 1, 5), 3],
+          [new Date(2013, 1, 7), -1],
+          [new Date(2013, 1, 8), 2],
+          [new Date(2013, 1, 12), -1],
+          [new Date(2013, 1, 13), 1],
+          [new Date(2013, 1, 15), 1],
+          [new Date(2013, 1, 16), -4],
         ]
       },
       filterByTimeType: {
@@ -182,10 +171,25 @@ export class StatisticMember extends React.Component {
       .statisticForCalendarChart(this.props.params.studentId,
         this.props.params.courseId, timeType, `${startTime}Z`, `${endTime}Z`, token)
       .then(res => {
+        const newCalendarChartData = this.state.calendarChartData;
 
+        newCalendarChartData.timeType = timeTypeVi;
+        newCalendarChartData.isEmpty = false;
+        newCalendarChartData.isFetching = false;
 
+        this.setState({
+          calendarChartData: newCalendarChartData
+        });
       }).catch(error => {
+        const newCalendarChartData = this.state.calendarChartData;
 
+        newCalendarChartData.timeType = timeTypeVi;
+        newCalendarChartData.isEmpty = true;
+        newCalendarChartData.isFetching = false;
+
+        this.setState({
+          calendarChartData: newCalendarChartData
+        });
       })
 
     api.statisticStudent
