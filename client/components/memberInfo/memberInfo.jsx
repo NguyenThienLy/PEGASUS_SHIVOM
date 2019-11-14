@@ -22,7 +22,10 @@ export class MemberInfo extends React.Component {
       isEmptyMemberInfo,
       courseOfStudent,
       isFetchingCourseOfStudent,
-      isEmptyCourseOfStudent
+      isEmptyCourseOfStudent,
+      timeTableOfStudent,
+      isFetchingTimeTable,
+      isEmptyTimeTable
     } = this.props;
 
     return (
@@ -239,35 +242,95 @@ export class MemberInfo extends React.Component {
             </div>
 
             <div className="member-info__time-table">
-              <div className="member-info__time-table__event">
-                <div className="member-info__time-table__event__weekday">
-                  Thứ hai
-                </div>
+              {isFetchingTimeTable && <Loading />}
+              {!isFetchingTimeTable && isEmptyTimeTable && 'Dữ liệu trống'}
+              {!isFetchingTimeTable &&
+                !isEmptyTimeTable &&
+                timeTableOfStudent.map((classData, index) => {
+                  let sorter = {
+                    monday: {
+                      value: 1,
+                      text: 'Thứ hai'
+                    },
+                    tuesday: {
+                      value: 2,
+                      text: 'Thứ ba'
+                    },
+                    wednesday: {
+                      value: 3,
+                      text: 'Thứ tư'
+                    },
+                    thursday: {
+                      value: 4,
+                      text: 'Thứ năm'
+                    },
+                    friday: {
+                      value: 5,
+                      text: 'Thứ sáu'
+                    },
+                    saturday: {
+                      value: 6,
+                      text: 'Thứ bảy'
+                    },
+                    sunday: {
+                      value: 7,
+                      text: 'Chủ nhật'
+                    }
+                  };
+                  return (
+                    <div key={index} className="member-info__class">
+                      <div className="member-info__class__title">
+                        <span></span>
+                        <div className="member-info__hover-title">
+                          <div>{classData.class.name}</div>
+                          <div className="member-info__hover-title--hover" />
+                        </div>
+                      </div>
 
-                <div className="member-info__time-table__event__class-info">
-                  <div className="member-info__time-table__event__class-info__class-name">
-                    Cân bằng cơ thể
-                  </div>
-                  <div className="member-info__time-table__event__class-info__class-time">
-                    07:00 - 09:00
-                  </div>
-                </div>
-              </div>
+                      <div className="member-info__class__trainer">
+                        {classData.class.teacher.firstName}&nbsp;
+                  {classData.class.teacher.lastName}
+                      </div>
 
-              <div className="member-info__time-table__event">
-                <div className="member-info__time-table__event__weekday">
-                  Thứ ba
-                </div>
+                      <div className="member-info__class__time-table">
+                        {classData.items
+                          .sort(function (a, b) {
+                            return (
+                              sorter[a.dayOfWeek].value - sorter[b.dayOfWeek].value
+                            );
+                          })
+                          .map((timeTableItem, index) => {
+                            return (
+                              <div
+                                key={index}
+                                className="member-info__class__time-table__event"
+                              >
+                                <div className="member-info__class__time-table__event__weekday">
+                                  {sorter[timeTableItem.dayOfWeek].text}
+                                </div>
 
-                <div className="member-info__time-table__event__class-info">
-                  <div className="member-info__time-table__event__class-info__class-name">
-                    Duỗi người
-                  </div>
-                  <div className="member-info__time-table__event__class-info__class-time">
-                    07:00 - 09:00
-                  </div>
-                </div>
-              </div>
+                                <div className="member-info__class__time-table__event__class-info">
+                                  <div className="member-info__class__time-table__event__class-info__class-name">
+                                    {timeTableItem.topic}
+                                  </div>
+                                  <div className="member-info__class__time-table__event__class-info__class-time">
+                                    {timeTableItem.startTime.hour}:
+                              {timeTableItem.startTime.minute === 0
+                                      ? '00'
+                                      : timeTableItem.startTime.minute}
+                                    &nbsp;-&nbsp;{timeTableItem.endTime.hour}:
+                              {timeTableItem.endTime.minute === 0
+                                      ? '00'
+                                      : timeTableItem.endTime.minute}
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          })}
+                      </div>
+                    </div>
+                  );
+                })}
             </div>
           </div>
         )}

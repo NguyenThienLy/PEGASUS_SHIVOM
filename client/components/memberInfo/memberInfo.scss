@@ -272,6 +272,92 @@
     }
   }
 
+  @include e('hover-title') {
+    margin: auto;
+    margin-bottom: 1.5em;
+    color: $main-color;
+    position: relative;
+    display: inline-block;
+    padding: 0 0.5em;
+    z-index: 0;
+
+    @include m('hover') {
+      position: absolute;
+      left: 0;
+      bottom: -0.5em;
+      height: 1em;
+      width: 100%;
+      background-color: $hover-color;
+      z-index: -1;
+    }
+  }
+
+  @include e('class') {
+    padding: 1em;
+    border-bottom: 1px solid $table-border-color;
+    &:nth-last-child(1) {
+      border-bottom: none;
+    }
+
+    @include e('title') {
+      display: grid;
+      grid-template-columns: 18% 60% 18%;
+      column-gap: 2%;
+      row-gap: 1em;
+      text-align: center;
+
+      .course-info__hover-title {
+        font-size: 0.9em;
+        margin-bottom: 1em;
+      }
+
+      .course-info__button {
+        margin-right: 0em;
+        margin-top: 0em;
+        font-size: 0.9em;
+      }
+    }
+
+    @include e('trainer') {
+      text-align: center;
+      font-size: 0.9em;
+      color: $color-grey;
+    }
+
+    @include e('time-table') {
+      padding: 1em 0em 0em;
+
+      @include e('event') {
+        padding: 0.8em 0em;
+        border-bottom: 1px solid $light-border-color;
+        &:nth-last-child(1) {
+          border-bottom: none;
+        }
+
+        @include e('weekday') {
+          text-transform: capitalize;
+          font-size: 0.85em;
+          font-family: $font-family-special;
+        }
+
+        @include e('class-info') {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 0.5em;
+          color: $color-grey;
+
+          @include e('class-name') {
+            font-size: 0.85em;
+          }
+
+          @include e('class-time') {
+            font-size: 0.8em;
+          }
+        }
+      }
+    }
+  }
+
   //   &:hover {
   //     -webkit-box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.2);
   //     box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.2);

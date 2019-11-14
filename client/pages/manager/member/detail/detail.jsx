@@ -24,8 +24,8 @@ export class DetailMember extends React.Component {
                 data: null
             },
             timeTableOfStudent: {
-                isFetching: false,
                 isEmpty: true,
+                isFetching: false,
                 data: null
             },
             modals: {
@@ -144,18 +144,46 @@ export class DetailMember extends React.Component {
 
                 this.setState({ courseOfStudent: newCourseOfStudent });
             })
+
+        api.student
+            .getTimeTable(this.props.params.studentId, {
+                query: {
+                    isRefresh: true
+                }
+            })
+            .then(res => {
+                const newtimeTableOfStudent = this.state.timeTableOfStudent;
+
+                newtimeTableOfStudent.data = res.result.object;
+
+                newtimeTableOfStudent.isFetching = false;
+                newtimeTableOfStudent.isEmpty = false;
+
+                this.setState({ timeTableOfStudent: newtimeTableOfStudent });
+            })
+            .catch(err => {
+                const newtimeTableOfStudent = this.state.timeTableOfStudent;
+
+                newtimeTableOfStudent.isFetching = false;
+                newtimeTableOfStudent.isEmpty = true;
+
+                this.setState({ timeTableOfStudent: newtimeTableOfStudent });
+            });
     };
 
     changeIsFetching(isFetching) {
         const newStudent = this.state.student;
         const newCourseOfStudent = this.state.courseOfStudent;
+        const newtimeTableOfStudent = this.state.timeTableOfStudent;
 
         newStudent.isFetching = isFetching;
         newCourseOfStudent.isFetching = isFetching;
+        newtimeTableOfStudent.isFetching = isFetching;
 
         this.setState({
             student: newStudent,
-            courseOfStudent: newCourseOfStudent
+            courseOfStudent: newCourseOfStudent,
+            timeTableOfStudent: newtimeTableOfStudent
         });
     }
 
@@ -416,7 +444,13 @@ export class DetailMember extends React.Component {
                                         openStatistic={this.openStatistic}
                                         relearnCourse={this.showRelearnCourse}
                                         regisNewCourse={() => { return this.showHideModal("regisNewCourse") }}
-                                        isEmptyCourseOfStudent={this.state.courseOfStudent.isEmpty}>
+                                        isEmptyCourseOfStudent={this.state.courseOfStudent.isEmpty}
+
+                                        timeTableOfStudent={this.state.timeTableOfStudent.data}
+                                        isFetchingTimeTable={
+                                            this.state.timeTableOfStudent.isFetching
+                                        }
+                                        isEmptyTimeTable={this.state.timeTableOfStudent.isEmpty}>
                                     </MemberInfo>
                                 </div>
                             </div>
