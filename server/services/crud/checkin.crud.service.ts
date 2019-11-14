@@ -91,7 +91,85 @@ export class CheckinService extends CrudService<typeof Checkin> {
     async getDataInStatisticForPieChart(params: {
         course: string
     }) {
-        return await this.model.aggregate([
+
+        if (params.course === "null") {
+            let labels = ["Vắng học", "Trễ giờ", "Đúng giờ", "Đi thừa"],
+                data = [0, 0, 0, 0], totalAbsent = 0,
+                totalLate = 0, totalOnTime = 0, totalRedundant = 0,
+                isEmpty = true
+
+            // Theo một khóa học
+            const tempDataPieChart = await this.model.aggregate([
+                {
+                    $group: {
+                        _id: null,
+                        "totalAbsent": {
+                            $sum: {
+                                $cond: [{ $eq: ["$type", "absent"] }, 1, 0]
+                            }
+                        },
+                        "totalLate": {
+                            $sum: {
+                                $cond: [{ $eq: ["$type", "late"] }, 1, 0]
+                            }
+                        },
+                        "totalOnTime": {
+                            $sum: {
+                                $cond: [{ $eq: ["$type", "on_time"] }, 1, 0]
+                            }
+                        },
+                        "totalRedundant": {
+                            $sum: {
+                                $cond: [{ $eq: ["$type", "redundant"] }, 1, 0]
+                            }
+                        }
+                    }
+                },
+                {
+                    $project: {
+                        _id: 0,
+                        totalAbsent: 1,
+                        totalLate: 1,
+                        totalOnTime: 1,
+                        totalRedundant: 1
+                    }
+                }
+            ])
+
+            if (tempDataPieChart.length > 0) {
+                data[0] = tempDataPieChart[0].totalAbsent
+                totalAbsent = tempDataPieChart[0].totalAbsent
+
+                data[1] = tempDataPieChart[0].totalLate
+                totalLate = tempDataPieChart[0].totalLate
+
+                data[2] = tempDataPieChart[0].totalOnTime
+                totalOnTime = tempDataPieChart[0].totalOnTime
+
+                data[3] = tempDataPieChart[0].totalRedundant
+                totalRedundant = tempDataPieChart[0].totalRedundant
+
+                isEmpty = false
+            }
+
+            return {
+                labels: labels,
+                data: data,
+                totalAbsent: totalAbsent,
+                totalLate: totalLate,
+                totalOnTime: totalOnTime,
+                totalRedundant: totalRedundant,
+                isEmpty: isEmpty
+            }
+        }
+
+        let labels = ["Vắng học", "Trễ giờ", "Đúng giờ", "Đi thừa"],
+            data = [0, 0, 0, 0], totalAbsent = 0,
+            totalLate = 0, totalOnTime = 0, totalRedundant = 0,
+            isEmpty = true
+
+        // Theo một khóa học
+        const tempDataPieChart = await this.model.aggregate([
             // Lọc ra theo khóa học
             {
                 $match: {
@@ -133,6 +211,32 @@ export class CheckinService extends CrudService<typeof Checkin> {
                 }
             }
         ])
+
+        if (tempDataPieChart.length > 0) {
+            data[0] = tempDataPieChart[0].totalAbsent
+            totalAbsent = tempDataPieChart[0].totalAbsent
+
+            data[1] = tempDataPieChart[0].totalLate
+            totalLate = tempDataPieChart[0].totalLate
+
+            data[2] = tempDataPieChart[0].totalOnTime
+            totalOnTime = tempDataPieChart[0].totalOnTime
+
+            data[3] = tempDataPieChart[0].totalRedundant
+            totalRedundant = tempDataPieChart[0].totalRedundant
+
+            isEmpty = false
+        }
+
+        return {
+            labels: labels,
+            data: data,
+            totalAbsent: totalAbsent,
+            totalLate: totalLate,
+            totalOnTime: totalOnTime,
+            totalRedundant: totalRedundant,
+            isEmpty: isEmpty
+        }
     }
 
     async getDataInStatisticForListDetail(params: {
