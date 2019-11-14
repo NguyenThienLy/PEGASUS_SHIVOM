@@ -345,7 +345,8 @@ export default class StudentRouter extends CrudRouter<typeof studentController> 
     }
     async getTimeTableOfStudent(req: Request, res: Response) {
         const result = await this.controller.getTimeTableOfStudent({
-            studentId: req.params._id
+            studentId: req.params._id,
+            isRefresh: req.query.isRefresh || false
         }, req.queryInfo)
         this.onSuccess(res, result)
     }
