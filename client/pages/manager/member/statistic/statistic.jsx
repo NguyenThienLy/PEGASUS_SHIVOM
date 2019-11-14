@@ -93,7 +93,7 @@ export class StatisticMember extends React.Component {
       //   }
       // },
       pieChartData: {
-        timeType: null,
+        timeType: "tuần",
         labels: null,
         isEmpty: true,
         isFetching: false,
@@ -110,45 +110,11 @@ export class StatisticMember extends React.Component {
         ]
       },
       calendarChartData: {
-        timeType: null,
+        timeType: "tuần",
         labels: null,
         isEmpty: true,
         isFetching: false,
         datasets: [
-          [
-            {
-              type: "date",
-              id: "Date"
-            },
-            {
-              type: "number",
-              id: "Won/Loss"
-            }
-          ],
-          [new Date(2012, 3, 13), 37032],
-          [new Date(2012, 3, 14), 38024],
-          [new Date(2012, 3, 15), 38024],
-          [new Date(2012, 3, 16), 38108],
-          [new Date(2012, 3, 17), 38229],
-          [new Date(2012, 3, 18), 37032],
-          [new Date(2012, 3, 19), 38024],
-          [new Date(2012, 3, 20), 38024],
-          [new Date(2012, 3, 21), 38108],
-          [new Date(2012, 3, 22), 38229],
-          [new Date(2012, 6, 13), 37032],
-          [new Date(2012, 6, 14), 38024],
-          [new Date(2012, 6, 15), 38024],
-          [new Date(2012, 6, 16), 38108],
-          [new Date(2012, 6, 17), 38229],
-          // Many rows omitted for brevity.
-          [new Date(2012, 9, 4), 38177],
-          [new Date(2012, 9, 5), 38705],
-          [new Date(2012, 9, 12), 38210],
-          [new Date(2012, 9, 13), 38029],
-          [new Date(2012, 9, 19), 38823],
-          [new Date(2012, 9, 23), 38345],
-          [new Date(2012, 9, 24), 38436],
-          [new Date(2012, 9, 30), 38447]
         ]
       },
       filterByTimeType: {
@@ -238,6 +204,7 @@ export class StatisticMember extends React.Component {
         newPieChartData.labels = res.result.object.labels;
         newPieChartData.timeType = timeTypeVi;
         newPieChartData.isEmpty = res.result.object.isEmpty;
+        newPieChartData.isFetching = false;
 
         newNumberAdmins.isEmpty = newPieChartData.isEmpty = res.result.object.isEmpty;
         newNumberAdmins.isFetching = newPieChartData.isFetching = false;
@@ -253,6 +220,10 @@ export class StatisticMember extends React.Component {
 
         newNumberAdmins.isEmpty = newPieChartData.isEmpty = true;
         newNumberAdmins.isFetching = newPieChartData.isFetching = false;
+
+        newPieChartData.timeType = timeTypeVi;
+        newPieChartData.isEmpty = true;
+        newPieChartData.isFetching = false;
 
         this.setState({
           numberAdmins: newNumberAdmins,

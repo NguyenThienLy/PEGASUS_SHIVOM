@@ -54,9 +54,9 @@ export class UpdateMember extends React.Component {
         this.fetchData();
 
         var heightOfHeader = $(
-            '.addMember .addMember__header .headerAdmin__wrapper'
+            '.updateMember .updateMember__header .headerAdmin__wrapper'
         ).height();
-        $('.addMember .addMember__body').css('margin-top', heightOfHeader + 'px');
+        $('.updateMember .updateMember__body').css('margin-top', heightOfHeader + 'px');
     }
 
     canOpenPage = function () {
@@ -310,12 +310,12 @@ export class UpdateMember extends React.Component {
 
     render() {
         return (
-            <div className="addMember">
-                <div className="addMember__body">
-                    <div className="addMember__body__card">
-                        <div className="addMember__body__card__title">Cập nhật học viên</div>
-                        <div className="addMember__body__card__content">
-                            <div className="addMember__body__card__content__steps">
+            <div className="updateMember">
+                <div className="updateMember__body">
+                    <div className="updateMember__body__card">
+                        <div className="updateMember__body__card__title">Cập nhật học viên</div>
+                        <div className="updateMember__body__card__content">
+                            <div className="updateMember__body__card__content__steps">
                                 <StepsLine
                                     stepQuantity={this.state.pages.length}
                                     openPage={this.openPage}
@@ -330,7 +330,7 @@ export class UpdateMember extends React.Component {
                                         ? { display: 'block' }
                                         : { display: 'none' }
                                 }
-                                className="addMember__body__card__content__info animated fadeIn"
+                                className="updateMember__body__card__content__info animated fadeIn"
                             >
                                 <UpdateMemberInfo
                                     handleChange={this.handleChange}
@@ -346,7 +346,7 @@ export class UpdateMember extends React.Component {
                                         ? { display: 'block' }
                                         : { display: 'none' }
                                 }
-                                className="addMember__body__card__content__info animated fadeIn"
+                                className="updateMember__body__card__content__info animated fadeIn"
                             >
                                 <ReviewUpdateMember
                                     data={this.state.formData}
@@ -360,11 +360,11 @@ export class UpdateMember extends React.Component {
                                 />
                             </div>
                         </div>
-                        <div className="addMember__body__card__buttons">
+                        <div className="updateMember__body__card__buttons">
                             {this.state.curPageNumber === 1 ? (
                                 <button
                                     disabled="true"
-                                    className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-previous"
+                                    className="updateMember__body__card__buttons__btn updateMember__body__card__buttons__btn-previous"
                                     onClick={this.handleClickPrevious}
                                 >
                                     <i className="fas fa-chevron-left"></i>Quay lại
@@ -372,7 +372,7 @@ export class UpdateMember extends React.Component {
                             ) : (
                                     <button
                                         disabled="false"
-                                        className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-previous"
+                                        className="updateMember__body__card__buttons__btn updateMember__body__card__buttons__btn-previous"
                                         onClick={this.handleClickPrevious}
                                     >
                                         <i className="fas fa-chevron-left"></i>Quay lại
@@ -381,14 +381,14 @@ export class UpdateMember extends React.Component {
 
                             {this.state.curPageNumber === this.state.pages.length ? (
                                 <button
-                                    className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-next"
+                                    className="updateMember__body__card__buttons__btn updateMember__body__card__buttons__btn-next"
                                     onClick={this.handleClickNext}
                                 >
                                     Xác nhận
                 </button>
                             ) : (
                                     <button
-                                        className="add-class__body__card__buttons__btn add-class__body__card__buttons__btn-next"
+                                        className="updateMember__body__card__buttons__btn updateMember__body__card__buttons__btn-next"
                                         onClick={this.handleClickNext}
                                         dangerouslySetInnerHTML={{
                                             __html: 'Tiếp theo<i className="fas fa-chevron-right"></i>'
