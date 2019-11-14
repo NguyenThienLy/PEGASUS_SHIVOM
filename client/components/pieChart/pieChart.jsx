@@ -15,6 +15,7 @@ export class PieChart extends React.Component {
 
   render() {
     const { pieChartData, isFetching, isEmpty } = this.props;
+    //console.log("pieChartData", pieChartData)
 
     return (
       <div className="pieChart">

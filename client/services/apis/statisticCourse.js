@@ -52,6 +52,7 @@ export class StatisticCourseApi extends CrudApi {
       })
     };
     const res = await this.exec(url, options);
+    //console.log("url", url)
     if (res.code && res.code === 200) {
       return res;
     } else {

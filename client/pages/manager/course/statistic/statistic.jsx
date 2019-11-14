@@ -93,7 +93,7 @@ export class StatisticCourse extends React.Component {
                 }
             },
             columnChartData: {
-                timeType: null,
+                timeType: "tháng",
                 labels: null,
                 isEmpty: true,
                 isFetching: false,
@@ -106,7 +106,7 @@ export class StatisticCourse extends React.Component {
                 ]
             },
             pieChartData: {
-                timeType: null,
+                timeType: "tuần",
                 labels: null,
                 isEmpty: true,
                 isFetching: false,
@@ -123,7 +123,7 @@ export class StatisticCourse extends React.Component {
                 ]
             },
             lineChartData: {
-                timeType: null,
+                timeType: "tuần",
                 labels: null,
                 isEmpty: true,
                 isFetching: false,
@@ -202,8 +202,8 @@ export class StatisticCourse extends React.Component {
                 newLineChartData.datasets[2].data = res.result.object.dataOnTimes;
                 newLineChartData.datasets[3].data = res.result.object.dataRedundants;
                 newLineChartData.labels = res.result.object.labels;
-                newLineChartData.timeType = timeTypeVi;
 
+                newLineChartData.timeType = timeTypeVi;
                 newLineChartData.isEmpty = res.result.object.isEmpty;
                 newLineChartData.isFetching = false;
 
@@ -214,6 +214,7 @@ export class StatisticCourse extends React.Component {
             }).catch(error => {
                 const newLineChartData = this.state.lineChartData;
 
+                newLineChartData.timeType = timeTypeVi;
                 newLineChartData.isEmpty = true;
                 newLineChartData.isFetching = false;
 
@@ -240,6 +241,7 @@ export class StatisticCourse extends React.Component {
                 newPieChartData.labels = res.result.object.labels;
                 newPieChartData.timeType = timeTypeVi;
                 newPieChartData.isEmpty = res.result.object.isEmpty;
+                newPieChartData.isFetching = false;
 
                 newNumberAdmins.isEmpty = newPieChartData.isEmpty = res.result.object.isEmpty;
                 newNumberAdmins.isFetching = newPieChartData.isFetching = false;
@@ -256,6 +258,10 @@ export class StatisticCourse extends React.Component {
                 newNumberAdmins.isEmpty = newPieChartData.isEmpty = true;
                 newNumberAdmins.isFetching = newPieChartData.isFetching = false;
 
+                newPieChartData.timeType = timeTypeVi;
+                newPieChartData.isEmpty = true;
+                newPieChartData.isFetching = false;
+
                 this.setState({
                     numberAdmins: newNumberAdmins,
                     pieChartData: newPieChartData
@@ -270,7 +276,6 @@ export class StatisticCourse extends React.Component {
                 // Thống kê trên biểu đồ cột
                 newColumnChartData.datasets[0].data = res.result.object.data;
                 newColumnChartData.labels = res.result.object.labels;
-                newColumnChartData.timeType = timeTypeVi;
 
                 newColumnChartData.isEmpty = res.result.object.isEmpty;
                 newColumnChartData.isFetching = false;
