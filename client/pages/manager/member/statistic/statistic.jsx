@@ -114,7 +114,42 @@ export class StatisticMember extends React.Component {
         labels: null,
         isEmpty: true,
         isFetching: false,
-        datasets: []
+        datasets: [
+          [
+            {
+              type: "date",
+              id: "Date"
+            },
+            {
+              type: "number",
+              id: "Won/Loss"
+            }
+          ],
+          [new Date(2012, 3, 13), 37032],
+          [new Date(2012, 3, 14), 38024],
+          [new Date(2012, 3, 15), 38024],
+          [new Date(2012, 3, 16), 38108],
+          [new Date(2012, 3, 17), 38229],
+          [new Date(2012, 3, 18), 37032],
+          [new Date(2012, 3, 19), 38024],
+          [new Date(2012, 3, 20), 38024],
+          [new Date(2012, 3, 21), 38108],
+          [new Date(2012, 3, 22), 38229],
+          [new Date(2012, 6, 13), 37032],
+          [new Date(2012, 6, 14), 38024],
+          [new Date(2012, 6, 15), 38024],
+          [new Date(2012, 6, 16), 38108],
+          [new Date(2012, 6, 17), 38229],
+          // Many rows omitted for brevity.
+          [new Date(2012, 9, 4), 38177],
+          [new Date(2012, 9, 5), 38705],
+          [new Date(2012, 9, 12), 38210],
+          [new Date(2012, 9, 13), 38029],
+          [new Date(2012, 9, 19), 38823],
+          [new Date(2012, 9, 23), 38345],
+          [new Date(2012, 9, 24), 38436],
+          [new Date(2012, 9, 30), 38447]
+        ]
       },
       filterByTimeType: {
         placeholder: 'Theo tuần',
@@ -154,6 +189,7 @@ export class StatisticMember extends React.Component {
         this.props.params.courseId, timeType, `${startTime}Z`, `${endTime}Z`, token)
       .then(res => {
         const newCalendarChartData = this.state.calendarChartData;
+
         newCalendarChartData.datasets = [];
 
         newCalendarChartData.datasets.push([{ type: 'date', id: 'Date' }, { type: 'number', id: 'Won/Loss' }]);
@@ -161,7 +197,7 @@ export class StatisticMember extends React.Component {
         res.result.object.data.forEach(element => {
           var date = moment(element[0]);
 
-          newCalendarChartData.datasets.push([new Date(date.year(), date.month(), date.day()), element[1]])
+          newCalendarChartData.datasets.push([new Date(date.year(), date.month(), date.date()), element[1]])
         });
 
         newCalendarChartData.timeType = timeTypeVi;

@@ -15,7 +15,7 @@ export class CalendarChart extends React.Component {
 
   render() {
     const { calendarChartData, isFetching, isEmpty } = this.props;
-    console.log("calendarChartData", calendarChartData);
+
     return (
       <div className="calendarChart">
         <div className="calendarChart__title">

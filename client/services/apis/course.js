@@ -36,7 +36,8 @@ export class CourseApi extends CrudApi {
       headers: _.merge(
         {
           "User-Agent": "Request-Promise",
-          "Content-Type": "Application/json"
+          "Content-Type": "Application/json",
+          "x-token": localStorage.getItem("token")
         },
         option.headers || {}
       )
@@ -63,6 +64,7 @@ export class CourseApi extends CrudApi {
       )
     };
     const res = await this.exec(url, options);
+
     if (res.code && res.code === 200) {
       return res;
     } else {
