@@ -74,6 +74,7 @@
     "sweetalert2": "^8.17.1",
     "typescript": "^3.5.3",
     "uuid": "^3.3.3",
+    "webpack-filter-warnings-plugin": "^1.2.1",
     "yarn": "^1.17.3"
   },
   "scripts": {

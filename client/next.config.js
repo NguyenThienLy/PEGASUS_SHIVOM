@@ -1,6 +1,6 @@
 const withSass = require('@zeit/next-sass')
 const withBundleAnalyzer = require("@zeit/next-bundle-analyzer");
-
+const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
 
 module.exports = withBundleAnalyzer({
   analyzeServer: ["server", "both"].includes(process.env.BUNDLE_ANALYZE),
@@ -17,7 +17,16 @@ module.exports = withBundleAnalyzer({
   }
 });
 
-module.exports = withSass()
+module.exports = withSass({
+  webpack: (config) => {
+    config.plugins.push(
+      new FilterWarningsPlugin({
+        exclude: /mini-css-extract-plugin[^]*Conflicting order between:/,
+      })
+    );
+    return config;
+  }
+})
 
 
 
