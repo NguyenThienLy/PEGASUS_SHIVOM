@@ -95,12 +95,12 @@ export class StudentController extends CrudController<typeof studentService>{
                 _id: courseOfStudents.map((courseStudent: any) => { return courseStudent.course })
 
             }, {
-                    $inc: {
-                        currentStudentAmount: 1
-                    }
-                }, {
-                    new: true, multi: true
-                }).exec()
+                $inc: {
+                    currentStudentAmount: 1
+                }
+            }, {
+                new: true, multi: true
+            }).exec()
         } catch (err) {
 
         }
@@ -170,12 +170,12 @@ export class StudentController extends CrudController<typeof studentService>{
                 _id: courseOfStudents.map((courseStudent: any) => { return courseStudent.course })
 
             }, {
-                    $inc: {
-                        currentStudentAmount: - 1
-                    }
-                }, {
-                    new: true, multi: true
-                }).exec()
+                $inc: {
+                    currentStudentAmount: - 1
+                }
+            }, {
+                new: true, multi: true
+            }).exec()
         } catch (err) {
 
         }
@@ -607,13 +607,14 @@ export class StudentController extends CrudController<typeof studentService>{
         }
     }
     async getTimeTableOfStudent(params: {
-        studentId: string
+        studentId: string,
+        isRefresh: boolean
     }, option: ICrudOption) {
         const hashCode = hash(JSON.stringify(_.merge(params, option)))
         // Lay du lieu trong cache
         const cacheData = await cacheService.get(hashCode)
         // Kiem tra cache co thi tra ve cache khong thi query lay va tao cache moi co thoi han
-        if (cacheData) {
+        if (cacheData && !params.isRefresh) {
             return cacheData
         } else {
             const { studentId } = params
@@ -621,25 +622,22 @@ export class StudentController extends CrudController<typeof studentService>{
             const coursesOfStudent = await courseStudentService.model.find({
                 student: studentId
             })
+
             // Lay danh sach tat ca thoi khoa bieu cua hoc sinh voi day du thong tin ve cac lop, giao vien cua lop
-            const { rows: studentTimeTables } = await studentTimeTableService.getList(_.merge({
+            const { rows: studentTimeTables } = await classTimeTableService.getList(_.merge({
                 filter: {
-                    course: coursesOfStudent.map((coursesOfStudent: CourseStudentModel) => { return coursesOfStudent.course })
+                    course: coursesOfStudent.map((coursesOfStudent: CourseStudentModel) => { return coursesOfStudent.course }),
+                    status: "active"
                 },
                 populates: [
                     {
-                        path: "course",
-                        select: "name"
-                    },
-                    {
                         path: "items",
                         select: "startTime endTime dayOfWeek topic",
-                        match: { status: "active" },
-                        populate: [{
-                            path: "class",
-                            select: "name",
-                            populate: [{ path: "teacher", select: "firstName lastName" }]
-                        }]
+                        match: { status: "active" }
+                    }, {
+                        path: "class",
+                        select: "name shortDescription",
+                        populate: [{ path: "teacher", select: "firstName lastName avatar shortDescription" }]
                     }
                 ]
             }, option))
